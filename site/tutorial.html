@@ -17,7 +17,7 @@ pre {
 	font-family: Menlo, Monaco, Courier, monospace;
 	line-height: 140%;
 	white-space: pre-wrap;
-	margin-top: 3px;
+	margin-top: 10px;
 }
 
 tt {
@@ -126,7 +126,7 @@ pre i {
 }
 
 .title_top, .tutorial_left_bar, .tutorial_right_bar {
-	background-color: #083868;
+	background-color: #084868;
 }
 
 </style>
@@ -307,7 +307,7 @@ To accept the autosuggestion, hit right arrow or Control-F. If the autosuggestio
 
 <h3 id="tut_tab_completions">Tab Completions</h3>
 
-<p>fish comes with a rich set of tab completions, that just work without requiring configuration or installation.
+<p>fish comes with a rich set of tab completions, that work "out of the box."
 
 <p>Press tab, and fish will attempt to complete the command, argument, or path:
 
@@ -353,7 +353,7 @@ My current directory is $PWD
 
 Unlike other shells, fish has no dedicated syntax for setting variables. Instead it has an ordinary command: <tt>set</tt>, which takes a variable name, and then its value.
 
-<p><pre>
+<pre>
 > <b>set</b> <i>name 'Mister Noodle'</i>
 > <b>echo</b> <i>$name</i>
 Mister Noodle
@@ -375,7 +375,7 @@ In bash, this would have created two directories "Mister" and "Noodle". In fish,
 
 Unlike other shells, fish stores the exit status of the last command in <tt>$status</tt> instead of <tt>$?</tt>.
 
-<p><pre>
+<pre>
 > <b>false</b>
 > <b>echo</b> <i>$status</i>
 1
@@ -413,7 +413,7 @@ You can erase a variable with <tt>-e</tt> or <tt>--erase</tt>
 /usr/bin /bin /usr/sbin /sbin /usr/local/bin
 </pre>
 
-Lists cannot contain other lists: there is no recursion.  A variable is a list of strings, full stop.
+<p>Lists cannot contain other lists: there is no recursion.  A variable is a list of strings, full stop.
 
 <p>Get the length of a list with <tt>count</tt>:
 
@@ -529,7 +529,7 @@ Note that <tt>case</tt> does not fall through, and can accept multiple arguments
 
 <h3 id="tut_functions">Functions</h3>
 
-A fish function is what you would expect: a list of commands, that may optionally take arguments. Unlike other shells, arguments are not passed in "numbered variables" like <tt>$1</tt>, but instead in a single list <tt>$argv</tt>. To create a function, use the <tt>function</tt> builtin:
+A fish function is a list of commands, which may optionally take arguments. Unlike other shells, arguments are not passed in "numbered variables" like <tt>$1</tt>, but instead in a single list <tt>$argv</tt>. To create a function, use the <tt>function</tt> builtin:
 
 <pre>
 > <i><b>function</b> say_hello
@@ -575,6 +575,7 @@ Loop forever
 
 For loops can be used to iterate over a list. For example, a list of files:
 
+<pre>
 > <b>for file in <i>*.txt</i>
 	cp <i>$file $file.bak</i>
 end</b>
@@ -591,13 +592,13 @@ end</b>
 
 <h3 id="tut_prompt">Prompt</h3>
 
-Unlike other shells, there is no prompt variable. To display your prompt, fish executes a function with the name <tt>fish_prompt</tt>, and its output is used as the prompt.
+Unlike other shells, there is no prompt variable like PS1. To display your prompt, fish executes a function with the name <tt>fish_prompt</tt>, and its output is used as the prompt.
 
 You can define your own prompt:
-<p><pre>
+<pre>
 > <b>function <i>fish_prompt</i>
 	echo <i>"New Prompt % "</i>
-end</b>
+  end</b>
 New Prompt % <u> </u>
 </b>
 </pre>
@@ -611,19 +612,19 @@ Multiple lines are OK. Colors can be set via <tt>set_color</tt>, passing it name
 	set_color FF0
 	echo (pwd) '>'
 	set_color normal
-end</b>
+  end</b>
 <span style="color: purple">02/06/13</span>
 <span style="color: #FF0">/home/tutorial ></span><u> </u>
 </b>
 </pre>
 
-<p>You can choose among some sample prompts through <tt>fish_config</tt>. fish also supports RPROMPT through <tt>fish_right_prompt</tt>.
+<p>You can choose among some sample prompts by running <tt>fish_config prompt</tt>. fish also supports RPROMPT through <tt>fish_right_prompt</tt>.
 
 <h3>$PATH</h3>
 
 <tt>$PATH</tt> is an environment variable containing the directories in which fish searches for commands. Instead of separating entries with a colon, $PATH is a list. You can modify $PATH in a few ways:
 
-<ol>
+<p><ol>
 <li>By modifying the <tt>$fish_user_paths</tt> variable, which is automatically appended to <tt>$PATH</tt>. For example, to permanently add /usr/local/bin to your <tt>$PATH</tt>, you could write:
 
 <pre>
@@ -631,14 +632,26 @@ end</b>
 </pre>
 
 
-<li>Directly in config.fish (see below)</li>
+<li>Directly in config.fish (see below).</li>
 </ol>
 
 <h3 id="tut_startup">Startup (Where's .bashrc?)</h3>
 
-fish starts by executing commands in <tt>~/.config/fish/config.fish</tt>. You can create it if it does not exist.
+<p>fish starts by executing commands in <tt>~/.config/fish/config.fish</tt>. You can create it if it does not exist.
 
-<p>It is possible to just create functions and variables in <tt>config.fish</tt> file, using the commands shown above. However, it is more common to use  <i>autoloading functions</i> and <i>universal variables</i>.
+<p>It is possible to directly create functions and variables in <tt>config.fish</tt> file, using the commands shown above. For example:
+
+<p><pre>
+> <b>cat</b> <i>~/.config/fish/config.fish</i>
+
+set -x PATH $PATH /sbin/
+
+function ll
+    ls -lh $argv
+end
+</pre>
+
+<p>However, it is more common and efficient to use  <i>autoloading functions</i> and <i>universal variables</i>.
 
 <h3>Autoloading Functions</h3>
 
@@ -647,7 +660,7 @@ fish starts by executing commands in <tt>~/.config/fish/config.fish</tt>. You ca
 <p>For example, if you wanted to have a function <tt>ll</tt>, you would add a text file <tt>ll.fish</tt> to <tt>~/.config/fish/functions</tt>:
 
 <pre>
->  <b>cat</b> <i>~/.config/fish/functions/ll.fish</i>
+> <b>cat</b> <i>~/.config/fish/functions/ll.fish</i>
 function ll
 	ls -lh $argv
 end
@@ -674,14 +687,14 @@ end
 
 Now in another shell:
 
-<p><pre>
+<pre>
 > <b>echo</b> <i>$EDITOR</i>
 vim
 </pre>
 
 <h3>Ready for more?</h3>
 
-<p>If you want to learn more about the details of fish, there is <a href="docs/current/extensive documentation.
+<p>If you want to learn more about fish, there is <a href="docs/current/">lots of detailed documentation</a>, an <a href="https://lists.sourceforge.net/lists/listinfo/fish-users">official mailing list</a>, the IRC channel <tt>#fish</tt> on <tt>irc.oftc.net</tt>, and the <a href="http://github.com/fish-shell/fish-shell/">github page</a>.
 
 </div>
 </body>
