@@ -11,13 +11,16 @@
 pre {
 	border: solid #AAA 1px;
 	background-color: black;
-	color: #7F0;
+	color: white;
 	padding: 10px 12px;
 	font-size: 10pt;
 	font-family: Menlo, Monaco, Courier, monospace;
 	line-height: 140%;
 	white-space: pre-wrap;
 	margin-top: 10px;
+	tab-size: 4;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
 }
 
 tt {
@@ -25,7 +28,7 @@ tt {
 }
 
 .suggest { 
-	color: #888;
+	color: #555;
 }
 
 pre u {
@@ -39,14 +42,30 @@ pre u {
 
 pre b {
 	/* Used for commands */
-	color: #AFF;
+	color: #005fd7;
 	font-weight: normal;
 }
 
 pre i {
 	/* Used for arguments */
-	color: #2AE;
+	color: #00afff;
 	font-style: normal;
+}
+
+pre em {
+	/* Used for path/help word */
+	color: #0a0;
+	font-style: normal;
+}
+
+.quote {
+	color: #A50;
+}
+
+.error {
+	/* Used for errors */
+	color: #F55;
+	font-weight: bold;
 }
 
 .tutorial_nav {
@@ -181,7 +200,8 @@ pre i {
 
 <pre>
 Welcome to fish, the friendly interactive shell
-you@hostname ~>
+Type <em>help</em> for instructions on how to use fish
+you@hostname <em>~</em>>
 </pre>
 
 <p>fish comes with a default prompt that shows your username, hostname, and working directory. You'll see <a href="#tut_prompt">how to change your prompt</a> further down. From now on, we'll pretend your prompt is just a '>' to save space.
@@ -199,8 +219,8 @@ You can include a literal space in an argument with a backslash, or by using sin
 
 <pre>
 > <b>mkdir</b> <i>My\ Files</i>
-> <b>cp</b> <i>~/Some\ File 'My Files'</i>
-> <b>ls</b> <i>"My Files"</i>
+> <b>cp</b> <i>~/Some\ File</i> <i class=quote>'My Files'</i>
+> <b>ls</b> <i class=quote>"My Files"</i>
 Some File
 </pre>
 
@@ -220,7 +240,7 @@ set - handle environment variables
 You'll quickly notice that fish performs syntax highlighting as you type. Invalid commands are colored red by default:
 
 <pre>
-> <span style="color: red">/bin/mkd</span>
+> <b class="error">/bin/mkd</b>
 </pre>
 
 A command may be invalid because it does not exist, or refers to a file that you cannot execute. When the command becomes valid, it is shown in a different color:
@@ -273,14 +293,14 @@ lesson.pdf
 <p>You can pipe between commands with the usual vertical bar:
 
 <pre>
-> <b>echo</b> <i>hello world |</i> <b>wc</b>
+> <b>echo</b> <i>hello world</i> | <b>wc</b>
 	   1       2      12
 </pre>
 
 <p>stdin and stdout can be redirected via the familiar &lt; and &gt;. Unlike other shells, stderr is redirected with a caret ^
 
 <pre>
-> <b>grep</b> <i>fish < /etc/shells > ~/output.txt ^ ~/errors.txt</i>
+> <b>grep</b> <i>fish</i> &lt; /etc/shells > ~/output.txt ^ ~/errors.txt
 </pre>
 
 <h3 id="tut_autosuggestions">Autosuggestions</h3>
@@ -288,7 +308,7 @@ lesson.pdf
 fish suggests commands as you type, and shows the suggestion to the right of the cursor, in gray. For example:
 
 <pre>
-> <b>/bin/h</b><span class="suggest"><u>o</u>stname</span>
+> <b class="error">/bin/h</b><span class="suggest"><u>o</u>stname</span>
 </pre>
 
 It knows about paths and options:
@@ -312,13 +332,13 @@ To accept the autosuggestion, hit right arrow or Control-F. If the autosuggestio
 <p>Press tab, and fish will attempt to complete the command, argument, or path:
 
 <pre>
-> <b>/pri</b><span class="meta">&lt;tab&gt; &rarr;</span> <b>/private/</b>
+> <b class="error">/pri</b><span class="meta">&lt;tab&gt; &rarr;</span> <b>/private/</b>
 </pre>
 
 <p>If there's more than one possibility, it will list them:
 <pre>
-> <b>~/stuff/s</b><span class="meta">&lt;tab&gt;</span>
-~/stuff/script.sh  (Executable, 4.8kB)  ~/stuff/sources/  (Directory)
+> <b class="error">~/stuff/s</b><span class="meta">&lt;tab&gt;</span>
+<i>~/stuff/s</i>cript.sh  <i class="quote">(Executable, 4.8kB)</i>  <i>~/stuff/s</i>ources/  <i class="quote">(Directory)</i>
 </pre>
 
 <p>Hit tab again to cycle through the possibilities.
@@ -328,7 +348,7 @@ To accept the autosuggestion, hit right arrow or Control-F. If the autosuggestio
 <pre>
 > <b>git</b> <i>merge pr</i><span class="meta">&lt;tab&gt; &rarr;</span> git merge prompt_designer
 > <b>git</b> <i>checkout b</i><span class="meta">&lt;tab&gt;</span>
-builtin_list_io_merge  (Branch)  builtin_set_color  (Branch)  busted_events  (Tag)
+<i>b</i>uiltin_list_io_merge  <i class="quote">(Branch)</i>  <i>b</i>uiltin_set_color  <i class="quote">(Branch)</i>  <i>b</i>usted_events  <i class="quote">(Tag)</i>
 </pre>
 
 Try hitting tab and see what fish can do!
@@ -345,16 +365,16 @@ My home directory is /home/tutorial
 Variable substitution also occurs in double quotes, but not single quotes:
 
 <pre>
-> <b>echo</b> <i>"My current directory is $PWD"</i>
+> <b>echo</b> <i class="quote">"My current directory is </i><i>$</i><i class="quote">PWD"</i>
 My current directory is /home/tutorial
-> <b>echo</b> <i>'My current directory is $PWD'</i>
+> <b>echo</b> <i class="quote">'My current directory is $PWD'</i>
 My current directory is $PWD
 </pre>
 
 Unlike other shells, fish has no dedicated syntax for setting variables. Instead it has an ordinary command: <tt>set</tt>, which takes a variable name, and then its value.
 
 <pre>
-> <b>set</b> <i>name 'Mister Noodle'</i>
+> <b>set</b> <i>name</i> <i class="quote">'Mister Noodle'</i>
 > <b>echo</b> <i>$name</i>
 Mister Noodle
 </pre>
@@ -389,14 +409,14 @@ Unlike other shells, fish does not have an export command. Instead, a variable i
 
 <pre>
 > <b>set</b> <i>-x MyVariable SomeValue</i>
-> <b>env</b> <i>|</i> <b>grep</b> <i>MyVariable</i>
-MyVariable=SomeValue
+> <b>env</b> | <b>grep</b> <i>MyVariable</i>
+<span style="background: #A0A">MyVariable</span>=SomeValue
 </pre>
 
 You can erase a variable with <tt>-e</tt> or <tt>--erase</tt>
 <pre>
 > <b>set</b> <i>-e MyVariable</i>
-> <b>env</b> <i>|</i> <b>grep</b> <i>MyVariable</i>
+> <b>env</b> | <b>grep</b> <i>MyVariable</i>
 <span class="meta">(no output)</span>
 </pre>
 
@@ -467,14 +487,14 @@ entry: /usr/local/bin
 Command substitutions use the output of one command as an argument to another. Unlike other shells, fish does not use backticks ` for command substitutions. Instead, it uses parentheses:
 
 <pre>
-> <b>echo</b> <i>In </i>(<b>pwd</b>)<i>, running </i>(<b>uname</b>)<i></i>
+> <b>echo</b> <i>In (</i><b>pwd</b><i>), running (</i><b>uname</b><i>)</i>
 In /home/tutorial, running FreeBSD
 </pre>
 
 A common idiom is to capture the output of a command in a variable:
 
 <pre>
-> <b>set</b> <i>os </i>(<i>uname</i>)<i></i>
+> <b>set</b> <i>os (</i><b>uname</b><i>)</i>
 > <b>echo</b> <i>$os</i>
 Linux
 </pre>
@@ -482,7 +502,7 @@ Linux
 Command substitutions are not expanded within quotes. Instead, you can temporarily close the quotes, add the command substitution, and reopen them, all in the same argument:
 
 <pre>
-> <b>touch</b> <i>"testing_"</i>(<b>date</b> <i>+%s</i>)<i>".txt"</i>
+> <b>touch</b> <i class="quote">"testing_"</i><i>(</i><b>date</b> <i>+%s</i><i>)</i><i class="quote">".txt"</i>
 > <b>ls</b> <i>*.txt</i>
 testing_1360099791.txt
 </pre>
@@ -492,7 +512,7 @@ testing_1360099791.txt
 Unlike other shells, fish does not have special syntax like &amp;&amp; or || to combine commands. Instead it has commands <tt>and</tt>, <tt>or</tt>, and <tt>not</tt>.
 
 <pre>
-> <b>cp</b> <i>file1.txt file1_bak.txt</i>; <b>and echo</b> <i>"Backup successful"</i>; <b>or echo</b> <i>"Backup failed"</i>
+> <b>cp</b> <i>file1.txt file1_bak.txt</i>; <b>and echo</b> <i class="quote">"Backup successful"</i>; <b>or echo</b> <i class="quote">"Backup failed"</i>
 Backup failed
 </pre>
 
@@ -513,14 +533,14 @@ Use <tt>if</tt>, <tt>else if</tt>, and <tt>else</tt> to conditionally execute co
 There is also a <tt>switch</tt> command:
 
 <pre>
-<b>switch</b> (<b>uname</b>)
+<b>switch</b> <i>(</i><b>uname</b><i>)</i>
 	<b>case</b> <i>Linux</i>
 		<b>echo</b> <i>Hi Tux!</i>
 	<b>case</b> <i>Darwin</i>
 		<b>echo</b> <i>Hi Hexley!</i>
 	<b>case</b> <i>FreeBSD NetBSD DragonFly</i>
 		<b>echo</b> <i>Hi Beastie!</i>
-	<b>case</b> <i>'*'</i>
+	<b>case</b> <i class="quote">'*'</i>
 		<b>echo</b> <i>Hi, stranger!</i>
 <b>end</b>
 </pre>
@@ -564,9 +584,9 @@ end
 While loops:
 
 <pre>
-> <b>while <i>true</i>
-	echo <i>"Loop forever"</i>
-end</b>
+> <b>while</b> <i>true</i>
+	<b>echo</b> <i class="quote">"Loop forever"</i>
+<b>end</b>
 Loop forever
 Loop forever
 Loop forever
@@ -576,17 +596,17 @@ Loop forever
 For loops can be used to iterate over a list. For example, a list of files:
 
 <pre>
-> <b>for file in <i>*.txt</i>
-	cp <i>$file $file.bak</i>
-end</b>
+> <b>for</b> <i>file in *.txt</i>
+	<b>cp</b> <i>$file $file.bak</i>
+<b>end</b>
 </pre>
 
 Iterating over a list of numbers can be done with `seq`:
 
 <pre>
-> <b>for <i>x</i> in </b>(<b>seq <i>5</i></b>)<b></i>
-	touch <i>file_</i></b>$<i>x.txt</i><b>
-end</b>
+> <b>for</b> <i>x in (</i><b>seq</b> <i>5)</i>
+	<b>touch</b> <i>file_$x.txt</i>
+<b>end</b>
 </pre>
 
 
@@ -606,13 +626,13 @@ New Prompt % <u> </u>
 Multiple lines are OK. Colors can be set via <tt>set_color</tt>, passing it named ANSI colors, or hex RGB values:
 
 <pre>
-> <b>function <i>fish_prompt</i>
-	set_color purple
-	date "+%m/%d/%y"
-	set_color FF0
-	echo (pwd) '>'
-	set_color normal
-  end</b>
+> <b>function</b> <i>fish_prompt</i>
+	<b>set_color</b> <i>purple</i>
+	<b>date</b> <i class="quote">"+%m/%d/%y"</i>
+	<b>set_color</b> <i>FF0</i>
+	<b>echo</b> <i>(</i><b>pwd</b><i>)</i> <i class="quote">'>'</i>
+	<b>set_color</b> <i>normal</i>
+  <b>end</b>
 <span style="color: purple">02/06/13</span>
 <span style="color: #FF0">/home/tutorial ></span><u> </u>
 </b>
@@ -628,7 +648,7 @@ Multiple lines are OK. Colors can be set via <tt>set_color</tt>, passing it name
 <li>By modifying the <tt>$fish_user_paths</tt> variable, which is automatically appended to <tt>$PATH</tt>. For example, to permanently add /usr/local/bin to your <tt>$PATH</tt>, you could write:
 
 <pre>
-> <b>set</b> <i>-U fish_user_paths </i>$<i>fish_user_paths /usr/local/bin</i>
+> <b>set</b> <i>-U fish_user_paths $fish_user_paths /usr/local/bin</i>
 </pre>
 
 
