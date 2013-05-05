@@ -129,7 +129,7 @@ Synopsis</a></h3>
 Description</a></h3>
 The <code>bind</code> builtin causes fish to add a key binding from the specified sequence.<p>
 SEQUENCE is the character sequence to bind to. Usually, one would use fish escape sequences to express them. For example, because pressing the Alt key and another character sends that character prefixed with an escape character, Alt-based key bindings can be written using the <code>\e</code> escape. For example, Alt-w can be written as <code>\ew</code>. Control character can be written in much the same way using the <code>\c</code> escape, for example Control-x can be written as <code>\cx</code>. Note that Alt-based key bindings are case sensitive and Control base key bindings are not. This is not a design choice in fish, it is simply how terminals work.<p>
-If SEQUENCE is the empty string, i.e. an empty set of quotes, this is interpreted as the default keybinding. It will be used whenever no other binding matches. For most key bindings, it makes sense to use the <code>self-insert</code> function (i.e. <code>bind '' self-insert</code> as the default keybining. This will insert any keystrokes not specifically bound to into the editor. Non-printable characters are ignored by the editor, so this will not result in e.g. control sequences being printable.<p>
+If SEQUENCE is the empty string, i.e. an empty set of quotes, this is interpreted as the default keybinding. It will be used whenever no other binding matches. For most key bindings, it makes sense to use the <code>self-insert</code> function (i.e. <code>bind '' self-insert</code> as the default keybinding. This will insert any keystrokes not specifically bound to into the editor. Non-printable characters are ignored by the editor, so this will not result in e.g. control sequences being printable.<p>
 If the -k switch is used, the name of the key (such as down, up or backspace) is used instead of a sequence. The names used are the same as the corresponding curses variables, but without the 'key_' prefix. (See man 5 terminfo for more information, or use <code>bind --key-names</code> for a list of all available named keys)<p>
 COMMAND can be any fish command, but it can also be one of a set of special input functions. These include functions for moving the cursor, operating on the kill-ring, performing tab completion, etc. Use 'bind --function-names' for a complete list of these input functions.<p>
 When COMMAND is a shellscript command, it is a good practice to put the actual code into a <a href="#function">function</a> and simply bind to the function name. This way it becomes significantly easier to test the function while editing, and the result is usually more readable as well.<p>
@@ -230,8 +230,8 @@ cd - change directory</a></h2>
 <h3><a class="anchor" name="cd-synopsis">
 Synopsis</a></h3>
 <code>cd [DIRECTORY]</code><h3><a class="anchor" name="cd-description">
-Description Changes the current</a></h3>
-directory. If <code>DIRECTORY</code> is supplied it will become the new directory. If <code>DIRECTORY</code> is a relative path, the paths found in the CDPATH environment variable array will be tried as prefixes for the specified path. If CDPATH is not set, it is assumed to be '.'. If <code>DIRECTORY</code> is not specified, $HOME will be the new directory.<p>
+Description</a></h3>
+Changes the current directory. If <code>DIRECTORY</code> is supplied it will become the new directory. If <code>DIRECTORY</code> is a relative path, the paths found in the CDPATH environment variable array will be tried as prefixes for the specified path. If CDPATH is not set, it is assumed to be '.'. If <code>DIRECTORY</code> is not specified, $HOME will be the new directory.<p>
 Back to <a href="index.html#toc-commands">index</a>. <hr>
  <h2><a class="anchor" name="command">
 command - run a program</a></h2>
@@ -306,14 +306,14 @@ Synopsis</a></h3>
 <code>contains [OPTIONS] KEY [VALUES...]</code><h3><a class="anchor" name="contains-description">
 Description</a></h3>
 <ul>
-<li><code>-i</code> or <code>--index</code> print the the word index</li><li><code>-h</code> or <code>--help</code> display this message</li></ul>
+<li><code>-i</code> or <code>--index</code> print the word index</li><li><code>-h</code> or <code>--help</code> display this message</li></ul>
 <p>
 Test if the set VALUES contains the string KEY. Return status is 0 if yes, 1 otherwise<h3><a class="anchor" name="contains-example">
 Example</a></h3>
 <pre>
 for i in ~/bin /usr/local/bin
 	if not contains $i $PATH
-		set PATH $PATH i
+		set PATH $PATH $i
 	end
 end
 </pre><p>
@@ -345,7 +345,7 @@ Synopsis</a></h3>
 Description</a></h3>
 The <code>count</code> builtin prints the number of arguments that were passed to it. This is usually used to find out how many elements an environment variable array contains, but this is not the only potential usage for the count command.<p>
 The count command does not accept any options, not even '-h'. This way the user does not have to worry about an array containing elements such as dashes. <code>fish</code> performs a special check when invoking the count command, and if the user uses a help option, this help page is displayed, but if a help option is contained inside of a variable or is the result of expansion, it will simply be counted like any other argument.<p>
-Count exits with a non-zero exit status if no arguments where passed to it, with zero otherwise.<h3><a class="anchor" name="count-example">
+Count exits with a non-zero exit status if no arguments were passed to it, and with zero if at least one argument was passed.<h3><a class="anchor" name="count-example">
 Example</a></h3>
 <pre>
 count $PATH
@@ -380,10 +380,16 @@ Synopsis</a></h3>
 Description</a></h3>
 Display a line of text.<p>
 <ul>
-<li><code>-n</code>, <code>Do</code> not output a newline</li><li><code>-s</code>, <code>Do</code> not separate arguments with spaces</li><li><code>-h</code>, <code>--help</code> Display this help</li></ul>
+<li><code>-n</code>, <code>Do</code> not output a newline</li><li><code>-s</code>, <code>Do</code> not separate arguments with spaces</li><li><code>-E</code>, <code>Disable</code> interpretation of backslash escapes (default)</li><li><code>-e</code>, <code>Enable</code> interpretation of backslash escapes</li><li><code>-h</code>, <code>--help</code> Display this help</li></ul>
+<h3><a class="anchor" name="echo-escapes">
+Escape Sequences</a></h3>
+If -e is in effect, the following sequences are recognized:<p>
+<ul>
+<li><code>\\</code> <code>backslash</code> </li><li>\a alert (BEL)</li><li>\b backspace</li><li>\c produce no further output</li><li>\e escape</li><li>\f form feed</li><li>\n new line</li><li>\r carriage return</li><li>\t horizontal tab</li><li>\v vertical tab</li><li>\0NNN byte with octal value NNN (1 to 3 digits)</li><li>\xHH byte with hexadecimal value HH (1 to 2 digits)</li></ul>
 <h3><a class="anchor" name="echo-example">
 Example</a></h3>
 <code>echo 'Hello World'</code> Print hello world to stdout<p>
+<code>echo -e 'Top\nBottom'</code> Print Top and Bottom on separate lines, using an escape sequence<p>
 Back to <a href="index.html#toc-commands">index</a>. <hr>
  <h2><a class="anchor" name="else">
 else - execute command if a condition is not met</a></h2>
@@ -475,7 +481,7 @@ fish - the friendly interactive shell</a></h2>
 Synopsis</a></h3>
 fish [-h] [-v] [-c command] [FILE [ARGUMENTS...]]<h3><a class="anchor" name="fish-description">
 Description</a></h3>
-A commandline shell written mainly with interactive use in mind. The full manual is available <a href="index.html">in html</a> by using the <a href="#help">help</a> command from inside fish.<p>
+A commandline shell written mainly with interactive use in mind. The full manual is available <a href="index.html">in HTML</a> by using the <a href="#help">help</a> command from inside fish.<p>
 <ul>
 <li><code>-c</code> or <code>--command=COMMANDS</code> evaluate the specified commands instead of reading from the commandline</li><li><code>-d</code> or <code>--debug-level=DEBUG_LEVEL</code> specify the verbosity level of fish. A higher number means higher verbosity. The default level is 1.</li><li><code>-h</code> or <code>--help</code> display help and exit</li><li><code>-i</code> or <code>--interactive</code> specify that fish is to run in interactive mode</li><li><code>-l</code> or <code>--login</code> specify that fish is to run as a login shell</li><li><code>-n</code> or <code>--no-execute</code> do not execute any commands, only perform syntax checking</li><li><code>-p</code> or <code>--profile=PROFILE_FILE</code> when fish exits, output timing information on all executed commands to the specified file</li><li><code>-v</code> or <code>--version</code> display version and exit</li></ul>
 <p>
@@ -506,7 +512,7 @@ Description</a></h3>
 This command is used internally by fish to display a list of completions. It should not be used by other commands, as it's interface is liable to change in the future.<p>
 Back to <a href="index.html#toc-commands">index</a>. <hr>
  <h2><a class="anchor" name="fish_prompt">
-fish_prompt - define the apperance of the command line prompt</a></h2>
+fish_prompt - define the appearance of the command line prompt</a></h2>
 <h3><a class="anchor" name="fish_prompt-synopsis">
 Synopsis</a></h3>
 <pre>function fish_prompt
@@ -514,7 +520,7 @@ Synopsis</a></h3>
 end</pre><h3><a class="anchor" name="fish_prompt-description">
 Description</a></h3>
 By defining the <code>fish_prompt</code> function, the user can choose a custom prompt. The <code>fish_prompt</code> function is executed when the prompt is to be shown, and the output is used as a prompt.<p>
-Please keep in mind that the function is executed by <a href="index.html#expand-command-substitution">command substitution</a>, and so the exit status of commands within fish_prompt will not modify the <a href="index.html#variables-status">$status</a> seen outside of fish_prompt.<h3><a class="anchor" name="fish_prompt-example">
+The exit status of commands within <code>fish_prompt</code> will not modify the <a href="index.html#variables-status">$status</a> seen outside of fish_prompt.<h3><a class="anchor" name="fish_prompt-example">
 Example</a></h3>
 A simple prompt:<p>
 <pre>
@@ -524,7 +530,7 @@ end
 </pre><p>
 Back to <a href="index.html#toc-commands">index</a>. <hr>
  <h2><a class="anchor" name="fish_right_prompt">
-fish_right_prompt - define the apperance of the right-side command line prompt</a></h2>
+fish_right_prompt - define the appearance of the right-side command line prompt</a></h2>
 <h3><a class="anchor" name="fish_right_prompt-synopsis">
 Synopsis</a></h3>
 <pre>function fish_right_prompt
@@ -558,7 +564,7 @@ The <code>fishd</code> daemon is used to load, save and distribute universal var
 <li><code>-h</code> or <code>--help</code> displays this help message and then exits</li><li><code>-v</code> or <code>--version</code> displays the current fish version and then exits</li></ul>
 <h3><a class="anchor" name="fishd-files">
 Files</a></h3>
-<code>~/</code>.config/fish/fishd.HOSTNAME permanent storage location for universal variable data. The data is stored as a set of <code>set</code> and <code>set_export</code> commands such as would be parsed by fishd. The file must always be stored in ASCII format. If an instance of fishd is running (which is generally the case), manual modifications to ~/.fishd.HOSTNAME will be lost. Do NOT edit this file manually!<p>
+<code>~/</code>.config/fish/fishd.MACHINE_ID permanent storage location for universal variable data. MACHINE_ID is generally based on the machine's MAC address. The data is stored as a set of <code>set</code> and <code>set_export</code> commands such as would be parsed by fishd. The file must always be stored in ASCII format. If an instance of fishd is running (which is generally the case), manual modifications to ~/.fishd.MACHINE_ID will be lost. Do NOT edit this file manually!<p>
 <code>/tmp/fishd</code>.socket.USERNAME the socket which fishd uses to communicate with all clients.<p>
 /tmp/fishd.log.USERNAME the fishd log file<p>
 Back to <a href="index.html#toc-commands">index</a>. <hr>
@@ -585,14 +591,14 @@ funced - edit a function interactively</a></h2>
 Synopsis</a></h3>
 <code>funced [OPTIONS] NAME</code><h3><a class="anchor" name="funced-description">
 Description</a></h3>
-Use the funced command to edit the definition of a function. If there is no function with the name specified, a skeleton function is inserted, if a function exist, the definition will be shown in your editor or on the command line.<p>
+Use the funced command to edit the definition of a function. If there is no function with the name specified, a skeleton function is inserted. If the function exists, its definition will be shown in your editor or on the command line.<p>
 By default, funced edits functions using the text editor in your $EDITOR variable, if set; otherwise it uses the built-in editor.<p>
 <ul>
-<li><code>-e command</code> or <code>--editor command</code> Open the function body inside the text editor given by the command (for example, "vi"). The command 'fish' will use the built-in editor.</li><li><code>-i</code> or <code>--interactive</code> Open function body in built-in editor.</li></ul>
+<li><code>-e command</code> or <code>--editor command</code> Open the function body inside the text editor given by the command (for example, "vi"). The command 'fish' will use the built-in editor.</li><li><code>-i</code> or <code>--interactive</code> Open function body in the built-in editor.</li></ul>
 <p>
 Back to <a href="index.html#toc-commands">index</a>. <hr>
  <h2><a class="anchor" name="funcsave">
-funcsave - save the definition of a function to the users autoload directory</a></h2>
+funcsave - save the definition of a function to the user's autoload directory</a></h2>
 <h3><a class="anchor" name="funcsave-synopsis">
 Synopsis</a></h3>
 <code>funcsave FUNCTION_NAME</code><h3><a class="anchor" name="funcsave-description">
@@ -629,7 +635,7 @@ end
 will run the <code>ls</code> command, using the <code>-l</code> option, while passing on any additional files and switches to <code>ls</code>.<p>
 <pre>
 function mkdir -d "Create a directory and set CWD"
-	mkdir $argv
+	command mkdir $argv
 	if test $status = 0
 		switch $argv[(count $argv)]
 			case '-*'</pre><p>
@@ -721,14 +727,16 @@ Back to <a href="index.html#toc-commands">index</a>. <hr>
 isatty - test if the specified file descriptor is a tty</a></h2>
 <h3><a class="anchor" name="isatty-synopsis">
 Synopsis</a></h3>
-<code>isatty [FILE DESCRIPTOR]</code><p>
-where FILE DESCRIPTOR may be either the number of a file descriptor, or one of the strings stdin, stdout and stderr.<p>
+<code>isatty [FILE DESCRIPTOR]</code><h3><a class="anchor" name="isatty-description">
+Description</a></h3>
+The <code>isatty</code> command is used to test if a file descriptor is a tty.<p>
+FILE DESCRIPTOR may be either the number of a file descriptor, or one of the strings stdin, stdout and stderr.<p>
 If the specified file descriptor is a tty, the exit status of the command is zero, otherwise, it is non-zero.<p>
 Back to <a href="index.html#toc-commands">index</a>. <hr>
  <h2><a class="anchor" name="jobs">
 jobs - print currently running jobs</a></h2>
 <h3><a class="anchor" name="jobs-synopsis">
-jobs-synopsis</a></h3>
+Synopsis</a></h3>
 <code>jobs [OPTIONS] [PID]</code><h3><a class="anchor" name="jobs-description">
 Description</a></h3>
 The <code>jobs</code> builtin causes fish to print a list of the currently running jobs and their status.<p>
@@ -839,7 +847,7 @@ pushd - push directory to directory stack</a></h2>
 Synopsis</a></h3>
 <code>pushd [DIRECTORY]</code><h3><a class="anchor" name="pushd-description">
 Description</a></h3>
-The <code>pushd</code> function adds DIRECTORY to the top of the directory stack and makes it the current directory. Use <code>popd</code> to pop it off and and return to the original directory.<p>
+The <code>pushd</code> function adds DIRECTORY to the top of the directory stack and makes it the current directory. Use <code>popd</code> to pop it off and return to the original directory.<p>
 Back to <a href="index.html#toc-commands">index</a>. <hr>
  <h2><a class="anchor" name="pwd">
 pwd - returns the current directory</a></h2>
@@ -913,14 +921,14 @@ set (-e | --erase) [SCOPE_OPTIONS] VARIABLE_NAME[INDICES]...
 The <code>set</code> builtin causes fish to assign the variable <code>VARIABLE_NAME</code> the values <code>VALUES...</code>.<h3><a class="anchor" name="set-description">
 Description</a></h3>
 <ul>
-<li><code>-e</code> or <code>--erase</code> causes the specified environment variable to be erased</li><li><code>-l</code> or <code>--local</code> forces the specified environment variable to be given a scope that is local to the current block, even if a variable with the given name exists and is non-local</li><li><code>-g</code> or <code>--global</code> causes the specified environment variable to be given a global scope. Non-global variables disappear when the block they belong to ends</li><li><code>-U</code> or <code>--universal</code> causes the specified environment variable to be given a universal scope. If this option is supplied, the variable will be shared between all the current users fish instances on the current computer, and will be preserved across restarts of the shell.</li><li><code>-n</code> or <code>--names</code> List only the names of all defined variables, not their value</li><li><code>-q</code> or <code>--query</code> test if the specified variable names are defined. Does not output anything, but the builtins exit status is the number of variables specified that were not defined.</li><li><code>-u</code> or <code>--unexport</code> causes the specified environment not to be exported to child processes</li><li><code>-x</code> or <code>--export</code> causes the specified environment variable to be exported to child processes</li></ul>
+<li><code>-e</code> or <code>--erase</code> causes the specified environment variable to be erased</li><li><code>-l</code> or <code>--local</code> forces the specified environment variable to be given a scope that is local to the current block, even if a variable with the given name exists and is non-local</li><li><code>-g</code> or <code>--global</code> causes the specified environment variable to be given a global scope. Non-global variables disappear when the block they belong to ends</li><li><code>-U</code> or <code>--universal</code> causes the specified environment variable to be given a universal scope. If this option is supplied, the variable will be shared between all the current users fish instances on the current computer, and will be preserved across restarts of the shell.</li><li><code>-n</code> or <code>--names</code> List only the names of all defined variables, not their value</li><li><code>-q</code> or <code>--query</code> test if the specified variable names are defined. Does not output anything, but the builtins exit status is the number of variables specified that were not defined.</li><li><code>-u</code> or <code>--unexport</code> causes the specified environment not to be exported to child processes</li><li><code>-x</code> or <code>--export</code> causes the specified environment variable to be exported to child processes</li><li><code>-L</code> or <code>--long</code> do not abbreviate long values when printing set variables</li></ul>
 <p>
 If set is called with no arguments, the names and values of all environment variables are printed. If some of the scope or export flags have been given, only the variables matching the specified scope are printed.<p>
 If a variable is set to more than one value, the variable will be an array with the specified elements. If a variable is set to zero elements, it will become an array with zero elements.<p>
 If the variable name is one or more array elements, such as <code>PATH[1 3 7]</code>, only those array elements specified will be changed. When array indices are specified to set, multiple arguments may be used to specify additional indexes, e.g. <code>set PATH[1] PATH[4] /bin /sbin</code>. If you specify a negative index when expanding or assigning to an array variable, the index will be calculated from the end of the array. For example, the index -1 means the last index of an array.<p>
 The scoping rules when creating or updating a variable are:<p>
 <ol type=1>
-<li>If a variable is explicitly set to either universal, global or local, that setting will be honored. If a variable of the same name exists in a different scope, that variable will not be changed.</li><li>If a variable is not explicitly set to be either universal, global or local, but has been previously defined, the previous variable scope is used.</li><li>If a variable is not explicitly set to be either universal, global or local and has never before been defined, the variable will be local to the currently executing functions. If no function is executing, the variable will be global.</li></ol>
+<li>If a variable is explicitly set to either universal, global or local, that setting will be honored. If a variable of the same name exists in a different scope, that variable will not be changed.</li><li>If a variable is not explicitly set to be either universal, global or local, but has been previously defined, the previous variable scope is used.</li><li>If a variable is not explicitly set to be either universal, global or local and has never before been defined, the variable will be local to the currently executing function. Note that this is different from using the <code>-l</code> or <code>--local</code> flag. If one of those flags is used, the variable will be local to the most inner currently executing block, while without these the variable will be local to the function. If no function is executing, the variable will be global.</li></ol>
 <p>
 The exporting rules when creating or updating a variable are identical to the scoping rules for variables:<p>
 <ol type=1>
@@ -929,28 +937,38 @@ The exporting rules when creating or updating a variable are identical to the sc
 In query mode, the scope to be examined can be specified.<p>
 In erase mode, if variable indices are specified, only the specified slices of the array variable will be erased. When erasing an entire variable (i.e. no slicing), the scope of the variable to be erased can be specified. That way, a global variable can be erased even if a local variable with the same name exists. Scope can not be specified when erasing a slice of an array. The innermost scope is always used.<p>
 The set command requires all switch arguments to come before any non-switch arguments. For example, <code>set flags -l</code> will have the effect of setting the value of the variable <code>flags</code> to '-l', not making the variable local.<p>
-In assignment mode, set exits with an exit status of zero it the variable assignments where sucessfully performed, with a non-zero exit status otherwise. In query mode, the exit status is the number of variables that where not found. In erase mode, set exits with a zero exit status in case of success, with a non-zero exit status if the commandline was invalid, if the variable was write-protected or if the variable did not exist.<h3><a class="anchor" name="set-example">
+In assignment mode, set exits with a non-zero exit status if variable assignments could not be successfully performed. If the variable assignments were performed, the exit status is unchanged. This allows simultaneous capture of the output and exit status of a subcommand, e.g. <code>if set output (command)</code>. In query mode, the exit status is the number of variables that were not found. In erase mode, set exits with a zero exit status in case of success, with a non-zero exit status if the commandline was invalid, if the variable was write-protected or if the variable did not exist.<h3><a class="anchor" name="set-example">
 Example</a></h3>
 <code>set -xg</code> will print all global, exported variables.<p>
 <code>set foo hi</code> sets the value of the variable foo to be hi.<p>
 <code>set -e smurf</code> removes the variable <code>smurf</code>.<p>
 <code>set PATH[4] ~/bin</code> changes the fourth element of the <code>PATH</code> array to <code>~/bin</code> <p>
+<pre>if set python_path (which python)
+    echo "Python is at $python_path"
+end</pre><p>
+The above outputs the path to Python if <code>which</code> returns true.<p>
 Back to <a href="index.html#toc-commands">index</a>. <hr>
  <h2><a class="anchor" name="set_color">
 set_color - set the terminal color</a></h2>
 <h3><a class="anchor" name="set_color-synopsis">
 Synopsis</a></h3>
-<code>set_color [-v --version] [-h --help] [-b --background COLOR] [COLOR]</code><h3><a class="anchor" name="set_color-description">
+<code>set_color [-h --help] [-b --background COLOR] [COLOR]</code><h3><a class="anchor" name="set_color-description">
 Description</a></h3>
 Change the foreground and/or background color of the terminal. COLOR is one of black, red, green, brown, yellow, blue, magenta, purple, cyan, white and normal.<p>
 If your terminal supports term256 (modern xterms and OS X Lion), you can specify an RGB value with three or six hex digits, such as A0FF33 or f2f. fish will choose the closest supported color.<p>
 <ul>
-<li><code>-b</code>, <code>--background</code> Set the background color</li><li><code>-c</code>, <code>--print-colors</code> Prints a list of all valid color names</li><li><code>-h</code>, <code>--help</code> Display help message and exit</li><li><code>-o</code>, <code>--bold</code> Set bold or extra bright mode</li><li><code>-u</code>, <code>--underline</code> Set underlined mode</li><li><code>-v</code>, <code>--version</code> Display version and exit</li></ul>
+<li><code>-b</code>, <code>--background</code> Set the background color</li><li><code>-c</code>, <code>--print-colors</code> Prints a list of all valid color names</li><li><code>-h</code>, <code>--help</code> Display help message and exit</li><li><code>-o</code>, <code>--bold</code> Set bold or extra bright mode</li><li><code>-u</code>, <code>--underline</code> Set underlined mode</li></ul>
 <p>
 Calling <code>set_color normal</code> will set the terminal color to whatever is the default color of the terminal.<p>
 Some terminals use the --bold escape sequence to switch to a brighter color set. On such terminals, <code>set_color white</code> will result in a grey font color, while <code>set_color --bold white</code> will result in a white font color.<p>
 Not all terminal emulators support all these features. This is not a bug in set_color but a missing feature in the terminal emulator.<p>
-set_color uses the terminfo database to look up how to change terminal colors on whatever terminal is in use. Some systems have old and incomplete terminfo databases, and may lack color information for terminals that support it. Download and install the latest version of ncurses and recompile fish against it in order to fix this issue.<p>
+set_color uses the terminfo database to look up how to change terminal colors on whatever terminal is in use. Some systems have old and incomplete terminfo databases, and may lack color information for terminals that support it. Download and install the latest version of ncurses and recompile fish against it in order to fix this issue.<h3><a class="anchor" name="set_color-example">
+Examples</a></h3>
+<pre>set_color red; echo "Roses are red"
+set_color blue; echo "Violets are blue"
+set_color 62A ; echo "Eggplants are dark purple"
+set_color normal; echo "Normal is nice too"
+</pre><p>
 Back to <a href="index.html#toc-commands">index</a>. <hr>
  <h2><a class="anchor" name="source">
 . - evaluate contents of file.</a></h2>
@@ -971,7 +989,8 @@ status - query fish runtime information</a></h2>
 Synopsis</a></h3>
 <code>status [OPTION]</code><h3><a class="anchor" name="status-description">
 Description</a></h3>
-<ul>
+With no arguments, <code>status</code> displays a summary of the current login and job control status of the shell.<p>
+The following arguments are available:<ul>
 <li><code>-c</code> or <code>--is-command-substitution</code> returns 0 if fish is currently executing a command substitution</li><li><code>-b</code> or <code>--is-block</code> returns 0 if fish is currently executing a block of code</li><li><code>-i</code> or <code>--is-interactive</code> returns 0 if fish is interactive, i.e.connected to a keyboard</li><li><code>-l</code> or <code>--is-login</code> returns 0 if fish is a login shell, i.e. if fish should perform login tasks such as setting up the PATH.</li><li><code>--is-full-job-control</code> returns 0 if full job control is enabled</li><li><code>--is-interactive-job-control</code> returns 0 if interactive job control is enabled</li><li><code>--is-no-job-control</code> returns 0 if no job control is enabled</li><li><code>-f</code> or <code>--current-filename</code> prints the filename of the currently running script</li><li><code>-n</code> or <code>--current-line-number</code> prints the line number of the currently running script</li><li><code>-j CONTROLTYPE</code> or <code>--job-control=CONTROLTYPE</code> set the job control type. Can be one of: none, full, interactive</li><li><code>-t</code> or <code>--print-stack-trace</code> prints a stack trace of all function calls on the call stack</li><li><code>-h</code> or <code>--help</code> display a help message and exit</li></ul>
 <p>
 Back to <a href="index.html#toc-commands">index</a>. <hr>
@@ -1011,7 +1030,7 @@ Synopsis</a></h3>
 Description</a></h3>
 Tests the expression given and returns true or false.<p>
 <ul>
-<li><code>-h</code>, <code>Display</code> this help</li><li><code>-G</code>, <code>File</code> owned by effective group ID</li><li><code>-L</code>, <code>File</code> is syslink</li><li><code>-O</code>, <code>File</code> owned by effective user ID</li><li><code>-S</code>, <code>File</code> is socket</li><li><code>-a</code>, <code>Logical</code> and</li><li><code>-b</code>, <code>File</code> is block device</li><li><code>-c</code>, <code>File</code> is character device</li><li><code>-d</code>, <code>File</code> is a directory</li><li><code>-e</code>, <code>File</code> exists</li><li><code>-f</code>, <code>File</code> is regular</li><li><code>-f</code>, <code>File</code> is set-group-ID</li><li><code>-k</code>, <code>File</code> has sticky bit set</li><li><code>-n</code>, <code>String</code> length is non-zero</li><li><code>-o</code>, <code>Logical</code> or</li><li><code>-p</code>, <code>File</code> is named pipe</li><li><code>-r</code>, <code>File</code> is readable</li><li><code>-s</code>, <code>File</code> size is non-zero</li><li><code>-t</code>, <code>FD</code> is terminal</li><li><code>-u</code>, <code>File</code> set-user-ID bit is set</li><li><code>-w</code>, <code>File</code> is writable</li><li><code>-x</code>, <code>File</code> is executable</li><li><code>-z</code>, <code>String</code> length is zero</li></ul>
+<li><code>-h</code>, <code>Display</code> this help</li><li><code>-G</code>, <code>File</code> owned by effective group ID</li><li><code>-L</code>, <code>File</code> is symlink</li><li><code>-O</code>, <code>File</code> owned by effective user ID</li><li><code>-S</code>, <code>File</code> is socket</li><li><code>-a</code>, <code>Logical</code> and</li><li><code>-b</code>, <code>File</code> is block device</li><li><code>-c</code>, <code>File</code> is character device</li><li><code>-d</code>, <code>File</code> is a directory</li><li><code>-e</code>, <code>File</code> exists</li><li><code>-f</code>, <code>File</code> is regular</li><li><code>-f</code>, <code>File</code> is set-group-ID</li><li><code>-k</code>, <code>File</code> has sticky bit set</li><li><code>-n</code>, <code>String</code> length is non-zero</li><li><code>-o</code>, <code>Logical</code> or</li><li><code>-p</code>, <code>File</code> is named pipe</li><li><code>-r</code>, <code>File</code> is readable</li><li><code>-s</code>, <code>File</code> size is non-zero</li><li><code>-t</code>, <code>FD</code> is terminal</li><li><code>-u</code>, <code>File</code> set-user-ID bit is set</li><li><code>-w</code>, <code>File</code> is writable</li><li><code>-x</code>, <code>File</code> is executable</li><li><code>-z</code>, <code>String</code> length is zero</li></ul>
 <h3><a class="anchor" name="test-example">
 Example</a></h3>
 <pre>
@@ -1045,7 +1064,7 @@ Synopsis</a></h3>
 Description</a></h3>
 With no options, indicate how each name would be interpreted if used as a command name.<p>
 <ul>
-<li><code>-h</code> or <code>--help</code> print this message</li><li><code>-a</code> or <code>--all</code> print all of possible definitions of the specified names</li><li><code>-f</code> or <code>--no-functions</code> suppresses function and builtin lookup</li><li><code>-t</code> or <code>--type</code> print a string which is one of alias, keyword, function, builtin, or file if name is an alias, shell reserved word, function, builtin, or disk file, respectively</li><li><code>-p</code> or <code>--path</code> either return the name of the disk file that would be executed if name were specified as a command name, or nothing if 'type -t name' would not return 'file'</li><li><code>-P</code> or <code>--force-path</code> either return the name of the disk file that would be executed if name were specified as a command name, or nothing no file with the specified name could be found in the PATH</li></ul>
+<li><code>-h</code> or <code>--help</code> print this message</li><li><code>-a</code> or <code>--all</code> print all of possible definitions of the specified names</li><li><code>-f</code> or <code>--no-functions</code> suppresses function and builtin lookup</li><li><code>-t</code> or <code>--type</code> print a string which is one of keyword, function, builtin, or file if name is a shell reserved word, function, builtin, or disk file, respectively</li><li><code>-p</code> or <code>--path</code> either return the name of the disk file that would be executed if name were specified as a command name, or nothing if 'type -t name' would not return 'file'</li><li><code>-P</code> or <code>--force-path</code> either return the name of the disk file that would be executed if name were specified as a command name, or nothing no file with the specified name could be found in the PATH</li></ul>
 <p>
 <code>type</code> returns a zero exit status if the specified command was found, otherwise the exit status is one.<h3><a class="anchor" name="type-example">
 Example</a></h3>
@@ -1122,7 +1141,7 @@ Example</a></h3>
 <code>while test -f foo.txt; echo file exists; sleep 10; end</code><p>
 causes fish to print the line 'file exists' at 10 second intervals as long as the file foo.txt exists.<p>
 Back to <a href="index.html#toc-commands">index</a>. </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Dec 27 02:21:39 2012 for fish by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 4 13:16:23 2013 for fish by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>

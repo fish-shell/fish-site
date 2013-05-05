@@ -54,24 +54,23 @@ This is a description of the design principles that have been used to design fis
 <ol type=1>
 <li>Everything that can be done in other shell languages should be possible to do in fish, though fish may rely on external commands in doing so.</li><li>Fish should be user friendly, but not at the expense of expressiveness. Most tradeoffs between power and ease of use can be avoided with careful design.</li><li>Whenever possible without breaking the above goals, fish should follow the Posix syntax.</li></ol>
 <p>
-To achive these high-level goals, the fish design relies on a number of more specific design principles. These are presented below, together with a rationale and a few examples for each.<h2><a class="anchor" name="ortho">
+To achieve these high-level goals, the fish design relies on a number of more specific design principles. These are presented below, together with a rationale and a few examples for each.<h2><a class="anchor" name="ortho">
 The law of orthogonality</a></h2>
 The shell language should have a small set of orthogonal features. Any situation where two features are related but not identical, one of them should be removed, and the other should be made powerful and general enough to handle all common use cases of either feature.<p>
 Rationale:<p>
 Related features make the language larger, which makes it harder to learn. It also increases the size of the sourcecode, making the program harder to maintain and update.<p>
 Examples:<p>
 <ul>
-<li>Here documents are too similar to using echo inside of a pipeline.</li><li>Subshells, command substitution and process substitution are strongly related. <code>fish</code> only supports command substitution, the others can be achived either using a block or the psub shellscript function.</li><li>Having both aliases and functions is confusing, especially since both of them have limitations and problems. <code>fish</code> functions have none of the drawbacks of either syntax.</li><li>The many Posix quoting styles are silly, especially $''.</li></ul>
+<li>Here documents are too similar to using echo inside of a pipeline.</li><li>Subshells, command substitution and process substitution are strongly related. <code>fish</code> only supports command substitution, the others can be achieved either using a block or the psub shellscript function.</li><li>Having both aliases and functions is confusing, especially since both of them have limitations and problems. <code>fish</code> functions have none of the drawbacks of either syntax.</li><li>The many Posix quoting styles are silly, especially $''.</li></ul>
 <h2><a class="anchor" name="sep">
-The law of minimalism</a></h2>
-The shell should only contain features that cannot be implemented in a reasonable way outside of the shell. A large performance decrease, as well as some program complexity increase is acceptable in order to improve separation.<p>
+The law of responsiveness</a></h2>
+The shell should attempt to remain responsive to the user at all times, even in the face of contended or unresponsive filesystems. It is only acceptable to block in response to a user initiated action, such as running a command.<p>
 Rationale:<p>
-A modular project is easier to maintain since smaller programs are far easier to understand than larger ones. A modular project is also more future proof since the modules can be individually replaced. Modularity also decreases the severity of bugs, since there is good hope that a bug, even a serious one, in one module, does not take the whole system down.<p>
+Bad performance increases user-facing complexity, because it trains users to recognize and route around slow use cases. It is also incredibly frustrating.<p>
 Examples:<p>
 <ul>
-<li>Builtin commands should only be created when it cannot be avoided. <code>echo</code>, <code>kill</code>, <code>printf</code> and <code>time</code> are among the commands that fish does not implement internally since they can be provided as external commands. Several other commands that are commonly implemented as builtins and can not be implemented as external commands, including <code>type</code>, <code>vared</code>, <code>pushd</code> and <code>popd</code> are implemented as shellscript functions in fish.</li><li>Mathematical calculations, regex matching, generating lists of numbers and many other funtions can easily be done in external programs. They should not be supported internally by the shell.</li></ul>
-<p>
-The law of minimalism does not imply that a large feature set is bad. So long as a feature is not part of the shell itself, but a separate command or at least a shellscript function, bloat is fine.<h2><a class="anchor" name="conf">
+<li>Features like syntax highlighting and autosuggestions must perform all of their disk I/O asynchronously.</li><li>Startup should minimize forks and disk I/O, so that fish can be started even if the system is under load.</li></ul>
+<h2><a class="anchor" name="conf">
 Configurability is the root of all evil</a></h2>
 Every configuration option in a program is a place where the program is too stupid to figure out for itself what the user really wants, and should be considered a failiure of both the program and the programmer who implemented it.<p>
 Rationale:<p>
@@ -80,7 +79,7 @@ Examples:<p>
 <ul>
 <li>Fish allows the user to set various syntax highlighting colors. This is needed because fish does not know what colors the terminal uses by default, which might make some things unreadable. The proper solution would be for text color preferences to be defined centrally by the user for all programs, and for the terminal emulator to send these color properties to fish.</li><li>Fish does not allow you to set the history filename, the number of history entries, different language substyles or any number of other common shell configuration options.</li></ul>
 <p>
-A special note on the evils of configurability is the long list of very useful features found in some shells, that are not turned on by default. Both zsh and bash support command specific completions, but no such completions are shipped with bash by default, and they are turned of by default in zsh. Other features that zsh support that are disabled by default include tab-completion of strings containing wildcards, a sane completion pager and a history file.<h2><a class="anchor" name="user">
+A special note on the evils of configurability is the long list of very useful features found in some shells, that are not turned on by default. Both zsh and bash support command specific completions, but no such completions are shipped with bash by default, and they are turned off by default in zsh. Other features that zsh support that are disabled by default include tab-completion of strings containing wildcards, a sane completion pager and a history file.<h2><a class="anchor" name="user">
 The law of user focus</a></h2>
 When designing a program, one should first think about how to make a intuitive and powerful program. Implementation issues should only be considered once a user interface has been designed.<p>
 Rationale:<p>
@@ -98,7 +97,7 @@ Examples:<p>
 <ul>
 <li>Everything should be tab-completable, and every tab completion should have a description.</li><li>Every syntax error and error in a builtin command should contain an error message describing what went wrong and a relevant help page. Whenever possible, errors should be flagged red by the syntax highlighter.</li><li>The help manual should be easy to read, easily available from the shell, complete and contain many examples</li><li>The language should be uniform, so that once the user understands the command/argument syntax, he will know the whole language, and be able to use tab-completion to discover new featues. </li></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Dec 27 02:21:39 2012 for fish by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 4 13:16:23 2013 for fish by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.9 </small></address>
 </body>
