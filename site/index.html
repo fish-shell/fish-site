@@ -18,16 +18,16 @@
       .jumbotron {
         margin: 36px 0;
       }
-      
+
       .jumbotron h1 {
              line-height: normal;
       }
-      
+
       .jumbotron .btn {
         font-size: 21px;
         padding: 14px 24px;
       }
-      
+
       .lead {
        margin-top: 20px;
        margin-bottom: 30px;
@@ -172,7 +172,7 @@
           <h4>App</h4>
           <p><img src="assets/img/Terminal_Logo_LCD_Small.png" style="width: 110px; height: 110px; position: relative; bottom: 28px; margin-bottom: -45px;"><br></p>
           </a>
-          
+
           <p><small>10.6+<br>No installation required.</small></p>
         </div>
       </div>
@@ -221,6 +221,8 @@
         </div>
       </div>
     </div>
+
+    <a href="release_notes.html" class="btn" style="margin-top: 20px; color: rgb(0, 85, 128);">Read release notes</a>
     <hr>
 
     <h3>Teach me to fish</h3><a href="tutorial.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">Tutorial</a> <a href="docs/2.0/index.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">Documentation</a> <a href="docs/2.0/faq.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">FAQ</a>
@@ -251,14 +253,14 @@
                var plat = navigator.platform.toUpperCase();
                var isMac = plat.indexOf('MAC')!==-1;
                var isLinux = plat.indexOf('LINUX')!==-1;
-               
+
                var which = 'get_fish_tarball';
                if (isMac) {
                        which = 'get_fish_mac'
                } else if (isLinux) {
                        which = 'get_fish_linux';
                }
-               
+
                var which_tab = $('#platform_tabs a[href="#' + which + '"]');
                which_tab.tab('show');
        });
