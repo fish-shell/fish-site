@@ -53,7 +53,7 @@ body.gradient_body {
 	text-align: center;
 }
 
-.download_tab div {
+.download_tab > div {
 	text-align: center;
 	display: inline-block;
 	margin-right: 15px;
@@ -82,8 +82,14 @@ body.gradient_body {
 }
 
 /* Put link between name and icon */
-.download_tab div > a {
+.block_links div > a {
 	display: block;
+}
+
+/* Space below the Linux images */
+.linux_tabs img {
+	margin-bottom: 5px;
+	margin-top: 15px;
 }
 
 #get_fish_linux img {
@@ -92,7 +98,7 @@ body.gradient_body {
 	height: auto;
 }
 
-.container-narrow {
+.container-narrow, .container-wide {
 	color: #222;
 	padding-top: 10px;
 	padding-right: 50px;
@@ -104,11 +110,19 @@ body.gradient_body {
 
 	margin: 0 auto;
 	margin-top: 25px;
-	width: 850px;
 	
 	-moz-box-shadow:    0px 0px 1px 1px #333;
 	-webkit-box-shadow: 0px 0px 1px 1px #333;
 	box-shadow:         0px 0px 5px 1px #333;
+}
+
+.container-narrow {
+	width: 850px;
+}
+
+.container-wide {
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
 hr {
@@ -328,4 +342,46 @@ h3 {
 
 .faq_answer {
 	margin-left: 25px;
+}
+
+.arrow_box {
+	position: relative;
+	background: #FFF;
+	border: 2px solid #ccd6d9;
+}
+.arrow_box:after, .arrow_box:before {
+	bottom: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #FFF;
+	border-width: 12px;
+	left: 50%;
+	margin-left: -12px;
+}
+.arrow_box:before {
+	border-color: rgba(204, 214, 217, 0);
+	border-bottom-color: #ccd6d9;
+	border-width: 15px;
+	left: 50%;
+	margin-left: -15px;
+}
+
+#app_explanation {
+	display:none;
+	position: absolute;
+	margin-top: 10px;
+	min-height: 0;
+	padding: 10px;
+	border-radius: 4px;
+	text-align: left;
+	font-size: smaller;
+	cursor: pointer;
 }

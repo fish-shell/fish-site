@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
 <html lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
   <title>fish shell</title>
   <meta name="viewport" content="width=920">
   <meta name="description" content="A smart and user-friendly command line shell">
   <meta name="author" content="ridiculous_fish">
-  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="assets/css/fish_style.css" rel="stylesheet" type="text/css">
   <style type="text/css">
 
@@ -41,15 +43,10 @@
       .marketing p + h4 {
         margin-top: 28px;
       }
+            
   </style><!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon" href="assets/ico/favicon.png">
 </head>
 
 <body class="gradient_body">
@@ -135,7 +132,7 @@
     </div>
     <hr>
 
-    <h3>Teach me to fish</h3><a href="tutorial.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">Tutorial</a> <a href="docs/2.0/index.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">Documentation</a> <a href="docs/2.0/faq.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">FAQ</a>
+    <h3>Teach me to fish</h3><a href="docs/current/tutorial.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">Tutorial</a> <a href="docs/current/index.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">Documentation</a> <a href="docs/current/faq.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">FAQ</a>
     <hr>
 
     <h3>Go fish</h3>
@@ -148,145 +145,142 @@
       <li><a href="#get_fish_tarball" data-toggle="tab">tarball</a></li>
     </ul>
 
-    <div class="tab-content download_tabs">
-      <div class="download_tab tab-pane active" id="get_fish_osx">
+    <div class="tab-content download_tabs" style="overflow: visible; position: relative;">
+      <div class="download_tab block_links tab-pane active" id="get_fish_osx">
         <div>
-          <a class="tab_link" href="files/2.0.0/fish.pkg">
-          <h4>Installer</h4>
+          <a class="tab_link" href="files/2.1.0/fish.pkg"></a>
 
-          <p><img src="assets/img/package_icon.png"></p>
-          </a>
+          <h4><a class="tab_link" href="files/2.1.0/fish.pkg">Installer</a></h4>
 
-          <p><small>10.6+<br>Installs to <span class="mono">/usr/local/</span></small></p>
+          <p><a class="tab_link" href="files/2.1.0/fish.pkg"><img src="assets/img/package_icon.png"></a></p>
+
+          <p><small>10.6+<br>
+          Installs to <span class="mono">/usr/local/</span></small></p>
         </div>
 
         <div>
-          <a class="tab_link" href="http://brew.sh">
-          <h4>Homebrew</h4>
+          <a class="tab_link" href="http://brew.sh"></a>
 
-          <p><img src="assets/img/brew_icon.png"><br></p>
-          </a>
+          <h4><a class="tab_link" href="http://brew.sh">Homebrew</a></h4>
 
-          <p><br><small><span class="mono">brew install fish</span></small></p>
+          <p><a class="tab_link" href="http://brew.sh"><img src="assets/img/brew_icon.png"><br></a></p><!--<p><br><small><span class="mono">brew install fish</span></small></p>-->
+
+          <p><br>
+          <a href="https://github.com/mxcl/homebrew/pull/23562">Coming soon</a></p>
         </div>
 
-        <div>
-          <a class="tab_link" href="files/2.0.0/fish.app.zip">
-          <h4>App</h4>
-          <p><img src="assets/img/Terminal_Logo_LCD_Small.png" style="width: 110px; height: 110px; position: relative; bottom: 28px; margin-bottom: -45px;"><br></p>
-          </a>
+        <div style="position: relative; overflow: visible;">
+          <a class="tab_link" href="files/2.1.0/fish.app.zip"></a>
 
-          <p><small>10.6+<br>No installation required.</small></p>
+          <h4><a class="tab_link" href="files/2.1.0/fish.app.zip">App</a></h4>
+
+          <p><a class="tab_link" href="files/2.1.0/fish.app.zip"><img src="assets/img/Terminal_Logo_LCD_Small.png" style="width: 110px; height: 110px; position: relative; bottom: 28px; margin-bottom: -45px;"><br></a></p>
+
+          <p><small>10.6+<br>
+          <a href="#" onclick="document.getElementById('app_explanation').style.display = 'block'; return false;">No installation required</a></small></p>
+
+          <div id="app_explanation" class="arrow_box" onclick="document.getElementById('app_explanation').style.display = 'none'; return false;">
+            fish.app bundles the fish shell with an AppleScript that launches it in Terminal.<br>
+            Nothing is installed.
+          </div>
         </div>
       </div>
 
-      <div class="download_tab tab-pane" id="get_fish_linux">
+      <div class="download_tab linux_tabs tab-pane" id="get_fish_linux">
         <div>
-          <h4>
-            Ubuntu
-            (<a class="tab_link" href="files/2.0.0/linux/Ubuntu_12.10/i586/fish_2.0.0-201305151006_i386.deb"
-              title="SHA1: 745ccd7146363c17e407084f5455468204911d8f">32-bit</a>,
-            <a class="tab_link" href="files/2.0.0/linux/Ubuntu_12.10/x86_64/fish_2.0.0-201305151006_amd64.deb"
-              title="SHA1: e3745bf2bfd07a6ceae3aa6b061e2d9f889baa08">64-bit</a>)
-          </h4>
-          <p><img src="assets/img/ubu_icon.png"></p>
+          <p><img src="assets/img/ubu_icon.png" alt="Ubuntu"></p>
 
-        </div>
-        <div>
-          <h4>
-            Debian
-            (<a class="tab_link" href="files/2.0.0/linux/Debian_6.0/i586/fish_2.0.0-201305151006_i386.deb"
-              title="SHA1: 473944d6863a12118ab3853a8a1b3dc5d8f382f8">32-bit</a>,
-            <a class="tab_link" href="files/2.0.0/linux/Debian_6.0/x86_64/fish_2.0.0-201305151006_amd64.deb"
-               title="SHA1: 61c3bf4548d6c64b4cef1709d52b76016521e1ad">64-bit</a>)
-          </h4>
-          <p><img src="assets/img/deb_icon.png"></p>
+          <p><a class="tab_link" href="files/2.1.0/linux/Ubuntu/fish_2.1.0-1~precise_i386.deb" title="SHA1: c0ecbb07415db0ea348fa2af4beeba74e8c805ff">32-bit</a> | <a class="tab_link" href="files/2.1.0/linux/Ubuntu/fish_2.1.0-1~precise_amd64.deb" title="SHA1: 950c87a226152e5418b2f22a3ec3c4d4b3e47c1b">64-bit</a><br></p>
 
+          <p><a href="files/2.1.0/linux/index.html#dl-ubuntu12.04">How to Subscribe</a></p>
         </div>
 
         <div>
-          <h4>
-            Fedora
-            (<a class="tab_link" href="files/2.0.0/linux/Fedora_18/i586/fish-2.0.0-201305151006.1.i686.rpm"
-              title="SHA1: bf8dbe5c8d5dab2def237edeab34be8324a4e134">32-bit</a>,
-            <a class="tab_link" href="files/2.0.0/linux/Fedora_18/x86_64/fish-2.0.0-201305151006.1.x86_64.rpm"
-              title="SHA1: 9bed07b2a90b2ff43db4f308363198d8e86972c1">64-bit</a>)
-          </h4>
-          <p><img src="assets/img/fed_icon.png"></p>
+          <p><img src="assets/img/deb_icon.png" alt="Debian"></p>
 
+          <p><a class="tab_link" href="files/2.1.0/linux/Debian_6.0/fish_2.1.0-1_i386.deb" title="SHA1: a09cadf0ba75b0374b0517398dac266dd900b722">32-bit</a> | <a class="tab_link" href="files/2.1.0/linux/Debian_6.0/fish_2.1.0-1_amd64.deb" title="SHA1: ccce06ab89ae118b11ea36990cc03a8d8624e06c">64-bit</a></p>
+
+          <p><a href="files/2.1.0/linux/index.html#dl-debian6">How to Subscribe</a></p>
         </div>
 
         <div>
-          <h4>
-            openSUSE
-            (<a class="tab_link" href="files/2.0.0/linux/openSUSE_12.3/i586/fish-2.0.0-201305151006.1.i586.rpm"
-              title="SHA1: 9841669b613d5252cf130d116f1e91ef40c1c838">32-bit</a>,
-            <a class="tab_link" href="files/2.0.0/linux/openSUSE_12.3/x86_64/fish-2.0.0-201305151006.1.x86_64.rpm"
-              title="SHA1: 27c1c75e7429c62349bfa3b61d32a62dee54ee5d">64-bit</a>)
-          </h4>
-          <p><img src="assets/img/suse.png"></p>
+          <p><img src="assets/img/fed_icon.png" alt="Fedora"></p>
 
+          <p><a class="tab_link" href="files/2.1.0/linux/Fedora_18/fish-2.1.0-2.1.i686.rpm" title="SHA1: 5c648db85578812b97127b6f4a9537c7dfcb295b">32-bit</a> | <a class="tab_link" href="files/2.1.0/linux/Fedora_18/fish-2.1.0-2.1.x86_64.rpm" title="SHA1: e8ee306d41017302338dc3a959e936835d0e48e2">64-bit</a></p>
+
+          <p><a href="files/2.1.0/linux/index.html#dl-fedora18">How to Subscribe</a></p>
         </div>
 
         <div>
-          <a href="https://www.archlinux.org/packages/?name=fish">
-          <h4>
-            Arch Linux
-          </h4>
-          <p><img src="assets/img/arc_icon.png"></p>
-          </a>
+          <p><img src="assets/img/suse.png" alt="openSUSE"></p>
+
+          <p><a class="tab_link" href="files/2.1.0/linux/openSUSE_12.2/fish-2.1.0-2.1.i586.rpm" title="SHA1: 2872c5407e45b5d49451bf29b9edcabebc2a6fe1">32-bit</a> | <a class="tab_link" href="files/2.1.0/linux/openSUSE_12.2/fish-2.1.0-2.1.x86_64.rpm" title="SHA1: e1c91fd68032928317eda285c9a14a9b6f5fd4f3">64-bit</a></p>
+
+          <p><a href="files/2.1.0/linux/index.html#dl-opensuse12.2">How to Subscribe</a></p>
+        </div>
+
+        <div>
+          <p><img src="assets/img/cent_icon.png" alt="CentOS"></p>
+
+          <p><a class="tab_link" href="files/2.1.0/linux/RedHat_RHEL-5/fish-2.1.0-2.1.i386.rpm" title="SHA1: 10333f1b437c355dbc58e52d8207f04e4fda327d">32-bit</a> | <a class="tab_link" href="files/2.1.0/linux/RedHat_RHEL-5/fish-2.1.0-2.1.x86_64.rpm" title="SHA1: d0c32982cc05ac2bde63b07d3c0768f33341e7d3">64-bit</a></p>
+
+          <p><a href="files/2.1.0/linux/index.html#dl-rhel5">How to Subscribe</a></p>
+        </div>
+
+        <div>
+          <p><img src="assets/img/arc_icon.png" alt="Arch Linux"></p>
+
+          <p><a href="https://www.archlinux.org/packages/?name=fish">Packages</a></p>
+
           <p style="margin-bottom: 11px"><small><span class="mono" style="font-size: 11pt">pacman -S fish</span></small></p>
-
         </div>
 
         <div>
-          <h4>
-            CentOS
-            (<a class="tab_link" href="files/2.0.0/linux/CentOS_CentOS-6/i586/fish-2.0.0-201305151006.1.i686.rpm"
-              title="SHA1: b798bb5479acb70585a2eafdf1ca224ccbfcef3d">32-bit</a>,
-            <a class="tab_link" href="files/2.0.0/linux/CentOS_CentOS-6/x86_64/fish-2.0.0-201305151006.1.x86_64.rpm"
-              title="SHA1: 249e90ddeaff65c2084db75e6cfe5cdf7a9216b7">64-bit</a>)
-          </h4>
-          <p><img src="assets/img/cent_icon.png"></p>
+          <p><img src="assets/img/gentoo_icon.png" alt="Gentoo"></p>
 
-        </div>
+          <p><a href="http://packages.gentoo.org/package/app-shells/fish">Packages</a></p>
 
-        <div>
-          <a href="http://packages.gentoo.org/package/app-shells/fish">
-          <h4>
-            Gentoo
-          </h4>
-          <p><img src="assets/img/gentoo_icon.png"></p>
-          </a>
           <p style="margin-bottom: 11px"><small><span class="mono" style="font-size: 11pt">emerge fish</span></small></p>
-
         </div>
 
         <div>
-          <a class="tab_link" href="files/2.0.0/linux/">
-          <h4>Other Distributions</h4>
-          </a>
+          <a class="tab_link" href="files/2.1.0/linux/index.html"></a>
 
-          <p><img src="assets/img/tux.png"><br></p>
+          <p><img src="assets/img/tux.png" alt="Other Linux Distributions"><br></p>
 
-          <p><small>Lots more options here</small></p>
+          <p><a href="files/2.1.0/linux/index.html">Other Linux Distros</a></p>
+
+          <p>More options here</p>
         </div>
-
       </div>
 
-      <div class="download_tab tab-pane" id="get_fish_tarball">
+      <div class="download_tab block_links tab-pane" id="get_fish_tarball">
         <div>
-          <a class="tab_link" href="files/2.0.0/fish-2.0.0.tar.gz">
-          <h4>fish-2.0.0.tar.gz</h4>
+          <a class="tab_link" href="files/2.1.0/fish-2.1.0.tar.gz"></a>
 
-          <p><img src="assets/img/tarball_icon.png"><br></p>
-          </a>
-          <p style="margin-bottom: 11px"><small><span class="mono" style="font-size: 11pt">autoconf; ./configure; make; sudo make install</span></small></p>
-          <p style="margin-bottom: 1px;"><small>File size: 1.5 MB</small></p>
-          <p><small>SHA1: <span class="mono" style="font-size: 10pt">2d28553e2ff975f8e5fed6b266f7a940493b6636</span></small></p>
+          <h4><a class="tab_link" href="files/2.1.0/fish-2.1.0.tar.gz">fish-2.1.0.tar.gz</a></h4>
+
+          <p><a class="tab_link" href="files/2.1.0/fish-2.1.0.tar.gz"><img src="assets/img/tarball_icon.png"><br></a></p>
+
+          <p style="margin-bottom: 11px"><small><span class="mono" style="font-size: 11pt">./configure; make; sudo make install</span></small></p>
+
+          <p style="margin-bottom: 1px;"><small>File size: 1.7 MB</small></p>
+
+          <p><small>SHA1: <span class="mono" style="font-size: 10pt">b1764cba540055cb8e2a96a7ea4c844b04a32522</span></small></p>
         </div>
       </div>
     </div>
+    <hr>
+
+    <h3>Release History</h3>
+
+    <p style="margin-bottom: 15px"><a href="release_notes.html" style="font-size: 14pt">Release Notes</a></p>
+
+    <ul style="list-style-type:circle">
+      <li>2.1.0, released October 28, 2013</li>
+
+      <li>2.0.0, released May 17, 2013 <small>(<a href="files/2.0.0/fish-2.0.0.tar.gz">tarball</a>)</small></li>
+    </ul>
     <hr>
 
     <h3>Development</h3>fish development is <a href="http://github.com/fish-shell/fish-shell/">hosted on github</a>. To clone the git repository:
@@ -307,10 +301,10 @@
     </ul>
   </div><!-- /container -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="assets/js/tabs.js"></script>
-<script type="text/javascript">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript">
+</script><script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js" type="text/javascript">
+</script><script src="assets/js/tabs.js" type="text/javascript">
+</script><script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-40669084-1']);
@@ -322,6 +316,6 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
-</script>
+  </script>
 </body>
 </html>

@@ -10,12 +10,100 @@ li {
 	margin-top: 12px;
 }
 
+ul {
+	list-style-type: circle;
+}
+
 .issue_link {
 	font-size: small;
 }
 
 </style>
 </head><body>
+<h2>Release Notes for fish 2.1.0 (released October 28, 2013)</h2>
+<h3>Significant Changes</h3>
+
+<ul>
+
+<li><b>Tab completions will fuzzy-match files.</b> <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/568">#568</a>
+
+<p>When tab-completing a file, fish will first attempt prefix matches (<tt>foo</tt> matches <tt>foobar</tt>), then substring matches (<tt>ooba</tt> matches <tt>foobar</tt>), and lastly subsequence matches (<tt>fbr</tt> matches <tt>foobar</tt>). For example, in a directory with files foo1.txt, foo2.txt, foo3.txt&hellip;, you can type only the numeric part and hit tab to fill in the rest.
+
+<p>This feature is implemented for files and executables. It is not yet implemented for options (like <tt>--foobar</tt>), and not yet implemented across path components (like <tt>/u/l/b</tt> to match <tt>/usr/local/bin</tt>).
+
+</li>
+
+<li><b>Redirections now work better across pipelines.</b> <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/110">#110</a>, <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/877">#877</a>
+
+<p>In particular, you can pipe stderr and stdout together, for example, with <tt>cmd ^&1 | tee log.txt</tt>, or the more familiar <tt>cmd 2>&1 | tee log.txt</tt></b></p>
+</li>
+
+<li><b>A single <tt>%</tt> now expands to the last job backgrounded.</b> <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/1008">#1008</a>
+
+<p>
+Previously, a single <tt>%</tt> would pid-expand to either all backgrounded jobs, or all jobs owned by your user. Now it expands to the last job backgrounded. If no job is in the background, it will fail to expand. In particular, <tt>fg %</tt> can be used to put the most recent background job in the foreground.
+</p>
+</li>
+
+
+</ul>
+
+<h3>Other Notable Fixes</h3>
+
+<ul>
+
+<li>alt-U and alt+C now uppercase and capitalize words, respectively. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/995">#995</a></li>
+
+<li>VTE based terminals should now know the working directory. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/906">#906</a></li>
+
+<li>The autotools build now works on Mavericks. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/968">#968</a></li>
+
+<li>The end-of-line binding (ctrl+E) now accepts autosuggestions. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/932">#932</a></li>
+
+<li>Directories in <tt>/etc/paths</tt> (used on OS X) are now prepended instead of appended, similar to other shells. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/927">#927</a></li>
+
+<li>Option-right-arrow (used for partial autosuggestion completion) now works on iTerm2. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/920">#920</a></li>
+
+<li>Tab completions now work properly within nested subcommands. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/913">#913</a></li>
+
+<li><tt>printf</tt> supports \e, the escape character. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/910">#910</a></li>
+
+<li><tt>fish_config history</tt> no longer shows duplicate items. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/900">#900</a></li>
+
+<li><tt>$fish_user_paths</tt> is now prepended to <tt>$PATH</tt> instead of appended. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/888">#888</a></li>
+
+<li>Jobs complete when all processes complete. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/876">#876</a>
+<p>For example, in previous versions of fish, '<tt>sleep 10 | echo Done</tt>' returns control immediately, because <tt>echo</tt> does not read from stdin. Now it does not complete until <tt>sleep</tt> exits (presumably after 10 seconds).</p>
+</li>
+
+<li>Better error reporting for square brackets. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/875">#875</a></li>
+	
+<li>fish no longer tries to add <tt>/bin</tt> to <tt>$PATH</tt> unless PATH is totally empty. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/852">#852</a></li>
+		
+<li>History token substitution (alt-up) now works correctly inside subshells. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/833">#833</a></li>
+
+<li><a href="http://en.wikipedia.org/wiki/Software_flow_control">Flow control</a> is now disabled, freeing up ctrl-S and ctrl-Q for other uses. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/814">#814</a></li>
+
+<li>sh-style variable setting like <tt>foo=bar</tt> now produces better error messages. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/809">#809</a></li>
+
+<li>Commands with wildcards no longer produce autosuggestions. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/785">#785</a></li>
+
+<li><tt>funced</tt> no longer freaks out when supplied with no arguments. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/780">#780</a></li>
+
+<li><tt>fish.app</tt> now works correctly in a directory containing spaces. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/774">#774</a></li>
+
+<li>Tab completion cycling no longer occasionally fails to repaint. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/765">#765</a></li>
+
+<li>Comments now work in eval'd strings. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/684">#684</a></li>
+
+<li>History search (up-arrow) now shows the item matching the autosuggestion, if that autosuggestion was truncated. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/650">#650</a></li>
+
+<li>Ctrl-T now transposes characters, as in other shells. <a class="issue_link" href="http://github.com/fish-shell/fish-shell/issues/128">#128</a></li>
+
+</ul>
+
+<hr>
+
 <h2>Release Notes for fish 2.0.0 (released May 17, 2013)</h2>
 
 <h3>Significant Changes</h3>
