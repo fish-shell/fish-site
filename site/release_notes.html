@@ -20,6 +20,33 @@ ul {
 
 </style>
 </head><body>
+
+<h2>Release Notes for fish 2.1.1 (released September 26, 2014)</h2>
+
+<p><strong>Important:</strong> if you are upgrading, stop all running instances of <code>fishd</code> as soon as possible after installing this release; it will be restarted automatically. On most systems, there will be no further action required. Note that some environments (where <code>XDG_RUNTIME_DIR</code> is set), such as Fedora 20, will require a restart of all running fish processes before universal variables work as intended.</p>
+
+<p>Distributors are highly encouraged to call <code>killall fishd</code>, <code>pkill fishd</code> or similar in installation scripts, or to warn their users to do so.</p>
+
+<h3>Security fixes</h3>
+
+<ul>
+<li>The fish_config web interface now uses an authentication token to protect requests and only responds to requests from the local machine with this token, preventing a remote code execution attack. (closing CVE-2014-2914). <a href="https://github.com/fish-shell/fish-shell/issues/1438" title="Restrict fish_config socket connections (CVE-2014-2914)">#1438</a> </li>
+<li>
+<code>psub</code> and <code>funced</code> are no longer vulnerable to attacks which allow local privilege escalation and data tampering (closing CVE-2014-2906 and CVE-2014-XXXX). <a href="https://github.com/fish-shell/fish-shell/issues/1437" title="psub and funced don't protect tempfiles (CVE-2014-2906)">#1437</a> </li>
+<li>
+<code>fishd</code> uses a secure path for its socket, preventing a local privilege escalation attack (closing CVE-2014-2905). <a href="https://github.com/fish-shell/fish-shell/issues/1436" title="/tmp/fishd.socket.user permissions checking (CVE-2014-2905)">#1436</a> </li>
+<li>
+<code>__fish_print_packages</code> is no longer vulnerable to attacks which would allow local privilege escalation and data tampering (closing CVE-2014-3219). <a href="https://github.com/fish-shell/fish-shell/issues/1440" title="symlink attack in __fish_print_packages and spawning fishd (CVE-2014-3219)">#1440</a>
+</li>
+</ul><h3>Other fixes</h3>
+
+<ul>
+<li>
+<code>fishd</code> now ignores SIGPIPE, fixing crashes using tools like GNU Parallel and which occurred more often as a result of the other <code>fishd</code> changes. <a href="https://github.com/fish-shell/fish-shell/issues/1084" title="Compatibility with GNU Parallel">#1084</a> &amp; <a href="https://github.com/fish-shell/fish-shell/issues/1690" title="Fishd exits on startup">#1690</a> </li>
+</ul>
+
+<hr>
+
 <h2>Release Notes for fish 2.1.0 (released October 28, 2013)</h2>
 <h3>Significant Changes</h3>
 
