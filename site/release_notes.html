@@ -21,6 +21,14 @@ ul {
 </style>
 </head><body>
 
+<h2>Release Notes for fish 2.1.2 (released Feb 24, 2015)</h2>
+
+<p>fish 2.1.2 contains a workaround for a <a href="http://openradar.appspot.com/19687545">filesystem bug</a> in Mac OS X Yosemite. <a href="https://github.com/fish-shell/fish-shell/issues/1859">#1859</a>
+	
+<p>Specifically, after installing fish 2.1.1 and then rebooting, "Verify Disk" in Disk Utility will report "Invalid number of hard links." We don't have any reports of data loss or other adverse consequences. fish 2.1.2 avoids triggering the bug, but does not repair an already affected filesystem. To repair the filesystem, you can <a href="http://support.apple.com/en-us/HT4718">boot into Recovery Mode</a> and use Repair Disk from Disk Utility. Linux and versions of OS X prior to Yosemite are believed to be unaffected.
+	
+<p>There are no other changes in this release.
+
 <h2>Release Notes for fish 2.1.1 (released September 26, 2014)</h2>
 
 <p><strong>Important:</strong> if you are upgrading, stop all running instances of <code>fishd</code> as soon as possible after installing this release; it will be restarted automatically. On most systems, there will be no further action required. Note that some environments (where <code>XDG_RUNTIME_DIR</code> is set), such as Fedora 20, will require a restart of all running fish processes before universal variables work as intended.</p>
