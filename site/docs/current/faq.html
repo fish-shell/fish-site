@@ -245,7 +245,7 @@ I'm seeing weird output before each prompt when using screen. What's wrong?</h1>
 <p>Quick answer:</p>
 <p>Run the following command in fish:</p>
 <pre>
-echo 'function fish_title;end' &gt; ~/.config/fish/config.fish
+echo 'function fish_title;end' &gt;&gt; ~/.config/fish/config.fish
 </pre><p>Problem solved!</p>
 <p>The long answer:</p>
 <p>Fish is trying to set the titlebar message of your terminal. While screen itself supports this feature, your terminal does not. Unfortunately, when the underlying terminal doesn't support setting the titlebar, screen simply passes through the escape codes and text to the underlying terminal instead of ignoring them. It is impossible detect and resolve this problem from inside fish since fish has no way of knowing what the underlying terminal type is. For now, the only way to fix this is to unset the titlebar message, as suggested above.</p>
