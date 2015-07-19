@@ -1,314 +1,291 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
   <title>fish shell</title>
-  <meta name="viewport" content="width=920">
+  <meta name="viewport" content="width=device-width">
   <meta name="description" content="A smart and user-friendly command line shell">
   <meta name="author" content="ridiculous_fish">
-  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="assets/css/fish_style.css" rel="stylesheet" type="text/css">
-  <style type="text/css">
-
-      .container-narrow > hr {
-        margin: 20px 0;
-      }
-
-      /* Main marketing message and sign up button */
-      .jumbotron {
-        margin: 36px 0;
-      }
-      
-      .jumbotron h1 {
-             line-height: normal;
-      }
-      
-      .jumbotron .btn {
-        font-size: 21px;
-        padding: 14px 24px;
-      }
-      
-      .lead {
-       margin-top: 20px;
-       margin-bottom: 30px;
-       line-height: normal;
-      }
-
-      /* Supporting marketing content */
-      .marketing {
-        margin: 0 0;
-      }
-      .marketing p + h4 {
-        margin-top: 28px;
-      }
-            
-  </style><!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 
-<body class="gradient_body">
-  <div class="container-narrow">
-    <img style="float: right; width: 275px; height: 275px; position: relative; left: 15px; bottom: 15px; margin-left: -100%;" src="assets/img/Terminal_Logo_CRT_Small.png"> <!--
-    <div class="masthead">
-      <ul class="nav nav-pills pull-right">
-        <li class="active"><a href="#">Home</a></li>
-
-        <li><a href="#">About</a></li>
-
-        <li><a href="#">Contact</a></li>
-      </ul>
-
-      <h3 class="muted">Project name</h3>
+<body style="background: rgb(17,43,94);">
+<div class="container" style="background-color: #eeeefa; border: solid 1px; border-radius: 20px; margin-top: 20px; margin-bottom: 20px">
+    <div class="row">
+        <div class="col-md-1 col-md-push-7">
+            <img src="assets/img/Terminal_Logo_2_Small.png">
+        </div>
+        <div class="col-md-6 col-md-offset-1 col-md-pull-1">
+            <h1>                    <br>
+            Finally, a command      <br>
+            line shell for the 90's  </h1>
+            <span class="lead">fish is a smart and user-friendly command line<br>
+                shell for OS X, Linux, and the rest of the family.</span>
+        </div>
     </div>
     <hr>
--->
+    <div class="row">
+        <div class="col-md-4">
+        <h4>Autosuggestions</h4>
+        fish suggests commands as you type based on history and completions, just like a web browser. Watch out, Netscape Navigator 4.0!
+        </div>
+        <div class="col-md-2">
+        <button class="btn btn-primary" href="#" data-toggle="collapse" data-target="#autosuggestions"><img id="autosuggestion" alt="Autosuggestion Thumbnail" src="assets/img/screenshots/autosuggestion_thumb.png" name="autosuggestion"></button>
+        </div>
 
-    <div class="jumbotron">
-      <h1>Finally, a command<br>
-      line shell for the 90s</h1>
-
-      <p class="lead">fish is a smart and user-friendly command line<br>
-      shell for OS X, Linux, and the rest of the family.</p>
+        <div class="col-md-4">
+        <h4>Glorious VGA Color</h4>
+        fish natively supports term256, the state of the art in terminal technology. You'll have an astonishing 256 colors available for use!
+        </div>
+        <div class="col-md-2">
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#vga_color"><img id="vga" alt="Colors Thumbnail" src="assets/img/screenshots/colors_thumb.png" name="vga"></button>
+        </div>
     </div>
-    <hr>
 
-    <div class="promo_table">
-      <div class="promo_table_row">
-        <div class="promo_table_cell promo_table_left">
-          <h4>Autosuggestions</h4>
-
-          <div class="promo_image">
-            <a target="BLANK" href="assets/img/screenshots/autosuggestion.png"><img id="autosuggestion" alt="Autosuggestion Thumbnail" src="assets/img/screenshots/autosuggestion_thumb.png" name="autosuggestion"></a>
-          </div>fish suggests commands as you type based on history and completions, just like a web browser. Watch out, Netscape Navigator 4.0!
+    <div class="row">
+        <div class="collapse" id="vga_color">
+            <img src="assets/img/screenshots/colors.png">
         </div>
 
-        <div class="promo_table_cell promo_table_right">
-          <h4>Glorious VGA Color</h4>
-
-          <div class="promo_image">
-            <a target="BLANK" href="assets/img/screenshots/colors.png"><img id="vga" alt="Colors Thumbnail" src="assets/img/screenshots/colors_thumb.png" name="vga"></a>
-          </div>fish natively supports term256, the state of the art in terminal technology. You'll have an astonishing 256 colors available for use!
+        <div class="collapse" id="autosuggestions">
+            <img src="assets/img/screenshots/autosuggestion.png">
         </div>
-      </div>
-
-      <div class="promo_table_row">
-        <div class="promo_table_cell promo_table_left">
-          <h4>Sane Scripting</h4>
-
-          <div class="promo_image">
-            <a target="BLANK" href="assets/img/screenshots/scripting.png"><img id="scripting" alt="Scripting Thumbnail" src="assets/img/screenshots/scripting_thumb.png" name="scripting"></a>
-          </div>fish is fully scriptable, and its syntax is simple, clean, and consistent. You'll never write <span class="mono">esac</span> again.
-        </div>
-
-        <div class="promo_table_cell promo_table_right">
-          <h4>Web Based configuration</h4>
-
-          <div class="promo_image">
-            <a target="BLANK" href="assets/img/screenshots/web_config.png"><img id="vga" alt="Web Config Thumbnail" src="assets/img/screenshots/web_config_thumb.png" name="vga"></a>
-          </div>For those lucky few with a graphical computer, you can set your colors and view functions, variables, and history all from a web page.
-        </div>
-      </div>
-
-      <div class="promo_table_row">
-        <div class="promo_table_cell promo_table_left">
-          <h4>Man Page Completions</h4>
-
-          <div class="promo_image">
-            <a target="BLANK" href="assets/img/screenshots/man_completions.png"><img id="vga" alt="Man Page Completions Thumbnail" src="assets/img/screenshots/man_completions_thumb.png" name="man_completions"></a>
-          </div>Other shells support programmable completions, but only fish generates them automatically by parsing your installed man pages.
-        </div>
-
-        <div class="promo_table_cell promo_table_right">
-          <h4>Works Out Of The Box</h4>
-
-          <div class="promo_image">
-            <a target="BLANK" href="assets/img/screenshots/works_out_of_the_box.png"><img id="wootb" alt="Works Out of the Box Thumbnail" src="assets/img/screenshots/works_out_of_the_box_thumb.png" name="works_out_of_the_box"></a>
-          </div>fish will delight you with features like tab completions and syntax highlighting that just work, with nothing new to learn or configure.
-        </div>
-      </div>
     </div>
-    <hr>
 
-    <h3>Teach me to fish</h3><a href="docs/current/tutorial.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">Tutorial</a> <a href="docs/current/index.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">Documentation</a> <a href="docs/current/faq.html" class="btn btn-large" style="font-size: larger; color: rgb(0, 85, 128);">FAQ</a>
-    <hr>
-
-    <h3>Go fish</h3>
-
-    <ul id="platform_tabs" class="nav nav-tabs">
-      <li class="active"><a href="#get_fish_osx" data-toggle="tab">OS X</a></li>
-
-      <li><a href="#get_fish_linux" data-toggle="tab">Linux</a></li>
-
-      <li><a href="#get_fish_windows" data-toggle="tab">Windows</a></li>
-
-      <li><a href="#get_fish_tarball" data-toggle="tab">tarball</a></li>
-    </ul>
-
-    <div class="tab-content download_tabs" style="overflow: visible; position: relative;">
-      <div class="download_tab block_links tab-pane active" id="get_fish_osx">
-        <div>
-          <a class="tab_link" href="files/2.2.0/fish.pkg"></a>
-
-          <h4><a class="tab_link" href="files/2.2.0/fish.pkg">Installer</a></h4>
-
-          <p><a class="tab_link" href="files/2.2.0/fish.pkg"><img src="assets/img/package_icon.png"></a></p>
-
-          <p><small>10.6+<br>
-          Installs to <span class="mono">/usr/local/</span></small></p>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+        <h4>Sane Scripting</h4>
+        fish is fully scriptable, and its syntax is simple, clean, and consistent. You'll never write <code>esac</code> again.
+        </div>
+        <div class="col-md-2">
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#sane_script"><img id="scripting" alt="Scripting Thumbnail" src="assets/img/screenshots/scripting_thumb.png" name="scripting"></button>
         </div>
 
-        <div>
-          <a class="tab_link" href="http://brew.sh"></a>
+        <div class="col-md-4">
+        <h4>Web Based configuration</h4>
+        For those lucky few with a graphical computer, you can set your colors and view functions, variables, and history all from a web page.
+        </div>
+        <div class="col-md-2">
+        <button class="btn btn-primary"  data-toggle="collapse" data-target="#web_config"><img id="web" alt="Web Config Thumbnail" src="assets/img/screenshots/web_config_thumb.png" name="vga"></button>
+        </div>
+    </div>
 
-          <h4><a class="tab_link" href="http://brew.sh">Homebrew</a></h4>
-
-          <p><a class="tab_link" href="http://brew.sh"><img src="assets/img/brew_icon.png"><br></a></p>
-
-          <p><br><span class="mono" style="font-size: 11pt">brew install fish</span></p>
+    <div class="row">
+        <div class="collapse" id="sane_script">
+            <img src="assets/img/screenshots/scripting.png">
         </div>
 
-        <div style="position: relative; overflow: visible;">
-          <a class="tab_link" href="files/2.2.0/fish.app.zip"></a>
+        <div class="collapse" id="web_config">
+            <img src="assets/img/screenshots/web_config.png" width="800" height="600">
+        </div>
+    </div>
 
-          <h4><a class="tab_link" href="files/2.2.0/fish.app.zip">App</a></h4>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+        <h4>Man Page Completions</h4>
+        Other shells support programmable completions, but only fish generates them automatically by parsing your installed man pages.
+        </div>
+        <div class="col-md-2">
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#man_completion"><img id="manc" alt="Man Page Completions Thumbnail" src="assets/img/screenshots/man_completions_thumb.png" name="man_completions"></button>
+        </div>
 
-          <p><a class="tab_link" href="files/2.2.0/fish.app.zip"><img src="assets/img/Terminal_Logo_LCD_Small.png" style="width: 110px; height: 110px; position: relative; bottom: 28px; margin-bottom: -45px;"><br></a></p>
+        <div class="col-md-4">
+        <h4>Works Out Of The Box</h4>
+        fish will delight you with features like tab completions and syntax highlighting that just work, with nothing new to learn or configure.
+        </div>
+        <div class="col-md-2">
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#outbox"><img id="wootb" alt="Works Out of the Box Thumbnail" src="assets/img/screenshots/works_out_of_the_box_thumb.png" name="works_out_of_the_box"></button>
+        </div>
+    </div>
 
-          <p><small>10.6+<br>
-          <a href="#" onclick="document.getElementById('app_explanation').style.display = 'block'; return false;">No installation required</a></small></p>
+    <div class="row">
+        <div class="collapse" id="man_completion">
+            <img src="assets/img/screenshots/man_completions.png">
+        </div>
 
-          <div id="app_explanation" class="arrow_box" onclick="document.getElementById('app_explanation').style.display = 'none'; return false;">
-            fish.app bundles the fish shell with an AppleScript that launches it in Terminal.<br>
-            Nothing is installed.
+        <div class="collapse" id="outbox">
+            <img src="assets/img/screenshots/works_out_of_the_box.png">
+        </div>
+    </div>
+
+    <br>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-4">
+            <h3>Teach me to fish</h3>
+            <a href="docs/current/tutorial.html" class="btn btn-primary btn-lg">Tutorial</a> 
+            <a href="docs/current/index.html" class="btn btn-primary btn-lg">Documentation</a> 
+            <a href="docs/current/faq.html" class="btn btn-primary btn-lg">FAQ</a>
+        </div>
+    </div>
+
+    <hr>
+    <div class="col-md-12">
+    <div class="row">
+        <h3>Go fish</h3>
+
+        <ul id="platform_tabs" class="nav nav-tabs">
+          <li><a href="#get_fish_osx" data-toggle="tab">OS X</a></li>
+          <li class="active"><a href="#get_fish_linux" data-toggle="tab">Linux</a></li>
+          <li><a href="#get_fish_windows" data-toggle="tab">Windows</a></li>
+          <li><a href="#get_fish_tarball" data-toggle="tab">tarball</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane" id="get_fish_osx">
+            <div class="well col-md-3 text-center" style="margin: 10px">
+              <a class="tab_link" href="files/2.2.0/fish.pkg"></a>
+              <h4><a class="tab_link" href="files/2.2.0/fish.pkg">Installer</a></h4>
+              <p><a class="tab_link" href="files/2.2.0/fish.pkg"><img src="assets/img/package_icon.png"></a></p>
+              <p><small>10.6+<br>
+              Installs to <code>/usr/local/</code></small></p>
+            </div>
+
+            <div class="well col-md-3 text-center" style="margin: 10px">
+              <a class="tab_link" href="http://brew.sh"></a>
+              <h4><a class="tab_link" href="http://brew.sh">Homebrew</a></h4>
+              <p><a class="tab_link" href="http://brew.sh"><img src="assets/img/brew_icon.png"><br></a></p>
+              <p><br><small>brew install fish</small></p>
+            </div>
+
+            <div class="well col-md-3 text-center" style="margin: 10px">
+              <a class="tab_link" href="files/2.2.0/fish.app.zip"></a>
+              <h4><a class="tab_link" href="files/2.2.0/fish.app.zip">App</a></h4>
+              <p><a class="tab_link" href="files/2.2.0/fish.app.zip"><img src="assets/img/Terminal_Logo_LCD_Small.png"><br></a></p>
+              <p><small>10.6+<br>
+              <button type="button" class="btn btn-info" title="No installation" data-container="body" data-toggle="popover" data-placement="bottom" data-content="fish.app bundles the fish shell with an AppleScript that launches it in Terminal. Nothing is installed.">No installation</button>
+              </small></p>
+            </div>
+          </div>
+
+          <div class="tab-pane active" id="get_fish_linux">
+
+            <div class="row">
+            <div class="well col-md-3 text-center" style="margin: 10px; width: 250px; height: 180px">
+              <p><img src="assets/img/ubu_icon.png" alt="Ubuntu"></p>
+              <p><a href="https://launchpad.net/~fish-shell/+archive/ubuntu/release-2">Subscribe</a> or <a href="https://launchpad.net/~fish-shell/+archive/ubuntu/release-2/+packages">Download</a></p>
+            </div>
+
+            <div class="well col-md-3 text-center" style="margin: 10px; width: 250px; height: 180px">
+              <p><img src="assets/img/deb_icon.png" alt="Debian"></p>
+              <p><a href="http://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A2&package=fish">Subscribe or Download</a></p>
+            </div>
+
+            <div class="well col-md-3 text-center" style="margin: 10px; width: 250px; height: 180px">
+              <p><img src="assets/img/fed_icon.png" alt="Fedora"></p>
+              <p><a href="http://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A2&package=fish">Subscribe or Download</a></p>
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="well col-md-3 text-center" style="margin: 10px; width: 250px; height: 180px">
+              <p><img src="assets/img/suse.png" alt="openSUSE"></p>
+              <p><a href="http://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A2&package=fish">Subscribe or Download</a></p>
+            </div>
+
+            <div class="well col-md-3 text-center" style="margin: 10px; width: 250px; height: 180px">
+              <p><img src="assets/img/cent_icon.png" alt="CentOS"></p>
+              <p><a href="http://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A2&package=fish">Subscribe or Download</a></p>
+            </div>
+
+            <div class="well col-md-3 text-center" style="margin: 10px; width: 250px; height: 180px">
+              <p><img src="assets/img/arc_icon.png" alt="Arch Linux"></p>
+              <p><a href="https://www.archlinux.org/packages/?name=fish">Packages</a></p>
+              <p style="margin-bottom: 11px"><small><code>pacman -S fish</code></small></p>
+            </div>
+            </div>
+
+            
+            <div class="row">
+            <div class="well col-md-3 text-center" style="margin: 10px; width: 250px; height: 180px">
+              <p><img src="assets/img/gentoo_icon.png" alt="Gentoo"></p>
+              <p><a href="http://packages.gentoo.org/package/app-shells/fish">Packages</a></p>
+              <p style="margin-bottom: 11px"><small><code>emerge fish</code></small></p>
+            </div>
+            </div>
+
+          </div>
+
+          <div class="tab-pane" id="get_fish_windows">
+            <div class="well col-md-3 text-center" style="margin: 10px">
+              <a class="tab_link" href="http://cygwin.com/"></a>
+              <h4><a class="tab_link" href="http://cygwin.com/">Cygwin</a></h4>
+              <p><a class="tab_link" href="http://cygwin.com/"><img src="assets/img/cyg_icon.png" alt="Cygwin"></a></p>
+              <p>fish is available in <strong>setup</strong>,<br>in the Shells category</p>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="get_fish_tarball">
+            <div class="well col-md-5 text-center" style="margin: 10px">
+              <a class="tab_link" href="files/2.2.0/fish-2.2.0.tar.gz"></a>
+              <h4><a class="tab_link" href="files/2.2.0/fish-2.2.0.tar.gz">fish-2.2.0.tar.gz</a></h4>
+              <p><a class="tab_link" href="files/2.2.0/fish-2.2.0.tar.gz"><img src="assets/img/tarball_icon.png"><br></a></p>
+              <p style="margin-bottom: 11px"><small><code>./configure; make; sudo make install</code></small></p>
+              <p style="margin-bottom: 1px;"><small>File size: 2.2 MB</small></p>
+              <p><small>SHA1: <code>cd7935b3301444afa88afb272d8db5542085c9f2</code></small></p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="download_tab linux_tabs tab-pane" id="get_fish_linux">
-        <div>
-          <p><img src="assets/img/ubu_icon.png" alt="Ubuntu"></p>
-
-          <p><a href="https://launchpad.net/~fish-shell/+archive/ubuntu/release-2">Subscribe</a> or <a href="https://launchpad.net/~fish-shell/+archive/ubuntu/release-2/+packages">Download</a></p>
-        </div>
-
-        <div>
-          <p><img src="assets/img/deb_icon.png" alt="Debian"></p>
-
-          <p><a href="http://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A2&package=fish">Subscribe or Download</a></p>
-
-        </div>
-
-        <div>
-          <p><img src="assets/img/fed_icon.png" alt="Fedora"></p>
-
-          <p><a href="http://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A2&package=fish">Subscribe or Download</a></p>
-
-        </div>
-
-        <div>
-          <p><img src="assets/img/suse.png" alt="openSUSE"></p>
-
-          <p><a href="http://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A2&package=fish">Subscribe or Download</a></p>
-        </div>
-
-        <div>
-          <p><img src="assets/img/cent_icon.png" alt="CentOS"></p>
-
-          <p><a href="http://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A2&package=fish">Subscribe or Download</a></p>
-
-        </div>
-
-        <div>
-          <p><img src="assets/img/arc_icon.png" alt="Arch Linux"></p>
-
-          <p><a href="https://www.archlinux.org/packages/?name=fish">Packages</a></p>
-
-          <p style="margin-bottom: 11px"><small><span class="mono" style="font-size: 11pt">pacman -S fish</span></small></p>
-        </div>
-
-        <div>
-          <p><img src="assets/img/gentoo_icon.png" alt="Gentoo"></p>
-
-          <p><a href="http://packages.gentoo.org/package/app-shells/fish">Packages</a></p>
-
-          <p style="margin-bottom: 11px"><small><span class="mono" style="font-size: 11pt">emerge fish</span></small></p>
-        </div>
-
-      </div>
-
-      <div class="download_tab tab-pane" id="get_fish_windows">
-        <div>
-          <a class="tab_link" href="http://cygwin.com/"></a>
-
-          <h4><a class="tab_link" href="http://cygwin.com/">Cygwin</a></h4>
-
-          <p><a class="tab_link" href="http://cygwin.com/"><img src="assets/img/cyg_icon.png" alt="Cygwin"></a></p>
-
-          <p>fish is available in <tt>setup</tt>,<br>in the Shells category</p>
-        </div>
-      </div>
-
-      <div class="download_tab block_links tab-pane" id="get_fish_tarball">
-        <div>
-          <a class="tab_link" href="files/2.2.0/fish-2.2.0.tar.gz"></a>
-
-          <h4><a class="tab_link" href="files/2.2.0/fish-2.2.0.tar.gz">fish-2.2.0.tar.gz</a></h4>
-
-          <p><a class="tab_link" href="files/2.2.0/fish-2.2.0.tar.gz"><img src="assets/img/tarball_icon.png"><br></a></p>
-
-          <p style="margin-bottom: 11px"><small><span class="mono" style="font-size: 11pt">./configure; make; sudo make install</span></small></p>
-
-          <p style="margin-bottom: 1px;"><small>File size: 2.2 MB</small></p>
-
-          <p><small>SHA1: <span class="mono" style="font-size: 10pt">cd7935b3301444afa88afb272d8db5542085c9f2</span></small></p>
-        </div>
-      </div>
     </div>
+
     <hr>
 
+    <div class="row">
     <h3>Release History</h3>
-
     <p style="margin-bottom: 15px"><a href="release_notes.html" style="font-size: 14pt">Release Notes</a></p>
-
     <ul style="list-style-type:circle">
       <li>2.2.0, released July 12, 2015 </li>
-	  
-      <li>2.1.2, released February 24, 2015 <small>(<a href="files/2.1.2/fish-2.1.2.tar.gz">tarball</a>)</small></li>
-	  
+	  <li>2.1.2, released February 24, 2015 <small>(<a href="files/2.1.2/fish-2.1.2.tar.gz">tarball</a>)</small></li>
       <li>2.1.1, released September 26, 2014 <small>(<a href="files/2.1.1/fish-2.1.1.tar.gz">tarball</a> - note that there are known issues on OS X)</small></li>
-
       <li>2.1.0, released October 28, 2013 <small>(<a href="files/2.1.0/fish-2.1.0.tar.gz">tarball</a> - note that there are known security vulnerabilities)</small></li>
-
       <li>2.0.0, released May 17, 2013 <small>(<a href="files/2.0.0/fish-2.0.0.tar.gz">tarball</a> - note that there are known security vulnerabilities)</small></li>
     </ul>
+    </div>
+
     <hr>
 
-    <h3>Development</h3>fish development is <a href="http://github.com/fish-shell/fish-shell/">hosted on github</a>. To clone the git repository:
+    <div class="row">
+        <h3>Development</h3>
+        fish development is <a href="http://github.com/fish-shell/fish-shell/">hosted on github</a>. To clone the git repository:<br>
+        <code>
+        git clone git://github.com/fish-shell/fish-shell.git
+        </code><br>
+        Build instructions are provided at the <a href="https://github.com/fish-shell/fish-shell/#building">bottom of the github page</a>.
+    </div>
 
-    <div class="mono" style="margin: 20px 0px 20px 25px;">
-      git clone git://github.com/fish-shell/fish-shell.git
-    </div>Build instructions are provided at the <a href="https://github.com/fish-shell/fish-shell/#building">bottom of the github page</a>.
     <hr>
 
+    <div class="row">
     <h3>Contact Us</h3>
+        <ul>
+            <li>Questions, comments, rants and raves can be posted to the <a href="https://lists.sourceforge.net/lists/listinfo/fish-users">official fish mailing list</a>.</li>
+            <li>Found a bug? Have an awesome idea? Please open an issue on the <a href="http://github.com/fish-shell/fish-shell/issues">github page</a>.</li>
+            <li>You can e-mail ridiculous_fish directly at <a href='mailto:co%72y%64ora%73@ri%64icul%6F%75%73fish.com'>corydoras@ridiculousfish.com</a>.</li>
+        </ul>
+    </div>
+    </div>
+</div>
+<div class="pull-right"><a href="http://acidhub.click" target="_blank">Page by Acidhub</a></div>
+  <!-- /container -->
 
-    <ul>
-      <li>Questions, comments, rants and raves can be posted to the <a href="https://lists.sourceforge.net/lists/listinfo/fish-users">official fish mailing list</a>.</li>
 
-      <li>Found a bug? Have an awesome idea? Please open an issue on the <a href="http://github.com/fish-shell/fish-shell/issues">github page</a>.</li>
-
-      <li>You can e-mail ridiculous_fish directly at <a href='mailto:co%72y%64ora%73@ri%64icul%6F%75%73fish.com'>corydoras@ridiculousfish.com</a>.</li>
-    </ul>
-  </div><!-- /container -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript">
-</script><script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js" type="text/javascript">
-</script><script src="assets/js/tabs.js" type="text/javascript">
-</script><script type="text/javascript">
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+    <script>
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
+    </script>
+
+  <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-40669084-1']);
   _gaq.push(['_trackPageview']);
@@ -318,7 +295,6 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
   </script>
 </body>
 </html>
