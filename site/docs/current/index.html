@@ -264,7 +264,7 @@ Escaping characters</h2>
 <li>'<code>\"</code>' escapes the quote character</li>
 <li>'<code>\'</code>' escapes the apostrophe character</li>
 <li>'<code>\x<em>xx</em></code>', where <code><em>xx</em></code> is a hexadecimal number, escapes the ascii character with the specified value. For example, <code>\x9</code> is the tab character.</li>
-<li>'<code>\X<em>xx</em></code>', where <code><em>xx</em></code> is a hexadecimal number, escapes a byte of data with the specified value. If you are using a mutibyte encoding, this can be used to enter invalid strings. Only use this if you know what you are doing.</li>
+<li>'<code>\X<em>xx</em></code>', where <code><em>xx</em></code> is a hexadecimal number, escapes a byte of data with the specified value. If you are using a multibyte encoding, this can be used to enter invalid strings. Only use this if you know what you are doing.</li>
 <li>'<code>\<em>ooo</em></code>', where <code><em>ooo</em></code> is an octal number, escapes the ascii character with the specified value. For example, <code>\011</code> is the tab character.</li>
 <li>'<code>\u<em>xxxx</em></code>', where <code><em>xxxx</em></code> is a hexadecimal number, escapes the 16-bit Unicode character with the specified value. For example, <code>\u9</code> is the tab character.</li>
 <li>'<code>\U<em>xxxxxxxx</em></code>', where <code><em>xxxxxxxx</em></code> is a hexadecimal number, escapes the 32-bit Unicode character with the specified value. For example, <code>\U9</code> is the tab character.</li>
@@ -349,7 +349,7 @@ Defining aliases</h3>
 </pre><p>There are a few important things that need to be noted about aliases:</p>
 <ul>
 <li>Always take care to add the <code>$argv</code> variable to the list of parameters to the wrapped command. This makes sure that if the user specifies any additional parameters to the function, they are passed on to the underlying command.</li>
-<li>If the alias has the same name as the aliased command, it is necessary to refix the call to the program with <code>command</code> in order to tell fish that the unction should not call itself, but rather a command with the same name. ailing to do so will cause infinite recursion bugs.</li>
+<li>If the alias has the same name as the aliased command, it is necessary to prefix the call to the program with <code>command</code> in order to tell fish that the function should not call itself, but rather a command with the same name. Failing to do so will cause infinite recursion bugs.</li>
 </ul>
 <p>To easily create a function of this form, you can use the <a href="commands.html#alias">alias</a> command.</p>
 <h3><a class="anchor" id="syntax-function-autoloading"></a>
