@@ -88,8 +88,8 @@
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
 
@@ -411,16 +411,34 @@
     <li>You can e-mail ridiculous_fish directly at <a href='mailto:co%72y%64ora%73@ri%64icul%6F%75%73fish.com'>corydoras@ridiculousfish.com</a>.
     </li>
   </ul>
-</div><!-- /container -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript">
-</script>
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js" type="text/javascript">
-</script>
-<script src="assets/js/tabs.js" type="text/javascript">
-</script>
-<script type="text/javascript">
+</div>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  $(function () {
+    // Show correct tab
+
+    var plat = navigator.platform.toUpperCase();
+    var isMac = plat.indexOf('MAC') !== -1;
+    var isLinux = plat.indexOf('LINUX') !== -1;
+    var isWindows = plat.indexOf('WINDOWS') !== -1;
+
+    var which = 'get_fish_tarball';
+    if (isMac) {
+      which = 'get_fish_mac'
+    } else if (isLinux) {
+      which = 'get_fish_linux';
+    } else if (isWindows) {
+      which = 'get_fish_windows';
+    }
+
+    $('#platform_tabs a[href="#' + which + '"]').tab('show');
+  });
+</script>
+
+<script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-40669084-1']);
   _gaq.push(['_trackPageview']);
@@ -433,7 +451,7 @@
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(ga, s);
   })();
-
 </script>
+
 </body>
 </html>
