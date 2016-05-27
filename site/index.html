@@ -44,6 +44,58 @@
       margin-top: 28px;
     }
 
+    .logo {
+      float: right;
+      width: 275px;
+      height: 275px;
+      position: relative;
+      left: 15px;
+      bottom: 15px;
+      margin-left: -100%;
+    }
+
+    .tutorial-link {
+      font-size: larger;
+      color: rgb(0, 85, 128);
+    }
+
+    .docs-link {
+      font-size: larger;
+      color: rgb(0, 85, 128);
+    }
+
+    .faq-link {
+      font-size: larger;
+      color: rgb(0, 85, 128);
+    }
+
+    .app-download {
+      width: 110px;
+      height: 110px;
+      position: relative;
+      bottom: 28px;
+      margin-bottom: -45px;
+    }
+
+    .release-notes-title {
+      font-size: 14pt;
+    }
+
+    .release-notes {
+      list-style-type: circle;
+    }
+
+    .from-git {
+      margin: 20px 0 20px 25px;
+    }
+
+    .app-filesize {
+      margin-bottom: 1px;
+    }
+
+    .app-sha1 {
+      font-size: 10pt;
+    }
   </style>
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -52,9 +104,7 @@
 
 <body class="gradient_body">
 <div class="container-narrow">
-  <img
-    style="float: right; width: 275px; height: 275px; position: relative; left: 15px; bottom: 15px; margin-left: -100%;"
-    src="assets/img/Terminal_Logo_CRT_Small.png">
+  <img class="logo" src="assets/img/Terminal_Logo_CRT_Small.png" alt="Logo of Fish">
 
   <div class="jumbotron">
     <h1>Finally, a command<br>
@@ -149,12 +199,12 @@
   </div>
   <hr>
 
-  <h3>Teach me to fish</h3><a href="docs/current/tutorial.html" class="btn btn-large"
-                              style="font-size: larger; color: rgb(0, 85, 128);">Tutorial</a> <a
-  href="docs/current/index.html" class="btn btn-large"
-  style="font-size: larger; color: rgb(0, 85, 128);">Documentation</a> <a href="docs/current/faq.html"
-                                                                          class="btn btn-large"
-                                                                          style="font-size: larger; color: rgb(0, 85, 128);">FAQ</a>
+  <h3>Teach me to fish</h3>
+
+  <a href="docs/current/tutorial.html" class="btn btn-large tutorial-link">Tutorial</a>
+  <a href="docs/current/index.html" class="btn btn-large docs-link">Documentation</a>
+  <a href="docs/current/faq.html" class="btn btn-large faq-link">FAQ</a>
+
   <hr>
 
   <h3>Go fish</h3>
@@ -169,7 +219,7 @@
     <li><a href="#get_fish_tarball" data-toggle="tab">tarball</a></li>
   </ul>
 
-  <div class="tab-content download_tabs" style="overflow: visible; position: relative;">
+  <div class="tab-content download_tabs over-pos">
     <div class="download_tab block_links tab-pane active" id="get_fish_osx">
       <div>
         <a class="tab_link" href="files/2.2.0/fish.pkg"></a>
@@ -191,16 +241,18 @@
 
         <p><a class="tab_link" href="http://brew.sh"><img src="assets/img/brew_icon.png"><br></a></p>
 
-        <p><br><span class="mono" style="font-size: 11pt">brew install fish</span></p>
+        <p><br><span class="mono">brew install fish</span></p>
       </div>
 
-      <div style="position: relative; overflow: visible;">
+      <div class="over-pos">
         <a class="tab_link" href="files/2.2.0/fish.app.zip"></a>
 
         <h4><a class="tab_link" href="files/2.2.0/fish.app.zip">App</a></h4>
 
-        <p><a class="tab_link" href="files/2.2.0/fish.app.zip"><img src="assets/img/Terminal_Logo_LCD_Small.png"
-                                                                    style="width: 110px; height: 110px; position: relative; bottom: 28px; margin-bottom: -45px;"><br></a>
+        <p>
+          <a class="tab_link" href="files/2.2.0/fish.app.zip">
+            <img src="assets/img/Terminal_Logo_LCD_Small.png" class="app-download">
+          </a>
         </p>
 
         <p>
@@ -261,8 +313,8 @@
 
         <p><a href="https://www.archlinux.org/packages/?name=fish">Packages</a></p>
 
-        <p style="margin-bottom: 11px">
-          <small><span class="mono" style="font-size: 11pt">pacman -S fish</span></small>
+        <p>
+          <small><span class="mono">pacman -S fish</span></small>
         </p>
       </div>
 
@@ -271,8 +323,8 @@
 
         <p><a href="https://packages.gentoo.org/packages/app-shells/fish">Packages</a></p>
 
-        <p style="margin-bottom: 11px">
-          <small><span class="mono" style="font-size: 11pt">emerge fish</span></small>
+        <p>
+          <small><span class="mono">emerge fish</span></small>
         </p>
       </div>
 
@@ -298,16 +350,16 @@
 
         <p><a class="tab_link" href="files/2.2.0/fish-2.2.0.tar.gz"><img src="assets/img/tarball_icon.png"><br></a></p>
 
-        <p style="margin-bottom: 11px">
-          <small><span class="mono" style="font-size: 11pt">./configure; make; sudo make install</span></small>
+        <p>
+          <small><span class="mono">./configure; make; sudo make install</span></small>
         </p>
 
-        <p style="margin-bottom: 1px;">
+        <p class="app-filesize">
           <small>File size: 2.2 MB</small>
         </p>
 
         <p>
-          <small>SHA1: <span class="mono" style="font-size: 10pt">cd7935b3301444afa88afb272d8db5542085c9f2</span>
+          <small>SHA1: <span class="mono app-sha1">cd7935b3301444afa88afb272d8db5542085c9f2</span>
           </small>
         </p>
       </div>
@@ -317,9 +369,11 @@
 
   <h3>Release History</h3>
 
-  <p style="margin-bottom: 15px"><a href="release_notes.html" style="font-size: 14pt">Release Notes</a></p>
+  <p>
+    <a href="release_notes.html" class="release-notes-title">Release Notes</a>
+  </p>
 
-  <ul style="list-style-type:circle">
+  <ul class="release-notes">
     <li>2.2.0, released July 12, 2015</li>
 
     <li>2.1.2, released February 24, 2015
@@ -345,7 +399,7 @@
   <h3>Development</h3>fish development is <a href="https://github.com/fish-shell/fish-shell">hosted on github</a>. To
   clone the git repository:
 
-  <div class="mono" style="margin: 20px 0px 20px 25px;">
+  <div class="mono from-git">
     git clone git://github.com/fish-shell/fish-shell.git
   </div>
   Build instructions are provided at the <a href="https://github.com/fish-shell/fish-shell/#building">bottom of the
