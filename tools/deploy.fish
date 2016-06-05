@@ -30,15 +30,17 @@ if not test -d ./site
   exit 1
 end
 
-if [ production = 1 ]
+if [ $production = 1 ]
   set SUFFIX ''
   echo "Syncing to PRODUCTION!"
+  echo "Last chance to back out..."
+  sleep 2
 else
   set SUFFIX staging
   echo "Syncing to staging"
 end
 
-aws s3 sync ./site $BUCKET/$SUFFIX --exclude .DS_Store --exclude files
+aws s3 sync ./site $BUCKET/$SUFFIX --exclude .DS_Store --exclude "*/.DS_Store" --exclude files
 
 echo Visit $SITE_URL/$SUFFIX
 
