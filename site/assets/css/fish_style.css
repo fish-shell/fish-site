@@ -1,5 +1,5 @@
 body.tutorial_body {
-    font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 13pt;
     background-color: #1E335E;
     margin: 0;
@@ -9,7 +9,7 @@ body.gradient_body {
     font-size: 13pt;
     margin: 30px 0;
     padding: 0 10px;
-    font-family: Verdana, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: white;
 
     background: rgb(17, 43, 94); /* Old browsers */
@@ -29,7 +29,7 @@ body.gradient_body {
     line-height: normal;
     font-size: 30pt;
     letter-spacing: 2px;
-    font-family: Verdana, monospace;
+    font-family: monospace; 
     font-weight: bold;
     margin: 15px 15px 5px 15px;
     color: white;
@@ -255,7 +255,17 @@ h3 {
 }
 
 .promo_image img {
+    /* the screenshots of the terminals look terrible when scaled up with blury filtering
+      (user zooms, or user has retina display). 
+    */
     border-style: none;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: optimize-contrast; 
+    image-rendering: crisp-edges;
 }
 
 #autosuggestion {
