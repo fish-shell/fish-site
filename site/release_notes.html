@@ -21,6 +21,29 @@ ul {
 </style>
 </head><body>
 	
+<h2>Release Notes for fish 2.3.1 (released July 3, 2016)</h2>
+This is a functionality and bugfix release. This release does not contain all the changes to fish since the last release, but fixes a number of issues directly affecting users at present and includes a small number of new features.
+
+<h3>Significant changes</h3>
+<ul>
+    <li>A new <code>fish_key_reader</code> binary for decoding interactive keypresses (<a href="https://github.com/fish-shell/fish-shell/issues/2991">#2991</a>).</li>
+    <li><code>fish_mode_prompt</code> has been updated to reflect the changes in the way the Vi input mode is set up (<a href="https://github.com/fish-shell/fish-shell/issues/3067">#3067</a>), making this more reliable.</li>
+    <li><code>fish_config</code> can now properly be launched from the OS X app bundle (<a href="https://github.com/fish-shell/fish-shell/issues/3140">#3140</a>).</li>
+</ul>
+
+<h3>Notable fixes and improvements</h3>
+
+<ul>
+    <li>Extra lines were sometimes inserted into the output under Windows (Cygwin and Microsoft Windows Subsystem for Linux) due to TTY timestamps not being updated (<a href="https://github.com/fish-shell/fish-shell/issues/2859">#2859</a>).</li>
+    <li>The <code>string</code> builtin's <code>match</code> mode now handles the combination of <code>-rnv</code> (match, invert and count) correctly (<a href="https://github.com/fish-shell/fish-shell/issues/3098">#3098</a>).</li>
+    <li>Improvements to TTY special character handling (<a href="https://github.com/fish-shell/fish-shell/issues/3064">#3064</a>), locale handling (<a href="https://github.com/fish-shell/fish-shell/issues/3124">#3124</a>) and terminal environment variable handling (<a href="https://github.com/fish-shell/fish-shell/issues/3060">#3060</a>).</li>
+    <li>Work towards handling the terminal modes for external commands launched from initialisation files (<a href="https://github.com/fish-shell/fish-shell/issues/2980">#2980</a>).</li>
+    <li>Ease the upgrade path from fish 2.2.0 and before by warning users to restart fish if the <code>string</code> builtin is not available (<a href="https://github.com/fish-shell/fish-shell/issues/3057">#3057</a>).</li>
+    <li><code>type -a</code> now syntax-colorizes function source output.</li>
+    <li>Added completions for <code>alsamixer</code>, <code>godoc</code>, <code>gofmt</code>, <code>goimports</code>, <code>gorename</code>, <code>lscpu</code>, <code>mkdir</code>, <code>modinfo</code>, <code>netctl-auto</code>, <code>poweroff</code>, <code>termite</code>, <code>udisksctl</code> and <code>xz</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3123">#3123</a>).</li>
+    <li>Improved completions for <code>apt</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3097">#3097</a>), <code>aura</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3102">#3102</a>),<code>git</code> (<a href="https://github.com/fish-shell/fish-shell/issues/3114">#3114</a>), <code>npm</code> (<a href="https://github.com/fish-shell/fish-shell/issues/3158">#3158</a>), <code>string</code> and <code>suspend</code> (<a href="https://github.com/fish-shell/fish-shell/issues/3154">#3154</a>).</li>
+</ul>
+
 <h2>Release Notes for fish 2.3.0 (released May 20, 2016)</h2>
 <h3>Significant Changes</h3>
 <ul>
