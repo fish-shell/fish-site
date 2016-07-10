@@ -1,4 +1,4 @@
-gi#!/usr/bin/python
+#!/usr/bin/python
 
 import sys
 import re
