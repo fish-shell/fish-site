@@ -42,5 +42,9 @@ end
 
 aws s3 sync ./site $BUCKET/$SUFFIX --exclude .DS_Store --exclude "*/.DS_Store" --exclude files
 
-echo Visit $SITE_URL/$SUFFIX
+if [ $production = 1 ]
+  aws cloudfront create-invalidation --distribution-id E16QR6T61C8PXW --paths /
+  and echo "Created invalidation"
+end
 
+echo Visit $SITE_URL/$SUFFIX
