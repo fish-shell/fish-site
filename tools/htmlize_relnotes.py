@@ -28,7 +28,7 @@ def annotate_items(contents):
         appropriate github item
     """
     # Determine item numbers
-    pattern = r'\(#(\d+)\)'
+    pattern = r'#(\d+)'
     matches = re.finditer(pattern, contents)
     # Resolve numstrs to URLs
     numstr_to_url = {}
@@ -50,7 +50,7 @@ def annotate_items(contents):
         if not numstr in numstr_to_url:
             return match.group(0)
         url = numstr_to_url[numstr]
-        return '(<a href="%s">#%s</a>)' % (url, match.group(1))
+        return '<a href="%s">#%s</a>' % (url, match.group(1))
 
     return re.sub(pattern, annotate_1, contents)
 
@@ -111,7 +111,7 @@ def htmlize(src_path):
 
 def usage():
     print("""\
-Usage: htmlize_relnotes.py.py file…
+Usage: htmlize_relnotes.py file…
 
 htmlize_relnotes.py builds HTML relnotes from GitHub relnotes.
 """)
