@@ -20,6 +20,58 @@ ul {
 
 </style>
 </head><body>
+
+<h2>Release Notes for fish 2.4.0 (released November 8, 2016)</h2>
+
+<h3>Significant changes</h3>
+<ul>
+    <li>The clipboard integration has been revamped with explicit bindings. The killring commands no longer copy from, or paste to, the X11 clipboard - use the new copy (<code>C-x</code>) and paste (<code>C-v</code>) bindings instead. The clipboard is now available on OS X as well as systems using X11 (e.g. Linux). (<a href="https://github.com/fish-shell/fish-shell/pull/3061">#3061</a>)</li>
+    <li><code>history</code> uses subcommands (<code>history delete</code>) rather than options (<code>history --delete</code>) for its actions (<a href="https://github.com/fish-shell/fish-shell/issues/3367">#3367</a>). You can no longer specify multiple actions via flags (e.g., <code>history --delete --save something</code>).</li>
+    <li>New <code>history</code> options have been added, including <code>--max=n</code> to limit the number of history entries, <code>--show-time</code> option to show timestamps (<a href="https://github.com/fish-shell/fish-shell/pull/3175">#3175</a>, <a href="https://github.com/fish-shell/fish-shell/issues/3244">#3244</a>), and <code>--null</code> to null terminate history entries in the search output.</li>
+    <li><code>history search</code> is now case-insensitive by default (which also affects <code>history delete</code>) (<a href="https://github.com/fish-shell/fish-shell/issues/3236">#3236</a>).</li>
+    <li><code>history delete</code> now correctly handles multiline commands (<a href="https://github.com/fish-shell/fish-shell/issues/31">#31</a>).</li>
+    <li>Vi-style bindings no longer include all of the default emacs-style bindings; instead, they share some definitions (<a href="https://github.com/fish-shell/fish-shell/pull/3068">#3068</a>).</li>
+    <li>If there is no locale set in the environment, various known system configuration files will be checked for a default. If no locale can be found, <code>en_US-UTF.8</code> will be used (<a href="https://github.com/fish-shell/fish-shell/issues/277">#277</a>).</li>
+    <li>A number followed by a caret (e.g. <code>5^</code>) is no longer treated as a redirection (<a href="https://github.com/fish-shell/fish-shell/issues/1873">#1873</a>).</li>
+    <li>The <code>$version</code> special variable can be overwritten, so that it can be used for other purposes if required.</li>
+</ul>
+
+<h3>Notable fixes and improvements</h3>
+<ul>
+    <li>The <code>fish_realpath</code> builtin has been renamed to <code>realpath</code> and made compatible with GNU <code>realpath</code> when run without arguments (<a href="https://github.com/fish-shell/fish-shell/issues/3400">#3400</a>). It is used only for systems without a <code>realpath</code> or <code>grealpath</code> utility (<a href="https://github.com/fish-shell/fish-shell/pull/3374">#3374</a>).</li>
+    <li>Improved color handling on terminals/consoles with 8-16 colors, particularly the use of bright named color (<a href="https://github.com/fish-shell/fish-shell/issues/3176">#3176</a>, <a href="https://github.com/fish-shell/fish-shell/pull/3260">#3260</a>).</li>
+    <li><code>fish_indent</code> can now read from files given as arguments, rather than just standard input (<a href="https://github.com/fish-shell/fish-shell/issues/3037">#3037</a>).</li>
+    <li>Fuzzy tab completions behave in a less surprising manner (<a href="http://github.com/fish-shell/fish-shell/issues/3090">#3090</a>, <a href="https://github.com/fish-shell/fish-shell/issues/3211">#3211</a>).</li>
+    <li><code>jobs</code> should only print its header line once (<a href="https://github.com/fish-shell/fish-shell/pull/3127">#3127</a>).</li>
+    <li>Wildcards in redirections are highlighted appropriately (<a href="https://github.com/fish-shell/fish-shell/issues/2789">#2789</a>).</li>
+    <li>Suggestions will be offered more often, like after removing characters (<a href="http://github.com/fish-shell/fish-shell/issues/3069">#3069</a>).</li>
+    <li><code>history --merge</code> now correctly interleaves items in chronological order (<a href="https://github.com/fish-shell/fish-shell/issues/2312">#2312</a>).</li>
+    <li>Options for <code>fish_indent</code> have been aligned with the other binaries - in particular, <code>-d</code> now means <code>--debug</code>. The <code>--dump</code> option has been renamed to <code>--dump-parse-tree</code> (<a href="https://github.com/fish-shell/fish-shell/issues/3191">#3191</a>).</li>
+    <li>The display of bindings in the Web-based configuration has been greatly improved (<a href="https://github.com/fish-shell/fish-shell/issues/3325">#3325</a>), as has the rendering of prompts (<a href="https://github.com/fish-shell/fish-shell/issues/2924">#2924</a>).</li>
+    <li>fish should no longer hang using 100% CPU in the C locale (<a href="https://github.com/fish-shell/fish-shell/issues/3214">#3214</a>).</li>
+    <li>A bug in FreeBSD 11 &amp; 12, Dragonfly BSD &amp; illumos prevented fish from working correctly on these platforms under UTF-8 locales; fish now avoids the buggy behaviour (<a href="https://github.com/fish-shell/fish-shell/issues/3050">#3050</a>).</li>
+    <li>Prompts which show git repository information (via <code>__fish_git_prompt</code>) are faster in large repositories (<a href="https://github.com/fish-shell/fish-shell/pull/3294">#3294</a>) and slow filesystems (<a href="https://github.com/fish-shell/fish-shell/issues/3083">#3083</a>).</li>
+    <li>fish 2.3.0 reintroduced a problem where the greeting was printed even when using <code>read</code>; this has been corrected again (<a href="https://github.com/fish-shell/fish-shell/issues/3261">#3261</a>).</li>
+    <li>Vi mode changes the cursor depending on the current mode (<a href="https://github.com/fish-shell/fish-shell/issues/3215">#3215</a>).</li>
+    <li>Command lines with escaped space characters at the end tab-complete correctly (<a href="https://github.com/fish-shell/fish-shell/issues/2447">#2447</a>).</li>
+    <li>Added completions for:</li>
+	<ul>
+	  <li> <code>arcanist</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3256">#3256</a>)</li>
+	  <li> <code>connmanctl</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3419">#3419</a>)</li>
+	  <li> <code>figlet</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>)</li>
+	  <li> <code>mdbook</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>)</li>
+	  <li>  <code>ninja</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3415">#3415</a>)</li>
+	  <li>  <code>p4</code>, the Perforce client (<a href="https://github.com/fish-shell/fish-shell/pull/3314">#3314</a>)</li>
+	  <li>  <code>pygmentize</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>)</li>
+	  <li>  <code>ranger</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>)</li>
+    </ul>
+    <li>Improved completions for <code>aura</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3297">#3297</a>), <code>abbr</code> (<a href="https://github.com/fish-shell/fish-shell/issues/3267">#3267</a>), <code>brew</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3309">#3309</a>), <code>chown</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3380">#3380</a>, <a href="https://github.com/fish-shell/fish-shell/pull/3383">#3383</a>),<code>cygport</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3392">#3392</a>), <code>git</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3274">#3274</a>, <a href="https://github.com/fish-shell/fish-shell/pull/3226">#3226</a>, <a href="https://github.com/fish-shell/fish-shell/pull/3225">#3225</a>, <a href="https://github.com/fish-shell/fish-shell/pull/3094">#3094</a>, <a href="https://github.com/fish-shell/fish-shell/issues/3087">#3087</a>, <a href="https://github.com/fish-shell/fish-shell/issues/3035">#3035</a>, <a href="https://github.com/fish-shell/fish-shell/pull/3021">#3021</a>, <a href="https://github.com/fish-shell/fish-shell/pull/2982">#2982</a>, <a href="http://github.com/fish-shell/fish-shell/issues/3230">#3230</a>), <code>kill &amp; </code>pkill<code> (<a href="https://github.com/fish-shell/fish-shell/pull/3200">#3200</a>), </code>screen<code> (<a href="https://github.com/fish-shell/fish-shell/pull/3271">#3271</a>), </code>wget<code> (<a href="https://github.com/fish-shell/fish-shell/pull/3470">#3470</a>), and </code>xz<code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>).</li></code>
+    <li>Distributors, packagers and developers will notice that the build process produces more succinct output by default; use <code>make V=1</code> to get verbose output (<a href="https://github.com/fish-shell/fish-shell/pull/3248">#3248</a>).</li>
+    <li>Improved compatibility with minor platforms including musl (<a href="https://github.com/fish-shell/fish-shell/issues/2988">#2988</a>), Cygwin (<a href="https://github.com/fish-shell/fish-shell/issues/2993">#2993</a>), Android (<a href="https://github.com/fish-shell/fish-shell/pull/3441">#3441</a>, <a href="https://github.com/fish-shell/fish-shell/pull/3442">#3442</a>), Haiku (<a href="https://github.com/fish-shell/fish-shell/pull/3322">#3322</a>) and Solaris.</li>
+    <li>Automatic cursor changes are now only enabled on the subset of XTerm versions known to support them, resolving a problem where older versions printed garbage to the terminal before and after every prompt (<a href="https://github.com/fish-shell/fish-shell/issues/3499">#3499</a>).</li>
+    <li>Improved the title set in Apple Terminal.app.</li>
+    <li>Added completions for <code>defaults</code> and improved completions for <code>diskutil</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3478">#3478</a>).</li>
+</ul>
 	
 <h2>Release Notes for fish 2.3.1 (released July 3, 2016)</h2>
 This is a functionality and bugfix release. This release does not contain all the changes to fish since the last release, but fixes a number of issues directly affecting users at present and includes a small number of new features.
