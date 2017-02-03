@@ -21,6 +21,86 @@ ul {
 </style>
 </head><body>
 
+<h2>Release Notes for fish 2.5.0 (released February 3, 2017)</h2>
+<ul>
+    <li>The Home, End, Insert, Delete, Page Up and Page Down keys work in Vi-style key bindings (<a href="https://github.com/fish-shell/fish-shell/issues/3731">#3731</a>).</li>
+</ul>
+
+<h3>Platform Changes</h3>
+Starting with version 2.5, fish requires a more up-to-date version of C++, specifically C++11 (from 2011). This affects some older platforms:
+<h4>Linux</h4>
+For users building from source, GCC's g++ 4.8 or later, or LLVM's clang 3.3 or later, are known to work. Older platforms may require a newer compiler installed.
+Unfortunately, because of the complexity of the toolchain, binary packages are no longer published by the fish-shell developers for the following platforms:
+<ul>
+    <li>Red Hat Enterprise Linux and CentOS 5 &amp; 6 for 64-bit builds</li>
+    <li>Ubuntu 12.04 (EoLTS April 2017)</li>
+    <li>Debian 7 (EoLTS May 2018)</li>
+</ul>
+Installing newer version of fish on these systems will require building from source.
+<h4>OS X SnowLeopard</h4>
+Starting with version 2.5, fish requires a C++11 standard library on OS X 10.6 ("SnowLeopard"). If this library is not installed, you will see this error: <code>dyld: Library not loaded: /usr/lib/libc++.1.dylib</code>
+MacPorts is the easiest way to obtain this library. After installing the SnowLeopard MacPorts release from the install page, run:
+<code></code><code></code>
+sudo port -v install libcxx
+<code></code><code></code>
+Now fish should launch successfully. (Please open an issue if it does not.)
+This is only necessary on 10.6. OS X 10.7 and later include the required library by default.
+<h3>Other significant changes</h3>
+<ul>
+    <li>Attempting to exit with running processes in the background produces a warning, then signals them to terminate if a second attempt to exit is made. This brings the behaviour for running background processes into line with stopped processes. (<a href="https://github.com/fish-shell/fish-shell/issues/3497">#3497</a>)</li>
+    <li><code>random</code> can now have start, stop and step values specified, or the new <code>choice</code> subcommand can be used to pick an argument from a list (<a href="https://github.com/fish-shell/fish-shell/pull/3619">#3619</a>).</li>
+    <li>A new key bindings preset, <code>fish_hybrid_key_bindings</code>, including all the Emacs-style and Vi-style bindings, which behaves like <code>fish_vi_key_bindings</code> in fish 2.3.0 (<a href="https://github.com/fish-shell/fish-shell/issues/3556">#3556</a>).</li>
+    <li><code>function</code> now returns an error when called with invalid options, rather than defining the function anyway (<a href="https://github.com/fish-shell/fish-shell/pull/3574">#3574</a>). This was a regression present in fish 2.3 and 2.4.0.</li>
+    <li>fish no longer prints a warning when it identifies a running instance of an old version (2.1.0 and earlier). Changes to universal variables may not propagate between these old versions and 2.5b1.</li>
+    <li>Improved compatiblity with Android (<a href="https://github.com/fish-shell/fish-shell/pull/3585">#3585</a>), MSYS/mingw (<a href="https://github.com/fish-shell/fish-shell/issues/2360">#2360</a>), Solaris (<a href="https://github.com/fish-shell/fish-shell/issues/3456">#3456</a>, <a href="https://github.com/fish-shell/fish-shell/issues/3340">#3340</a>)</li>
+    <li>Like other shells, the <code>test</code> builting now returns an error for numeric operations on invalid integers (<a href="https://github.com/fish-shell/fish-shell/issues/3346">#3346</a>, <a href="https://github.com/fish-shell/fish-shell/pull/3581">#3581</a>).</li>
+    <li><code>complete</code> no longer recognises <code>--authoritative</code> and <code>--unauthoritative</code> options, and they are marked as obsolete.</li>
+    <li><code>status</code> accepts subcommands, and should be used like <code>status is-interactive</code>. The old options continue to be supported for the foreseeable future (<a href="https://github.com/fish-shell/fish-shell/pull/3526">#3526</a>), although only one subcommand or option can be specified at a time.</li>
+    <li>Selection mode (used with "begin-selection") no longer selects a character the cursor does not move over (<a href="https://github.com/fish-shell/fish-shell/issues/3684">#3684</a>).</li>
+    <li>List indexes are handled better, and a bit more liberally in some cases (<code>echo $PATH[1 .. 3]</code> is now valid) (<a href="https://github.com/fish-shell/fish-shell/pull/3579">#3579</a>).</li>
+    <li>The <code>fish_mode_prompt</code> function is now simply a stub around <code>fish_default_mode_prompt</code>, which allows the mode prompt to be included more easily in customised prompt functions (<a href="https://github.com/fish-shell/fish-shell/issues/3641">#3641</a>).</li>
+</ul>
+<h3>Notable fixes and improvements</h3>
+<ul>
+    <li><code>alias</code>, run without options or arguments, lists all defined aliases, and aliases now include a description in the function signature that identifies them.</li>
+    <li><code>complete</code> accepts empty strings as descriptions (<a href="https://github.com/fish-shell/fish-shell/issues/3557">#3557</a>).</li>
+    <li><code>command</code> accepts <code>-q</code>/<code>--quiet</code> in combination with <code>--search</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3591">#3591</a>), providing a simple way of checking whether a command exists in scripts.</li>
+    <li>Abbreviations can now be renamed with <code>abbr --rename OLD_KEY NEW_KEY</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3610">#3610</a>).</li>
+    <li>The command synopses printed by <code>--help</code> options work better with copying and pasting (<a href="https://github.com/fish-shell/fish-shell/issues/2673">#2673</a>).</li>
+    <li><code>help</code> launches the browser specified by the <code>$fish_help_browser variable</code> if it is set (<a href="https://github.com/fish-shell/fish-shell/issues/3131">#3131</a>).</li>
+    <li>History merging could lose items under certain circumstances and is now fixed (<a href="https://github.com/fish-shell/fish-shell/issues/3496">#3496</a>).</li>
+    <li>The <code>$status</code> variable is now set to 123 when a syntactically invalid command is entered (<a href="http://github.com/fish-shell/fish-shell/issues/3616">#3616</a>).</li>
+    <li>Exiting fish now signals all background processes to terminate, not just stopped jobs (<a href="https://github.com/fish-shell/fish-shell/issues/3497">#3497</a>).</li>
+    <li>A new <code>prompt_hostname</code> function which prints a hostname suitable for use in prompts (<a href="https://github.com/fish-shell/fish-shell/pull/3482">#3482</a>).</li>
+    <li>The <code>__fish_man_page</code> function (bound to Alt-h by default) now tries to recognize subcommands (e.g. <code>git add</code> will now open the "git-add" man page) (<a href="https://github.com/fish-shell/fish-shell/pull/3678">#3678</a>).</li>
+    <li>A new function <code>edit_command_buffer</code> (bound to Alt-e &amp; Alt-v by default) to edit the command buffer in an external editor (<a href="https://github.com/fish-shell/fish-shell/issues/1215">#1215</a>, <a href="https://github.com/fish-shell/fish-shell/pull/3627">#3627</a>).</li>
+    <li><code>set_color</code> now supports italics (<code>--italics</code>), dim (<code>--dim</code>) and reverse (<code>--reverse</code>) modes (<a href="https://github.com/fish-shell/fish-shell/pull/3650">#3650</a>).</li>
+    <li>Filesystems with very slow locking (eg incorrectly-configured NFS) will no longer slow fish down (<a href="https://github.com/fish-shell/fish-shell/issues/685">#685</a>).</li>
+    <li>Improved completions for <code>apt</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3695">#3695</a>), <code>fusermount</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3642">#3642</a>), <code>make</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3628">#3628</a>), <code>netctl-auto</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>), <code>nmcli</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3648">#3648</a>), <code>pygmentize</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>), and <code>tar</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3719">#3719</a>).</li>
+    <li>Added completions for:</li>
+    <li><code>VBoxHeadless</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>)</li>
+    <li><code>VBoxSDL</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>)</li>
+    <li><code>base64</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>)</li>
+    <li><code>caffeinate</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3524">#3524</a>)</li>
+    <li><code>dconf</code> (<a href="https://github.com/fish-shell/fish-shell/issues/3638">#3638</a>)</li>
+    <li><code>dig</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3495">#3495</a>)</li>
+    <li><code>dpkg-reconfigure</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3521">#3521</a> &amp; <a href="https://github.com/fish-shell/fish-shell/pull/3522">#3522</a>)</li>
+    <li><code>feh</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>)</li>
+    <li><code>launchctl</code> (<a href="http://github.com/fish-shell/fish-shell/issues/3682">#3682</a>)</li>
+    <li><code>lxc</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3554">#3554</a> &amp; <a href="https://github.com/fish-shell/fish-shell/pull/3564">#3564</a>),</li>
+    <li><code>mddiagnose</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3524">#3524</a>)</li>
+    <li><code>mdfind</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3524">#3524</a>)</li>
+    <li><code>mdimport</code>  (<a href="https://github.com/fish-shell/fish-shell/pull/3524">#3524</a>)</li>
+    <li><code>mdls</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3524">#3524</a>)</li>
+    <li><code>mdutil</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3524">#3524</a>)</li>
+    <li><code>mkvextract</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3492">#3492</a>)</li>
+    <li><code>nvram</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3524">#3524</a>)</li>
+    <li><code>objdump</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3378">#3378</a>)</li>
+    <li><code>sysbench</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3491">#3491</a>)</li>
+    <li><code>tmutil</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3524">#3524</a>)</li>
+</ul>
+
+
 <h2>Release Notes for fish 2.4.0 (released November 8, 2016)</h2>
 
 <h3>Significant changes</h3>
