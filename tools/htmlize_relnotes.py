@@ -90,9 +90,14 @@ class Markdown2HTML(object):
 def markdown_2_html(text):
     cv = Markdown2HTML()
     for line in text.split('\n'):
+        line = line.strip()
+        if not line: continue
+        if re.match(r'^-+$', line): continue # skip all dash lines
         cv.emit_open_close_list(line.startswith('-'))
         if line.startswith('-'):
             cv.emit_surround(line[1:], 'li')
+        elif line.startswith('###'):
+            cv.emit_surround(line[3:], 'h4')
         elif line.startswith('##'):
             cv.emit_surround(line[2:], 'h3')
         else:
