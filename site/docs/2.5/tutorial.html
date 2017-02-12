@@ -108,7 +108,7 @@ Syntax Highlighting</h1>
 <p>You'll quickly notice that <code>fish</code> performs syntax highlighting as you type. Invalid commands are colored red by default:</p>
  
  <pre class="fish cli-dark">
-<span class="prompt">&gt;</span> <span class="path">/bin/mkd</span>
+<span class="prompt">&gt;</span> <span class="error">/bin/mkd</span>
 </pre><p>A command may be invalid because it does not exist, or refers to a file that you cannot execute. When the command becomes valid, it is shown in a different color:</p>
  
  <pre class="fish cli-dark">
@@ -157,7 +157,7 @@ Autosuggestions</h1>
 <p><code>fish</code> suggests commands as you type, and shows the suggestion to the right of the cursor, in gray. For example:</p>
  
  <pre class="fish cli-dark">
-<span class="prompt">&gt;</span> <span class="path">/bin/h</span><span class="suggest"><span class="cursor">o</span>stname</span>
+<span class="prompt">&gt;</span> <span class="error">/bin/h</span><span class="suggest"><span class="cursor">o</span>stname</span>
 </pre><p>It knows about paths and options:</p>
  
  <pre class="fish cli-dark">
@@ -165,7 +165,7 @@ Autosuggestions</h1>
 </pre><p>And history too. Type a command once, and you can re-summon it by just typing a few letters:</p>
  
  <pre class="fish cli-dark">
-<span class="prompt">&gt;</span> <span class="redirect">&lt;eror</span>&gt;r<span class="redirect">&lt;&lt;/eror</span>&gt;\@args{ync} \ <span class="argument">ssh</span> <span class="argument">.</span> <span class="argument">myname</span><span>@</span>somelonghost.com:/some/long/path/doo/dee/doo/dee/doo}
+<span class="prompt">&gt;</span> <span class="error">r<span class="redirect">&lt;</span></span>\@args{ync} \ <span class="argument">ssh</span> <span class="argument">.</span> <span class="argument">myname</span><span>@</span>somelonghost.com:/some/long/path/doo/dee/doo/dee/doo}
 </pre><p>To accept the autosuggestion, hit <span class="key"><b>&rarr;</b></span> or <span class="key"><em>Control</em><span>-</span><b>F</b></span>. To accept a single word of the autosuggestion, <span class="key"><em>Alt</em><span>-</span><b>&rarr;</b></span> (right arrow). If the autosuggestion is not what you want, just ignore it.</p>
 <h1><a class="anchor" id="tut_tab_completions"></a>
 Tab Completions</h1>
@@ -173,11 +173,11 @@ Tab Completions</h1>
 <p>Press <span class="key"><b>Tab</b></span>, and <code>fish</code> will attempt to complete the command, argument, or path:</p>
  
  <pre class="fish cli-dark">
-<span class="prompt">&gt;</span> <span class="path">/pri</span> <span>@</span>key{Tab} &rarr; <span class="path">/private/</span>
+<span class="prompt">&gt;</span> <span class="error">/pri</span> <span>@</span>key{Tab} &rarr; <span class="path">/private/</span>
 </pre><p>If there's more than one possibility, it will list them:</p>
  
  <pre class="fish cli-dark">
-<span class="prompt">&gt;</span> <span class="path">~/stuff/s</span> <span>@</span>key{Tab}
+<span class="prompt">&gt;</span> <span class="error">~/stuff/s</span> <span>@</span>key{Tab}
 <span class="output">~/stuff/s</span>cript.sh  <em>(Executable, 4.8kB)</em>  <span class="match">~/stuff/sources/  <em>(Directory)</em></span>
 </pre><p>Hit tab again to cycle through the possibilities.</p>
 <p><code>fish</code> can also complete many commands, like git branches:</p>
