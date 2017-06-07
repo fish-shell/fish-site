@@ -20,6 +20,64 @@ ul {
 
 </style>
 </head><body>
+        
+<h2>Release Notes for fish 2.6.0 (released June 3, 2017)</h2>
+<h3>Notable fixes and improvements</h3>
+<ul>
+    <li>Jobs running in the background can now be removed from the list of jobs with the new <code>disown</code> builtin, which behaves like the same command in other shells (<a href="https://github.com/fish-shell/fish-shell/issues/2810">#2810</a>).</li>
+    <li>Command substitutions now have access to the terminal, like in other shells. This allows tools like <code>fzf</code> to work properly (<a href="https://github.com/fish-shell/fish-shell/issues/1362">#1362</a>, <a href="https://github.com/fish-shell/fish-shell/pull/3922">#3922</a>).</li>
+    <li>In cases where the operating system does not report the size of the terminal, the <code>COLUMNS</code> and <code>LINES</code> environment variables are used; if they are unset, a default of 80x24 is assumed.</li>
+    <li>New French (<a href="https://github.com/fish-shell/fish-shell/pull/3772">#3772</a> &amp; <a href="https://github.com/fish-shell/fish-shell/pull/3788">#3788</a>) and improved German (<a href="https://github.com/fish-shell/fish-shell/issues/3834">#3834</a>) translations.</li>
+    <li>fish no longer depends on the <code>which</code> external command.</li>
+</ul>
+<h3>Other significant changes</h3>
+<ul>
+    <li>Performance improvements in launching processes, including major reductions in signal blocking. Although this has been heavily tested, it may cause problems in some circumstances; set the <code>FISH_NO_SIGNAL_BLOCK</code> variable to 0 in your fish configuration file to return to the old behaviour (<a href="https://github.com/fish-shell/fish-shell/issues/2007">#2007</a>).</li>
+    <li>Performance improvements in prompts and functions that set lots of colours (<a href="https://github.com/fish-shell/fish-shell/issues/3793">#3793</a>).</li>
+    <li>The Delete key no longer deletes backwards (a regression in 2.5.0).</li>
+    <li><code>functions</code> supports a new <code>--details</code> option, which identifies where the function was loaded from (<a href="https://github.com/fish-shell/fish-shell/issues/3295">#3295</a>), and a <code>--details --verbose</code> option which includes the function description (<a href="https://github.com/fish-shell/fish-shell/issues/597">#597</a>).</li>
+    <li><code>read</code> will read up to 10 MiB by default, leaving the target variable empty and exiting with status 122 if the line is too long. You can set a different limit with the <code>FISH_READ_BYTE_LIMIT</code> variable.</li>
+    <li><code>read</code> supports a new <code>--silent</code> option to hide the characters typed (<a href="https://github.com/fish-shell/fish-shell/issues/838">#838</a>), for when reading sensitive data from the terminal. <code>read</code> also now accepts simple strings for the prompt (rather than scripts) with the new <code>-P</code> and <code>--prompt-str</code> options (<a href="https://github.com/fish-shell/fish-shell/issues/802">#802</a>).</li>
+    <li><code>export</code> and <code>setenv</code> now understand colon-separated <code>PATH</code>, <code>CDPATH</code> and <code>MANPATH</code> variables.</li>
+    <li><code>bind</code> supports a new <code>--list-modes</code> option (<a href="https://github.com/fish-shell/fish-shell/issues/3872">#3872</a>).</li>
+    <li><code>bg</code> will check all of its arguments before backgrounding any jobs; any invalid arguments will cause a failure, but non-existent (eg recently exited) jobs are ignored (<a href="https://github.com/fish-shell/fish-shell/issues/3909">#3909</a>).</li>
+    <li><code>funced</code> warns if the function being edited has not been modified (<a href="https://github.com/fish-shell/fish-shell/pull/3961">#3961</a>).</li>
+    <li><code>printf</code> correctly outputs "long long" integers (<a href="https://github.com/fish-shell/fish-shell/issues/3352">#3352</a>).</li>
+    <li><code>status</code> supports a new <code>current-function</code> subcommand to print the current function name (<a href="https://github.com/fish-shell/fish-shell/issues/1743">#1743</a>).</li>
+    <li><code>string</code> supports a new <code>repeat</code> subcommand (<a href="https://github.com/fish-shell/fish-shell/issues/3864">#3864</a>). <code>string match</code> supports a new <code>--entire</code> option to emit the entire line matched by a pattern (<a href="https://github.com/fish-shell/fish-shell/issues/3957">#3957</a>). <code>string replace</code> supports a new <code>--filter</code> option to only emit lines which underwent a replacement (<a href="https://github.com/fish-shell/fish-shell/issues/3348">#3348</a>).</li>
+    <li><code>test</code> supports the <code>-k</code> option to test for sticky bits (<a href="https://github.com/fish-shell/fish-shell/issues/733">#733</a>).</li>
+    <li><code>umask</code> understands symbolic modes (<a href="https://github.com/fish-shell/fish-shell/issues/738">#738</a>).</li>
+    <li>Empty components in the <code>CDPATH</code>, <code>MANPATH</code> and <code>PATH</code> variables are now converted to "." (<a href="https://github.com/fish-shell/fish-shell/issues/2106">#2106</a>, <a href="https://github.com/fish-shell/fish-shell/issues/3914">#3914</a>).</li>
+    <li>New versions of ncurses (6.0 and up) wipe terminal scrollback buffers with certain commands; the <code>C-l</code> binding tries to avoid this (<a href="https://github.com/fish-shell/fish-shell/issues/2855">#2855</a>).</li>
+    <li>Some systems' <code>su</code> implementations do not set the <code>USER</code> environment variable; it is now reset for root users (<a href="https://github.com/fish-shell/fish-shell/issues/3916">#3916</a>).</li>
+    <li>Under terminals which support it, bracketed paste is enabled, escaping problematic characters for security and convience (<a href="https://github.com/fish-shell/fish-shell/pull/3871">#3871</a>). Inside single quotes (<code>'</code>), single quotes and backslashes in pasted text are escaped (<a href="https://github.com/fish-shell/fish-shell/issues/967">#967</a>). The <code>fish_clipboard_paste</code> function (bound to <code>C-v</code> by default) is still the recommended pasting method where possible as it includes this functionality and more.</li>
+    <li>Processes in pipelines are no longer signalled as soon as one command in the pipeline has completed (<a href="https://github.com/fish-shell/fish-shell/issues/1926">#1926</a>). This behaviour matches other shells mre closely.</li>
+    <li>All functions requiring Python work with whichever version of Python is installed (<a href="https://github.com/fish-shell/fish-shell/issues/3970">#3970</a>). Python 3 is preferred, but Python 2.6 remains the minimum version required.</li>
+    <li>The color of the cancellation character can be controlled by the <code>fish_color_cancel</code> variable (<a href="https://github.com/fish-shell/fish-shell/pull/3963">#3963</a>).</li>
+    <li>Added completions for:</li>
+    <li><code>caddy</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4008">#4008</a>)</li>
+    <li><code>castnow</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3744">#3744</a>)</li>
+    <li><code>climate</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3760">#3760</a>)</li>
+    <li><code>flatpak</code></li>
+    <li><code>gradle</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3859">#3859</a>)</li>
+    <li><code>gsettings</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4001">#4001</a>)</li>
+    <li><code>helm</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3829">#3829</a>)</li>
+    <li><code>i3-msg</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3787">#3787</a>)</li>
+    <li><code>ipset</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3924">#3924</a>)</li>
+    <li><code>jq</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3804">#3804</a>)</li>
+    <li><code>light</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3752">#3752</a>)</li>
+    <li><code>minikube</code> (<a href="http://github.com/fish-shell/fish-shell/issues/3778">#3778</a>)</li>
+    <li><code>mocha</code> (<a href="http://github.com/fish-shell/fish-shell/issues/3828">#3828</a>)</li>
+    <li><code>mkdosfs</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4017">#4017</a>)</li>
+    <li><code>pv</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3773">#3773</a>)</li>
+    <li><code>setsid</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3791">#3791</a>)</li>
+    <li><code>terraform</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3960">#3960</a>)</li>
+    <li><code>usermod</code> (<a href="https://github.com/fish-shell/fish-shell/issues/3775">#3775</a>)</li>
+    <li><code>xinput</code></li>
+    <li><code>yarn</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3816">#3816</a>)</li>
+    <li>Improved completions for <code>adb</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3853">#3853</a>), <code>apt</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3771">#3771</a>), <code>bzr</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3769">#3769</a>), <code>dconf</code>, <code>git</code> (including <a href="https://github.com/fish-shell/fish-shell/issues/3743">#3743</a>), <code>grep</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3789">#3789</a>), <code>go</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3789">#3789</a>), <code>help</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3789">#3789</a>), <code>hg</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3975">#3975</a>), <code>htop</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3789">#3789</a>), <code>killall</code> (<a href="https://github.com/fish-shell/fish-shell/issues/3996">#3996</a>), <code>lua</code>, <code>man</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3762">#3762</a>), <code>mount</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3764">#3764</a> &amp; <a href="https://github.com/fish-shell/fish-shell/issues/3841">#3841</a>), <code>obnam</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3924">#3924</a>), <code>perl</code> (<a href="https://github.com/fish-shell/fish-shell/issues/3856">#3856</a>), <code>portmaster</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3950">#3950</a>), <code>python</code> (<a href="https://github.com/fish-shell/fish-shell/issues/3840">#3840</a>), <code>ssh</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3781">#3781</a>), <code>scp</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3781">#3781</a>), <code>systemctl</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3757">#3757</a>) and <code>udisks</code> (<a href="https://github.com/fish-shell/fish-shell/pull/3764">#3764</a>).</li>
+</ul>
+
 
 <h2>Release Notes for fish 2.5.0 (released February 3, 2017)</h2>
 <ul>
