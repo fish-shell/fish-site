@@ -1,6 +1,6 @@
-# [fishshell.com](http://fishshell.com/)
+# [fish.sh](http://fish.sh/)
 
-The official website for the friendly interactive shell. These contents are hosted at [http://fishshell.com](http://fishshell.com).
+The official website for the friendly interactive shell. These contents are hosted at [http://fish.sh](http://fish.sh).
 
 Contributions to fish shell documentation are very welcome.
 However, the contents of the docs in particular are derived from the [fish-shell](https://github.com/fish-shell/fish-shell/) repository.

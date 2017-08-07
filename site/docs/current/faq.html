@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="top" class="qindex"><!-- do not close this div here, it is closed by doxygen! -->
-<a href="https://fishshell.com/"><code>fish</code> shell</a>
+<a href="https://fish.sh/"><code>fish</code> shell</a>
 |
 <a href="index.html">Documentation</a>
 |
@@ -63,7 +63,7 @@
 <h1><a class="anchor" id="faq-envvar"></a>
 How do I set or clear an environment variable?</h1>
 <p>Use the <a href="commands.html#set"><code>set</code></a> command:</p>
- 
+
  <pre class="fish cli-dark">
 <span class="command">set</span> <span class="argument">-x</span> <span class="argument">key</span> <span class="argument">value</span>
 <span class="command">set</span> <span class="argument">-e</span> <span class="argument">key</span>
@@ -74,7 +74,7 @@ How do I run a command every login? What's fish's equivalent to .bashrc?</h1>
  <h1><a class="anchor" id="faq-prompt"></a>
 How do I set my prompt?</h1>
 <p>The prompt is the output of the <code>fish_prompt</code> function. Put it in <code>~/.config/fish/functions/fish_prompt.fish</code>. For example, a simple prompt is:</p>
- 
+
  <pre class="fish cli-dark">
 <span class="command">function</span> <span class="argument">fish_prompt</span>
     <span class="command">set_color</span> <span class="variable"><span class="operator">$</span>fish_color_cwd</span>
@@ -90,7 +90,7 @@ How do I run a command from history?</h1>
  <h1><a class="anchor" id="faq-subcommand"></a>
 How do I run a subcommand? The backtick doesn't work!</h1>
 <p><code>fish</code> uses parentheses for subcommands. For example:</p>
- 
+
  <pre class="fish cli-dark">
 <span class="command">for</span> <span class="argument">i</span> <span class="command">in</span> <span class="operator">(</span><span class="binary">ls</span><span class="operator">)</span>
     <span class="command">echo</span> <span class="variable"><span class="operator">$</span>i</span>
@@ -98,14 +98,14 @@ How do I run a subcommand? The backtick doesn't work!</h1>
 </pre><h1><a class="anchor" id="faq-exit-status"></a>
 How do I get the exit status of a command?</h1>
 <p>Use the <code>$status</code> variable. This replaces the <code>$?</code> variable used in some other shells.</p>
- 
+
  <pre class="fish cli-dark">
 <span class="argument">somecommand</span>
 <span class="command">if</span> <span class="command">test</span> <span class="variable"><span class="operator">$</span>status</span> <span class="argument">-eq</span> <span class="argument">7</span>
     <span class="command">echo</span> <span class="string">"That's my lucky number!"</span>
 <span class="command">end</span>
 </pre><p>If you are just interested in success or failure, you can run the command directly as the if-condition:</p>
- 
+
  <pre class="fish cli-dark">
 <span class="command">if</span> <span class="argument">somecommand</span>
     <span class="command">echo</span> <span class="string">"Command succeeded"</span>
@@ -120,7 +120,7 @@ How do I set an environment variable for just one command?</h1>
 <p>Use the <code>env</code> command.</p>
 <p><code>env SOME_VAR=1 command</code></p>
 <p>You can also declare a local variable in a block:</p>
- 
+
  <pre class="fish cli-dark">
 <span class="command">begin</span>
     <span class="command">set</span> <span class="argument">-lx</span> <span class="argument">SOME_VAR</span> <span class="argument">1</span>
@@ -152,12 +152,12 @@ The open command doesn't work.</h1>
  <h1><a class="anchor" id="faq-default"></a>
 How do I make fish my default shell?</h1>
 <p>If you installed fish manually (e.g. by compiling it, not by using a package manager), you first need to add fish to the list of shells by executing the following command (assuming you installed fish in /usr/local):</p>
- 
+
  <pre class="fish cli-dark">
 <span class="command">echo</span> <span class="path">/usr/local/bin/fish</span> <span class="redirect">|</span> <span class="binary">sudo</span> <span class="argument">tee</span> <span class="argument">-a</span> <span class="path">/etc/shells</span>
 </pre><p>If you installed a prepackaged version of fish, the package manager should have already done this for you.</p>
 <p>In order to change your default shell, type:</p>
- 
+
  <pre class="fish cli-dark">
 <span class="binary">chsh</span> <span class="argument">-s</span> <span class="path">/usr/local/bin/fish</span>
 </pre><p>You may need to adjust the above path to e.g. <code>/usr/bin/fish</code>. Use the command <code>which fish</code> if you are unsure of where fish is installed.</p>
@@ -167,7 +167,7 @@ How do I make fish my default shell?</h1>
 I'm seeing weird output before each prompt when using screen. What's wrong?</h1>
 <p>Quick answer:</p>
 <p>Run the following command in fish:</p>
- 
+
  <pre class="fish cli-dark">
 <span class="command">function</span> <span class="argument">fish_title</span><span class="redirect">;</span> <span class="command">end</span><span class="redirect">;</span> <span class="command">funcsave</span> <span class="argument">fish_title</span>
 </pre><p>Problem solved!</p>
@@ -178,7 +178,7 @@ I'm seeing weird output before each prompt when using screen. What's wrong?</h1>
  <h1><a class="anchor" id="faq-greeting"></a>
 How do I change the greeting message?</h1>
 <p>Change the value of the variable <code>fish_greeting</code> or create a <code>fish_greeting</code> function. For example, to remove the greeting use:</p>
- 
+
  <pre class="fish cli-dark">
 <span class="command">set</span> <span class="argument">fish_greeting</span>
 </pre><hr/>
@@ -202,7 +202,7 @@ Why doesn't history substitution ("!$" etc.) work?</h1>
  <h1><a class="anchor" id="faq-cd-minus"></a>
 How to make `-` a shortcut for `cd -`?</h1>
 <p>In fish versions prior to 2.5.0 it was possible to create a function named <code>-</code> that would do <code>cd -</code>. Changes in the 2.5.0 release included several bug fixes that enforce the rule that a bare hyphen is not a valid function (or variable) name. However, you can achieve the same effect via an abbreviation:</p>
- 
+
  <pre class="fish cli-dark">
 <span class="command">abbr</span> <span class="argument">-a</span> <span class="argument">--</span> <span class="argument">-</span> <span class="string">'cd -'</span>
 </pre><hr/>
@@ -210,7 +210,7 @@ How to make `-` a shortcut for `cd -`?</h1>
 Uninstalling fish</h1>
 <p>Should you wish to uninstall fish, first ensure fish is not set as your shell. Run <code>chsh -s /bin/bash</code> if you are not sure.</p>
 <p>Next, do the following (assuming fish was installed to /usr/local):</p>
- 
+
  <pre class="fish cli-dark">
 <span class="binary">rm</span> <span class="argument">-Rf</span> <span class="path">/usr/local/etc/fish</span> <span class="path">/usr/local/share/fish</span> <span class="path">~/.config/fish</span>
 <span class="binary">rm</span> <span class="path">/usr/local/share/man/man1/fish*.1</span>
