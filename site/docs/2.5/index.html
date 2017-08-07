@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="top" class="qindex"><!-- do not close this div here, it is closed by doxygen! -->
-<a href="http://fishshell.com/"><code>fish</code> shell</a>
+<a href="http://fish.sh/"><code>fish</code> shell</a>
 |
 <a href="index.html">Documentation</a>
 |
@@ -200,13 +200,13 @@
 <h1 class="interior_title">Documentation</h1>
 <h1><a class="anchor" id="introduction"></a>
 Introduction</h1>
-<p>This is the documentation for <code>fish</code>, the friendly interactive shell. <code>fish</code> is a user friendly commandline shell intended mostly for interactive use. A shell is a program used to execute other programs. For the latest information on <code>fish</code>, please visit the <a href="http://fishshell.com/"><code>fish</code> homepage</a>.</p>
+<p>This is the documentation for <code>fish</code>, the friendly interactive shell. <code>fish</code> is a user friendly commandline shell intended mostly for interactive use. A shell is a program used to execute other programs. For the latest information on <code>fish</code>, please visit the <a href="http://fish.sh/"><code>fish</code> homepage</a>.</p>
 <h1><a class="anchor" id="syntax"></a>
 Syntax overview</h1>
 <p>Shells like fish are used by giving them commands. Every <code>fish</code> command follows the same simple syntax.</p>
 <p>A command is executed by writing the name of the command followed by any arguments.</p>
 <p>Example:</p>
- 
+
  <pre class="fish">
 <span class="command">echo</span> <span class="argument">hello</span> <span class="argument">world</span>
 </pre><p>This calls the <code>echo</code> command. <code>echo</code> is a command which will write its arguments to the screen. In the example above, the output will be 'hello world'. Everything in fish is done with commands. There are commands for performing a set of commands multiple times, commands for assigning variables, commands for treating a group of commands as a single command, etc.. And every single command follows the same simple syntax.</p>
@@ -230,11 +230,11 @@ Syntax overview</h1>
 Quotes</h2>
 <p>Sometimes features such as <a href="#expand">parameter expansion</a> and <a href="#escapes">character escapes</a> get in the way. When that happens, the user can write a parameter within quotes, either <code>'</code> (single quote) or <code>&quot;</code> (double quote). There is one important difference between single quoted and double quoted strings: When using double quoted string, <a href="#expand-variable">variable expansion</a> still takes place. Other than that, no other kind of expansion (including <a href="#expand-brace">brace expansion</a> and parameter expansion) will take place, the parameter may contain spaces, and escape sequences are ignored. The only backslash escape accepted within single quotes is <code>\'</code>, which escapes a single quote and <code>\\</code>, which escapes the backslash symbol. The only backslash escapes accepted within double quotes are <code>\&quot;</code>, which escapes a double quote, <code>\$</code>, which escapes a dollar character, <code>\</code> followed by a newline, which deletes the backslash and the newline, and lastly <code>\\</code>, which escapes the backslash symbol. Single quotes have no special meaning within double quotes and vice versa.</p>
 <p>Example:</p>
- 
+
  <pre class="fish">
 <span class="binary">rm</span> <span class="string">"cumbersome filename.txt"</span>
 </pre><p>Will remove the file 'cumbersome filename.txt', while</p>
- 
+
  <pre class="fish">
 <span class="binary">rm</span> cumbersome filename.txt
 </pre><p>would remove the two files 'cumbersome' and 'filename.txt'.</p>
@@ -315,12 +315,12 @@ Input/Output (IO) redirection</h2>
 <h2><a class="anchor" id="piping"></a>
 Piping</h2>
 <p>The user can string together multiple commands into a so called pipeline. This means that the standard output of one command will be read in as standard input into the next command. This is done by separating the commands by the pipe character '<code>|</code>'. For example</p>
- 
+
  <pre class="fish">
 <span class="binary">cat</span> <span class="file">foo.txt</span> <span class="redirect">|</span> <span class="binary">head</span>
 </pre><p>will call the <code>cat</code> program with the parameter 'foo.txt', which will print the contents of the file 'foo.txt'. The contents of foo.txt will then be filtered through the program 'head', which will pass on the first ten lines of the file to the screen. For more information on how to combine commands through pipes, read the manual pages of the commands you want to use using the <code>man</code> command. If you want to find out more about the <code>cat</code> program, type <code>man cat</code>.</p>
 <p>Pipes usually connect file descriptor 1 (standard output) of the first process to file descriptor 0 (standard input) of the second process. It is possible use a different output file descriptor by prepending the desired FD number and then output redirect symbol to the pipe. For example:</p>
- 
+
  <pre class="fish">
 <span class="binary">make</span> <span class="argument">fish</span> <span class="argument">2</span>&gt;<span class="redirect">|</span> <span class="binary">less</span>
 </pre><p>will attempt to build the fish program, and any errors will be shown using the less pager.</p>
@@ -328,7 +328,7 @@ Piping</h2>
 Background jobs</h2>
 <p>When you start a job in <code>fish</code>, <code>fish</code> itself will pause, and give control of the terminal to the program just started. Sometimes, you want to continue using the commandline, and have the job run in the background. To create a background job, append an &amp; (ampersand) to your command. This will tell fish to run the job in the background. Background jobs are very useful when running programs that have a graphical user interface.</p>
 <p>Example:</p>
- 
+
  <pre class="fish">
 <span class="binary">emacs</span> <span class="redirect">&amp;</span>
 </pre><p>will start the emacs text editor in the background.</p>
@@ -341,7 +341,7 @@ Job control</h2>
 Functions</h2>
 <p>Functions are programs written in the fish syntax. They group together one or more commands and their arguments using a single name. It can also be used to start a specific command with additional arguments.</p>
 <p>For example, the following is a function definition that calls the command <code>ls</code> with the argument '<code>-l</code>' to print a detailed listing of the contents of the current directory:</p>
- 
+
  <pre class="fish">
 <span class="command">function</span> <span class="argument">ll</span>
     <span class="binary">ls</span> <span class="argument">-l</span> <span class="variable"><span class="operator">$</span>argv</span>
@@ -350,7 +350,7 @@ Functions</h2>
 <h3><a class="anchor" id="syntax-function-wrappers"></a>
 Defining aliases</h3>
 <p>One of the most common uses for functions is to slightly alter the behavior of an already existing command. For example, one might want to redefine the <code>ls</code> command to display colors. The switch for turning on colors on GNU systems is '<code>--color=auto</code>'. An alias, or wrapper, around <code>ls</code> might look like this:</p>
- 
+
  <pre class="fish">
 <span class="command">function</span> <span class="argument">ls</span>
     <span class="command">command</span> <span class="binary">ls</span> <span class="argument">--color=auto</span> <span class="variable"><span class="operator">$</span>argv</span>
@@ -431,7 +431,7 @@ Writing your own completions</h2>
 <p>Specifying your own completions is not difficult. To specify a completion, use the <code>complete</code> command. <code>complete</code> takes as a parameter the name of the command to specify a completion for. For example, to add a completion for the program <code>myprog</code>, one would start the completion command with <code>complete -c myprog ...</code></p>
 <p>To provide a list of possible completions for myprog, use the <code>-a</code> switch. If <code>myprog</code> accepts the arguments start and stop, this can be specified as <code>complete -c myprog -a 'start stop'</code>. The argument to the <code>-a</code> switch is always a single string. At completion time, it will be tokenized on spaces and tabs, and variable expansion, command substitution and other forms of parameter expansion will take place.</p>
 <p><code>fish</code> has a special syntax to support specifying switches accepted by a command. The switches <code>-s</code>, <code>-l</code> and <code>-o</code> are used to specify a short switch (single character, such as <code>-l</code>), a gnu style long switch (such as '<code>--color</code>') and an old-style long switch (like '<code>-shuffle</code>'), respectively. If the command 'myprog' has an option '-o' which can also be written as '<code>--output</code>', and which can take an additional value of either 'yes' or 'no', this can be specified by writing:</p>
- 
+
  <pre class="fish">
 <span class="command">complete</span> <span class="argument">-c</span> <span class="argument">myprog</span> <span class="argument">-s</span> <span class="argument">o</span> <span class="argument">-l</span> <span class="argument">output</span> <span class="argument">-a</span> <span class="string">"yes no"</span>
 </pre><p>There are also special switches for specifying that a switch requires an argument, to disable filename completion, to create completions that are only available in some combinations, etc.. For a complete description of the various switches accepted by the <code>complete</code> command, see the documentation for the <a href="commands.html#complete">complete</a> builtin, or write <code>complete --help</code> inside the <code>fish</code> shell.</p>
@@ -478,11 +478,11 @@ Wildcards</h2>
 <li><code>**</code> matches any string of characters. This includes matching an empty string. The matched string may include the <code>/</code> character; that is, it recurses into subdirectories. Note that augmenting this wildcard with other strings will not match files in the current working directory (<code>$PWD</code>) if you separate the strings with a slash ("/"). This is unlike other shells such as zsh. For example, <code>**\/*.fish</code> in zsh will match <code>.fish</code> files in the PWD but in fish will only match such files in a subdirectory. In fish you should type <code>***.fish</code> to match files in the PWD as well as subdirectories.</li>
 </ul>
 <p>Other shells, such as zsh, provide a rich glob syntax for restricting the files matched by globs. For example, <code>**(.)</code>, to only match regular files. Fish prefers to defer such features to programs, such as <code>find</code>, rather than reinventing the wheel. Thus, if you want to limit the wildcard expansion to just regular files the fish approach is to define and use a function. For example,</p>
- 
+
  <pre class="fish cli-dark">
 <span class="command">function</span> <span class="argument">ff</span> <span class="argument">--description</span> <span class="string">'Like ** but only returns plain files.'</span>
     <span class="comment"># This also ignores .git directories.</span>
-    <span class="binary">find</span> <span class="argument">.</span> <span class="operator"><span>\</span><span class="operator">(</span></span> <span class="argument">-name</span> <span class="argument">.</span><span class="argument">git</span> <span class="argument">-type</span> <span class="argument">d</span> <span class="argument">-prune</span> <span class="operator"><span>\</span><span class="operator">)</span></span> <span class="argument">-o</span> <span class="argument">-</span><span class="argument">type</span> <span class="argument">f</span> <span class="redirect">|</span> <span>\</span> 
+    <span class="binary">find</span> <span class="argument">.</span> <span class="operator"><span>\</span><span class="operator">(</span></span> <span class="argument">-name</span> <span class="argument">.</span><span class="argument">git</span> <span class="argument">-type</span> <span class="argument">d</span> <span class="argument">-prune</span> <span class="operator"><span>\</span><span class="operator">)</span></span> <span class="argument">-o</span> <span class="argument">-</span><span class="argument">type</span> <span class="argument">f</span> <span class="redirect">|</span> <span>\</span>
         <span class="binary">sed</span> <span class="argument">-n</span> <span class="argument">-e</span> <span class="string">'/^\.\/\.git$/n'</span> <span class="argument">-e</span> <span class="string">'s/^\.\///p'</span>
 <span class="command">end</span>
 </pre><p>You would then use it in place of <code>**</code> like this, <code>my_prog (ff)</code>, to pass only regular files in or below $PWD to <code>my_prog</code>.</p>
@@ -495,7 +495,7 @@ Wildcards</h2>
 <li><code>**</code> matches any files and directories in the current directory and all of its subdirectories.</li>
 </ul>
 <p>Note that for most commands, if any wildcard fails to expand, the command is not executed, <a href="#variables-status"><code>$status</code></a> is set to nonzero, and a warning is printed. This behavior is consistent with setting <code>shopt -s failglob</code> in bash. There are exactly 3 exceptions, namely <a href="commands.html#set"><code>set</code></a>, <a href="commands.html#count"><code>count</code></a> and <a href="commands.html#for"><code>for</code></a>. Their globs are permitted to expand to zero arguments, as with <code>shopt -s nullglob</code> in bash.</p>
-<p>Examples: </p> 
+<p>Examples: </p>
  <pre class="fish">
 <span class="binary">ls</span> <span class="file">*.foo</span>
 <span class="comment"># Lists the .foo files, or warns if there aren't any.</span>
@@ -511,7 +511,7 @@ Command substitution</h2>
 <p>The exit status of the last run command substitution is available in the <a href="#variables-status">status</a> variable.</p>
 <p>Only part of the output can be used, see <a href="#expand-index-range">index range expansion</a> for details.</p>
 <p>Examples:</p>
- 
+
  <pre class="fish">
 <span class="command">echo</span> <span class="operator">(</span><span class="binary">basename</span> <span class="file">image.jpg</span> <span class="argument">.jpg</span><span class="operator">)</span><span class="argument">.png</span>
 <span class="comment"># Outputs 'image.png'.</span>
@@ -526,7 +526,7 @@ Command substitution</h2>
 </pre><h2><a class="anchor" id="expand-brace"></a>
 Brace expansion</h2>
 <p>A comma separated list of characters enclosed in curly braces will be expanded so each element of the list becomes a new parameter.</p>
-<p>Examples: </p> 
+<p>Examples: </p>
  <pre class="fish">
 <span class="command">echo</span> <span class="argument">input.{c,h,txt}</span>
 <span class="comment"># Outputs 'input.c input.h input.txt'</span>
@@ -538,7 +538,7 @@ Variable expansion</h2>
 <p>A dollar sign followed by a string of characters is expanded into the value of the shell variable with the same name. For an introduction to the concept of shell variables, read the <a href="#variables">Shell variables</a> section.</p>
 <p>Undefined and empty variables expand to nothing.</p>
 <p>To separate a variable name from text encase the variable within double-quotes or braces.</p>
-<p>Examples: </p> 
+<p>Examples: </p>
  <pre class="fish">
 <span class="command">echo</span> <span class="variable"><span class="operator">$</span>HOME</span>
 <span class="comment"># Prints the home directory of the current user.</span>
@@ -554,7 +554,7 @@ Variable expansion</h2>
 <p>The latter syntax <code>{$WORD}</code> works by exploiting <a href="#expand-brace">brace expansion</a>; care should be taken with zero-element array variables and undefined variables, as these expand as a <a href="#cartesian-product">cartesian product</a>, so they eliminate the string.</p>
 <p>Variable expansion is the only type of expansion performed on double quoted strings. There is, however, an important difference in how variables are expanded when quoted and when unquoted. An unquoted variable expansion will result in a variable number of arguments. For example, if the variable <code>$foo</code> has zero elements or is undefined, the argument <code>$foo</code> will expand to zero elements. If the variable $foo is an array of five elements, the argument <code>$foo</code> will expand to five elements. When quoted, like <code>"$foo"</code>, a variable expansion will always result in exactly one argument. Undefined variables will expand to the empty string, and array variables will be concatenated using the space character.</p>
 <p>There is one further notable feature of fish variable expansion. Consider the following code snippet:</p>
- 
+
  <pre class="fish">
 <span class="command">set</span> <span class="argument">foo</span> <span class="argument">a</span> <span class="argument">b</span> <span class="argument">c</span>
 <span class="command">set</span> <span class="argument">a</span> <span class="argument">10</span><span class="redirect">;</span> <span class="command">set</span> <span class="argument">b</span> <span class="argument">20</span><span class="redirect">;</span> <span class="command">set</span> <span class="argument">c</span> <span class="argument">30</span>
@@ -570,7 +570,7 @@ Variable expansion</h2>
 <h2><a class="anchor" id="cartesian-product"></a>
 Cartesian Products</h2>
 <p>Lists adjacent to other lists or strings are expanded as cartesian products:</p>
-<p>Examples: </p> 
+<p>Examples: </p>
  <pre class="fish cli-dark">
 <span class="prompt">&gt;</span> <span class="command">echo</span> {good,bad}<span class="string">" apples"</span>
 <span class="output">good apples bad apples</span>
@@ -594,7 +594,7 @@ Cartesian Products</h2>
 Index range expansion</h2>
 <p>Both command substitution and shell variable expansion support accessing only specific items by providing a set of indices in square brackets. It's often needed to access a sequence of elements. To do this, use the range operator '<code>..</code>' for this. A range '<code>a..b</code>', where range limits 'a' and 'b' are integer numbers, is expanded into a sequence of indices '<code>a a+1 a+2 ... b</code>' or '<code>a a-1 a-2 ... b</code>' depending on which of 'a' or 'b' is higher. The negative range limits are calculated from the end of the array or command substitution.</p>
 <p>Some examples:</p>
- 
+
  <pre class="fish">
 <span class="comment"># Limit the command substitution output</span>
 <span class="command">echo</span> <span class="operator">(</span><span class="binary">seq</span> <span class="argument">10</span><span class="operator">)</span><span class="argument">[2..5]</span>
@@ -612,7 +612,7 @@ Index range expansion</h2>
 <span class="comment"># the first one in reverse direction</span>
 <span class="comment"># Output is: 10 9 8 7 6 5 4 3 2 1</span>
 </pre><p>The same works when setting or expanding variables:</p>
- 
+
  <pre class="fish">
 <span class="comment"># Reverse path variable</span>
 <span class="command">set</span> <span class="argument">PATH</span> <span class="variable"><span class="operator">$</span>PATH</span><span class="argument">[-1..1]</span>
@@ -676,7 +676,7 @@ Variable scope</h2>
 <p>There may be many variables with the same name, but different scopes. When using a variable, the variable scope will be searched from the inside out, i.e. a local variable will be used rather than a global variable with the same name, a global variable will be used rather than a universal variable with the same name.</p>
 <p>Example:</p>
 <p>The following code will not output anything:</p>
- 
+
  <pre class="fish">
 <span class="command">begin</span>
     <span class="comment"># This is a nice local scope where all variables will die</span>
@@ -695,7 +695,7 @@ More on universal variables</h2>
 Variable scope for functions</h2>
 <p>When calling a function, all current local variables temporarily disappear. This shadowing of the local scope is needed since the variable namespace would become cluttered, making it very easy to accidentally overwrite variables from another function.</p>
 <p>For example:</p>
- 
+
  <pre class="fish">
 <span class="command">function</span> <span class="argument">shiver</span>
     <span class="command">set</span> <span class="argument">phrase</span> <span class="string">'Shiver me timbers'</span>
@@ -726,15 +726,15 @@ Arrays</h2>
 <p><code>echo $PATH[3]</code></p>
 <p>Note that array indices start at 1 in <code>fish</code>, not 0, as is more common in other languages. This is because many common Unix tools like <code>seq</code> are more suited to such use.</p>
 <p>If you do not use any brackets, all the elements of the array will be written as separate items. This means you can easily iterate over an array using this syntax:</p>
- 
+
  <pre class="fish">
 <span class="command">for</span> <span class="argument">i</span> <span class="command">in</span> <span class="variable"><span class="operator">$</span>PATH</span><span class="redirect">;</span> <span class="command">echo</span> <span class="variable"><span class="operator">$</span>i</span> <span class="argument">is</span> <span class="argument">in</span> <span class="argument">the</span> <span class="argument">path</span><span class="redirect">;</span> <span class="command">end</span>
 </pre><p>To create a variable <code>smurf</code>, containing the items <code>blue</code> and <code>small</code>, simply write:</p>
- 
+
  <pre class="fish">
 <span class="command">set</span> <span class="argument">smurf</span> <span class="argument">blue</span> <span class="argument">small</span>
 </pre><p>It is also possible to set or erase individual elements of an array:</p>
- 
+
  <pre class="fish">
 <span class="comment"># Set smurf to be an array with the elements 'blue' and 'small'</span>
 <span class="command">set</span> <span class="argument">smurf</span> <span class="argument">blue</span> <span class="argument">small</span>
@@ -829,7 +829,7 @@ Variables for changing highlighting colors</h2>
 </ul>
 <p>Example:</p>
 <p>To make errors highlighted and red, use:</p>
- 
+
  <pre class="fish">
 <span class="command">set</span> <span class="argument">fish_color_error</span> <span class="argument">red</span> <span class="argument">--bold</span>
 </pre><h2><a class="anchor" id="variables-locale"></a>
@@ -844,7 +844,7 @@ Builtin commands</h1>
 Command line editor</h1>
 <p>The <code>fish</code> editor features copy and paste, a searchable history and many editor functions that can be bound to special keyboard shortcuts.</p>
 <p>Similar to bash, fish has Emacs and Vi editing modes. The default editing mode is Emacs. You can switch to Vi mode with <code>fish_vi_key_bindings</code> and switch back with <code>fish_default_key_bindings</code>. You can also make your own key bindings by creating a function and setting $fish_key_bindings to its name. For example:</p>
- 
+
  <pre class="fish">
 <span class="command">function</span> <span class="argument">hybrid_bindings</span> <span class="argument">--description</span> <span class="string">"Vi-style bindings that inherit emacs-style bindings in all modes"</span>
     <span class="command">for</span> <span class="argument">mode</span> <span class="command">in</span> <span class="argument">default</span> <span class="argument">insert</span> <span class="argument">visual</span>
@@ -893,7 +893,7 @@ Emacs mode commands</h2>
 Vi mode commands</h2>
 <p>Vi mode allows for the use of Vi-like commands at the prompt. Initially, <a href="#vi-mode-insert">insert mode</a> is active. <span class="key"><b>Escape</b></span> enters <a href="#vi-mode-command">command mode</a>. The commands available in command, insert and visual mode are described below. Vi mode shares <a href="#shared-binds">some bindings</a> with <a href="#emacs-mode">Emacs mode</a>.</p>
 <p>It is also possible to add all emacs-mode bindings to vi-mode by using something like</p>
- 
+
  <pre class="fish">
 <span class="command">function</span> <span class="argument">fish_user_key_bindings</span>
     <span class="comment"># Execute this once per mode that emacs bindings should be used in</span>
@@ -988,13 +988,13 @@ Initialization files</h1>
 <p>If you are developing another program, you may wish to install configuration which is run for all users of the fish shell on a system. This is discouraged; if not carefully written, they may have side-effects or slow the startup of the shell. Additionally, users of other shells will not benefit from the Fish-specific configuration. However, if they are absolutely required, you may install them to the "vendor" configuration directory. As this path may vary from system to system, the <code>pkgconfig</code> framework should be used to discover this path with the output of <code>pkg-config --variable confdir fish</code>.</p>
 <p>Examples:</p>
 <p>If you want to add the directory <code>~/linux/bin</code> to your PATH variable when using a login shell, add the following to your <code>~/.config/fish/config.fish</code> file:</p>
- 
+
  <pre class="fish">
 <span class="command">if</span> <span class="argument">status</span> <span class="argument">--is-login</span>
     <span class="command">set</span> <span class="argument">-x</span> <span class="argument">PATH</span> <span class="variable"><span class="operator">$</span>PATH</span> <span class="path">~/linux/bin</span>
 <span class="command">end</span>
 </pre><p>If you want to run a set of commands when <code>fish</code> exits, use an <a href="#event">event handler</a> that is triggered by the exit of the shell:</p>
- 
+
  <pre class="fish">
 <span class="command">function</span> <span class="argument">on_exit</span> <span class="argument">--on-process</span> <span class="argument"><span>%</span>self</span>
     <span class="command">echo</span> <span class="argument">fish</span> <span class="argument">is</span> <span class="argument">now</span> <span class="argument">exiting</span>
@@ -1017,14 +1017,14 @@ Syntax highlighting</h2>
 Programmable title</h2>
 <p>When using most virtual terminals, it is possible to set the message displayed in the titlebar of the terminal window. This can be done automatically in fish by defining the <code>fish_title</code> function. The <code>fish_title</code> function is executed before and after a new command is executed or put into the foreground and the output is used as a titlebar message. The $_ environment variable will always contain the name of the job to be put into the foreground (Or 'fish' if control is returning to the shell) when the <code>fish_prompt</code> function is called. The first argument to fish_title will contain the most recently executed foreground command as a string, starting with fish 2.2.</p>
 <p>Examples: The default <code>fish</code> title is</p>
- 
+
  <pre class="fish">
 <span class="command">function</span> <span class="argument">fish_title</span>
     <span class="command">echo</span> <span class="variable"><span class="operator">$</span>_</span> <span class="string">' '</span>
     <span class="command">pwd</span>
 <span class="command">end</span>
 </pre><p>To show the last command in the title:</p>
- 
+
  <pre class="fish">
 <span class="command">function</span> <span class="argument">fish_title</span>
     <span class="command">echo</span> <span class="variable"><span class="operator">$</span>argv</span><span class="argument">[1]</span>
@@ -1047,7 +1047,7 @@ Event handlers</h2>
 </ul>
 <p>Example:</p>
 <p>To specify a signal handler for the WINCH signal, write:</p>
- 
+
  <pre class="fish">
 <span class="command">function</span> <span class="argument">--on-signal</span> <span class="argument">WINCH</span> <span class="argument">my_signal_handler</span>
     <span class="command">echo</span> <span class="argument">Got</span> <span class="argument">WINCH</span> <span class="argument">signal!</span>
