@@ -20,7 +20,69 @@ ul {
 
 </style>
 </head><body>
-        
+<h2>Release Notes for fish 2.7.0 (released November 23, 2017)</h2>
+<h3>Notable fixes and improvements</h3>
+<ul>
+    <li>A new <code>argparse</code> command is available to allow fish script to parse arguments with the same behavior as builtin commands. This also includes the <code>fish_opt</code> helper command. (<a href="https://github.com/fish-shell/fish-shell/issues/4190">#4190</a>).</li>
+    <li>The <code>COLUMNS</code> and <code>LINES</code> env vars are now correctly set the first time <code>fish_prompt</code> is run (<a href="https://github.com/fish-shell/fish-shell/issues/4141">#4141</a>).</li>
+    <li>New <code>status is-breakpoint</code> command that is true when a prompt is displayed in response to a <code>breakpoint</code> command (<a href="https://github.com/fish-shell/fish-shell/issues/1310">#1310</a>).</li>
+    <li>Invalid array indexes are now silently ignored (<a href="https://github.com/fish-shell/fish-shell/issues/826">#826</a>, <a href="https://github.com/fish-shell/fish-shell/issues/4127">#4127</a>).</li>
+    <li><code>string escape</code> has a new <code>--style=xxx</code> flag where <code>xxx</code> can be <code>script</code>, <code>var</code>, or <code>url</code> (<a href="https://github.com/fish-shell/fish-shell/issues/4150">#4150</a>).</li>
+    <li><code>string unescape</code> has been implemented to reverse the effects of <code>string escape</code> (<a href="https://github.com/fish-shell/fish-shell/issues/3543">#3543</a>).</li>
+    <li>The history file can now be specified by setting the <code>fish_history</code> variable (<a href="https://github.com/fish-shell/fish-shell/issues/102">#102</a>).</li>
+    <li>Read history is now controlled by the <code>fish_history</code> variable rather than the <code>--mode-name</code> flag (<a href="https://github.com/fish-shell/fish-shell/issues/1504">#1504</a>).</li>
+    <li>Implement a <code>cdh</code> (change directory using recent history) command to provide a more friendly alternative to prevd/nextd and pushd/popd (<a href="https://github.com/fish-shell/fish-shell/issues/2847">#2847</a>).</li>
+    <li><code>command</code> now supports a <code>-a</code> flag to report all directories with the command. This means that <code>which -a $cmd</code> is no longer necessary (<a href="https://github.com/fish-shell/fish-shell/issues/2778">#2778</a>).</li>
+    <li><code>--init-command</code>/<code>-C</code> added to the command line switches, to allow execution of commands before starting the interactive shell (<a href="https://github.com/fish-shell/fish-shell/issues/4164">#4164</a>).</li>
+    <li><code>set</code> has a new <code>--show</code> option to show lots of information about variables (<a href="https://github.com/fish-shell/fish-shell/issues/4265">#4265</a>).</li>
+</ul>
+<h3>Other significant changes</h3>
+<ul>
+    <li><code>complete</code>'s <code>--no-files</code> option works as intended (<a href="https://github.com/fish-shell/fish-shell/issues/112">#112</a>).</li>
+    <li><code>pushd +1</code> works as documented again (<a href="https://github.com/fish-shell/fish-shell/issues/4091">#4091</a>).</li>
+    <li>Improved completions for <code>killall</code> (<a href="https://github.com/fish-shell/fish-shell/issues/4052">#4052</a>), <code>ln</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4090">#4090</a>) and <code>zypper</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4079">#4079</a>).</li>
+    <li>Implemented <code>string lower</code> and <code>string upper</code> (<a href="https://github.com/fish-shell/fish-shell/issues/4080">#4080</a>).</li>
+    <li><code>help</code> can now open the tutorial.</li>
+    <li><code>echo -h</code> now correctly echoes <code>-h</code> (<a href="https://github.com/fish-shell/fish-shell/issues/4120">#4120</a>).</li>
+    <li>Stop converting empty elements in MANPATH to "." (<a href="https://github.com/fish-shell/fish-shell/issues/4158">#4158</a>). The behavior being changed was introduced in fish 2.6.0.</li>
+    <li><code>count -h</code> and <code>count --help</code> now return one rather than produce command help output (<a href="https://github.com/fish-shell/fish-shell/issues/4189">#4189</a>).</li>
+    <li>Fix setting <code>$COLUMNS</code> and <code>$LINES</code> before first prompt is displayed (<a href="https://github.com/fish-shell/fish-shell/issues/4141">#4141</a>).</li>
+    <li><code>read</code> failures due to too much data should define the var (<a href="https://github.com/fish-shell/fish-shell/issues/4180">#4180</a>).</li>
+    <li>multiple <code>read</code> commands in non-interactive scripts were broken in fish 2.6.0 (<a href="https://github.com/fish-shell/fish-shell/issues/4206">#4206</a>).</li>
+    <li>Fix regression involving universal variables with side-effects at startup such as <code>set -U fish_escape_delay_ms 10</code> (<a href="https://github.com/fish-shell/fish-shell/issues/4196">#4196</a>).</li>
+    <li>Option completion for <code>apt list</code> now works properly (<a href="https://github.com/fish-shell/fish-shell/pull/4350">#4350</a>).</li>
+    <li>Added completions for:</li>
+    <li><code>as</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4130">#4130</a>)</li>
+    <li><code>cdh</code> (<a href="https://github.com/fish-shell/fish-shell/issues/2847">#2847</a>)</li>
+    <li><code>dhcpd</code></li>
+    <li><code>ezjail-admin</code> (<a href="http://github.com/fish-shell/fish-shell/issues/4324">#4324</a>)</li>
+    <li><code>fab</code> (fabric, <a href="http://github.com/fish-shell/fish-shell/issues/4153">#4153</a>)</li>
+    <li><code>grub-file</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4119">#4119</a>)</li>
+    <li><code>grub-install</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4119">#4119</a>)</li>
+    <li><code>jest</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4142">#4142</a>)</li>
+    <li><code>kdeconnect-cli</code></li>
+    <li><code>magneto</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4043">#4043</a>, <a href="https://github.com/fish-shell/fish-shell/issues/4108">#4108</a>)</li>
+    <li><code>mdadm</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4198">#4198</a>)</li>
+    <li><code>s3cmd</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4332">#4332</a>)</li>
+    <li><code>sbt</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4347">#4347</a>)</li>
+    <li><code>snap</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4215">#4215</a>)</li>
+    <li><code>subl</code> (Sublime Text 3 editor, <a href="https://github.com/fish-shell/fish-shell/pull/4277">#4277</a>)</li>
+    <li>Improved completions for:</li>
+    <li><code>apt</code></li>
+    <li><code>cd</code> (<a href="https://github.com/fish-shell/fish-shell/issues/4061">#4061</a>)</li>
+    <li><code>composer</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4295">#4295</a>)</li>
+    <li><code>flatpak</code> (<a href="https://github.com/fish-shell/fish-shell/issues/4456">#4456</a>)</li>
+    <li><code>git</code> (<a href="https://github.com/fish-shell/fish-shell/issues/4117">#4117</a>, <a href="https://github.com/fish-shell/fish-shell/issues/4147">#4147</a>, <a href="https://github.com/fish-shell/fish-shell/issues/4329">#4329</a>, <a href="https://github.com/fish-shell/fish-shell/pull/4368">#4368</a>)</li>
+    <li><code>gphoto2</code></li>
+    <li><code>killall</code> (<a href="https://github.com/fish-shell/fish-shell/issues/4052">#4052</a>)</li>
+    <li><code>ln</code></li>
+    <li><code>npm</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4241">#4241</a>)</li>
+    <li><code>ssh</code> (<a href="https://github.com/fish-shell/fish-shell/issues/4377">#4377</a>)</li>
+    <li><code>tail</code></li>
+    <li><code>xdg-mime</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4333">#4333</a>)</li>
+    <li><code>zypper</code> (<a href="https://github.com/fish-shell/fish-shell/pull/4325">#4325</a>)</li>
+</ul>
+
 <h2>Release Notes for fish 2.6.0 (released June 3, 2017)</h2>
 <h3>Notable fixes and improvements</h3>
 <ul>
