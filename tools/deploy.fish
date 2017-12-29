@@ -24,8 +24,8 @@ if set -q argv[1]
   end
 end
 
-if not test -d ./site
-  echo "'site' directory not found"
+if not test -d ./site/_site/
+  echo "'site/_site/' directory not found"
   echo "Run from the top-level directory"
   exit 1
 end
@@ -40,7 +40,7 @@ else
   echo "Syncing to staging"
 end
 
-aws s3 sync ./site $BUCKET/$SUFFIX --exclude .DS_Store --exclude "*/.DS_Store" --exclude files
+aws s3 sync ./site/_site/ $BUCKET/$SUFFIX --exclude .DS_Store --exclude "*/.DS_Store" --exclude files
 
 if [ $production = 1 ]
   aws cloudfront create-invalidation --distribution-id E16QR6T61C8PXW --paths /
