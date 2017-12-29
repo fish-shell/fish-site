@@ -48,6 +48,10 @@ for rel in releases:
     'md_mac_app_url':macapp.get('browser_download_url', ''),
     'md_mac_pkg_url':macpkg.get('browser_download_url', ''),
   })
+  # Remove the download_count from each asset, it changes often so it creates
+  # diff noise.
+  for asset in rel['assets']:
+    del asset['download_count']
   # Compute the SHA1 for the first tarball only.
   if rel is releases[0]:
     rel['md_tarball_sha1'] = sha1of(tarball['browser_download_url'])
