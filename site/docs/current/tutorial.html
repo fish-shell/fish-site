@@ -466,13 +466,9 @@ $PATH</h1>
  
  <pre class="fish cli-dark">
 <span class="prompt">&gt;</span> <span class="command">set</span> <span class="argument">PATH</span> <span class="operator">(</span><span class="command">string</span> <span class="argument">match</span> <span class="argument">-v</span> <span class="path">/usr/local/bin</span> <span class="variable"><span class="operator">$</span>PATH</span><span class="operator">)</span>
-\@args{end}{<span class="argument">fish</span>}
-
-<span class="argument">You</span> <span class="argument">can</span> <span class="argument">do</span> <span class="argument">so</span> <span class="argument">directly</span> <span class="argument">in</span> `<span class="file">config.fish</span>`, <span class="argument">like</span> <span class="argument">you</span> <span class="argument">might</span> <span class="argument">do</span> <span class="argument">in</span> <span class="argument">other</span> <span class="argument">shells</span> <span class="argument">with</span> `.profile`. <span class="argument">See</span> <span class="argument">[this <span class="argument">example]</span></span><span class="operator">(</span><span class="comment">##path_example<span class="operator">)</span>.</span>
-
-<span class="argument">A</span> <span class="argument">faster</span> <span class="argument">way</span> <span class="argument">is</span> <span class="argument">to</span> <span class="argument">modify</span> <span class="argument">the</span> `<span class="variable"><span class="operator">$</span>fish_user_paths</span>` <span class="argument">[universal <span class="argument">variable]</span></span><span class="operator">(</span><span class="comment">##tut_universal<span class="operator">)</span>, which is automatically prepended to `$PATH`. For example, to permanently add `/usr/local/bin` to your `$PATH`, you could write:</span>
-
-\htmlonly[block] 
+</pre><p>You can do so directly in <code>config.fish</code>, like you might do in other shells with <code>.profile</code>. See <a href="#path_example">this example</a>.</p>
+<p>A faster way is to modify the <code>$fish_user_paths</code> <a href="#tut_universal">universal variable</a>, which is automatically prepended to <code>$PATH</code>. For example, to permanently add <code>/usr/local/bin</code> to your <code>$PATH</code>, you could write:</p>
+ 
  <pre class="fish cli-dark">
 <span class="prompt">&gt;</span> <span class="command">set</span> <span class="argument">-U</span> <span class="argument">fish_user_paths</span> <span class="path">/usr/local/bin</span> <span class="variable"><span class="operator">$</span>fish_user_paths</span>
 </pre><p>The advantage is that you don't have to go mucking around in files: just run this once at the command line, and it will affect the current session and all future instances too. (Note: you should NOT add this line to <code>config.fish</code>. If you do, the variable will get longer each time you run fish!)</p>
