@@ -1,3 +1,9 @@
+---
+title: fish shell
+---
+{%- comment %} Get all releases excluding pre-releases {%- endcomment %}
+{%- assign releases = site.data.releases | where: "prerelease", false %}
+{%- assign release = releases | first %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +46,7 @@
   </div>
 
   <hr>
-
+  
   <div class="promo_table">
     <div class="promo_table_row">
       <div class="promo_table_cell promo_table_left">
@@ -182,11 +188,11 @@
 
       <div>
         <h4>
-          <a class="tab_link" href="/files/2.7.0/fish-2.7.0.pkg">Installer</a>
+          <a class="tab_link" href="{{release.md_mac_pkg_url}}">Installer</a>
         </h4>
 
         <p>
-          <a class="tab_link" href="/files/2.7.0/fish-2.7.0.pkg">
+          <a class="tab_link" href="{{release.md_mac_pkg_url}}">
             <img src="assets/img/package_icon.png" alt="Package Icon">
           </a>
         </p>
@@ -200,13 +206,13 @@
 
       <div class="over-pos">
         <h4>
-          <a class="tab_link" href="/files/2.7.0/fish-2.7.0.app.zip">App</a>
+          <a class="tab_link" href="{{release.md_mac_app_url}}">App</a>
         </h4>
 
         <br>
 
         <p>
-          <a class="tab_link" href="/files/2.7.0/fish-2.7.0.app.zip">
+          <a class="tab_link" href="{{release.md_mac_app_url}}">
             <img src="assets/img/Terminal_Logo_LCD_Small.png" alt="Terminal logo" class="app-download">
           </a>
         </p>
@@ -421,11 +427,11 @@
     <div class="download_tab block_links tab-pane" id="get_fish_tarball">
       <div>
         <h4>
-          <a class="tab_link" href="/files/2.7.0/fish-2.7.0.tar.gz">fish-2.7.0.tar.gz</a>
+          <a class="tab_link" href="{{release.md_tarball_url}}">{{release.md_tarball_name}}</a>
         </h4>
 
         <p>
-          <a class="tab_link" href="/files/2.7.0/fish-2.7.0.tar.gz">
+          <a class="tab_link" href="{{release.md_tarball_url}}">
             <img src="assets/img/tarball_icon.png" alt="Tarball Icon">
           </a>
         </p>
@@ -442,7 +448,7 @@
 
         <p>
           <small>
-            SHA1: <span class="mono app-sha1">2825834253954a6eb6c2ff3019c15ab92febba74</span>
+            SHA1: <span class="mono app-sha1">{{ release.md_tarball_sha1 }}</span>
           </small>
         </p>
       </div>
@@ -457,82 +463,20 @@
     <a href="release_notes.html" class="release-notes-title"><b>Release Notes</b></a>
   </p>
 
-  <ul class="release-notes">
-    <li>
-      2.7.0, released November 23, 2017
-    </li>
-
-    <li>
-      2.6.0, released June 3, 2017
-      <small>
-        (<a href="/files/2.6.0/fish-2.6.0.tar.gz">tarball</a>)
-      </small>
-    </li>
-
-    <li>
-      2.5.0, released February 3, 2017
-      <small>
-        (<a href="/files/2.5.0/fish-2.5.0.tar.gz">tarball</a>)
-      </small>
-    </li>
-
-    <li>
-      2.4.0, released November 8, 2016
-      <small>
-        (<a href="/files/2.4.0/fish-2.4.0.tar.gz">tarball</a>)
-      </small>
-    </li>
-
-    <li>
-      2.3.1, released July 3, 2016
-      <small>
-        (<a href="/files/2.3.1/fish-2.3.1.tar.gz">tarball</a>)
-      </small>
-    </li>
-
-    <li>
-      2.3.0, released May 20, 2016
-      <small>
-        (<a href="/files/2.3.0/fish-2.3.0.tar.gz">tarball</a>)
-      </small>
-    </li>
-
-    <li>
-      2.2.0, released July 12, 2015
-      <small>
-        (<a href="/files/2.2.0/fish-2.2.0.tar.gz">tarball</a>)
-      </small>
-    </li>
-
-    <li>
-      2.1.2, released February 24, 2015
-      <small>
-        (<a href="/files/2.1.2/fish-2.1.2.tar.gz">tarball</a>)
-      </small>
-    </li>
-
-    <li>
-      2.1.1, released September 26, 2014
-      <small>
-        (<a href="/files/2.1.1/fish-2.1.1.tar.gz">tarball</a> - note that there are known issues on macOS)
-      </small>
-    </li>
-
-    <li>
-      2.1.0, released October 28, 2013
-      <small>
-        (<a href="/files/2.1.0/fish-2.1.0.tar.gz">tarball</a> - note that there are known security vulnerabilities)
-      </small>
-    </li>
-
-    <li>
-      2.0.0, released May 17, 2013
-      <small>
-        (<a href="/files/2.0.0/fish-2.0.0.tar.gz">tarball</a> - note that there are known security vulnerabilities)
-      </small>
-    </li>
+  <ul class="releases-list">
+    {%- for rel in releases %}
+      <li>
+        {{ rel.tag_name }}, released {{ rel.published_at | date: '%B %e, %Y' }}
+        {%- unless forloop.first %}
+        <small>(<a href="{{ rel.md_tarball_url }}">tarball</a>
+          {%- if site.data.release_comments[rel.tag_name] %}
+            - {{ site.data.release_comments[rel.tag_name] }}
+          {%- endif %})
+        </small>
+        {%- endunless %}
+      </li>
+    {%- endfor %}
   </ul>
-
   <hr>
 
   <h3>Development</h3>
