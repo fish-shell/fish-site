@@ -32,13 +32,18 @@ def get_asset(release, extension):
                      % (extension, release['tag_name']))
   return vals[0] if vals else {}
 
+first = True
 releases = json.load(sys.stdin, object_pairs_hook=OrderedDict)
+
+# Remove pre-releases.
+releases = [rel for rel in releases if not rel.get('prerelease')]
+
+# Remove certain old releases without tarballs.
+releases = [rel for rel in releases if get_asset(rel, '.tar.gz')]
+
 for rel in releases:
   name = rel['tag_name']
   tarball = get_asset(rel, '.tar.gz')
-  # Skip old releases without tarballs
-  if not tarball:
-    continue
   macpkg = get_asset(rel, '.pkg')
   macapp = get_asset(rel, '.app.zip')
   rel.update({
@@ -53,8 +58,9 @@ for rel in releases:
   for asset in rel['assets']:
     del asset['download_count']
   # Compute the SHA1 for the first tarball only.
-  if rel is releases[0]:
+  if first:
     rel['md_tarball_sha1'] = sha1of(tarball['browser_download_url'])
+    first = False
 
 # We've modified the dictionaries in place, output them again.
 json.dump(releases, sys.stdout, indent=4)

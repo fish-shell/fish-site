@@ -1,9 +1,7 @@
 ---
 title: fish shell
 ---
-{%- comment %} Get all releases excluding pre-releases {%- endcomment %}
-{%- assign releases = site.data.releases | where: "prerelease", false %}
-{%- assign release = releases | first %}
+{%- assign release = site.data.releases | first %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -464,7 +462,7 @@ title: fish shell
   </p>
 
   <ul class="releases-list">
-    {%- for rel in releases %}
+    {%- for rel in site.data.releases %}
       <li>
         {{ rel.tag_name }}, released {{ rel.published_at | date: '%B %e, %Y' }}
         {%- unless forloop.first %}
