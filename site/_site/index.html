@@ -41,7 +41,7 @@
   </div>
 
   <hr>
-  
+
   <div class="promo_table">
     <div class="promo_table_row">
       <div class="promo_table_cell promo_table_left">
@@ -450,6 +450,47 @@
       </div>
     </div>
   </div>
+
+  <hr>
+
+  <h3>Running fish</h3>
+
+  <p>Once installed, run <code>fish</code> from your current shell to try fish out!</p>
+
+  <pre class="fish cli-dark">
+<span class="prompt">&gt;</span> <span class="command">fish</span>
+<span class="output">Welcome to fish, the friendly interactive shell</span>
+<span class="output">Type <span class="cwd">help</span> for instructions on how to use fish</span>
+you<span>@</span>hostname <span class="prompt"><span class="path">~</span>&gt;</span><span class="cursor">_</span>
+  </pre>
+
+  <hr>
+
+  <h3>Switching to fish</h3>
+
+    <p>If you wish to use fish as your default shell, use the following command:</p>
+
+    <pre class="fish cli-dark">
+  <span class="prompt">&gt;</span> <span class="command">chsh -s /usr/local/bin/fish</span>
+    </pre>
+
+    <p><code>chsh</code> will prompt you for your password and change your default shell.
+      (Substitute <code>/usr/local/bin/fish</code>
+      with whatever path fish was installed to, if it differs.)
+    </p>
+
+    <p>Use the following command if fish isn't already added
+      to <code>/etc/shells</code> to permit fish to be your login shell:
+    </p>
+
+    <pre class="fish cli-dark">
+<span class="prompt">&gt;</span> <span class="command">echo /usr/local/bin/fish | sudo tee -a /etc/shells</span>
+    </pre>
+
+  <p>To switch your default shell back, you can run
+    <code>chsh -s /bin/bash</code>
+    (substituting <code>/bin/bash</code> with <code>/bin/tcsh</code> or <code>/bin/zsh</code> as appropriate).
+  </p>
 
   <hr>
 
