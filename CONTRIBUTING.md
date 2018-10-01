@@ -4,10 +4,10 @@ You can edit the main page, the tutorial, the 404 page, and assets (e.g. CSS, JS
 they're all in [`site/`](site).
 
 If you're making changes to the documentation, FAQ, design document, or something similar, don't edit [`docs/`](site/docs/).  
-Instead, fork the fish-shell repo and make the changes in [`doc_src/`](https://github.com/fish-shell/fish-shell/blob/master/doc_src/).
-The raw source of the documentation lies there.
+Instead, fork the [fish-shell repo](https://github.com/fish-shell/fish-shell) and make the changes in [`doc_src/`](https://github.com/fish-shell/fish-shell/blob/master/doc_src/).
+The raw source of the documentation lives there.
 
-The fish site is built via the jekyll static site generator. jekyll is used to populate the site with release versions, dates, tarballs, based on data from [the releases API](https://api.github.com/repos/fish-shell/fish-shell/releases). You will need to [install jekyll]((https://jekyllrb.com), `gem install jekyll bundler` should do it.
+The fish site is built via the Jekyll static site generator. Jekyll is used to populate the site with release versions, dates, tarballs, based on data from [the releases API](https://api.github.com/repos/fish-shell/fish-shell/releases). You will need to [install jekyll](https://jekyllrb.com), `gem install jekyll bundler` should do it.
 
 ## Building the site
 
@@ -17,7 +17,7 @@ The fish site is built via the jekyll static site generator. jekyll is used to p
 
 ##  Making a new release
 
-This assumes that the relevant release has been published [in fish-shell github page](https://github.com/fish-shell/fish-shell/releases). These steps could obviously stand more automation.
+This assumes that the relevant release has been published in the [fish-shell github page](https://github.com/fish-shell/fish-shell/releases). These steps could obviously stand more automation.
 
 1. Update the docs
     1. From the tarball, copy `user_doc/html` to the `site/docs/` directory.
