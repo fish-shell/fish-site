@@ -147,7 +147,7 @@ title: fish shell
   <ul id="platform_tabs" class="nav nav-tabs">
     <li class="active"><a href="#get_fish_osx" data-toggle="tab">macOS</a></li>
     <li><a href="#get_fish_linux" data-toggle="tab">Linux</a></li>
-    <li><a href="#get_fish_freebsd" data-toggle="tab">FreeBSD</a></li>
+    <li><a href="#get_fish_bsd" data-toggle="tab">BSD</a></li>
     <li><a href="#get_fish_windows" data-toggle="tab">Windows</a></li>
     <li><a href="#get_fish_tarball" data-toggle="tab">tarball</a></li>
   </ul>
@@ -388,21 +388,24 @@ title: fish shell
 
     </div>
 
-    <div class="download_tab tab-pane" id="get_fish_freebsd">
-        <div>
-            <p>
-                <img src="assets/img/freebsd_icon.png" alt="FreeBSD">
-            </p>
-            <p>
-                <a href="https://www.freshports.org/shells/fish/">Packages</a>
-            </p>
+    <div class="download_tab tab-pane" id="get_fish_bsd">
+      <div>
+        <h4>
+          <a class="tab_link" href="https://www.freshports.org/shells/fish/">FreeBSD</a>
+        </h4>
 
-            <p>
-                <small>
-                    <span class="mono">pkg install fish</span>
-                </small>
-            </p>
-        </div>
+        <p>
+          <a class="tab_link" href="https://www.freshports.org/shells/fish/">
+            <img src="assets/img/freebsd_icon.png" alt="FreeBSD">
+          </a>
+        </p>
+
+        <p>
+          <small>
+            <span class="mono">pkg install fish</span>
+          </small>
+        </p>
+      </div>
     </div>
 
     <div class="download_tab tab-pane" id="get_fish_windows">
@@ -532,7 +535,7 @@ title: fish shell
     var plat = navigator.platform.toUpperCase();
     var isMac = plat.indexOf('MAC') !== -1;
     var isLinux = plat.indexOf('LINUX') !== -1;
-    var isFreeBSD = plat.indexOf('FREEBSD') !== -1;
+    var isBSD = plat.indexOf('BSD') !== -1;
     var isWindows = plat.indexOf('WINDOWS') !== -1;
 
     var which = 'get_fish_tarball';
@@ -540,8 +543,8 @@ title: fish shell
       which = 'get_fish_mac'
     } else if (isLinux) {
       which = 'get_fish_linux';
-    } else if (isFreeBSD) {
-      which = 'get_fish_freebsd';
+    } else if (isBSD) {
+      which = 'get_fish_bsd';
     } else if (isWindows) {
       which = 'get_fish_windows';
     }
