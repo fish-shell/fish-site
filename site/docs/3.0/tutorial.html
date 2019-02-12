@@ -148,9 +148,9 @@ Pipes and Redirections</h1>
  <pre class="fish cli-dark">
 <span class="prompt">&gt;</span> <span class="command">echo</span> <span class="argument">hello</span> <span class="argument">world</span> <span class="redirect">|</span> <span class="binary">wc</span>
 <span class="output">       1       2      12</span>
-</pre><p>stdin and stdout can be redirected via the familiar &lt; and &gt;. Unlike other shells, stderr is redirected with a caret ^</p>
+</pre><p>stdin and stdout can be redirected via the familiar &lt; and &gt;. stderr is redirected with a &gt;2.</p>
  <pre class="fish cli-dark">
-<span class="prompt">&gt;</span> <span class="binary">grep</span> <span class="argument">fish</span> <span class="redirect">&lt; /etc/shells</span> <span class="redirect">&gt; ~/output.txt</span> <span class="redirect">^ ~/errors.txt</span>
+<span class="prompt">&gt;</span> <span class="binary">grep</span> <span class="argument">fish</span> <span class="redirect">&lt; /etc/shells</span> <span class="redirect">&gt; ~/output.txt</span> <span class="redirect">2&gt; ~/errors.txt</span>
 </pre><h1><a class="anchor" id="tut_autosuggestions"></a>
 Autosuggestions</h1>
 <p><code>fish</code> suggests commands as you type, and shows the suggestion to the right of the cursor, in gray. For example:</p>

@@ -2414,7 +2414,7 @@ Description</h2>
 <p><code>--style=var</code> ensures the string can be used as a variable name by hex encoding any non-alphanumeric characters. The string is first converted to UTF-8 before being encoded.</p>
 <p><code>--style=url</code> ensures the string can be used as a URL by hex encoding any character which is not legal in a URL. The string is first converted to UTF-8 before being encoded.</p>
 <p><code>--style=regex</code> escapes an input string for literal matching within a regex expression. The string is first converted to UTF-8 before being encoded.</p>
-<p><code>string unescape</code> performs the inverse of the <code>string escape</code> command. If the string to be unescaped is not properly formatted it is ignored. For example, doing <code>string unescape --style=var (string escape --style=var $str)</code> will return the original string. There is no support for unescaping pcre2.</p>
+<p><code>string unescape</code> performs the inverse of the <code>string escape</code> command. If the string to be unescaped is not properly formatted it is ignored. For example, doing <code>string unescape --style=var (string escape --style=var $str)</code> will return the original string. There is no support for unescaping <code>--style=regex</code>.</p>
 <h2><a class="anchor" id="string-join"></a>
 "join" subcommand</h2>
 <p><code>string join</code> joins its STRING arguments into a single string separated by SEP, which can be an empty string. Exit status: 0 if at least one join was performed, or 1 otherwise.</p>
@@ -3018,8 +3018,7 @@ Synopsis</h2>
 </pre><h2><a class="anchor" id="while-description"></a>
 Description</h2>
 <p><code>while</code> repeatedly executes <code>CONDITION</code>, and if the exit status is 0, then executes <code>COMMANDS</code>.</p>
-<p>If the exit status of <code>CONDITION</code> is non-zero on the first iteration, <code>COMMANDS</code> will not be executed at all, and the exit status of the loop set to the exit status of <code>CONDITION</code>.</p>
-<p>The exit status of the loop is 0 otherwise.</p>
+<p>The exit status of the while loop is the exit status of the last iteration of the <code>COMMANDS</code> executed, or 0 if none were executed. (This matches other shells and is POSIX-compatible.)</p>
 <p>You can use <a href="#and"><code>and</code></a> or <a href="#or"><code>or</code></a> for complex conditions. Even more complex control can be achieved with <code>while true</code> containing a <a href="#break">break</a>.</p>
 <h2><a class="anchor" id="while-example"></a>
 Example</h2>

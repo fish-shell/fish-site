@@ -34,7 +34,7 @@
 <div class="logo"></div>
 <div class="menu docs_menu">
 <ul>
-<li><a href="index.html" id="toc-index">fish shell documentation - 3.0.0</a><ul>
+<li><a href="index.html" id="toc-index">fish shell documentation - 3.0.1</a><ul>
 <li><a href="index.html#introduction">Introduction</a></li>
 <li><a href="index.html#syntax">Syntax overview</a></li>
 <li><a href="index.html#docs">Help</a></li>
@@ -320,7 +320,7 @@ Input/Output (IO) redirection</h2>
 <li>To redirect output of FD N, write <code>N&gt;DESTINATION</code></li>
 <li>To append the output of FD N to a file, write <code>N&gt;&gt;DESTINATION_FILE</code></li>
 </ul>
-<p>Example: <code>echo Hello 2&gt;output.stderr</code> and <code>echo Hello 2&gt;output.stderr</code> are equivalent, and write the standard error (file descriptor 2) of the target program to <code>output.stderr</code>.</p>
+<p>Example: <code>echo Hello 2&gt;output.stderr</code> writes the standard error (file descriptor 2) of the target program to <code>output.stderr</code>.</p>
 <h2><a class="anchor" id="piping"></a>
 Piping</h2>
 <p>The user can string together multiple commands into a so called pipeline. This means that the standard output of one command will be read in as standard input into the next command. This is done by separating the commands by the pipe character '<code>|</code>'. For example</p>
@@ -412,7 +412,8 @@ Autosuggestions</h1>
 <p>Autosuggestions are a powerful way to quickly summon frequently entered commands, by typing the first few characters. They are also an efficient technique for navigating through directory hierarchies.</p>
 <h1><a class="anchor" id="completion"></a>
 Tab completion</h1>
-<p>Tab completion is one of the most time saving features of any modern shell. By tapping the tab key, the user asks <code>fish</code> to guess the rest of the command or parameter that the user is currently typing. If <code>fish</code> can only find one possible completion, <code>fish</code> will write it out. If there is more than one completion, <code>fish</code> will write out the longest prefix that all completions have in common. If the completions differ on the first character, a list of all possible completions is printed. The list features descriptions of the completions and if the list doesn't fit the screen, it is scrollable by using the arrow keys, the page up/page down keys, the tab key or the space bar. Once the list has been entered, pressing any other key will start a search. If the list has not been entered, pressing any other key will exit the list and insert the pressed key into the command line.</p>
+<p>Tab completion is one of the most time saving features of any modern shell. By tapping the tab key, the user asks <code>fish</code> to guess the rest of the command or parameter that the user is currently typing. If <code>fish</code> can only find one possible completion, <code>fish</code> will write it out. If there is more than one completion, <code>fish</code> will write out the longest prefix that all completions have in common. If the completions differ on the first character, a list of all possible completions is printed. The list features descriptions of the completions and if the list doesn't fit the screen, it is scrollable by using the arrow keys, the page up/page down keys, the tab key or the space bar.</p>
+<p>If the list is visible, pressing control-S (or the <code>pager-toggle-search</code> binding) will allow filtering the list. Shift-tab (or the <code>complete-and-search</code> binding) will trigger completion with the search field immediately visible.</p>
 <p>These are the general purpose tab completions that <code>fish</code> provides:</p>
 <ul>
 <li>Completion of commands (builtins, functions and regular programs).</li>
@@ -477,7 +478,7 @@ Wildcards</h2>
 <ul>
 <li><code>?</code> can match any single character except '/'.</li>
 <li><code>*</code> can match any string of characters not containing '/'. This includes matching an empty string.</li>
-<li><code>**</code> matches any string of characters. This includes matching an empty string. The matched string may include the <code>/</code> character; that is, it recurses into subdirectories. Note that augmenting this wildcard with other strings will not match files in the current working directory (<code>$PWD</code>) if you separate the strings with a slash ("/"). This is unlike other shells such as zsh. For example, <code>**\/*.fish</code> in zsh will match <code>.fish</code> files in the PWD but in fish will only match such files in a subdirectory. In fish you should type <code>***.fish</code> to match files in the PWD as well as subdirectories.</li>
+<li><code>**</code> matches any string of characters. This includes matching an empty string. The matched string may include the <code>/</code> character; that is, it recurses into subdirectories. Note that augmenting this wildcard with other strings will not match files in the current working directory (<code>$PWD</code>) if you separate the strings with a slash ("/"). This is unlike other shells such as zsh. For example, <code>**\/*.fish</code> in zsh will match <code>.fish</code> files in the PWD but in fish will only match such files in a subdirectory. In fish you should type <code>**.fish</code> to match files in the PWD as well as subdirectories.</li>
 </ul>
 <p>Other shells, such as zsh, provide a rich glob syntax for restricting the files matched by globs. For example, <code>**(.)</code>, to only match regular files. Fish prefers to defer such features to programs, such as <code>find</code>, rather than reinventing the wheel. Thus, if you want to limit the wildcard expansion to just regular files the fish approach is to define and use a function. For example,</p>
  <pre class="fish cli-dark">
@@ -821,6 +822,7 @@ Special variables</h2>
 <li><code>argv</code>, an array of arguments to the shell or function. <code>argv</code> is only defined when inside a function call, or if fish was invoked with a list of arguments, like <code>fish myscript.fish foo bar</code>. This variable can be changed by the user.</li>
 <li><code>history</code>, an array containing the last commands that were entered.</li>
 <li><code>HOME</code>, the user's home directory. This variable can be changed by the user.</li>
+<li><code>hostname</code>, the machine's hostname.</li>
 <li><code>IFS</code>, the internal field separator that is used for word splitting with the <a href="commands.html#read">read builtin</a>. Setting this to the empty string will also disable line splitting in <a href="#expand-command-substitution">command substitution</a>. This variable can be changed by the user.</li>
 <li><code>PWD</code>, the current working directory.</li>
 <li><code>status</code>, the <a href="#variables-status">exit status</a> of the last foreground job to exit. If the job was terminated through a signal, the exit status will be 128 plus the signal number.</li>

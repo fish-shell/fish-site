@@ -20,6 +20,30 @@ ul {
 
 </style>
 </head><body>
+
+<h2>Release Notes for fish 3.0.1 (released February 11, 2019)</h2>
+This release of fish fixes a number of major issues discovered in fish 3.0.0.
+<h4>Fixes and improvements</h4>
+<ul>
+    <li><code>exec</code> does not complain about running foreground jobs when called (<a href="https://github.com/fish-shell/fish-shell/issues/5449">#5449</a>).</li>
+    <li>while loops now evaluate to the last executed command in the loop body (or zero if the body was empty), matching POSIX semantics (<a href="https://github.com/fish-shell/fish-shell/issues/4982">#4982</a>).</li>
+    <li><code>read --silent</code> no longer echoes to the tty when run from a non-interactive script (<a href="https://github.com/fish-shell/fish-shell/issues/5519">#5519</a>).</li>
+    <li>On macOS, path entries with spaces in <code>/etc/paths</code> and <code>/etc/paths.d</code> now correctly set path entries with spaces. Likewise, <code>MANPATH</code> is correctly set from <code>/etc/manpaths</code> and <code>/etc/manpaths.d</code> (<a href="https://github.com/fish-shell/fish-shell/issues/5481">#5481</a>).</li>
+    <li>fish starts correctly under Cygwin/MSYS2 (<a href="https://github.com/fish-shell/fish-shell/issues/5426">#5426</a>).</li>
+    <li>The <code>pager-toggle-search</code> binding (Ctrl-S by default) will now activate the search field, even when the pager is not focused.</li>
+    <li>The error when a command is not found is now printed a single time, instead of once per argument (<a href="https://github.com/fish-shell/fish-shell/issues/5588">#5588</a>).</li>
+    <li>Fixes and improvements to the git completions, including printing correct paths with older git versions, fuzzy matching again, reducing unnecessary offers of root paths (starting with <code>:/</code>) (<a href="https://github.com/fish-shell/fish-shell/issues/5578">#5578</a>, <a href="https://github.com/fish-shell/fish-shell/issues/5574">#5574</a>, <a href="https://github.com/fish-shell/fish-shell/issues/5476">#5476</a>), and ignoring shell aliases, so enterprising users can set up the wrapping command (via <code>set -g __fish_git_alias_$command $whatitwraps</code>) (<a href="https://github.com/fish-shell/fish-shell/issues/5412">#5412</a>).</li>
+    <li>Significant performance improvements to core shell functions (<a href="https://github.com/fish-shell/fish-shell/issues/5447">#5447</a>) and to the <code>kill</code> completions (<a href="https://github.com/fish-shell/fish-shell/issues/5541">#5541</a>).</li>
+    <li>Starting in symbolically-linked working directories works correctly (<a href="https://github.com/fish-shell/fish-shell/issues/5525">#5525</a>).</li>
+    <li>The default <code>fish_title</code> function no longer contains extra spaces (<a href="https://github.com/fish-shell/fish-shell/issues/5517">#5517</a>).</li>
+    <li>The <code>nim</code> prompt now works correctly when chosen in the Web-based configuration (<a href="https://github.com/fish-shell/fish-shell/issues/5490">#5490</a>).</li>
+    <li><code>string</code> now prints help to stdout, like other builtins (<a href="https://github.com/fish-shell/fish-shell/pull/5495">#5495</a>).</li>
+    <li>Killing the terminal while fish is in vi normal mode will no longer send it spinning and eating CPU. (<a href="https://github.com/fish-shell/fish-shell/issues/5528">#5528</a>)</li>
+    <li>A number of crashes have been fixed (<a href="https://github.com/fish-shell/fish-shell/issues/5550">#5550</a>, <a href="https://github.com/fish-shell/fish-shell/issues/5548">#5548</a>, <a href="https://github.com/fish-shell/fish-shell/issues/5479">#5479</a>, <a href="https://github.com/fish-shell/fish-shell/issues/5453">#5453</a>).</li>
+    <li>Improvements to the documentation and certain completions.</li>
+</ul>
+
+
 <h2>Release Notes for fish 3.0.0 (released December 28, 2018)</h2>
 <h3>Notable non-backward compatible changes</h3>
 <ul>
