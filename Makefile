@@ -10,7 +10,7 @@ update-releases-json:
       > ./site/_data/releases.json
 
 .PHONY: new-release
-new-release: update-releases-json rebuild
+new-release: update-releases-json build
 
 clean:
 	cd site && jekyll clean
