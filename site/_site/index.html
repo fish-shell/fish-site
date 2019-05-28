@@ -146,7 +146,7 @@
     <li><a href="#get_fish_linux" data-toggle="tab">Linux</a></li>
     <li><a href="#get_fish_bsd" data-toggle="tab">BSD</a></li>
     <li><a href="#get_fish_windows" data-toggle="tab">Windows</a></li>
-    <li><a href="#get_fish_tarball" data-toggle="tab">tarball</a></li>
+    <li><a href="#get_fish_source" data-toggle="tab">Sources</a></li>
   </ul>
 
   <div class="tab-content download_tabs over-pos">
@@ -459,7 +459,7 @@
       </div>
     </div>
 
-    <div class="download_tab block_links tab-pane" id="get_fish_tarball">
+    <div class="download_tab block_links tab-pane" id="get_fish_source">
       <div>
         <h4>
           <a class="tab_link" href="https://github.com/fish-shell/fish-shell/releases/download/3.0.2/fish-3.0.2.tar.gz">fish-3.0.2.tar.gz</a>
@@ -484,6 +484,28 @@
         <p>
           <small>
             SHA1: <span class="mono app-sha1">2309b9264d625bf566051f8b8422185c2b9304e3</span>
+          </small>
+        </p>
+      </div>
+
+      <div>
+        <h4>
+          <a class="tab_link" href="https://github.com/fish-shell/fish-shell/">Git master</a>
+        </h4>
+
+        <p>
+          <a class="tab_link" href="https://git-scm.com/">
+            <img src="assets/img/git_icon.png" alt="Git">
+          </a>
+        </p>
+
+        <p>
+          <small>
+            <span class="mono">git clone https://github.com/fish-shell/fish-shell.git<br>
+              cd fish-shell; cmake .; make; sudo make install
+            </span>
+	    <br>
+	    (Installation from the bleeding edge, for developers and advanced users.)
           </small>
         </p>
       </div>
@@ -617,7 +639,7 @@
     var isBSD = plat.indexOf('BSD') !== -1;
     var isWindows = plat.indexOf('WINDOWS') !== -1;
 
-    var which = 'get_fish_tarball';
+    var which = 'get_fish_source';
     if (isMac) {
       which = 'get_fish_mac'
     } else if (isLinux) {
