@@ -42,4 +42,4 @@ After building the site (see above), do the following:
 3. `git merge --strategy recursive --strategy-option subtree=site/_site master`
 4. `git push`
 
-The public site will update as CloudFlare's cache clears.
+The public site will update immediately.
