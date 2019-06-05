@@ -33,7 +33,7 @@ This assumes that the relevant release has been published in the [fish-shell git
 
 ## Publish the site
 
-The site is hosted via GitHub pages with a custom domain, using CloudFlare to provide https. Publishing the site is as simple as pushing to the `gh-pages` branch of `fish-site`. This branch is a little tricky because it reflects a subtree of `master`. However `git subtree` is not used; instead we use the subtree merge strategy.
+The site is hosted via GitHub pages with a custom domain. Publishing the site is as simple as pushing to the `gh-pages` branch of `fish-site`. This branch is a little tricky because it reflects a subtree of `master`. However `git subtree` is not used; instead we use the subtree merge strategy.
 
 After building the site (see above), do the following:
 
