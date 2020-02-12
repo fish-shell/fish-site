@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>psub - perform process substitution &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pushd - push directory to directory stack" href="pushd.html" />
+    <link rel="prev" title="prompt_pwd - Print pwd suitable for prompt" href="prompt_pwd.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pushd.html" title="pushd - push directory to directory stack"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="prompt_pwd.html" title="prompt_pwd - Print pwd suitable for prompt"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="psub-perform-process-substitution">
+<span id="cmd-psub"></span><h1>psub - perform process substitution<a class="headerlink" href="#psub-perform-process-substitution" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">COMMAND1</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nf">COMMAND2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">psub</span><span class="w"> </span><span class="no">[-F</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--fifo]</span><span class="w"> </span><span class="no">[-f</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--file]</span><span class="w"> </span><span class="no">[-s</span><span class="w"> </span><span class="no">SUFFIX]</span><span class="o">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Some shells (e.g., ksh, bash) feature a syntax that is a mix between command substitution and piping, called process substitution. It is used to send the output of a command into the calling command, much like command substitution, but with the difference that the output is not sent through commandline arguments but through a named pipe, with the filename of the named pipe sent as an argument to the calling program. <code class="docutils literal notranslate"><span class="pre">psub</span></code> combined with a regular command substitution provides the same functionality.</p>
+<p>The following options are available:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--file</span></code> will cause psub to use a regular file instead of a named pipe to communicate with the calling process. This will cause <code class="docutils literal notranslate"><span class="pre">psub</span></code> to be significantly slower when large amounts of data are involved, but has the advantage that the reading process can seek in the stream. This is the default.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-F</span></code> or <code class="docutils literal notranslate"><span class="pre">--fifo</span></code> will cause psub to use a named pipe rather than a file. You should only use this if the command produces no more than 8 KiB of output. The limit on the amount of data a FIFO can buffer varies with the OS but is typically 8 KiB, 16 KiB or 64 KiB. If you use this option and the command on the left of the psub pipeline produces more output a deadlock is likely to occur.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-s</span></code> or <code class="docutils literal notranslate"><span class="pre">--suffix</span></code> will append SUFFIX to the filename.</li>
+</ul>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">diff</span><span class="w"> </span><span class="o">(</span><span class="nf">sort</span><span class="w"> </span><span class="no">a.txt</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">psub</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">sort</span><span class="w"> </span><span class="no">b.txt</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">psub</span><span class="o">)</span><span class="w"></span>
+<span class="c"># shows the difference between the sorted versions of files ``a.txt`` and ``b.txt``.</span><span class="w"></span>
+
+<span class="nf">source-highlight</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">esc</span><span class="w"> </span><span class="o">(</span><span class="nf">cpp</span><span class="w"> </span><span class="no">main.c</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">psub</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">.c</span><span class="o">)</span><span class="w"></span>
+<span class="c"># highlights ``main.c`` after preprocessing as a C source.</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">psub - perform process substitution</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pushd.html" title="pushd - push directory to directory stack"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="prompt_pwd.html" title="prompt_pwd - Print pwd suitable for prompt"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

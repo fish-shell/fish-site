@@ -1,0 +1,208 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>set - display and change shell variables. &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="set_color - set the terminal color" href="set_color.html" />
+    <link rel="prev" title="return - stop the current inner function" href="return.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="set_color.html" title="set_color - set the terminal color"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="return.html" title="return - stop the current inner function"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="set-display-and-change-shell-variables">
+<span id="cmd-set"></span><h1>set - display and change shell variables.<a class="headerlink" href="#set-display-and-change-shell-variables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">[SCOPE_OPTIONS]</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="no">[OPTIONS]</span><span class="w"> </span><span class="no">VARIABLE_NAME</span><span class="w"> </span><span class="no">VALUES...</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="no">[OPTIONS]</span><span class="w"> </span><span class="no">VARIABLE_NAME[INDICES]...</span><span class="w"> </span><span class="no">VALUES...</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nf">-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--query</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="no">[SCOPE_OPTIONS]</span><span class="w"> </span><span class="no">VARIABLE_NAMES...</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nf">-e</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--erase</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="no">[SCOPE_OPTIONS]</span><span class="w"> </span><span class="no">VARIABLE_NAME</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nf">-e</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--erase</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="no">[SCOPE_OPTIONS]</span><span class="w"> </span><span class="no">VARIABLE_NAME[INDICES]...</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nf">-S</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--show</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="no">[VARIABLE_NAME]...</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">set</span></code> manipulates <a class="reference internal" href="../index.html#variables"><span class="std std-ref">shell variables</span></a>.</p>
+<p>If set is called with no arguments, the names and values of all shell variables are printed in sorted order. If some of the scope or export flags have been given, only the variables matching the specified scope are printed.</p>
+<p>With both variable names and values provided, <code class="docutils literal notranslate"><span class="pre">set</span></code> assigns the variable <code class="docutils literal notranslate"><span class="pre">VARIABLE_NAME</span></code> the values <code class="docutils literal notranslate"><span class="pre">VALUES...</span></code>.</p>
+<p>The following options control variable scope:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--append</span></code> causes the values to be appended to the current set of values for the variable. This can be used with <code class="docutils literal notranslate"><span class="pre">--prepend</span></code> to both append and prepend at the same time. This cannot be used when assigning to a variable slice.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--prepend</span></code> causes the values to be prepended to the current set of values for the variable. This can be used with <code class="docutils literal notranslate"><span class="pre">--append</span></code> to both append and prepend at the same time. This cannot be used when assigning to a variable slice.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--local</span></code> forces the specified shell variable to be given a scope that is local to the current block, even if a variable with the given name exists and is non-local</li>
+<li><code class="docutils literal notranslate"><span class="pre">-g</span></code> or <code class="docutils literal notranslate"><span class="pre">--global</span></code> causes the specified shell variable to be given a global scope. Non-global variables disappear when the block they belong to ends</li>
+<li><code class="docutils literal notranslate"><span class="pre">-U</span></code> or <code class="docutils literal notranslate"><span class="pre">--universal</span></code> causes the specified shell variable to be given a universal scope. If this option is supplied, the variable will be shared between all the current user's fish instances on the current computer, and will be preserved across restarts of the shell.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-x</span></code> or <code class="docutils literal notranslate"><span class="pre">--export</span></code> causes the specified shell variable to be exported to child processes (making it an &quot;environment variable&quot;)</li>
+<li><code class="docutils literal notranslate"><span class="pre">-u</span></code> or <code class="docutils literal notranslate"><span class="pre">--unexport</span></code> causes the specified shell variable to NOT be exported to child processes</li>
+<li><code class="docutils literal notranslate"><span class="pre">--path</span></code> causes the specified variable to be treated as a path variable, meaning it will automatically be split on colons,  and joined using colons when quoted (<cite>echo &quot;$PATH&quot;</cite>) or exported.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--unpath</span></code> causes the specified variable to not be treated as a path variable. Variables with a name ending in &quot;PATH&quot; are automatically path variables, so this can be used to treat such a variable normally.</li>
+</ul>
+<p>The following options are available:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code> causes the specified shell variable to be erased</li>
+<li><code class="docutils literal notranslate"><span class="pre">-q</span></code> or <code class="docutils literal notranslate"><span class="pre">--query</span></code> test if the specified variable names are defined. Does not output anything, but the builtins exit status is the number of variables specified that were not defined.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-n</span></code> or <code class="docutils literal notranslate"><span class="pre">--names</span></code> List only the names of all defined variables, not their value. The names are guaranteed to be sorted.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--show</span></code> Shows information about the given variables. If no variable names are given then all variables are shown in sorted order. No other flags can be used with this option. The information shown includes whether or not it is set in each of the local, global, and universal scopes. If it is set in one of those scopes whether or not it is exported is reported. The individual elements are also shown along with the length of each element.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-L</span></code> or <code class="docutils literal notranslate"><span class="pre">--long</span></code> do not abbreviate long values when printing set variables</li>
+</ul>
+<p>If a variable is set to more than one value, the variable will be a list with the specified elements. If a variable is set to zero elements, it will become a list with zero elements.</p>
+<p>If the variable name is one or more list elements, such as <code class="docutils literal notranslate"><span class="pre">PATH[1</span> <span class="pre">3</span> <span class="pre">7]</span></code>, only those list elements specified will be changed. If you specify a negative index when expanding or assigning to a list variable, the index will be calculated from the end of the list. For example, the index -1 means the last index of a list.</p>
+<p>The scoping rules when creating or updating a variable are:</p>
+<ul class="simple">
+<li>Variables may be explicitly set to universal, global or local. Variables with the same name in different scopes will not be changed.</li>
+<li>If a variable is not explicitly set to be either universal, global or local, but has been previously defined, the previous variable scope is used.</li>
+<li>If a variable is not explicitly set to be either universal, global or local and has never before been defined, the variable will be local to the currently executing function. Note that this is different from using the <code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--local</span></code> flag. If one of those flags is used, the variable will be local to the most inner currently executing block, while without these the variable will be local to the function. If no function is executing, the variable will be global.</li>
+</ul>
+<p>The exporting rules when creating or updating a variable are identical to the scoping rules for variables:</p>
+<ul class="simple">
+<li>Variables may be explicitly set to either exported or not exported. When an exported variable goes out of scope, it is unexported.</li>
+<li>If a variable is not explicitly set to be exported or not exported, but has been previously defined, the previous exporting rule for the variable is kept.</li>
+<li>If a variable is not explicitly set to be either exported or unexported and has never before been defined, the variable will not be exported.</li>
+</ul>
+<p>In query mode, the scope to be examined can be specified.</p>
+<p>In erase mode, if variable indices are specified, only the specified slices of the list variable will be erased.</p>
+<p><code class="docutils literal notranslate"><span class="pre">set</span></code> requires all options to come before any other arguments. For example, <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">flags</span> <span class="pre">-l</span></code> will have the effect of setting the value of the variable <code class="docutils literal notranslate"><span class="pre">flags</span></code> to '-l', not making the variable local.</p>
+<p>In assignment mode, <code class="docutils literal notranslate"><span class="pre">set</span></code> does not modify the exit status. This allows simultaneous capture of the output and exit status of a subcommand, e.g. <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">set</span> <span class="pre">output</span> <span class="pre">(command)</span></code>. In query mode, the exit status is the number of variables that were not found. In erase mode, <code class="docutils literal notranslate"><span class="pre">set</span></code> exits with a zero exit status in case of success, with a non-zero exit status if the commandline was invalid, if the variable was write-protected or if the variable did not exist.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># Prints all global, exported variables.</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="no">-xg</span><span class="w"></span>
+
+<span class="c"># Sets the value of the variable $foo to be &#39;hi&#39;.</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">hi</span><span class="w"></span>
+
+<span class="c"># Appends the value &quot;there&quot; to the variable $foo.</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">there</span><span class="w"></span>
+
+<span class="c"># Does the same thing as the previous two commands the way it would be done pre-fish 3.0.</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">hi</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="o">$foo</span><span class="w"> </span><span class="no">there</span><span class="w"></span>
+
+<span class="c"># Removes the variable $smurf</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">smurf</span><span class="w"></span>
+
+<span class="c"># Changes the fourth element of the $PATH list to ~/bin</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="no">PATH[4]</span><span class="w"> </span><span class="o">~</span><span class="no">/bin</span><span class="w"></span>
+
+<span class="c"># Outputs the path to Python if ``type -p`` returns true.</span><span class="w"></span>
+<span class="nf">if</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">python_path</span><span class="w"> </span><span class="o">(</span><span class="nf">type</span><span class="w"> </span><span class="no">-p</span><span class="w"> </span><span class="no">python</span><span class="o">)</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Python is at </span><span class="o">$python_path</span><span class="s2">&quot;</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
+
+<span class="c"># Like other shells, fish 3.1 supports this syntax for passing a variable to just one command:</span><span class="w"></span>
+<span class="c"># Run fish with a temporary home directory.</span><span class="w"></span>
+<span class="no">HOME=</span><span class="o">(</span><span class="nf">mktemp</span><span class="w"> </span><span class="no">-d</span><span class="o">)</span><span class="w"> </span><span class="nf">fish</span><span class="w"></span>
+<span class="c"># Which is essentially the same as:</span><span class="w"></span>
+<span class="nf">begin</span><span class="p">;</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">-lx</span><span class="w"> </span><span class="no">HOME</span><span class="w"> </span><span class="o">(</span><span class="nf">mktemp</span><span class="w"> </span><span class="no">-d</span><span class="o">)</span><span class="p">;</span><span class="w"> </span><span class="nf">fish</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>Fish versions prior to 3.0 supported the syntax <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">PATH[1]</span> <span class="pre">PATH[4]</span> <span class="pre">/bin</span> <span class="pre">/sbin</span></code>, which worked like
+<code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">PATH[1</span> <span class="pre">4]</span> <span class="pre">/bin</span> <span class="pre">/sbin</span></code>. This syntax was not widely used, and was ambiguous and inconsistent.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">set - display and change shell variables.</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="set_color.html" title="set_color - set the terminal color"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="return.html" title="return - stop the current inner function"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

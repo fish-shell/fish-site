@@ -1,0 +1,176 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>history - Show and manipulate command history &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="if - conditionally execute a command" href="if.html" />
+    <link rel="prev" title="help - display fish documentation" href="help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="if.html" title="if - conditionally execute a command"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="help.html" title="help - display fish documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="history-show-and-manipulate-command-history">
+<span id="cmd-history"></span><h1>history - Show and manipulate command history<a class="headerlink" href="#history-show-and-manipulate-command-history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">history</span><span class="w"> </span><span class="no">search</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">--show-time</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">--case-sensitive</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">--exact</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--prefix</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--contains</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">--max=n</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">--null</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">-R</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--reverse</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="s2">&quot;search string&quot;</span><span class="no">...</span><span class="w"> </span><span class="no">]</span><span class="w"></span>
+<span class="nf">history</span><span class="w"> </span><span class="no">delete</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">--show-time</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">--case-sensitive</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">--exact</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--prefix</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--contains</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="s2">&quot;search string&quot;</span><span class="no">...</span><span class="w"></span>
+<span class="nf">history</span><span class="w"> </span><span class="no">merge</span><span class="w"></span>
+<span class="nf">history</span><span class="w"> </span><span class="no">save</span><span class="w"></span>
+<span class="nf">history</span><span class="w"> </span><span class="no">clear</span><span class="w"></span>
+<span class="nf">history</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nf">-h</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--help</span><span class="w"> </span><span class="o">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">history</span></code> is used to search, delete, and otherwise manipulate the <a class="reference internal" href="../index.html#history-search"><span class="std std-ref">history of interactive commands</span></a>.</p>
+<p>The following operations (sub-commands) are available:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">search</span></code> returns history items matching the search string. If no search string is provided it returns all history items. This is the default operation if no other operation is specified. You only have to explicitly say <code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">search</span></code> if you wish to search for one of the subcommands. The <code class="docutils literal notranslate"><span class="pre">--contains</span></code> search option will be used if you don't specify a different search option. Entries are ordered newest to oldest unless you use the <code class="docutils literal notranslate"><span class="pre">--reverse</span></code> flag. If stdout is attached to a tty the output will be piped through your pager by the history function. The history builtin simply writes the results to stdout.</li>
+<li><code class="docutils literal notranslate"><span class="pre">delete</span></code> deletes history items. The <code class="docutils literal notranslate"><span class="pre">--contains</span></code> search option will be used if you don't specify a different search option. If you don't specify <code class="docutils literal notranslate"><span class="pre">--exact</span></code> a prompt will be displayed before any items are deleted asking you which entries are to be deleted. You can enter the word &quot;all&quot; to delete all matching entries. You can enter a single ID (the number in square brackets) to delete just that single entry. You can enter more than one ID separated by a space to delete multiple entries. Just press [enter] to not delete anything. Note that the interactive delete behavior is a feature of the history function. The history builtin only supports <code class="docutils literal notranslate"><span class="pre">--exact</span> <span class="pre">--case-sensitive</span></code> deletion.</li>
+<li><code class="docutils literal notranslate"><span class="pre">merge</span></code> immediately incorporates history changes from other sessions. Ordinarily <code class="docutils literal notranslate"><span class="pre">fish</span></code> ignores history changes from sessions started after the current one. This command applies those changes immediately.</li>
+<li><code class="docutils literal notranslate"><span class="pre">save</span></code> immediately writes all changes to the history file. The shell automatically saves the history file; this option is provided for internal use and should not normally need to be used by the user.</li>
+<li><code class="docutils literal notranslate"><span class="pre">clear</span></code> clears the history file. A prompt is displayed before the history is erased asking you to confirm you really want to clear all history unless <code class="docutils literal notranslate"><span class="pre">builtin</span> <span class="pre">history</span></code> is used.</li>
+</ul>
+<p>The following options are available:</p>
+<p>These flags can appear before or immediately after one of the sub-commands listed above.</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-C</span></code> or <code class="docutils literal notranslate"><span class="pre">--case-sensitive</span></code> does a case-sensitive search. The default is case-insensitive. Note that prior to fish 2.4.0 the default was case-sensitive.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--contains</span></code> searches or deletes items in the history that contain the specified text string. This is the default for the <code class="docutils literal notranslate"><span class="pre">--search</span></code> flag. This is not currently supported by the <code class="docutils literal notranslate"><span class="pre">delete</span></code> subcommand.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--exact</span></code> searches or deletes items in the history that exactly match the specified text string. This is the default for the <code class="docutils literal notranslate"><span class="pre">delete</span></code> subcommand. Note that the match is case-insensitive by default. If you really want an exact match, including letter case, you must use the <code class="docutils literal notranslate"><span class="pre">-C</span></code> or <code class="docutils literal notranslate"><span class="pre">--case-sensitive</span></code> flag.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> searches or deletes items in the history that begin with the specified text string. This is not currently supported by the <code class="docutils literal notranslate"><span class="pre">--delete</span></code> flag.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-t</span></code> or <code class="docutils literal notranslate"><span class="pre">--show-time</span></code> prepends each history entry with the date and time the entry was recorded. By default it uses the strftime format <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">%c%n</span></code>. You can specify another format; e.g., <code class="docutils literal notranslate"><span class="pre">--show-time=&quot;%Y-%m-%d</span> <span class="pre">%H:%M:%S</span> <span class="pre">&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">--show-time=&quot;%a%I%p&quot;</span></code>. The short option, <code class="docutils literal notranslate"><span class="pre">-t</span></code>, doesn't accept a strftime format string; it only uses the default format. Any strftime format is allowed, including <code class="docutils literal notranslate"><span class="pre">%s</span></code> to get the raw UNIX seconds since the epoch.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-z</span></code> or <code class="docutils literal notranslate"><span class="pre">--null</span></code> causes history entries written by the search operations to be terminated by a NUL character rather than a newline. This allows the output to be processed by <code class="docutils literal notranslate"><span class="pre">read</span> <span class="pre">-z</span></code> to correctly handle multiline history entries.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-&lt;number&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">&lt;number&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">--max=&lt;number&gt;</span></code> limits the matched history items to the first &quot;n&quot; matching entries. This is only valid for <code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">search</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-R</span></code> or <code class="docutils literal notranslate"><span class="pre">--reverse</span></code> causes the history search results to be ordered oldest to newest. Which is the order used by most shells. The default is newest to oldest.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-h</span></code> or <code class="docutils literal notranslate"><span class="pre">--help</span></code> display help for this command.</li>
+</ul>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">history</span><span class="w"> </span><span class="no">clear</span><span class="w"></span>
+<span class="c"># Deletes all history items</span><span class="w"></span>
+
+<span class="nf">history</span><span class="w"> </span><span class="no">search</span><span class="w"> </span><span class="no">--contains</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="w"></span>
+<span class="c"># Outputs a list of all previous commands containing the string &quot;foo&quot;.</span><span class="w"></span>
+
+<span class="nf">history</span><span class="w"> </span><span class="no">delete</span><span class="w"> </span><span class="no">--prefix</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="w"></span>
+<span class="c"># Interactively deletes commands which start with &quot;foo&quot; from the history.</span><span class="w"></span>
+<span class="c"># You can select more than one entry by entering their IDs separated by a space.</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="customizing-the-name-of-the-history-file">
+<h2>Customizing the name of the history file<a class="headerlink" href="#customizing-the-name-of-the-history-file" title="Permalink to this headline">¶</a></h2>
+<p>By default interactive commands are logged to <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/fish/fish_history</span></code> (typically <code class="docutils literal notranslate"><span class="pre">~/.local/share/fish/fish_history</span></code>).</p>
+<p>You can set the <code class="docutils literal notranslate"><span class="pre">fish_history</span></code> variable to another name for the current shell session. The default value (when the variable is unset) is <code class="docutils literal notranslate"><span class="pre">fish</span></code> which corresponds to <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/fish/fish_history</span></code>. If you set it to e.g. <code class="docutils literal notranslate"><span class="pre">fun</span></code>, the history would be written to <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/fish/fun_history</span></code>. An empty string means history will not be stored at all. This is similar to the private session features in web browsers.</p>
+<p>You can change <code class="docutils literal notranslate"><span class="pre">fish_history</span></code> at any time (by using <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-x</span> <span class="pre">fish_history</span> <span class="pre">&quot;session_name&quot;</span></code>) and it will take effect right away. If you set it to <code class="docutils literal notranslate"><span class="pre">&quot;default&quot;</span></code>, it will use the default session name (which is <code class="docutils literal notranslate"><span class="pre">&quot;fish&quot;</span></code>).</p>
+<p>Other shells such as bash and zsh use a variable named <code class="docutils literal notranslate"><span class="pre">HISTFILE</span></code> for a similar purpose. Fish uses a different name to avoid conflicts and signal that the behavior is different (session name instead of a file path). Also, if you set the var to anything other than <code class="docutils literal notranslate"><span class="pre">fish</span></code> or <code class="docutils literal notranslate"><span class="pre">default</span></code> it will inhibit importing the bash history. That's because the most common use case for this feature is to avoid leaking private or sensitive history when giving a presentation.</p>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>If you specify both <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> and <code class="docutils literal notranslate"><span class="pre">--contains</span></code> the last flag seen is used.</p>
+<p>Note that for backwards compatibility each subcommand can also be specified as a long option. For example, rather than <code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">search</span></code> you can type <code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">--search</span></code>. Those long options are deprecated and will be removed in a future release.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">history - Show and manipulate command history</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#customizing-the-name-of-the-history-file">Customizing the name of the history file</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="if.html" title="if - conditionally execute a command"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="help.html" title="help - display fish documentation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

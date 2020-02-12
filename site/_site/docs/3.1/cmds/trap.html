@@ -1,0 +1,141 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>trap - perform an action when the shell receives a signal &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="true - return a successful result" href="true.html" />
+    <link rel="prev" title="time - measure how long a command or block takes" href="time.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="true.html" title="true - return a successful result"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="time.html" title="time - measure how long a command or block takes"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="trap-perform-an-action-when-the-shell-receives-a-signal">
+<span id="cmd-trap"></span><h1>trap - perform an action when the shell receives a signal<a class="headerlink" href="#trap-perform-an-action-when-the-shell-receives-a-signal" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">trap</span><span class="w"> </span><span class="no">[OPTIONS]</span><span class="w"> </span><span class="no">[[ARG]</span><span class="w"> </span><span class="no">REASON</span><span class="w"> </span><span class="no">...</span><span class="w"> </span><span class="no">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">trap</span></code> is a wrapper around the fish event delivery framework. It exists for backwards compatibility with POSIX shells. For other uses, it is recommended to define an <a class="reference internal" href="../index.html#event"><span class="std std-ref">event handler</span></a>.</p>
+<p>The following parameters are available:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">ARG</span></code> is the command to be executed on signal delivery.</li>
+<li><code class="docutils literal notranslate"><span class="pre">REASON</span></code> is the name of the event to trap. For example, a signal like <code class="docutils literal notranslate"><span class="pre">INT</span></code> or <code class="docutils literal notranslate"><span class="pre">SIGINT</span></code>, or the special symbol <code class="docutils literal notranslate"><span class="pre">EXIT</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--list-signals</span></code> prints a list of signal names.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--print</span></code> prints all defined signal handlers.</li>
+</ul>
+<p>If <code class="docutils literal notranslate"><span class="pre">ARG</span></code> and <code class="docutils literal notranslate"><span class="pre">REASON</span></code> are both specified, <code class="docutils literal notranslate"><span class="pre">ARG</span></code> is the command to be executed when the event specified by <code class="docutils literal notranslate"><span class="pre">REASON</span></code> occurs (e.g., the signal is delivered).</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">ARG</span></code> is absent (and there is a single REASON) or -, each specified signal is reset to its original disposition (the value it had upon entrance to the shell).  If <code class="docutils literal notranslate"><span class="pre">ARG</span></code> is the null string the signal specified by each <code class="docutils literal notranslate"><span class="pre">REASON</span></code> is ignored by the shell and by the commands it invokes.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">ARG</span></code> is not present and <code class="docutils literal notranslate"><span class="pre">-p</span></code> has been supplied, then the trap commands associated with each <code class="docutils literal notranslate"><span class="pre">REASON</span></code> are displayed. If no arguments are supplied or if only <code class="docutils literal notranslate"><span class="pre">-p</span></code> is given, <code class="docutils literal notranslate"><span class="pre">trap</span></code> prints the list of commands associated with each signal.</p>
+<p>Signal names are case insensitive and the <code class="docutils literal notranslate"><span class="pre">SIG</span></code> prefix is optional.</p>
+<p>The exit status is 1 if any <code class="docutils literal notranslate"><span class="pre">REASON</span></code> is invalid; otherwise trap returns 0.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">trap</span><span class="w"> </span><span class="s2">&quot;status --print-stack-trace&quot;</span><span class="w"> </span><span class="no">SIGUSR1</span><span class="w"></span>
+<span class="c"># Prints a stack trace each time the SIGUSR1 signal is sent to the shell.</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">trap - perform an action when the shell receives a signal</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="true.html" title="true - return a successful result"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="time.html" title="time - measure how long a command or block takes"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

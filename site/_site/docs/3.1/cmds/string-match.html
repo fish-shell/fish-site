@@ -1,0 +1,200 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>string-match - match substrings &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="string-repeat - multiply a string" href="string-repeat.html" />
+    <link rel="prev" title="string-lower - convert strings to lowercase" href="string-lower.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="string-repeat.html" title="string-repeat - multiply a string"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="string-lower.html" title="string-lower - convert strings to lowercase"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="string-match-match-substrings">
+<h1>string-match - match substrings<a class="headerlink" href="#string-match-match-substrings" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-a</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--all</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-e</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--entire</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-i</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--ignore-case</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-r</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--regex</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-n</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--index</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-v</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--invert</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">PATTERN</span><span class="w"> </span><span class="no">[STRING...]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> tests each STRING against PATTERN and prints matching substrings. Only the first match for each STRING is reported unless <code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--all</span></code> is given, in which case all matches are reported.</p>
+<p>If you specify the <code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--entire</span></code> then each matching string is printed including any prefix or suffix not matched by the pattern (equivalent to <code class="docutils literal notranslate"><span class="pre">grep</span></code> without the <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag). You can, obviously, achieve the same result by prepending and appending <code class="docutils literal notranslate"><span class="pre">*</span></code> or <code class="docutils literal notranslate"><span class="pre">.*</span></code> depending on whether or not you have specified the <code class="docutils literal notranslate"><span class="pre">--regex</span></code> flag. The <code class="docutils literal notranslate"><span class="pre">--entire</span></code> flag is simply a way to avoid having to complicate the pattern in that fashion and make the intent of the <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> clearer. Without <code class="docutils literal notranslate"><span class="pre">--entire</span></code> and <code class="docutils literal notranslate"><span class="pre">--regex</span></code>, a PATTERN will need to match the entire STRING before it will be reported.</p>
+<p>Matching can be made case-insensitive with <code class="docutils literal notranslate"><span class="pre">--ignore-case</span></code> or <code class="docutils literal notranslate"><span class="pre">-i</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">--index</span></code> or <code class="docutils literal notranslate"><span class="pre">-n</span></code> is given, each match is reported as a 1-based start position and a length. By default, PATTERN is interpreted as a glob pattern matched against each entire STRING argument. A glob pattern is only considered a valid match if it matches the entire STRING.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">--regex</span></code> or <code class="docutils literal notranslate"><span class="pre">-r</span></code> is given, PATTERN is interpreted as a Perl-compatible regular expression, which does not have to match the entire STRING. For a regular expression containing capturing groups, multiple items will be reported for each match, one for the entire match and one for each capturing group. With this, only the matching part of the STRING will be reported, unless <code class="docutils literal notranslate"><span class="pre">--entire</span></code> is given.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">--invert</span></code> or <code class="docutils literal notranslate"><span class="pre">-v</span></code> is used the selected lines will be only those which do not match the given glob pattern or regular expression.</p>
+<p>Exit status: 0 if at least one match was found, or 1 otherwise.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="match-glob-examples">
+<h3>Match Glob Examples<a class="headerlink" href="#match-glob-examples" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;?&#39;</span><span class="w"> </span><span class="no">a</span><span class="w"></span>
+a
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;a*b&#39;</span><span class="w"> </span><span class="no">axxb</span><span class="w"></span>
+axxb
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-i</span><span class="w"> </span><span class="s1">&#39;a??B&#39;</span><span class="w"> </span><span class="no">Axxb</span><span class="w"></span>
+Axxb
+
+<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;ok?&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;*</span><span class="se">\\</span><span class="s2">?&#39;</span><span class="w"></span>
+ok?
+
+# Note that only the second STRING will match here.
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span><span class="w"></span>
+foo
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span><span class="w"></span>
+foo1
+foo
+foo2
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;foo?&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span><span class="w"></span>
+foo1
+foo
+foo2
+</pre></div>
+</div>
+</div>
+<div class="section" id="match-regex-examples">
+<h3>Match Regex Examples<a class="headerlink" href="#match-regex-examples" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;cat|dog|fish&#39;</span><span class="w"> </span><span class="s1">&#39;nice dog&#39;</span><span class="w"></span>
+dog
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-v</span><span class="w"> </span><span class="s2">&quot;c.*[12]&quot;</span><span class="w"> </span><span class="o">{</span><span class="no">cat</span><span class="o">,</span><span class="no">dog</span><span class="o">}(</span><span class="nf">seq</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">4</span><span class="o">)</span><span class="w"></span>
+dog1
+dog2
+cat3
+dog3
+cat4
+dog4
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;(</span><span class="se">\\</span><span class="s2">d</span><span class="se">\\</span><span class="s2">d?):(</span><span class="se">\\</span><span class="s2">d</span><span class="se">\\</span><span class="s2">d):(</span><span class="se">\\</span><span class="s2">d</span><span class="se">\\</span><span class="s2">d)&#39;</span><span class="w"> </span><span class="no">2:34:56</span><span class="w"></span>
+2:34:56
+2
+34
+56
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;^(</span><span class="se">\\</span><span class="s2">w{{2,4}})</span><span class="se">\\</span><span class="s2">g1$&#39;</span><span class="w"> </span><span class="no">papa</span><span class="w"> </span><span class="no">mud</span><span class="w"> </span><span class="no">murmur</span><span class="w"></span>
+papa
+pa
+murmur
+mur
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="no">at</span><span class="w"> </span><span class="no">ratatat</span><span class="w"></span>
+2 2
+4 2
+6 2
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-i</span><span class="w"> </span><span class="s1">&#39;0x[0-9a-f]{{1,8}}&#39;</span><span class="w"> </span><span class="s1">&#39;int magic = 0xBadC0de;&#39;</span><span class="w"></span>
+0xBadC0de
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">string-match - match substrings</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#match-glob-examples">Match Glob Examples</a></li>
+<li><a class="reference internal" href="#match-regex-examples">Match Regex Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="string-repeat.html" title="string-repeat - multiply a string"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="string-lower.html" title="string-lower - convert strings to lowercase"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

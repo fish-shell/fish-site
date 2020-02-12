@@ -1,0 +1,143 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>time - measure how long a command or block takes &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="trap - perform an action when the shell receives a signal" href="trap.html" />
+    <link rel="prev" title="test - perform tests on files and text" href="test.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="trap.html" title="trap - perform an action when the shell receives a signal"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="test.html" title="test - perform tests on files and text"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="time-measure-how-long-a-command-or-block-takes">
+<span id="cmd-time"></span><h1>time - measure how long a command or block takes<a class="headerlink" href="#time-measure-how-long-a-command-or-block-takes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="o">time</span><span class="w"> </span><span class="nf">COMMAND</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">time</span></code> causes fish to measure how long a command takes and print the results afterwards. The command can be a simple fish command or a block. The results can not currently be redirected.</p>
+<p>For checking timing after a command has completed, check <a class="reference internal" href="../index.html#variables-special"><span class="std std-ref">$CMD_DURATION</span></a>.</p>
+<p>Your system most likely also has a <cite>time</cite> command. To use that use something like <cite>command time</cite>, as in <cite>command time sleep 10</cite>. Because it's not inside fish, it won't have access to fish functions and won't be able to time blocks and such.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>(for obvious reasons exact results will vary on your system)</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="o">time</span><span class="w"> </span><span class="nf">sleep</span><span class="w"> </span><span class="no">1s</span><span class="w"></span>
+
+________________________________________________________
+Executed in    1,01 secs   fish           external
+   usr time    2,32 millis    0,00 micros    2,32 millis
+   sys time    0,88 millis  877,00 micros    0,00 millis
+
+<span class="gp">&gt;_ </span><span class="o">time</span><span class="w"> </span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">3</span><span class="p">;</span><span class="w"> </span><span class="nf">sleep</span><span class="w"> </span><span class="no">1s</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span><span class="w"></span>
+
+________________________________________________________
+Executed in    3,01 secs   fish           external
+   usr time    9,16 millis    2,94 millis    6,23 millis
+   sys time    0,23 millis    0,00 millis    0,23 millis
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">time - measure how long a command or block takes</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="trap.html" title="trap - perform an action when the shell receives a signal"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="test.html" title="test - perform tests on files and text"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

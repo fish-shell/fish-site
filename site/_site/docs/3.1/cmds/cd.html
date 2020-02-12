@@ -1,0 +1,142 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>cd - change directory &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cdh - change to a recently visited directory" href="cdh.html" />
+    <link rel="prev" title="case - conditionally execute a block of commands" href="case.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cdh.html" title="cdh - change to a recently visited directory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="case.html" title="case - conditionally execute a block of commands"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cd-change-directory">
+<span id="cmd-cd"></span><h1>cd - change directory<a class="headerlink" href="#cd-change-directory" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cd</span><span class="w"> </span><span class="no">[DIRECTORY]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">cd</span></code> changes the current working directory.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">DIRECTORY</span></code> is supplied, it will become the new directory. If no parameter is given, the contents of the <code class="docutils literal notranslate"><span class="pre">HOME</span></code> environment variable will be used.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">DIRECTORY</span></code> is a relative path, the paths found in the <code class="docutils literal notranslate"><span class="pre">CDPATH</span></code> list will be tried as prefixes for the specified path, in addition to $PWD.</p>
+<p>Note that the shell will attempt to change directory without requiring <code class="docutils literal notranslate"><span class="pre">cd</span></code> if the name of a directory is provided (starting with <code class="docutils literal notranslate"><span class="pre">.</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code> or <code class="docutils literal notranslate"><span class="pre">~</span></code>, or ending with <code class="docutils literal notranslate"><span class="pre">/</span></code>).</p>
+<p>Fish also ships a wrapper function around the builtin <code class="docutils literal notranslate"><span class="pre">cd</span></code> that understands <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">-</span></code> as changing to the previous directory. See also <a class="reference internal" href="prevd.html#cmd-prevd"><span class="std std-ref">prevd</span></a>. This wrapper function maintains a history of the 25 most recently visited directories in the <code class="docutils literal notranslate"><span class="pre">$dirprev</span></code> and <code class="docutils literal notranslate"><span class="pre">$dirnext</span></code> global variables. If you make those universal variables your <code class="docutils literal notranslate"><span class="pre">cd</span></code> history is shared among all fish instances.</p>
+<p>As a special case, <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">.</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$PWD</span></code>, which is useful in cases where a mountpoint has been recycled or a directory has been removed and recreated.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cd</span><span class="w"></span>
+<span class="c"># changes the working directory to your home directory.</span><span class="w"></span>
+
+<span class="nf">cd</span><span class="w"> </span><span class="no">/usr/src/fish-shell</span><span class="w"></span>
+<span class="c"># changes the working directory to /usr/src/fish-shell</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p>See also the <a class="reference internal" href="cdh.html#cmd-cdh"><span class="std std-ref">cdh</span></a> command for changing to a recently visited directory.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">cd - change directory</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cdh.html" title="cdh - change to a recently visited directory"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="case.html" title="case - conditionally execute a block of commands"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

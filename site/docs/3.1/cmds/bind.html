@@ -1,0 +1,236 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>bind - handle fish key bindings &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="block - temporarily block delivery of events" href="block.html" />
+    <link rel="prev" title="bg - send jobs to background" href="bg.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="block.html" title="block - temporarily block delivery of events"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="bg.html" title="bg - send jobs to background"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bind-handle-fish-key-bindings">
+<span id="cmd-bind"></span><h1>bind - handle fish key bindings<a class="headerlink" href="#bind-handle-fish-key-bindings" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-M</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--mode</span><span class="o">)</span><span class="w"> </span><span class="no">MODE]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-m</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--sets-mode</span><span class="o">)</span><span class="w"> </span><span class="no">NEW_MODE]</span><span class="w"> </span><span class="no">[--preset</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--user]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-s</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--silent</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-k</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--key</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">SEQUENCE</span><span class="w"> </span><span class="no">COMMAND</span><span class="w"> </span><span class="no">[COMMAND...]</span><span class="w"></span>
+<span class="nf">bind</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-M</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--mode</span><span class="o">)</span><span class="w"> </span><span class="no">MODE]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-k</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--key</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[--preset]</span><span class="w"> </span><span class="no">[--user]</span><span class="w"> </span><span class="no">SEQUENCE</span><span class="w"></span>
+<span class="nf">bind</span><span class="w"> </span><span class="o">(</span><span class="nf">-K</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--key-names</span><span class="o">)</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-a</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--all</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[--preset]</span><span class="w"> </span><span class="no">[--user]</span><span class="w"></span>
+<span class="nf">bind</span><span class="w"> </span><span class="o">(</span><span class="nf">-f</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--function-names</span><span class="o">)</span><span class="w"></span>
+<span class="nf">bind</span><span class="w"> </span><span class="o">(</span><span class="nf">-L</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--list-modes</span><span class="o">)</span><span class="w"></span>
+<span class="nf">bind</span><span class="w"> </span><span class="o">(</span><span class="nf">-e</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--erase</span><span class="o">)</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-M</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--mode</span><span class="o">)</span><span class="w"> </span><span class="no">MODE]</span><span class="w"> </span><span class="no">[--preset]</span><span class="w"> </span><span class="no">[--user]</span><span class="w"> </span><span class="o">(</span><span class="nf">-a</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--all</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">[</span><span class="o">(</span><span class="nf">-k | --key</span><span class="o">)</span><span class="nf">]</span><span class="w"> </span><span class="no">SEQUENCE</span><span class="w"> </span><span class="no">[SEQUENCE...]</span><span class="o">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">bind</span></code> adds a binding for the specified key sequence to the specified command.</p>
+<p>SEQUENCE is the character sequence to bind to. These should be written as <a class="reference internal" href="../index.html#escapes"><span class="std std-ref">fish escape sequences</span></a>. For example, because pressing the Alt key and another character sends that character prefixed with an escape character, Alt-based key bindings can be written using the <code class="docutils literal notranslate"><span class="pre">\e</span></code> escape. For example, <kbd class="kbd docutils literal notranslate">Alt+w</kbd> can be written as <code class="docutils literal notranslate"><span class="pre">\ew</span></code>. The control character can be written in much the same way using the <code class="docutils literal notranslate"><span class="pre">\c</span></code> escape, for example <kbd class="kbd docutils literal notranslate">Control+X</kbd> (^X) can be written as <code class="docutils literal notranslate"><span class="pre">\cx</span></code>. Note that Alt-based key bindings are case sensitive and Control-based key bindings are not. This is a constraint of text-based terminals, not <code class="docutils literal notranslate"><span class="pre">fish</span></code>.</p>
+<p>The default key binding can be set by specifying a <code class="docutils literal notranslate"><span class="pre">SEQUENCE</span></code> of the empty string (that is, <code class="docutils literal notranslate"><span class="pre">''</span></code> ). It will be used whenever no other binding matches. For most key bindings, it makes sense to use the <code class="docutils literal notranslate"><span class="pre">self-insert</span></code> function (i.e. <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">''</span> <span class="pre">self-insert</span></code>) as the default keybinding. This will insert any keystrokes not specifically bound to into the editor. Non- printable characters are ignored by the editor, so this will not result in control sequences being printable.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">-k</span></code> switch is used, the name of the key (such as 'down', 'up' or 'backspace') is used instead of a sequence. The names used are the same as the corresponding curses variables, but without the 'key_' prefix. (See <code class="docutils literal notranslate"><span class="pre">terminfo(5)</span></code> for more information, or use <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">--key-names</span></code> for a list of all available named keys.) If used in conjunction with the <code class="docutils literal notranslate"><span class="pre">-s</span></code> switch, <code class="docutils literal notranslate"><span class="pre">bind</span></code> will silently ignore bindings to named keys that are not found in termcap for the current <code class="docutils literal notranslate"><span class="pre">$TERMINAL</span></code>, otherwise a warning is emitted.</p>
+<p><code class="docutils literal notranslate"><span class="pre">COMMAND</span></code> can be any fish command, but it can also be one of a set of special input functions. These include functions for moving the cursor, operating on the kill-ring, performing tab completion, etc. Use <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">--function-names</span></code> for a complete list of these input functions.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">COMMAND</span></code> is a shellscript command, it is a good practice to put the actual code into a <a class="reference external" href="#function">function</a> and simply bind to the function name. This way it becomes significantly easier to test the function while editing, and the result is usually more readable as well.</p>
+<p>If a script produces output, it should finish by calling <code class="docutils literal notranslate"><span class="pre">commandline</span> <span class="pre">-f</span> <span class="pre">repaint</span></code> to tell fish that a repaint is in order.</p>
+<p>When multiple <code class="docutils literal notranslate"><span class="pre">COMMAND</span></code>s are provided, they are all run in the specified order when the key is pressed. Note that special input functions cannot be combined with ordinary shell script commands. The commands must be entirely a sequence of special input functions (from <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">-f</span></code>) or all shell script commands (i.e., valid fish script).</p>
+<p>If no <code class="docutils literal notranslate"><span class="pre">SEQUENCE</span></code> is provided, all bindings (or just the bindings in the specified <code class="docutils literal notranslate"><span class="pre">MODE</span></code>) are printed. If <code class="docutils literal notranslate"><span class="pre">SEQUENCE</span></code> is provided without <code class="docutils literal notranslate"><span class="pre">COMMAND</span></code>, just the binding matching that sequence is printed.</p>
+<p>To save custom keybindings, put the <code class="docutils literal notranslate"><span class="pre">bind</span></code> statements into <a class="reference internal" href="../index.html#initialization"><span class="std std-ref">config.fish</span></a>. Alternatively, fish also automatically executes a function called <code class="docutils literal notranslate"><span class="pre">fish_user_key_bindings</span></code> if it exists.</p>
+<p>Key bindings may use &quot;modes&quot;, which mimics Vi's modal input behavior. The default mode is &quot;default&quot;, and every bind applies to a single mode. The mode can be viewed/changed with the <code class="docutils literal notranslate"><span class="pre">$fish_bind_mode</span></code> variable.</p>
+<p>The following parameters are available:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-k</span></code> or <code class="docutils literal notranslate"><span class="pre">--key</span></code> Specify a key name, such as 'left' or 'backspace' instead of a character sequence</li>
+<li><code class="docutils literal notranslate"><span class="pre">-K</span></code> or <code class="docutils literal notranslate"><span class="pre">--key-names</span></code> Display a list of available key names. Specifying <code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--all</span></code> includes keys that don't have a known mapping</li>
+<li><code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--function-names</span></code> Display a list of available input functions</li>
+<li><code class="docutils literal notranslate"><span class="pre">-L</span></code> or <code class="docutils literal notranslate"><span class="pre">--list-modes</span></code> Display a list of defined bind modes</li>
+<li><code class="docutils literal notranslate"><span class="pre">-M</span> <span class="pre">MODE</span></code> or <code class="docutils literal notranslate"><span class="pre">--mode</span> <span class="pre">MODE</span></code> Specify a bind mode that the bind is used in. Defaults to &quot;default&quot;</li>
+<li><code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">NEW_MODE</span></code> or <code class="docutils literal notranslate"><span class="pre">--sets-mode</span> <span class="pre">NEW_MODE</span></code> Change the current mode to <code class="docutils literal notranslate"><span class="pre">NEW_MODE</span></code> after this binding is executed</li>
+<li><code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code> Erase the binding with the given sequence and mode instead of defining a new one. Multiple sequences can be specified with this flag. Specifying <code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--all</span></code> with <code class="docutils literal notranslate"><span class="pre">-M</span></code> or <code class="docutils literal notranslate"><span class="pre">--mode</span></code> erases all binds in the given mode regardless of sequence. Specifying <code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--all</span></code> without <code class="docutils literal notranslate"><span class="pre">-M</span></code> or <code class="docutils literal notranslate"><span class="pre">--mode</span></code> erases all binds in all modes regardless of sequence.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--all</span></code> See <code class="docutils literal notranslate"><span class="pre">--erase</span></code> and <code class="docutils literal notranslate"><span class="pre">--key-names</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">--preset</span></code> and <code class="docutils literal notranslate"><span class="pre">--user</span></code> specify if bind should operate on user or preset bindings. User bindings take precedence over preset bindings when fish looks up mappings. By default, all <code class="docutils literal notranslate"><span class="pre">bind</span></code> invocations work on the &quot;user&quot; level except for listing, which will show both levels. All invocations except for inserting new bindings can operate on both levels at the same time. <code class="docutils literal notranslate"><span class="pre">--preset</span></code> should only be used in full binding sets (like when working on <code class="docutils literal notranslate"><span class="pre">fish_vi_key_bindings</span></code>).</li>
+</ul>
+</div>
+<div class="section" id="special-input-functions">
+<h2>Special input functions<a class="headerlink" href="#special-input-functions" title="Permalink to this headline">¶</a></h2>
+<p>The following special input functions are available:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">and</span></code>, only execute the next function if the previous succeeded (note: only some functions report success)</li>
+<li><code class="docutils literal notranslate"><span class="pre">accept-autosuggestion</span></code>, accept the current autosuggestion completely</li>
+<li><code class="docutils literal notranslate"><span class="pre">backward-char</span></code>, moves one character to the left</li>
+<li><code class="docutils literal notranslate"><span class="pre">backward-bigword</span></code>, move one whitespace-delimited word to the left</li>
+<li><code class="docutils literal notranslate"><span class="pre">backward-delete-char</span></code>, deletes one character of input to the left of the cursor</li>
+<li><code class="docutils literal notranslate"><span class="pre">backward-kill-bigword</span></code>, move the whitespace-delimited word to the left of the cursor to the killring</li>
+<li><code class="docutils literal notranslate"><span class="pre">backward-kill-line</span></code>, move everything from the beginning of the line to the cursor to the killring</li>
+<li><code class="docutils literal notranslate"><span class="pre">backward-kill-path-component</span></code>, move one path component to the left of the cursor to the killring. A path component is everything likely to belong to a path component, i.e. not any of the following: <cite>/={,}'&quot;:&#64; |;&lt;&gt;&amp;</cite>, plus newlines and tabs.</li>
+<li><code class="docutils literal notranslate"><span class="pre">backward-kill-word</span></code>, move the word to the left of the cursor to the killring. The &quot;word&quot; here is everything up to punctuation or whitespace.</li>
+<li><code class="docutils literal notranslate"><span class="pre">backward-word</span></code>, move one word to the left</li>
+<li><code class="docutils literal notranslate"><span class="pre">beginning-of-buffer</span></code>, moves to the beginning of the buffer, i.e. the start of the first line</li>
+<li><code class="docutils literal notranslate"><span class="pre">beginning-of-history</span></code>, move to the beginning of the history</li>
+<li><code class="docutils literal notranslate"><span class="pre">beginning-of-line</span></code>, move to the beginning of the line</li>
+<li><code class="docutils literal notranslate"><span class="pre">begin-selection</span></code>, start selecting text</li>
+<li><code class="docutils literal notranslate"><span class="pre">cancel</span></code>, cancel the current commandline and replace it with a new empty one</li>
+<li><code class="docutils literal notranslate"><span class="pre">capitalize-word</span></code>, make the current word begin with a capital letter</li>
+<li><code class="docutils literal notranslate"><span class="pre">complete</span></code>, guess the remainder of the current token</li>
+<li><code class="docutils literal notranslate"><span class="pre">complete-and-search</span></code>, invoke the searchable pager on completion options (for convenience, this also moves backwards in the completion pager)</li>
+<li><code class="docutils literal notranslate"><span class="pre">delete-char</span></code>, delete one character to the right of the cursor</li>
+<li><code class="docutils literal notranslate"><span class="pre">delete-or-exit</span></code>, deletes one character to the right of the cursor or exits the shell if the commandline is empty.</li>
+<li><code class="docutils literal notranslate"><span class="pre">down-line</span></code>, move down one line</li>
+<li><code class="docutils literal notranslate"><span class="pre">downcase-word</span></code>, make the current word lowercase</li>
+<li><code class="docutils literal notranslate"><span class="pre">end-of-buffer</span></code>, moves to the end of the buffer, i.e. the end of the first line</li>
+<li><code class="docutils literal notranslate"><span class="pre">end-of-history</span></code>, move to the end of the history</li>
+<li><code class="docutils literal notranslate"><span class="pre">end-of-line</span></code>, move to the end of the line</li>
+<li><code class="docutils literal notranslate"><span class="pre">end-selection</span></code>, end selecting text</li>
+<li><code class="docutils literal notranslate"><span class="pre">expand-abbr</span></code> expands any abbreviation currently under the cursor</li>
+<li><code class="docutils literal notranslate"><span class="pre">execute</span></code> run the current commandline</li>
+<li><code class="docutils literal notranslate"><span class="pre">forward-bigword</span></code>, move one whitespace-delimited word to the right</li>
+<li><code class="docutils literal notranslate"><span class="pre">forward-char</span></code>, move one character to the right</li>
+<li><code class="docutils literal notranslate"><span class="pre">forward-word</span></code>, move one word to the right</li>
+<li><code class="docutils literal notranslate"><span class="pre">history-search-backward</span></code>, search the history for the previous match</li>
+<li><code class="docutils literal notranslate"><span class="pre">history-search-forward</span></code>, search the history for the next match</li>
+<li><code class="docutils literal notranslate"><span class="pre">history-prefix-search-backward</span></code>, search the history for the previous prefix match</li>
+<li><code class="docutils literal notranslate"><span class="pre">history-prefix-search-forward</span></code>, search the history for the next prefix match</li>
+<li><code class="docutils literal notranslate"><span class="pre">history-token-search-backward</span></code>, search the history for the previous matching argument</li>
+<li><code class="docutils literal notranslate"><span class="pre">history-token-search-forward</span></code>, search the history for the next matching argument</li>
+<li><code class="docutils literal notranslate"><span class="pre">forward-jump</span></code> and <code class="docutils literal notranslate"><span class="pre">backward-jump</span></code>, read another character and jump to its next occurence after/before the cursor</li>
+<li><code class="docutils literal notranslate"><span class="pre">forward-jump-till</span></code> and <code class="docutils literal notranslate"><span class="pre">backward-jump-till</span></code>, jump to right <em>before</em> the next occurence</li>
+<li><code class="docutils literal notranslate"><span class="pre">repeat-jump</span></code> and <code class="docutils literal notranslate"><span class="pre">repeat-jump-reverse</span></code>, redo the last jump in the same/opposite direction</li>
+<li><code class="docutils literal notranslate"><span class="pre">kill-bigword</span></code>, move the next whitespace-delimited word to the killring</li>
+<li><code class="docutils literal notranslate"><span class="pre">kill-line</span></code>, move everything from the cursor to the end of the line to the killring</li>
+<li><code class="docutils literal notranslate"><span class="pre">kill-selection</span></code>, move the selected text to the killring</li>
+<li><code class="docutils literal notranslate"><span class="pre">kill-whole-line</span></code>, move the line to the killring</li>
+<li><code class="docutils literal notranslate"><span class="pre">kill-word</span></code>, move the next word to the killring</li>
+<li><code class="docutils literal notranslate"><span class="pre">pager-toggle-search</span></code>, toggles the search field if the completions pager is visible.</li>
+<li><code class="docutils literal notranslate"><span class="pre">repaint</span></code> reexecutes the prompt functions and redraws the prompt. Multiple successive repaints are coalesced.</li>
+<li><code class="docutils literal notranslate"><span class="pre">repaint-mode</span></code> reexecutes the fish_mode_prompt function and redraws the prompt. This is useful for vi-mode. If no fish_mode_prompt exists, it acts like a normal repaint.</li>
+<li><code class="docutils literal notranslate"><span class="pre">force-repaint</span></code> reexecute the prompt functions without coalescing.</li>
+<li><code class="docutils literal notranslate"><span class="pre">suppress-autosuggestion</span></code>, remove the current autosuggestion</li>
+<li><code class="docutils literal notranslate"><span class="pre">swap-selection-start-stop</span></code>, go to the other end of the highlighted text without changing the selection</li>
+<li><code class="docutils literal notranslate"><span class="pre">transpose-chars</span></code>,  transpose two characters to the left of the cursor</li>
+<li><code class="docutils literal notranslate"><span class="pre">transpose-words</span></code>, transpose two words to the left of the cursor</li>
+<li><code class="docutils literal notranslate"><span class="pre">up-line</span></code>, move up one line</li>
+<li><code class="docutils literal notranslate"><span class="pre">upcase-word</span></code>, make the current word uppercase</li>
+<li><code class="docutils literal notranslate"><span class="pre">yank</span></code>, insert the latest entry of the killring into the buffer</li>
+<li><code class="docutils literal notranslate"><span class="pre">yank-pop</span></code>, rotate to the previous entry of the killring</li>
+</ul>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="se">\c</span><span class="no">d</span><span class="w"> </span><span class="s1">&#39;exit&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Causes <code class="docutils literal notranslate"><span class="pre">fish</span></code> to exit when <kbd class="kbd docutils literal notranslate">Control+D</kbd> is pressed.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="no">-k</span><span class="w"> </span><span class="no">ppage</span><span class="w"> </span><span class="no">history-search-backward</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Performs a history search when the <kbd class="kbd docutils literal notranslate">Page Up</kbd> key is pressed.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_key_bindings</span><span class="w"> </span><span class="no">fish_vi_key_bindings</span><span class="w"></span>
+<span class="nf">bind</span><span class="w"> </span><span class="no">-M</span><span class="w"> </span><span class="no">insert</span><span class="w"> </span><span class="se">\c</span><span class="no">c</span><span class="w"> </span><span class="no">kill-whole-line</span><span class="w"> </span><span class="no">force-repaint</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Turns on Vi key bindings and rebinds <kbd class="kbd docutils literal notranslate">Control+C</kbd> to clear the input line.</p>
+</div>
+<div class="section" id="special-case-the-escape-character">
+<span id="cmd-bind-escape"></span><h2>Special Case: The escape Character<a class="headerlink" href="#special-case-the-escape-character" title="Permalink to this headline">¶</a></h2>
+<p>The escape key can be used standalone, for example, to switch from insertion mode to normal mode when using Vi keybindings. Escape may also be used as a &quot;meta&quot; key, to indicate the start of an escape sequence, such as function or arrow keys. Custom bindings can also be defined that begin with an escape character.</p>
+<p>fish waits for a period after receiving the escape character, to determine whether it is standalone or part of an escape sequence. While waiting, additional key presses make the escape key behave as a meta key. If no other key presses come in, it is handled as a standalone escape. The waiting period is set to 300 milliseconds (0.3 seconds) in the default key bindings and 10 milliseconds in the vi key bindings. It can be configured by setting the <code class="docutils literal notranslate"><span class="pre">fish_escape_delay_ms</span></code> variable to a value between 10 and 5000 ms. It is recommended that this be a universal variable that you set once from an interactive session.</p>
+<p>Note: fish 2.2.0 and earlier used a default of 10 milliseconds, and provided no way to configure it. That effectively made it impossible to use escape as a meta key.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">bind - handle fish key bindings</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#special-input-functions">Special input functions</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#special-case-the-escape-character">Special Case: The escape Character</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="block.html" title="block - temporarily block delivery of events"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="bg.html" title="bg - send jobs to background"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

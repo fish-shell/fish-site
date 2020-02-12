@@ -1,0 +1,185 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>abbr - manage fish abbreviations &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="alias - create a function" href="alias.html" />
+    <link rel="prev" title="Commands" href="../commands.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="alias.html" title="alias - create a function"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../commands.html" title="Commands"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="abbr-manage-fish-abbreviations">
+<span id="cmd-abbr"></span><h1>abbr - manage fish abbreviations<a class="headerlink" href="#abbr-manage-fish-abbreviations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">--add</span><span class="w"> </span><span class="no">[SCOPE]</span><span class="w"> </span><span class="no">WORD</span><span class="w"> </span><span class="no">EXPANSION</span><span class="w"></span>
+<span class="nf">abbr</span><span class="w"> </span><span class="no">--erase</span><span class="w"> </span><span class="no">word</span><span class="w"></span>
+<span class="nf">abbr</span><span class="w"> </span><span class="no">--rename</span><span class="w"> </span><span class="no">[SCOPE]</span><span class="w"> </span><span class="no">OLD_WORD</span><span class="w"> </span><span class="no">NEW_WORD</span><span class="w"></span>
+<span class="nf">abbr</span><span class="w"> </span><span class="no">--show</span><span class="w"></span>
+<span class="nf">abbr</span><span class="w"> </span><span class="no">--list</span><span class="w"></span>
+<span class="nf">abbr</span><span class="w"> </span><span class="no">--query</span><span class="w"> </span><span class="no">WORD...</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">abbr</span></code> manages abbreviations - user-defined words that are replaced with longer phrases after they are entered.</p>
+<p>For example, a frequently-run command like <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> can be abbreviated to <code class="docutils literal notranslate"><span class="pre">gco</span></code>. After entering <code class="docutils literal notranslate"><span class="pre">gco</span></code> and pressing <kbd class="kbd docutils literal notranslate">Space</kbd> or <kbd class="kbd docutils literal notranslate">Enter</kbd>, the full text <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> will appear in the command line.</p>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p>The following options are available:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-a</span> <span class="pre">WORD</span> <span class="pre">EXPANSION</span></code> or <code class="docutils literal notranslate"><span class="pre">--add</span> <span class="pre">WORD</span> <span class="pre">EXPANSION</span></code> Adds a new abbreviation, causing WORD to be expanded to PHRASE.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">OLD_WORD</span> <span class="pre">NEW_WORD</span></code> or <code class="docutils literal notranslate"><span class="pre">--rename</span> <span class="pre">OLD_WORD</span> <span class="pre">NEW_WORD</span></code> Renames an abbreviation, from OLD_WORD to NEW_WORD.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-s</span></code> or <code class="docutils literal notranslate"><span class="pre">--show</span></code> Show all abbreviations in a manner suitable for export and import.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--list</span></code> Lists all abbreviated words.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">WORD</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span> <span class="pre">WORD</span></code> Erase the abbreviation WORD.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-q</span></code> or <code class="docutils literal notranslate"><span class="pre">--query</span></code> Return 0 (true) if one of the WORDs is an abbreviation.</li>
+</ul>
+<p>In addition, when adding abbreviations:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-g</span></code> or <code class="docutils literal notranslate"><span class="pre">--global</span></code> to use a global variable.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-U</span></code> or <code class="docutils literal notranslate"><span class="pre">--universal</span></code> to use a universal variable (default).</li>
+</ul>
+<p>See the &quot;Internals&quot; section for more on them.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">gco</span><span class="w"> </span><span class="no">git</span><span class="w"> </span><span class="no">checkout</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Add a new abbreviation where <code class="docutils literal notranslate"><span class="pre">gco</span></code> will be replaced with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> global to the current shell. This abbreviation will not be automatically visible to other shells unless the same command is run in those shells (such as when executing the commands in config.fish).</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">-U</span><span class="w"> </span><span class="no">l</span><span class="w"> </span><span class="no">less</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Add a new abbreviation where <code class="docutils literal notranslate"><span class="pre">l</span></code> will be replaced with <code class="docutils literal notranslate"><span class="pre">less</span></code> universal so all shells. Note that you omit the <code class="docutils literal notranslate"><span class="pre">-U</span></code> since it is the default.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">gco</span><span class="w"> </span><span class="no">gch</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Renames an existing abbreviation from <code class="docutils literal notranslate"><span class="pre">gco</span></code> to <code class="docutils literal notranslate"><span class="pre">gch</span></code>.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">gco</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Erase the <code class="docutils literal notranslate"><span class="pre">gco</span></code> abbreviation.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">ssh</span><span class="w"> </span><span class="no">another_host</span><span class="w"> </span><span class="no">abbr</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">source</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Import the abbreviations defined on another_host over SSH.</p>
+</div>
+<div class="section" id="internals">
+<h2>Internals<a class="headerlink" href="#internals" title="Permalink to this headline">¶</a></h2>
+<p>Each abbreviation is stored in its own global or universal variable. The name consists of the prefix <code class="docutils literal notranslate"><span class="pre">_fish_abbr_</span></code> followed by the WORD after being transformed by <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">escape</span> <span class="pre">style=var</span></code>. The WORD cannot contain a space but all other characters are legal.</p>
+<p>Defining an abbreviation with global scope is slightly faster than universal scope (which is the default). But in general you'll only want to use the global scope when defining abbreviations in a startup script like <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code> like this:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">status</span><span class="w"> </span><span class="no">--is-interactive</span><span class="w"></span>
+<span class="w">    </span><span class="nf">abbr</span><span class="w"> </span><span class="no">--add</span><span class="w"> </span><span class="no">--global</span><span class="w"> </span><span class="no">first</span><span class="w"> </span><span class="s1">&#39;echo my first abbreviation&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nf">abbr</span><span class="w"> </span><span class="no">--add</span><span class="w"> </span><span class="no">--global</span><span class="w"> </span><span class="no">second</span><span class="w"> </span><span class="s1">&#39;echo my second abbreviation&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nf">abbr</span><span class="w"> </span><span class="no">--add</span><span class="w"> </span><span class="no">--global</span><span class="w"> </span><span class="no">gco</span><span class="w"> </span><span class="no">git</span><span class="w"> </span><span class="no">checkout</span><span class="w"></span>
+<span class="w">    </span><span class="c"># etcetera</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You can create abbreviations interactively and they will be visible to other fish sessions if you use the <code class="docutils literal notranslate"><span class="pre">-U</span></code> or <code class="docutils literal notranslate"><span class="pre">--universal</span></code> flag or don't explicitly specify the scope and the abbreviation isn't already defined with global scope. If you want it to be visible only to the current shell use the <code class="docutils literal notranslate"><span class="pre">-g</span></code> or <code class="docutils literal notranslate"><span class="pre">--global</span></code> flag.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">abbr - manage fish abbreviations</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#internals">Internals</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="alias.html" title="alias - create a function"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../commands.html" title="Commands"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

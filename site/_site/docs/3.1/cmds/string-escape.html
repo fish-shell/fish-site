@@ -1,0 +1,137 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>string-escape - escape special characters &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="string-join - join strings with delimiter" href="string-join.html" />
+    <link rel="prev" title="string-collect - join strings into one" href="string-collect.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="string-join.html" title="string-join - join strings with delimiter"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="string-collect.html" title="string-collect - join strings into one"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="string-escape-escape-special-characters">
+<h1>string-escape - escape special characters<a class="headerlink" href="#string-escape-escape-special-characters" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">escape</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-n</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--no-quoted</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[--style=xxx]</span><span class="w"> </span><span class="no">[STRING...]</span><span class="w"></span>
+<span class="nf">string</span><span class="w"> </span><span class="no">unescape</span><span class="w"> </span><span class="no">[--style=xxx]</span><span class="w"> </span><span class="no">[STRING...]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">escape</span></code> escapes each STRING in one of three ways. The first is <code class="docutils literal notranslate"><span class="pre">--style=script</span></code>. This is the default. It alters the string such that it can be passed back to <code class="docutils literal notranslate"><span class="pre">eval</span></code> to produce the original argument again. By default, all special characters are escaped, and quotes are used to simplify the output when possible. If <code class="docutils literal notranslate"><span class="pre">-n</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-quoted</span></code> is given, the simplifying quoted format is not used. Exit status: 0 if at least one string was escaped, or 1 otherwise.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--style=var</span></code> ensures the string can be used as a variable name by hex encoding any non-alphanumeric characters. The string is first converted to UTF-8 before being encoded.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--style=url</span></code> ensures the string can be used as a URL by hex encoding any character which is not legal in a URL. The string is first converted to UTF-8 before being encoded.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--style=regex</span></code> escapes an input string for literal matching within a regex expression. The string is first converted to UTF-8 before being encoded.</p>
+<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">unescape</span></code> performs the inverse of the <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">escape</span></code> command. If the string to be unescaped is not properly formatted it is ignored. For example, doing <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">unescape</span> <span class="pre">--style=var</span> <span class="pre">(string</span> <span class="pre">escape</span> <span class="pre">--style=var</span> <span class="pre">$str)</span></code> will return the original string. There is no support for unescaping <code class="docutils literal notranslate"><span class="pre">--style=regex</span></code>.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="se">\\</span><span class="no">x07</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">escape</span><span class="w"></span>
+cg
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">escape</span><span class="w"> </span><span class="no">--style=var</span><span class="w"> </span><span class="s1">&#39;a1 b2&#39;</span><span class="se">\\</span><span class="no">u6161</span><span class="w"></span>
+a1_20b2__c_E6_85_A1
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">string-escape - escape special characters</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="string-join.html" title="string-join - join strings with delimiter"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="string-collect.html" title="string-collect - join strings into one"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

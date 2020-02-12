@@ -1,0 +1,177 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>commandline - set or get the current command line buffer &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="complete - edit command specific tab-completions" href="complete.html" />
+    <link rel="prev" title="command - run a program" href="command.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="complete.html" title="complete - edit command specific tab-completions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="command.html" title="command - run a program"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="commandline-set-or-get-the-current-command-line-buffer">
+<span id="cmd-commandline"></span><h1>commandline - set or get the current command line buffer<a class="headerlink" href="#commandline-set-or-get-the-current-command-line-buffer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">commandline</span><span class="w"> </span><span class="no">[OPTIONS]</span><span class="w"> </span><span class="no">[CMD]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">commandline</span></code> can be used to set or get the current contents of the command line buffer.</p>
+<p>With no parameters, <code class="docutils literal notranslate"><span class="pre">commandline</span></code> returns the current value of the command line.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">CMD</span></code> specified, the command line buffer is erased and replaced with the contents of <code class="docutils literal notranslate"><span class="pre">CMD</span></code>.</p>
+<p>The following options are available:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-C</span></code> or <code class="docutils literal notranslate"><span class="pre">--cursor</span></code> set or get the current cursor position, not the contents of the buffer. If no argument is given, the current cursor position is printed, otherwise the argument is interpreted as the new cursor position.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--function</span></code> causes any additional arguments to be interpreted as input functions, and puts them into the queue, so that they will be read before any additional actual key presses are. This option cannot be combined with any other option. See <a class="reference internal" href="bind.html#cmd-bind"><span class="std std-ref">bind</span></a> for a list of input functions.</li>
+</ul>
+<p>The following options change the way <code class="docutils literal notranslate"><span class="pre">commandline</span></code> updates the command line buffer:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--append</span></code> do not remove the current commandline, append the specified string at the end of it</li>
+<li><code class="docutils literal notranslate"><span class="pre">-i</span></code> or <code class="docutils literal notranslate"><span class="pre">--insert</span></code> do not remove the current commandline, insert the specified string at the current cursor position</li>
+<li><code class="docutils literal notranslate"><span class="pre">-r</span></code> or <code class="docutils literal notranslate"><span class="pre">--replace</span></code> remove the current commandline and replace it with the specified string (default)</li>
+</ul>
+<p>The following options change what part of the commandline is printed or updated:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-b</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-buffer</span></code> select the entire buffer, including any displayed autosuggestion (default)</li>
+<li><code class="docutils literal notranslate"><span class="pre">-j</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-job</span></code> select the current job</li>
+<li><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-process</span></code> select the current process</li>
+<li><code class="docutils literal notranslate"><span class="pre">-s</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-selection</span></code> selects the current selection</li>
+<li><code class="docutils literal notranslate"><span class="pre">-t</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-token</span></code> select the current token</li>
+</ul>
+<p>The following options change the way <code class="docutils literal notranslate"><span class="pre">commandline</span></code> prints the current commandline buffer:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--cut-at-cursor</span></code> only print selection up until the current cursor position</li>
+<li><code class="docutils literal notranslate"><span class="pre">-o</span></code> or <code class="docutils literal notranslate"><span class="pre">--tokenize</span></code> tokenize the selection and print one string-type token per line</li>
+</ul>
+<p>If <code class="docutils literal notranslate"><span class="pre">commandline</span></code> is called during a call to complete a given string using <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-C</span> <span class="pre">STRING</span></code>, <code class="docutils literal notranslate"><span class="pre">commandline</span></code> will consider the specified string to be the current contents of the command line.</p>
+<p>The following options output metadata about the commandline state:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-L</span></code> or <code class="docutils literal notranslate"><span class="pre">--line</span></code> print the line that the cursor is on, with the topmost line starting at 1</li>
+<li><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--search-mode</span></code> evaluates to true if the commandline is performing a history search</li>
+<li><code class="docutils literal notranslate"><span class="pre">-P</span></code> or <code class="docutils literal notranslate"><span class="pre">--paging-mode</span></code> evaluates to true if the commandline is showing pager contents, such as tab completions</li>
+</ul>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">commandline</span> <span class="pre">-j</span> <span class="pre">$history[3]</span></code> replaces the job under the cursor with the third item from the command line history.</p>
+<p>If the commandline contains</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="o">$fl___ounder</span><span class="w"> </span><span class="p">&gt;&amp;2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">less</span><span class="p">;</span><span class="w"> </span><span class="o">and</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="o">$catfish</span><span class="w"></span>
+</pre></div>
+</div>
+<p>(with the cursor on the &quot;o&quot; of &quot;flounder&quot;)</p>
+<p>Then the following invocations behave like this:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">commandline</span><span class="w"> </span><span class="no">-t</span><span class="w"></span>
+$flounder
+<span class="gp">&gt;_ </span><span class="nf">commandline</span><span class="w"> </span><span class="no">-ct</span><span class="w"></span>
+$fl
+<span class="gp">&gt;_ </span><span class="nf">commandline</span><span class="w"> </span><span class="no">-b</span><span class="w"> </span><span class="c"># or just commandline</span><span class="w"></span>
+echo $flounder &gt;&amp;2 | less; and echo $catfish
+<span class="gp">&gt;_ </span><span class="nf">commandline</span><span class="w"> </span><span class="no">-p</span><span class="w"></span>
+echo $flounder &gt;&amp;2
+<span class="gp">&gt;_ </span><span class="nf">commandline</span><span class="w"> </span><span class="no">-j</span><span class="w"></span>
+echo $flounder &gt;&amp;2 | less
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">commandline - set or get the current command line buffer</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="complete.html" title="complete - edit command specific tab-completions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="command.html" title="command - run a program"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

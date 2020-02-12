@@ -1,0 +1,143 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>umask - set or get the file creation mode mask &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="vared - interactively edit the value of an environment variable" href="vared.html" />
+    <link rel="prev" title="ulimit - set or get resource usage limits" href="ulimit.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="vared.html" title="vared - interactively edit the value of an environment variable"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ulimit.html" title="ulimit - set or get resource usage limits"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="umask-set-or-get-the-file-creation-mode-mask">
+<span id="cmd-umask"></span><h1>umask - set or get the file creation mode mask<a class="headerlink" href="#umask-set-or-get-the-file-creation-mode-mask" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">umask</span><span class="w"> </span><span class="no">[OPTIONS]</span><span class="w"> </span><span class="no">[MASK]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">umask</span></code> displays and manipulates the &quot;umask&quot;, or file creation mode mask, which is used to restrict the default access to files.</p>
+<p>The umask may be expressed either as an octal number, which represents the rights that will be removed by default, or symbolically, which represents the only rights that will be granted by default.</p>
+<p>Access rights are explained in the manual page for the <code class="docutils literal notranslate"><span class="pre">chmod(1)</span></code> program.</p>
+<p>With no parameters, the current file creation mode mask is printed as an octal number.</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-h</span></code> or <code class="docutils literal notranslate"><span class="pre">--help</span></code> prints this message.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--symbolic</span></code> prints the umask in symbolic form instead of octal form.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--as-command</span></code> outputs the umask in a form that may be reused as input</li>
+</ul>
+<p>If a numeric mask is specified as a parameter, the current shell's umask will be set to that value, and the rights specified by that mask will be removed from new files and directories by default.</p>
+<p>If a symbolic mask is specified, the desired permission bits, and not the inverse, should be specified. A symbolic mask is a comma separated list of rights. Each right consists of three parts:</p>
+<ul class="simple">
+<li>The first part specifies to whom this set of right applies, and can be one of <code class="docutils literal notranslate"><span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>, <code class="docutils literal notranslate"><span class="pre">o</span></code> or <code class="docutils literal notranslate"><span class="pre">a</span></code>, where <code class="docutils literal notranslate"><span class="pre">u</span></code> specifies the user who owns the file, <code class="docutils literal notranslate"><span class="pre">g</span></code> specifies the group owner of the file, <code class="docutils literal notranslate"><span class="pre">o</span></code> specific other users rights and <code class="docutils literal notranslate"><span class="pre">a</span></code> specifies all three should be changed.</li>
+<li>The second part of a right specifies the mode, and can be one of <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code> or <code class="docutils literal notranslate"><span class="pre">-</span></code>, where <code class="docutils literal notranslate"><span class="pre">=</span></code> specifies that the rights should be set to the new value, <code class="docutils literal notranslate"><span class="pre">+</span></code> specifies that the specified right should be added to those previously specified and <code class="docutils literal notranslate"><span class="pre">-</span></code> specifies that the specified rights should be removed from those previously specified.</li>
+<li>The third part of a right specifies what rights should be changed and can be any combination of <code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">w</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code>, representing read, write and execute rights.</li>
+</ul>
+<p>If the first and second parts are skipped, they are assumed to be <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">=</span></code>, respectively. As an example, <code class="docutils literal notranslate"><span class="pre">r,u+w</span></code> means all users should have read access and the file owner should also have write access.</p>
+<p>Note that symbolic masks currently do not work as intended.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">umask</span> <span class="pre">177</span></code> or <code class="docutils literal notranslate"><span class="pre">umask</span> <span class="pre">u=rw</span></code> sets the file creation mask to read and write for the owner and no permissions at all for any other users.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">umask - set or get the file creation mode mask</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="vared.html" title="vared - interactively edit the value of an environment variable"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ulimit.html" title="ulimit - set or get resource usage limits"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

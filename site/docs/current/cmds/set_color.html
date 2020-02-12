@@ -1,0 +1,177 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>set_color - set the terminal color &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="source - evaluate contents of file." href="source.html" />
+    <link rel="prev" title="set - display and change shell variables." href="set.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="source.html" title="source - evaluate contents of file."
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="set.html" title="set - display and change shell variables."
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="set-color-set-the-terminal-color">
+<span id="cmd-set-color"></span><h1>set_color - set the terminal color<a class="headerlink" href="#set-color-set-the-terminal-color" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set_color</span><span class="w"> </span><span class="no">[OPTIONS]</span><span class="w"> </span><span class="no">VALUE</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">set_color</span></code> is used to control the color and styling of text in the terminal. <code class="docutils literal notranslate"><span class="pre">VALUE</span></code> describes that styling. It's a reserved color name like <em>red</em> or a RGB color value given as 3 or 6 hexadecimal digits (&quot;F27&quot; or &quot;FF2277&quot;). A special keyword <em>normal</em> resets text formatting to terminal defaults.</p>
+<p>Valid colors include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>black</em>, <em>red</em>, <em>green</em>, <em>yellow</em>, <em>blue</em>, <em>magenta</em>, <em>cyan</em>, <em>white</em></li>
+<li><em>brblack</em>, <em>brred</em>, <em>brgreen</em>, <em>bryellow</em>, <em>brblue</em>, <em>brmagenta</em>, <em>brcyan</em>, <em>brwhite</em></li>
+</ul>
+</div></blockquote>
+<p>The <em>br</em>- (as in 'bright') forms are full-brightness variants of the 8 standard-brightness colors on many terminals. <em>brblack</em> has higher brightness than <em>black</em> - towards gray.</p>
+<p>An RGB value with three or six hex digits, such as A0FF33 or f2f can be used. <code class="docutils literal notranslate"><span class="pre">fish</span></code> will choose the closest supported color. A three digit value is equivalent to specifying each digit twice; e.g., <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">2BC</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">22BBCC</span></code>. Hexadecimal RGB values can be in lower or uppercase. Depending on the capabilities of your terminal (and the level of support <code class="docutils literal notranslate"><span class="pre">set_color</span></code> has for it) the actual color may be approximated by a nearby matching reserved color name or <code class="docutils literal notranslate"><span class="pre">set_color</span></code> may not have an effect on color.</p>
+<p>A second color may be given as a desired fallback color. e.g. <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">124212</span> <span class="pre">brblue</span></code> will instruct set_color to use <em>brblue</em> if a terminal is not capable of the exact shade of grey desired. This is very useful when an 8 or 16 color terminal might otherwise not use a color.</p>
+<p>The following options are available:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-b</span></code>, <code class="docutils literal notranslate"><span class="pre">--background</span></code> <em>COLOR</em> sets the background color.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-c</span></code>, <code class="docutils literal notranslate"><span class="pre">--print-colors</span></code> prints a list of the 16 named colors.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-o</span></code>, <code class="docutils literal notranslate"><span class="pre">--bold</span></code> sets bold mode.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-d</span></code>, <code class="docutils literal notranslate"><span class="pre">--dim</span></code> sets dim mode.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-i</span></code>, <code class="docutils literal notranslate"><span class="pre">--italics</span></code> sets italics mode.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-r</span></code>, <code class="docutils literal notranslate"><span class="pre">--reverse</span></code> sets reverse mode.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-u</span></code>, <code class="docutils literal notranslate"><span class="pre">--underline</span></code> sets underlined mode.</li>
+</ul>
+<p>Using the <em>normal</em> keyword will reset foreground, background, and all formatting back to default.</p>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Using the <em>normal</em> keyword will reset both background and foreground colors to whatever is the default for the terminal.</li>
+<li>Setting the background color only affects subsequently written characters. Fish provides no way to set the background color for the entire terminal window. Configuring the window background color (and other attributes such as its opacity) has to be done using whatever mechanisms the terminal provides. Look for a config option.</li>
+<li>Some terminals use the <code class="docutils literal notranslate"><span class="pre">--bold</span></code> escape sequence to switch to a brighter color set rather than increasing the weight of text.</li>
+<li><code class="docutils literal notranslate"><span class="pre">set_color</span></code> works by printing sequences of characters to <em>stdout</em>. If used in command substitution or a pipe, these characters will also be captured. This may or may not be desirable. Checking the exit status of <code class="docutils literal notranslate"><span class="pre">isatty</span> <span class="pre">stdout</span></code> before using <code class="docutils literal notranslate"><span class="pre">set_color</span></code> can be useful to decide not to colorize output in a script.</li>
+</ol>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set_color</span><span class="w"> </span><span class="no">red</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Roses are red&quot;</span><span class="w"></span>
+<span class="nf">set_color</span><span class="w"> </span><span class="no">blue</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Violets are blue&quot;</span><span class="w"></span>
+<span class="nf">set_color</span><span class="w"> </span><span class="no">62A</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Eggplants are dark purple&quot;</span><span class="w"></span>
+<span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Normal is nice&quot;</span><span class="w"> </span><span class="c"># Resets the background too</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="terminal-capability-detection">
+<h2>Terminal Capability Detection<a class="headerlink" href="#terminal-capability-detection" title="Permalink to this headline">¶</a></h2>
+<p>Fish uses some heuristics to determine what colors a terminal supports to avoid sending sequences that it won't understand.</p>
+<p>In particular it will:</p>
+<ul class="simple">
+<li>Enable 256 colors if $TERM contains &quot;xterm&quot;, except for known exceptions (like MacOS 10.6 Terminal.app)</li>
+<li>Enable 24-bit (&quot;true-color&quot;) even if the $TERM entry only reports 256 colors. This includes modern xterm, VTE-based terminals like Gnome Terminal, Konsole and iTerm2.</li>
+<li>Detect support for italics, dim, reverse and other modes.</li>
+</ul>
+<p>If terminfo reports 256 color support for a terminal, 256 color support will always be enabled.</p>
+<p>To force true-color support on or off, set $fish_term24bit to &quot;1&quot; for on and 0 for off - <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-g</span> <span class="pre">fish_term24bit</span> <span class="pre">1</span></code>.</p>
+<p>To debug color palette problems, <code class="docutils literal notranslate"><span class="pre">tput</span> <span class="pre">colors</span></code> may be useful to see the number of colors in terminfo for a terminal. Fish launched as <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">-d2</span></code> will include diagnostic messages that indicate the color support mode in use.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">set_color</span></code> command uses the terminfo database to look up how to change terminal colors on whatever terminal is in use. Some systems have old and incomplete terminfo databases, and lack color information for terminals that support it. Fish assumes that all terminals can use the [ANSI X3.64](<a class="reference external" href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>) escape sequences if the terminfo definition indicates a color below 16 is not supported.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">set_color - set the terminal color</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#terminal-capability-detection">Terminal Capability Detection</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="source.html" title="source - evaluate contents of file."
+             >next</a> |</li>
+        <li class="right" >
+          <a href="set.html" title="set - display and change shell variables."
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

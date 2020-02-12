@@ -1,0 +1,147 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>case - conditionally execute a block of commands &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cd - change directory" href="cd.html" />
+    <link rel="prev" title="builtin - run a builtin command" href="builtin.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cd.html" title="cd - change directory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="builtin.html" title="builtin - run a builtin command"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="case-conditionally-execute-a-block-of-commands">
+<span id="cmd-case"></span><h1>case - conditionally execute a block of commands<a class="headerlink" href="#case-conditionally-execute-a-block-of-commands" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">switch</span><span class="w"> </span><span class="no">VALUE</span><span class="p">;</span><span class="w"> </span><span class="gr">[case</span><span class="w"> </span><span class="nf">[WILDCARD...]</span><span class="p">;</span><span class="w"> </span><span class="nf">[COMMANDS...]</span><span class="p">;</span><span class="w"> </span><span class="nf">...]</span><span class="w"> </span><span class="no">end</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">switch</span></code> executes one of several blocks of commands, depending on whether a specified value matches one of several values. <code class="docutils literal notranslate"><span class="pre">case</span></code> is used together with the <code class="docutils literal notranslate"><span class="pre">switch</span></code> statement in order to determine which block should be executed.</p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">case</span></code> command is given one or more parameters. The first <code class="docutils literal notranslate"><span class="pre">case</span></code> command with a parameter that matches the string specified in the switch command will be evaluated. <code class="docutils literal notranslate"><span class="pre">case</span></code> parameters may contain wildcards. These need to be escaped or quoted in order to avoid regular wildcard expansion using filenames.</p>
+<p>Note that fish does not fall through on case statements. Only the first matching case is executed.</p>
+<p>Note that command substitutions in a case statement will be evaluated even if its body is not taken. All substitutions, including command substitutions, must be performed before the value can be compared against the parameter.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Say $animal contains the name of an animal. Then this code would classify it:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">switch</span><span class="w"> </span><span class="no">$animal</span><span class="w"></span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">cat</span><span class="w"></span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">evil</span><span class="w"></span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">wolf</span><span class="w"> </span><span class="no">dog</span><span class="w"> </span><span class="no">human</span><span class="w"> </span><span class="no">moose</span><span class="w"> </span><span class="no">dolphin</span><span class="w"> </span><span class="no">whale</span><span class="w"></span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">mammal</span><span class="w"></span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">duck</span><span class="w"> </span><span class="no">goose</span><span class="w"> </span><span class="no">albatross</span><span class="w"></span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">bird</span><span class="w"></span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">shark</span><span class="w"> </span><span class="no">trout</span><span class="w"> </span><span class="no">stingray</span><span class="w"></span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">fish</span><span class="w"></span>
+<span class="w">    </span><span class="c"># Note that the next case has a wildcard which is quoted</span><span class="w"></span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">I</span><span class="w"> </span><span class="no">have</span><span class="w"> </span><span class="no">no</span><span class="w"> </span><span class="no">idea</span><span class="w"> </span><span class="no">what</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="o">$animal</span><span class="w"> </span><span class="no">is</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If the above code was run with <code class="docutils literal notranslate"><span class="pre">$animal</span></code> set to <code class="docutils literal notranslate"><span class="pre">whale</span></code>, the output
+would be <code class="docutils literal notranslate"><span class="pre">mammal</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">$animal</span></code> was set to &quot;banana&quot;, it would print &quot;I have no idea what a banana is&quot;.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">case - conditionally execute a block of commands</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cd.html" title="cd - change directory"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="builtin.html" title="builtin - run a builtin command"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

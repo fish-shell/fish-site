@@ -1,0 +1,139 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>string-collect - join strings into one &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="string-escape - escape special characters" href="string-escape.html" />
+    <link rel="prev" title="string - manipulate strings" href="string.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="string-escape.html" title="string-escape - escape special characters"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="string.html" title="string - manipulate strings"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="string-collect-join-strings-into-one">
+<h1>string-collect - join strings into one<a class="headerlink" href="#string-collect-join-strings-into-one" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-N</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--no-trim-newlines</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[STRING...]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code> collects its input into a single output argument, without splitting the output when used in a command substitution. This is useful when trying to collect multiline output from another command into a variable. Exit status: 0 if any output argument is non-empty, or 1 otherwise.</p>
+<p>If invoked with multiple arguments instead of input, <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code> preserves each argument separately, where the number of output arguments is equal to the number of arguments given to <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code>.</p>
+<p>Any trailing newlines on the input are trimmed, just as with <code class="docutils literal notranslate"><span class="pre">&quot;$(cmd)&quot;</span></code> substitution in sh. <code class="docutils literal notranslate"><span class="pre">--no-trim-newlines</span></code> can be used to disable this behavior, which may be useful when running a command such as <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">contents</span> <span class="pre">(cat</span> <span class="pre">filename</span> <span class="pre">|</span> <span class="pre">string</span> <span class="pre">collect</span> <span class="pre">-N)</span></code>.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="se">\&quot;</span><span class="o">(</span><span class="nf">echo</span><span class="w"> </span><span class="no">one</span><span class="se">\n</span><span class="no">two</span><span class="se">\n</span><span class="no">three</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="o">)</span><span class="se">\&quot;</span><span class="w"></span>
+&quot;one
+two
+three
+&quot;
+
+<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="se">\&quot;</span><span class="o">(</span><span class="nf">echo</span><span class="w"> </span><span class="no">one</span><span class="se">\n</span><span class="no">two</span><span class="se">\n</span><span class="no">three</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="w"> </span><span class="no">-N</span><span class="o">)</span><span class="se">\&quot;</span><span class="w"></span>
+&quot;one
+two
+three&quot;
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">string-collect - join strings into one</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="string-escape.html" title="string-escape - escape special characters"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="string.html" title="string - manipulate strings"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

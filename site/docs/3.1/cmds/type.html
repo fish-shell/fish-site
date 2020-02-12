@@ -1,0 +1,140 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>type - indicate how a command would be interpreted &#8212; fish-shell 3.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ulimit - set or get resource usage limits" href="ulimit.html" />
+    <link rel="prev" title="true - return a successful result" href="true.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ulimit.html" title="ulimit - set or get resource usage limits"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="true.html" title="true - return a successful result"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="type-indicate-how-a-command-would-be-interpreted">
+<span id="cmd-type"></span><h1>type - indicate how a command would be interpreted<a class="headerlink" href="#type-indicate-how-a-command-would-be-interpreted" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">type</span><span class="w"> </span><span class="no">[OPTIONS]</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="no">[NAME</span><span class="w"> </span><span class="no">...]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>With no options, <code class="docutils literal notranslate"><span class="pre">type</span></code> indicates how each <code class="docutils literal notranslate"><span class="pre">NAME</span></code> would be interpreted if used as a command name.</p>
+<p>The following options are available:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--all</span></code> prints all of possible definitions of the specified names.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-s</span></code> or <code class="docutils literal notranslate"><span class="pre">--short</span></code> suppresses function expansion when used with no options or with <code class="docutils literal notranslate"><span class="pre">-a</span></code>/<code class="docutils literal notranslate"><span class="pre">--all</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-functions</span></code> suppresses function and builtin lookup.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-t</span></code> or <code class="docutils literal notranslate"><span class="pre">--type</span></code> prints <code class="docutils literal notranslate"><span class="pre">function</span></code>, <code class="docutils literal notranslate"><span class="pre">builtin</span></code>, or <code class="docutils literal notranslate"><span class="pre">file</span></code> if <code class="docutils literal notranslate"><span class="pre">NAME</span></code> is a shell function, builtin, or disk file, respectively.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--path</span></code> prints the path to <code class="docutils literal notranslate"><span class="pre">NAME</span></code> if <code class="docutils literal notranslate"><span class="pre">NAME</span></code> resolves to an executable file in <a class="reference internal" href="../index.html#path"><span class="std std-ref">$PATH</span></a>, the path to the script containing the definition of the function <code class="docutils literal notranslate"><span class="pre">NAME</span></code> if <code class="docutils literal notranslate"><span class="pre">NAME</span></code> resolves to a function loaded from a file on disk (i.e. not interactively defined at the prompt), or nothing otherwise.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-P</span></code> or <code class="docutils literal notranslate"><span class="pre">--force-path</span></code> returns the path to the executable file <code class="docutils literal notranslate"><span class="pre">NAME</span></code>, presuming <code class="docutils literal notranslate"><span class="pre">NAME</span></code> is found in <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>, or nothing otherwise. <code class="docutils literal notranslate"><span class="pre">--force-path</span></code> explicitly resolves only the path to executable files in <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>, regardless of whether <code class="docutils literal notranslate"><span class="pre">$NAME</span></code> is shadowed by a function or builtin with the same name.</li>
+<li><code class="docutils literal notranslate"><span class="pre">-q</span></code> or <code class="docutils literal notranslate"><span class="pre">--quiet</span></code> suppresses all output; this is useful when testing the exit status.</li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">-q</span></code>, <code class="docutils literal notranslate"><span class="pre">-p</span></code>, <code class="docutils literal notranslate"><span class="pre">-t</span></code> and <code class="docutils literal notranslate"><span class="pre">-P</span></code> flags (and their long flag aliases) are mutually exclusive. Only one can be specified at a time.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">type</span><span class="w"> </span><span class="no">fg</span><span class="w"></span>
+fg is a builtin
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">type - indicate how a command would be interpreted</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ulimit.html" title="ulimit - set or get resource usage limits"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="true.html" title="true - return a successful result"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">fish-shell 3.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, fish-shell developers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>
