@@ -1080,7 +1080,7 @@ If a process exits through a signal, the exit status will be 128 plus the number
 Variables for changing highlighting colors
 ------------------------------------------
 
-The colors used by fish for syntax highlighting can be configured by changing the values of a various variables. The value of these variables can be one of the colors accepted by the `set_color <cmds/set.html_color>`_ command. The ``--bold`` or ``-b`` switches accepted by ``set_color`` are also accepted.
+The colors used by fish for syntax highlighting can be configured by changing the values of a various variables. The value of these variables can be one of the colors accepted by the :ref:`set_color <cmd-set_color>` command. The ``--bold`` or ``-b`` switches accepted by ``set_color`` are also accepted.
 
 The following variables are available to change the highlighting colors in fish:
 
@@ -1379,7 +1379,7 @@ Shared bindings
 
 Some bindings are shared between emacs- and vi-mode because they aren't text editing bindings or because what Vi/Vim does for a particular key doesn't make sense for a shell.
 
-- :kbd:`Tab` `completes <#completion>`_ the current token. :kbd:`Shift, Tab` completes the current token and starts the pager's search mode.
+- :kbd:`Tab` `completes <#tab-completion>`_ the current token. :kbd:`Shift, Tab` completes the current token and starts the pager's search mode.
 
 - :kbd:`Alt+←,Left` and :kbd:`Alt+→,Right` move the cursor one word left or right (to the next space or punctuation mark), or moves forward/backward in the directory history if the command line is empty. If the cursor is already at the end of the line, and an autosuggestion is available, :kbd:`Alt+→,Right` (or :kbd:`Alt+F`) accepts the first word in the suggestion.
 
@@ -1628,7 +1628,7 @@ Configuration files are evaluated in the following order:
   If there are multiple files with the same name in these directories, only the first will be executed.
   They are executed in order of their filename, sorted (like globs) in a natural order (i.e. "01" sorts before "2").
 
-- System-wide configuration files, where administrators can include initialization that should be run for all users on the system - similar to ``/etc/profile`` for POSIX-style shells - in ``$__fish_sysconf_dir` (usually /etc/fish/config.fish``);
+- System-wide configuration files, where administrators can include initialization that should be run for all users on the system - similar to ``/etc/profile`` for POSIX-style shells - in ``$__fish_sysconf_dir`` (usually ``/etc/fish/config.fish``).
 - User initialization, usually in `~/.config/fish/config.fish` (controlled by the ``XDG_CONFIG_HOME`` environment variable, and accessible as ``$__fish_config_dir``).
 
 These paths are controlled by parameters set at build, install, or run time, and may vary from the defaults listed above.

@@ -120,6 +120,8 @@ The following special input functions are available:
 
 - ``execute`` run the current commandline
 
+- ``force-repaint`` reexecute the prompt functions without coalescing
+
 - ``forward-bigword``, move one whitespace-delimited word to the right
 
 - ``forward-char``, move one character to the right
@@ -160,7 +162,9 @@ The following special input functions are available:
 
 - ``repaint-mode`` reexecutes the fish_mode_prompt function and redraws the prompt. This is useful for vi-mode. If no fish_mode_prompt exists, it acts like a normal repaint.
 
-- ``force-repaint`` reexecute the prompt functions without coalescing.
+- ``self-insert``, inserts the matching sequence into the command line
+
+- ``self-insert-notfirst``, inserts the matching sequence into the command line, unless the cursor is at the beginning
 
 - ``suppress-autosuggestion``, remove the current autosuggestion
 
@@ -211,8 +215,8 @@ Turns on Vi key bindings and rebinds :kbd:`Control+C` to clear the input line.
 Special Case: The escape Character
 ----------------------------------
 
-The escape key can be used standalone, for example, to switch from insertion mode to normal mode when using Vi keybindings. Escape may also be used as a "meta" key, to indicate the start of an escape sequence, such as function or arrow keys. Custom bindings can also be defined that begin with an escape character.
+The escape key can be used standalone, for example, to switch from insertion mode to normal mode when using Vi keybindings. Escape can also be used as a "meta" key, to indicate the start of an escape sequence, like for function or arrow keys. Custom bindings can also be defined that begin with an escape character.
 
-fish waits for a period after receiving the escape character, to determine whether it is standalone or part of an escape sequence. While waiting, additional key presses make the escape key behave as a meta key. If no other key presses come in, it is handled as a standalone escape. The waiting period is set to 300 milliseconds (0.3 seconds) in the default key bindings and 10 milliseconds in the vi key bindings. It can be configured by setting the ``fish_escape_delay_ms`` variable to a value between 10 and 5000 ms. It is recommended that this be a universal variable that you set once from an interactive session.
+Holding alt and something else also typically sends escape, for example holding alt+a will send an escape character and then an "a".
 
-Note: fish 2.2.0 and earlier used a default of 10 milliseconds, and provided no way to configure it. That effectively made it impossible to use escape as a meta key.
+fish waits for a period after receiving the escape character, to determine whether it is standalone or part of an escape sequence. While waiting, additional key presses make the escape key behave as a meta key. If no other key presses come in, it is handled as a standalone escape. The waiting period is set to 30 milliseconds (0.03 seconds). It can be configured by setting the ``fish_escape_delay_ms`` variable to a value between 10 and 5000 ms. This can be a universal variable that you set once from an interactive session.

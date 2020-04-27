@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Introduction &#8212; fish-shell 3.1.0 documentation</title>
+    <title>Introduction &#8212; fish-shell 3.1.1 documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -28,7 +28,7 @@
         <li class="right" >
           <a href="commands.html" title="Commands"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">fish-shell 3.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">fish-shell 3.1.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -846,7 +846,7 @@ session).</li>
 </div>
 <div class="section" id="variables-for-changing-highlighting-colors">
 <span id="variables-color"></span><h2>Variables for changing highlighting colors<a class="headerlink" href="#variables-for-changing-highlighting-colors" title="Permalink to this headline">¶</a></h2>
-<p>The colors used by fish for syntax highlighting can be configured by changing the values of a various variables. The value of these variables can be one of the colors accepted by the <a class="reference external" href="cmds/set.html_color">set_color</a> command. The <code class="docutils literal notranslate"><span class="pre">--bold</span></code> or <code class="docutils literal notranslate"><span class="pre">-b</span></code> switches accepted by <code class="docutils literal notranslate"><span class="pre">set_color</span></code> are also accepted.</p>
+<p>The colors used by fish for syntax highlighting can be configured by changing the values of a various variables. The value of these variables can be one of the colors accepted by the <a class="reference internal" href="cmds/set_color.html#cmd-set-color"><span class="std std-ref">set_color</span></a> command. The <code class="docutils literal notranslate"><span class="pre">--bold</span></code> or <code class="docutils literal notranslate"><span class="pre">-b</span></code> switches accepted by <code class="docutils literal notranslate"><span class="pre">set_color</span></code> are also accepted.</p>
 <p>The following variables are available to change the highlighting colors in fish:</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">fish_color_normal</span></code>, the default color</li>
@@ -1050,7 +1050,7 @@ These are the general purpose tab completions that <code class="docutils literal
 <span id="shared-binds"></span><h2>Shared bindings<a class="headerlink" href="#shared-bindings" title="Permalink to this headline">¶</a></h2>
 <p>Some bindings are shared between emacs- and vi-mode because they aren't text editing bindings or because what Vi/Vim does for a particular key doesn't make sense for a shell.</p>
 <ul class="simple">
-<li><kbd class="kbd docutils literal notranslate">Tab</kbd> <a class="reference external" href="#completion">completes</a> the current token. <kbd class="kbd docutils literal notranslate">Shift, Tab</kbd> completes the current token and starts the pager's search mode.</li>
+<li><kbd class="kbd docutils literal notranslate">Tab</kbd> <a class="reference external" href="#tab-completion">completes</a> the current token. <kbd class="kbd docutils literal notranslate">Shift, Tab</kbd> completes the current token and starts the pager's search mode.</li>
 <li><kbd class="kbd docutils literal notranslate">Alt+←,Left</kbd> and <kbd class="kbd docutils literal notranslate">Alt+→,Right</kbd> move the cursor one word left or right (to the next space or punctuation mark), or moves forward/backward in the directory history if the command line is empty. If the cursor is already at the end of the line, and an autosuggestion is available, <kbd class="kbd docutils literal notranslate">Alt+→,Right</kbd> (or <kbd class="kbd docutils literal notranslate">Alt+F</kbd>) accepts the first word in the suggestion.</li>
 <li><kbd class="kbd docutils literal notranslate">Shift,←,Left</kbd> and <kbd class="kbd docutils literal notranslate">Shift,→,Right</kbd> move the cursor one word left or right, without stopping on punctuation.</li>
 <li><kbd class="kbd docutils literal notranslate">↑</kbd> (Up) and <kbd class="kbd docutils literal notranslate">↓</kbd> (Down) (or <kbd class="kbd docutils literal notranslate">Control+P</kbd> and <kbd class="kbd docutils literal notranslate">Control+N</kbd> for emacs aficionados) search the command history for the previous/next command containing the string that was specified on the commandline before the search was started. If the commandline was empty when the search started, all commands match. See the <a class="reference external" href="#history-search">history</a> section for more information on history searching.</li>
@@ -1216,7 +1216,7 @@ In addition, when pasting inside single quotes, pasted single quotes and backsla
 <p>If there are multiple files with the same name in these directories, only the first will be executed.
 They are executed in order of their filename, sorted (like globs) in a natural order (i.e. &quot;01&quot; sorts before &quot;2&quot;).</p>
 </li>
-<li><p class="first">System-wide configuration files, where administrators can include initialization that should be run for all users on the system - similar to <code class="docutils literal notranslate"><span class="pre">/etc/profile</span></code> for POSIX-style shells - in <code class="docutils literal notranslate"><span class="pre">$__fish_sysconf_dir`</span> <span class="pre">(usually</span> <span class="pre">/etc/fish/config.fish</span></code>);</p>
+<li><p class="first">System-wide configuration files, where administrators can include initialization that should be run for all users on the system - similar to <code class="docutils literal notranslate"><span class="pre">/etc/profile</span></code> for POSIX-style shells - in <code class="docutils literal notranslate"><span class="pre">$__fish_sysconf_dir</span></code> (usually <code class="docutils literal notranslate"><span class="pre">/etc/fish/config.fish</span></code>).</p>
 </li>
 <li><p class="first">User initialization, usually in <cite>~/.config/fish/config.fish</cite> (controlled by the <code class="docutils literal notranslate"><span class="pre">XDG_CONFIG_HOME</span></code> environment variable, and accessible as <code class="docutils literal notranslate"><span class="pre">$__fish_config_dir</span></code>).</p>
 </li>
@@ -1488,12 +1488,12 @@ The default <code class="docutils literal notranslate"><span class="pre">fish</s
         <li class="right" >
           <a href="commands.html" title="Commands"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">fish-shell 3.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">fish-shell 3.1.1 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, fish-shell developers.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

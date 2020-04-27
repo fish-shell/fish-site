@@ -21,6 +21,46 @@ ul {
 </style>
 </head><body>
 
+<h2></h2>fish 3.1.1 (released April 27, 2020)</h2>
+This release of fish fixes a number of major issues discovered in fish 3.1.0.
+<ul>
+    <li>Commands which involve <code>. ( ... | psub)</code> now work correctly, as a bug in the <code>function --on-job-exit</code> option has been fixed (<a href="https://github.com/fish-shell/fish-shell/issues/6613">#6613</a>).</li>
+    <li>Conflicts between upstream packages for ripgrep and bat, and the fish packages, have been resolved (<a href="https://github.com/fish-shell/fish-shell/issues/5822">#5822</a>).</li>
+    <li>Starting fish in a directory without read access, such as via <code>su</code>, no longer crashes (<a href="https://github.com/fish-shell/fish-shell/issues/6597">#6597</a>).</li>
+    <li>Glob ordering changes which were introduced in 3.1.0 have been reverted, returning the order of globs to the previous state (<a href="https://github.com/fish-shell/fish-shell/issues/6593">#6593</a>).</li>
+    <li>Redirections using the deprecated caret syntax to a file descriptor (eg <code>^&amp;2</code>) work correctly (<a href="https://github.com/fish-shell/fish-shell/issues/6591">#6591</a>).</li>
+    <li>Redirections that append to a file descriptor (eg <code>2&gt;&gt;&amp;1</code>) work correctly (<a href="https://github.com/fish-shell/fish-shell/issues/6614">#6614</a>).</li>
+    <li>Building fish on macOS (<a href="https://github.com/fish-shell/fish-shell/pull/6602">#6602</a>) or with new versions of GCC (<a href="https://github.com/fish-shell/fish-shell/issues/6604">#6604</a>, <a href="https://github.com/fish-shell/fish-shell/issues/6609">#6609</a>) is now successful.</li>
+    <li><code>time</code> is now correctly listed in the output of <code>builtin -n</code>, and <code>time --help</code> works correctly (<a href="https://github.com/fish-shell/fish-shell/issues/6598">#6598</a>).</li>
+    <li>Exported universal variables now update properly (<a href="https://github.com/fish-shell/fish-shell/issues/6612">#6612</a>).</li>
+    <li><code>status current-command</code> gives the expected output when used with an environment override - that is, <code>F=B status current-command</code> returns <code>status</code> instead of <code>F=B</code> (<a href="https://github.com/fish-shell/fish-shell/issues/6635">#6635</a>).</li>
+    <li><code>test</code> no longer crashes when used with "<code>nan</code>" or "<code>inf</code>" arguments, erroring out instead (<a href="https://github.com/fish-shell/fish-shell/issues/6655">#6655</a>).</li>
+    <li>Copying from the end of the command line no longer crashes fish (<a href="https://github.com/fish-shell/fish-shell/issues/6680">#6680</a>).</li>
+    <li><code>read</code> no longer removes multiple separators when splitting a variable into a list, restoring the previous behaviour from fish 3.0 and before (<a href="https://github.com/fish-shell/fish-shell/issues/6650">#6650</a>).</li>
+    <li>Functions using <code>--on-job-exit</code> and <code>--on-process-exit</code> work reliably again (<a href="https://github.com/fish-shell/fish-shell/issues/6679">#6679</a>).</li>
+    <li>Functions using <code>--on-signal INT</code> work reliably in interactive sessions, as they did in fish 2.7 and before (<a href="https://github.com/fish-shell/fish-shell/issues/6649">#6649</a>). These handlers have never worked in non-interactive sessions, and making them work is an ongoing process.</li>
+    <li>Functions using <code>--on-variable</code> work reliably with variables which are set implicitly (rather than with <code>set</code>), such as "<code>fish_bind_mode</code>" and "<code>PWD</code>" (<a href="https://github.com/fish-shell/fish-shell/issues/6653">#6653</a>).</li>
+    <li>256 colors are properly enabled under certain conditions that were incorrectly detected in fish 3.1.0 (<code>$TERM</code> begins with xterm, does not include "<code>256color</code>", and <code>$TERM_PROGRAM</code> is not set) (<a href="https://github.com/fish-shell/fish-shell/pull/6701">#6701</a>).</li>
+    <li>The Mercurial (<code>hg</code>) prompt no longer produces an error when the current working directory is removed (<a href="https://github.com/fish-shell/fish-shell/pull/6699">#6699</a>). Also, for performance reasons it shows only basic information by default; to restore the detailed status, set <code>$fish_prompt_hg_show_informative_status</code>.</li>
+    <li>The VCS prompt, <code>fish_vcs_prompt</code>, no longer displays Subversion (<code>svn</code>) status by default, due to the potential slowness of this operation (<a href="https://github.com/fish-shell/fish-shell/issues/6681">#6681</a>).</li>
+    <li>Pasting of commands has been sped up (<a href="https://github.com/fish-shell/fish-shell/pull/6713">#6713</a>).</li>
+    <li>Using extended Unicode characters, such as emoji, in a non-Unicode capable locale (such as the <code>C</code> or <code>POSIX</code> locale) no longer renders all output blank (<a href="https://github.com/fish-shell/fish-shell/issues/6736">#6736</a>).</li>
+    <li><code>help</code> prefers to use <code>xdg-open</code>, avoiding the use of <code>open</code> on Debian systems where this command is actually <code>openvt</code> (<a href="https://github.com/fish-shell/fish-shell/issues/6739">#6739</a>).</li>
+    <li>Command lines starting with a space, which are not saved in history, now do not get autosuggestions. This fixes an issue with Midnight Commander integration (<a href="https://github.com/fish-shell/fish-shell/issues/6763">#6763</a>), but may be changed in a future version.</li>
+    <li>Copying to the clipboard no longer inserts a newline at the end of the content, matching fish 2.7 and earlier (<a href="https://github.com/fish-shell/fish-shell/issues/6927">#6927</a>).</li>
+    <li><code>fzf</code> in complex pipes no longer hangs. More generally, code run as part of command substitutions or <code>eval</code> will no longer have separate process groups. (<a href="https://github.com/fish-shell/fish-shell/issues/6624">#6624</a>, <a href="https://github.com/fish-shell/fish-shell/issues/6806">#6806</a>).</li>
+</ul>
+This release also includes:
+<ul>
+    <li>a number of changes to improve macOS compatibility with code signing and notarization;</li>
+    <li>a number of improvements to completions; and</li>
+    <li>a number of content and formatting improvements to the documentation.</li>
+</ul>
+If you are upgrading from version 3.0.0 or before, please also review the release notes for 3.1.0 and 3.1b1 (included below).
+<h3>Errata for fish 3.1</h3>
+A new builtin, <code>time</code>, was introduced in the fish 3.1 releases. This builtin is a reserved word (like <code>test</code>, <code>function</code>, and others) because of the way it is implemented, and functions can no longer be named <code>time</code>. This was not clear in the fish 3.1b1 changelog.
+
+
 <h2>fish 3.1.0 (released February 12, 2020)</h2>
 Compared to the beta release of fish 3.1b1, fish version 3.1.0:
 <ul>
