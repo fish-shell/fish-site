@@ -23,13 +23,8 @@ This assumes that the relevant release has been published in the [fish-shell git
     1. From the tarball, copy `user_doc/html` to the `site/docs/` directory.
     2. Name it with the proper major version number only (e.g. 2.7). The minor version number is omitted.
     3. `current` is just a copy of the most recent docs.  Delete `current` and replace it with a copy of the new directory.
-2. Update the release notes
-    1. From the tarball, copy and paste the portion of `CHANGELOG.md` to a temporary file (say, `tmp.md`).
-    2. Run `./tools/htmlize_relnotes.py tmp.md > tmp.html`
-    3. Copy and paste the contents of `tmp.html` to the right spot in `site/release_notes.html`.
-    4. Make sure to open and check it. `html_relnotes.py` is rather dumb.
-3. Run `make new-release`. This downloads `releases.json` and rebuilds the site using it.
-4. Open `site/_site/index.html` and check it. In particular ensure the tarball and Mac download links work.
+2. Run `make new-release`. This downloads `releases.json` and rebuilds the site using it.
+3. Open `site/_site/index.html` and check it. In particular ensure the tarball and Mac download links work.
 
 ## Publish the site
 
