@@ -1,0 +1,278 @@
+@import url("default.css");
+
+html {
+    background: none;
+}
+
+body {
+    background: linear-gradient(to bottom, #a7cfdf 0%,#23538a 100%);
+}
+
+div#fmain {
+    color: #222;
+    padding: 10px 40px 10px;
+    background-color: #EEEEFA;
+    border-radius: 14px;
+    position: relative;
+    margin: 15px auto 15px;
+    box-shadow: 0 0 5px 1px #333;
+    width: 85%;
+    /* This is super-cheesy, but 1270px is the maximum width of the sidebar, the content and the margins */
+    max-width: 1270px;
+}
+
+div.related {
+    margin-bottom: 0;
+    padding: 0.5em 0;
+    border-top: 1px solid #ccc;
+    margin-top: 0;
+}
+
+div.section {
+    /* Make scrollable when it's too wide
+       Really only happens with tables, the rest flows nicely,
+       but I have no idea how to make the tables themselves scrollable
+     */
+    overflow-y: auto;
+}
+
+div.related a:hover {
+    color: #0095C4;
+}
+
+div.related:first-child {
+    border-top: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.inline-search {
+    display: inline;
+}
+form.inline-search input {
+    display: inline;
+}
+form.inline-search input[type="submit"] {
+    width: 40px;
+}
+
+div.sphinxsidebar {
+    background-color: #eeeefa;
+    border-right: 1px solid #ccc;
+    border-radius: 0px;
+    line-height: 130%;
+    font-size: smaller;
+    overflow: auto;
+    position: absolute;
+    margin-left: 0;
+    float: none;
+}
+
+div#searchbox {
+    /* Cheesy: The padding is on the sphinxsidebar*wrapper*,
+       so if this is the last element the bottom padding won't apply.
+     */
+    padding-bottom: 5px;
+}
+
+div.sphinxsidebar h3, div.sphinxsidebar h4 {
+    margin-top: 1.5em;
+}
+
+div.sphinxsidebarwrapper > h3:first-child {
+    margin-top: 0.2em;
+}
+
+div.sphinxsidebarwrapper > ul > li > ul > li {
+    margin-bottom: 0.4em;
+}
+
+div.sphinxsidebar a:hover {
+    color: #0095C4;
+}
+
+form.inline-search input,
+div.sphinxsidebar input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border: 1px solid #999999;
+    font-size: smaller;
+    border-radius: 3px;
+}
+
+div.sphinxsidebar input[type=text] {
+    max-width: 150px;
+}
+
+div.body {
+    padding: 0 0 0 1.2em;
+    min-width: 150px;
+}
+
+div.body p {
+    line-height: 140%;
+}
+
+div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6 {
+    margin: 0;
+    border: 0;
+    padding: 0.3em 0;
+}
+
+div.body hr {
+    border: 0;
+    background-color: #ccc;
+    height: 1px;
+}
+
+div.body pre {
+    border-radius: 3px;
+    border: 1px solid #ac9;
+}
+
+div.body div.admonition, div.body div.impl-detail {
+    border-radius: 3px;
+}
+
+div.body div.impl-detail > p {
+    margin: 0;
+}
+
+div.body div.seealso {
+    border: 1px solid #dddd66;
+}
+
+div.body a {
+    color: #0072aa;
+}
+
+div.body a:visited {
+    color: #6363bb;
+}
+
+div.body a:hover {
+    color: #00B0E4;
+}
+
+tt, code, pre {
+    font-family: monospace, sans-serif;
+    font-size: 96.5%;
+    /* Older sphinx versions set a color here, we need to unset it so we inherit from the outer div.highlight */
+    background-color: unset;
+}
+
+div.body tt, div.body code {
+    border-radius: 3px;
+}
+
+div.body tt.descname, div.body code.descname {
+    font-size: 120%;
+}
+
+div.body tt.xref, div.body a tt, div.body code.xref, div.body a code {
+    font-weight: normal;
+}
+
+table.docutils {
+    border: 1px solid #ddd;
+    min-width: 20%;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* Make table scrollable on overflow */
+    display: block;
+    overflow: auto;
+}
+
+table.docutils td, table.docutils th {
+    border: 1px solid #ddd !important;
+    border-radius: 3px;
+}
+
+table p, table li {
+    text-align: left !important;
+}
+
+table.docutils th {
+    background-color: #eee;
+    padding: 0.3em 0.5em;
+}
+
+table.docutils td {
+    background-color: white;
+    padding: 0.3em 0.5em;
+}
+
+table.footnote, table.footnote td {
+    border: 0 !important;
+}
+
+div.footer {
+    line-height: 150%;
+    margin-top: -2em;
+    text-align: right;
+    width: auto;
+    margin-right: 10px;
+}
+
+div.footer a:hover {
+    color: #0095C4;
+}
+
+.refcount {
+    color: #060;
+}
+
+.stableabi {
+    color: #229;
+}
+
+.highlight {
+    background: #FFF !important;
+}
+
+dl > dt span ~ em {
+    font-family: monospace, sans-serif;
+}
+
+/* On screens that are less than 700px wide remove anything non-essential
+   - the sidebar, the gradient background, ... */
+@media screen and (max-width: 700px) {
+    div.sphinxsidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    div.sphinxsidebar ul {
+        flex-basis: content;
+        flex-wrap: wrap;
+    }
+    div.sphinxsidebarwrapper {
+        display: flex;
+    }
+    div.sphinxsidebarwrapper > h3:nth-child(5) {
+        display: none;
+    }
+    div#searchbox {
+        display: none !important;
+    }
+    div.content {margin-left: 0;}
+
+    div.bodywrapper {
+        margin: 0;
+    }
+    div.body {
+        padding: 1rem;
+    }
+
+    div#fmain {
+        border-radius: 0px;
+        margin: 0;
+        box-shadow: 0;
+        width: 100%;
+        padding: 0;
+        /* We have some padding/margins that would overflow - just remove it */
+        overflow: clip;
+    }
+    div.footer {
+        margin: 0;
+    }
+}
