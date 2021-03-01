@@ -39,11 +39,11 @@ releases = json.load(sys.stdin, object_pairs_hook=OrderedDict)
 releases = [rel for rel in releases if not rel.get('prerelease')]
 
 # Remove certain old releases without tarballs.
-releases = [rel for rel in releases if get_asset(rel, '.tar.gz')]
+releases = [rel for rel in releases if get_asset(rel, '.tar.xz') or get_asset(rel, '.tar.gz')]
 
 for rel in releases:
   name = rel['tag_name']
-  tarball = get_asset(rel, '.tar.gz')
+  tarball = get_asset(rel, '.tar.xz') or get_asset(rel, '.tar.gz')
   macpkg = get_asset(rel, '.pkg')
   macapp = get_asset(rel, '.app.zip')
   rel.update({
