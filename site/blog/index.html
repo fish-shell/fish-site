@@ -1,0 +1,19 @@
+---
+layout: post
+title: "fish shell blog"
+---
+
+<ul class="post_list">
+    {%- for post in site.posts -%}
+      <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+      {{ post.excerpt }}
+      {%- if post.excerpt != post.content -%}
+        <a href="{{ site.baseurl }}{{ post.url }}">Read more</a>
+      {% endif %}
+      {% if forloop.last != true %}
+      <hr />
+      {%- endif -%}
+    {%- endfor -%}
+</ul>
