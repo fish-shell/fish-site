@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>function - create a function &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>function - create a function &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="functions - print or erase functions" href="functions.html" />
     <link rel="prev" title="funcsave - save the definition of a function to the user&#39;s autoload directory" href="funcsave.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
-    
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,13 +25,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">function - create a function</a></li>
     <li class="right">
         
 
@@ -73,17 +67,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
@@ -119,30 +111,30 @@
 <p>A function is a list of commands that will be executed when the name of the function is given as a command.</p>
 <p>The following options are available:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-a</span> <span class="pre">NAMES</span></code> or <code class="docutils literal notranslate"><span class="pre">--argument-names</span> <span class="pre">NAMES</span></code> assigns the value of successive command-line arguments to the names given in NAMES.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">DESCRIPTION</span></code> or <code class="docutils literal notranslate"><span class="pre">--description=DESCRIPTION</span></code> is a description of what the function does, suitable as a completion description.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">WRAPPED_COMMAND</span></code> or <code class="docutils literal notranslate"><span class="pre">--wraps=WRAPPED_COMMAND</span></code> causes the function to inherit completions from the given wrapped command. See the documentation for <a class="reference internal" href="complete.html#cmd-complete"><span class="std std-ref">complete</span></a> for more information.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--on-event</span> <span class="pre">EVENT_NAME</span></code> tells fish to run this function when the specified named event is emitted. Fish internally generates named events e.g. when showing the prompt.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--on-variable</span> <span class="pre">VARIABLE_NAME</span></code> tells fish to run this function when the variable VARIABLE_NAME changes value. Note that the function will not necessarily be run for each change; rather, it will be run when the variable has changed at least once.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">PGID</span></code> or <code class="docutils literal notranslate"><span class="pre">--on-job-exit</span> <span class="pre">PGID</span></code> tells fish to run this function when the job with group ID PGID exits. Instead of PGID, the string 'caller' can be specified. This is only legal when in a command substitution, and will result in the handler being triggered by the exit of the job which created this command substitution.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">PID</span></code> or <code class="docutils literal notranslate"><span class="pre">--on-process-exit</span> <span class="pre">PID</span></code> tells fish to run this function when the fish child process
+<li><p><code class="docutils literal notranslate"><span class="pre">-a</span> <span class="pre">NAMES</span></code> or <code class="docutils literal notranslate"><span class="pre">--argument-names</span> <span class="pre">NAMES</span></code> assigns the value of successive command-line arguments to the names given in NAMES.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">DESCRIPTION</span></code> or <code class="docutils literal notranslate"><span class="pre">--description=DESCRIPTION</span></code> is a description of what the function does, suitable as a completion description.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">WRAPPED_COMMAND</span></code> or <code class="docutils literal notranslate"><span class="pre">--wraps=WRAPPED_COMMAND</span></code> causes the function to inherit completions from the given wrapped command. See the documentation for <a class="reference internal" href="complete.html#cmd-complete"><span class="std std-ref">complete</span></a> for more information.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--on-event</span> <span class="pre">EVENT_NAME</span></code> tells fish to run this function when the specified named event is emitted. Fish internally generates named events e.g. when showing the prompt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--on-variable</span> <span class="pre">VARIABLE_NAME</span></code> tells fish to run this function when the variable VARIABLE_NAME changes value. Note that the function will not necessarily be run for each change; rather, it will be run when the variable has changed at least once.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">PGID</span></code> or <code class="docutils literal notranslate"><span class="pre">--on-job-exit</span> <span class="pre">PGID</span></code> tells fish to run this function when the job with group ID PGID exits. Instead of PGID, the string 'caller' can be specified. This is only legal when in a command substitution, and will result in the handler being triggered by the exit of the job which created this command substitution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">PID</span></code> or <code class="docutils literal notranslate"><span class="pre">--on-process-exit</span> <span class="pre">PID</span></code> tells fish to run this function when the fish child process
 with process ID PID exits. Instead of a PID, for backward compatibility,
 &quot;<code class="docutils literal notranslate"><span class="pre">%self</span></code>&quot; can be specified as an alias for <code class="docutils literal notranslate"><span class="pre">$fish_pid</span></code>, and the function will be run when the
-current fish instance exits.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-s</span></code> or <code class="docutils literal notranslate"><span class="pre">--on-signal</span> <span class="pre">SIGSPEC</span></code> tells fish to run this function when the signal SIGSPEC is delivered. SIGSPEC can be a signal number, or the signal name, such as SIGHUP (or just HUP).</li>
-<li><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-scope-shadowing</span></code> allows the function to access the variables of calling functions. Normally, any variables inside the function that have the same name as variables from the calling function are &quot;shadowed&quot;, and their contents are independent of the calling function.
-It's important to note that this does not capture referenced variables or the scope at the time of function declaration! At this time, fish does not have any concept of closures, and variable lifetimes are never extended. In other words, by using <code class="docutils literal notranslate"><span class="pre">--no-scope-shadowing</span></code> the scope of the function each time it is run is shared with the scope it was <em>called</em> from rather than the scope it was <em>defined</em> in.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-V</span></code> or <code class="docutils literal notranslate"><span class="pre">--inherit-variable</span> <span class="pre">NAME</span></code> snapshots the value of the variable <code class="docutils literal notranslate"><span class="pre">NAME</span></code> and defines a local variable with that same name and value when the function is defined. This is similar to a closure in other languages like Python but a bit different. Note the word &quot;snapshot&quot; in the first sentence. If you change the value of the variable after defining the function, even if you do so in the same scope (typically another function) the new value will not be used by the function you just created using this option. See the <code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">notify</span></code> example below for how this might be used.</li>
+current fish instance exits.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code> or <code class="docutils literal notranslate"><span class="pre">--on-signal</span> <span class="pre">SIGSPEC</span></code> tells fish to run this function when the signal SIGSPEC is delivered. SIGSPEC can be a signal number, or the signal name, such as SIGHUP (or just HUP).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-scope-shadowing</span></code> allows the function to access the variables of calling functions. Normally, any variables inside the function that have the same name as variables from the calling function are &quot;shadowed&quot;, and their contents are independent of the calling function.
+It's important to note that this does not capture referenced variables or the scope at the time of function declaration! At this time, fish does not have any concept of closures, and variable lifetimes are never extended. In other words, by using <code class="docutils literal notranslate"><span class="pre">--no-scope-shadowing</span></code> the scope of the function each time it is run is shared with the scope it was <em>called</em> from rather than the scope it was <em>defined</em> in.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-V</span></code> or <code class="docutils literal notranslate"><span class="pre">--inherit-variable</span> <span class="pre">NAME</span></code> snapshots the value of the variable <code class="docutils literal notranslate"><span class="pre">NAME</span></code> and defines a local variable with that same name and value when the function is defined. This is similar to a closure in other languages like Python but a bit different. Note the word &quot;snapshot&quot; in the first sentence. If you change the value of the variable after defining the function, even if you do so in the same scope (typically another function) the new value will not be used by the function you just created using this option. See the <code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">notify</span></code> example below for how this might be used.</p></li>
 </ul>
 <p>If the user enters any additional arguments after the function, they are inserted into the environment <a class="reference internal" href="../index.html#variables-lists"><span class="std std-ref">variable list</span></a> <code class="docutils literal notranslate"><span class="pre">$argv</span></code>. If the <code class="docutils literal notranslate"><span class="pre">--argument-names</span></code> option is provided, the arguments are also assigned to names specified in that option.</p>
 <p>By using one of the event handler switches, a function can be made to run automatically at specific events. The user may generate new events using the <a class="reference internal" href="emit.html#cmd-emit"><span class="std std-ref">emit</span></a> builtin. Fish generates the following named events:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">fish_prompt</span></code>, which is emitted whenever a new fish prompt is about to be displayed.</li>
-<li><code class="docutils literal notranslate"><span class="pre">fish_preexec</span></code>, which is emitted right before executing an interactive command. The commandline is passed as the first parameter. Not emitted if command is empty.</li>
-<li><code class="docutils literal notranslate"><span class="pre">fish_posterror</span></code>, which is emitted right after executing a command with syntax errors. The commandline is passed as the first parameter.</li>
-<li><code class="docutils literal notranslate"><span class="pre">fish_postexec</span></code>, which is emitted right after executing an interactive command. The commandline is passed as the first parameter. Not emitted if command is empty.</li>
-<li><code class="docutils literal notranslate"><span class="pre">fish_exit</span></code> is emitted right before fish exits.</li>
-<li><code class="docutils literal notranslate"><span class="pre">fish_cancel</span></code>, which is emitted when a commandline is cleared (used for terminal-shell integration).</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_prompt</span></code>, which is emitted whenever a new fish prompt is about to be displayed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_preexec</span></code>, which is emitted right before executing an interactive command. The commandline is passed as the first parameter. Not emitted if command is empty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_posterror</span></code>, which is emitted right after executing a command with syntax errors. The commandline is passed as the first parameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_postexec</span></code>, which is emitted right after executing an interactive command. The commandline is passed as the first parameter. Not emitted if command is empty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_exit</span></code> is emitted right before fish exits.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_cancel</span></code>, which is emitted when a commandline is cleared (used for terminal-shell integration).</p></li>
 </ul>
 </div>
 <div class="section" id="example">
@@ -188,6 +180,7 @@ It's important to note that this does not capture referenced variables or the sc
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -197,13 +190,14 @@ It's important to note that this does not capture referenced variables or the sc
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">function - create a function</a></li>
     <li class="right">
         
 
@@ -226,7 +220,7 @@ It's important to note that this does not capture referenced variables or the sc
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

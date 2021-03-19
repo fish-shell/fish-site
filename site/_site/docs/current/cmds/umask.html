@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>umask - set or get the file creation mode mask &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>umask - set or get the file creation mode mask &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="vared - interactively edit the value of an environment variable" href="vared.html" />
     <link rel="prev" title="ulimit - set or get resource usage limits" href="ulimit.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
-    
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,13 +25,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">umask - set or get the file creation mode mask</a></li>
     <li class="right">
         
 
@@ -73,17 +67,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
@@ -119,16 +111,16 @@
 <p>Access rights are explained in the manual page for the <code class="docutils literal notranslate"><span class="pre">chmod(1)</span></code> program.</p>
 <p>With no parameters, the current file creation mode mask is printed as an octal number.</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-h</span></code> or <code class="docutils literal notranslate"><span class="pre">--help</span></code> prints this message.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--symbolic</span></code> prints the umask in symbolic form instead of octal form.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--as-command</span></code> outputs the umask in a form that may be reused as input</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-h</span></code> or <code class="docutils literal notranslate"><span class="pre">--help</span></code> prints this message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--symbolic</span></code> prints the umask in symbolic form instead of octal form.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--as-command</span></code> outputs the umask in a form that may be reused as input</p></li>
 </ul>
 <p>If a numeric mask is specified as a parameter, the current shell's umask will be set to that value, and the rights specified by that mask will be removed from new files and directories by default.</p>
 <p>If a symbolic mask is specified, the desired permission bits, and not the inverse, should be specified. A symbolic mask is a comma separated list of rights. Each right consists of three parts:</p>
 <ul class="simple">
-<li>The first part specifies to whom this set of right applies, and can be one of <code class="docutils literal notranslate"><span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>, <code class="docutils literal notranslate"><span class="pre">o</span></code> or <code class="docutils literal notranslate"><span class="pre">a</span></code>, where <code class="docutils literal notranslate"><span class="pre">u</span></code> specifies the user who owns the file, <code class="docutils literal notranslate"><span class="pre">g</span></code> specifies the group owner of the file, <code class="docutils literal notranslate"><span class="pre">o</span></code> specific other users rights and <code class="docutils literal notranslate"><span class="pre">a</span></code> specifies all three should be changed.</li>
-<li>The second part of a right specifies the mode, and can be one of <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code> or <code class="docutils literal notranslate"><span class="pre">-</span></code>, where <code class="docutils literal notranslate"><span class="pre">=</span></code> specifies that the rights should be set to the new value, <code class="docutils literal notranslate"><span class="pre">+</span></code> specifies that the specified right should be added to those previously specified and <code class="docutils literal notranslate"><span class="pre">-</span></code> specifies that the specified rights should be removed from those previously specified.</li>
-<li>The third part of a right specifies what rights should be changed and can be any combination of <code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">w</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code>, representing read, write and execute rights.</li>
+<li><p>The first part specifies to whom this set of right applies, and can be one of <code class="docutils literal notranslate"><span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>, <code class="docutils literal notranslate"><span class="pre">o</span></code> or <code class="docutils literal notranslate"><span class="pre">a</span></code>, where <code class="docutils literal notranslate"><span class="pre">u</span></code> specifies the user who owns the file, <code class="docutils literal notranslate"><span class="pre">g</span></code> specifies the group owner of the file, <code class="docutils literal notranslate"><span class="pre">o</span></code> specific other users rights and <code class="docutils literal notranslate"><span class="pre">a</span></code> specifies all three should be changed.</p></li>
+<li><p>The second part of a right specifies the mode, and can be one of <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code> or <code class="docutils literal notranslate"><span class="pre">-</span></code>, where <code class="docutils literal notranslate"><span class="pre">=</span></code> specifies that the rights should be set to the new value, <code class="docutils literal notranslate"><span class="pre">+</span></code> specifies that the specified right should be added to those previously specified and <code class="docutils literal notranslate"><span class="pre">-</span></code> specifies that the specified rights should be removed from those previously specified.</p></li>
+<li><p>The third part of a right specifies what rights should be changed and can be any combination of <code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">w</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code>, representing read, write and execute rights.</p></li>
 </ul>
 <p>If the first and second parts are skipped, they are assumed to be <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">=</span></code>, respectively. As an example, <code class="docutils literal notranslate"><span class="pre">r,u+w</span></code> means all users should have read access and the file owner should also have write access.</p>
 <p>Note that symbolic masks currently do not work as intended.</p>
@@ -140,6 +132,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -149,13 +142,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">umask - set or get the file creation mode mask</a></li>
     <li class="right">
         
 
@@ -178,7 +172,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

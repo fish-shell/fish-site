@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>math - perform mathematics calculations &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>math - perform mathematics calculations &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="nextd - move forward through directory history" href="nextd.html" />
     <link rel="prev" title="jobs - print currently running jobs" href="jobs.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
-    
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,13 +25,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">math - perform mathematics calculations</a></li>
     <li class="right">
         
 
@@ -73,17 +67,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
@@ -126,8 +118,8 @@
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> ignores whitespace between arguments and takes its input as multiple arguments (internally joined with a space), so <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">2</span> <span class="pre">+2</span></code> and <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;2</span> <span class="pre">+</span>&#160;&#160;&#160; <span class="pre">2&quot;</span></code> work the same. <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">2</span> <span class="pre">2</span></code> is an error.</p>
 <p>The following options are available:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-sN</span></code> or <code class="docutils literal notranslate"><span class="pre">--scale=N</span></code> sets the scale of the result. <code class="docutils literal notranslate"><span class="pre">N</span></code> must be an integer or the word &quot;max&quot; for the maximum scale. A scale of zero causes results to be rounded down to the nearest integer. So <code class="docutils literal notranslate"><span class="pre">3/2</span></code> returns <code class="docutils literal notranslate"><span class="pre">1</span></code> rather than <code class="docutils literal notranslate"><span class="pre">2</span></code> which <code class="docutils literal notranslate"><span class="pre">1.5</span></code> would normally round to. This is for compatibility with <code class="docutils literal notranslate"><span class="pre">bc</span></code> which was the basis for this command prior to fish 3.0.0. Scale values greater than zero causes the result to be rounded using the usual rules to the specified number of decimal places.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">BASE</span></code> or <code class="docutils literal notranslate"><span class="pre">--base</span> <span class="pre">BASE</span></code> sets the numeric base used for output (<code class="docutils literal notranslate"><span class="pre">math</span></code> always understands hexadecimal numbers as input). It currently understands &quot;hex&quot; or &quot;16&quot; for hexadecimal and &quot;octal&quot; or &quot;8&quot; for octal and implies a scale of 0 (other scales cause an error), so it will truncate the result down to an integer. This might change in the future. Hex numbers will be printed with a <code class="docutils literal notranslate"><span class="pre">0x</span></code> prefix. Octal numbers will have a prefix of <code class="docutils literal notranslate"><span class="pre">0</span></code> and aren't understood by <code class="docutils literal notranslate"><span class="pre">math</span></code> as input.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-sN</span></code> or <code class="docutils literal notranslate"><span class="pre">--scale=N</span></code> sets the scale of the result. <code class="docutils literal notranslate"><span class="pre">N</span></code> must be an integer or the word &quot;max&quot; for the maximum scale. A scale of zero causes results to be rounded down to the nearest integer. So <code class="docutils literal notranslate"><span class="pre">3/2</span></code> returns <code class="docutils literal notranslate"><span class="pre">1</span></code> rather than <code class="docutils literal notranslate"><span class="pre">2</span></code> which <code class="docutils literal notranslate"><span class="pre">1.5</span></code> would normally round to. This is for compatibility with <code class="docutils literal notranslate"><span class="pre">bc</span></code> which was the basis for this command prior to fish 3.0.0. Scale values greater than zero causes the result to be rounded using the usual rules to the specified number of decimal places.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">BASE</span></code> or <code class="docutils literal notranslate"><span class="pre">--base</span> <span class="pre">BASE</span></code> sets the numeric base used for output (<code class="docutils literal notranslate"><span class="pre">math</span></code> always understands hexadecimal numbers as input). It currently understands &quot;hex&quot; or &quot;16&quot; for hexadecimal and &quot;octal&quot; or &quot;8&quot; for octal and implies a scale of 0 (other scales cause an error), so it will truncate the result down to an integer. This might change in the future. Hex numbers will be printed with a <code class="docutils literal notranslate"><span class="pre">0x</span></code> prefix. Octal numbers will have a prefix of <code class="docutils literal notranslate"><span class="pre">0</span></code> and aren't understood by <code class="docutils literal notranslate"><span class="pre">math</span></code> as input.</p></li>
 </ul>
 </div>
 <div class="section" id="return-values">
@@ -143,11 +135,11 @@
 <h2>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> knows the following operators:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">+</span></code> for addition and <code class="docutils literal notranslate"><span class="pre">-</span></code> for subtraction.</li>
-<li><code class="docutils literal notranslate"><span class="pre">*</span></code> or <code class="docutils literal notranslate"><span class="pre">x</span></code> for multiplication, <code class="docutils literal notranslate"><span class="pre">/</span></code> for division. (Note that <code class="docutils literal notranslate"><span class="pre">*</span></code> is the glob character and needs to be quoted or escaped, <code class="docutils literal notranslate"><span class="pre">x</span></code> needs to be followed by whitespace or it looks like <code class="docutils literal notranslate"><span class="pre">0x</span></code> hexadecimal notation.)</li>
-<li><code class="docutils literal notranslate"><span class="pre">^</span></code> for exponentiation.</li>
-<li><code class="docutils literal notranslate"><span class="pre">%</span></code> for modulo.</li>
-<li><code class="docutils literal notranslate"><span class="pre">(</span></code> and <code class="docutils literal notranslate"><span class="pre">)</span></code> for grouping. (These need to be quoted or escaped because <code class="docutils literal notranslate"><span class="pre">()</span></code> denotes a command substitution.)</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+</span></code> for addition and <code class="docutils literal notranslate"><span class="pre">-</span></code> for subtraction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> or <code class="docutils literal notranslate"><span class="pre">x</span></code> for multiplication, <code class="docutils literal notranslate"><span class="pre">/</span></code> for division. (Note that <code class="docutils literal notranslate"><span class="pre">*</span></code> is the glob character and needs to be quoted or escaped, <code class="docutils literal notranslate"><span class="pre">x</span></code> needs to be followed by whitespace or it looks like <code class="docutils literal notranslate"><span class="pre">0x</span></code> hexadecimal notation.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">^</span></code> for exponentiation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%</span></code> for modulo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(</span></code> and <code class="docutils literal notranslate"><span class="pre">)</span></code> for grouping. (These need to be quoted or escaped because <code class="docutils literal notranslate"><span class="pre">()</span></code> denotes a command substitution.)</p></li>
 </ul>
 <p>They are all used in an infix manner - <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">+</span> <span class="pre">2</span></code>, not <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">5</span> <span class="pre">2</span></code>.</p>
 </div>
@@ -155,9 +147,9 @@
 <h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> knows the following constants:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">e</span></code> - Euler's number.</li>
-<li><code class="docutils literal notranslate"><span class="pre">pi</span></code> - π. You know this one. Half of Tau.</li>
-<li><code class="docutils literal notranslate"><span class="pre">tau</span></code>. Equivalent to 2π, or the number of radians in a circle.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">e</span></code> - Euler's number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pi</span></code> - π. You know this one. Half of Tau.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tau</span></code>. Equivalent to 2π, or the number of radians in a circle.</p></li>
 </ul>
 <p>Use them without a leading <code class="docutils literal notranslate"><span class="pre">$</span></code> - <code class="docutils literal notranslate"><span class="pre">pi</span> <span class="pre">-</span> <span class="pre">3</span></code> should be about 0.</p>
 </div>
@@ -165,31 +157,31 @@
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> supports the following functions:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">abs</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">acos</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">asin</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">atan</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">atan2</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">bitand</span></code>, <code class="docutils literal notranslate"><span class="pre">bitor</span></code> and <code class="docutils literal notranslate"><span class="pre">bitxor</span></code> to perform bitwise operations. These will throw away any non-integer parts and interpret the rest as an int.</li>
-<li><code class="docutils literal notranslate"><span class="pre">ceil</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">cos</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">cosh</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">exp</span></code> - the base-e exponential function</li>
-<li><code class="docutils literal notranslate"><span class="pre">fac</span></code> - factorial</li>
-<li><code class="docutils literal notranslate"><span class="pre">floor</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">ln</span></code> - the base-e logarithm</li>
-<li><code class="docutils literal notranslate"><span class="pre">log</span></code> or <code class="docutils literal notranslate"><span class="pre">log10</span></code> - the base-10 logarithm</li>
-<li><code class="docutils literal notranslate"><span class="pre">ncr</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">npr</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">pow(x,y)</span></code> returns x to the y (and can be written as <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">^</span> <span class="pre">y</span></code>)</li>
-<li><code class="docutils literal notranslate"><span class="pre">round</span></code> - rounds to the nearest integer, away from 0</li>
-<li><code class="docutils literal notranslate"><span class="pre">sin</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">sinh</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">sqrt</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">tan</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">tanh</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">abs</span></code> - the absolute value, with positive sign</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">acos</span></code> - arc cosine</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">asin</span></code> - arc sine</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">atan</span></code> - arc tangent</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">atan2</span></code> - arc tangent of two variables</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitand</span></code>, <code class="docutils literal notranslate"><span class="pre">bitor</span></code> and <code class="docutils literal notranslate"><span class="pre">bitxor</span></code> to perform bitwise operations. These will throw away any non-integer parts and interpret the rest as an int.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ceil</span></code> - round number up to nearest integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cos</span></code> - the cosine</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cosh</span></code> - hyperbolic cosine</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exp</span></code> - the base-e exponential function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fac</span></code> - factorial - also known as <code class="docutils literal notranslate"><span class="pre">x!</span></code> (<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">*</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">2)</span> <span class="pre">*</span> <span class="pre">...</span> <span class="pre">*</span> <span class="pre">1</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">floor</span></code> - round number down to nearest integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ln</span></code> - the base-e logarithm</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log</span></code> or <code class="docutils literal notranslate"><span class="pre">log10</span></code> - the base-10 logarithm</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ncr</span></code> - &quot;from n choose r&quot; combination function - how many subsets of size r can be taken from n (order doesn't matter)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">npr</span></code> - the number of subsets of size r that can be taken from a set of n elements (including different order)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pow(x,y)</span></code> returns x to the y (and can be written as <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">^</span> <span class="pre">y</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">round</span></code> - rounds to the nearest integer, away from 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sin</span></code> - the sine function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sinh</span></code> - the hyperbolic sine</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sqrt</span></code> - the square root - (can also be written as <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">^</span> <span class="pre">0.5</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tan</span></code> - the tangent</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tanh</span></code> - the hyperbolic tangent</p></li>
 </ul>
-<p>All of the trigonometric functions use radians.</p>
+<p>All of the trigonometric functions use radians (the pi-based scale, not 360°).</p>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
@@ -204,6 +196,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;bitand(0xFE,</span> <span class="pre">0x2e)&quot;</span></code> outputs 46.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;bitor(9,2)&quot;</span></code> outputs 11.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">--base=hex</span> <span class="pre">192</span></code> prints <code class="docutils literal notranslate"><span class="pre">0xc0</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">'ncr(49,6)'</span></code> prints 13983816 - that's the number of possible picks in 6-from-49 lotto.</p>
 </div>
 <div class="section" id="compatibility-notes">
 <h2>Compatibility notes<a class="headerlink" href="#compatibility-notes" title="Permalink to this headline">¶</a></h2>
@@ -213,6 +206,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -222,13 +216,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">math - perform mathematics calculations</a></li>
     <li class="right">
         
 
@@ -251,7 +246,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

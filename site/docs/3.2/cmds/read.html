@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>read - read line of input into variables &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>read - read line of input into variables &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="realpath - convert a path to an absolute path without symlinks" href="realpath.html" />
     <link rel="prev" title="random - generate random number" href="random.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
-    
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,13 +25,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">read - read line of input into variables</a></li>
     <li class="right">
         
 
@@ -73,17 +67,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
@@ -117,24 +109,24 @@
 <p><code class="docutils literal notranslate"><span class="pre">read</span></code> reads from standard input and either writes the result back to standard output (for use in command substitution), or stores the result in one or more shell variables. By default, <code class="docutils literal notranslate"><span class="pre">read</span></code> reads a single line and splits it into variables on spaces or tabs. Alternatively, a null character or a maximum number of characters can be used to terminate the input, and other delimiters can be given. Unlike other shells, there is no default variable (such as <code class="docutils literal notranslate"><span class="pre">REPLY</span></code>) for storing the result - instead, it is printed on standard output.</p>
 <p>The following options are available:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">CMD</span></code> or <code class="docutils literal notranslate"><span class="pre">--command=CMD</span></code> sets the initial string in the interactive mode command buffer to <code class="docutils literal notranslate"><span class="pre">CMD</span></code>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">DELIMITER</span></code> or <code class="docutils literal notranslate"><span class="pre">--delimiter=DELIMITER</span></code> splits on DELIMITER. DELIMITER will be used as an entire string to split on, not a set of characters.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-g</span></code> or <code class="docutils literal notranslate"><span class="pre">--global</span></code> makes the variables global.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-s</span></code> or <code class="docutils literal notranslate"><span class="pre">--silent</span></code> masks characters written to the terminal, replacing them with asterisks. This is useful for reading things like passwords or other sensitive information.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--local</span></code> makes the variables local.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">NCHARS</span></code> or <code class="docutils literal notranslate"><span class="pre">--nchars=NCHARS</span></code> makes <code class="docutils literal notranslate"><span class="pre">read</span></code> return after reading NCHARS characters or the end of
-the line, whichever comes first.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">PROMPT_CMD</span></code> or <code class="docutils literal notranslate"><span class="pre">--prompt=PROMPT_CMD</span></code> uses the output of the shell command <code class="docutils literal notranslate"><span class="pre">PROMPT_CMD</span></code> as the prompt for the interactive mode. The default prompt command is <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">green;</span> <span class="pre">echo</span> <span class="pre">read;</span> <span class="pre">set_color</span> <span class="pre">normal;</span> <span class="pre">echo</span> <span class="pre">&quot;&gt;</span> <span class="pre">&quot;</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">-P</span> <span class="pre">PROMPT_STR</span></code> or <code class="docutils literal notranslate"><span class="pre">--prompt-str=PROMPT_STR</span></code> uses the string as the prompt for the interactive mode. It is equivalent to <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">PROMPT_STR</span></code> and is provided solely to avoid the need to frame the prompt as a command. All special characters in the string are automatically escaped before being passed to the <a class="reference internal" href="echo.html#cmd-echo"><span class="std std-ref">echo</span></a> command.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">RIGHT_PROMPT_CMD</span></code> or <code class="docutils literal notranslate"><span class="pre">--right-prompt=RIGHT_PROMPT_CMD</span></code> uses the output of the shell command <code class="docutils literal notranslate"><span class="pre">RIGHT_PROMPT_CMD</span></code> as the right prompt for the interactive mode. There is no default right prompt command.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--shell</span></code> enables syntax highlighting, tab completions and command termination suitable for entering shellscript code in the interactive mode. NOTE: Prior to fish 3.0, the short opt for <code class="docutils literal notranslate"><span class="pre">--shell</span></code> was <code class="docutils literal notranslate"><span class="pre">-s</span></code>, but it has been changed for compatibility with bash's <code class="docutils literal notranslate"><span class="pre">-s</span></code> short opt for <code class="docutils literal notranslate"><span class="pre">--silent</span></code>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-t</span></code> -or <code class="docutils literal notranslate"><span class="pre">--tokenize</span></code> causes read to split the input into variables by the shell's tokenization rules. This means it will honor quotes and escaping. This option is of course incompatible with other options to control splitting like <code class="docutils literal notranslate"><span class="pre">--delimiter</span></code> and does not honor $IFS (like fish's tokenizer). It saves the tokens in the manner they'd be passed to commands on the commandline, so e.g. <code class="docutils literal notranslate"><span class="pre">a\</span> <span class="pre">b</span></code> is stored as <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">b</span></code>. Note that currently it leaves command substitutions intact along with the parentheses.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-u</span></code> or <code class="docutils literal notranslate"><span class="pre">--unexport</span></code> prevents the variables from being exported to child processes (default behaviour).</li>
-<li><code class="docutils literal notranslate"><span class="pre">-U</span></code> or <code class="docutils literal notranslate"><span class="pre">--universal</span></code> causes the specified shell variable to be made universal.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-x</span></code> or <code class="docutils literal notranslate"><span class="pre">--export</span></code> exports the variables to child processes.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--list</span></code> stores the result as a list in a single variable. This option is also available as <code class="docutils literal notranslate"><span class="pre">--array</span></code> for backwards compatibility.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-z</span></code> or <code class="docutils literal notranslate"><span class="pre">--null</span></code> marks the end of the line with the NUL character, instead of newline. This also disables interactive mode.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-L</span></code> or <code class="docutils literal notranslate"><span class="pre">--line</span></code> reads each line into successive variables, and stops after each variable has been filled. This cannot be combined with the <code class="docutils literal notranslate"><span class="pre">--delimiter</span></code> option.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">CMD</span></code> or <code class="docutils literal notranslate"><span class="pre">--command=CMD</span></code> sets the initial string in the interactive mode command buffer to <code class="docutils literal notranslate"><span class="pre">CMD</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">DELIMITER</span></code> or <code class="docutils literal notranslate"><span class="pre">--delimiter=DELIMITER</span></code> splits on DELIMITER. DELIMITER will be used as an entire string to split on, not a set of characters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-g</span></code> or <code class="docutils literal notranslate"><span class="pre">--global</span></code> makes the variables global.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code> or <code class="docutils literal notranslate"><span class="pre">--silent</span></code> masks characters written to the terminal, replacing them with asterisks. This is useful for reading things like passwords or other sensitive information.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--local</span></code> makes the variables local.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">NCHARS</span></code> or <code class="docutils literal notranslate"><span class="pre">--nchars=NCHARS</span></code> makes <code class="docutils literal notranslate"><span class="pre">read</span></code> return after reading NCHARS characters or the end of
+the line, whichever comes first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">PROMPT_CMD</span></code> or <code class="docutils literal notranslate"><span class="pre">--prompt=PROMPT_CMD</span></code> uses the output of the shell command <code class="docutils literal notranslate"><span class="pre">PROMPT_CMD</span></code> as the prompt for the interactive mode. The default prompt command is <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">green;</span> <span class="pre">echo</span> <span class="pre">read;</span> <span class="pre">set_color</span> <span class="pre">normal;</span> <span class="pre">echo</span> <span class="pre">&quot;&gt;</span> <span class="pre">&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-P</span> <span class="pre">PROMPT_STR</span></code> or <code class="docutils literal notranslate"><span class="pre">--prompt-str=PROMPT_STR</span></code> uses the string as the prompt for the interactive mode. It is equivalent to <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">PROMPT_STR</span></code> and is provided solely to avoid the need to frame the prompt as a command. All special characters in the string are automatically escaped before being passed to the <a class="reference internal" href="echo.html#cmd-echo"><span class="std std-ref">echo</span></a> command.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">RIGHT_PROMPT_CMD</span></code> or <code class="docutils literal notranslate"><span class="pre">--right-prompt=RIGHT_PROMPT_CMD</span></code> uses the output of the shell command <code class="docutils literal notranslate"><span class="pre">RIGHT_PROMPT_CMD</span></code> as the right prompt for the interactive mode. There is no default right prompt command.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--shell</span></code> enables syntax highlighting, tab completions and command termination suitable for entering shellscript code in the interactive mode. NOTE: Prior to fish 3.0, the short opt for <code class="docutils literal notranslate"><span class="pre">--shell</span></code> was <code class="docutils literal notranslate"><span class="pre">-s</span></code>, but it has been changed for compatibility with bash's <code class="docutils literal notranslate"><span class="pre">-s</span></code> short opt for <code class="docutils literal notranslate"><span class="pre">--silent</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code> -or <code class="docutils literal notranslate"><span class="pre">--tokenize</span></code> causes read to split the input into variables by the shell's tokenization rules. This means it will honor quotes and escaping. This option is of course incompatible with other options to control splitting like <code class="docutils literal notranslate"><span class="pre">--delimiter</span></code> and does not honor $IFS (like fish's tokenizer). It saves the tokens in the manner they'd be passed to commands on the commandline, so e.g. <code class="docutils literal notranslate"><span class="pre">a\</span> <span class="pre">b</span></code> is stored as <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">b</span></code>. Note that currently it leaves command substitutions intact along with the parentheses.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-u</span></code> or <code class="docutils literal notranslate"><span class="pre">--unexport</span></code> prevents the variables from being exported to child processes (default behaviour).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-U</span></code> or <code class="docutils literal notranslate"><span class="pre">--universal</span></code> causes the specified shell variable to be made universal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-x</span></code> or <code class="docutils literal notranslate"><span class="pre">--export</span></code> exports the variables to child processes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--list</span></code> stores the result as a list in a single variable. This option is also available as <code class="docutils literal notranslate"><span class="pre">--array</span></code> for backwards compatibility.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-z</span></code> or <code class="docutils literal notranslate"><span class="pre">--null</span></code> marks the end of the line with the NUL character, instead of newline. This also disables interactive mode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-L</span></code> or <code class="docutils literal notranslate"><span class="pre">--line</span></code> reads each line into successive variables, and stops after each variable has been filled. This cannot be combined with the <code class="docutils literal notranslate"><span class="pre">--delimiter</span></code> option.</p></li>
 </ul>
 <p>Without the <code class="docutils literal notranslate"><span class="pre">--line</span></code> option, <code class="docutils literal notranslate"><span class="pre">read</span></code> reads a single line of input from standard input, breaks it into tokens, and then assigns one token to each variable specified in <code class="docutils literal notranslate"><span class="pre">VARIABLES</span></code>. If there are more tokens than variables, the complete remainder is assigned to the last variable.</p>
 <p>If no option to determine how to split like <code class="docutils literal notranslate"><span class="pre">--delimiter</span></code>, <code class="docutils literal notranslate"><span class="pre">--line</span></code> or <code class="docutils literal notranslate"><span class="pre">--tokenize</span></code> is given, the variable <code class="docutils literal notranslate"><span class="pre">IFS</span></code> is used as a list of characters to split on. Relying on the use of <code class="docutils literal notranslate"><span class="pre">IFS</span></code> is deprecated and this behaviour will be removed in future versions. The default value of <code class="docutils literal notranslate"><span class="pre">IFS</span></code> contains space, tab and newline characters. As a special case, if <code class="docutils literal notranslate"><span class="pre">IFS</span></code> is set to the empty string, each character of the input is considered a separate token.</p>
@@ -183,6 +175,7 @@ is set to empty and the exit status is set to 122. This limit can be altered wit
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -192,13 +185,14 @@ is set to empty and the exit status is set to 122. This limit can be altered wit
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">read - read line of input into variables</a></li>
     <li class="right">
         
 
@@ -221,7 +215,7 @@ is set to empty and the exit status is set to 122. This limit can be altered wit
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

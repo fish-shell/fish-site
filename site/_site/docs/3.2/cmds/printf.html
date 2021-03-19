@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>printf - display text according to a format string &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>printf - display text according to a format string &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="prompt_pwd - print pwd suitable for prompt" href="prompt_pwd.html" />
     <link rel="prev" title="prevd - move backward through directory history" href="prevd.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
-    
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,13 +25,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">printf - display text according to a format string</a></li>
     <li class="right">
         
 
@@ -73,17 +67,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
@@ -122,20 +114,20 @@
 <p>printf uses the format string FORMAT to print the ARGUMENT arguments. This means that it takes format specifiers in the format string and replaces each with an argument.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">format</span></code> argument is re-used as many times as necessary to convert all of the given arguments. So <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%s\n</span> <span class="pre">flounder</span> <span class="pre">catfish</span> <span class="pre">clownfish</span> <span class="pre">shark</span></code> will print four lines.</p>
 <p>Unlike <a class="reference internal" href="echo.html#cmd-echo"><span class="std std-ref">echo</span></a>, <code class="docutils literal notranslate"><span class="pre">printf</span></code> does not append a new line unless it is specified as part of the string.</p>
-<p>It doesn't support any options, so there is no need for a <code class="docutils literal notranslate"><span class="pre">--</span></code> separator, which makes it easier to use for arbitrary input than <code class="docutils literal notranslate"><span class="pre">echo</span></code>. <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
+<p>It doesn't support any options, so there is no need for a <code class="docutils literal notranslate"><span class="pre">--</span></code> separator, which makes it easier to use for arbitrary input than <code class="docutils literal notranslate"><span class="pre">echo</span></code>. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
 </div>
 <div class="section" id="format-specifiers">
 <h2>Format Specifiers<a class="headerlink" href="#format-specifiers" title="Permalink to this headline">¶</a></h2>
 <p>Valid format specifiers are taken from the C library function <code class="docutils literal notranslate"><span class="pre">printf(3)</span></code>:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">%d</span></code> or <code class="docutils literal notranslate"><span class="pre">%i</span></code>: Argument will be used as decimal integer (signed or unsigned)</li>
-<li><code class="docutils literal notranslate"><span class="pre">%o</span></code>: An octal unsigned integer</li>
-<li><code class="docutils literal notranslate"><span class="pre">%u</span></code>: An unsigned decimal integer - this means negative numbers will wrap around</li>
-<li><code class="docutils literal notranslate"><span class="pre">%x</span></code> or <code class="docutils literal notranslate"><span class="pre">%X</span></code>: An unsigned hexadecimal integer</li>
-<li><code class="docutils literal notranslate"><span class="pre">%f</span></code>, <code class="docutils literal notranslate"><span class="pre">%g</span></code> or <code class="docutils literal notranslate"><span class="pre">%G</span></code>: A floating-point number. <code class="docutils literal notranslate"><span class="pre">%f</span></code> defaults to 6 places after the decimal point (which is locale-dependent - e.g. in de_DE it will be a <code class="docutils literal notranslate"><span class="pre">,</span></code>). <code class="docutils literal notranslate"><span class="pre">%g</span></code> and <code class="docutils literal notranslate"><span class="pre">%G</span></code> will trim trailing zeroes and switch to scientific notation (like <code class="docutils literal notranslate"><span class="pre">%e</span></code>) if the numbers get small or large enough.</li>
-<li><code class="docutils literal notranslate"><span class="pre">%e</span></code> or <code class="docutils literal notranslate"><span class="pre">%E</span></code>: A floating-point number in scientific (XXXeYY) notation</li>
-<li><code class="docutils literal notranslate"><span class="pre">%s</span></code>: A string</li>
-<li><code class="docutils literal notranslate"><span class="pre">%b</span></code>: As a string, interpreting backslash escapes, except that octal escapes are of the form 0 or 0ooo.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%d</span></code> or <code class="docutils literal notranslate"><span class="pre">%i</span></code>: Argument will be used as decimal integer (signed or unsigned)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%o</span></code>: An octal unsigned integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%u</span></code>: An unsigned decimal integer - this means negative numbers will wrap around</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%x</span></code> or <code class="docutils literal notranslate"><span class="pre">%X</span></code>: An unsigned hexadecimal integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%f</span></code>, <code class="docutils literal notranslate"><span class="pre">%g</span></code> or <code class="docutils literal notranslate"><span class="pre">%G</span></code>: A floating-point number. <code class="docutils literal notranslate"><span class="pre">%f</span></code> defaults to 6 places after the decimal point (which is locale-dependent - e.g. in de_DE it will be a <code class="docutils literal notranslate"><span class="pre">,</span></code>). <code class="docutils literal notranslate"><span class="pre">%g</span></code> and <code class="docutils literal notranslate"><span class="pre">%G</span></code> will trim trailing zeroes and switch to scientific notation (like <code class="docutils literal notranslate"><span class="pre">%e</span></code>) if the numbers get small or large enough.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%e</span></code> or <code class="docutils literal notranslate"><span class="pre">%E</span></code>: A floating-point number in scientific (XXXeYY) notation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%s</span></code>: A string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%b</span></code>: As a string, interpreting backslash escapes, except that octal escapes are of the form 0 or 0ooo.</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">%%</span></code> signifies a literal &quot;%&quot;.</p>
 <p>Conversion can fail, e.g. &quot;102.234&quot; can't losslessly convert to an integer, causing printf to print an error. If you are okay with losing information, silence errors with <code class="docutils literal notranslate"><span class="pre">2&gt;/dev/null</span></code>.</p>
@@ -145,21 +137,21 @@
 <h2>Backslash Escapes<a class="headerlink" href="#backslash-escapes" title="Permalink to this headline">¶</a></h2>
 <p>printf also knows a number of backslash escapes:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">\&quot;</span></code> double quote</li>
-<li><code class="docutils literal notranslate"><span class="pre">\\</span></code> backslash</li>
-<li><code class="docutils literal notranslate"><span class="pre">\a</span></code> alert (bell)</li>
-<li><code class="docutils literal notranslate"><span class="pre">\b</span></code> backspace</li>
-<li><code class="docutils literal notranslate"><span class="pre">\c</span></code> produce no further output</li>
-<li><code class="docutils literal notranslate"><span class="pre">\e</span></code> escape</li>
-<li><code class="docutils literal notranslate"><span class="pre">\f</span></code> form feed</li>
-<li><code class="docutils literal notranslate"><span class="pre">\n</span></code> new line</li>
-<li><code class="docutils literal notranslate"><span class="pre">\r</span></code> carriage return</li>
-<li><code class="docutils literal notranslate"><span class="pre">\t</span></code> horizontal tab</li>
-<li><code class="docutils literal notranslate"><span class="pre">\v</span></code> vertical tab</li>
-<li><code class="docutils literal notranslate"><span class="pre">\ooo</span></code> octal number (ooo is 1 to 3 digits)</li>
-<li><code class="docutils literal notranslate"><span class="pre">\xhh</span></code> hexadecimal number (hhh is 1 to 2 digits)</li>
-<li><code class="docutils literal notranslate"><span class="pre">\uhhhh</span></code> 16-bit Unicode character (hhhh is 4 digits)</li>
-<li><code class="docutils literal notranslate"><span class="pre">\Uhhhhhhhh</span></code> 32-bit Unicode character (hhhhhhhh is 8 digits)</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\&quot;</span></code> double quote</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\\</span></code> backslash</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\a</span></code> alert (bell)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\b</span></code> backspace</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\c</span></code> produce no further output</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\e</span></code> escape</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\f</span></code> form feed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\n</span></code> new line</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\r</span></code> carriage return</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\t</span></code> horizontal tab</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\v</span></code> vertical tab</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\ooo</span></code> octal number (ooo is 1 to 3 digits)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\xhh</span></code> hexadecimal number (hhh is 1 to 2 digits)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\uhhhh</span></code> 16-bit Unicode character (hhhh is 4 digits)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\Uhhhhhhhh</span></code> 32-bit Unicode character (hhhhhhhh is 8 digits)</p></li>
 </ul>
 </div>
 <div class="section" id="errors-and-return-status">
@@ -182,21 +174,21 @@
 <div class="section" id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>the <a class="reference internal" href="echo.html#cmd-echo"><span class="std std-ref">echo</span></a> command, for simpler output</li>
+<li><p>the <a class="reference internal" href="echo.html#cmd-echo"><span class="std std-ref">echo</span></a> command, for simpler output</p></li>
 </ul>
 </div>
 <div class="section" id="footnotes">
 <h2>Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this headline">¶</a></h2>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>(in fact while fish's <code class="docutils literal notranslate"><span class="pre">echo</span></code> supports <code class="docutils literal notranslate"><span class="pre">--</span></code>, POSIX forbids it, so other implementations can't be used if the input contains anything starting with <code class="docutils literal notranslate"><span class="pre">-</span></code>)</td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>(in fact while fish's <code class="docutils literal notranslate"><span class="pre">echo</span></code> supports <code class="docutils literal notranslate"><span class="pre">--</span></code>, POSIX forbids it, so other implementations can't be used if the input contains anything starting with <code class="docutils literal notranslate"><span class="pre">-</span></code>)</p>
+</dd>
+</dl>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -206,13 +198,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">printf - display text according to a format string</a></li>
     <li class="right">
         
 
@@ -235,7 +228,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

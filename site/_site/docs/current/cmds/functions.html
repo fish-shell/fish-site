@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>functions - print or erase functions &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>functions - print or erase functions &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="help - display fish documentation" href="help.html" />
     <link rel="prev" title="function - create a function" href="function.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
-    
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,13 +25,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">functions - print or erase functions</a></li>
     <li class="right">
         
 
@@ -73,17 +67,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
@@ -121,33 +113,29 @@
 <p><code class="docutils literal notranslate"><span class="pre">functions</span></code> prints or erases functions.</p>
 <p>The following options are available:</p>
 <ul>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--all</span></code> lists all functions, even those whose name starts with an underscore.</p>
-</li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">OLDNAME</span> <span class="pre">NEWNAME</span></code> or <code class="docutils literal notranslate"><span class="pre">--copy</span> <span class="pre">OLDNAME</span> <span class="pre">NEWNAME</span></code> creates a new function named NEWNAME, using the definition of the OLDNAME function.</p>
-</li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">DESCRIPTION</span></code> or <code class="docutils literal notranslate"><span class="pre">--description=DESCRIPTION</span></code> changes the description of this function.</p>
-</li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code> causes the specified functions to be erased. This also means that it is prevented from autoloading.</p>
-</li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">-D</span></code> or <code class="docutils literal notranslate"><span class="pre">--details</span></code> reports the path name where the specified function is defined or could be autoloaded, <code class="docutils literal notranslate"><span class="pre">stdin</span></code> if the function was defined interactively or on the command line or by reading stdin, <code class="docutils literal notranslate"><span class="pre">-</span></code> if the function was created via <a class="reference internal" href="source.html#cmd-source"><span class="std std-ref">source</span></a>, and <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn't available. (Functions created via <a class="reference internal" href="alias.html#cmd-alias"><span class="std std-ref">alias</span></a> will return <code class="docutils literal notranslate"><span class="pre">-</span></code>, because <code class="docutils literal notranslate"><span class="pre">alias</span></code> uses <code class="docutils literal notranslate"><span class="pre">source</span></code> internally.) If the <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> option is also specified then five lines are written:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--all</span></code> lists all functions, even those whose name starts with an underscore.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">OLDNAME</span> <span class="pre">NEWNAME</span></code> or <code class="docutils literal notranslate"><span class="pre">--copy</span> <span class="pre">OLDNAME</span> <span class="pre">NEWNAME</span></code> creates a new function named NEWNAME, using the definition of the OLDNAME function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">DESCRIPTION</span></code> or <code class="docutils literal notranslate"><span class="pre">--description=DESCRIPTION</span></code> changes the description of this function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code> causes the specified functions to be erased. This also means that it is prevented from autoloading.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-D</span></code> or <code class="docutils literal notranslate"><span class="pre">--details</span></code> reports the path name where the specified function is defined or could be autoloaded, <code class="docutils literal notranslate"><span class="pre">stdin</span></code> if the function was defined interactively or on the command line or by reading stdin, <code class="docutils literal notranslate"><span class="pre">-</span></code> if the function was created via <a class="reference internal" href="source.html#cmd-source"><span class="std std-ref">source</span></a>, and <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn't available. (Functions created via <a class="reference internal" href="alias.html#cmd-alias"><span class="std std-ref">alias</span></a> will return <code class="docutils literal notranslate"><span class="pre">-</span></code>, because <code class="docutils literal notranslate"><span class="pre">alias</span></code> uses <code class="docutils literal notranslate"><span class="pre">source</span></code> internally.) If the <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> option is also specified then five lines are written:</p>
 <blockquote>
 <div><ul class="simple">
-<li>the pathname as already described,</li>
-<li><code class="docutils literal notranslate"><span class="pre">autoloaded</span></code>, <code class="docutils literal notranslate"><span class="pre">not-autoloaded</span></code> or <code class="docutils literal notranslate"><span class="pre">n/a</span></code>,</li>
-<li>the line number within the file or zero if not applicable,</li>
-<li><code class="docutils literal notranslate"><span class="pre">scope-shadowing</span></code> if the function shadows the vars in the calling function (the normal case if it wasn't defined with <code class="docutils literal notranslate"><span class="pre">--no-scope-shadowing</span></code>), else <code class="docutils literal notranslate"><span class="pre">no-scope-shadowing</span></code>, or <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn't defined,</li>
-<li>the function description minimally escaped so it is a single line or <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn't defined.</li>
+<li><p>the pathname as already described,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">autoloaded</span></code>, <code class="docutils literal notranslate"><span class="pre">not-autoloaded</span></code> or <code class="docutils literal notranslate"><span class="pre">n/a</span></code>,</p></li>
+<li><p>the line number within the file or zero if not applicable,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scope-shadowing</span></code> if the function shadows the vars in the calling function (the normal case if it wasn't defined with <code class="docutils literal notranslate"><span class="pre">--no-scope-shadowing</span></code>), else <code class="docutils literal notranslate"><span class="pre">no-scope-shadowing</span></code>, or <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn't defined,</p></li>
+<li><p>the function description minimally escaped so it is a single line or <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn't defined.</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
 <p>You should not assume that only five lines will be written since we may add additional information to the output in the future.</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-n</span></code> or <code class="docutils literal notranslate"><span class="pre">--names</span></code> lists the names of all defined functions.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-q</span></code> or <code class="docutils literal notranslate"><span class="pre">--query</span></code> tests if the specified functions exist.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> will make some output more verbose.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-H</span></code> or <code class="docutils literal notranslate"><span class="pre">--handlers</span></code> will show all event handlers.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-t</span></code> or <code class="docutils literal notranslate"><span class="pre">--handlers-type</span> <span class="pre">TYPE</span></code> will show all event handlers matching the given type</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code> or <code class="docutils literal notranslate"><span class="pre">--names</span></code> lists the names of all defined functions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-q</span></code> or <code class="docutils literal notranslate"><span class="pre">--query</span></code> tests if the specified functions exist.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> will make some output more verbose.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-H</span></code> or <code class="docutils literal notranslate"><span class="pre">--handlers</span></code> will show all event handlers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code> or <code class="docutils literal notranslate"><span class="pre">--handlers-type</span> <span class="pre">TYPE</span></code> will show all event handlers matching the given type</p></li>
 </ul>
 <p>The default behavior of <code class="docutils literal notranslate"><span class="pre">functions</span></code>, when called with no arguments, is to print the names of all defined functions. Unless the <code class="docutils literal notranslate"><span class="pre">-a</span></code> option is given, no functions starting with underscores are included in the output.</p>
 <p>If any non-option parameters are given, the definition of the specified functions are printed.</p>
@@ -172,6 +160,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -181,13 +170,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">functions - print or erase functions</a></li>
     <li class="right">
         
 
@@ -210,7 +200,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

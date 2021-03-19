@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Tutorial &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorial &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Writing your own completions" href="completions.html" />
     <link rel="prev" title="Design" href="design.html" />
     <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
-    
-    <script type="text/javascript" src="_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,12 +25,13 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
+        <li class="nav-item nav-item-this"><a href="">Tutorial</a></li>
     <li class="right">
         
 
@@ -72,17 +66,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="index.html">Sections</a></h4>
 <ul>
@@ -184,17 +176,13 @@ set - handle shell variables
 <div class="section" id="syntax-highlighting">
 <h2>Syntax Highlighting<a class="headerlink" href="#syntax-highlighting" title="Permalink to this headline">¶</a></h2>
 <p>You'll quickly notice that fish performs syntax highlighting as you type. Invalid commands are colored red by default:</p>
-<pre class="highlight literal-block">
-<span class="prompt">&gt;</span> <span class="red">/bin/mkd</span>
-</pre>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="red">/bin/mkd</span></pre>
 <p>A command may be invalid because it does not exist, or refers to a file that you cannot execute. When the command becomes valid, it is shown in a different color:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">/bin/mkdir</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Valid file paths are underlined as you type them:</p>
-<pre class="highlight literal-block">
-<span class="prompt">&gt;</span> <span class="command">cat</span> <span class="param-valid-path">~/somefi</span>
-</pre>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="command">cat</span> <span class="param-valid-path">~/somefi</span></pre>
 <p>This tells you that there exists a file that starts with <code class="docutils literal notranslate"><span class="pre">somefi</span></code>, which is useful feedback as you type.</p>
 <p>These colors, and many more, can be changed by running <code class="docutils literal notranslate"><span class="pre">fish_config</span></code>, or by modifying <a class="reference internal" href="index.html#variables-color"><span class="std std-ref">color variables</span></a> directly.</p>
 </div>
@@ -240,38 +228,26 @@ lesson.pdf
 <div class="section" id="autosuggestions">
 <h2>Autosuggestions<a class="headerlink" href="#autosuggestions" title="Permalink to this headline">¶</a></h2>
 <p>As you type fish will suggest commands to the right of the cursor, in gray. For example:</p>
-<pre class="highlight literal-block">
-<span class="prompt">&gt;</span> <span class="red">/bin/h</span><span class="gray">ostname</span>
-</pre>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="red">/bin/h</span><span class="gray">ostname</span></pre>
 <p>It knows about paths and options:</p>
-<pre class="highlight literal-block">
-<span class="prompt">&gt;</span> <span class="command">grep</span> <span class="param">--i</span><span class="gray">gnore-case</span>
-</pre>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="command">grep</span> <span class="param">--i</span><span class="gray">gnore-case</span></pre>
 <p>And history too. Type a command once, and you can re-summon it by just typing a few letters:</p>
-<pre class="highlight literal-block">
-<span class="prompt">&gt;</span> <span class="red">r</span><span class="gray">sync -avze ssh . myname&#64;somelonghost.com:/some/long/path/doo/dee/doo/dee/doo</span>
-</pre>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="red">r</span><span class="gray">sync -avze ssh . myname&#64;somelonghost.com:/some/long/path/doo/dee/doo/dee/doo</span></pre>
 <p>To accept the autosuggestion, hit <kbd class="kbd docutils literal notranslate">→</kbd> (right arrow) or <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">F</kbd>. To accept a single word of the autosuggestion, <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">→</kbd> (right arrow). If the autosuggestion is not what you want, just ignore it.</p>
 </div>
 <div class="section" id="tab-completions">
 <h2>Tab Completions<a class="headerlink" href="#tab-completions" title="Permalink to this headline">¶</a></h2>
 <p>A rich set of tab completions work &quot;out of the box&quot;.</p>
 <p>Press <kbd class="kbd docutils literal notranslate">Tab</kbd> and fish will attempt to complete the command, argument, or path:</p>
-<pre class="highlight literal-block">
-<span class="prompt">&gt;</span> <span class="red">/pri</span><kbd class="kbd docutils literal notranslate">Tab</kbd> =&gt; <span class="command">/private/</span>
-</pre>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="red">/pri</span><kbd class="kbd docutils literal notranslate">Tab</kbd> =&gt; <span class="command">/private/</span></pre>
 <p>If there's more than one possibility, it will list them:</p>
-<pre class="highlight literal-block">
-<span class="prompt">&gt;</span> <span class="red">~/stuff/s</span><kbd class="kbd docutils literal notranslate">Tab</kbd>
-~/stuff/script.sh  (Executable, 4.8kB)  ~/stuff/sources/  (Directory)
-</pre>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="red">~/stuff/s</span><kbd class="kbd docutils literal notranslate">Tab</kbd>
+~/stuff/script.sh  (Executable, 4.8kB)  ~/stuff/sources/  (Directory)</pre>
 <p>Hit tab again to cycle through the possibilities.</p>
 <p>fish can also complete many commands, like git branches:</p>
-<pre class="highlight literal-block">
-<span class="prompt">&gt;</span> <span class="command">git</span> <span class="param">merge pr</span><kbd class="kbd docutils literal notranslate">Tab</kbd> =&gt; <span class="command">git</span> <span class="param">merge prompt_designer</span>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="command">git</span> <span class="param">merge pr</span><kbd class="kbd docutils literal notranslate">Tab</kbd> =&gt; <span class="command">git</span> <span class="param">merge prompt_designer</span>
 <span class="prompt">&gt;</span> <span class="command">git</span> <span class="param">checkout b</span><kbd class="kbd docutils literal notranslate">Tab</kbd>
-builtin_list_io_merge (Branch) builtin_set_color (Branch) busted_events (Tag)
-</pre>
+builtin_list_io_merge (Branch) builtin_set_color (Branch) busted_events (Tag)</pre>
 <p>Try hitting tab and see what fish can do!</p>
 </div>
 <div class="section" id="variables">
@@ -433,13 +409,12 @@ testing_1360099791.txt
 </pre></div>
 </div>
 <p>This indicates how the command fared - 0 usually means success, while the others signify kinds of failure. For instance fish's <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span></code> returns the number of variables it queried that weren't set - <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span> <span class="pre">PATH</span></code> usually returns 0, <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span> <span class="pre">arglbargl</span> <span class="pre">boogagoogoo</span></code> usually returns 2.</p>
-<p>There is also a <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code> list variable for the exit statuses <a class="footnote-reference" href="#id3" id="id2">[1]</a> of processes in a pipe.</p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>or &quot;stati&quot; if you prefer, or &quot;statūs&quot; if you've time-travelled from ancient Rome or work as a latin teacher</td></tr>
-</tbody>
-</table>
+<p>There is also a <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code> list variable for the exit statuses <a class="footnote-reference brackets" href="#id3" id="id2">1</a> of processes in a pipe.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>or &quot;stati&quot; if you prefer, or &quot;statūs&quot; if you've time-travelled from ancient Rome or work as a latin teacher</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="combiners-and-or-not">
 <span id="tut-combiners"></span><h2>Combiners (And, Or, Not)<a class="headerlink" href="#combiners-and-or-not" title="Permalink to this headline">¶</a></h2>
@@ -530,7 +505,7 @@ Hello
 Hello everybody!
 </pre></div>
 </div>
-<p>Unlike other shells, fish does not have aliases or special prompt syntax. Functions take their place. <a class="footnote-reference" href="#id5" id="id4">[2]</a></p>
+<p>Unlike other shells, fish does not have aliases or special prompt syntax. Functions take their place. <a class="footnote-reference brackets" href="#id5" id="id4">2</a></p>
 <p>You can list the names of all functions with the <a class="reference internal" href="cmds/functions.html#cmd-functions"><span class="std std-ref">functions</span></a> builtin (note the plural!). fish starts out with a number of functions:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">functions</span><span class="w"></span>
 N_, abbr, alias, bg, cd, cdh, contains_seq, delete-or-exit, dirh, dirs, disown, down-or-search, edit_command_buffer, export, fg, fish_add_path, fish_breakpoint_prompt, fish_clipboard_copy, fish_clipboard_paste, fish_config, fish_default_key_bindings, fish_default_mode_prompt, fish_git_prompt, fish_hg_prompt, fish_hybrid_key_bindings, fish_indent, fish_is_root_user, fish_job_summary, fish_key_reader, fish_md5, fish_mode_prompt, fish_npm_helper, fish_opt, fish_print_git_action, fish_print_hg_root, fish_prompt, fish_sigtrap_handler, fish_svn_prompt, fish_title, fish_update_completions, fish_vcs_prompt, fish_vi_cursor, fish_vi_key_bindings, funced, funcsave, grep, help, history, hostname, isatty, kill, la, ll, ls, man, nextd, nextd-or-forward-word, open, popd, prevd, prevd-or-backward-word, prompt_hostname, prompt_pwd, psub, pushd, realpath, seq, setenv, suspend, trap, type, umask, up-or-search, vared, wait
@@ -543,12 +518,11 @@ function ls --description &#39;List contents of directory&#39;
 end
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td>There is a function called <a class="reference internal" href="cmds/alias.html#cmd-alias"><span class="std std-ref">alias</span></a>, but it's just a shortcut to make functions.</td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
+<dd><p>There is a function called <a class="reference internal" href="cmds/alias.html#cmd-alias"><span class="std std-ref">alias</span></a>, but it's just a shortcut to make functions.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="loops">
 <h2>Loops<a class="headerlink" href="#loops" title="Permalink to this headline">¶</a></h2>
@@ -594,10 +568,8 @@ New Prompt % _
 </pre></div>
 </div>
 <p>This prompt would look like:</p>
-<pre class="highlight literal-block">
-<span class="purple">02/06/13</span>
-<span class="red">/home/tutorial &gt;</span> _
-</pre>
+<pre class="highlight literal-block"><span class="purple">02/06/13</span>
+<span class="red">/home/tutorial &gt;</span> _</pre>
 <p>You can choose among some sample prompts by running <code class="docutils literal notranslate"><span class="pre">fish_config</span> <span class="pre">prompt</span></code>.</p>
 </div>
 <div class="section" id="path">
@@ -696,6 +668,7 @@ with <code class="docutils literal notranslate"><span class="pre">/bin/bash</spa
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -705,12 +678,13 @@ with <code class="docutils literal notranslate"><span class="pre">/bin/bash</spa
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
+        <li class="nav-item nav-item-this"><a href="">Tutorial</a></li>
     <li class="right">
         
 
@@ -733,7 +707,7 @@ with <code class="docutils literal notranslate"><span class="pre">/bin/bash</spa
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

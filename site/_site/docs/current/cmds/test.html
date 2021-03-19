@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>test - perform tests on files and text &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test - perform tests on files and text &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="time - measure how long a command or block takes" href="time.html" />
     <link rel="prev" title="switch - conditionally execute a block of commands" href="switch.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
-    
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,13 +25,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">test - perform tests on files and text</a></li>
     <li class="right">
         
 
@@ -73,17 +67,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
@@ -128,63 +120,64 @@
 <div class="section" id="operators-for-files-and-directories">
 <h2>Operators for files and directories<a class="headerlink" href="#operators-for-files-and-directories" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a block device.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a character device.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a directory.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> exists.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a regular file.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-g</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> has the set-group-ID bit set.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-G</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> exists and has the same group ID as the current user.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-k</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> has the sticky bit set. If the OS does not support the concept it returns false. See <a class="reference external" href="https://en.wikipedia.org/wiki/Sticky_bit">https://en.wikipedia.org/wiki/Sticky_bit</a>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-L</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a symbolic link.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-O</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> exists and is owned by the current user.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a named pipe.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is marked as readable.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">FILE</span></code> returns true if the size of <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is greater than zero.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-S</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a socket.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">FD</span></code> returns true if the file descriptor <code class="docutils literal notranslate"><span class="pre">FD</span></code> is a terminal (TTY).</li>
-<li><code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> has the set-user-ID bit set.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is marked as writable; note that this does not check if the filesystem is read-only.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-x</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is marked as executable.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a block device.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a character device.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> exists.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a regular file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-g</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> has the set-group-ID bit set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-G</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> exists and has the same group ID as the current user.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-k</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> has the sticky bit set. If the OS does not support the concept it returns false. See <a class="reference external" href="https://en.wikipedia.org/wiki/Sticky_bit">https://en.wikipedia.org/wiki/Sticky_bit</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-L</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a symbolic link.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-O</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> exists and is owned by the current user.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a named pipe.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is marked as readable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">FILE</span></code> returns true if the size of <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is greater than zero.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-S</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is a socket.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">FD</span></code> returns true if the file descriptor <code class="docutils literal notranslate"><span class="pre">FD</span></code> is a terminal (TTY).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> has the set-user-ID bit set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is marked as writable; note that this does not check if the filesystem is read-only.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-x</span> <span class="pre">FILE</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">FILE</span></code> is marked as executable.</p></li>
 </ul>
 </div>
 <div class="section" id="operators-for-text-strings">
 <h2>Operators for text strings<a class="headerlink" href="#operators-for-text-strings" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">STRING1</span> <span class="pre">=</span> <span class="pre">STRING2</span></code> returns true if the strings <code class="docutils literal notranslate"><span class="pre">STRING1</span></code> and <code class="docutils literal notranslate"><span class="pre">STRING2</span></code> are identical.</li>
-<li><code class="docutils literal notranslate"><span class="pre">STRING1</span> <span class="pre">!=</span> <span class="pre">STRING2</span></code> returns true if the strings <code class="docutils literal notranslate"><span class="pre">STRING1</span></code> and <code class="docutils literal notranslate"><span class="pre">STRING2</span></code> are not identical.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">STRING</span></code> returns true if the length of <code class="docutils literal notranslate"><span class="pre">STRING</span></code> is non-zero.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-z</span> <span class="pre">STRING</span></code> returns true if the length of <code class="docutils literal notranslate"><span class="pre">STRING</span></code> is zero.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STRING1</span> <span class="pre">=</span> <span class="pre">STRING2</span></code> returns true if the strings <code class="docutils literal notranslate"><span class="pre">STRING1</span></code> and <code class="docutils literal notranslate"><span class="pre">STRING2</span></code> are identical.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STRING1</span> <span class="pre">!=</span> <span class="pre">STRING2</span></code> returns true if the strings <code class="docutils literal notranslate"><span class="pre">STRING1</span></code> and <code class="docutils literal notranslate"><span class="pre">STRING2</span></code> are not identical.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">STRING</span></code> returns true if the length of <code class="docutils literal notranslate"><span class="pre">STRING</span></code> is non-zero.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-z</span> <span class="pre">STRING</span></code> returns true if the length of <code class="docutils literal notranslate"><span class="pre">STRING</span></code> is zero.</p></li>
 </ul>
 </div>
 <div class="section" id="operators-to-compare-and-examine-numbers">
 <h2>Operators to compare and examine numbers<a class="headerlink" href="#operators-to-compare-and-examine-numbers" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-eq</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> and <code class="docutils literal notranslate"><span class="pre">NUM2</span></code> are numerically equal.</li>
-<li><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-ne</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> and <code class="docutils literal notranslate"><span class="pre">NUM2</span></code> are not numerically equal.</li>
-<li><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-gt</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> is greater than <code class="docutils literal notranslate"><span class="pre">NUM2</span></code>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-ge</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> is greater than or equal to <code class="docutils literal notranslate"><span class="pre">NUM2</span></code>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-lt</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> is less than <code class="docutils literal notranslate"><span class="pre">NUM2</span></code>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-le</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> is less than or equal to <code class="docutils literal notranslate"><span class="pre">NUM2</span></code>.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-eq</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> and <code class="docutils literal notranslate"><span class="pre">NUM2</span></code> are numerically equal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-ne</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> and <code class="docutils literal notranslate"><span class="pre">NUM2</span></code> are not numerically equal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-gt</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> is greater than <code class="docutils literal notranslate"><span class="pre">NUM2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-ge</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> is greater than or equal to <code class="docutils literal notranslate"><span class="pre">NUM2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-lt</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> is less than <code class="docutils literal notranslate"><span class="pre">NUM2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NUM1</span> <span class="pre">-le</span> <span class="pre">NUM2</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">NUM1</span></code> is less than or equal to <code class="docutils literal notranslate"><span class="pre">NUM2</span></code>.</p></li>
 </ul>
 <p>Both integers and floating point numbers are supported.</p>
 </div>
 <div class="section" id="operators-to-combine-expressions">
 <h2>Operators to combine expressions<a class="headerlink" href="#operators-to-combine-expressions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">COND1</span> <span class="pre">-a</span> <span class="pre">COND2</span></code> returns true if both <code class="docutils literal notranslate"><span class="pre">COND1</span></code> and <code class="docutils literal notranslate"><span class="pre">COND2</span></code> are true.</li>
-<li><code class="docutils literal notranslate"><span class="pre">COND1</span> <span class="pre">-o</span> <span class="pre">COND2</span></code> returns true if either <code class="docutils literal notranslate"><span class="pre">COND1</span></code> or <code class="docutils literal notranslate"><span class="pre">COND2</span></code> are true.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COND1</span> <span class="pre">-a</span> <span class="pre">COND2</span></code> returns true if both <code class="docutils literal notranslate"><span class="pre">COND1</span></code> and <code class="docutils literal notranslate"><span class="pre">COND2</span></code> are true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COND1</span> <span class="pre">-o</span> <span class="pre">COND2</span></code> returns true if either <code class="docutils literal notranslate"><span class="pre">COND1</span></code> or <code class="docutils literal notranslate"><span class="pre">COND2</span></code> are true.</p></li>
 </ul>
 <p>Expressions can be inverted using the <code class="docutils literal notranslate"><span class="pre">!</span></code> operator:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">!</span> <span class="pre">EXPRESSION</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code> is false, and false if <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code> is true.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">!</span> <span class="pre">EXPRESSION</span></code> returns true if <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code> is false, and false if <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code> is true.</p></li>
 </ul>
 <p>Expressions can be grouped using parentheses.</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">EXPRESSION</span> <span class="pre">)</span></code> returns the value of <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code>.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">EXPRESSION</span> <span class="pre">)</span></code> returns the value of <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code>.</p></li>
 </ul>
 <blockquote>
-<div>Note that parentheses will usually require escaping with <code class="docutils literal notranslate"><span class="pre">\(</span></code> to avoid being interpreted as a command substitution.</div></blockquote>
+<div><p>Note that parentheses will usually require escaping with <code class="docutils literal notranslate"><span class="pre">\(</span></code> to avoid being interpreted as a command substitution.</p>
+</div></blockquote>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
@@ -235,15 +228,17 @@
 <h2>Standards<a class="headerlink" href="#standards" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">test</span></code> implements a subset of the <a class="reference external" href="https://www.unix.com/man-page/posix/1p/test/">IEEE Std 1003.1-2008 (POSIX.1) standard</a>. The following exceptions apply:</p>
 <ul class="simple">
-<li>The <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> operators for comparing strings are not implemented.</li>
-<li>Because this test is a shell builtin and not a standalone utility, using the -c flag on a special file descriptors like standard input and output may not return the same result when invoked from within a pipe as one would expect when invoking the <code class="docutils literal notranslate"><span class="pre">test</span></code> utility in another shell.</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> operators for comparing strings are not implemented.</p></li>
+<li><p>Because this test is a shell builtin and not a standalone utility, using the -c flag on a special file descriptors like standard input and output may not return the same result when invoked from within a pipe as one would expect when invoking the <code class="docutils literal notranslate"><span class="pre">test</span></code> utility in another shell.</p></li>
 </ul>
 <blockquote>
-<div>In cases such as this, one can use <code class="docutils literal notranslate"><span class="pre">command</span></code> <code class="docutils literal notranslate"><span class="pre">test</span></code> to explicitly use the system's standalone <code class="docutils literal notranslate"><span class="pre">test</span></code> rather than this <code class="docutils literal notranslate"><span class="pre">builtin</span></code> <code class="docutils literal notranslate"><span class="pre">test</span></code>.</div></blockquote>
+<div><p>In cases such as this, one can use <code class="docutils literal notranslate"><span class="pre">command</span></code> <code class="docutils literal notranslate"><span class="pre">test</span></code> to explicitly use the system's standalone <code class="docutils literal notranslate"><span class="pre">test</span></code> rather than this <code class="docutils literal notranslate"><span class="pre">builtin</span></code> <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p>
+</div></blockquote>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -253,13 +248,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">test - perform tests on files and text</a></li>
     <li class="right">
         
 
@@ -282,7 +278,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

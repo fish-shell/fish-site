@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Design &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tutorial" href="tutorial.html" />
     <link rel="prev" title="while - perform a command multiple times" href="cmds/while.html" />
     <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
-    
-    <script type="text/javascript" src="_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,12 +25,13 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
+        <li class="nav-item nav-item-this"><a href="">Design</a></li>
     <li class="right">
         
 
@@ -72,17 +66,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="index.html">Sections</a></h4>
 <ul>
@@ -109,9 +101,9 @@
 <span id="id1"></span><h1>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h1>
 <p>This is a description of the design principles that have been used to design fish. The fish design has three high level goals. These are:</p>
 <ol class="arabic simple">
-<li>Everything that can be done in other shell languages should be possible to do in fish, though fish may rely on external commands in doing so.</li>
-<li>Fish should be user friendly, but not at the expense of expressiveness. Most tradeoffs between power and ease of use can be avoided with careful design.</li>
-<li>Whenever possible without breaking the above goals, fish should follow the Posix syntax.</li>
+<li><p>Everything that can be done in other shell languages should be possible to do in fish, though fish may rely on external commands in doing so.</p></li>
+<li><p>Fish should be user friendly, but not at the expense of expressiveness. Most tradeoffs between power and ease of use can be avoided with careful design.</p></li>
+<li><p>Whenever possible without breaking the above goals, fish should follow the Posix syntax.</p></li>
 </ol>
 <p>To achieve these high-level goals, the fish design relies on a number of more specific design principles. These are presented below, together with a rationale and a few examples for each.</p>
 <div class="section" id="the-law-of-orthogonality">
@@ -121,10 +113,10 @@
 Related features make the language larger, which makes it harder to learn. It also increases the size of the source code, making the program harder to maintain and update.</p>
 <p>Examples:</p>
 <ul class="simple">
-<li>Here documents are too similar to using echo inside of a pipeline.</li>
-<li>Subshells, command substitution and process substitution are strongly related. <code class="docutils literal notranslate"><span class="pre">fish</span></code> only supports command substitution, the others can be achieved either using a block or the psub shellscript function.</li>
-<li>Having both aliases and functions is confusing, especially since both of them have limitations and problems. <code class="docutils literal notranslate"><span class="pre">fish</span></code> functions have none of the drawbacks of either syntax.</li>
-<li>The many Posix quoting styles are silly, especially <code class="docutils literal notranslate"><span class="pre">$</span></code>.</li>
+<li><p>Here documents are too similar to using echo inside of a pipeline.</p></li>
+<li><p>Subshells, command substitution and process substitution are strongly related. <code class="docutils literal notranslate"><span class="pre">fish</span></code> only supports command substitution, the others can be achieved either using a block or the psub shellscript function.</p></li>
+<li><p>Having both aliases and functions is confusing, especially since both of them have limitations and problems. <code class="docutils literal notranslate"><span class="pre">fish</span></code> functions have none of the drawbacks of either syntax.</p></li>
+<li><p>The many Posix quoting styles are silly, especially <code class="docutils literal notranslate"><span class="pre">$</span></code>.</p></li>
 </ul>
 </div>
 <div class="section" id="the-law-of-responsiveness">
@@ -134,8 +126,8 @@ Related features make the language larger, which makes it harder to learn. It al
 Bad performance increases user-facing complexity, because it trains users to recognize and route around slow use cases. It is also incredibly frustrating.</p>
 <p>Examples:</p>
 <ul class="simple">
-<li>Features like syntax highlighting and autosuggestions must perform all of their disk I/O asynchronously.</li>
-<li>Startup should minimize forks and disk I/O, so that fish can be started even if the system is under load.</li>
+<li><p>Features like syntax highlighting and autosuggestions must perform all of their disk I/O asynchronously.</p></li>
+<li><p>Startup should minimize forks and disk I/O, so that fish can be started even if the system is under load.</p></li>
 </ul>
 </div>
 <div class="section" id="configurability-is-the-root-of-all-evil">
@@ -145,8 +137,8 @@ Bad performance increases user-facing complexity, because it trains users to rec
 Different configuration options are a nightmare to maintain, since the number of potential bugs caused by specific configuration combinations quickly becomes an issue. Configuration options often imply assumptions about the code which change when reimplementing the code, causing issues with backwards compatibility. But mostly, configuration options should be avoided since they simply should not exist, as the program should be smart enough to do what is best, or at least a good enough approximation of it.</p>
 <p>Examples:</p>
 <ul class="simple">
-<li>Fish allows the user to set various syntax highlighting colors. This is needed because fish does not know what colors the terminal uses by default, which might make some things unreadable. The proper solution would be for text color preferences to be defined centrally by the user for all programs, and for the terminal emulator to send these color properties to fish.</li>
-<li>Fish does not allow you to set the number of history entries, different language substyles or any number of other common shell configuration options.</li>
+<li><p>Fish allows the user to set various syntax highlighting colors. This is needed because fish does not know what colors the terminal uses by default, which might make some things unreadable. The proper solution would be for text color preferences to be defined centrally by the user for all programs, and for the terminal emulator to send these color properties to fish.</p></li>
+<li><p>Fish does not allow you to set the number of history entries, different language substyles or any number of other common shell configuration options.</p></li>
 </ul>
 <p>A special note on the evils of configurability is the long list of very useful features found in some shells, that are not turned on by default. Both zsh and bash support command-specific completions, but no such completions are shipped with bash by default, and they are turned off by default in zsh. Other features that zsh supports that are disabled by default include tab-completion of strings containing wildcards, a sane completion pager and a history file.</p>
 </div>
@@ -157,10 +149,10 @@ Different configuration options are a nightmare to maintain, since the number of
 This design rule is different than the others, since it describes how one should go about designing new features, not what the features should be. The problem with focusing on what can be done, and what is easy to do, is that too much of the implementation is exposed. This means that the user must know a great deal about the underlying system to be able to guess how the shell works, it also means that the language will often be rather low-level.</p>
 <p>Examples:</p>
 <ul class="simple">
-<li>There should only be one type of input to the shell, lists of commands. Loops, conditionals and variable assignments are all performed through regular commands.</li>
-<li>The differences between built-in commands and shellscript functions should be made as small as possible. Built-ins and shellscript functions should have exactly the same types of argument expansion as other commands, should be possible to use in any position in a pipeline, and should support any I/O redirection.</li>
-<li>Instead of forking when performing command substitution to provide a fake variable scope, all fish commands are performed from the same process, and fish instead supports true scoping.</li>
-<li>All blocks end with the <code class="docutils literal notranslate"><span class="pre">end</span></code> built-in.</li>
+<li><p>There should only be one type of input to the shell, lists of commands. Loops, conditionals and variable assignments are all performed through regular commands.</p></li>
+<li><p>The differences between built-in commands and shellscript functions should be made as small as possible. Built-ins and shellscript functions should have exactly the same types of argument expansion as other commands, should be possible to use in any position in a pipeline, and should support any I/O redirection.</p></li>
+<li><p>Instead of forking when performing command substitution to provide a fake variable scope, all fish commands are performed from the same process, and fish instead supports true scoping.</p></li>
+<li><p>All blocks end with the <code class="docutils literal notranslate"><span class="pre">end</span></code> built-in.</p></li>
 </ul>
 </div>
 <div class="section" id="the-law-of-discoverability">
@@ -171,15 +163,16 @@ A program whose features are discoverable turns a new user into an expert in a s
 <p>The main benefit of a graphical program over a command-line-based program is discoverability. In a graphical program, one can discover all the common features by simply looking at the user interface and guessing what the different buttons, menus and other widgets do. The traditional way to discover features in command-line programs is through manual pages. This requires both that the user starts to use a different program, and then they remember the new information until the next time they use the same program.</p>
 <p>Examples:</p>
 <ul class="simple">
-<li>Everything should be tab-completable, and every tab completion should have a description.</li>
-<li>Every syntax error and error in a built-in command should contain an error message describing what went wrong and a relevant help page. Whenever possible, errors should be flagged red by the syntax highlighter.</li>
-<li>The help manual should be easy to read, easily available from the shell, complete and contain many examples</li>
-<li>The language should be uniform, so that once the user understands the command/argument syntax, they will know the whole language, and be able to use tab-completion to discover new features.</li>
+<li><p>Everything should be tab-completable, and every tab completion should have a description.</p></li>
+<li><p>Every syntax error and error in a built-in command should contain an error message describing what went wrong and a relevant help page. Whenever possible, errors should be flagged red by the syntax highlighter.</p></li>
+<li><p>The help manual should be easy to read, easily available from the shell, complete and contain many examples</p></li>
+<li><p>The language should be uniform, so that once the user understands the command/argument syntax, they will know the whole language, and be able to use tab-completion to discover new features.</p></li>
 </ul>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -189,12 +182,13 @@ A program whose features are discoverable turns a new user into an expert in a s
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
+        <li class="nav-item nav-item-this"><a href="">Design</a></li>
     <li class="right">
         
 
@@ -217,7 +211,7 @@ A program whose features are discoverable turns a new user into an expert in a s
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

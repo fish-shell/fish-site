@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>commandline - set or get the current command line buffer &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>commandline - set or get the current command line buffer &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="complete - edit command specific tab-completions" href="complete.html" />
     <link rel="prev" title="command - run a program" href="command.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
-    
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,13 +25,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">commandline - set or get the current command line buffer</a></li>
     <li class="right">
         
 
@@ -73,17 +67,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
@@ -119,34 +111,34 @@
 <p>With <code class="docutils literal notranslate"><span class="pre">CMD</span></code> specified, the command line buffer is erased and replaced with the contents of <code class="docutils literal notranslate"><span class="pre">CMD</span></code>.</p>
 <p>The following options are available:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-C</span></code> or <code class="docutils literal notranslate"><span class="pre">--cursor</span></code> set or get the current cursor position, not the contents of the buffer. If no argument is given, the current cursor position is printed, otherwise the argument is interpreted as the new cursor position.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--function</span></code> causes any additional arguments to be interpreted as input functions, and puts them into the queue, so that they will be read before any additional actual key presses are. This option cannot be combined with any other option. See <a class="reference internal" href="bind.html#cmd-bind"><span class="std std-ref">bind</span></a> for a list of input functions.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-C</span></code> or <code class="docutils literal notranslate"><span class="pre">--cursor</span></code> set or get the current cursor position, not the contents of the buffer. If no argument is given, the current cursor position is printed, otherwise the argument is interpreted as the new cursor position.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--function</span></code> causes any additional arguments to be interpreted as input functions, and puts them into the queue, so that they will be read before any additional actual key presses are. This option cannot be combined with any other option. See <a class="reference internal" href="bind.html#cmd-bind"><span class="std std-ref">bind</span></a> for a list of input functions.</p></li>
 </ul>
 <p>The following options change the way <code class="docutils literal notranslate"><span class="pre">commandline</span></code> updates the command line buffer:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--append</span></code> do not remove the current commandline, append the specified string at the end of it</li>
-<li><code class="docutils literal notranslate"><span class="pre">-i</span></code> or <code class="docutils literal notranslate"><span class="pre">--insert</span></code> do not remove the current commandline, insert the specified string at the current cursor position</li>
-<li><code class="docutils literal notranslate"><span class="pre">-r</span></code> or <code class="docutils literal notranslate"><span class="pre">--replace</span></code> remove the current commandline and replace it with the specified string (default)</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--append</span></code> do not remove the current commandline, append the specified string at the end of it</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span></code> or <code class="docutils literal notranslate"><span class="pre">--insert</span></code> do not remove the current commandline, insert the specified string at the current cursor position</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code> or <code class="docutils literal notranslate"><span class="pre">--replace</span></code> remove the current commandline and replace it with the specified string (default)</p></li>
 </ul>
 <p>The following options change what part of the commandline is printed or updated:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-b</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-buffer</span></code> select the entire buffer, including any displayed autosuggestion (default)</li>
-<li><code class="docutils literal notranslate"><span class="pre">-j</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-job</span></code> select the current job - a <cite>job</cite> here is one pipeline. It stops at logical operators or terminators (<code class="docutils literal notranslate"><span class="pre">;</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> or newlines).</li>
-<li><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-process</span></code> select the current process - a <cite>process</cite> here is one simple command. It stops at logical operators, terminators or pipes.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-s</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-selection</span></code> selects the current selection</li>
-<li><code class="docutils literal notranslate"><span class="pre">-t</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-token</span></code> select the current token</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-buffer</span></code> select the entire buffer, including any displayed autosuggestion (default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-j</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-job</span></code> select the current job - a <cite>job</cite> here is one pipeline. It stops at logical operators or terminators (<code class="docutils literal notranslate"><span class="pre">;</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> or newlines).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-process</span></code> select the current process - a <cite>process</cite> here is one simple command. It stops at logical operators, terminators or pipes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-selection</span></code> selects the current selection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-token</span></code> select the current token</p></li>
 </ul>
 <p>The following options change the way <code class="docutils literal notranslate"><span class="pre">commandline</span></code> prints the current commandline buffer:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--cut-at-cursor</span></code> only print selection up until the current cursor position</li>
-<li><code class="docutils literal notranslate"><span class="pre">-o</span></code> or <code class="docutils literal notranslate"><span class="pre">--tokenize</span></code> tokenize the selection and print one string-type token per line</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--cut-at-cursor</span></code> only print selection up until the current cursor position</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span></code> or <code class="docutils literal notranslate"><span class="pre">--tokenize</span></code> tokenize the selection and print one string-type token per line</p></li>
 </ul>
 <p>If <code class="docutils literal notranslate"><span class="pre">commandline</span></code> is called during a call to complete a given string using <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-C</span> <span class="pre">STRING</span></code>, <code class="docutils literal notranslate"><span class="pre">commandline</span></code> will consider the specified string to be the current contents of the command line.</p>
 <p>The following options output metadata about the commandline state:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-L</span></code> or <code class="docutils literal notranslate"><span class="pre">--line</span></code> print the line that the cursor is on, with the topmost line starting at 1</li>
-<li><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--search-mode</span></code> evaluates to true if the commandline is performing a history search</li>
-<li><code class="docutils literal notranslate"><span class="pre">-P</span></code> or <code class="docutils literal notranslate"><span class="pre">--paging-mode</span></code> evaluates to true if the commandline is showing pager contents, such as tab completions</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-L</span></code> or <code class="docutils literal notranslate"><span class="pre">--line</span></code> print the line that the cursor is on, with the topmost line starting at 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--search-mode</span></code> evaluates to true if the commandline is performing a history search</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-P</span></code> or <code class="docutils literal notranslate"><span class="pre">--paging-mode</span></code> evaluates to true if the commandline is showing pager contents, such as tab completions</p></li>
 </ul>
 </div>
 <div class="section" id="example">
@@ -177,6 +169,7 @@ echo $flounder &gt;&amp;2 | less
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -186,13 +179,14 @@ echo $flounder &gt;&amp;2 | less
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">commandline - set or get the current command line buffer</a></li>
     <li class="right">
         
 
@@ -215,7 +209,7 @@ echo $flounder &gt;&amp;2 | less
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

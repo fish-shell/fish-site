@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>fish_hg_prompt - output Mercurial information for use in a prompt &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fish_hg_prompt - output Mercurial information for use in a prompt &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fish_indent - indenter and prettifier" href="fish_indent.html" />
     <link rel="prev" title="fish_greeting - display a welcome message in interactive shells" href="fish_greeting.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
-    
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,13 +25,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fish_hg_prompt - output Mercurial information for use in a prompt</a></li>
     <li class="right">
         
 
@@ -73,17 +67,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
@@ -124,25 +116,25 @@
 </div>
 <p>If you enabled the informative status, there are numerous customization options, which can be controlled with fish variables.</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_clean</span></code>, <code class="docutils literal notranslate"><span class="pre">$fish_color_hg_modified</span></code> and <code class="docutils literal notranslate"><span class="pre">$fish_color_hg_dirty</span></code> are colors used when the repository has the respective status.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_clean</span></code>, <code class="docutils literal notranslate"><span class="pre">$fish_color_hg_modified</span></code> and <code class="docutils literal notranslate"><span class="pre">$fish_color_hg_dirty</span></code> are colors used when the repository has the respective status.</p></li>
 </ul>
 <p>Some colors for status symbols:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_added</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_renamed</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_copied</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_deleted</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_untracked</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_unmerged</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_added</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_renamed</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_copied</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_deleted</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_untracked</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_hg_unmerged</span></code></p></li>
 </ul>
 <p>The status symbols themselves:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_added</span></code>, default '✚'</li>
-<li><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_modified</span></code>, default '*'</li>
-<li><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_copied</span></code>, default '⇒'</li>
-<li><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_deleted</span></code>, default '✖'</li>
-<li><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_untracked</span></code>, default '?'</li>
-<li><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_unmerged</span></code>, default '!'</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_added</span></code>, default '✚'</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_modified</span></code>, default '*'</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_copied</span></code>, default '⇒'</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_deleted</span></code>, default '✖'</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_untracked</span></code>, default '?'</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_unmerged</span></code>, default '!'</p></li>
 </ul>
 <p>Finally, <code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_order</span></code>, which can be used to change the order the status symbols appear in. It defaults to <code class="docutils literal notranslate"><span class="pre">added</span> <span class="pre">modified</span> <span class="pre">copied</span> <span class="pre">deleted</span> <span class="pre">untracked</span> <span class="pre">unmerged</span></code>.</p>
 <p>See also <a class="reference internal" href="fish_vcs_prompt.html#cmd-fish-vcs-prompt"><span class="std std-ref">fish_vcs_prompt</span></a>, which will call all supported version control prompt functions, including git, Mercurial and Subversion.</p>
@@ -161,6 +153,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -170,13 +163,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fish_hg_prompt - output Mercurial information for use in a prompt</a></li>
     <li class="right">
         
 
@@ -199,7 +193,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

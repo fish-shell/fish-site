@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>string - manipulate strings &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>string - manipulate strings &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="string-collect - join strings into one" href="string-collect.html" />
     <link rel="prev" title="status - query fish runtime information" href="status.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
-    
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,13 +25,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">string - manipulate strings</a></li>
     <li class="right">
         
 
@@ -73,17 +67,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
@@ -392,7 +384,7 @@ rich.  🐟🐟🐟🐟
 <div class="section" id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>The <a class="reference internal" href="printf.html#cmd-printf"><span class="std std-ref">printf</span></a> command can do simple padding, for example <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%10s\n</span></code> works like <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">pad</span> <span class="pre">-w10</span></code>.</li>
+<li><p>The <a class="reference internal" href="printf.html#cmd-printf"><span class="std std-ref">printf</span></a> command can do simple padding, for example <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%10s\n</span></code> works like <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">pad</span> <span class="pre">-w10</span></code>.</p></li>
 </ul>
 </div>
 <div class="section" id="repeat-subcommand">
@@ -570,51 +562,51 @@ zan
 <p>In general, special characters are special by default, so <code class="docutils literal notranslate"><span class="pre">a+</span></code> matches one or more &quot;a&quot;s, while <code class="docutils literal notranslate"><span class="pre">a\+</span></code> matches an &quot;a&quot; and then a &quot;+&quot;. <code class="docutils literal notranslate"><span class="pre">(a+)</span></code> matches one or more &quot;a&quot;s in a capturing group (<code class="docutils literal notranslate"><span class="pre">(?:XXXX)</span></code> denotes a non-capturing group). For the replacement parameter of <code class="docutils literal notranslate"><span class="pre">replace</span></code>, <code class="docutils literal notranslate"><span class="pre">$n</span></code> refers to the n-th group of the match. In the match parameter, <code class="docutils literal notranslate"><span class="pre">\n</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">\1</span></code>) refers back to groups.</p>
 <p>Some features include repetitions:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">*</span></code> refers to 0 or more repetitions of the previous expression</li>
-<li><code class="docutils literal notranslate"><span class="pre">+</span></code> 1 or more</li>
-<li><code class="docutils literal notranslate"><span class="pre">?</span></code> 0 or 1.</li>
-<li><code class="docutils literal notranslate"><span class="pre">{n}</span></code> to exactly n (where n is a number)</li>
-<li><code class="docutils literal notranslate"><span class="pre">{n,m}</span></code> at least n, no more than m.</li>
-<li><code class="docutils literal notranslate"><span class="pre">{n,}</span></code> n or more</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> refers to 0 or more repetitions of the previous expression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+</span></code> 1 or more</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">?</span></code> 0 or 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{n}</span></code> to exactly n (where n is a number)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{n,m}</span></code> at least n, no more than m.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{n,}</span></code> n or more</p></li>
 </ul>
 <p>Character classes, some of the more important:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">.</span></code> any character except newline</li>
-<li><code class="docutils literal notranslate"><span class="pre">\d</span></code> a decimal digit and <code class="docutils literal notranslate"><span class="pre">\D</span></code>, not a decimal digit</li>
-<li><code class="docutils literal notranslate"><span class="pre">\s</span></code> whitespace and <code class="docutils literal notranslate"><span class="pre">\S</span></code>, not whitespace</li>
-<li><code class="docutils literal notranslate"><span class="pre">\w</span></code> a &quot;word&quot; character and <code class="docutils literal notranslate"><span class="pre">\W</span></code>, a &quot;non-word&quot; character</li>
-<li><code class="docutils literal notranslate"><span class="pre">[...]</span></code> (where &quot;...&quot; is some characters) is a character set</li>
-<li><code class="docutils literal notranslate"><span class="pre">[^...]</span></code> is the inverse of the given character set</li>
-<li><code class="docutils literal notranslate"><span class="pre">[x-y]</span></code> is the range of characters from x-y</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:xxx:]]</span></code> is a named character set</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:^xxx:]]</span></code> is the inverse of a named character set</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:alnum:]]</span></code>  : &quot;alphanumeric&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:alpha:]]</span></code>  : &quot;alphabetic&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:ascii:]]</span></code>  : &quot;0-127&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:blank:]]</span></code>  : &quot;space or tab&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:cntrl:]]</span></code>  : &quot;control character&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:digit:]]</span></code>  : &quot;decimal digit&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:graph:]]</span></code>  : &quot;printing, excluding space&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:lower:]]</span></code>  : &quot;lower case letter&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:print:]]</span></code>  : &quot;printing, including space&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:punct:]]</span></code>  : &quot;printing, excluding alphanumeric&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:space:]]</span></code>  : &quot;white space&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:upper:]]</span></code>  : &quot;upper case letter&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:word:]]</span></code>   : &quot;same as w&quot;</li>
-<li><code class="docutils literal notranslate"><span class="pre">[[:xdigit:]]</span></code> : &quot;hexadecimal digit&quot;</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.</span></code> any character except newline</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\d</span></code> a decimal digit and <code class="docutils literal notranslate"><span class="pre">\D</span></code>, not a decimal digit</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\s</span></code> whitespace and <code class="docutils literal notranslate"><span class="pre">\S</span></code>, not whitespace</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\w</span></code> a &quot;word&quot; character and <code class="docutils literal notranslate"><span class="pre">\W</span></code>, a &quot;non-word&quot; character</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[...]</span></code> (where &quot;...&quot; is some characters) is a character set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[^...]</span></code> is the inverse of the given character set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[x-y]</span></code> is the range of characters from x-y</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:xxx:]]</span></code> is a named character set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:^xxx:]]</span></code> is the inverse of a named character set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:alnum:]]</span></code>  : &quot;alphanumeric&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:alpha:]]</span></code>  : &quot;alphabetic&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:ascii:]]</span></code>  : &quot;0-127&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:blank:]]</span></code>  : &quot;space or tab&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:cntrl:]]</span></code>  : &quot;control character&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:digit:]]</span></code>  : &quot;decimal digit&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:graph:]]</span></code>  : &quot;printing, excluding space&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:lower:]]</span></code>  : &quot;lower case letter&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:print:]]</span></code>  : &quot;printing, including space&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:punct:]]</span></code>  : &quot;printing, excluding alphanumeric&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:space:]]</span></code>  : &quot;white space&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:upper:]]</span></code>  : &quot;upper case letter&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:word:]]</span></code>   : &quot;same as w&quot;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[[:xdigit:]]</span></code> : &quot;hexadecimal digit&quot;</p></li>
 </ul>
 <p>Groups:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">(...)</span></code> is a capturing group</li>
-<li><code class="docutils literal notranslate"><span class="pre">(?:...)</span></code> is a non-capturing group</li>
-<li><code class="docutils literal notranslate"><span class="pre">\n</span></code> is a backreference (where n is the number of the group, starting with 1)</li>
-<li><code class="docutils literal notranslate"><span class="pre">$n</span></code> is a reference from the replacement expression to a group in the match expression.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(...)</span></code> is a capturing group</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(?:...)</span></code> is a non-capturing group</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\n</span></code> is a backreference (where n is the number of the group, starting with 1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$n</span></code> is a reference from the replacement expression to a group in the match expression.</p></li>
 </ul>
 <p>And some other things:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">\b</span></code> denotes a word boundary, <code class="docutils literal notranslate"><span class="pre">\B</span></code> is not a word boundary.</li>
-<li><code class="docutils literal notranslate"><span class="pre">^</span></code> is the start of the string or line, <code class="docutils literal notranslate"><span class="pre">$</span></code> the end.</li>
-<li><code class="docutils literal notranslate"><span class="pre">|</span></code> is &quot;alternation&quot;, i.e. the &quot;or&quot;.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\b</span></code> denotes a word boundary, <code class="docutils literal notranslate"><span class="pre">\B</span></code> is not a word boundary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">^</span></code> is the start of the string or line, <code class="docutils literal notranslate"><span class="pre">$</span></code> the end.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">|</span></code> is &quot;alternation&quot;, i.e. the &quot;or&quot;.</p></li>
 </ul>
 </div>
 <div class="section" id="comparison-to-other-tools">
@@ -629,6 +621,7 @@ zan
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -638,13 +631,14 @@ zan
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">string - manipulate strings</a></li>
     <li class="right">
         
 
@@ -667,7 +661,7 @@ zan
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 

@@ -1,30 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>fish_indent - indenter and prettifier &#8212; fish-shell 3.2.0 documentation</title>
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fish_indent - indenter and prettifier &#8212; fish-shell 3.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fish_is_root_user - check if the current user is root" href="fish_is_root_user.html" />
     <link rel="prev" title="fish_hg_prompt - output Mercurial information for use in a prompt" href="fish_hg_prompt.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
-    
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
-    
      
 
   </head><body><div id="fmain">  
@@ -32,13 +25,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fish_indent - indenter and prettifier</a></li>
     <li class="right">
         
 
@@ -73,17 +67,15 @@
 
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
@@ -116,20 +108,21 @@
 <p><code class="docutils literal notranslate"><span class="pre">fish_indent</span></code> is used to indent a piece of fish code. <code class="docutils literal notranslate"><span class="pre">fish_indent</span></code> reads commands from standard input or the given filenames and outputs them to standard output or a specified file (if <code class="docutils literal notranslate"><span class="pre">-w</span></code> is given).</p>
 <p>The following options are available:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">-w</span></code> or <code class="docutils literal notranslate"><span class="pre">--write</span></code> indents a specified file and immediately writes to that file.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-i</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-indent</span></code> do not indent commands; only reformat to one job per line.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--check</span></code> do not indent, only return 0 if the code is already indented as fish_indent would, the number of failed files otherwise. Also print the failed filenames if not reading from stdin.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--version</span></code> displays the current fish version and then exits.</li>
-<li><code class="docutils literal notranslate"><span class="pre">--ansi</span></code> colorizes the output using ANSI escape sequences, appropriate for the current $TERM, using the colors defined in the environment (such as <code class="docutils literal notranslate"><span class="pre">$fish_color_command</span></code>).</li>
-<li><code class="docutils literal notranslate"><span class="pre">--html</span></code> outputs HTML, which supports syntax highlighting if the appropriate CSS is defined. The CSS class names are the same as the variable names, such as <code class="docutils literal notranslate"><span class="pre">fish_color_command</span></code>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-d</span></code> or <code class="docutils literal notranslate"><span class="pre">--debug=DEBUG_CATEGORIES</span></code> enable debug output and specify a pattern for matching debug categories. See <a class="reference internal" href="fish.html#debugging-fish"><span class="std std-ref">Debugging</span></a> in <a class="reference internal" href="fish.html#cmd-fish"><span class="std std-ref">fish(1)</span></a> for details.</li>
-<li><code class="docutils literal notranslate"><span class="pre">-o</span></code> or <code class="docutils literal notranslate"><span class="pre">--debug-output=DEBUG_FILE</span></code> specify a file path to receive the debug output, including categories and <code class="docutils literal notranslate"><span class="pre">fish_trace</span></code>. The default is stderr.</li>
-<li><code class="docutils literal notranslate"><span class="pre">--dump-parse-tree</span></code> dumps information about the parsed statements to stderr. This is likely to be of interest only to people working on the fish source code.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-w</span></code> or <code class="docutils literal notranslate"><span class="pre">--write</span></code> indents a specified file and immediately writes to that file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-indent</span></code> do not indent commands; only reformat to one job per line.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--check</span></code> do not indent, only return 0 if the code is already indented as fish_indent would, the number of failed files otherwise. Also print the failed filenames if not reading from stdin.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--version</span></code> displays the current fish version and then exits.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--ansi</span></code> colorizes the output using ANSI escape sequences, appropriate for the current $TERM, using the colors defined in the environment (such as <code class="docutils literal notranslate"><span class="pre">$fish_color_command</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--html</span></code> outputs HTML, which supports syntax highlighting if the appropriate CSS is defined. The CSS class names are the same as the variable names, such as <code class="docutils literal notranslate"><span class="pre">fish_color_command</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span></code> or <code class="docutils literal notranslate"><span class="pre">--debug=DEBUG_CATEGORIES</span></code> enable debug output and specify a pattern for matching debug categories. See <a class="reference internal" href="fish.html#debugging-fish"><span class="std std-ref">Debugging</span></a> in <a class="reference internal" href="fish.html#cmd-fish"><span class="std std-ref">fish(1)</span></a> for details.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span></code> or <code class="docutils literal notranslate"><span class="pre">--debug-output=DEBUG_FILE</span></code> specify a file path to receive the debug output, including categories and <code class="docutils literal notranslate"><span class="pre">fish_trace</span></code>. The default is stderr.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--dump-parse-tree</span></code> dumps information about the parsed statements to stderr. This is likely to be of interest only to people working on the fish source code.</p></li>
 </ul>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div> 
@@ -139,13 +132,14 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="max-width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.2.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fish_indent - indenter and prettifier</a></li>
     <li class="right">
         
 
@@ -168,7 +162,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 1.8.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
 </div>
 
