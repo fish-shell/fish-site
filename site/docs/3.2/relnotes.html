@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Release notes &#8212; fish-shell 3.2.1 documentation</title>
+    <title>Release notes &#8212; fish-shell 3.2.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -28,7 +28,7 @@
              style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -79,6 +79,7 @@
 <h4><a href="index.html">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
+<li><a class="reference internal" href="#fish-3-2-2-released-april-7-2021">fish 3.2.2 (released April 7, 2021)</a></li>
 <li><a class="reference internal" href="#fish-3-2-1-released-march-18-2021">fish 3.2.1 (released March 18, 2021)</a></li>
 <li><a class="reference internal" href="#fish-3-2-0-released-march-1-2021">fish 3.2.0 (released March 1, 2021)</a><ul>
 <li><a class="reference internal" href="#notable-improvements-and-fixes">Notable improvements and fixes</a></li>
@@ -247,6 +248,21 @@
             
   <div class="section" id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="fish-3-2-2-released-april-7-2021">
+<h2>fish 3.2.2 (released April 7, 2021)<a class="headerlink" href="#fish-3-2-2-released-april-7-2021" title="Permalink to this headline">¶</a></h2>
+<p>This release of fish fixes a number of additional issues identified in the fish 3.2 series:</p>
+<ul class="simple">
+<li><p>The command-not-found handler used suggestions from <code class="docutils literal notranslate"><span class="pre">pacman</span></code> on Arch Linux, but this caused major slowdowns on some systems and has been disabled (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7841">#7841</a>).</p></li>
+<li><p>fish will no longer hang on exit if another process is in the foreground on macOS (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7901">#7901</a>).</p></li>
+<li><p>Certain programs (such as <code class="docutils literal notranslate"><span class="pre">lazygit</span></code>) could create situations where fish would not receive keystrokes correctly, but it is now more robust in these situations (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7853">#7853</a>).</p></li>
+<li><p>Arguments longer than 1024 characters no longer trigger excessive CPU usage on macOS (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7837">#7837</a>).</p></li>
+<li><p>fish builds correctly on macOS when using new versions of Xcode (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7838">#7838</a>).</p></li>
+<li><p>Completions for <code class="docutils literal notranslate"><span class="pre">aura</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7865">#7865</a>) and <code class="docutils literal notranslate"><span class="pre">tshark</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7858">#7858</a>) should no longer produce errors.</p></li>
+<li><p>Background jobs no longer interfere with syntax highlighting (a regression introduced in fish 3.2.1, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7842">#7842</a>).</p></li>
+</ul>
+<p>If you are upgrading from version 3.1.2 or before, please also review the release notes for 3.2.1 and 3.2.0 (included below).</p>
+</div>
+<hr class="docutils" />
 <div class="section" id="fish-3-2-1-released-march-18-2021">
 <h2>fish 3.2.1 (released March 18, 2021)<a class="headerlink" href="#fish-3-2-1-released-march-18-2021" title="Permalink to this headline">¶</a></h2>
 <p>This release of fish fixes the following problems identified in fish 3.2.0:</p>
@@ -2958,7 +2974,7 @@ track.</p>
              style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
