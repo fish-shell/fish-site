@@ -1,3 +1,8 @@
+*, ::after, ::before {
+    /* Bootstrap messes with this */
+    box-sizing: content-box;
+}
+
 body.tutorial_body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 13pt;
@@ -128,6 +133,26 @@ ul li {
 
 .nav-tabs {
     margin-bottom: 0;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #495057;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+.nav-tabs .nav-link {
+    margin-bottom: -1px;
+    border: 1px solid transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+.nav-link {
+    display: block;
+    padding: .5rem 1rem;
 }
 
 .mono {
@@ -371,6 +396,8 @@ h3 {
 
 .jumbotron {
     margin: 36px 0;
+    padding: 0;
+    background-color: inherit;
 }
 
 .jumbotron h1 {
@@ -492,4 +519,19 @@ h3 {
         margin: 0;
         width: auto;
     }
+}
+
+.nav-tabs > li {
+    margin-bottom: -1px;
+}
+
+.btn-large {
+    font-size: larger;
+    background-color: #222;
+    background: linear-gradient(rgb(255, 255, 255) 0%, rgb(230, 230, 230) 100%)
+}
+
+.btn {
+    border-color: #c5c5c5;
+    border-color: rgba(0,0,0,0.15) rgba(0,0,0,0.15) rgba(0,0,0,0.25);
 }
