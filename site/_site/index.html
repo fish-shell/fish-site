@@ -7,21 +7,12 @@
   <meta name="viewport" content="width=920">
   <meta name="description" content="A smart and user-friendly command line shell">
   <meta name="author" content="ridiculous_fish">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="assets/css/fish_style.css" rel="stylesheet" type="text/css">
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  <noscript>
-    <style type="text/css">
-      /* Show all tabs when JS is disabled */
-      .tab-content > .tab-pane, .pill-content > .pill-pane { display: block }
-      #platform_tabs { display: none }
-    </style>
-  </noscript>
-
 </head>
 
 <body class="gradient_body">
@@ -144,12 +135,19 @@
 
   <h3>Go fish</h3>
 
+  <!-- These are fake radiobuttons triggered by clicking on the *label*,
+       some css then displays the selected tab and marks the label active -->
+  <input class="tabselector" name="tabselector" type="radio" id="tab1">
+  <input class="tabselector" name="tabselector" type="radio" id="tab2">
+  <input class="tabselector" name="tabselector" type="radio" id="tab3">
+  <input class="tabselector" name="tabselector" type="radio" id="tab4">
+  <input class="tabselector" name="tabselector" type="radio" id="tab5" checked>
   <ul id="platform_tabs" class="nav nav-tabs">
-    <li class="active"><a href="#get_fish_osx" data-toggle="tab">macOS</a></li>
-    <li><a href="#get_fish_linux" data-toggle="tab">Linux</a></li>
-    <li><a href="#get_fish_bsd" data-toggle="tab">BSD</a></li>
-    <li><a href="#get_fish_windows" data-toggle="tab">Windows</a></li>
-    <li><a href="#get_fish_source" data-toggle="tab">Sources</a></li>
+    <li><label for="tab1" class="tab1">macOS</label></li>
+    <li><label for="tab2" class="tab2">Linux</label></li>
+    <li><label for="tab3" class="tab3">BSD</label></li>
+    <li><label for="tab4" class="tab4">Windows</label></li>
+    <li><label for="tab5" class="tab5">Sources</label></li>
   </ul>
 
   <div class="tab-content download_tabs over-pos">
@@ -700,11 +698,8 @@
   </ul>
 </div>
 
-<script src="https://code.jquery.com/jquery-1.9.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/2.2.2/js/bootstrap.min.js" type="text/javascript"></script>
-
 <script type="text/javascript">
-  $(function () {
+  (function () {
     // Show correct tab
 
     var plat = navigator.platform.toUpperCase();
@@ -713,19 +708,19 @@
     var isBSD = plat.indexOf('BSD') !== -1;
     var isWindows = plat.indexOf('WINDOWS') !== -1;
 
-    var which = 'get_fish_source';
+    var which = 'tab5';
     if (isMac) {
-      which = 'get_fish_mac'
+      which = 'tab1';
     } else if (isLinux) {
-      which = 'get_fish_linux';
+      which = 'tab2';
     } else if (isBSD) {
-      which = 'get_fish_bsd';
+      which = 'tab3';
     } else if (isWindows) {
-      which = 'get_fish_windows';
+      which = 'tab4';
     }
 
-    $('#platform_tabs').find('a[href="#' + which + '"]').tab('show');
-  });
+    document.querySelector("#" + which).checked = true;
+  })();
 </script>
 
 </body>
