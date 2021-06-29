@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>functions - print or erase functions &#8212; fish-shell 3.2.2 documentation</title>
+    <title>functions - print or erase functions &#8212; fish-shell 3.3.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -25,10 +25,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -48,21 +48,25 @@
     </li>
 
       </ul>
-    </div>  
+    </div>    
+
+    <div class="document">
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="../index.html">Documents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
 </div>
@@ -83,6 +87,7 @@
 <li><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li><a class="reference internal" href="#description">Description</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#see-more">See more</a></li>
 </ul>
 </li>
 </ul>
@@ -90,8 +95,6 @@
 </div>
         </div>
       </div>
-
-    <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -131,6 +134,7 @@
 </ul>
 <p>You should not assume that only five lines will be written since we may add additional information to the output in the future.</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--no-details</span></code> turns off function path reporting, so just the definition will be printed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code> or <code class="docutils literal notranslate"><span class="pre">--names</span></code> lists the names of all defined functions.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-q</span></code> or <code class="docutils literal notranslate"><span class="pre">--query</span></code> tests if the specified functions exist.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> will make some output more verbose.</p></li>
@@ -139,7 +143,6 @@
 </ul>
 <p>The default behavior of <code class="docutils literal notranslate"><span class="pre">functions</span></code>, when called with no arguments, is to print the names of all defined functions. Unless the <code class="docutils literal notranslate"><span class="pre">-a</span></code> option is given, no functions starting with underscores are included in the output.</p>
 <p>If any non-option parameters are given, the definition of the specified functions are printed.</p>
-<p>Automatically loaded functions cannot be removed using <code class="docutils literal notranslate"><span class="pre">functions</span> <span class="pre">-e</span></code>. Either remove the definition file or change the $fish_function_path variable to remove autoloaded functions.</p>
 <p>Copying a function using <code class="docutils literal notranslate"><span class="pre">-c</span></code> copies only the body of the function, and does not attach any event notifications from the original function.</p>
 <p>Only one function's description can be changed in a single invocation of <code class="docutils literal notranslate"><span class="pre">functions</span> <span class="pre">-d</span></code>.</p>
 <p>The exit status of <code class="docutils literal notranslate"><span class="pre">functions</span></code> is the number of functions specified in the argument list that do not exist, which can be used in concert with the <code class="docutils literal notranslate"><span class="pre">-q</span></code> option.</p>
@@ -157,6 +160,10 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="see-more">
+<h2>See more<a class="headerlink" href="#see-more" title="Permalink to this headline">¶</a></h2>
+<p>For more explanation of how functions fit into fish, see <a class="reference internal" href="../language.html#syntax-function"><span class="std std-ref">Functions</span></a>.</p>
+</div>
 </div>
 
 
@@ -170,10 +177,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -195,7 +202,7 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2020, fish-shell developers.
+    &copy; Copyright 2021, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />

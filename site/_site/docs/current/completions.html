@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Writing your own completions &#8212; fish-shell 3.2.2 documentation</title>
+    <title>Writing your own completions &#8212; fish-shell 3.3.0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,7 +15,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Frequently asked questions" href="faq.html" />
+    <link rel="next" title="Design" href="design.html" />
     <link rel="prev" title="Tutorial" href="tutorial.html" />
     <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
      
@@ -25,10 +25,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -47,21 +47,25 @@
     </li>
 
       </ul>
-    </div>  
+    </div>    
+
+    <div class="document">
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="index.html">Documents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="language.html">The fish language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Writing your own completions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
 </div>
@@ -88,8 +92,6 @@
 </div>
         </div>
       </div>
-
-    <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -189,7 +191,7 @@
 </ul>
 <p>These paths are controlled by parameters set at build, install, or run time, and may vary from the defaults listed above.</p>
 <p>This wide search may be confusing. If you are unsure, your completions probably belong in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/completions</span></code>.</p>
-<p>If you have written new completions for a common Unix command, please consider sharing your work by submitting it via the instructions in <a class="reference external" href="#more-help">Further help and development</a>.</p>
+<p>If you have written new completions for a common Unix command, please consider sharing your work by submitting it via the instructions in <a class="reference internal" href="index.html#more-help"><span class="std std-ref">Further help and development</span></a></p>
 <p>If you are developing another program and would like to ship completions with your program, install them to the &quot;vendor&quot; completions directory. As this path may vary from system to system, the <code class="docutils literal notranslate"><span class="pre">pkgconfig</span></code> framework should be used to discover this path with the output of <code class="docutils literal notranslate"><span class="pre">pkg-config</span> <span class="pre">--variable</span> <span class="pre">completionsdir</span> <span class="pre">fish</span></code>.</p>
 </div>
 </div>
@@ -205,10 +207,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -229,7 +231,7 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2020, fish-shell developers.
+    &copy; Copyright 2021, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />

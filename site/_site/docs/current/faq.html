@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frequently asked questions &#8212; fish-shell 3.2.2 documentation</title>
+    <title>Frequently asked questions &#8212; fish-shell 3.3.0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,8 +15,8 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="License" href="license.html" />
-    <link rel="prev" title="Writing your own completions" href="completions.html" />
+    <link rel="next" title="Interactive use" href="interactive.html" />
+    <link rel="prev" title="Introduction" href="index.html" />
     <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
      
 
@@ -25,10 +25,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Frequently asked questions</a></li>
@@ -47,21 +47,25 @@
     </li>
 
       </ul>
-    </div>  
+    </div>    
+
+    <div class="document">
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="index.html">Documents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="language.html">The fish language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="completions.html">Writing your own completions</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently asked questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
 </div>
@@ -100,7 +104,7 @@
 <li><a class="reference internal" href="#how-can-i-use-as-a-shortcut-for-cd">How can I use <code class="docutils literal notranslate"><span class="pre">-</span></code> as a shortcut for <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">-</span></code>?</a></li>
 <li><a class="reference internal" href="#the-open-command-doesn-t-work">The open command doesn't work.</a></li>
 <li><a class="reference internal" href="#why-won-t-ssh-scp-rsync-connect-properly-when-fish-is-my-login-shell">Why won't SSH/SCP/rsync connect properly when fish is my login shell?</a></li>
-<li><a class="reference internal" href="#i-m-getting-weird-graphical-glitches-a-staircase-effect-ghost-characters">I'm getting weird graphical glitches (a staircase effect, ghost characters,...)?</a></li>
+<li><a class="reference internal" href="#i-m-getting-weird-graphical-glitches-a-staircase-effect-ghost-characters-cursor-in-the-wrong-position">I'm getting weird graphical glitches (a staircase effect, ghost characters, cursor in the wrong position,...)?</a></li>
 <li><a class="reference internal" href="#how-do-i-make-fish-my-default-shell">How do I make fish my default shell?</a></li>
 <li><a class="reference internal" href="#uninstalling-fish">Uninstalling fish</a></li>
 <li><a class="reference internal" href="#where-can-i-find-extra-tools-for-fish">Where can I find extra tools for fish?</a></li>
@@ -111,8 +115,6 @@
 </div>
         </div>
       </div>
-
-    <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -135,7 +137,7 @@
 <span class="k">begin</span><span class="p">;</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">-lx</span><span class="w"> </span><span class="no">key</span><span class="w"> </span><span class="no">value</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="o">$key</span><span class="p">;</span><span class="w"> </span><span class="k">end</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Note that &quot;exported&quot; is not a <a class="reference internal" href="index.html#variables-scope"><span class="std std-ref">scope</span></a>, but an additional bit of state. A variable can be global and exported or local and exported or even universal and exported. Typically it makes sense to make an exported variable global.</p>
+<p>Note that &quot;exported&quot; is not a <a class="reference internal" href="language.html#variables-scope"><span class="std std-ref">scope</span></a>, but an additional bit of state. A variable can be global and exported or local and exported or even universal and exported. Typically it makes sense to make an exported variable global.</p>
 </div>
 <div class="section" id="how-do-i-check-whether-a-variable-is-defined">
 <h2>How do I check whether a variable is defined?<a class="headerlink" href="#how-do-i-check-whether-a-variable-is-defined" title="Permalink to this headline">¶</a></h2>
@@ -168,12 +170,12 @@
 <p>A global variable of the same name already exists.</p>
 <p>Environment variables such as <code class="docutils literal notranslate"><span class="pre">EDITOR</span></code> or <code class="docutils literal notranslate"><span class="pre">TZ</span></code> can be set universally using <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-Ux</span></code>.  However, if
 there is an environment variable already set before fish starts (such as by login scripts or system
-administrators), it is imported into fish as a global variable. The <a class="reference internal" href="index.html#variables-scope"><span class="std std-ref">variable scopes</span></a> are searched from the &quot;inside out&quot;, which
+administrators), it is imported into fish as a global variable. The <a class="reference internal" href="language.html#variables-scope"><span class="std std-ref">variable scopes</span></a> are searched from the &quot;inside out&quot;, which
 means that local variables are checked first, followed by global variables, and finally universal
 variables.</p>
 <p>This means that the global value takes precedence over the universal value.</p>
 <p>To avoid this problem, consider changing the setting which fish inherits. If this is not possible,
-add a statement to your <a class="reference internal" href="index.html#initialization"><span class="std std-ref">user initialization file</span></a> (usually
+add a statement to your <a class="reference internal" href="index.html#configuration"><span class="std std-ref">configuration file</span></a> (usually
 <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code>):</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-gx</span><span class="w"> </span><span class="no">EDITOR</span><span class="w"> </span><span class="no">vim</span><span class="w"></span>
 </pre></div>
@@ -219,7 +221,7 @@ add a statement to your <a class="reference internal" href="index.html#initializ
 </div>
 <div class="section" id="how-do-i-customize-my-syntax-highlighting-colors">
 <h2>How do I customize my syntax highlighting colors?<a class="headerlink" href="#how-do-i-customize-my-syntax-highlighting-colors" title="Permalink to this headline">¶</a></h2>
-<p>Use the web configuration tool, <a class="reference internal" href="cmds/fish_config.html#cmd-fish-config"><span class="std std-ref">fish_config</span></a>, or alter the <a class="reference internal" href="index.html#variables-color"><span class="std std-ref">fish_color family of environment variables</span></a>.</p>
+<p>Use the web configuration tool, <a class="reference internal" href="cmds/fish_config.html#cmd-fish-config"><span class="std std-ref">fish_config</span></a>, or alter the <a class="reference internal" href="interactive.html#variables-color"><span class="std std-ref">fish_color family of environment variables</span></a>.</p>
 </div>
 <div class="section" id="how-do-i-change-the-greeting-message">
 <h2>How do I change the greeting message?<a class="headerlink" href="#how-do-i-change-the-greeting-message" title="Permalink to this headline">¶</a></h2>
@@ -261,7 +263,7 @@ add a statement to your <a class="reference internal" href="index.html#initializ
 <li><p>If the argument you want is far back in history (e.g. 2 lines back - that's a lot of words!), type any part of it and then press <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">↑</kbd>.  This will show only arguments containing that part and you will get what you want much faster.  Try it out, this is very convenient!</p></li>
 <li><p>If you want to reuse several arguments from the same line (&quot;!!:3*&quot; and the like), consider recalling the whole line and removing what you don't need (<kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">D</kbd> and <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">Backspace</kbd> are your friends).</p></li>
 </ul>
-<p>See <a class="reference internal" href="index.html#editor"><span class="std std-ref">documentation</span></a> for more details about line editing in fish.</p>
+<p>See <a class="reference internal" href="interactive.html#editor"><span class="std std-ref">documentation</span></a> for more details about line editing in fish.</p>
 </div>
 <div class="section" id="how-do-i-run-a-subcommand-the-backtick-doesn-t-work">
 <h2>How do I run a subcommand? The backtick doesn't work!<a class="headerlink" href="#how-do-i-run-a-subcommand-the-backtick-doesn-t-work" title="Permalink to this headline">¶</a></h2>
@@ -318,11 +320,11 @@ add a statement to your <a class="reference internal" href="index.html#initializ
 </div>
 <div class="section" id="my-command-prints-no-matches-for-wildcard-but-works-in-bash">
 <h2>My command prints &quot;No matches for wildcard&quot; but works in bash<a class="headerlink" href="#my-command-prints-no-matches-for-wildcard-but-works-in-bash" title="Permalink to this headline">¶</a></h2>
-<p>In short: <a class="reference internal" href="index.html#quotes"><span class="std std-ref">quote</span></a> or <a class="reference internal" href="index.html#escapes"><span class="std std-ref">escape</span></a> the wildcard:</p>
+<p>In short: <a class="reference internal" href="language.html#quotes"><span class="std std-ref">quote</span></a> or <a class="reference internal" href="language.html#escapes"><span class="std std-ref">escape</span></a> the wildcard:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">scp</span><span class="w"> </span><span class="no">user@ip:/dir/</span><span class="s2">&quot;string-*&quot;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>When fish sees an unquoted <code class="docutils literal notranslate"><span class="pre">*</span></code>, it performs <a class="reference internal" href="index.html#expand-wildcard"><span class="std std-ref">wildcard expansion</span></a>. That means it tries to match filenames to the given string.</p>
+<p>When fish sees an unquoted <code class="docutils literal notranslate"><span class="pre">*</span></code>, it performs <a class="reference internal" href="language.html#expand-wildcard"><span class="std std-ref">wildcard expansion</span></a>. That means it tries to match filenames to the given string.</p>
 <p>If the wildcard doesn't match any files, fish prints an error instead of running the command:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">*</span><span class="no">this</span><span class="o">*</span><span class="no">does</span><span class="o">*</span><span class="no">not</span><span class="o">*</span><span class="no">exist</span><span class="w"></span>
 fish: No matches for wildcard &#39;*this*does*not*exist&#39;. See `help expand`.
@@ -366,15 +368,14 @@ echo *this*does*not*exist 2&gt;| xsel --clipboard
 </div>
 <div class="section" id="the-open-command-doesn-t-work">
 <h2>The open command doesn't work.<a class="headerlink" href="#the-open-command-doesn-t-work" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">open</span></code> command uses the MIME type database and the <code class="docutils literal notranslate"><span class="pre">.desktop</span></code> files used by Gnome and KDE to identify filetypes and default actions. If at least one of these environments is installed, but the open command is not working, this probably means that the relevant files are installed in a non-standard location. Consider <a class="reference internal" href="index.html#more-help"><span class="std std-ref">asking for more help</span></a>.
-.. _faq-ssh-interactive:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">open</span></code> command uses the MIME type database and the <code class="docutils literal notranslate"><span class="pre">.desktop</span></code> files used by Gnome and KDE to identify filetypes and default actions. If at least one of these environments is installed, but the open command is not working, this probably means that the relevant files are installed in a non-standard location. Consider <a class="reference internal" href="index.html#more-help"><span class="std std-ref">asking for more help</span></a>.</p>
 </div>
 <div class="section" id="why-won-t-ssh-scp-rsync-connect-properly-when-fish-is-my-login-shell">
-<h2>Why won't SSH/SCP/rsync connect properly when fish is my login shell?<a class="headerlink" href="#why-won-t-ssh-scp-rsync-connect-properly-when-fish-is-my-login-shell" title="Permalink to this headline">¶</a></h2>
+<span id="faq-ssh-interactive"></span><h2>Why won't SSH/SCP/rsync connect properly when fish is my login shell?<a class="headerlink" href="#why-won-t-ssh-scp-rsync-connect-properly-when-fish-is-my-login-shell" title="Permalink to this headline">¶</a></h2>
 <p>This problem may show up as messages like &quot;<code class="docutils literal notranslate"><span class="pre">Received</span> <span class="pre">message</span> <span class="pre">too</span> <span class="pre">long</span></code>&quot;, &quot;<code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">terminal</span>
 <span class="pre">failed:</span> <span class="pre">not</span> <span class="pre">a</span> <span class="pre">terminal</span></code>&quot;, &quot;<code class="docutils literal notranslate"><span class="pre">Bad</span> <span class="pre">packet</span> <span class="pre">length</span></code>&quot;, or &quot;<code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">refused</span></code>&quot; with strange output
 in <code class="docutils literal notranslate"><span class="pre">ssh_exchange_identification</span></code> messages in the debug log.</p>
-<p>This usually happens because fish reads the <a class="reference internal" href="index.html#initialization"><span class="std std-ref">user configuration file</span></a> (<code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code>) <em>always</em>,
+<p>This usually happens because fish reads the <a class="reference internal" href="index.html#configuration"><span class="std std-ref">user configuration file</span></a> (<code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code>) <em>always</em>,
 whether it's in an interactive or login or non-interactive or non-login shell.</p>
 <p>This simplifies matters, but it also means when config.fish generates output, it will do that even in non-interactive shells like the one ssh/scp/rsync start when they connect.</p>
 <p>Anything in config.fish that produces output should be guarded with <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">is-interactive</span></code> (or <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">is-login</span></code> if you prefer):</p>
@@ -385,8 +386,8 @@ whether it's in an interactive or login or non-interactive or non-login shell.</
 </div>
 <p>The same applies for example when you start <code class="docutils literal notranslate"><span class="pre">tmux</span></code> in config.fish without guards, which will cause a message like <code class="docutils literal notranslate"><span class="pre">sessions</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">nested</span> <span class="pre">with</span> <span class="pre">care,</span> <span class="pre">unset</span> <span class="pre">$TMUX</span> <span class="pre">to</span> <span class="pre">force</span></code>.</p>
 </div>
-<div class="section" id="i-m-getting-weird-graphical-glitches-a-staircase-effect-ghost-characters">
-<span id="faq-unicode"></span><h2>I'm getting weird graphical glitches (a staircase effect, ghost characters,...)?<a class="headerlink" href="#i-m-getting-weird-graphical-glitches-a-staircase-effect-ghost-characters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="i-m-getting-weird-graphical-glitches-a-staircase-effect-ghost-characters-cursor-in-the-wrong-position">
+<span id="faq-unicode"></span><h2>I'm getting weird graphical glitches (a staircase effect, ghost characters, cursor in the wrong position,...)?<a class="headerlink" href="#i-m-getting-weird-graphical-glitches-a-staircase-effect-ghost-characters-cursor-in-the-wrong-position" title="Permalink to this headline">¶</a></h2>
 <p>In a terminal, the application running inside it and the terminal itself need to agree on the width of characters in order to handle cursor movement.</p>
 <p>This is more important to fish than other shells because features like syntax highlighting and autosuggestions are implemented by moving the cursor.</p>
 <p>Sometimes, there is disagreement on the width. There are numerous causes and fixes for this:</p>
@@ -451,10 +452,10 @@ whether it's in an interactive or login or non-interactive or non-login shell.</
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Frequently asked questions</a></li>
@@ -475,7 +476,7 @@ whether it's in an interactive or login or non-interactive or non-login shell.</
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2020, fish-shell developers.
+    &copy; Copyright 2021, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />

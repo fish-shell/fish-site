@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The fish language &#8212; fish-shell 3.2.2-114-g8e4a9bd45 documentation</title>
+    <title>The fish language &#8212; fish-shell 3.3.0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -25,10 +25,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2-114-g8e4a9bd45 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -47,7 +47,9 @@
     </li>
 
       </ul>
-    </div>  
+    </div>    
+
+    <div class="document">
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div>
@@ -96,7 +98,7 @@
 <li><a class="reference internal" href="#comments">Comments</a></li>
 <li><a class="reference internal" href="#conditions">Conditions</a></li>
 <li><a class="reference internal" href="#loops-and-blocks">Loops and blocks</a></li>
-<li><a class="reference internal" href="#expand">Parameter expansion</a><ul>
+<li><a class="reference internal" href="#parameter-expansion">Parameter expansion</a><ul>
 <li><a class="reference internal" href="#wildcards-globbing">Wildcards (&quot;Globbing&quot;)</a></li>
 <li><a class="reference internal" href="#variable-expansion">Variable expansion</a></li>
 <li><a class="reference internal" href="#command-substitution">Command substitution</a></li>
@@ -118,13 +120,14 @@
 <li><a class="reference internal" href="#path-variables">PATH variables</a></li>
 <li><a class="reference internal" href="#special-variables">Special variables</a></li>
 <li><a class="reference internal" href="#the-status-variable">The status variable</a></li>
-<li><a class="reference internal" href="#syntax-highlighting-variables">Syntax highlighting variables</a></li>
-<li><a class="reference internal" href="#pager-color-variables">Pager color variables</a></li>
-<li><a class="reference internal" href="#variables-locale">Locale variables</a></li>
+<li><a class="reference internal" href="#locale-variables">Locale variables</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#builtin-commands">Builtin commands</a></li>
 <li><a class="reference internal" href="#shell-variable-and-function-names">Shell variable and function names</a></li>
+<li><a class="reference internal" href="#future-feature-flags">Future feature flags</a></li>
+<li><a class="reference internal" href="#event-handlers">Event handlers</a></li>
+<li><a class="reference internal" href="#debugging-fish-scripts">Debugging fish scripts</a></li>
 </ul>
 </li>
 </ul>
@@ -132,8 +135,6 @@
 </div>
         </div>
       </div>
-
-    <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -143,14 +144,15 @@
 <p>This document is a comprehensive overview of fish's scripting language.</p>
 <p>For interactive features see <a class="reference internal" href="interactive.html#interactive"><span class="std std-ref">Interactive use</span></a>.</p>
 <div class="section" id="syntax-overview">
-<h2>Syntax overview<a class="headerlink" href="#syntax-overview" title="Permalink to this headline">¶</a></h2>
-<p>Shells like fish are used by giving them commands. Every fish command follows the same basic syntax. A command is executed by writing the name of the command followed by any arguments. For example:</p>
+<span id="syntax"></span><h2>Syntax overview<a class="headerlink" href="#syntax-overview" title="Permalink to this headline">¶</a></h2>
+<p>Shells like fish are used by giving them commands. A command is executed by writing the name of the command followed by any arguments. For example:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo</span><span class="w"> </span><span class="no">hello</span><span class="w"> </span><span class="no">world</span><span class="w"></span>
 </pre></div>
 </div>
-<p>This calls the <a class="reference internal" href="cmds/echo.html#cmd-echo"><span class="std std-ref">echo</span></a> command. <code class="docutils literal notranslate"><span class="pre">echo</span></code> writes its arguments to the screen. In the example above, the output is <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code>. Everything in fish is done with commands. There are commands for repeating other commands, commands for assigning variables, commands for treating a group of commands as a single command, etc. All of these commands follow the same basic syntax.</p>
+<p>This calls the <a class="reference internal" href="cmds/echo.html#cmd-echo"><span class="std std-ref">echo</span></a> command. <code class="docutils literal notranslate"><span class="pre">echo</span></code> writes its arguments to the screen. In this example the output is <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code>.</p>
+<p>Everything in fish is done with commands. There are commands for repeating other commands, commands for assigning variables, commands for treating a group of commands as a single command, etc. All of these commands follow the same basic syntax.</p>
 <p>To learn more about the <code class="docutils literal notranslate"><span class="pre">echo</span></code> command, read its manual page by typing <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">echo</span></code>. <code class="docutils literal notranslate"><span class="pre">man</span></code> is a command for displaying a manual page on a given topic. It takes the name of the manual page to display as an argument. There are manual pages for almost every command. There are also manual pages for many other things, such as system libraries and important files.</p>
-<p>Every program on your computer can be used as a command in fish. If the program file is located in one of the <a class="reference internal" href="#path">PATH</a> directories, you can just type the name of the program to use it. Otherwise the whole filename, including the directory (like <code class="docutils literal notranslate"><span class="pre">/home/me/code/checkers/checkers</span></code> or <code class="docutils literal notranslate"><span class="pre">../checkers</span></code>) is required.</p>
+<p>Every program on your computer can be used as a command in fish. If the program file is located in one of the <a class="reference internal" href="#path"><span class="std std-ref">PATH</span></a> directories, you can just type the name of the program to use it. Otherwise the whole filename, including the directory (like <code class="docutils literal notranslate"><span class="pre">/home/me/code/checkers/checkers</span></code> or <code class="docutils literal notranslate"><span class="pre">../checkers</span></code>) is required.</p>
 <p>Here is a list of some useful commands:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="cmds/cd.html#cmd-cd"><span class="std std-ref">cd</span></a>: Change the current directory</p></li>
@@ -181,7 +183,7 @@
 </div>
 <div class="section" id="quotes">
 <span id="id2"></span><h2>Quotes<a class="headerlink" href="#quotes" title="Permalink to this headline">¶</a></h2>
-<p>Sometimes features like <a class="reference external" href="#expand">parameter expansion</a> and <a class="reference external" href="#escapes">character escapes</a> get in the way. When that happens, you can use quotes, either single (<code class="docutils literal notranslate"><span class="pre">'</span></code>) or double (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>). Between single quotes, fish performs no expansions. Between double quotes, fish only performs <a class="reference internal" href="#expand-variable"><span class="std std-ref">variable expansion</span></a>. No other kind of expansion (including <a class="reference internal" href="#expand-brace"><span class="std std-ref">brace expansion</span></a> or parameter expansion) is performed, and escape sequences (for example, <code class="docutils literal notranslate"><span class="pre">\n</span></code>) are ignored. Within quotes, whitespace is not used to separate arguments, allowing quoted arguments to contain spaces.</p>
+<p>Sometimes features like <a class="reference internal" href="#expand"><span class="std std-ref">parameter expansion</span></a> and <a class="reference internal" href="#escapes"><span class="std std-ref">character escapes</span></a> get in the way. When that happens, you can use quotes, either single (<code class="docutils literal notranslate"><span class="pre">'</span></code>) or double (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>). Between single quotes, fish performs no expansions. Between double quotes, fish only performs <a class="reference internal" href="#expand-variable"><span class="std std-ref">variable expansion</span></a>. No other kind of expansion (including <a class="reference internal" href="#expand-brace"><span class="std std-ref">brace expansion</span></a> or parameter expansion) is performed, and escape sequences (for example, <code class="docutils literal notranslate"><span class="pre">\n</span></code>) are ignored. Within quotes, whitespace is not used to separate arguments, allowing quoted arguments to contain spaces.</p>
 <p>The only meaningful escape sequences in single quotes are <code class="docutils literal notranslate"><span class="pre">\'</span></code>, which escapes a single quote and <code class="docutils literal notranslate"><span class="pre">\\</span></code>, which escapes the backslash symbol. The only meaningful escapes in double quotes are <code class="docutils literal notranslate"><span class="pre">\&quot;</span></code>, which escapes a double quote, <code class="docutils literal notranslate"><span class="pre">\$</span></code>, which escapes a dollar character, <code class="docutils literal notranslate"><span class="pre">\</span></code> followed by a newline, which deletes the backslash and the newline, and <code class="docutils literal notranslate"><span class="pre">\\</span></code>, which escapes the backslash symbol.</p>
 <p>Single quotes have no special meaning within double quotes and vice versa.</p>
 <p>Example:</p>
@@ -232,7 +234,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">\$</span></code> escapes the dollar character.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">\\</span></code> escapes the backslash character.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">\*</span></code> escapes the star character.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">\?</span></code> escapes the question mark character (this is not necessary if the <code class="docutils literal notranslate"><span class="pre">qmark-noglob</span></code> <a class="reference internal" href="index.html#featureflags"><span class="std std-ref">feature flag</span></a> is enabled).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\?</span></code> escapes the question mark character (this is not necessary if the <code class="docutils literal notranslate"><span class="pre">qmark-noglob</span></code> <a class="reference internal" href="#featureflags"><span class="std std-ref">feature flag</span></a> is enabled).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">\~</span></code> escapes the tilde character.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">\#</span></code> escapes the hash character.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">\(</span></code> escapes the left parenthesis character.</p></li>
@@ -286,7 +288,7 @@
 <p>It is an error to redirect a builtin, function, or block to a file descriptor above 2. However this is supported for external commands.</p>
 <dl class="footnote brackets">
 <dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
-<dd><p>Previous versions of fish also allowed specifying this as <code class="docutils literal notranslate"><span class="pre">^DESTINATION</span></code>, but that made another character special so it was deprecated and will be removed in the future. See <a class="reference internal" href="index.html#featureflags"><span class="std std-ref">feature flags</span></a>.</p>
+<dd><p>Previous versions of fish also allowed specifying this as <code class="docutils literal notranslate"><span class="pre">^DESTINATION</span></code>, but that made another character special so it was deprecated and will be removed in the future. See <a class="reference internal" href="#featureflags"><span class="std std-ref">feature flags</span></a>.</p>
 </dd>
 </dl>
 </div>
@@ -302,7 +304,7 @@
 </pre></div>
 </div>
 <p>will attempt to build <code class="docutils literal notranslate"><span class="pre">fish</span></code>, and any errors will be shown using the <code class="docutils literal notranslate"><span class="pre">less</span></code> pager. <a class="footnote-reference brackets" href="#id6" id="id5">2</a></p>
-<p>As a convenience, the pipe <code class="docutils literal notranslate"><span class="pre">&amp;|</span></code> redirects both stdout and stderr to the same process. Note that this is different from bash, which uses <code class="docutils literal notranslate"><span class="pre">|&amp;</span></code>.</p>
+<p>As a convenience, the pipe <code class="docutils literal notranslate"><span class="pre">&amp;|</span></code> redirects both stdout and stderr to the same process. This is different from bash, which uses <code class="docutils literal notranslate"><span class="pre">|&amp;</span></code>.</p>
 <dl class="footnote brackets">
 <dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id5">2</a></span></dt>
 <dd><p>A &quot;pager&quot; here is a program that takes output and &quot;paginates&quot; it. <code class="docutils literal notranslate"><span class="pre">less</span></code> doesn't just do pages, it allows arbitrary scrolling (even back!).</p>
@@ -321,7 +323,7 @@
 <p>If you instead want to put a suspended job into the background, use the <a class="reference internal" href="cmds/bg.html#cmd-bg"><span class="std std-ref">bg</span></a> command.</p>
 <p>To get a listing of all currently started jobs, use the <a class="reference internal" href="cmds/jobs.html#cmd-jobs"><span class="std std-ref">jobs</span></a> command.
 These listed jobs can be removed with the <a class="reference internal" href="cmds/disown.html#cmd-disown"><span class="std std-ref">disown</span></a> command.</p>
-<p>Note that functions cannot be started in the background. Functions that are stopped and then restarted in the background using the <a class="reference internal" href="cmds/bg.html#cmd-bg"><span class="std std-ref">bg</span></a> command will not execute correctly.</p>
+<p>At the moment, functions cannot be started in the background. Functions that are stopped and then restarted in the background using the <a class="reference internal" href="cmds/bg.html#cmd-bg"><span class="std std-ref">bg</span></a> command will not execute correctly.</p>
 </div>
 <div class="section" id="functions">
 <span id="syntax-function"></span><h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
@@ -378,15 +380,18 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <li><p>Startup time and memory usage is improved, etc.</p></li>
 </ul>
 <p>When fish needs to load a function, it searches through any directories in the <a class="reference internal" href="#variables-lists"><span class="std std-ref">list variable</span></a> <code class="docutils literal notranslate"><span class="pre">$fish_function_path</span></code> for a file with a name consisting of the name of the function plus the suffix <code class="docutils literal notranslate"><span class="pre">.fish</span></code> and loads the first it finds.</p>
+<p>For example if you try to execute something called <code class="docutils literal notranslate"><span class="pre">banana</span></code>, fish will go through all directories in $fish_function_path looking for a file called <code class="docutils literal notranslate"><span class="pre">banana.fish</span></code> and load the first one it finds.</p>
 <p>By default <code class="docutils literal notranslate"><span class="pre">$fish_function_path</span></code> contains the following:</p>
 <ul class="simple">
-<li><p>A directory for end-users to keep their own functions, usually <code class="docutils literal notranslate"><span class="pre">~/.config/fish/functions</span></code> (controlled by the <code class="docutils literal notranslate"><span class="pre">XDG_CONFIG_HOME</span></code> environment variable).</p></li>
-<li><p>A directory for systems administrators to install functions for all users on the system, usually <code class="docutils literal notranslate"><span class="pre">/etc/fish/functions</span></code> (really <code class="docutils literal notranslate"><span class="pre">$__fish_sysconfdir/functions</span></code>).</p></li>
+<li><p>A directory for users to keep their own functions, usually <code class="docutils literal notranslate"><span class="pre">~/.config/fish/functions</span></code> (controlled by the <code class="docutils literal notranslate"><span class="pre">XDG_CONFIG_HOME</span></code> environment variable).</p></li>
+<li><p>A directory for functions for all users on the system, usually <code class="docutils literal notranslate"><span class="pre">/etc/fish/functions</span></code> (really <code class="docutils literal notranslate"><span class="pre">$__fish_sysconfdir/functions</span></code>).</p></li>
 <li><p>Directories for other software to put their own functions. These are in the directories in the <code class="docutils literal notranslate"><span class="pre">XDG_DATA_DIRS</span></code> environment variable, in a subdirectory called <code class="docutils literal notranslate"><span class="pre">fish/vendor_functions.d</span></code>. The default is usually <code class="docutils literal notranslate"><span class="pre">/usr/share/fish/vendor_functions.d</span></code> and <code class="docutils literal notranslate"><span class="pre">/usr/local/share/fish/vendor_functions.d</span></code>.</p></li>
 <li><p>The functions shipped with fish, usually installed in <code class="docutils literal notranslate"><span class="pre">/usr/share/fish/functions</span></code> (really <code class="docutils literal notranslate"><span class="pre">$__fish_data_dir/functions</span></code>).</p></li>
 </ul>
 <p>If you are unsure, your functions probably belong in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/functions</span></code>.</p>
-<p>Autoloading also won't work for <a class="reference external" href="#event">event handlers</a>, since fish cannot know that a function is supposed to be executed when an event occurs when it hasn't yet loaded the function. See the <a class="reference external" href="#event">event handlers</a> section for more information.</p>
+<p>As we've explained, autoload files are loaded <em>by name</em>, so, while you can put multiple functions into one file, the file will only be loaded automatically once you try to execute the one that shares the name.</p>
+<p>Autoloading also won't work for <a class="reference internal" href="#event"><span class="std std-ref">event handlers</span></a>, since fish cannot know that a function is supposed to be executed when an event occurs when it hasn't yet loaded the function. See the <a class="reference internal" href="#event"><span class="std std-ref">event handlers</span></a> section for more information.</p>
+<p>If a file of the right name doesn't define the function, fish will not read other autoload files, instead it will go on to try builtins and finally commands. This allows masking a function defined later in $fish_function_path, e.g. if your administrator has put something into /etc/fish/functions that you want to skip.</p>
 <p>If you are developing another program and want to install fish functions for it, install them to the &quot;vendor&quot; functions directory. As this path varies from system to system, you can use <code class="docutils literal notranslate"><span class="pre">pkgconfig</span></code> to discover it with the output of <code class="docutils literal notranslate"><span class="pre">pkg-config</span> <span class="pre">--variable</span> <span class="pre">functionsdir</span> <span class="pre">fish</span></code>. Your installation system should support a custom path to override the pkgconfig path, as other distributors may need to alter it easily.</p>
 </div>
 </div>
@@ -433,7 +438,7 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <p>For more, see the documentation for the builtins or the <a class="reference internal" href="tutorial.html#tut-conditionals"><span class="std std-ref">Conditionals</span></a> section of the tutorial.</p>
 </div>
 <div class="section" id="loops-and-blocks">
-<h2>Loops and blocks<a class="headerlink" href="#loops-and-blocks" title="Permalink to this headline">¶</a></h2>
+<span id="syntax-loops-and-blocks"></span><h2>Loops and blocks<a class="headerlink" href="#loops-and-blocks" title="Permalink to this headline">¶</a></h2>
 <p>Like most programming language, fish also has the familiar <a class="reference internal" href="cmds/while.html#cmd-while"><span class="std std-ref">while</span></a> and <a class="reference internal" href="cmds/for.html#cmd-for"><span class="std std-ref">for</span></a> loops.</p>
 <p><code class="docutils literal notranslate"><span class="pre">while</span></code> works like a repeated <a class="reference internal" href="cmds/if.html#cmd-if"><span class="std std-ref">if</span></a>:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="nf">true</span><span class="w"></span>
@@ -476,8 +481,8 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 </pre></div>
 </div>
 </div>
-<div class="section" id="expand">
-<span id="id8"></span><h2>Parameter expansion<a class="headerlink" href="#expand" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="parameter-expansion">
+<span id="expand"></span><h2>Parameter expansion<a class="headerlink" href="#parameter-expansion" title="Permalink to this headline">¶</a></h2>
 <p>When fish is given a commandline, it expands the parameters before sending them to the command. There are multiple different kinds of expansions:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#expand-wildcard"><span class="std std-ref">Wildcards</span></a>, to create filenames from patterns</p></li>
@@ -493,9 +498,9 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> matches any number of characters (including zero) in a file name, not including <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">**</span></code> matches any number of characters (including zero), and also descends into subdirectories. If <code class="docutils literal notranslate"><span class="pre">**</span></code> is a segment by itself, that segment may match zero times, for compatibility with other shells.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">?</span></code> can match any single character except <code class="docutils literal notranslate"><span class="pre">/</span></code>. This is deprecated and can be disabled via the <code class="docutils literal notranslate"><span class="pre">qmark-noglob</span></code> <a class="reference internal" href="index.html#featureflags"><span class="std std-ref">feature flag</span></a>, so <code class="docutils literal notranslate"><span class="pre">?</span></code> will just be an ordinary character.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">?</span></code> can match any single character except <code class="docutils literal notranslate"><span class="pre">/</span></code>. This is deprecated and can be disabled via the <code class="docutils literal notranslate"><span class="pre">qmark-noglob</span></code> <a class="reference internal" href="#featureflags"><span class="std std-ref">feature flag</span></a>, so <code class="docutils literal notranslate"><span class="pre">?</span></code> will just be an ordinary character.</p></li>
 </ul>
-<p>Other shells, such as zsh, have a much richer glob syntax, like <code class="docutils literal notranslate"><span class="pre">**(.)</span></code> to only match regular files. Fish does not. Instead of reinventing the whell, use programs like <code class="docutils literal notranslate"><span class="pre">find</span></code> to look for files. For example:</p>
+<p>Other shells, such as zsh, have a much richer glob syntax, like <code class="docutils literal notranslate"><span class="pre">**(.)</span></code> to only match regular files. Fish does not. Instead of reinventing the wheel, use programs like <code class="docutils literal notranslate"><span class="pre">find</span></code> to look for files. For example:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="no">ff</span><span class="w"> </span><span class="no">--description</span><span class="w"> </span><span class="s1">&#39;Like ** but only returns plain files.&#39;</span><span class="w"></span>
 <span class="w">    </span><span class="c"># This also ignores .git directories.</span><span class="w"></span>
 <span class="w">    </span><span class="nf">find</span><span class="w"> </span><span class="no">.</span><span class="w"> </span><span class="se">\(</span><span class="w"> </span><span class="no">-name</span><span class="w"> </span><span class="no">.git</span><span class="w"> </span><span class="no">-type</span><span class="w"> </span><span class="no">d</span><span class="w"> </span><span class="no">-prune</span><span class="w"> </span><span class="se">\)</span><span class="w"> </span><span class="no">-o</span><span class="w"> </span><span class="no">-type</span><span class="w"> </span><span class="no">f</span><span class="w"> </span><span class="p">|</span><span class="nv"> \</span>
@@ -503,7 +508,7 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <span class="k">end</span><span class="w"></span>
 </pre></div>
 </div>
-<p>You would then use it in place of <code class="docutils literal notranslate"><span class="pre">**</span></code> like this, <code class="docutils literal notranslate"><span class="pre">my_prog</span> <span class="pre">(ff)</span></code>, to pass only regular files in or below $PWD to <code class="docutils literal notranslate"><span class="pre">my_prog</span></code>. <a class="footnote-reference brackets" href="#id10" id="id9">3</a></p>
+<p>You would then use it in place of <code class="docutils literal notranslate"><span class="pre">**</span></code> like this, <code class="docutils literal notranslate"><span class="pre">my_prog</span> <span class="pre">(ff)</span></code>, to pass only regular files in or below $PWD to <code class="docutils literal notranslate"><span class="pre">my_prog</span></code>. <a class="footnote-reference brackets" href="#id8" id="id7">3</a></p>
 <p>Wildcard matches are sorted case insensitively. When sorting matches containing numbers, they are naturally sorted, so that the strings '1' '5' and '12' would be sorted like 1, 5, 12.</p>
 <p>Hidden files (where the name begins with a dot) are not considered when wildcarding unless the wildcard string has a dot in that place.</p>
 <p>Examples:</p>
@@ -526,7 +531,7 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 </pre></div>
 </div>
 <dl class="footnote brackets">
-<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id9">3</a></span></dt>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id7">3</a></span></dt>
 <dd><p>Technically, unix allows filenames with newlines, and this splits the <code class="docutils literal notranslate"><span class="pre">find</span></code> output on newlines. If you want to avoid that, use find's <code class="docutils literal notranslate"><span class="pre">-print0</span></code> option and <a class="reference internal" href="cmds/string.html#cmd-string-split0"><span class="std std-ref">string split0</span></a>.</p>
 </dd>
 </dl>
@@ -539,22 +544,30 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 </pre></div>
 </div>
 <p>which will replace <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> with the home directory of the current user, and pass it to <a class="reference internal" href="cmds/echo.html#cmd-echo"><span class="std std-ref">echo</span></a>, which will then print it.</p>
+<p>Some variables like <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> are already set because fish sets them by default or because fish's parent process passed them to fish when it started it. You can define your own variables by setting them with <a class="reference internal" href="cmds/set.html#cmd-set"><span class="std std-ref">set</span></a>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">my_directory</span><span class="w"> </span><span class="no">/home/cooluser/mystuff</span><span class="w"></span>
+<span class="nf">ls</span><span class="w"> </span><span class="o">$my_directory</span><span class="w"></span>
+<span class="c"># shows the contents of /home/cooluser/mystuff</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For more on how setting variables works, see <a class="reference internal" href="#variables"><span class="std std-ref">Shell variables</span></a> and the following sections.</p>
 <p>Sometimes a variable has no value because it is undefined or empty, and it expands to nothing:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo</span><span class="w"> </span><span class="o">$nonexistentvariable</span><span class="w"></span>
 <span class="c"># Prints no output.</span><span class="w"></span>
 </pre></div>
 </div>
 <p>To separate a variable name from text you can encase the variable within double-quotes or braces:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo</span><span class="w"> </span><span class="no">The</span><span class="w"> </span><span class="no">plural</span><span class="w"> </span><span class="no">of</span><span class="w"> </span><span class="o">$WORD</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$WORD</span><span class="s2">&quot;</span><span class="no">s</span><span class="w"></span>
-<span class="c"># Prints &quot;The plural of cat is cats&quot; when $WORD is set to cat.</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">WORD</span><span class="w"> </span><span class="no">cat</span><span class="w"></span>
+<span class="nf">echo</span><span class="w"> </span><span class="no">The</span><span class="w"> </span><span class="no">plural</span><span class="w"> </span><span class="no">of</span><span class="w"> </span><span class="o">$WORD</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$WORD</span><span class="s2">&quot;</span><span class="no">s</span><span class="w"></span>
+<span class="c"># Prints &quot;The plural of cat is cats&quot; because $WORD is set to &quot;cat&quot;.</span><span class="w"></span>
 <span class="nf">echo</span><span class="w"> </span><span class="no">The</span><span class="w"> </span><span class="no">plural</span><span class="w"> </span><span class="no">of</span><span class="w"> </span><span class="o">$WORD</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="o">{$WORD}</span><span class="no">s</span><span class="w"></span>
 <span class="c"># ditto</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Note that without the quotes or braces, fish will try to expand a variable called <code class="docutils literal notranslate"><span class="pre">$WORDs</span></code>, which may not exist.</p>
+<p>Without the quotes or braces, fish will try to expand a variable called <code class="docutils literal notranslate"><span class="pre">$WORDs</span></code>, which may not exist.</p>
 <p>The latter syntax <code class="docutils literal notranslate"><span class="pre">{$WORD}</span></code> is a special case of <a class="reference internal" href="#expand-brace"><span class="std std-ref">brace expansion</span></a>.</p>
 <p>If $WORD here is undefined or an empty list, the &quot;s&quot; is not printed. However, it is printed if $WORD is the empty string (like after <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">WORD</span> <span class="pre">&quot;&quot;</span></code>).</p>
-<p>Unlike all the other expansions, variable expansion also happens in double quoted strings. Inside double quotes (<code class="docutils literal notranslate"><span class="pre">&quot;these&quot;</span></code>), variables will always expand to exactly one argument. If they are empty or undefined, it will result in an empty string. If they have one element, they'll expand to that element. If they have more than that, the elements will be joined with spaces, unless the variable is a <a class="reference internal" href="#variables-path"><span class="std std-ref">path variable</span></a> - in that case it will use a colon (<cite>:</cite>) instead <a class="footnote-reference brackets" href="#id12" id="id11">4</a>.</p>
+<p>Unlike all the other expansions, variable expansion also happens in double quoted strings. Inside double quotes (<code class="docutils literal notranslate"><span class="pre">&quot;these&quot;</span></code>), variables will always expand to exactly one argument. If they are empty or undefined, it will result in an empty string. If they have one element, they'll expand to that element. If they have more than that, the elements will be joined with spaces, unless the variable is a <a class="reference internal" href="#variables-path"><span class="std std-ref">path variable</span></a> - in that case it will use a colon (<cite>:</cite>) instead <a class="footnote-reference brackets" href="#id10" id="id9">4</a>.</p>
 <p>Outside of double quotes, variables will expand to as many arguments as they have elements. That means an empty list will expand to nothing, a variable with one element will expand to that element, and a variable with multiple elements will expand to each of those elements separately.</p>
 <p>If a variable expands to nothing, it will cancel out any other strings attached to it. See the <a class="reference internal" href="#cartesian-product"><span class="std std-ref">cartesian product</span></a> section for more information.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">$</span></code> symbol can also be used multiple times, as a kind of &quot;dereference&quot; operator (the <code class="docutils literal notranslate"><span class="pre">*</span></code> in C or C++), like in the following code:</p>
@@ -573,7 +586,7 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <p><code class="docutils literal notranslate"><span class="pre">$$foo[$i]</span></code> is &quot;the value of the variable named by <code class="docutils literal notranslate"><span class="pre">$foo[$i]</span></code>.</p>
 <p>When using this feature together with list brackets, the brackets will be used from the inside out. <code class="docutils literal notranslate"><span class="pre">$$foo[5]</span></code> will use the fifth element of <code class="docutils literal notranslate"><span class="pre">$foo</span></code> as a variable name, instead of giving the fifth element of all the variables $foo refers to. That would instead be expressed as <code class="docutils literal notranslate"><span class="pre">$$foo[1][5]</span></code> (take the first element of <code class="docutils literal notranslate"><span class="pre">$foo</span></code>, use it as a variable name, then give the fifth element of that).</p>
 <dl class="footnote brackets">
-<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id11">4</a></span></dt>
+<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id9">4</a></span></dt>
 <dd><p>Unlike bash or zsh, which will join with the first character of $IFS (which usually is space).</p>
 </dd>
 </dl>
@@ -581,9 +594,9 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <div class="section" id="command-substitution">
 <span id="expand-command-substitution"></span><h3>Command substitution<a class="headerlink" href="#command-substitution" title="Permalink to this headline">¶</a></h3>
 <p>The output of a command (or an entire <a class="reference internal" href="#pipes"><span class="std std-ref">pipeline</span></a>) can be used as the arguments to another command.</p>
-<p>When you write a command in parenthesis like <code class="docutils literal notranslate"><span class="pre">outercommand</span> <span class="pre">(innercommand)</span></code>, the <code class="docutils literal notranslate"><span class="pre">innercommand</span></code> will be executed first. Its output will be taken and each line given as a separate argument to <code class="docutils literal notranslate"><span class="pre">outercommand</span></code>, which will then be executed. <a class="footnote-reference brackets" href="#id15" id="id13">5</a></p>
+<p>When you write a command in parenthesis like <code class="docutils literal notranslate"><span class="pre">outercommand</span> <span class="pre">(innercommand)</span></code>, the <code class="docutils literal notranslate"><span class="pre">innercommand</span></code> will be executed first. Its output will be taken and each line given as a separate argument to <code class="docutils literal notranslate"><span class="pre">outercommand</span></code>, which will then be executed. <a class="footnote-reference brackets" href="#id13" id="id11">5</a></p>
 <p>If the output is piped to <a class="reference internal" href="cmds/string.html#cmd-string-split"><span class="std std-ref">string split or string split0</span></a> as the last step, those splits are used as they appear instead of splitting lines.</p>
-<p>The exit status of the last run command substitution is available in the <a class="reference external" href="#variables-status">status</a> variable if the substitution happens in the context of a <a class="reference internal" href="cmds/set.html#cmd-set"><span class="std std-ref">set</span></a> command (so <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">set</span> <span class="pre">-l</span> <span class="pre">(something)</span></code> checks if <code class="docutils literal notranslate"><span class="pre">something</span></code> returned true).</p>
+<p>The exit status of the last run command substitution is available in the <a class="reference internal" href="#variables-status"><span class="std std-ref">status</span></a> variable if the substitution happens in the context of a <a class="reference internal" href="cmds/set.html#cmd-set"><span class="std std-ref">set</span></a> command (so <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">set</span> <span class="pre">-l</span> <span class="pre">(something)</span></code> checks if <code class="docutils literal notranslate"><span class="pre">something</span></code> returned true).</p>
 <p>Only part of the output can be used, see <a class="reference internal" href="#expand-index-range"><span class="std std-ref">index range expansion</span></a> for details.</p>
 <p>Fish has a default limit of 100 MiB on the data it will read in a command sustitution. If that limit is reached the command (all of it, not just the command substitution - the outer command won't be executed at all) fails and <code class="docutils literal notranslate"><span class="pre">$status</span></code> is set to 122. This is so command substitutions can't cause the system to go out of memory, because typically your operating system has a much lower limit, so reading more than that would be useless and harmful. This limit can be adjusted with the <code class="docutils literal notranslate"><span class="pre">fish_read_limit</span></code> variable (<cite>0</cite> meaning no limit). This limit also affects the <a class="reference internal" href="cmds/read.html#cmd-read"><span class="std std-ref">read</span></a> command.</p>
 <p>Examples:</p>
@@ -606,17 +619,17 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">grep</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="no">myanimallist1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">wc</span><span class="w"> </span><span class="no">-l</span><span class="w"></span>
 </pre></div>
 </div>
-<p>but if you need multiple or the command doesn't read from standard input, &quot;process substitution&quot; is useful. Other shells <a class="footnote-reference brackets" href="#id16" id="id14">6</a> allow this via <code class="docutils literal notranslate"><span class="pre">foo</span> <span class="pre">&lt;(bar)</span> <span class="pre">&lt;(baz)</span></code>, and fish uses the <a class="reference internal" href="cmds/psub.html#cmd-psub"><span class="std std-ref">psub</span></a> command:</p>
+<p>but if you need multiple or the command doesn't read from standard input, &quot;process substitution&quot; is useful. Other shells <a class="footnote-reference brackets" href="#id14" id="id12">6</a> allow this via <code class="docutils literal notranslate"><span class="pre">foo</span> <span class="pre">&lt;(bar)</span> <span class="pre">&lt;(baz)</span></code>, and fish uses the <a class="reference internal" href="cmds/psub.html#cmd-psub"><span class="std std-ref">psub</span></a> command:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># Compare just the lines containing &quot;fish&quot; in two files:</span><span class="w"></span>
 <span class="nf">diff</span><span class="w"> </span><span class="no">-u</span><span class="w"> </span><span class="o">(</span><span class="nf">grep</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="no">myanimallist1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">psub</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">grep</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="no">myanimallist2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">psub</span><span class="o">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>This creates a temporary file, stores the output of the command in that file and prints the filename, so it is given to the outer command.</p>
 <dl class="footnote brackets">
-<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id13">5</a></span></dt>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id11">5</a></span></dt>
 <dd><p>Setting <code class="docutils literal notranslate"><span class="pre">$IFS</span></code> to empty will disable line splitting. This is deprecated, use <a class="reference internal" href="cmds/string.html#cmd-string-split"><span class="std std-ref">string split</span></a> instead.</p>
 </dd>
-<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id14">6</a></span></dt>
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id12">6</a></span></dt>
 <dd><p>Bash and Zsh at least, though it is a POSIX extension</p>
 </dd>
 </dl>
@@ -720,16 +733,21 @@ banana
 </div>
 <div class="section" id="index-range-expansion">
 <span id="expand-index-range"></span><h3>Index range expansion<a class="headerlink" href="#index-range-expansion" title="Permalink to this headline">¶</a></h3>
-<p>Sometimes it's necessary to access only some of the elements of a list, or some of the lines a command substitution outputs. Both are possible in fish by writing a set of indices in brackets, like:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="o">$var[</span><span class="nf">2</span><span class="o">]</span><span class="w"></span>
-<span class="c"># or</span><span class="w"></span>
-<span class="o">$var[</span><span class="nf">1..3</span><span class="o">]</span><span class="w"></span>
+<p>Sometimes it's necessary to access only some of the elements of a <a class="reference internal" href="#variables-lists"><span class="std std-ref">list</span></a> (all fish variables are lists), or some of the lines a <a class="reference internal" href="#expand-command-substitution"><span class="std std-ref">command substitution</span></a> outputs. Both are possible in fish by writing a set of indices in brackets, like:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># Make $var a list of four elements</span><span class="w"></span>
+<span class="nf">set</span><span class="w"> </span><span class="no">var</span><span class="w"> </span><span class="no">one</span><span class="w"> </span><span class="no">two</span><span class="w"> </span><span class="no">three</span><span class="w"> </span><span class="no">four</span><span class="w"></span>
+<span class="c"># Print the second:</span><span class="w"></span>
+<span class="nf">echo</span><span class="w"> </span><span class="o">$var[</span><span class="no">2</span><span class="o">]</span><span class="w"></span>
+<span class="c"># prints &quot;two&quot;</span><span class="w"></span>
+<span class="c"># or print the first three:</span><span class="w"></span>
+<span class="nf">echo</span><span class="w"> </span><span class="o">$var[</span><span class="no">1..3</span><span class="o">]</span><span class="w"></span>
+<span class="c"># prints &quot;one two three&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In index brackets, fish understands ranges written like <code class="docutils literal notranslate"><span class="pre">a..b</span></code> ('a' and 'b' being indices). They are expanded into a sequence of indices from a to b (so <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">a+1</span> <span class="pre">a+2</span> <span class="pre">...</span> <span class="pre">b</span></code>), going up if b is larger and going down if a is larger. Negative indices can also be used - they are taken from the end of the list, so <code class="docutils literal notranslate"><span class="pre">-1</span></code> is the last element, and <code class="docutils literal notranslate"><span class="pre">-2</span></code> the one before it. If an index doesn't exist the range is clamped to the next possible index.</p>
 <p>If a list has 5 elements the indices go from 1 to 5, so a range of <code class="docutils literal notranslate"><span class="pre">2..16</span></code> will only go from element 2 to element 5.</p>
 <p>If the end is negative the range always goes up, so <code class="docutils literal notranslate"><span class="pre">2..-2</span></code> will go from element 2 to 4, and <code class="docutils literal notranslate"><span class="pre">2..-16</span></code> won't go anywhere because there is no way to go from the second element to one that doesn't exist, while going up.
-If the start is negative the range always goes down, so <code class="docutils literal notranslate"><span class="pre">-2..1</span></code> will go from element 4 to 1, and <code class="docutils literal notranslate"><span class="pre">-16..2</span></code> won't go anywhere because there is no way to go from the second element to one that doesn't exist, while going down.</p>
+If the start is negative the range always goes down, so <code class="docutils literal notranslate"><span class="pre">-2..1</span></code> will go from element 4 to 1, and <code class="docutils literal notranslate"><span class="pre">-16..2</span></code> won't go anywhere because there is no way to go from an element that doesn't exist to the second element, while going down.</p>
 <p>A missing starting index in a range defaults to 1. This is allowed if the range is the first index expression of the sequence. Similarly, a missing ending index, defaulting to -1 is allowed for the last index range in the sequence.</p>
 <p>Multiple ranges are also possible, separated with a space.</p>
 <p>Some examples:</p>
@@ -846,7 +864,7 @@ If the start is negative the range always goes down, so <code class="docutils li
 <ul class="simple">
 <li><p>When a scope is explicitly given, it will be used. If a variable of the same name exists in a different scope, that variable will not be changed.</p></li>
 <li><p>When no scope is given, but a variable of that name exists, the variable of the smallest scope will be modified. The scope will not be changed.</p></li>
-<li><p>As a special case, when no scope is given and no variable has been defined the variable will belong to the scope of the currently executing <em>function</em>. Note that this is different from the <code class="docutils literal notranslate"><span class="pre">--local</span></code> flag, which would make the variable local to the current <em>block</em>.</p></li>
+<li><p>As a special case, when no scope is given and no variable has been defined the variable will belong to the scope of the currently executing <em>function</em>. This is different from the <code class="docutils literal notranslate"><span class="pre">--local</span></code> flag, which would make the variable local to the current <em>block</em>.</p></li>
 </ul>
 <p>There can be many variables with the same name, but different scopes. When you <a class="reference internal" href="#expand-variable"><span class="std std-ref">use a variable</span></a>, the smallest scoped variable of that name will be used. If a local variable exists, it will be used instead of the global or universal variable of the same name.</p>
 <p>Example:</p>
@@ -871,7 +889,7 @@ If the start is negative the range always goes down, so <code class="docutils li
 <span class="w">   </span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_cursor_visual</span><span class="w"> </span><span class="no">underscore</span><span class="w"></span>
 <span class="k">end</span><span class="w"></span>
 
-<span class="c"># Set my language (also :ref:`exported &lt;variables-export&gt;`):</span><span class="w"></span>
+<span class="c"># Set my language</span><span class="w"></span>
 <span class="nf">set</span><span class="w"> </span><span class="no">-gx</span><span class="w"> </span><span class="no">LANG</span><span class="w"> </span><span class="no">de_DE.UTF-8</span><span class="w"></span>
 </pre></div>
 </div>
@@ -880,7 +898,7 @@ If the start is negative the range always goes down, so <code class="docutils li
 <span class="nf">set</span><span class="w"> </span><span class="no">-U</span><span class="w"> </span><span class="no">fish_color_autosuggestion</span><span class="w"> </span><span class="no">555</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The following code will not output anything:</p>
+<p>Here is an example of local vs function-scoped variables:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">begin</span><span class="w"></span>
 <span class="w">    </span><span class="c"># This is a nice local scope where all variables will die</span><span class="w"></span>
 <span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">pirate</span><span class="w"> </span><span class="s1">&#39;There be treasure in them thar hills&#39;</span><span class="w"></span>
@@ -902,7 +920,7 @@ If the start is negative the range always goes down, so <code class="docutils li
 <span class="no">GIT_DIR</span><span class="o">=</span><span class="no">somerepo</span><span class="w"> </span><span class="nf">git</span><span class="w"> </span><span class="no">status</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Note that, unlike other shells, fish will first set the variable and then perform other expansions on the line, so:</p>
+<p>Unlike other shells, fish will first set the variable and then perform other expansions on the line, so:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">banana</span><span class="w"></span>
 <span class="no">foo</span><span class="o">=</span><span class="no">gagaga</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="o">$foo</span><span class="w"> </span><span class="c"># prints gagaga, while in other shells it might print &quot;banana&quot;</span><span class="w"></span>
 </pre></div>
@@ -925,8 +943,8 @@ If the start is negative the range always goes down, so <code class="docutils li
 <span id="variables-universal"></span><h3>More on universal variables<a class="headerlink" href="#more-on-universal-variables" title="Permalink to this headline">¶</a></h3>
 <p>Universal variables are variables that are shared between all the user's fish sessions on the computer. Fish stores many of its configuration options as universal variables. This means that in order to change fish settings, all you have to do is change the variable value once, and it will be automatically updated for all sessions, and preserved across computer reboots and login/logout.</p>
 <p>To see universal variables in action, start two fish sessions side by side, and issue the following command in one of them <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">fish_color_cwd</span> <span class="pre">blue</span></code>. Since <code class="docutils literal notranslate"><span class="pre">fish_color_cwd</span></code> is a universal variable, the color of the current working directory listing in the prompt will instantly change to blue on both terminals.</p>
-<p><a class="reference external" href="#variables-universal">Universal variables</a> are stored in the file <code class="docutils literal notranslate"><span class="pre">.config/fish/fish_variables</span></code>. Do not edit this file directly, as your edits may be overwritten. Edit the variables through fish scripts or by using fish interactively instead.</p>
-<p>Do not append to universal variables in <a class="reference internal" href="index.html#initialization"><span class="std std-ref">config.fish</span></a>, because these variables will then get longer with each new shell instance. Instead, simply set them once at the command line.</p>
+<p><a class="reference internal" href="#variables-universal"><span class="std std-ref">Universal variables</span></a> are stored in the file <code class="docutils literal notranslate"><span class="pre">.config/fish/fish_variables</span></code>. Do not edit this file directly, as your edits may be overwritten. Edit the variables through fish scripts or by using fish interactively instead.</p>
+<p>Do not append to universal variables in <a class="reference internal" href="index.html#configuration"><span class="std std-ref">config.fish</span></a>, because these variables will then get longer with each new shell instance. Instead, simply set them once at the command line.</p>
 </div>
 <div class="section" id="variable-scope-for-functions">
 <span id="variables-functions"></span><h3>Variable scope for functions<a class="headerlink" href="#variable-scope-for-functions" title="Permalink to this headline">¶</a></h3>
@@ -987,7 +1005,7 @@ third
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo</span><span class="w"> </span><span class="o">$PATH[</span><span class="no">3</span><span class="o">]</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Note that list indices start at 1 in fish, not 0 like in other languages. This is because it requires less subtracting of 1 and many common Unix tools like <code class="docutils literal notranslate"><span class="pre">seq</span></code> work better with it (<code class="docutils literal notranslate"><span class="pre">seq</span> <span class="pre">5</span></code> prints 1 to 5, not 0 to 5). An invalid index is silently ignored resulting in no value (not even an empty string, just no argument at all).</p>
+<p>List indices start at 1 in fish, not 0 like in other languages. This is because it requires less subtracting of 1 and many common Unix tools like <code class="docutils literal notranslate"><span class="pre">seq</span></code> work better with it (<code class="docutils literal notranslate"><span class="pre">seq</span> <span class="pre">5</span></code> prints 1 to 5, not 0 to 5). An invalid index is silently ignored resulting in no value (not even an empty string, just no argument at all).</p>
 <p>If you don't use any brackets, all the elements of the list will be passed to the command as separate items. This means you can iterate over a list with <code class="docutils literal notranslate"><span class="pre">for</span></code>:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">$PATH</span><span class="w"></span>
 <span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$i</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">in</span><span class="w"> </span><span class="no">the</span><span class="w"> </span><span class="no">path</span><span class="w"></span>
@@ -1127,8 +1145,8 @@ second
 <ul class="simple" id="path">
 <li><p><code class="docutils literal notranslate"><span class="pre">PATH</span></code>, a list of directories in which to search for commands</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">CDPATH</span></code>, a list of directories in which the <a class="reference internal" href="cmds/cd.html#cmd-cd"><span class="std std-ref">cd</span></a> builtin looks for a new directory.</p></li>
-<li><p>The locale variables <code class="docutils literal notranslate"><span class="pre">LANG</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_ALL</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_COLLATE</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_CTYPE</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_MESSAGES</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_MONETARY</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_NUMERIC</span></code> and <code class="docutils literal notranslate"><span class="pre">LC_TIME</span></code> set the language option for the shell and subprograms. See the section <a class="reference external" href="#variables-locale">Locale variables</a> for more information.</p></li>
-<li><p>A number of variable starting with the prefixes <code class="docutils literal notranslate"><span class="pre">fish_color</span></code> and <code class="docutils literal notranslate"><span class="pre">fish_pager_color</span></code>. See <a class="reference external" href="#variables-color">Variables for changing highlighting colors</a> for more information.</p></li>
+<li><p>The locale variables <code class="docutils literal notranslate"><span class="pre">LANG</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_ALL</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_COLLATE</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_CTYPE</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_MESSAGES</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_MONETARY</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_NUMERIC</span></code> and <code class="docutils literal notranslate"><span class="pre">LC_TIME</span></code> set the language option for the shell and subprograms. See the section <a class="reference internal" href="#variables-locale"><span class="std std-ref">Locale variables</span></a> for more information.</p></li>
+<li><p>A number of variable starting with the prefixes <code class="docutils literal notranslate"><span class="pre">fish_color</span></code> and <code class="docutils literal notranslate"><span class="pre">fish_pager_color</span></code>. See <a class="reference internal" href="interactive.html#variables-color"><span class="std std-ref">Variables for changing highlighting colors</span></a> for more information.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fish_ambiguous_width</span></code> controls the computed width of ambiguous-width characters. This should be set to 1 if your terminal renders these characters as single-width (typical), or 2 if double-width.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fish_emoji_width</span></code> controls whether fish assumes emoji render as 2 cells or 1 cell wide. This is necessary because the correct value changed from 1 to 2 in Unicode 9, and some terminals may not be aware. Set this if you see graphical glitching related to emoji (or other &quot;special&quot; characters). It should usually be auto-detected.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">FISH_DEBUG</span></code> and <code class="docutils literal notranslate"><span class="pre">FISH_DEBUG_OUTPUT</span></code> control what debug output fish generates and where it puts it, analogous to the <code class="docutils literal notranslate"><span class="pre">--debug</span></code> and <code class="docutils literal notranslate"><span class="pre">--debug-output</span></code> options. These have to be set on startup, via e.g. <code class="docutils literal notranslate"><span class="pre">FISH_DEBUG='reader*'</span> <span class="pre">FISH_DEBUG_OUTPUT=/tmp/fishlog</span> <span class="pre">fish</span></code>.</p></li>
@@ -1140,6 +1158,7 @@ interactive fish session will be logged to a separate file identified by the val
 variable. If unset, the default session name &quot;fish&quot; is used. If set to an
 empty string, history is not saved to disk (but is still available within the interactive
 session).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_key_bindings</span></code>, the name of the function that sets up the keyboard shortcuts for the <a class="reference internal" href="interactive.html#editor"><span class="std std-ref">command-line editor</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fish_trace</span></code>, if set and not empty, will cause fish to print commands before they execute, similar to <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-x</span></code> in bash. The trace is printed to the path given by the <a class="reference internal" href="cmds/fish.html#cmd-fish"><span class="std std-ref">--debug-output</span></a> option to fish (stderr by default).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fish_user_paths</span></code>, a list of directories that are prepended to <code class="docutils literal notranslate"><span class="pre">PATH</span></code>. This can be a universal variable.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">umask</span></code>, the current file creation mask. The preferred way to change the umask variable is through the <a class="reference internal" href="cmds/umask.html#cmd-umask"><span class="std std-ref">umask</span></a> function. An attempt to set umask to an invalid value will always fail.</p></li>
@@ -1156,15 +1175,16 @@ session).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">history</span></code>, a list containing the last commands that were entered.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">HOME</span></code>, the user's home directory. This variable can be changed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">hostname</span></code>, the machine's hostname.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">IFS</span></code>, the internal field separator that is used for word splitting with the <a class="reference internal" href="cmds/read.html#cmd-read"><span class="std std-ref">read</span></a> builtin. Setting this to the empty string will also disable line splitting in <a class="reference external" href="#expand-command-substitution">command substitution</a>. This variable can be changed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IFS</span></code>, the internal field separator that is used for word splitting with the <a class="reference internal" href="cmds/read.html#cmd-read"><span class="std std-ref">read</span></a> builtin. Setting this to the empty string will also disable line splitting in <a class="reference internal" href="#expand-command-substitution"><span class="std std-ref">command substitution</span></a>. This variable can be changed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">last_pid</span></code>, the process ID (PID) of the last background process.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">PWD</span></code>, the current working directory.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pipestatus</span></code>, a list of exit statuses of all processes that made up the last executed pipe.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pipestatus</span></code>, a list of exit statuses of all processes that made up the last executed pipe. See <a class="reference internal" href="#variables-status"><span class="std std-ref">exit status</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SHLVL</span></code>, the level of nesting of shells. Fish increments this in interactive shells, otherwise it simply passes it along.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">status</span></code>, the <a class="reference external" href="#variables-status">exit status</a> of the last foreground job to exit. If the job was terminated through a signal, the exit status will be 128 plus the signal number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">status</span></code>, the <a class="reference internal" href="#variables-status"><span class="std std-ref">exit status</span></a> of the last foreground job to exit. If the job was terminated through a signal, the exit status will be 128 plus the signal number.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">status_generation</span></code>, the &quot;generation&quot; count of <code class="docutils literal notranslate"><span class="pre">$status</span></code>. This will be incremented only when the previous command produced an explicit status. (For example, background jobs will not increment this).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">USER</span></code>, the current username. This variable can be changed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">version</span></code>, the version of the currently running fish (also available as <code class="docutils literal notranslate"><span class="pre">FISH_VERSION</span></code> for backward compatibility).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_killring</span></code>, list of entries in fish kill ring.</p></li>
 </ul>
 <p>As a convention, an uppercase name is usually used for exported variables, while lowercase variables are not exported. (<code class="docutils literal notranslate"><span class="pre">CMD_DURATION</span></code> is an exception for historical reasons). This rule is not enforced by fish, but it is good coding practice to use casing to distinguish between exported and unexported variables.</p>
 <p>Fish also uses some variables internally, their name usually starting with <code class="docutils literal notranslate"><span class="pre">__fish</span></code>. These are internal and should not typically be modified directly.</p>
@@ -1175,9 +1195,9 @@ session).</p></li>
 <p>Fish stores the exit status of the last process in the last job to exit in the <code class="docutils literal notranslate"><span class="pre">status</span></code> variable.</p>
 <p>If fish encounters a problem while executing a command, the status variable may also be set to a specific value:</p>
 <ul class="simple">
-<li><p>0 is generally the exit status of fish commands if they successfully performed the requested operation.</p></li>
-<li><p>1 is generally the exit status of fish commands if they failed to perform the requested operation.</p></li>
-<li><p>121 is generally the exit status of fish commands if they were supplied with invalid arguments.</p></li>
+<li><p>0 is generally the exit status of commands if they successfully performed the requested operation.</p></li>
+<li><p>1 is generally the exit status of commands if they failed to perform the requested operation.</p></li>
+<li><p>121 is generally the exit status of commands if they were supplied with invalid arguments.</p></li>
 <li><p>123 means that the command was not executed because the command name contained invalid characters.</p></li>
 <li><p>124 means that the command was not executed because none of the wildcards in the command produced any matches.</p></li>
 <li><p>125 means that while an executable with the specified name was located, the operating system could not actually execute the command.</p></li>
@@ -1185,160 +1205,22 @@ session).</p></li>
 <li><p>127 means that no function, builtin or command with the given name could be located.</p></li>
 </ul>
 <p>If a process exits through a signal, the exit status will be 128 plus the number of the signal.</p>
-</div>
-<div class="section" id="syntax-highlighting-variables">
-<span id="variables-color"></span><h3>Syntax highlighting variables<a class="headerlink" href="#syntax-highlighting-variables" title="Permalink to this headline">¶</a></h3>
-<p>The colors used by fish for syntax highlighting can be configured by changing the values of a various variables. The value of these variables can be one of the colors accepted by the <a class="reference internal" href="cmds/set_color.html#cmd-set-color"><span class="std std-ref">set_color</span></a> command. The <code class="docutils literal notranslate"><span class="pre">--bold</span></code> or <code class="docutils literal notranslate"><span class="pre">-b</span></code> switches accepted by <code class="docutils literal notranslate"><span class="pre">set_color</span></code> are also accepted.</p>
-<p>Example: to make errors highlighted and red, use:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">fish_color_error</span><span class="w"> </span><span class="no">red</span><span class="w"> </span><span class="no">--bold</span><span class="w"></span>
+<p>The status can be negated with <a class="reference internal" href="cmds/not.html#cmd-not"><span class="std std-ref">not</span></a> (or <code class="docutils literal notranslate"><span class="pre">!</span></code>), which is useful in a <a class="reference internal" href="#syntax-conditional"><span class="std std-ref">condition</span></a>. This turns a status of 0 into 1 and any non-zero status into 0.</p>
+<p>There is also <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code>, which is a list of all <code class="docutils literal notranslate"><span class="pre">status</span></code> values of processes in a pipe. One difference is that <a class="reference internal" href="cmds/not.html#cmd-not"><span class="std std-ref">not</span></a> applies to <code class="docutils literal notranslate"><span class="pre">$status</span></code>, but not <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code>, because it loses information.</p>
+<p>For example:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="o">not</span><span class="w"> </span><span class="nf">cat</span><span class="w"> </span><span class="no">file</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">grep</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="no">fish</span><span class="w"></span>
+<span class="nf">echo</span><span class="w"> </span><span class="no">status</span><span class="w"> </span><span class="no">is:</span><span class="w"> </span><span class="o">$status</span><span class="w"> </span><span class="no">pipestatus</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="o">$pipestatus</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The following variables are available to change the highlighting colors in fish:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 62%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Variable</p></th>
-<th class="head"><p>Meaning</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_normal</span></code></p></td>
-<td><p>default color</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_command</span></code></p></td>
-<td><p>commands like echo</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_keyword</span></code></p></td>
-<td><p>keywords like if - this falls back on command color if unset</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_quote</span></code></p></td>
-<td><p>quoted text like &quot;abc&quot;</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_redirection</span></code></p></td>
-<td><p>IO redirections like &gt;/dev/null</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_end</span></code></p></td>
-<td><p>process separators like ';' and '&amp;'</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_error</span></code></p></td>
-<td><p>syntax errors</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_param</span></code></p></td>
-<td><p>ordinary command parameters</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_comment</span></code></p></td>
-<td><p>comments like '# important'</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_selection</span></code></p></td>
-<td><p>selected text in vi visual mode</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_operator</span></code></p></td>
-<td><p>parameter expansion operators like '*' and '~'</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_escape</span></code></p></td>
-<td><p>character escapes like 'n' and 'x70'</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_autosuggestion</span></code></p></td>
-<td><p>autosuggestions (the proposed rest of a command)</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_cwd</span></code></p></td>
-<td><p>the current working directory in the default prompt</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_user</span></code></p></td>
-<td><p>the username in the default prompt</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_host</span></code></p></td>
-<td><p>the hostname in the default prompt</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_host_remote</span></code></p></td>
-<td><p>the hostname in the default prompt for remote sessions (like ssh)</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_cancel</span></code></p></td>
-<td><p>the '^C' indicator on a canceled command</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_color_search_match</span></code></p></td>
-<td><p>history search matches and selected pager items (background only)</p></td>
-</tr>
-</tbody>
-</table>
+<p>Here <code class="docutils literal notranslate"><span class="pre">$status</span></code> reflects the status of <code class="docutils literal notranslate"><span class="pre">grep</span></code>, which returns 0 if it found something, negated with <code class="docutils literal notranslate"><span class="pre">not</span></code> (so 1 if it found something, 0 otherwise). <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code> reflects the status of <code class="docutils literal notranslate"><span class="pre">cat</span></code> (which returns non-zero for example when it couldn't find the file) and <code class="docutils literal notranslate"><span class="pre">grep</span></code>, without the negation.</p>
+<p>So if both <code class="docutils literal notranslate"><span class="pre">cat</span></code> and <code class="docutils literal notranslate"><span class="pre">grep</span></code> succeeded, <code class="docutils literal notranslate"><span class="pre">$status</span></code> would be 1 because of the <code class="docutils literal notranslate"><span class="pre">not</span></code>, and <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code> would be 0 and 0.</p>
 </div>
-<div class="section" id="pager-color-variables">
-<span id="variables-color-pager"></span><h3>Pager color variables<a class="headerlink" href="#pager-color-variables" title="Permalink to this headline">¶</a></h3>
-<p>fish will sometimes present a list of choices in a table, called the pager.</p>
-<p>Example: to set the background of each pager row, use:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">fish_pager_color_background</span><span class="w"> </span><span class="no">--background=white</span><span class="w"></span>
-</pre></div>
-</div>
-<p>To have black text on alternating white and gray backgrounds:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">fish_pager_color_prefix</span><span class="w"> </span><span class="no">black</span><span class="w"></span>
-<span class="nf">set</span><span class="w"> </span><span class="no">fish_pager_color_completion</span><span class="w"> </span><span class="no">black</span><span class="w"></span>
-<span class="nf">set</span><span class="w"> </span><span class="no">fish_pager_color_description</span><span class="w"> </span><span class="no">black</span><span class="w"></span>
-<span class="nf">set</span><span class="w"> </span><span class="no">fish_pager_color_background</span><span class="w"> </span><span class="no">--background=white</span><span class="w"></span>
-<span class="nf">set</span><span class="w"> </span><span class="no">fish_pager_color_secondary_background</span><span class="w"> </span><span class="no">--background=brwhite</span><span class="w"></span>
-</pre></div>
-</div>
-<p>Variables affecting the pager colors:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 42%" />
-<col style="width: 58%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Variable</p></th>
-<th class="head"><p>Meaning</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_progress</span></code></p></td>
-<td><p>the progress bar at the bottom left corner</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_background</span></code></p></td>
-<td><p>the background color of a line</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_prefix</span></code></p></td>
-<td><p>the prefix string, i.e. the string that is to be completed</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_completion</span></code></p></td>
-<td><p>the completion itself, i.e. the proposed rest of the string</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_description</span></code></p></td>
-<td><p>the completion description</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_selected_background</span></code></p></td>
-<td><p>background of the selected completion</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_selected_prefix</span></code></p></td>
-<td><p>prefix of the selected completion</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_selected_completion</span></code></p></td>
-<td><p>suffix of the selected completion</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_selected_description</span></code></p></td>
-<td><p>description of the selected completion</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_secondary_background</span></code></p></td>
-<td><p>background of every second unselected completion</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_secondary_prefix</span></code></p></td>
-<td><p>prefix of every second unselected completion</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_secondary_completion</span></code></p></td>
-<td><p>suffix of every second unselected completion</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fish_pager_color_secondary_description</span></code></p></td>
-<td><p>description of every second unselected completion</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="variables-locale">
-<span id="id18"></span><h3>Locale variables<a class="headerlink" href="#variables-locale" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="locale-variables">
+<span id="variables-locale"></span><h3>Locale variables<a class="headerlink" href="#locale-variables" title="Permalink to this headline">¶</a></h3>
 <p>The &quot;locale&quot; of a program is its set of language and regional settings. In UNIX, there are a few separate variables to control separate things - <code class="docutils literal notranslate"><span class="pre">LC_CTYPE</span></code> defines the text encoding while <code class="docutils literal notranslate"><span class="pre">LC_TIME</span></code> defines the time format.</p>
 <p>The locale variables are: <code class="docutils literal notranslate"><span class="pre">LANG</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_ALL</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_COLLATE</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_CTYPE</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_MESSAGES</span></code>,  <code class="docutils literal notranslate"><span class="pre">LC_MONETARY</span></code>, <code class="docutils literal notranslate"><span class="pre">LC_NUMERIC</span></code> and <code class="docutils literal notranslate"><span class="pre">LC_TIME</span></code>. These variables work as follows: <code class="docutils literal notranslate"><span class="pre">LC_ALL</span></code> forces all the aspects of the locale to the specified value. If <code class="docutils literal notranslate"><span class="pre">LC_ALL</span></code> is set, all other locale variables will be ignored (this is typically not recommended!). The other <code class="docutils literal notranslate"><span class="pre">LC_</span></code> variables set the specified aspect of the locale information. <code class="docutils literal notranslate"><span class="pre">LANG</span></code> is a fallback value, it will be used if none of the <code class="docutils literal notranslate"><span class="pre">LC_</span></code> variables are specified.</p>
 <p>The most common way to set the locale to use a command like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-gx</span> <span class="pre">LANG</span> <span class="pre">en_GB.utf8</span></code>, which sets the current locale to be the English language, as used in Great Britain, using the UTF-8 character set. That way any program that requires one setting differently can easily override just that and doesn't have to resort to LC_ALL. For a list of available locales on your system, try <code class="docutils literal notranslate"><span class="pre">locale</span> <span class="pre">-a</span></code>.</p>
+<p>Because it needs to handle output that might include multibyte characters (like e.g. emojis), fish will try to set its own internal LC_CTYPE to one that is UTF8-capable even if given an effective LC_CTYPE of &quot;C&quot; (the default). This prevents issues with e.g. filenames given in autosuggestions even if the user started fish with LC_ALL=C. To turn this handling off, set <code class="docutils literal notranslate"><span class="pre">fish_allow_singlebyte_locale</span></code> to &quot;1&quot;.</p>
 </div>
 </div>
 <div class="section" id="builtin-commands">
@@ -1367,6 +1249,54 @@ session).</p></li>
 </ul>
 <p>Other things have other restrictions. For instance what is allowed for file names depends on your system, but at the very least they cannot contain a &quot;/&quot; (because that is the path separator) or NULL byte (because that is how UNIX ends strings).</p>
 </div>
+<div class="section" id="future-feature-flags">
+<span id="featureflags"></span><h2>Future feature flags<a class="headerlink" href="#future-feature-flags" title="Permalink to this headline">¶</a></h2>
+<p>Feature flags are how fish stages changes that might break scripts. Breaking changes are introduced as opt-in, in a few releases they become opt-out, and eventually the old behavior is removed.</p>
+<p>You can see the current list of features via <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">features</span></code>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">status</span><span class="w"> </span><span class="no">features</span><span class="w"></span>
+stderr-nocaret  on     3.0      ^ no longer redirects stderr
+qmark-noglob    off    3.0      ? no longer globs
+regex-easyesc   off    3.1      string replace -r needs fewer \\&#39;s
+</pre></div>
+</div>
+<p>There are two breaking changes in fish 3.0: caret <code class="docutils literal notranslate"><span class="pre">^</span></code> no longer redirects stderr, and question mark <code class="docutils literal notranslate"><span class="pre">?</span></code> is no longer a glob.</p>
+<p>There is one breaking change in fish 3.1: <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">replace</span> <span class="pre">-r</span></code> does a superfluous round of escaping for the replacement, so escaping backslashes would look like <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">replace</span> <span class="pre">-ra</span> <span class="pre">'([ab])'</span> <span class="pre">'\\\\\\\$1'</span> <span class="pre">a</span></code>. This flag removes that if turned on, so <code class="docutils literal notranslate"><span class="pre">'\\\\$1'</span></code> is enough.</p>
+<p>These changes are off by default. They can be enabled on a per session basis:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish</span><span class="w"> </span><span class="no">--features</span><span class="w"> </span><span class="no">qmark-noglob,stderr-nocaret</span><span class="w"></span>
+</pre></div>
+</div>
+<p>or opted into globally for a user:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-U</span><span class="w"> </span><span class="no">fish_features</span><span class="w"> </span><span class="no">stderr-nocaret</span><span class="w"> </span><span class="no">qmark-noglob</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Features will only be set on startup, so this variable will only take effect if it is universal or exported.</p>
+<p>You can also use the version as a group, so <code class="docutils literal notranslate"><span class="pre">3.0</span></code> is equivalent to &quot;stderr-nocaret&quot; and &quot;qmark-noglob&quot;.</p>
+<p>Prefixing a feature with <code class="docutils literal notranslate"><span class="pre">no-</span></code> turns it off instead.</p>
+</div>
+<div class="section" id="event-handlers">
+<span id="event"></span><h2>Event handlers<a class="headerlink" href="#event-handlers" title="Permalink to this headline">¶</a></h2>
+<p>When defining a new function in fish, it is possible to make it into an event handler, i.e. a function that is automatically run when a specific event takes place. Events that can trigger a handler currently are:</p>
+<ul class="simple">
+<li><p>When a signal is delivered</p></li>
+<li><p>When a job exits</p></li>
+<li><p>When the value of a variable is updated</p></li>
+<li><p>When the prompt is about to be shown</p></li>
+</ul>
+<p>Example:</p>
+<p>To specify a signal handler for the WINCH signal, write:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="no">my_signal_handler</span><span class="w"> </span><span class="no">--on-signal</span><span class="w"> </span><span class="no">WINCH</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">Got</span><span class="w"> </span><span class="no">WINCH</span><span class="w"> </span><span class="no">signal!</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Please note that event handlers only become active when a function is loaded, which means you need to otherwise <a class="reference internal" href="cmds/source.html#cmd-source"><span class="std std-ref">source</span></a> or execute a function instead of relying on <a class="reference internal" href="#syntax-function-autoloading"><span class="std std-ref">autoloading</span></a>. One approach is to put it into your <a class="reference internal" href="index.html#configuration"><span class="std std-ref">configuration file</span></a>.</p>
+<p>For more information on how to define new event handlers, see the documentation for the <a class="reference internal" href="cmds/function.html#cmd-function"><span class="std std-ref">function</span></a> command.</p>
+</div>
+<div class="section" id="debugging-fish-scripts">
+<span id="debugging"></span><h2>Debugging fish scripts<a class="headerlink" href="#debugging-fish-scripts" title="Permalink to this headline">¶</a></h2>
+<p>Fish includes a built in debugging facility. The debugger allows you to stop execution of a script at an arbitrary point. When this happens you are presented with an interactive prompt. At this prompt you can execute any fish command (there are no debug commands as such). For example, you can check or change the value of any variables using <a class="reference internal" href="cmds/printf.html#cmd-printf"><span class="std std-ref">printf</span></a> and <a class="reference internal" href="cmds/set.html#cmd-set"><span class="std std-ref">set</span></a>. As another example, you can run <a class="reference internal" href="cmds/status.html#cmd-status"><span class="std std-ref">status print-stack-trace</span></a> to see how this breakpoint was reached. To resume normal execution of the script, simply type <a class="reference internal" href="cmds/exit.html#cmd-exit"><span class="std std-ref">exit</span></a> or <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">D</kbd>.</p>
+<p>To start a debug session simply run the builtin command <a class="reference internal" href="cmds/breakpoint.html#cmd-breakpoint"><span class="std std-ref">breakpoint</span></a> at the point in a function or script where you wish to gain control. Also, the default action of the TRAP signal is to call this builtin. So a running script can be debugged by sending it the TRAP signal with the <code class="docutils literal notranslate"><span class="pre">kill</span></code> command. Once in the debugger, it is easy to insert new breakpoints by using the funced function to edit the definition of a function.</p>
+</div>
 </div>
 
 
@@ -1380,10 +1310,10 @@ session).</p></li>
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2-114-g8e4a9bd45 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -1404,7 +1334,7 @@ session).</p></li>
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2020, fish-shell developers.
+    &copy; Copyright 2021, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fish for bash users &#8212; fish-shell 3.2.2 documentation</title>
+    <title>Fish for bash users &#8212; fish-shell 3.3.0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,7 +15,8 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Release notes" href="relnotes.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="while - perform a command multiple times" href="cmds/while.html" />
     <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
      
 
@@ -24,10 +25,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Fish for bash users</a></li>
@@ -46,21 +47,25 @@
     </li>
 
       </ul>
-    </div>  
+    </div>    
+
+    <div class="document">
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="index.html">Documents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="language.html">The fish language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="completions.html">Writing your own completions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
 </div>
@@ -90,6 +95,7 @@
 <li><a class="reference internal" href="#arithmetic-expansion">Arithmetic Expansion</a></li>
 <li><a class="reference internal" href="#prompts">Prompts</a></li>
 <li><a class="reference internal" href="#blocks-and-loops">Blocks and loops</a></li>
+<li><a class="reference internal" href="#subshells">Subshells</a></li>
 <li><a class="reference internal" href="#builtins-and-other-commands">Builtins and other commands</a></li>
 </ul>
 </li>
@@ -98,8 +104,6 @@
 </div>
         </div>
       </div>
-
-    <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -109,7 +113,7 @@
 <p>This is to give you a quick overview if you come from bash (or to a lesser extent other shells like zsh or ksh) and want to know how fish differs. Fish is intentionally not POSIX-compatible and as such some of the things you are used to work differently.</p>
 <p>Many things are similar - they both fundamentally expand commandlines to execute commands, have pipes, redirections, variables, globs, use command output in various ways. This document is there to quickly show you the differences.</p>
 <div class="section" id="command-substitutions">
-<h2>Command substitutions<a class="headerlink" href="#command-substitutions" title="Permalink to this headline">¶</a></h2>
+<span id="bash-command-substitutions"></span><h2>Command substitutions<a class="headerlink" href="#command-substitutions" title="Permalink to this headline">¶</a></h2>
 <p>Fish spells command substitutions as <code class="docutils literal notranslate"><span class="pre">(command)</span></code> instead of <code class="docutils literal notranslate"><span class="pre">$(command)</span></code> (or <code class="docutils literal notranslate"><span class="pre">`command`</span></code>).</p>
 <p>In addition, it only splits them on newlines instead of $IFS. If you want to split on something else, use <a class="reference internal" href="cmds/string.html#cmd-string-split"><span class="std std-ref">string split</span></a>, <a class="reference internal" href="cmds/string.html#cmd-string-split"><span class="std std-ref">string split0</span></a> or <a class="reference internal" href="cmds/string.html#cmd-string-collect"><span class="std std-ref">string collect</span></a>. If those are used as the last command in a command substitution the splits they create are carried over. So:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">(</span><span class="nf">find</span><span class="w"> </span><span class="no">.</span><span class="w"> </span><span class="no">-print0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">split0</span><span class="o">)</span><span class="w"></span>
@@ -343,6 +347,43 @@ b
 </div>
 <p>Fish does not have an <code class="docutils literal notranslate"><span class="pre">until</span></code>. Use <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">not</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">!</span></code>.</p>
 </div>
+<div class="section" id="subshells">
+<h2>Subshells<a class="headerlink" href="#subshells" title="Permalink to this headline">¶</a></h2>
+<p>Bash has a feature called &quot;subshells&quot;, where it will start another shell process for certain things. That shell will then be independent and e.g. any changes it makes to variables won't be visible in the main shell.</p>
+<p>This includes things like:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># A list of commands in `()` parentheses</span>
+<span class="o">(</span>foo<span class="p">;</span> bar<span class="o">)</span> <span class="p">|</span> baz
+
+<span class="c1"># Both sides of a pipe</span>
+foo <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> -r bar<span class="p">;</span> <span class="k">do</span>
+    <span class="c1"># This variable will not be visible outside of the while loop.</span>
+    <span class="nv">VAR</span><span class="o">=</span>VAL
+    <span class="c1"># This background process will not be, either</span>
+    baz <span class="p">&amp;</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">()</span></code> subshells are often confused with <code class="docutils literal notranslate"><span class="pre">{}</span></code> grouping, which does <em>not</em> use a subshell. When you just need to group, you can use <code class="docutils literal notranslate"><span class="pre">begin;</span> <span class="pre">end</span></code> in fish:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="o">(</span><span class="nf">foo; bar</span><span class="o">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">baz</span><span class="w"></span>
+<span class="c"># when it should really have been:</span><span class="w"></span>
+<span class="o">{</span><span class="nf"> foo; bar </span><span class="o">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">baz</span><span class="w"></span>
+<span class="c"># becomes</span><span class="w"></span>
+<span class="k">begin</span><span class="p">;</span><span class="w"> </span><span class="nf">foo</span><span class="p">;</span><span class="w"> </span><span class="nf">bar</span><span class="p">;</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">baz</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The pipe will simply be run in the same process, so <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">read</span></code> loops can set variables outside:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">foo</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nf">read</span><span class="w"> </span><span class="no">bar</span><span class="w"></span>
+<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">VAR</span><span class="w"> </span><span class="no">VAL</span><span class="w"></span>
+<span class="w">    </span><span class="nf">baz</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="nf">echo</span><span class="w"> </span><span class="o">$VAR</span><span class="w"> </span><span class="c"># will print VAL</span><span class="w"></span>
+<span class="nf">jobs</span><span class="w"> </span><span class="c"># will show &quot;baz&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Subshells are also frequently confused with <a class="reference internal" href="#bash-command-substitutions"><span class="std std-ref">command substitutions</span></a>, which bash writes as <code class="docutils literal notranslate"><span class="pre">`command`</span></code> or <code class="docutils literal notranslate"><span class="pre">$(command)</span></code> and fish writes as <code class="docutils literal notranslate"><span class="pre">(command)</span></code>. Bash also <em>uses</em> subshells to implement them.</p>
+<p>The isolation can usually be achieved by just scoping variables (with <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-l</span></code>), but if you really do need to run your code in a new shell environment you can always use <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">-c</span> <span class="pre">'your</span> <span class="pre">code</span> <span class="pre">here'</span></code> to do so explicitly.</p>
+</div>
 <div class="section" id="builtins-and-other-commands">
 <h2>Builtins and other commands<a class="headerlink" href="#builtins-and-other-commands" title="Permalink to this headline">¶</a></h2>
 <p>By now it has become apparent that fish puts much more of a focus on its builtins and external commands rather than its syntax. So here are some helpful builtins and their rough equivalent in bash:</p>
@@ -368,10 +409,10 @@ b
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Fish for bash users</a></li>
@@ -392,7 +433,7 @@ b
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2020, fish-shell developers.
+    &copy; Copyright 2021, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />

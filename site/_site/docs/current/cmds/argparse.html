@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>argparse - parse options passed to a fish script or function &#8212; fish-shell 3.2.2 documentation</title>
+    <title>argparse - parse options passed to a fish script or function &#8212; fish-shell 3.3.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -25,10 +25,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -48,21 +48,25 @@
     </li>
 
       </ul>
-    </div>  
+    </div>    
+
+    <div class="document">
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="../index.html">Documents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
 </div>
@@ -96,8 +100,6 @@
 </div>
         </div>
       </div>
-
-    <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -112,8 +114,8 @@
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>This command makes it easy for fish scripts and functions to handle arguments like how fish builtin commands handle their arguments. You pass arguments that define the known options, followed by a literal <code class="docutils literal notranslate"><span class="pre">--</span></code>, then the arguments to be parsed (which might also include a literal <code class="docutils literal notranslate"><span class="pre">--</span></code>). <code class="docutils literal notranslate"><span class="pre">argparse</span></code> then sets variables to indicate the passed options with their values, and sets $argv (and always $argv) to the remaining arguments. More on this in the <a class="reference external" href="#usage">usage</a> section below.</p>
-<p>Each option specification (<code class="docutils literal notranslate"><span class="pre">OPTION_SPEC</span></code>) is written in the <a class="reference external" href="#option-specifications">domain specific language</a> described below. All OPTION_SPECs must appear after any argparse flags and before the <code class="docutils literal notranslate"><span class="pre">--</span></code> that separates them from the arguments to be parsed.</p>
+<p>This command makes it easy for fish scripts and functions to handle arguments like how fish builtin commands handle their arguments. You pass arguments that define the known options, followed by a literal <code class="docutils literal notranslate"><span class="pre">--</span></code>, then the arguments to be parsed (which might also include a literal <code class="docutils literal notranslate"><span class="pre">--</span></code>). <code class="docutils literal notranslate"><span class="pre">argparse</span></code> then sets variables to indicate the passed options with their values, and sets $argv (and always $argv) to the remaining arguments. More on this in the <a class="reference internal" href="#cmd-argparse-usage"><span class="std std-ref">usage</span></a> section below.</p>
+<p>Each option specification (<code class="docutils literal notranslate"><span class="pre">OPTION_SPEC</span></code>) is written in the <a class="reference internal" href="#cmd-argparse-option-specification"><span class="std std-ref">domain specific language</span></a> described below. All OPTION_SPECs must appear after any argparse flags and before the <code class="docutils literal notranslate"><span class="pre">--</span></code> that separates them from the arguments to be parsed.</p>
 <p>Each option that is seen in the ARG list will result in variables named <code class="docutils literal notranslate"><span class="pre">_flag_X</span></code>, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the short flag letter and the long flag name (if they are defined). For example a <code class="docutils literal notranslate"><span class="pre">--help</span></code> option could cause argparse to define one variable called <code class="docutils literal notranslate"><span class="pre">_flag_h</span></code> and another called <code class="docutils literal notranslate"><span class="pre">_flag_help</span></code>.</p>
 <p>The variables will be set with local scope (i.e., as if the script had done <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-l</span> <span class="pre">_flag_X</span></code>). If the flag is a boolean (that is, it just is passed or not, it doesn't have a value) the values are the short and long flags seen. If the option is not a boolean the values will be zero or more values corresponding to the values collected when the ARG list is processed. If the flag was not seen the flag variable will not be set.</p>
 </div>
@@ -131,7 +133,7 @@
 </ul>
 </div>
 <div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<span id="cmd-argparse-usage"></span><h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>To use this command, pass the option specifications (<code class="docutils literal notranslate"><span class="pre">OPTION_SPEC</span></code>), then a mandatory <code class="docutils literal notranslate"><span class="pre">--</span></code>, and then the arguments you want to have parsed.</p>
 <p>A simple example:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">argparse</span><span class="w"> </span><span class="no">--name=my_function</span><span class="w"> </span><span class="s1">&#39;h/help&#39;</span><span class="w"> </span><span class="s1">&#39;n/name=&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$argv</span><span class="w"></span>
@@ -153,7 +155,7 @@
 <p>The first <code class="docutils literal notranslate"><span class="pre">--</span></code> seen is what allows the <code class="docutils literal notranslate"><span class="pre">argparse</span></code> command to reliably separate the option specifications and options to <code class="docutils literal notranslate"><span class="pre">argparse</span></code> itself (like <code class="docutils literal notranslate"><span class="pre">--ignore-unknown</span></code>) from the command arguments, so it is required.</p>
 </div>
 <div class="section" id="option-specifications">
-<h2>Option Specifications<a class="headerlink" href="#option-specifications" title="Permalink to this headline">¶</a></h2>
+<span id="cmd-argparse-option-specification"></span><h2>Option Specifications<a class="headerlink" href="#option-specifications" title="Permalink to this headline">¶</a></h2>
 <p>Each option specification consists of:</p>
 <ul class="simple">
 <li><p>An optional alphanumeric short flag letter, followed by a <code class="docutils literal notranslate"><span class="pre">/</span></code> if the short flag can be used by someone invoking your command or, for backwards compatibility, a <code class="docutils literal notranslate"><span class="pre">-</span></code> if it should not be exposed as a valid short flag (in which case it will also not be exposed as a flag variable).</p></li>
@@ -248,10 +250,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -273,7 +275,7 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2020, fish-shell developers.
+    &copy; Copyright 2021, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />

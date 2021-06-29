@@ -1,7 +1,12 @@
 @import url("classic.css");
 
+:root {
+  color-scheme: light dark; /* both supported */
+}
+
 html {
     background: none;
+    min-height: 100%;
 }
 
 body {
@@ -26,6 +31,7 @@ div.related {
     padding: 0.5em 0;
     border-top: 1px solid #ccc;
     margin-top: 0;
+    background-color: inherit;
 }
 
 div.section {
@@ -34,9 +40,15 @@ div.section {
        but I have no idea how to make the tables themselves scrollable
      */
     overflow-y: auto;
+    /* This avoids leaving the actual text narrower than necessary
+       in certain widths.
+     */
+    width: 100%;
 }
 
-div.related a:hover {
+div.related a:hover,
+div.footer a:hover,
+div.sphinxsidebar a:hover {
     color: #0095C4;
 }
 
@@ -56,15 +68,39 @@ form.inline-search input[type="submit"] {
 }
 
 div.sphinxsidebar {
-    background-color: #eeeefa;
     border-right: 1px solid #ccc;
     border-radius: 0px;
-    line-height: 130%;
+    line-height: 150%;
     font-size: smaller;
-    overflow: auto;
-    position: absolute;
     margin-left: 0;
+    float: left;
+    /* Let this move along with the screen, but be scrollable itself.
+    This means the user can't scroll *away* from the sidebar - it's always available */
+    overflow: auto;
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    /* Default scrollbar is too thicc */
+    scrollbar-width: thin;
+}
+
+div.sphinxsidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+div.sphinxsidebar::-webkit-scrollbar-thumb {
+  /* Without, chrome lets the scrollbar disappear? */
+  background-color: grey;
+  border-radius: 10px;
+}
+
+div.documentwrapper {
     float: none;
+}
+
+div.document, div.body {
+    background-color: inherit;
+    color: inherit;
 }
 
 div#searchbox {
@@ -75,7 +111,7 @@ div#searchbox {
 }
 
 div.sphinxsidebar h3, div.sphinxsidebar h4 {
-    margin-top: 1.5em;
+    margin-top: 1em;
 }
 
 div.sphinxsidebarwrapper > h3:first-child {
@@ -86,8 +122,8 @@ div.sphinxsidebarwrapper > ul > li > ul > li {
     margin-bottom: 0.4em;
 }
 
-div.sphinxsidebar a:hover {
-    color: #0095C4;
+ul li.toctree-l1 {
+    line-height: 150%;
 }
 
 form.inline-search input,
@@ -103,7 +139,7 @@ div.sphinxsidebar input[type=text] {
 }
 
 div.body {
-    padding: 0 0 0 1.2em;
+    padding: 10px 0 0 1.2em;
     min-width: 150px;
 }
 
@@ -155,8 +191,13 @@ div.body a:hover {
 tt, code, pre {
     font-family: monospace, sans-serif;
     font-size: 96.5%;
-    /* Older sphinx versions set a color here, we need to unset it so we inherit from the outer div.highlight */
-    background-color: unset;
+    /* Older sphinx versions set a color here, we need to inherit it from the outer div.highlight */
+    background-color: inherit;
+}
+
+pre, div[class*="highlight-"] {
+    /* For some reason sphinx since 3.1.2 sets "clear: both" here, which breaks in interesting ways */
+    clear: unset;
 }
 
 div.body tt, div.body code {
@@ -213,10 +254,6 @@ div.footer {
     margin-right: 10px;
 }
 
-div.footer a:hover {
-    color: #0095C4;
-}
-
 .refcount {
     color: #060;
 }
@@ -226,7 +263,7 @@ div.footer a:hover {
 }
 
 .highlight {
-    background: #FFF !important;
+    background: #FFF;
 }
 
 dl > dt span ~ em {
@@ -237,10 +274,15 @@ dl > dt span ~ em {
    - the sidebar, the gradient background, ... */
 @media screen and (max-width: 700px) {
     div.sphinxsidebar {
+        font-size: 16px;
         width: 100%;
         height: auto;
         position: relative;
     }
+    div.documentwrapper {
+        float: left;
+    }
+
     div.sphinxsidebar ul {
         flex-basis: content;
         flex-wrap: wrap;
@@ -303,4 +345,83 @@ kbd {
   box-shadow: 0.1em 0.1em 0.2em rgba(0,0,0,0.1);
   color: #000;
   padding: 0.1em 0.3em;
+}
+
+.footnote, .footnote-reference {
+    background-color: #ddddea;
+    font-size: 90%;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(to top, #1f1f3f 0%,#051f3a 100%);
+    }
+    div#fmain {
+        color: #DDD;
+        background-color: #202028;
+        box-shadow: 0 0 5px 1px #000;
+    }
+
+    div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6 {
+        background-color: inherit;
+        color: inherit;
+    }
+
+    .footnote, .footnote-reference {
+        background-color: #101020;
+    }
+
+    div.sphinxsidebar {
+        border-right: 1px solid #666;
+    }
+
+    div.related:first-child {
+        border-bottom: 1px solid #666;
+    }
+
+    div.related {
+        border-top: 1px solid #666;
+    }
+
+    div.sphinxsidebar a, div.footer {
+        color: #CCC;
+    }
+
+    div.sphinxsidebar h3 a, div.related a, div.sphinxsidebar h3 {
+        color: #AAA;
+    }
+    .highlight {
+        background: #000;
+    }
+    kbd {
+        background-color: #111;
+        border: 1px solid #444;
+        box-shadow: 0.1em 0.1em 0.2em rgba(100,100,100,0.1);
+        color: #FFF;
+    }
+    table.docutils th {
+        background-color: #222;
+    }
+
+    table.docutils td {
+        background-color: #111;
+    }
+    input {
+        background-color: #222;
+        color: #AAA;
+    }
+
+    div.body a {
+        color: #2092da;
+    }
+    dt:target, span.highlighted {
+        background-color: #404060;
+    }
+    table.docutils {
+        border: 1px solid #222;
+    }
+
+    table.docutils td, table.docutils th {
+        border: 1px solid #222 !important;
+    }
 }

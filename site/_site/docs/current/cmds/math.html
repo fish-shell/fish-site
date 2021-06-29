@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>math - perform mathematics calculations &#8212; fish-shell 3.2.2 documentation</title>
+    <title>math - perform mathematics calculations &#8212; fish-shell 3.3.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -25,10 +25,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -48,21 +48,25 @@
     </li>
 
       </ul>
-    </div>  
+    </div>    
+
+    <div class="document">
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="../index.html">Documents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
 </div>
@@ -96,8 +100,6 @@
 </div>
         </div>
       </div>
-
-    <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -115,6 +117,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> performs mathematical calculations. It supports simple operations such as addition, subtraction, and so on, as well as functions like <code class="docutils literal notranslate"><span class="pre">abs()</span></code>, <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> and <code class="docutils literal notranslate"><span class="pre">ln()</span></code>.</p>
 <p>By default, the output is a floating-point number with trailing zeroes trimmed. To get a fixed representation, the <code class="docutils literal notranslate"><span class="pre">--scale</span></code> option can be used, including <code class="docutils literal notranslate"><span class="pre">--scale=0</span></code> for integer output.</p>
 <p>Keep in mind that parameter expansion happens before expressions are evaluated. This can be very useful in order to perform calculations involving shell variables or the output of command substitutions, but it also means that parenthesis (<code class="docutils literal notranslate"><span class="pre">()</span></code>) and the asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) glob character have to be escaped or quoted. <code class="docutils literal notranslate"><span class="pre">x</span></code> can also be used to denote multiplication, but it needs to be followed by whitespace to distinguish it from hexadecimal numbers.</p>
+<p>Parentheses for functions are optional - <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">sin</span> <span class="pre">pi</span></code> prints <code class="docutils literal notranslate"><span class="pre">0</span></code>. However, a comma will bind to the inner function, so <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">pow</span> <span class="pre">sin</span> <span class="pre">3,</span> <span class="pre">5</span></code> is an error because it tries to give <code class="docutils literal notranslate"><span class="pre">sin</span></code> the arguments <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code>. When in doubt, use parentheses.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> ignores whitespace between arguments and takes its input as multiple arguments (internally joined with a space), so <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">2</span> <span class="pre">+2</span></code> and <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;2</span> <span class="pre">+</span>&#160;&#160;&#160; <span class="pre">2&quot;</span></code> work the same. <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">2</span> <span class="pre">2</span></code> is an error.</p>
 <p>The following options are available:</p>
 <ul class="simple">
@@ -171,6 +174,9 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">floor</span></code> - round number down to nearest integer</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ln</span></code> - the base-e logarithm</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">log</span></code> or <code class="docutils literal notranslate"><span class="pre">log10</span></code> - the base-10 logarithm</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log2</span></code> - the base-2 logarithm</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max</span></code> - returns the larger of two numbers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min</span></code> - returns the smaller of two numbers</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ncr</span></code> - &quot;from n choose r&quot; combination function - how many subsets of size r can be taken from n (order doesn't matter)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">npr</span></code> - the number of subsets of size r that can be taken from a set of n elements (including different order)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pow(x,y)</span></code> returns x to the y (and can be written as <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">^</span> <span class="pre">y</span></code>)</p></li>
@@ -193,7 +199,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;sin(pi)&quot;</span></code> outputs <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">5</span> <span class="pre">\*</span> <span class="pre">2</span></code> or <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;5</span> <span class="pre">*</span> <span class="pre">2&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">5</span> <span class="pre">&quot;*&quot;</span> <span class="pre">2</span></code> all output <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">0xFF</span></code> outputs 255, <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">0</span> <span class="pre">x</span> <span class="pre">3</span></code> outputs 0 (because it computes 0 multiplied by 3).</p>
-<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;bitand(0xFE,</span> <span class="pre">0x2e)&quot;</span></code> outputs 46.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">bitand</span> <span class="pre">0xFE,</span> <span class="pre">0x2e</span></code> outputs 46.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;bitor(9,2)&quot;</span></code> outputs 11.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">--base=hex</span> <span class="pre">192</span></code> prints <code class="docutils literal notranslate"><span class="pre">0xc0</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">'ncr(49,6)'</span></code> prints 13983816 - that's the number of possible picks in 6-from-49 lotto.</p>
@@ -216,10 +222,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -241,7 +247,7 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2020, fish-shell developers.
+    &copy; Copyright 2021, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />

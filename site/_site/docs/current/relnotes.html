@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Release notes &#8212; fish-shell 3.2.2 documentation</title>
+    <title>Release notes &#8212; fish-shell 3.3.0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,8 +15,8 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Fish for bash users" href="fish_for_bash_users.html" />
-    <link rel="prev" title="License" href="license.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Design" href="design.html" />
     <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
      
 
@@ -25,10 +25,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -47,21 +47,25 @@
     </li>
 
       </ul>
-    </div>  
+    </div>    
+
+    <div class="document">
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="index.html">Documents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="language.html">The fish language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="completions.html">Writing your own completions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
 </div>
@@ -79,21 +83,35 @@
 <h4><a href="index.html">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
-<li><a class="reference internal" href="#fish-3-2-2-released-april-7-2021">fish 3.2.2 (released April 7, 2021)</a></li>
-<li><a class="reference internal" href="#fish-3-2-1-released-march-18-2021">fish 3.2.1 (released March 18, 2021)</a></li>
-<li><a class="reference internal" href="#fish-3-2-0-released-march-1-2021">fish 3.2.0 (released March 1, 2021)</a><ul>
+<li><a class="reference internal" href="#fish-3-3-0-released-june-28-2021">fish 3.3.0 (released June 28, 2021)</a><ul>
 <li><a class="reference internal" href="#notable-improvements-and-fixes">Notable improvements and fixes</a></li>
-<li><a class="reference internal" href="#syntax-changes-and-new-commands">Syntax changes and new commands</a></li>
+<li><a class="reference internal" href="#deprecations-and-removed-features">Deprecations and removed features</a></li>
 <li><a class="reference internal" href="#scripting-improvements">Scripting improvements</a></li>
 <li><a class="reference internal" href="#interactive-improvements">Interactive improvements</a><ul>
 <li><a class="reference internal" href="#new-or-improved-bindings">New or improved bindings</a></li>
 <li><a class="reference internal" href="#improved-prompts">Improved prompts</a></li>
-<li><a class="reference internal" href="#improved-terminal-support">Improved terminal support</a></li>
 <li><a class="reference internal" href="#completions">Completions</a></li>
+<li><a class="reference internal" href="#improved-terminal-support">Improved terminal support</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#for-distributors">For distributors</a></li>
-<li><a class="reference internal" href="#deprecations-and-removed-features">Deprecations and removed features</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fish-3-2-2-released-april-7-2021">fish 3.2.2 (released April 7, 2021)</a></li>
+<li><a class="reference internal" href="#fish-3-2-1-released-march-18-2021">fish 3.2.1 (released March 18, 2021)</a></li>
+<li><a class="reference internal" href="#fish-3-2-0-released-march-1-2021">fish 3.2.0 (released March 1, 2021)</a><ul>
+<li><a class="reference internal" href="#id1">Notable improvements and fixes</a></li>
+<li><a class="reference internal" href="#syntax-changes-and-new-commands">Syntax changes and new commands</a></li>
+<li><a class="reference internal" href="#id2">Scripting improvements</a></li>
+<li><a class="reference internal" href="#id3">Interactive improvements</a><ul>
+<li><a class="reference internal" href="#id4">New or improved bindings</a></li>
+<li><a class="reference internal" href="#id5">Improved prompts</a></li>
+<li><a class="reference internal" href="#id6">Improved terminal support</a></li>
+<li><a class="reference internal" href="#id7">Completions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8">For distributors</a></li>
+<li><a class="reference internal" href="#id9">Deprecations and removed features</a></li>
 <li><a class="reference internal" href="#for-distributors-and-developers">For distributors and developers</a></li>
 </ul>
 </li>
@@ -240,14 +258,141 @@
 </div>
         </div>
       </div>
-
-    <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
             
   <div class="section" id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="fish-3-3-0-released-june-28-2021">
+<h2>fish 3.3.0 (released June 28, 2021)<a class="headerlink" href="#fish-3-3-0-released-june-28-2021" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="notable-improvements-and-fixes">
+<h3>Notable improvements and fixes<a class="headerlink" href="#notable-improvements-and-fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_config</span></code> gained a <code class="docutils literal notranslate"><span class="pre">prompt</span></code> subcommand to show and pick from the sample prompts directly in the terminal, instead of having to open a webbrowser. For example <code class="docutils literal notranslate"><span class="pre">fish_config</span> <span class="pre">prompt</span> <span class="pre">choose</span> <span class="pre">default</span></code> loads the default prompt in the current session (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7958">#7958</a>).</p></li>
+<li><p>The documentation has been reorganized to be easier to understand (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7773">#7773</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="deprecations-and-removed-features">
+<h3>Deprecations and removed features<a class="headerlink" href="#deprecations-and-removed-features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">$fish_history</span></code> value &quot;default&quot; is no longer special. It used to be treated the same as &quot;fish&quot; (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7650">#7650</a>).</p></li>
+<li><p>Redirection to standard error with the <code class="docutils literal notranslate"><span class="pre">^</span></code> character has been disabled by default. It can be turned back on using the <code class="docutils literal notranslate"><span class="pre">stderr-nocaret</span></code> feature flag, but will eventually be disabled completely (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7105">#7105</a>).</p></li>
+<li><p>Specifying an initial tab to <code class="docutils literal notranslate"><span class="pre">fish_config</span></code> now only works with <code class="docutils literal notranslate"><span class="pre">fish_config</span> <span class="pre">browse</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">fish_config</span> <span class="pre">browse</span> <span class="pre">variables</span></code>), otherwise it would interfere with the new <code class="docutils literal notranslate"><span class="pre">prompt</span></code> subcommand (see below) (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7958">#7958</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="scripting-improvements">
+<h3>Scripting improvements<a class="headerlink" href="#scripting-improvements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">math</span></code> gained new functions <code class="docutils literal notranslate"><span class="pre">log2</span></code> (like the documentation claimed), <code class="docutils literal notranslate"><span class="pre">max</span></code> and <code class="docutils literal notranslate"><span class="pre">min</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7856">#7856</a>). <code class="docutils literal notranslate"><span class="pre">math</span></code> functions can be used without the parentheses (eg <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">sin</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">6</span></code>), and functions have the lowest precedence in the order of operations (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7877">#7877</a>).</p></li>
+<li><p>Shebang (<code class="docutils literal notranslate"><span class="pre">#!</span></code>) lines are no longer required within shell scripts, improving support for scripts with concatenated binary contents. If a file fails to execute and passes a (rudimentary) binary safety check, fish will re-invoke it using <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7802">#7802</a>).</p></li>
+<li><p>Exit codes are better aligned with bash. A failed execution now reports <code class="docutils literal notranslate"><span class="pre">$status</span></code> of 127 if the file is not found, and 126 if it is not executable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span></code> no longer writes its output one byte at a time, improving performance and allowing use with Linux's special API files (<code class="docutils literal notranslate"><span class="pre">/proc</span></code>, <code class="docutils literal notranslate"><span class="pre">/sys</span></code> and such) (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7836">#7836</a>).</p></li>
+<li><p>fish should now better handle <code class="docutils literal notranslate"><span class="pre">cd</span></code> on filesystems with broken <code class="docutils literal notranslate"><span class="pre">stat(3)</span></code> responses (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7577">#7577</a>).</p></li>
+<li><p>Builtins now properly report a <code class="docutils literal notranslate"><span class="pre">$status</span></code> of 1 upon unsuccessful writes (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7857">#7857</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> with unmatched capture groups and without the <code class="docutils literal notranslate"><span class="pre">--all</span></code> flag now sets an empty variable instead of a variable containing the empty string. It also correctly imports the first match if multiple arguments are provided, matching the documentation. (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7938">#7938</a>).</p></li>
+<li><p>fish produces more specific errors when a command in a command substitution wasn't found or is not allowed. This now prints something like &quot;Unknown command&quot; instead of &quot;Unknown error while evaluating command substitution&quot;.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_indent</span></code> allows inline variable assignments (<code class="docutils literal notranslate"><span class="pre">FOO=BAR</span> <span class="pre">command</span></code>) to use line continuation, instead of joining them into one line (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7955">#7955</a>).</p></li>
+<li><p>fish gained a <code class="docutils literal notranslate"><span class="pre">--no-config</span></code> option to disable configuration files. This applies to user-specific and the systemwide <code class="docutils literal notranslate"><span class="pre">config.fish</span></code> (typically in <code class="docutils literal notranslate"><span class="pre">/etc/fish/config.fish</span></code>), and configuration snippets (typically in <code class="docutils literal notranslate"><span class="pre">conf.d</span></code> directories). It also disables universal variables, history, and loading of functions from system or user configuration directories (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7921">#7921</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/1256">#1256</a>).</p></li>
+<li><p>When universal variables are unavailable for some reason, setting a universal variable now sets a global variable instead (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7921">#7921</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$last_pid</span></code> now contains the process ID of the last process in the pipeline, allowing it to be used in scripts (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/5036">#5036</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/5832">#5832</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7721">#7721</a>). Previously, this value contained the process group ID, but in scripts this was the same as the running fish's process ID.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">process-exit</span></code> event handlers now receive the same value as <code class="docutils literal notranslate"><span class="pre">$status</span></code> in all cases, instead of receiving -1 when the exit was due to a signal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">process-exit</span></code> event handlers for PID 0 also received <code class="docutils literal notranslate"><span class="pre">JOB_EXIT</span></code> events; this has been fixed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">job-exit</span></code> event handlers may now be created with any of the PIDs from the job. The handler is passed the last PID in the job as its second argument, instead of the process group.</p></li>
+<li><p>Trying to set an empty variable name with <code class="docutils literal notranslate"><span class="pre">set</span></code> no longer works (these variables could not be used in expansions anyway).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_add_path</span></code> handles an undefined <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable correctly (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8082">#8082</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="interactive-improvements">
+<h3>Interactive improvements<a class="headerlink" href="#interactive-improvements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Commands entered before the previous command finishes will now be properly syntax highlighted.</p></li>
+<li><p>fish now automatically creates <code class="docutils literal notranslate"><span class="pre">config.fish</span></code> and the configuration directories in <code class="docutils literal notranslate"><span class="pre">$XDG_CONFIG_HOME/fish</span></code> (by default <code class="docutils literal notranslate"><span class="pre">~/.config/fish</span></code>) if they do not already exist (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7402">#7402</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$SHLVL</span></code> is no longer incremented in non-interactive shells. This means it won't be set to values larger than 1 just because your environment happens to run some scripts in $SHELL in its startup path (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7864">#7864</a>).</p></li>
+<li><p>fish no longer rings the bell when flashing the command line. The flashing should already be enough notification and the bell can be annoying (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7875">#7875</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">--help</span></code> is more helpful if the documentation isn't installed (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7824">#7824</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">funced</span></code> won't include an entry on where a function is defined, thanks to the new <code class="docutils literal notranslate"><span class="pre">functions</span> <span class="pre">--no-details</span></code> option (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7879">#7879</a>).</p></li>
+<li><p>A new variable, <code class="docutils literal notranslate"><span class="pre">fish_killring</span></code>, containing entries from the killring, is now available (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7445">#7445</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">--private</span></code> prints a note on private mode on startup even if <code class="docutils literal notranslate"><span class="pre">$fish_greeting</span></code> is an empty list (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7974">#7974</a>).</p></li>
+<li><p>fish no longer attempts to lock history or universal variable files on remote filesystems, including NFS and Samba mounts. In rare cases, updates to these files may be dropped if separate fish instances modify them simultaneously. (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7968">#7968</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait</span></code> and <code class="docutils literal notranslate"><span class="pre">on-process-exit</span></code> work correctly with jobs that have already exited (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7210">#7210</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__fish_print_help</span></code> (used for <code class="docutils literal notranslate"><span class="pre">--help</span></code> output for fish's builtins) now respects the <code class="docutils literal notranslate"><span class="pre">LESS</span></code> environment variable, and if not set, uses better default pager settings (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7997">#7997</a>).</p></li>
+<li><p>Errors from <code class="docutils literal notranslate"><span class="pre">alias</span></code> are now printed to standard error, matching other builtins and functions (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7925">#7925</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span></code> output is colorized on OpenBSD if colorls utility is installed (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8035">#8035</a>)</p></li>
+<li><p>The default pager color looks better in terminals with light backgrounds (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/3412">#3412</a>).</p></li>
+<li><p>Further robustness improvements to the bash history import (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7874">#7874</a>).</p></li>
+<li><p>fish now tries to find a Unicode-aware locale for encoding (<code class="docutils literal notranslate"><span class="pre">LC_CTYPE</span></code>) if started without any locale information, improving the display of emoji and other non-ASCII text on misconfigured systems (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8031">#8031</a>). To allow a C locale, set the variable <code class="docutils literal notranslate"><span class="pre">fish_allow_singlebyte_locale</span></code> to 1.</p></li>
+<li><p>The Web-based configuration and documentation now feature a dark mode if the browser requests it (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8043">#8043</a>).</p></li>
+<li><p>Color variables can now also be given like <code class="docutils literal notranslate"><span class="pre">--background</span> <span class="pre">red</span></code> and <code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">red</span></code>, not just <code class="docutils literal notranslate"><span class="pre">--background=red</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8053">#8053</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exit</span></code> run within <code class="docutils literal notranslate"><span class="pre">fish_prompt</span></code> now exits properly (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8033">#8033</a>).</p></li>
+<li><p>When attempting to execute the unsupported POSIX-style brace command group (<code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code>) fish will suggest its equivalent <code class="docutils literal notranslate"><span class="pre">begin;</span> <span class="pre">...;</span> <span class="pre">end</span></code> commands (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6415">#6415</a>).</p></li>
+</ul>
+<div class="section" id="new-or-improved-bindings">
+<h4>New or improved bindings<a class="headerlink" href="#new-or-improved-bindings" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Pasting in Vi mode puts text in the right place in normal mode (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7847">#7847</a>).</p></li>
+<li><p>Vi mode's <kbd class="kbd docutils literal notranslate">u</kbd> is bound to <code class="docutils literal notranslate"><span class="pre">undo</span></code> instead of <code class="docutils literal notranslate"><span class="pre">history-search-backward</span></code>, following GNU readline's behavior. Similarly, <kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>-<kbd class="kbd docutils literal notranslate">R</kbd></kbd> is bound to <code class="docutils literal notranslate"><span class="pre">redo</span></code> instead of <code class="docutils literal notranslate"><span class="pre">history-search-backward</span></code>, following Vim (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7908">#7908</a>).</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">s</kbd> in Vi visual mode now does the same thing as <kbd class="kbd docutils literal notranslate">c</kbd> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8039">#8039</a>).</p></li>
+<li><p>The binding for <kbd class="kbd docutils literal notranslate">&quot;*y</kbd> now uses <code class="docutils literal notranslate"><span class="pre">fish_clipboard_copy</span></code>, allowing it to support more than just <code class="docutils literal notranslate"><span class="pre">xsel</span></code>.</p></li>
+<li><p>The <kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>-<kbd class="kbd docutils literal notranslate">Space</kbd></kbd> binding can be correctly customised (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7922">#7922</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exit</span></code> works correctly in bindings (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7967">#7967</a>).</p></li>
+<li><p>The <kbd class="kbd docutils literal notranslate">F1</kbd> binding, which opens the manual page for the current command, now works around a bug in certain <code class="docutils literal notranslate"><span class="pre">less</span></code> versions that fail to clear the screen (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7863">#7863</a>).</p></li>
+<li><p>The binding for <kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">S</kbd></kbd> now toggles whether <code class="docutils literal notranslate"><span class="pre">sudo</span></code> is prepended, even when it took the commandline from history instead of only adding it.</p></li>
+<li><p>The new functions <code class="docutils literal notranslate"><span class="pre">fish_commandline_prepend</span></code> and <code class="docutils literal notranslate"><span class="pre">fish_commandline_append</span></code> allow toggling the presence of a prefix/suffix on the current commandline. (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7905">#7905</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">backward-kill-path-component</span></code> <kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>-<kbd class="kbd docutils literal notranslate">W</kbd></kbd>) no longer erases parts of two tokens when the cursor is positioned immediately after <code class="docutils literal notranslate"><span class="pre">/</span></code>. (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6258">#6258</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="improved-prompts">
+<h4>Improved prompts<a class="headerlink" href="#improved-prompts" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>The default Vi mode prompt now uses foreground instead of background colors, making it less obtrusive (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7880">#7880</a>).</p></li>
+<li><p>Performance of the &quot;informative&quot; git prompt is improved somewhat (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7871">#7871</a>). This is still slower than the non-informative version by its very nature. In particular it is IO-bound, so it will be very slow on slow disks or network mounts.</p></li>
+<li><p>The sample prompts were updated. Some duplicated prompts, like the various classic variants, or less useful ones, like the &quot;justadollar&quot; prompt were removed, some prompts were cleaned up, and in some cases renamed. A new &quot;simple&quot; and &quot;disco&quot; prompt were added (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7884">#7884</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7897">#7897</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7930">#7930</a>). The new prompts will only take effect when selected and existing installed prompts will remain unchanged.</p></li>
+<li><p>A new <code class="docutils literal notranslate"><span class="pre">prompt_login</span></code> helper function to describe the kind of &quot;login&quot; (user, host and chroot status) for use in prompts. This replaces the old &quot;debian chroot&quot; prompt and has been added to the default and terlar prompts (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7932">#7932</a>).</p></li>
+<li><p>The Web-based configuration's prompt picker now shows and installs right prompts (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7930">#7930</a>).</p></li>
+<li><p>The git prompt now has the same symbol order in normal and &quot;informative&quot; mode, and it's customizable via <code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_status_order</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7926">#7926</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="completions">
+<h4>Completions<a class="headerlink" href="#completions" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Added completions for:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">firewall-cmd</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7900">#7900</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sv</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8069">#8069</a>)</p></li>
+</ul>
+</li>
+<li><p>Improvements to plenty of completions!</p></li>
+<li><p>Commands that wrap <code class="docutils literal notranslate"><span class="pre">cd</span></code> (using <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">--wraps</span> <span class="pre">cd</span></code>) get the same completions as <code class="docutils literal notranslate"><span class="pre">cd</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/4693">#4693</a>).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">--force-files</span></code> option to <code class="docutils literal notranslate"><span class="pre">complete</span></code> works for bare arguments, not just options (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7920">#7920</a>).</p></li>
+<li><p>Completion descriptions for functions don't include the function definition, making them more concise (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7911">#7911</a>).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">kill</span></code> completions no longer error on MSYS2 (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8046">#8046</a>).</p></li>
+<li><p>Completion scripts are now loaded when calling a command via a relative path (like <code class="docutils literal notranslate"><span class="pre">./git</span></code>) (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6001">#6001</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7992">#7992</a>).</p></li>
+<li><p>When there are multiple completion candidates, fish inserts their shared prefix. This prefix was computed in a case-insensitive way, resulting in wrong case in the completion pager. This was fixed by only inserting prefixes with matching case (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7744">#7744</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="improved-terminal-support">
+<h4>Improved terminal support<a class="headerlink" href="#improved-terminal-support" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>fish no longer tries to detect a missing new line during startup, preventing an erroneous <code class="docutils literal notranslate"><span class="pre">⏎</span></code> from appearing if the terminal is resized at the wrong time, which can happen in tiling window managers (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7893">#7893</a>).</p></li>
+<li><p>fish behaves better when it disagrees with the terminal on the width of characters. In particular, staircase effects with right prompts should be gone in most cases (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8011">#8011</a>).</p></li>
+<li><p>If the prompt takes up the entire line, the last character should no longer be chopped off in certain terminals (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8002">#8002</a>).</p></li>
+<li><p>fish's reflow handling has been disabled by default for kitty (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7961">#7961</a>).</p></li>
+<li><p>The default prompt no longer produces errors when used with a dumb terminal (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7904">#7904</a>).</p></li>
+<li><p>Terminal size variables are updated for window size change signal handlers (<code class="docutils literal notranslate"><span class="pre">SIGWINCH</span></code>).</p></li>
+<li><p>Pasting within a multi-line command using a terminal that supports bracketed paste works correctly, instead of producing an error (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7782">#7782</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_color</span></code> produces an error when used with invalid arguments, rather than empty output which interacts badly with Cartesian product expansion.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="for-distributors">
+<h3>For distributors<a class="headerlink" href="#for-distributors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>fish runs correctly on platforms without the <code class="docutils literal notranslate"><span class="pre">O_CLOEXEC</span></code> flag for <code class="docutils literal notranslate"><span class="pre">open(2)</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8023">#8023</a>).</p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
 <div class="section" id="fish-3-2-2-released-april-7-2021">
 <h2>fish 3.2.2 (released April 7, 2021)<a class="headerlink" href="#fish-3-2-2-released-april-7-2021" title="Permalink to this headline">¶</a></h2>
 <p>This release of fish fixes a number of additional issues identified in the fish 3.2 series:</p>
@@ -296,8 +441,8 @@ the release notes for 3.2.0 (included below).</p>
 <hr class="docutils" />
 <div class="section" id="fish-3-2-0-released-march-1-2021">
 <h2>fish 3.2.0 (released March 1, 2021)<a class="headerlink" href="#fish-3-2-0-released-march-1-2021" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="notable-improvements-and-fixes">
-<h3>Notable improvements and fixes<a class="headerlink" href="#notable-improvements-and-fixes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Notable improvements and fixes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p><strong>Undo and redo support</strong> for the command-line editor and pager search (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/1367">#1367</a>). By default, undo is bound to Control+Z, and redo to Alt+/.</p></li>
 <li><p><strong>Builtins can now output before all data is read</strong>. For example, <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">replace</span></code> no longer has to read all of stdin before it can begin to output.
@@ -365,8 +510,8 @@ runtime (especially for functions). This makes it usable as a static syntax chec
 <li><p>When globbing, a segment which is exactly <code class="docutils literal notranslate"><span class="pre">**</span></code> may now match zero directories. For example <code class="docutils literal notranslate"><span class="pre">**/foo</span></code> may match <code class="docutils literal notranslate"><span class="pre">foo</span></code> in the current directory (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7222">#7222</a>).</p></li>
 </ul>
 </div>
-<div class="section" id="scripting-improvements">
-<h3>Scripting improvements<a class="headerlink" href="#scripting-improvements" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Scripting improvements<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span></code> (gettext), <code class="docutils literal notranslate"><span class="pre">.</span></code> (source) and <code class="docutils literal notranslate"><span class="pre">:</span></code> (no-op) functions
 are now implemented builtins for performance purposes (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7342">#7342</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7036">#7036</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6854">#6854</a>).</p></li>
@@ -441,11 +586,11 @@ It can still return incorrect results in other cases (<a class="reference extern
 <li><p><code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">--profile</span></code> now only starts profiling after fish is ready to execute commands (all configuration is completed). There is a new <code class="docutils literal notranslate"><span class="pre">--profile-startup</span></code> option that only profiles the startup and configuration process (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7648">#7648</a>).</p></li>
 <li><p>Builtins return a maximum exit status of 255, rather than potentially overflowing. In particular, this affects <code class="docutils literal notranslate"><span class="pre">exit</span></code>, <code class="docutils literal notranslate"><span class="pre">return</span></code>, <code class="docutils literal notranslate"><span class="pre">functions</span> <span class="pre">--query</span></code>, and <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7698">#7698</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7702">#7702</a>).</p></li>
 <li><p>It is no longer an error to run builtin with closed stdin. For example <code class="docutils literal notranslate"><span class="pre">count</span> <span class="pre">&lt;&amp;-</span></code> now prints 0, instead of failing.</p></li>
-<li><p>Blocks, functions, and builtins no longer permit redirecting to file descriptors other than 0 (standard input), 1 (standard output) and 2 (standard error). For example, <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">hello</span> <span class="pre">&gt;&amp;5</span></code> is now an error. This prevents corruption of internal state (#3303).</p></li>
+<li><p>Blocks, functions, and builtins no longer permit redirecting to file descriptors other than 0 (standard input), 1 (standard output) and 2 (standard error). For example, <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">hello</span> <span class="pre">&gt;&amp;5</span></code> is now an error. This prevents corruption of internal state (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/3303">#3303</a>).</p></li>
 </ul>
 </div>
-<div class="section" id="interactive-improvements">
-<h3>Interactive improvements<a class="headerlink" href="#interactive-improvements" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Interactive improvements<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>fish will now always attempt to become process group leader in interactive mode (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7060">#7060</a>). This helps avoid hangs in certain circumstances, and allows tmux's current directory introspection to work (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/5699">#5699</a>).</p></li>
 <li><p>The interactive reader now allows ending a line in a logical operators (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">||</span></code>) instead of complaining about a missing command. (This was already syntactically valid, but interactive sessions didn't know about it yet).</p></li>
@@ -530,8 +675,8 @@ disabled, matching POSIX semantics (<a class="reference external" href="https://
 <li><p>The universal variable file, <code class="docutils literal notranslate"><span class="pre">fish_variables</span></code>, can be made a symbolic link without it being overwritten (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7466">#7466</a>).</p></li>
 <li><p>fish is now more resilient against <code class="docutils literal notranslate"><span class="pre">mktemp</span></code> failing (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7482">#7482</a>).</p></li>
 </ul>
-<div class="section" id="new-or-improved-bindings">
-<h4>New or improved bindings<a class="headerlink" href="#new-or-improved-bindings" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id4">
+<h4>New or improved bindings<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>As mentioned above, new special input functions <code class="docutils literal notranslate"><span class="pre">undo</span></code> (<kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">_</kbd></kbd> or <kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">Z</kbd></kbd>) and <code class="docutils literal notranslate"><span class="pre">redo</span></code> (<kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">/</kbd></kbd>) can be used to revert changes to the command line or the pager search field (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6570">#6570</a>).</p></li>
 <li><p><kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>-<kbd class="kbd docutils literal notranslate">Z</kbd></kbd> is now available for binding (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7152">#7152</a>).</p></li>
@@ -560,8 +705,8 @@ from history if the commandline is empty (<a class="reference external" href="ht
 <li><p>Completing variable overrides (<code class="docutils literal notranslate"><span class="pre">foo=bar</span></code>) could replace the entire thing with just the completion in some circumstances. This has been fixed (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7398">#7398</a>).</p></li>
 </ul>
 </div>
-<div class="section" id="improved-prompts">
-<h4>Improved prompts<a class="headerlink" href="#improved-prompts" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h4>Improved prompts<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>The default and example prompts print the correct exit status for
 commands prefixed with <code class="docutils literal notranslate"><span class="pre">not</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6566">#6566</a>).</p></li>
@@ -578,8 +723,8 @@ A new variable <code class="docutils literal notranslate"><span class="pre">$fis
 <li><p>The <code class="docutils literal notranslate"><span class="pre">nim</span></code> prompt now handles vi mode better (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6802">#6802</a>)</p></li>
 </ul>
 </div>
-<div class="section" id="improved-terminal-support">
-<h4>Improved terminal support<a class="headerlink" href="#improved-terminal-support" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id6">
+<h4>Improved terminal support<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>A new variable, <code class="docutils literal notranslate"><span class="pre">fish_vi_force_cursor</span></code>, can be set to force <code class="docutils literal notranslate"><span class="pre">fish_vi_cursor</span></code> to attempt changing the cursor
 shape in vi mode, regardless of terminal (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6968">#6968</a>). The <code class="docutils literal notranslate"><span class="pre">fish_vi_cursor</span></code> option <code class="docutils literal notranslate"><span class="pre">--force-iterm</span></code> has been deprecated.</p></li>
@@ -598,8 +743,8 @@ shape in vi mode, regardless of terminal (<a class="reference external" href="ht
 <li><p>fish no longer attempts to modify the terminal size via <code class="docutils literal notranslate"><span class="pre">TIOCSWINSZ</span></code>, improving compatibility with Kitty (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6994">#6994</a>).</p></li>
 </ul>
 </div>
-<div class="section" id="completions">
-<h4>Completions<a class="headerlink" href="#completions" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h4>Completions<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Added completions for</p>
 <ul>
@@ -677,8 +822,8 @@ shape in vi mode, regardless of terminal (<a class="reference external" href="ht
 </ul>
 </div>
 </div>
-<div class="section" id="for-distributors">
-<h3>For distributors<a class="headerlink" href="#for-distributors" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>For distributors<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>fish has a new interactive test driver based on pexpect, removing the optional dependency on expect (and adding an optional dependency on pexpect) (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/5451">#5451</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6825">#6825</a>).</p></li>
 <li><p>The CHANGELOG was moved to restructured text, allowing it to be included in the documentation (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7057">#7057</a>).</p></li>
@@ -687,8 +832,8 @@ shape in vi mode, regardless of terminal (<a class="reference external" href="ht
 <li><p>The fish project has adopted the Contributor Covenant code of conduct (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7151">#7151</a>).</p></li>
 </ul>
 </div>
-<div class="section" id="deprecations-and-removed-features">
-<h3>Deprecations and removed features<a class="headerlink" href="#deprecations-and-removed-features" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>Deprecations and removed features<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">fish_color_match</span></code> variable is no longer used. (Previously this controlled the color of matching quotes and parens when using <code class="docutils literal notranslate"><span class="pre">read</span></code>).</p></li>
 <li><p>fish 3.2.0 will be the last release in which the redirection to standard error with the <code class="docutils literal notranslate"><span class="pre">^</span></code> character is enabled.
@@ -851,7 +996,7 @@ the release notes for 3.1b1 (included below).</p>
 <div class="section" id="fish-3-1b1-released-january-26-2020">
 <h2>fish 3.1b1 (released January 26, 2020)<a class="headerlink" href="#fish-3-1b1-released-january-26-2020" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="notable-improvements-and-fixes-1">
-<span id="id1"></span><h3>Notable improvements and fixes<a class="headerlink" href="#notable-improvements-and-fixes-1" title="Permalink to this headline">¶</a></h3>
+<span id="id10"></span><h3>Notable improvements and fixes<a class="headerlink" href="#notable-improvements-and-fixes-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>A new <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code> variable contains a list of exit statuses of
 the previous job, for each of the separate commands in a pipeline
@@ -890,7 +1035,7 @@ completing variables that might match <code class="docutils literal notranslate"
 </ul>
 </div>
 <div class="section" id="syntax-changes-and-new-commands-1">
-<span id="id2"></span><h3>Syntax changes and new commands<a class="headerlink" href="#syntax-changes-and-new-commands-1" title="Permalink to this headline">¶</a></h3>
+<span id="id11"></span><h3>Syntax changes and new commands<a class="headerlink" href="#syntax-changes-and-new-commands-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>A new builtin command, <code class="docutils literal notranslate"><span class="pre">time</span></code>, which allows timing of fish
 functions and builtins as well as external commands (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/117">#117</a>).</p></li>
@@ -916,7 +1061,7 @@ inadvertent behaviour change and has been reverted (<a class="reference external
 </ul>
 </div>
 <div class="section" id="scripting-improvements-1">
-<span id="id3"></span><h3>Scripting improvements<a class="headerlink" href="#scripting-improvements-1" title="Permalink to this headline">¶</a></h3>
+<span id="id12"></span><h3>Scripting improvements<a class="headerlink" href="#scripting-improvements-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">split0</span></code> now returns 0 if it split something (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/5701">#5701</a>).</p></li>
 <li><p>In the interest of consistency, <code class="docutils literal notranslate"><span class="pre">builtin</span> <span class="pre">-q</span></code> and <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">-q</span></code> can
@@ -1014,7 +1159,7 @@ cancelled, which is useful for terminal integration (<a class="reference externa
 </ul>
 </div>
 <div class="section" id="interactive-improvements-1">
-<span id="id4"></span><h3>Interactive improvements<a class="headerlink" href="#interactive-improvements-1" title="Permalink to this headline">¶</a></h3>
+<span id="id13"></span><h3>Interactive improvements<a class="headerlink" href="#interactive-improvements-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>New Base16 color options are available through the Web-based
 configuration (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6504">#6504</a>).</p></li>
@@ -1080,7 +1225,7 @@ logically (<a class="reference external" href="https://github.com/fish-shell/fis
 executed was fixed (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/6032">#6032</a>).</p></li>
 </ul>
 <div class="section" id="new-or-improved-bindings-1">
-<span id="id5"></span><h4>New or improved bindings<a class="headerlink" href="#new-or-improved-bindings-1" title="Permalink to this headline">¶</a></h4>
+<span id="id14"></span><h4>New or improved bindings<a class="headerlink" href="#new-or-improved-bindings-1" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Pasting strips leading spaces to avoid pasted commands being omitted
 from the history (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/4327">#4327</a>).</p></li>
@@ -1129,7 +1274,7 @@ Vi (<a class="reference external" href="https://github.com/fish-shell/fish-shell
 </ul>
 </div>
 <div class="section" id="improved-prompts-1">
-<span id="id6"></span><h4>Improved prompts<a class="headerlink" href="#improved-prompts-1" title="Permalink to this headline">¶</a></h4>
+<span id="id15"></span><h4>Improved prompts<a class="headerlink" href="#improved-prompts-1" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>The Git prompt in informative mode now shows the number of stashes if
 enabled.</p></li>
@@ -1164,7 +1309,7 @@ terminals that report focus (eg tmux) (<a class="reference external" href="https
 </ul>
 </div>
 <div class="section" id="completions-1">
-<span id="id7"></span><h4>Completions<a class="headerlink" href="#completions-1" title="Permalink to this headline">¶</a></h4>
+<span id="id16"></span><h4>Completions<a class="headerlink" href="#completions-1" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Added completions for</p>
 <ul>
@@ -1238,7 +1383,7 @@ function as other completions; this has been fixed.</p></li>
 </div>
 </div>
 <div class="section" id="deprecations-and-removed-features-1">
-<span id="id8"></span><h3>Deprecations and removed features<a class="headerlink" href="#deprecations-and-removed-features-1" title="Permalink to this headline">¶</a></h3>
+<span id="id17"></span><h3>Deprecations and removed features<a class="headerlink" href="#deprecations-and-removed-features-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The vcs-prompt functions have been promoted to names without
 double-underscore, so __fish_git_prompt is now fish_git_prompt,
@@ -1260,7 +1405,7 @@ removed. Use <code class="docutils literal notranslate"><span class="pre">fish_v
 </ul>
 </div>
 <div class="section" id="for-distributors-and-developers-1">
-<span id="id9"></span><h3>For distributors and developers<a class="headerlink" href="#for-distributors-and-developers-1" title="Permalink to this headline">¶</a></h3>
+<span id="id18"></span><h3>For distributors and developers<a class="headerlink" href="#for-distributors-and-developers-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>fish 3.0 introduced a CMake-based build system. In fish 3.1, both the
 Autotools-based build and legacy Xcode build system have been
@@ -1314,7 +1459,7 @@ the release notes for 3.0.1, 3.0.0 and 3.0b1 (included below).</p>
 <p>This release of fish fixes a number of major issues discovered in fish
 3.0.0.</p>
 <div class="section" id="fixes-and-improvements-1">
-<span id="id10"></span><h3>Fixes and improvements<a class="headerlink" href="#fixes-and-improvements-1" title="Permalink to this headline">¶</a></h3>
+<span id="id19"></span><h3>Fixes and improvements<a class="headerlink" href="#fixes-and-improvements-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">exec</span></code> does not complain about running foreground jobs when called
 (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/5449">#5449</a>).</p></li>
@@ -1488,7 +1633,7 @@ flag.</p></li>
 <h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="syntax-changes-and-new-commands-2">
-<span id="id11"></span><h3>Syntax changes and new commands<a class="headerlink" href="#syntax-changes-and-new-commands-2" title="Permalink to this headline">¶</a></h3>
+<span id="id20"></span><h3>Syntax changes and new commands<a class="headerlink" href="#syntax-changes-and-new-commands-2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>fish now supports <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> (like <code class="docutils literal notranslate"><span class="pre">and</span></code>), <code class="docutils literal notranslate"><span class="pre">||</span></code> (like <code class="docutils literal notranslate"><span class="pre">or</span></code>), and
 <code class="docutils literal notranslate"><span class="pre">!</span></code> (like <code class="docutils literal notranslate"><span class="pre">not</span></code>), for better migration from POSIX-compliant
@@ -1565,7 +1710,7 @@ strings to be matched literally in <code class="docutils literal notranslate"><s
 </ul>
 </div>
 <div class="section" id="interactive-improvements-2">
-<span id="id12"></span><h3>Interactive improvements<a class="headerlink" href="#interactive-improvements-2" title="Permalink to this headline">¶</a></h3>
+<span id="id21"></span><h3>Interactive improvements<a class="headerlink" href="#interactive-improvements-2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>A pipe at the end of a line now allows the job to continue on the
 next line (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/1285">#1285</a>).</p></li>
@@ -1712,7 +1857,7 @@ their exported status affected by local variables (<a class="reference external"
 </ul>
 </div>
 <div class="section" id="for-distributors-and-developers-2">
-<span id="id13"></span><h3>For distributors and developers<a class="headerlink" href="#for-distributors-and-developers-2" title="Permalink to this headline">¶</a></h3>
+<span id="id22"></span><h3>For distributors and developers<a class="headerlink" href="#for-distributors-and-developers-2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>fish ships with a new build system based on CMake. CMake 3.2 is the
 minimum required version. Although the autotools-based Makefile and
@@ -1850,7 +1995,7 @@ has been fixed (<a class="reference external" href="https://github.com/fish-shel
 number of minor fixes, new completions for <code class="docutils literal notranslate"><span class="pre">magneto</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/4043">#4043</a>), and
 improvements to the documentation.</p>
 <div class="section" id="known-issues-1">
-<span id="id14"></span><h3>Known issues<a class="headerlink" href="#known-issues-1" title="Permalink to this headline">¶</a></h3>
+<span id="id23"></span><h3>Known issues<a class="headerlink" href="#known-issues-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Apple macOS Sierra 10.12.5 introduced a problem with launching web
 browsers from other programs using AppleScript. This affects the fish
@@ -1867,7 +2012,7 @@ the release notes for 2.6b1 (included below).</p>
 <div class="section" id="fish-2-6b1-released-may-14-2017">
 <h2>fish 2.6b1 (released May 14, 2017)<a class="headerlink" href="#fish-2-6b1-released-may-14-2017" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="notable-fixes-and-improvements-1">
-<span id="id15"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-1" title="Permalink to this headline">¶</a></h3>
+<span id="id24"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Jobs running in the background can now be removed from the list of
 jobs with the new <code class="docutils literal notranslate"><span class="pre">disown</span></code> builtin, which behaves like the same
@@ -1883,7 +2028,7 @@ used; if they are unset, a default of 80x24 is assumed.</p></li>
 </ul>
 </div>
 <div class="section" id="other-significant-changes-1">
-<span id="id16"></span><h3>Other significant changes<a class="headerlink" href="#other-significant-changes-1" title="Permalink to this headline">¶</a></h3>
+<span id="id25"></span><h3>Other significant changes<a class="headerlink" href="#other-significant-changes-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Performance improvements in launching processes, including major
 reductions in signal blocking. Although this has been heavily tested,
@@ -1985,7 +2130,7 @@ the minimum version required.</p></li>
 from version 2.4.0 or before, please also review the release notes for
 2.5b1 (included below).</p>
 <div class="section" id="notable-fixes-and-improvements-2">
-<span id="id17"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-2" title="Permalink to this headline">¶</a></h3>
+<span id="id26"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The Home, End, Insert, Delete, Page Up and Page Down keys work in
 Vi-style key bindings (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/3731">#3731</a>).</p></li>
@@ -2032,7 +2177,7 @@ library by default.</p>
 </div>
 </div>
 <div class="section" id="other-significant-changes-2">
-<span id="id18"></span><h3>Other significant changes<a class="headerlink" href="#other-significant-changes-2" title="Permalink to this headline">¶</a></h3>
+<span id="id27"></span><h3>Other significant changes<a class="headerlink" href="#other-significant-changes-2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Attempting to exit with running processes in the background produces
 a warning, then signals them to terminate if a second attempt to exit
@@ -2070,7 +2215,7 @@ included more easily in customised prompt functions (<a class="reference externa
 </ul>
 </div>
 <div class="section" id="notable-fixes-and-improvements-3">
-<span id="id19"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-3" title="Permalink to this headline">¶</a></h3>
+<span id="id28"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">alias</span></code>, run without options or arguments, lists all defined
 aliases, and aliases now include a description in the function
@@ -2135,7 +2280,7 @@ will no longer slow fish down (<a class="reference external" href="https://githu
 <h2>fish 2.4.0 (released November 8, 2016)<a class="headerlink" href="#fish-2-4-0-released-november-8-2016" title="Permalink to this headline">¶</a></h2>
 <p>There are no major changes between 2.4b1 and 2.4.0.</p>
 <div class="section" id="notable-fixes-and-improvements-4">
-<span id="id20"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-4" title="Permalink to this headline">¶</a></h3>
+<span id="id29"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The documentation is now generated properly and with the correct
 version identifier.</p></li>
@@ -2183,7 +2328,7 @@ be used for other purposes if required.</p></li>
 </ul>
 </div>
 <div class="section" id="notable-fixes-and-improvements-5">
-<span id="id21"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-5" title="Permalink to this headline">¶</a></h3>
+<span id="id30"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-5" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">fish_realpath</span></code> builtin has been renamed to <code class="docutils literal notranslate"><span class="pre">realpath</span></code> and
 made compatible with GNU <code class="docutils literal notranslate"><span class="pre">realpath</span></code> when run without arguments
@@ -2251,7 +2396,7 @@ contain all the changes to fish since the last release, but fixes a
 number of issues directly affecting users at present and includes a
 small number of new features.</p>
 <div class="section" id="significant-changes-1">
-<span id="id22"></span><h3>Significant changes<a class="headerlink" href="#significant-changes-1" title="Permalink to this headline">¶</a></h3>
+<span id="id31"></span><h3>Significant changes<a class="headerlink" href="#significant-changes-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>A new <code class="docutils literal notranslate"><span class="pre">fish_key_reader</span></code> binary for decoding interactive keypresses
 (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/2991">#2991</a>).</p></li>
@@ -2262,7 +2407,7 @@ way the Vi input mode is set up (<a class="reference external" href="https://git
 </ul>
 </div>
 <div class="section" id="notable-fixes-and-improvements-6">
-<span id="id23"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-6" title="Permalink to this headline">¶</a></h3>
+<span id="id32"></span><h3>Notable fixes and improvements<a class="headerlink" href="#notable-fixes-and-improvements-6" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Extra lines were sometimes inserted into the output under Windows
 (Cygwin and Microsoft Windows Subsystem for Linux) due to TTY
@@ -2300,7 +2445,7 @@ restart fish if the <code class="docutils literal notranslate"><span class="pre"
 </ul>
 </div>
 <div class="section" id="known-issues-2">
-<span id="id24"></span><h3>Known issues<a class="headerlink" href="#known-issues-2" title="Permalink to this headline">¶</a></h3>
+<span id="id33"></span><h3>Known issues<a class="headerlink" href="#known-issues-2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Interactive commands started from fish configuration files or from
 the <code class="docutils literal notranslate"><span class="pre">-c</span></code> option may, under certain circumstances, be started with
@@ -2313,7 +2458,7 @@ planned but requires further testing (<a class="reference external" href="https:
 <div class="section" id="fish-2-3b2-released-may-5-2016">
 <h2>fish 2.3b2 (released May 5, 2016)<a class="headerlink" href="#fish-2-3b2-released-may-5-2016" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="significant-changes-2">
-<span id="id25"></span><h3>Significant changes<a class="headerlink" href="#significant-changes-2" title="Permalink to this headline">¶</a></h3>
+<span id="id34"></span><h3>Significant changes<a class="headerlink" href="#significant-changes-2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>A new <code class="docutils literal notranslate"><span class="pre">fish_realpath</span></code> builtin and associated function to allow the
 use of <code class="docutils literal notranslate"><span class="pre">realpath</span></code> even on those platforms that don’t ship an
@@ -2326,7 +2471,7 @@ without executing it.</p></li>
 </ul>
 </div>
 <div class="section" id="other-notable-fixes-and-improvements-1">
-<span id="id26"></span><h3>Other notable fixes and improvements<a class="headerlink" href="#other-notable-fixes-and-improvements-1" title="Permalink to this headline">¶</a></h3>
+<span id="id35"></span><h3>Other notable fixes and improvements<a class="headerlink" href="#other-notable-fixes-and-improvements-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Fix the build on Cygwin (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/2952">#2952</a>) and RedHat Enterprise Linux/CentOS 5
 (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/2955">#2955</a>).</p></li>
@@ -2341,7 +2486,7 @@ netctl.</p></li>
 <div class="section" id="fish-2-3b1-released-april-19-2016">
 <h2>fish 2.3b1 (released April 19, 2016)<a class="headerlink" href="#fish-2-3b1-released-april-19-2016" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="significant-changes-3">
-<span id="id27"></span><h3>Significant Changes<a class="headerlink" href="#significant-changes-3" title="Permalink to this headline">¶</a></h3>
+<span id="id36"></span><h3>Significant Changes<a class="headerlink" href="#significant-changes-3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>A new <code class="docutils literal notranslate"><span class="pre">string</span></code> builtin to handle… strings! This builtin will
 measure, split, search and replace text strings, including using
@@ -2379,7 +2524,7 @@ on first use (<a class="reference external" href="https://github.com/fish-shell/
 </ul>
 </div>
 <div class="section" id="other-notable-fixes-and-improvements-2">
-<span id="id28"></span><h3>Other notable fixes and improvements<a class="headerlink" href="#other-notable-fixes-and-improvements-2" title="Permalink to this headline">¶</a></h3>
+<span id="id37"></span><h3>Other notable fixes and improvements<a class="headerlink" href="#other-notable-fixes-and-improvements-2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Fish no longer silences errors in config.fish (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/2702">#2702</a>)</p></li>
 <li><p>Directory autosuggestions will now descend as far as possible if
@@ -2439,7 +2584,7 @@ and now ships a skeleton file that only contains some documentation
 <div class="section" id="fish-2-2-0-released-july-12-2015">
 <h2>fish 2.2.0 (released July 12, 2015)<a class="headerlink" href="#fish-2-2-0-released-july-12-2015" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="significant-changes-4">
-<span id="id29"></span><h3>Significant changes<a class="headerlink" href="#significant-changes-4" title="Permalink to this headline">¶</a></h3>
+<span id="id38"></span><h3>Significant changes<a class="headerlink" href="#significant-changes-4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Abbreviations: the new <code class="docutils literal notranslate"><span class="pre">abbr</span></code> command allows for
 interactively-expanded abbreviations, allowing quick access to
@@ -2459,7 +2604,7 @@ prompt theme chooser and other improvements.</p></li>
 </ul>
 </div>
 <div class="section" id="backward-incompatible-changes-1">
-<span id="id30"></span><h3>Backward-incompatible changes<a class="headerlink" href="#backward-incompatible-changes-1" title="Permalink to this headline">¶</a></h3>
+<span id="id39"></span><h3>Backward-incompatible changes<a class="headerlink" href="#backward-incompatible-changes-1" title="Permalink to this headline">¶</a></h3>
 <p>These are kept to a minimum, but either change undocumented features or
 are too hard to use in their existing forms. These changes may break
 existing scripts.</p>
@@ -2478,7 +2623,7 @@ commands. (<a class="reference external" href="https://github.com/fish-shell/fis
 </ul>
 </div>
 <div class="section" id="other-notable-fixes-and-improvements-3">
-<span id="id31"></span><h3>Other notable fixes and improvements<a class="headerlink" href="#other-notable-fixes-and-improvements-3" title="Permalink to this headline">¶</a></h3>
+<span id="id40"></span><h3>Other notable fixes and improvements<a class="headerlink" href="#other-notable-fixes-and-improvements-3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>New documentation design (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/1662">#1662</a>), which requires a Doxygen version
 1.8.7 or newer to build.</p></li>
@@ -2609,7 +2754,7 @@ Parallel and which occurred more often as a result of the other
 <div class="section" id="fish-2-1-0">
 <h2>fish 2.1.0<a class="headerlink" href="#fish-2-1-0" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="significant-changes-5">
-<span id="id32"></span><h3>Significant Changes<a class="headerlink" href="#significant-changes-5" title="Permalink to this headline">¶</a></h3>
+<span id="id41"></span><h3>Significant Changes<a class="headerlink" href="#significant-changes-5" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p><strong>Tab completions will fuzzy-match files.</strong> <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/568">#568</a></p>
 <p>When tab-completing a file, fish will first attempt prefix matches
@@ -2683,7 +2828,7 @@ autosuggestion, if that autosuggestion was truncated. <a class="reference extern
 <div class="section" id="fish-2-0-0">
 <h2>fish 2.0.0<a class="headerlink" href="#fish-2-0-0" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="significant-changes-6">
-<span id="id33"></span><h3>Significant Changes<a class="headerlink" href="#significant-changes-6" title="Permalink to this headline">¶</a></h3>
+<span id="id42"></span><h3>Significant Changes<a class="headerlink" href="#significant-changes-6" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p><strong>Command substitutions now modify ``$status`` :issue:`547`.</strong> Previously the
 exit status of command substitutions (like <code class="docutils literal notranslate"><span class="pre">(pwd)</span></code>) was ignored;
@@ -2722,7 +2867,7 @@ much faster on BSD and OS X <a class="reference external" href="https://github.c
 </ul>
 </div>
 <div class="section" id="other-notable-fixes-1">
-<span id="id34"></span><h3>Other Notable Fixes<a class="headerlink" href="#other-notable-fixes-1" title="Permalink to this headline">¶</a></h3>
+<span id="id43"></span><h3>Other Notable Fixes<a class="headerlink" href="#other-notable-fixes-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Updated VCS completions (darcs, cvs, svn, etc.)</p></li>
 <li><p>Avoid calling getcwd on the main thread, as it can hang <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/696">#696</a></p></li>
@@ -2845,7 +2990,7 @@ etc. from trunk should continue to work.</p></li>
 </ul>
 </div>
 <div class="section" id="new-features-1">
-<span id="id35"></span><h3>New Features<a class="headerlink" href="#new-features-1" title="Permalink to this headline">¶</a></h3>
+<span id="id44"></span><h3>New Features<a class="headerlink" href="#new-features-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Autosuggestions</strong>. Think URL fields in browsers. When you type a
 command, fish will suggest the rest of the command after the cursor,
@@ -2971,10 +3116,10 @@ track.</p>
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -2995,7 +3140,7 @@ track.</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2020, fish-shell developers.
+    &copy; Copyright 2021, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />

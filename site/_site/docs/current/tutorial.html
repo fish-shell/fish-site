@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tutorial &#8212; fish-shell 3.2.2 documentation</title>
+    <title>Tutorial &#8212; fish-shell 3.3.0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Writing your own completions" href="completions.html" />
-    <link rel="prev" title="Design" href="design.html" />
+    <link rel="prev" title="Fish for bash users" href="fish_for_bash_users.html" />
     <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
      
 
@@ -25,10 +25,10 @@
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Tutorial</a></li>
@@ -47,21 +47,25 @@
     </li>
 
       </ul>
-    </div>  
+    </div>    
+
+    <div class="document">
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="index.html">Documents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="language.html">The fish language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="completions.html">Writing your own completions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
 </div>
@@ -113,8 +117,6 @@
 </div>
         </div>
       </div>
-
-    <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -138,14 +140,15 @@ you@hostname ~&gt;
 </pre></div>
 </div>
 <p>This prompt that you see above is the fish default prompt: it shows your username, hostname, and working directory.
-- to change this prompt see <a class="reference external" href="#prompt">how to change your prompt</a>
-- to switch to fish permanently see <a class="reference external" href="#switching-to-fish">switch your default shell to fish</a>.</p>
+- to change this prompt see <a class="reference internal" href="interactive.html#prompt"><span class="std std-ref">how to change your prompt</span></a>
+- to switch to fish permanently see <a class="reference internal" href="#switching-to-fish"><span class="std std-ref">switch your default shell to fish</span></a>.</p>
 <p>From now on, we'll pretend your prompt is just a <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> to save space.</p>
 </div>
 <div class="section" id="learning-fish">
 <h2>Learning fish<a class="headerlink" href="#learning-fish" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial assumes a basic understanding of command line shells and Unix commands, and that you have a working copy of fish.</p>
 <p>If you have a strong understanding of other shells, and want to know what fish does differently, search for the magic phrase <em>unlike other shells</em>, which is used to call out important differences.</p>
+<p>Or, if you want a quick overview over the differences to other shells like Bash, see <a class="reference internal" href="fish_for_bash_users.html#fish-for-bash-users"><span class="std std-ref">Fish For Bash Users</span></a>.</p>
 </div>
 <div class="section" id="running-commands">
 <h2>Running Commands<a class="headerlink" href="#running-commands" title="Permalink to this headline">¶</a></h2>
@@ -154,19 +157,19 @@ you@hostname ~&gt;
 hello world
 </pre></div>
 </div>
-<p>This runs the command <code class="docutils literal notranslate"><span class="pre">echo</span></code> with the arguments <code class="docutils literal notranslate"><span class="pre">hello</span></code> and <code class="docutils literal notranslate"><span class="pre">world</span></code>.</p>
-<p>You can include a literal space in an argument with a backslash, or by using single or double quotes:</p>
+<p>This runs the command <code class="docutils literal notranslate"><span class="pre">echo</span></code> with the arguments <code class="docutils literal notranslate"><span class="pre">hello</span></code> and <code class="docutils literal notranslate"><span class="pre">world</span></code>. In this case that's the same as one argument <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code>, but in many cases it's not. If you need to pass an argument that includes a space, you can <a class="reference internal" href="language.html#escapes"><span class="std std-ref">escape</span></a> with a backslash, or <a class="reference internal" href="language.html#quotes"><span class="std std-ref">quote</span></a> it using single or double quotes:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">mkdir</span><span class="w"> </span><span class="no">My</span><span class="se">\ </span><span class="no">Files</span><span class="w"></span>
+# Makes a directory called &quot;My Files&quot;, with a space in the name
 <span class="gp">&gt; </span><span class="nf">cp</span><span class="w"> </span><span class="o">~</span><span class="no">/Some</span><span class="se">\ </span><span class="no">File</span><span class="w"> </span><span class="s1">&#39;My Files&#39;</span><span class="w"></span>
+# Copies a file called &quot;Some File&quot; in the home directory to &quot;My Files&quot;
 <span class="gp">&gt; </span><span class="nf">ls</span><span class="w"> </span><span class="s2">&quot;My Files&quot;</span><span class="w"></span>
 Some File
 </pre></div>
 </div>
-<p>Commands can be chained with semicolons.</p>
 </div>
 <div class="section" id="getting-help">
 <h2>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
-<p>Fish has excellent help and man pages. Run <code class="docutils literal notranslate"><span class="pre">help</span></code> to open help in a web browser, and <code class="docutils literal notranslate"><span class="pre">man</span></code> to open it in a man page. You can also ask for help with a specific command, for example, <code class="docutils literal notranslate"><span class="pre">help</span> <span class="pre">set</span></code> to open in a web browser, or <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">set</span></code> to see it in the terminal.</p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">help</span></code> to open fish's help in a web browser, and <code class="docutils literal notranslate"><span class="pre">man</span></code> with the page (like <code class="docutils literal notranslate"><span class="pre">fish-language</span></code>) to open it in a man page. You can also ask for help with a specific command, for example, <code class="docutils literal notranslate"><span class="pre">help</span> <span class="pre">set</span></code> to open in a web browser, or <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">set</span></code> to see it in the terminal.</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">man</span><span class="w"> </span><span class="no">set</span><span class="w"></span>
 set - handle shell variables
   Synopsis...
@@ -184,7 +187,7 @@ set - handle shell variables
 <p>Valid file paths are underlined as you type them:</p>
 <pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="command">cat</span> <span class="param-valid-path">~/somefi</span></pre>
 <p>This tells you that there exists a file that starts with <code class="docutils literal notranslate"><span class="pre">somefi</span></code>, which is useful feedback as you type.</p>
-<p>These colors, and many more, can be changed by running <code class="docutils literal notranslate"><span class="pre">fish_config</span></code>, or by modifying <a class="reference internal" href="index.html#variables-color"><span class="std std-ref">color variables</span></a> directly.</p>
+<p>These colors, and many more, can be changed by running <code class="docutils literal notranslate"><span class="pre">fish_config</span></code>, or by modifying <a class="reference internal" href="interactive.html#variables-color"><span class="std std-ref">color variables</span></a> directly.</p>
 </div>
 <div class="section" id="wildcards">
 <h2>Wildcards<a class="headerlink" href="#wildcards" title="Permalink to this headline">¶</a></h2>
@@ -208,6 +211,7 @@ lesson.pdf
 </pre></div>
 </div>
 <p>If that directory traversal is taking a long time, you can <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">C</kbd> out of it.</p>
+<p>For more, see <a class="reference internal" href="language.html#expand-wildcard"><span class="std std-ref">Wildcards</span></a>.</p>
 </div>
 <div class="section" id="pipes-and-redirections">
 <h2>Pipes and Redirections<a class="headerlink" href="#pipes-and-redirections" title="Permalink to this headline">¶</a></h2>
@@ -224,6 +228,7 @@ lesson.pdf
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">make</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="p">make_output.txt</span><span class="w"> </span><span class="p">2&gt;&amp;1</span><span class="w"></span>
 </pre></div>
 </div>
+<p>For more, see <a class="reference internal" href="language.html#redirects"><span class="std std-ref">Input and output redirections</span></a> and <a class="reference internal" href="language.html#pipes"><span class="std std-ref">Pipes</span></a>.</p>
 </div>
 <div class="section" id="autosuggestions">
 <h2>Autosuggestions<a class="headerlink" href="#autosuggestions" title="Permalink to this headline">¶</a></h2>
@@ -252,12 +257,12 @@ builtin_list_io_merge (Branch) builtin_set_color (Branch) busted_events (Tag)</p
 </div>
 <div class="section" id="variables">
 <h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
-<p>Like other shells, a dollar sign performs variable substitution:</p>
+<p>Like other shells, a dollar sign followed by a variable name is replaced with the value of that variable:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="no">My</span><span class="w"> </span><span class="no">home</span><span class="w"> </span><span class="no">directory</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="o">$HOME</span><span class="w"></span>
 My home directory is /home/tutorial
 </pre></div>
 </div>
-<p>Variable substitution also happens in double quotes, but not single quotes:</p>
+<p>This is known as variable substitution, and it also happens in double quotes, but not single quotes:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;My current directory is </span><span class="o">$PWD</span><span class="s2">&quot;</span><span class="w"></span>
 My current directory is /home/tutorial
 <span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;My current directory is $PWD&#39;</span><span class="w"></span>
@@ -284,6 +289,7 @@ Mister Noodle
 (no output)
 </pre></div>
 </div>
+<p>For more, see <a class="reference internal" href="language.html#expand-variable"><span class="std std-ref">Variable expansion</span></a>.</p>
 </div>
 <div class="section" id="exports-shell-variables">
 <span id="tut-exports"></span><h2>Exports (Shell Variables)<a class="headerlink" href="#exports-shell-variables" title="Permalink to this headline">¶</a></h2>
@@ -296,7 +302,8 @@ MyVariable=SomeValue
 </div>
 <p>It can also be unexported with <code class="docutils literal notranslate"><span class="pre">--unexport</span></code> or <code class="docutils literal notranslate"><span class="pre">-u</span></code>.</p>
 <p>This works the other way around as well! If fish is started by something else, it inherits that parents exported variables. So if your terminal emulator starts fish, and it exports <code class="docutils literal notranslate"><span class="pre">$LANG</span></code> set to <code class="docutils literal notranslate"><span class="pre">en_US.UTF-8</span></code>, fish will receive that setting. And whatever started your terminal emulator also gave <em>it</em> some variables that it will then pass on unless it specifically decides not to. This is how fish usually receives the values for things like <code class="docutils literal notranslate"><span class="pre">$LANG</span></code>, <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> and <code class="docutils literal notranslate"><span class="pre">$TERM</span></code>, without you having to specify them again.</p>
-<p>Note that exported variables can be local or global or universal - &quot;exported&quot; is not a <a class="reference internal" href="index.html#variables-scope"><span class="std std-ref">scope</span></a>. Usually you'd make them global via <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-gx</span> <span class="pre">MyVariable</span> <span class="pre">SomeValue</span></code>.</p>
+<p>Exported variables can be local or global or universal - &quot;exported&quot; is not a <a class="reference internal" href="language.html#variables-scope"><span class="std std-ref">scope</span></a>! Usually you'd make them global via <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-gx</span> <span class="pre">MyVariable</span> <span class="pre">SomeValue</span></code>.</p>
+<p>For more, see <a class="reference internal" href="language.html#variables-export"><span class="std std-ref">Exporting variables</span></a>.</p>
 </div>
 <div class="section" id="lists">
 <span id="tut-lists"></span><h2>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h2>
@@ -345,7 +352,7 @@ entry: /sbin
 entry: /usr/local/bin
 </pre></div>
 </div>
-<p>Lists adjacent to other lists or strings are expanded as <a class="reference internal" href="index.html#cartesian-product"><span class="std std-ref">cartesian products</span></a> unless quoted (see <a class="reference internal" href="index.html#expand-variable"><span class="std std-ref">Variable expansion</span></a>):</p>
+<p>Lists adjacent to other lists or strings are expanded as <a class="reference internal" href="language.html#cartesian-product"><span class="std std-ref">cartesian products</span></a> unless quoted (see <a class="reference internal" href="language.html#expand-variable"><span class="std std-ref">Variable expansion</span></a>):</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">3</span><span class="w"></span>
 <span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="no">c</span><span class="w"></span>
 <span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$a$1</span><span class="w"></span>
@@ -356,7 +363,8 @@ entry: /usr/local/bin
 1 2 3 banana
 </pre></div>
 </div>
-<p>This is similar to <a class="reference external" href="index#expand-brace">Brace expansion</a>.</p>
+<p>This is similar to <a class="reference internal" href="language.html#expand-brace"><span class="std std-ref">Brace expansion</span></a>.</p>
+<p>For more, see <a class="reference internal" href="language.html#variables-lists"><span class="std std-ref">Lists</span></a>.</p>
 </div>
 <div class="section" id="command-substitutions">
 <h2>Command Substitutions<a class="headerlink" href="#command-substitutions" title="Permalink to this headline">¶</a></h2>
@@ -386,6 +394,16 @@ testing_1360099791.txt
 -lglib-2.0
 </pre></div>
 </div>
+<p>If you need a command substitutions output as one argument, without any splits, use <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="gr">&quot;</span><span class="s2">first line</span>
+second line&quot; &gt; myfile
+<span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">myfile</span><span class="w"> </span><span class="o">(</span><span class="nf">cat</span><span class="w"> </span><span class="no">myfile</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="o">)</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;|%s|&#39;</span><span class="w"> </span><span class="o">$myfile</span><span class="w"></span>
+|first line
+second line|
+</pre></div>
+</div>
+<p>For more, see <a class="reference internal" href="language.html#expand-command-substitution"><span class="std std-ref">Command substitution</span></a>.</p>
 </div>
 <div class="section" id="separating-commands-semicolon">
 <span id="tut-semicolon"></span><h2>Separating Commands (Semicolon)<a class="headerlink" href="#separating-commands-semicolon" title="Permalink to this headline">¶</a></h2>
@@ -410,6 +428,7 @@ testing_1360099791.txt
 </div>
 <p>This indicates how the command fared - 0 usually means success, while the others signify kinds of failure. For instance fish's <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span></code> returns the number of variables it queried that weren't set - <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span> <span class="pre">PATH</span></code> usually returns 0, <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span> <span class="pre">arglbargl</span> <span class="pre">boogagoogoo</span></code> usually returns 2.</p>
 <p>There is also a <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code> list variable for the exit statuses <a class="footnote-reference brackets" href="#id3" id="id2">1</a> of processes in a pipe.</p>
+<p>For more, see <a class="reference internal" href="language.html#variables-status"><span class="std std-ref">The status variable</span></a>.</p>
 <dl class="footnote brackets">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
 <dd><p>or &quot;stati&quot; if you prefer, or &quot;statūs&quot; if you've time-travelled from ancient Rome or work as a latin teacher</p>
@@ -491,7 +510,8 @@ Backup failed
 <span class="k">end</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Note that <a class="reference internal" href="cmds/case.html#cmd-case"><span class="std std-ref">case</span></a> does not fall through, and can accept multiple arguments or (quoted) wildcards.</p>
+<p>As you see, <a class="reference internal" href="cmds/case.html#cmd-case"><span class="std std-ref">case</span></a> does not fall through, and can accept multiple arguments or (quoted) wildcards.</p>
+<p>For more, see <a class="reference internal" href="language.html#syntax-conditional"><span class="std std-ref">Conditions</span></a>.</p>
 </div>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
@@ -518,6 +538,7 @@ function ls --description &#39;List contents of directory&#39;
 end
 </pre></div>
 </div>
+<p>For more, see <a class="reference internal" href="language.html#syntax-function"><span class="std std-ref">Functions</span></a>.</p>
 <dl class="footnote brackets">
 <dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
 <dd><p>There is a function called <a class="reference internal" href="cmds/alias.html#cmd-alias"><span class="std std-ref">alias</span></a>, but it's just a shortcut to make functions.</p>
@@ -548,6 +569,7 @@ end
 end
 </pre></div>
 </div>
+<p>For more, see <a class="reference internal" href="language.html#syntax-loops-and-blocks"><span class="std std-ref">Loops and blocks</span></a>.</p>
 </div>
 <div class="section" id="prompt">
 <h2>Prompt<a class="headerlink" href="#prompt" title="Permalink to this headline">¶</a></h2>
@@ -570,7 +592,7 @@ New Prompt % _
 <p>This prompt would look like:</p>
 <pre class="highlight literal-block"><span class="purple">02/06/13</span>
 <span class="red">/home/tutorial &gt;</span> _</pre>
-<p>You can choose among some sample prompts by running <code class="docutils literal notranslate"><span class="pre">fish_config</span> <span class="pre">prompt</span></code>.</p>
+<p>You can choose among some sample prompts by running <code class="docutils literal notranslate"><span class="pre">fish_config</span></code> for a web UI or <code class="docutils literal notranslate"><span class="pre">fish_config</span> <span class="pre">prompt</span></code> for a simpler version inside your terminal.</p>
 </div>
 <div class="section" id="path">
 <h2>$PATH<a class="headerlink" href="#path" title="Permalink to this headline">¶</a></h2>
@@ -584,7 +606,7 @@ New Prompt % _
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">PATH</span><span class="w"> </span><span class="o">(</span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-v</span><span class="w"> </span><span class="no">/usr/local/bin</span><span class="w"> </span><span class="o">$PATH)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>For compatibility with other shells and external commands, $PATH is a <a class="reference internal" href="index.html#variables-path"><span class="std std-ref">path variable</span></a>, and so will be joined with colons (not spaces) when you quote it:</p>
+<p>For compatibility with other shells and external commands, $PATH is a <a class="reference internal" href="language.html#variables-path"><span class="std std-ref">path variable</span></a>, and so will be joined with colons (not spaces) when you quote it:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$PATH</span><span class="s2">&quot;</span><span class="w"></span>
 /usr/local/sbin:/usr/local/bin:/usr/bin
 </pre></div>
@@ -612,7 +634,7 @@ end
 </pre></div>
 </div>
 <p>However, it is more common and efficient to use  autoloading functions and universal variables.</p>
-<p>If you want to organize your configuration, fish also reads commands in .fish files in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/conf.d/</span></code>. See <a class="reference internal" href="index.html#initialization"><span class="std std-ref">initialization</span></a> for the details.</p>
+<p>If you want to organize your configuration, fish also reads commands in .fish files in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/conf.d/</span></code>. See <a class="reference internal" href="index.html#configuration"><span class="std std-ref">Configuration Files</span></a> for the details.</p>
 </div>
 <div class="section" id="autoloading-functions">
 <h2>Autoloading Functions<a class="headerlink" href="#autoloading-functions" title="Permalink to this headline">¶</a></h2>
@@ -631,7 +653,7 @@ function fish_prompt
 end
 </pre></div>
 </div>
-<p>See the documentation for <a class="reference internal" href="cmds/funced.html#cmd-funced"><span class="std std-ref">funced</span></a> and <a class="reference internal" href="cmds/funcsave.html#cmd-funcsave"><span class="std std-ref">funcsave</span></a> for ways to create these files automatically, and <a class="reference internal" href="index.html#syntax-function-autoloading"><span class="std std-ref">$fish_function_path</span></a> to control their location.</p>
+<p>See the documentation for <a class="reference internal" href="cmds/funced.html#cmd-funced"><span class="std std-ref">funced</span></a> and <a class="reference internal" href="cmds/funcsave.html#cmd-funcsave"><span class="std std-ref">funcsave</span></a> for ways to create these files automatically, and <a class="reference internal" href="language.html#syntax-function-autoloading"><span class="std std-ref">$fish_function_path</span></a> to control their location.</p>
 </div>
 <div class="section" id="universal-variables">
 <span id="tut-universal"></span><h2>Universal Variables<a class="headerlink" href="#universal-variables" title="Permalink to this headline">¶</a></h2>
@@ -678,10 +700,10 @@ with <code class="docutils literal notranslate"><span class="pre">/bin/bash</spa
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
-             style="width: 80px; vertical-align: middle; margin-top: -1px"/></li>
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.2.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Tutorial</a></li>
@@ -702,7 +724,7 @@ with <code class="docutils literal notranslate"><span class="pre">/bin/bash</spa
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2020, fish-shell developers.
+    &copy; Copyright 2021, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
