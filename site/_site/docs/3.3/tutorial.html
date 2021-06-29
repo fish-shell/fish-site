@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorial &#8212; fish-shell 3.3.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Writing your own completions" href="completions.html" />
+    <link rel="prev" title="Fish for bash users" href="fish_for_bash_users.html" />
+    <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
+     
+
+  </head><body><div id="fmain">  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+        <li class="nav-item nav-item-this"><a href="">Tutorial</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div>
+<h3><a href="index.html">Documents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="language.html">The fish language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div>
+<h4><a href="index.html">Sections</a></h4>
+<ul>
+<li><a class="reference internal" href="#">Tutorial</a><ul>
+<li><a class="reference internal" href="#why-fish">Why fish?</a></li>
+<li><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li><a class="reference internal" href="#learning-fish">Learning fish</a></li>
+<li><a class="reference internal" href="#running-commands">Running Commands</a></li>
+<li><a class="reference internal" href="#getting-help">Getting Help</a></li>
+<li><a class="reference internal" href="#syntax-highlighting">Syntax Highlighting</a></li>
+<li><a class="reference internal" href="#wildcards">Wildcards</a></li>
+<li><a class="reference internal" href="#pipes-and-redirections">Pipes and Redirections</a></li>
+<li><a class="reference internal" href="#autosuggestions">Autosuggestions</a></li>
+<li><a class="reference internal" href="#tab-completions">Tab Completions</a></li>
+<li><a class="reference internal" href="#variables">Variables</a></li>
+<li><a class="reference internal" href="#exports-shell-variables">Exports (Shell Variables)</a></li>
+<li><a class="reference internal" href="#lists">Lists</a></li>
+<li><a class="reference internal" href="#command-substitutions">Command Substitutions</a></li>
+<li><a class="reference internal" href="#separating-commands-semicolon">Separating Commands (Semicolon)</a></li>
+<li><a class="reference internal" href="#exit-status">Exit Status</a></li>
+<li><a class="reference internal" href="#combiners-and-or-not">Combiners (And, Or, Not)</a></li>
+<li><a class="reference internal" href="#conditionals-if-else-switch">Conditionals (If, Else, Switch)</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#loops">Loops</a></li>
+<li><a class="reference internal" href="#prompt">Prompt</a></li>
+<li><a class="reference internal" href="#path">$PATH</a></li>
+<li><a class="reference internal" href="#startup-where-s-bashrc">Startup (Where's .bashrc?)</a></li>
+<li><a class="reference internal" href="#autoloading-functions">Autoloading Functions</a></li>
+<li><a class="reference internal" href="#universal-variables">Universal Variables</a></li>
+<li><a class="reference internal" href="#switching-to-fish">Switching to fish?</a></li>
+<li><a class="reference internal" href="#ready-for-more">Ready for more?</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial">
+<span id="id1"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="why-fish">
+<h2>Why fish?<a class="headerlink" href="#why-fish" title="Permalink to this headline">¶</a></h2>
+<p>Fish is a fully-equipped command line shell (like bash or zsh) that is smart and user-friendly. Fish supports powerful features like syntax highlighting, autosuggestions, and tab completions that just work, with nothing to learn or configure.</p>
+<p>If you want to make your command line more productive, more useful, and more fun, without learning a bunch of arcane syntax and configuration options, then fish might be just what you're looking for!</p>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>Once installed, just type in <code class="docutils literal notranslate"><span class="pre">fish</span></code> into your current shell to try it out!</p>
+<p>You will be greeted by the standard fish prompt,
+which means you are all set up and can start using fish:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish</span><span class="w"></span>
+Welcome to fish, the friendly interactive shell
+Type help for instructions on how to use fish
+you@hostname ~&gt;
+</pre></div>
+</div>
+<p>This prompt that you see above is the fish default prompt: it shows your username, hostname, and working directory.
+- to change this prompt see <a class="reference internal" href="interactive.html#prompt"><span class="std std-ref">how to change your prompt</span></a>
+- to switch to fish permanently see <a class="reference internal" href="#switching-to-fish"><span class="std std-ref">switch your default shell to fish</span></a>.</p>
+<p>From now on, we'll pretend your prompt is just a <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> to save space.</p>
+</div>
+<div class="section" id="learning-fish">
+<h2>Learning fish<a class="headerlink" href="#learning-fish" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial assumes a basic understanding of command line shells and Unix commands, and that you have a working copy of fish.</p>
+<p>If you have a strong understanding of other shells, and want to know what fish does differently, search for the magic phrase <em>unlike other shells</em>, which is used to call out important differences.</p>
+<p>Or, if you want a quick overview over the differences to other shells like Bash, see <a class="reference internal" href="fish_for_bash_users.html#fish-for-bash-users"><span class="std std-ref">Fish For Bash Users</span></a>.</p>
+</div>
+<div class="section" id="running-commands">
+<h2>Running Commands<a class="headerlink" href="#running-commands" title="Permalink to this headline">¶</a></h2>
+<p>Fish runs commands like other shells: you type a command, followed by its arguments. Spaces are separators:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="no">hello</span><span class="w"> </span><span class="no">world</span><span class="w"></span>
+hello world
+</pre></div>
+</div>
+<p>This runs the command <code class="docutils literal notranslate"><span class="pre">echo</span></code> with the arguments <code class="docutils literal notranslate"><span class="pre">hello</span></code> and <code class="docutils literal notranslate"><span class="pre">world</span></code>. In this case that's the same as one argument <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code>, but in many cases it's not. If you need to pass an argument that includes a space, you can <a class="reference internal" href="language.html#escapes"><span class="std std-ref">escape</span></a> with a backslash, or <a class="reference internal" href="language.html#quotes"><span class="std std-ref">quote</span></a> it using single or double quotes:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">mkdir</span><span class="w"> </span><span class="no">My</span><span class="se">\ </span><span class="no">Files</span><span class="w"></span>
+# Makes a directory called &quot;My Files&quot;, with a space in the name
+<span class="gp">&gt; </span><span class="nf">cp</span><span class="w"> </span><span class="o">~</span><span class="no">/Some</span><span class="se">\ </span><span class="no">File</span><span class="w"> </span><span class="s1">&#39;My Files&#39;</span><span class="w"></span>
+# Copies a file called &quot;Some File&quot; in the home directory to &quot;My Files&quot;
+<span class="gp">&gt; </span><span class="nf">ls</span><span class="w"> </span><span class="s2">&quot;My Files&quot;</span><span class="w"></span>
+Some File
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+<p>Run <code class="docutils literal notranslate"><span class="pre">help</span></code> to open fish's help in a web browser, and <code class="docutils literal notranslate"><span class="pre">man</span></code> with the page (like <code class="docutils literal notranslate"><span class="pre">fish-language</span></code>) to open it in a man page. You can also ask for help with a specific command, for example, <code class="docutils literal notranslate"><span class="pre">help</span> <span class="pre">set</span></code> to open in a web browser, or <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">set</span></code> to see it in the terminal.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">man</span><span class="w"> </span><span class="no">set</span><span class="w"></span>
+set - handle shell variables
+  Synopsis...
+</pre></div>
+</div>
+</div>
+<div class="section" id="syntax-highlighting">
+<h2>Syntax Highlighting<a class="headerlink" href="#syntax-highlighting" title="Permalink to this headline">¶</a></h2>
+<p>You'll quickly notice that fish performs syntax highlighting as you type. Invalid commands are colored red by default:</p>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="red">/bin/mkd</span></pre>
+<p>A command may be invalid because it does not exist, or refers to a file that you cannot execute. When the command becomes valid, it is shown in a different color:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">/bin/mkdir</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Valid file paths are underlined as you type them:</p>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="command">cat</span> <span class="param-valid-path">~/somefi</span></pre>
+<p>This tells you that there exists a file that starts with <code class="docutils literal notranslate"><span class="pre">somefi</span></code>, which is useful feedback as you type.</p>
+<p>These colors, and many more, can be changed by running <code class="docutils literal notranslate"><span class="pre">fish_config</span></code>, or by modifying <a class="reference internal" href="interactive.html#variables-color"><span class="std std-ref">color variables</span></a> directly.</p>
+</div>
+<div class="section" id="wildcards">
+<h2>Wildcards<a class="headerlink" href="#wildcards" title="Permalink to this headline">¶</a></h2>
+<p>Fish supports the familiar wildcard <code class="docutils literal notranslate"><span class="pre">*</span></code>. To list all JPEG files:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">ls</span><span class="w"> </span><span class="o">*</span><span class="no">.jpg</span><span class="w"></span>
+lena.jpg
+meena.jpg
+santa maria.jpg
+</pre></div>
+</div>
+<p>You can include multiple wildcards:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">ls</span><span class="w"> </span><span class="no">l</span><span class="o">*</span><span class="no">.p</span><span class="o">*</span><span class="w"></span>
+lena.png
+lesson.pdf
+</pre></div>
+</div>
+<p>Especially powerful is the recursive wildcard ** which searches directories recursively:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">ls</span><span class="w"> </span><span class="no">/var/</span><span class="o">**</span><span class="no">.log</span><span class="w"></span>
+/var/log/system.log
+/var/run/sntp.log
+</pre></div>
+</div>
+<p>If that directory traversal is taking a long time, you can <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">C</kbd> out of it.</p>
+<p>For more, see <a class="reference internal" href="language.html#expand-wildcard"><span class="std std-ref">Wildcards</span></a>.</p>
+</div>
+<div class="section" id="pipes-and-redirections">
+<h2>Pipes and Redirections<a class="headerlink" href="#pipes-and-redirections" title="Permalink to this headline">¶</a></h2>
+<p>You can pipe between commands with the usual vertical bar:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="no">hello</span><span class="w"> </span><span class="no">world</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">wc</span><span class="w"></span>
+      1       2      12
+</pre></div>
+</div>
+<p>stdin and stdout can be redirected via the familiar <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>. stderr is redirected with a <code class="docutils literal notranslate"><span class="pre">2&gt;</span></code>.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">grep</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="p">/etc/shells</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="p">~/output.txt</span><span class="w"> </span><span class="p">2&gt;</span><span class="w"> </span><span class="p">~/errors.txt</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To redirect stdout and stderr into one file, you need to first redirect stdout, and then stderr into stdout:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">make</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="p">make_output.txt</span><span class="w"> </span><span class="p">2&gt;&amp;1</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For more, see <a class="reference internal" href="language.html#redirects"><span class="std std-ref">Input and output redirections</span></a> and <a class="reference internal" href="language.html#pipes"><span class="std std-ref">Pipes</span></a>.</p>
+</div>
+<div class="section" id="autosuggestions">
+<h2>Autosuggestions<a class="headerlink" href="#autosuggestions" title="Permalink to this headline">¶</a></h2>
+<p>As you type fish will suggest commands to the right of the cursor, in gray. For example:</p>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="red">/bin/h</span><span class="gray">ostname</span></pre>
+<p>It knows about paths and options:</p>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="command">grep</span> <span class="param">--i</span><span class="gray">gnore-case</span></pre>
+<p>And history too. Type a command once, and you can re-summon it by just typing a few letters:</p>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="red">r</span><span class="gray">sync -avze ssh . myname&#64;somelonghost.com:/some/long/path/doo/dee/doo/dee/doo</span></pre>
+<p>To accept the autosuggestion, hit <kbd class="kbd docutils literal notranslate">→</kbd> (right arrow) or <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">F</kbd>. To accept a single word of the autosuggestion, <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">→</kbd> (right arrow). If the autosuggestion is not what you want, just ignore it.</p>
+</div>
+<div class="section" id="tab-completions">
+<h2>Tab Completions<a class="headerlink" href="#tab-completions" title="Permalink to this headline">¶</a></h2>
+<p>A rich set of tab completions work &quot;out of the box&quot;.</p>
+<p>Press <kbd class="kbd docutils literal notranslate">Tab</kbd> and fish will attempt to complete the command, argument, or path:</p>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="red">/pri</span><kbd class="kbd docutils literal notranslate">Tab</kbd> =&gt; <span class="command">/private/</span></pre>
+<p>If there's more than one possibility, it will list them:</p>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="red">~/stuff/s</span><kbd class="kbd docutils literal notranslate">Tab</kbd>
+~/stuff/script.sh  (Executable, 4.8kB)  ~/stuff/sources/  (Directory)</pre>
+<p>Hit tab again to cycle through the possibilities.</p>
+<p>fish can also complete many commands, like git branches:</p>
+<pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="command">git</span> <span class="param">merge pr</span><kbd class="kbd docutils literal notranslate">Tab</kbd> =&gt; <span class="command">git</span> <span class="param">merge prompt_designer</span>
+<span class="prompt">&gt;</span> <span class="command">git</span> <span class="param">checkout b</span><kbd class="kbd docutils literal notranslate">Tab</kbd>
+builtin_list_io_merge (Branch) builtin_set_color (Branch) busted_events (Tag)</pre>
+<p>Try hitting tab and see what fish can do!</p>
+</div>
+<div class="section" id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+<p>Like other shells, a dollar sign followed by a variable name is replaced with the value of that variable:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="no">My</span><span class="w"> </span><span class="no">home</span><span class="w"> </span><span class="no">directory</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="o">$HOME</span><span class="w"></span>
+My home directory is /home/tutorial
+</pre></div>
+</div>
+<p>This is known as variable substitution, and it also happens in double quotes, but not single quotes:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;My current directory is </span><span class="o">$PWD</span><span class="s2">&quot;</span><span class="w"></span>
+My current directory is /home/tutorial
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;My current directory is $PWD&#39;</span><span class="w"></span>
+My current directory is $PWD
+</pre></div>
+</div>
+<p>Unlike other shells, fish has no dedicated <code class="docutils literal notranslate"><span class="pre">VARIABLE=VALUE</span></code> syntax for setting variables. Instead it has an ordinary command: <code class="docutils literal notranslate"><span class="pre">set</span></code>, which takes a variable name, and then its value.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">name</span><span class="w"> </span><span class="s1">&#39;Mister Noodle&#39;</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$name</span><span class="w"></span>
+Mister Noodle
+</pre></div>
+</div>
+<p>(Notice the quotes: without them, <code class="docutils literal notranslate"><span class="pre">Mister</span></code> and <code class="docutils literal notranslate"><span class="pre">Noodle</span></code> would have been separate arguments, and <code class="docutils literal notranslate"><span class="pre">$name</span></code> would have been made into a list of two elements.)</p>
+<p>Unlike other shells, variables are not further split after substitution:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">mkdir</span><span class="w"> </span><span class="o">$name</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">ls</span><span class="w"></span>
+Mister Noodle
+</pre></div>
+</div>
+<p>In bash, this would have created two directories &quot;Mister&quot; and &quot;Noodle&quot;. In fish, it created only one: the variable had the value &quot;Mister Noodle&quot;, so that is the argument that was passed to <code class="docutils literal notranslate"><span class="pre">mkdir</span></code>, spaces and all. Other shells use the term &quot;arrays&quot;, rather than lists.</p>
+<p>You can erase (or &quot;delete&quot;) a variable with <code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code></p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">MyVariable</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">env</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">grep</span><span class="w"> </span><span class="no">MyVariable</span><span class="w"></span>
+(no output)
+</pre></div>
+</div>
+<p>For more, see <a class="reference internal" href="language.html#expand-variable"><span class="std std-ref">Variable expansion</span></a>.</p>
+</div>
+<div class="section" id="exports-shell-variables">
+<span id="tut-exports"></span><h2>Exports (Shell Variables)<a class="headerlink" href="#exports-shell-variables" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you need to have a variable available to an external command, often as a setting. For example many programs like <code class="docutils literal notranslate"><span class="pre">git</span></code> or <code class="docutils literal notranslate"><span class="pre">man</span></code> read the <code class="docutils literal notranslate"><span class="pre">$PAGER</span></code> variable to figure out your preferred pager (the program that lets you scroll text). Other variables used like this include <code class="docutils literal notranslate"><span class="pre">$BROWSER</span></code>, <code class="docutils literal notranslate"><span class="pre">$LANG</span></code> (to configure your language) and <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>. You'll note these are written in ALLCAPS, but that's just a convention.</p>
+<p>To give a variable to an external command, it needs to be &quot;exported&quot;. Unlike other shells, fish does not have an export command. Instead, a variable is exported via an option to <code class="docutils literal notranslate"><span class="pre">set</span></code>, either <code class="docutils literal notranslate"><span class="pre">--export</span></code> or just <code class="docutils literal notranslate"><span class="pre">-x</span></code>.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-x</span><span class="w"> </span><span class="no">MyVariable</span><span class="w"> </span><span class="no">SomeValue</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">env</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">grep</span><span class="w"> </span><span class="no">MyVariable</span><span class="w"></span>
+MyVariable=SomeValue
+</pre></div>
+</div>
+<p>It can also be unexported with <code class="docutils literal notranslate"><span class="pre">--unexport</span></code> or <code class="docutils literal notranslate"><span class="pre">-u</span></code>.</p>
+<p>This works the other way around as well! If fish is started by something else, it inherits that parents exported variables. So if your terminal emulator starts fish, and it exports <code class="docutils literal notranslate"><span class="pre">$LANG</span></code> set to <code class="docutils literal notranslate"><span class="pre">en_US.UTF-8</span></code>, fish will receive that setting. And whatever started your terminal emulator also gave <em>it</em> some variables that it will then pass on unless it specifically decides not to. This is how fish usually receives the values for things like <code class="docutils literal notranslate"><span class="pre">$LANG</span></code>, <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> and <code class="docutils literal notranslate"><span class="pre">$TERM</span></code>, without you having to specify them again.</p>
+<p>Exported variables can be local or global or universal - &quot;exported&quot; is not a <a class="reference internal" href="language.html#variables-scope"><span class="std std-ref">scope</span></a>! Usually you'd make them global via <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-gx</span> <span class="pre">MyVariable</span> <span class="pre">SomeValue</span></code>.</p>
+<p>For more, see <a class="reference internal" href="language.html#variables-export"><span class="std std-ref">Exporting variables</span></a>.</p>
+</div>
+<div class="section" id="lists">
+<span id="tut-lists"></span><h2>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">set</span></code> command above used quotes to ensure that <code class="docutils literal notranslate"><span class="pre">Mister</span> <span class="pre">Noodle</span></code> was one argument. If it had been two arguments, then <code class="docutils literal notranslate"><span class="pre">name</span></code> would have been a list of length 2.  In fact, all variables in fish are really lists, that can contain any number of values, or none at all.</p>
+<p>Some variables, like <code class="docutils literal notranslate"><span class="pre">$PWD</span></code>, only have one value. By convention, we talk about that variable's value, but we really mean its first (and only) value.</p>
+<p>Other variables, like <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>, really do have multiple values. During variable expansion, the variable expands to become multiple arguments:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$PATH</span><span class="w"></span>
+/usr/bin /bin /usr/sbin /sbin /usr/local/bin
+</pre></div>
+</div>
+<p>Variables whose name ends in &quot;PATH&quot; are automatically split on colons to become lists. They are joined using colons when exported to subcommands. This is for compatibility with other tools, which expect $PATH to use colons. You can also explicitly add this quirk to a variable with <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--path</span></code>, or remove it with <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--unpath</span></code>.</p>
+<p>Lists cannot contain other lists: there is no recursion.  A variable is a list of strings, full stop.</p>
+<p>Get the length of a list with <code class="docutils literal notranslate"><span class="pre">count</span></code>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">count</span><span class="w"> </span><span class="o">$PATH</span><span class="w"></span>
+5
+</pre></div>
+</div>
+<p>You can append (or prepend) to a list by setting the list to itself, with some additional arguments. Here we append /usr/local/bin to $PATH:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">PATH</span><span class="w"> </span><span class="o">$PATH</span><span class="w"> </span><span class="no">/usr/local/bin</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You can access individual elements with square brackets. Indexing starts at 1 from the beginning, and -1 from the end:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$PATH</span><span class="w"></span>
+/usr/bin /bin /usr/sbin /sbin /usr/local/bin
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$PATH[</span><span class="no">1</span><span class="o">]</span><span class="w"></span>
+/usr/bin
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$PATH[</span><span class="no">-1</span><span class="o">]</span><span class="w"></span>
+/usr/local/bin
+</pre></div>
+</div>
+<p>You can also access ranges of elements, known as &quot;slices&quot;:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$PATH[</span><span class="no">1..2</span><span class="o">]</span><span class="w"></span>
+/usr/bin /bin
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$PATH[</span><span class="no">-1..2</span><span class="o">]</span><span class="w"></span>
+/usr/local/bin /sbin /usr/sbin /bin
+</pre></div>
+</div>
+<p>You can iterate over a list (or a slice) with a for loop:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="k">for</span><span class="w"> </span><span class="no">val</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">$PATH</span><span class="w"></span>
+    echo &quot;entry: $val&quot;
+  end
+entry: /usr/bin/
+entry: /bin
+entry: /usr/sbin
+entry: /sbin
+entry: /usr/local/bin
+</pre></div>
+</div>
+<p>Lists adjacent to other lists or strings are expanded as <a class="reference internal" href="language.html#cartesian-product"><span class="std std-ref">cartesian products</span></a> unless quoted (see <a class="reference internal" href="language.html#expand-variable"><span class="std std-ref">Variable expansion</span></a>):</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">3</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="no">c</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$a$1</span><span class="w"></span>
+1a 2a 3a 1b 2b 3b 1c 2c 3c
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$a</span><span class="s2">&quot; banana&quot;</span><span class="w"></span>
+1 banana 2 banana 3 banana
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$a</span><span class="s2"> banana&quot;</span><span class="w"></span>
+1 2 3 banana
+</pre></div>
+</div>
+<p>This is similar to <a class="reference internal" href="language.html#expand-brace"><span class="std std-ref">Brace expansion</span></a>.</p>
+<p>For more, see <a class="reference internal" href="language.html#variables-lists"><span class="std std-ref">Lists</span></a>.</p>
+</div>
+<div class="section" id="command-substitutions">
+<h2>Command Substitutions<a class="headerlink" href="#command-substitutions" title="Permalink to this headline">¶</a></h2>
+<p>Command substitutions use the output of one command as an argument to another. Unlike other shells, fish does not use backticks `` for command substitutions. Instead, it uses parentheses:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="no">In</span><span class="w"> </span><span class="o">(</span><span class="nf">pwd</span><span class="o">)</span><span class="no">,</span><span class="w"> </span><span class="no">running</span><span class="w"> </span><span class="o">(</span><span class="nf">uname</span><span class="o">)</span><span class="w"></span>
+In /home/tutorial, running FreeBSD
+</pre></div>
+</div>
+<p>A common idiom is to capture the output of a command in a variable:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">os</span><span class="w"> </span><span class="o">(</span><span class="nf">uname</span><span class="o">)</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$os</span><span class="w"></span>
+Linux
+</pre></div>
+</div>
+<p>Command substitutions are not expanded within quotes. Instead, you can temporarily close the quotes, add the command substitution, and reopen them, all in the same argument:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">touch</span><span class="w"> </span><span class="s2">&quot;testing_&quot;</span><span class="o">(</span><span class="nf">date</span><span class="w"> </span><span class="no">+%s</span><span class="o">)</span><span class="s2">&quot;.txt&quot;</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">ls</span><span class="w"> </span><span class="o">*</span><span class="no">.txt</span><span class="w"></span>
+testing_1360099791.txt
+</pre></div>
+</div>
+<p>Unlike other shells, fish does not split command substitutions on any whitespace (like spaces or tabs), only newlines. This can be an issue with commands like <code class="docutils literal notranslate"><span class="pre">pkg-config</span></code> that print what is meant to be multiple arguments on a single line. To split it on spaces too, use <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">split</span></code>.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s\n&#39;</span><span class="w"> </span><span class="o">(</span><span class="nf">pkg-config</span><span class="w"> </span><span class="no">--libs</span><span class="w"> </span><span class="no">gio-2.0</span><span class="o">)</span><span class="w"></span>
+-lgio-2.0 -lgobject-2.0 -lglib-2.0
+<span class="gp">&gt; </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s\n&#39;</span><span class="w"> </span><span class="o">(</span><span class="nf">pkg-config</span><span class="w"> </span><span class="no">--libs</span><span class="w"> </span><span class="no">gio-2.0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">split</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="o">)</span><span class="w"></span>
+-lgio-2.0
+-lgobject-2.0
+-lglib-2.0
+</pre></div>
+</div>
+<p>If you need a command substitutions output as one argument, without any splits, use <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="gr">&quot;</span><span class="s2">first line</span>
+second line&quot; &gt; myfile
+<span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">myfile</span><span class="w"> </span><span class="o">(</span><span class="nf">cat</span><span class="w"> </span><span class="no">myfile</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="o">)</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;|%s|&#39;</span><span class="w"> </span><span class="o">$myfile</span><span class="w"></span>
+|first line
+second line|
+</pre></div>
+</div>
+<p>For more, see <a class="reference internal" href="language.html#expand-command-substitution"><span class="std std-ref">Command substitution</span></a>.</p>
+</div>
+<div class="section" id="separating-commands-semicolon">
+<span id="tut-semicolon"></span><h2>Separating Commands (Semicolon)<a class="headerlink" href="#separating-commands-semicolon" title="Permalink to this headline">¶</a></h2>
+<p>Like other shells, fish allows multiple commands either on separate lines or the same line.</p>
+<p>To write them on the same line, use the semicolon (&quot;;&quot;). That means the following two examples are equivalent:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo</span><span class="w"> </span><span class="no">fish</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="no">chips</span><span class="w"></span>
+
+<span class="c"># or</span><span class="w"></span>
+<span class="nf">echo</span><span class="w"> </span><span class="no">fish</span><span class="w"></span>
+<span class="nf">echo</span><span class="w"> </span><span class="no">chips</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exit-status">
+<h2>Exit Status<a class="headerlink" href="#exit-status" title="Permalink to this headline">¶</a></h2>
+<p>When a command exits, it returns a status code as a non-negative integer.</p>
+<p>Unlike other shells, fish stores the exit status of the last command in <code class="docutils literal notranslate"><span class="pre">$status</span></code> instead of <code class="docutils literal notranslate"><span class="pre">$?</span></code>.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">false</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$status</span><span class="w"></span>
+1
+</pre></div>
+</div>
+<p>This indicates how the command fared - 0 usually means success, while the others signify kinds of failure. For instance fish's <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span></code> returns the number of variables it queried that weren't set - <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span> <span class="pre">PATH</span></code> usually returns 0, <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span> <span class="pre">arglbargl</span> <span class="pre">boogagoogoo</span></code> usually returns 2.</p>
+<p>There is also a <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code> list variable for the exit statuses <a class="footnote-reference brackets" href="#id3" id="id2">1</a> of processes in a pipe.</p>
+<p>For more, see <a class="reference internal" href="language.html#variables-status"><span class="std std-ref">The status variable</span></a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>or &quot;stati&quot; if you prefer, or &quot;statūs&quot; if you've time-travelled from ancient Rome or work as a latin teacher</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="combiners-and-or-not">
+<span id="tut-combiners"></span><h2>Combiners (And, Or, Not)<a class="headerlink" href="#combiners-and-or-not" title="Permalink to this headline">¶</a></h2>
+<p>fish supports the familiar <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">||</span></code> to combine commands, and <code class="docutils literal notranslate"><span class="pre">!</span></code> to negate them:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">./configure</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nf">make</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nf">sudo</span><span class="w"> </span><span class="no">make</span><span class="w"> </span><span class="no">install</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">make</span></code> is only executed if <code class="docutils literal notranslate"><span class="pre">./configure</span></code> succeeds (returns 0), and <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></code> is only executed if both <code class="docutils literal notranslate"><span class="pre">./configure</span></code> and <code class="docutils literal notranslate"><span class="pre">make</span></code> succeed.</p>
+<p>fish also supports <a class="reference internal" href="cmds/and.html#cmd-and"><span class="std std-ref">and</span></a>, <a class="reference internal" href="cmds/or.html#cmd-or"><span class="std std-ref">or</span></a>, and <a class="reference internal" href="cmds/not.html#cmd-not"><span class="std std-ref">not</span></a>. The first two are job modifiers and have lower precedence. Example usage:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">cp</span><span class="w"> </span><span class="no">file1</span><span class="w"> </span><span class="no">file1_bak</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nf">cp</span><span class="w"> </span><span class="no">file2</span><span class="w"> </span><span class="no">file2_bak</span><span class="p">;</span><span class="w"> </span><span class="o">and</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Backup successful&quot;</span><span class="p">;</span><span class="w"> </span><span class="o">or</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Backup failed&quot;</span><span class="w"></span>
+Backup failed
+</pre></div>
+</div>
+<p>As mentioned in <a class="reference internal" href="#tut-semicolon"><span class="std std-ref">the section on the semicolon</span></a>, this can also be written in multiple lines, like so:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cp</span><span class="w"> </span><span class="no">file1</span><span class="w"> </span><span class="no">file1_bak</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nf">cp</span><span class="w"> </span><span class="no">file2</span><span class="w"> </span><span class="no">file2_bak</span><span class="w"></span>
+<span class="o">and</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Backup successful&quot;</span><span class="w"></span>
+<span class="o">or</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Backup failed&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conditionals-if-else-switch">
+<span id="tut-conditionals"></span><h2>Conditionals (If, Else, Switch)<a class="headerlink" href="#conditionals-if-else-switch" title="Permalink to this headline">¶</a></h2>
+<p>Use <a class="reference internal" href="cmds/if.html#cmd-if"><span class="std std-ref">if</span></a> and <a class="reference internal" href="cmds/else.html#cmd-else"><span class="std std-ref">else</span></a> to conditionally execute code, based on the exit status of a command.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="nf">grep</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="no">/etc/shells</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">Found</span><span class="w"> </span><span class="no">fish</span><span class="w"></span>
+<span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nf">grep</span><span class="w"> </span><span class="no">bash</span><span class="w"> </span><span class="no">/etc/shells</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">Found</span><span class="w"> </span><span class="no">bash</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">Got</span><span class="w"> </span><span class="no">nothing</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To compare strings or numbers or check file properties (whether a file exists or is writeable and such), use <a class="reference internal" href="cmds/test.html#cmd-test"><span class="std std-ref">test</span></a>, like</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$fish</span><span class="s2">&quot;</span><span class="w"> </span><span class="no">=</span><span class="w"> </span><span class="s2">&quot;flounder&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">FLOUNDER</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="c"># or</span><span class="w"></span>
+
+<span class="k">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$number</span><span class="s2">&quot;</span><span class="w"> </span><span class="no">-gt</span><span class="w"> </span><span class="no">5</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$number</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">greater</span><span class="w"> </span><span class="no">than</span><span class="w"> </span><span class="no">five</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$number</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">five</span><span class="w"> </span><span class="no">or</span><span class="w"> </span><span class="no">less</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="c"># or</span><span class="w"></span>
+
+<span class="c"># This test is true if the path /etc/hosts exists</span><span class="w"></span>
+<span class="c"># - it could be a file or directory or symlink (or possibly something else).</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">/etc/hosts</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">We</span><span class="w"> </span><span class="no">most</span><span class="w"> </span><span class="no">likely</span><span class="w"> </span><span class="no">have</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">hosts</span><span class="w"> </span><span class="no">file</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">We</span><span class="w"> </span><span class="no">do</span><span class="w"> </span><span class="no">not</span><span class="w"> </span><span class="no">have</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">hosts</span><span class="w"> </span><span class="no">file</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#tut-combiners"><span class="std std-ref">Combiners</span></a> can also be used to make more complex conditions, like</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="nf">grep</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="no">/etc/shells</span><span class="p">;</span><span class="w"> </span><span class="o">and</span><span class="w"> </span><span class="nf">command</span><span class="w"> </span><span class="no">-sq</span><span class="w"> </span><span class="no">fish</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">installed</span><span class="w"> </span><span class="no">and</span><span class="w"> </span><span class="no">configured</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For even more complex conditions, use <a class="reference internal" href="cmds/begin.html#cmd-begin"><span class="std std-ref">begin</span></a> and <a class="reference internal" href="cmds/end.html#cmd-end"><span class="std std-ref">end</span></a> to group parts of them.</p>
+<p>There is also a <a class="reference internal" href="cmds/switch.html#cmd-switch"><span class="std std-ref">switch</span></a> command:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">switch</span><span class="w"> </span><span class="o">(</span><span class="nf">uname</span><span class="o">)</span><span class="w"></span>
+<span class="k">case</span><span class="w"> </span><span class="no">Linux</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">Hi</span><span class="w"> </span><span class="no">Tux!</span><span class="w"></span>
+<span class="k">case</span><span class="w"> </span><span class="no">Darwin</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">Hi</span><span class="w"> </span><span class="no">Hexley!</span><span class="w"></span>
+<span class="k">case</span><span class="w"> </span><span class="no">FreeBSD</span><span class="w"> </span><span class="no">NetBSD</span><span class="w"> </span><span class="no">DragonFly</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">Hi</span><span class="w"> </span><span class="no">Beastie!</span><span class="w"></span>
+<span class="k">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">Hi,</span><span class="w"> </span><span class="no">stranger!</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>As you see, <a class="reference internal" href="cmds/case.html#cmd-case"><span class="std std-ref">case</span></a> does not fall through, and can accept multiple arguments or (quoted) wildcards.</p>
+<p>For more, see <a class="reference internal" href="language.html#syntax-conditional"><span class="std std-ref">Conditions</span></a>.</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>A fish function is a list of commands, which may optionally take arguments. Unlike other shells, arguments are not passed in &quot;numbered variables&quot; like <code class="docutils literal notranslate"><span class="pre">$1</span></code>, but instead in a single list <code class="docutils literal notranslate"><span class="pre">$argv</span></code>. To create a function, use the <a class="reference internal" href="cmds/function.html#cmd-function"><span class="std std-ref">function</span></a> builtin:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="k">function</span><span class="w"> </span><span class="no">say_hello</span><span class="w"></span>
+     echo Hello $argv
+  end
+<span class="gp">&gt; </span><span class="nf">say_hello</span><span class="w"></span>
+Hello
+<span class="gp">&gt; </span><span class="nf">say_hello</span><span class="w"> </span><span class="no">everybody!</span><span class="w"></span>
+Hello everybody!
+</pre></div>
+</div>
+<p>Unlike other shells, fish does not have aliases or special prompt syntax. Functions take their place. <a class="footnote-reference brackets" href="#id5" id="id4">2</a></p>
+<p>You can list the names of all functions with the <a class="reference internal" href="cmds/functions.html#cmd-functions"><span class="std std-ref">functions</span></a> builtin (note the plural!). fish starts out with a number of functions:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">functions</span><span class="w"></span>
+N_, abbr, alias, bg, cd, cdh, contains_seq, delete-or-exit, dirh, dirs, disown, down-or-search, edit_command_buffer, export, fg, fish_add_path, fish_breakpoint_prompt, fish_clipboard_copy, fish_clipboard_paste, fish_config, fish_default_key_bindings, fish_default_mode_prompt, fish_git_prompt, fish_hg_prompt, fish_hybrid_key_bindings, fish_indent, fish_is_root_user, fish_job_summary, fish_key_reader, fish_md5, fish_mode_prompt, fish_npm_helper, fish_opt, fish_print_git_action, fish_print_hg_root, fish_prompt, fish_sigtrap_handler, fish_svn_prompt, fish_title, fish_update_completions, fish_vcs_prompt, fish_vi_cursor, fish_vi_key_bindings, funced, funcsave, grep, help, history, hostname, isatty, kill, la, ll, ls, man, nextd, nextd-or-forward-word, open, popd, prevd, prevd-or-backward-word, prompt_hostname, prompt_pwd, psub, pushd, realpath, seq, setenv, suspend, trap, type, umask, up-or-search, vared, wait
+</pre></div>
+</div>
+<p>You can see the source for any function by passing its name to <code class="docutils literal notranslate"><span class="pre">functions</span></code>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">functions</span><span class="w"> </span><span class="no">ls</span><span class="w"></span>
+function ls --description &#39;List contents of directory&#39;
+    command ls -G $argv
+end
+</pre></div>
+</div>
+<p>For more, see <a class="reference internal" href="language.html#syntax-function"><span class="std std-ref">Functions</span></a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
+<dd><p>There is a function called <a class="reference internal" href="cmds/alias.html#cmd-alias"><span class="std std-ref">alias</span></a>, but it's just a shortcut to make functions.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="loops">
+<h2>Loops<a class="headerlink" href="#loops" title="Permalink to this headline">¶</a></h2>
+<p>While loops:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="k">while</span><span class="w"> </span><span class="nf">true</span><span class="w"></span>
+    echo &quot;Loop forever&quot;
+end
+Loop forever
+Loop forever
+Loop forever
+... # yes, this really will loop forever. Unless you abort it with ctrl-c.
+</pre></div>
+</div>
+<p>For loops can be used to iterate over a list. For example, a list of files:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="k">for</span><span class="w"> </span><span class="no">file</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">*</span><span class="no">.txt</span><span class="w"></span>
+    cp $file $file.bak
+end
+</pre></div>
+</div>
+<p>Iterating over a list of numbers can be done with <code class="docutils literal notranslate"><span class="pre">seq</span></code>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="k">for</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">(</span><span class="nf">seq</span><span class="w"> </span><span class="no">5</span><span class="o">)</span><span class="w"></span>
+    touch file_$x.txt
+end
+</pre></div>
+</div>
+<p>For more, see <a class="reference internal" href="language.html#syntax-loops-and-blocks"><span class="std std-ref">Loops and blocks</span></a>.</p>
+</div>
+<div class="section" id="prompt">
+<h2>Prompt<a class="headerlink" href="#prompt" title="Permalink to this headline">¶</a></h2>
+<p>Unlike other shells, there is no prompt variable like <code class="docutils literal notranslate"><span class="pre">PS1</span></code>. To display your prompt, fish executes the <a class="reference internal" href="cmds/fish_prompt.html#cmd-fish-prompt"><span class="std std-ref">fish_prompt</span></a> function and uses its output as the prompt. And if it exists, fish also executes the <a class="reference internal" href="cmds/fish_right_prompt.html#cmd-fish-right-prompt"><span class="std std-ref">fish_right_prompt</span></a> function and uses its output as the right prompt.</p>
+<p>You can define your own prompt from the command line:</p>
+<div class="highlight highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="k">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;New Prompt % &quot;</span><span class="p">;</span><span class="w"> </span><span class="k">end</span><span class="w"></span>
+New Prompt % _
+</pre></div>
+</div>
+<p>Then, if you are happy with it, you can save it to disk by typing <code class="docutils literal notranslate"><span class="pre">funcsave</span> <span class="pre">fish_prompt</span></code>. This saves the prompt in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/functions/fish_prompt.fish</span></code>. (Or, if you want, you can create that file manually from the start.)</p>
+<p>Multiple lines are OK. Colors can be set via <a class="reference internal" href="cmds/set_color.html#cmd-set-color"><span class="std std-ref">set_color</span></a>, passing it named ANSI colors, or hex RGB values:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
+<span class="w">    </span><span class="nf">set_color</span><span class="w"> </span><span class="no">purple</span><span class="w"></span>
+<span class="w">    </span><span class="nf">date</span><span class="w"> </span><span class="s2">&quot;+%m/%d/%y&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nf">set_color</span><span class="w"> </span><span class="no">F00</span><span class="w"></span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">(</span><span class="nf">pwd</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="o">)</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This prompt would look like:</p>
+<pre class="highlight literal-block"><span class="purple">02/06/13</span>
+<span class="red">/home/tutorial &gt;</span> _</pre>
+<p>You can choose among some sample prompts by running <code class="docutils literal notranslate"><span class="pre">fish_config</span></code> for a web UI or <code class="docutils literal notranslate"><span class="pre">fish_config</span> <span class="pre">prompt</span></code> for a simpler version inside your terminal.</p>
+</div>
+<div class="section" id="path">
+<h2>$PATH<a class="headerlink" href="#path" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">$PATH</span></code> is an environment variable containing the directories that fish searches for commands. Unlike other shells, $PATH is a <a class="reference internal" href="#tut-lists"><span class="std std-ref">list</span></a>, not a colon-delimited string.</p>
+<p>Fish takes care to set <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> to a default, but typically it is just inherited from fish's parent process and is set to a value that makes sense for the system - see <a class="reference internal" href="#tut-exports"><span class="std std-ref">Exports</span></a>.</p>
+<p>To prepend /usr/local/bin and /usr/sbin to <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>, you can write:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">PATH</span><span class="w"> </span><span class="no">/usr/local/bin</span><span class="w"> </span><span class="no">/usr/sbin</span><span class="w"> </span><span class="o">$PATH</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To remove /usr/local/bin from <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>, you can write:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">PATH</span><span class="w"> </span><span class="o">(</span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-v</span><span class="w"> </span><span class="no">/usr/local/bin</span><span class="w"> </span><span class="o">$PATH)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For compatibility with other shells and external commands, $PATH is a <a class="reference internal" href="language.html#variables-path"><span class="std std-ref">path variable</span></a>, and so will be joined with colons (not spaces) when you quote it:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$PATH</span><span class="s2">&quot;</span><span class="w"></span>
+/usr/local/sbin:/usr/local/bin:/usr/bin
+</pre></div>
+</div>
+<p>and it will be exported like that, and when fish starts it splits the $PATH it receives into a list on colon.</p>
+<p>You can do so directly in <code class="docutils literal notranslate"><span class="pre">config.fish</span></code>, like you might do in other shells with <code class="docutils literal notranslate"><span class="pre">.profile</span></code>. See <a class="reference internal" href="#path-example"><span class="std std-ref">this example</span></a>.</p>
+<p>A faster way is to use the <a class="reference internal" href="cmds/fish_add_path.html#cmd-fish-add-path"><span class="std std-ref">fish_add_path</span></a> function, which adds given directories to the path if they aren't already included. It does this by modifying the <code class="docutils literal notranslate"><span class="pre">$fish_user_paths</span></code> <a class="reference internal" href="#tut-universal"><span class="std std-ref">universal variable</span></a>, which is automatically prepended to <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>. For example, to permanently add <code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code> to your <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>, you could write:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">/usr/local/bin</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The advantage is that you don't have to go mucking around in files: just run this once at the command line, and it will affect the current session and all future instances too. You can also add this line to <a class="reference internal" href="#tut-config"><span class="std std-ref">config.fish</span></a>, as it only adds the component if necessary.</p>
+<p>Or you can modify $fish_user_paths yourself, but you should be careful <em>not</em> to append to it unconditionally in config.fish, or it will grow longer and longer.</p>
+</div>
+<div class="section" id="startup-where-s-bashrc">
+<span id="tut-config"></span><h2>Startup (Where's .bashrc?)<a class="headerlink" href="#startup-where-s-bashrc" title="Permalink to this headline">¶</a></h2>
+<p>Fish starts by executing commands in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code>. You can create it if it does not exist.</p>
+<p>It is possible to directly create functions and variables in <code class="docutils literal notranslate"><span class="pre">config.fish</span></code> file, using the commands shown above. For example:</p>
+<div class="highlight-fish-docs-samples notranslate" id="path-example"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">cat</span><span class="w"> </span><span class="o">~</span><span class="no">/.config/fish/config.fish</span><span class="w"></span>
+
+set -x PATH $PATH /sbin/
+
+function ll
+    ls -lh $argv
+end
+</pre></div>
+</div>
+<p>However, it is more common and efficient to use  autoloading functions and universal variables.</p>
+<p>If you want to organize your configuration, fish also reads commands in .fish files in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/conf.d/</span></code>. See <a class="reference internal" href="index.html#configuration"><span class="std std-ref">Configuration Files</span></a> for the details.</p>
+</div>
+<div class="section" id="autoloading-functions">
+<h2>Autoloading Functions<a class="headerlink" href="#autoloading-functions" title="Permalink to this headline">¶</a></h2>
+<p>When fish encounters a command, it attempts to autoload a function for that command, by looking for a file with the name of that command in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/functions/</span></code>.</p>
+<p>For example, if you wanted to have a function <code class="docutils literal notranslate"><span class="pre">ll</span></code>, you would add a text file <code class="docutils literal notranslate"><span class="pre">ll.fish</span></code> to <code class="docutils literal notranslate"><span class="pre">~/.config/fish/functions</span></code>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">cat</span><span class="w"> </span><span class="o">~</span><span class="no">/.config/fish/functions/ll.fish</span><span class="w"></span>
+function ll
+    ls -lh $argv
+end
+</pre></div>
+</div>
+<p>This is the preferred way to define your prompt as well:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">cat</span><span class="w"> </span><span class="o">~</span><span class="no">/.config/fish/functions/fish_prompt.fish</span><span class="w"></span>
+function fish_prompt
+    echo (pwd) &quot;&gt; &quot;
+end
+</pre></div>
+</div>
+<p>See the documentation for <a class="reference internal" href="cmds/funced.html#cmd-funced"><span class="std std-ref">funced</span></a> and <a class="reference internal" href="cmds/funcsave.html#cmd-funcsave"><span class="std std-ref">funcsave</span></a> for ways to create these files automatically, and <a class="reference internal" href="language.html#syntax-function-autoloading"><span class="std std-ref">$fish_function_path</span></a> to control their location.</p>
+</div>
+<div class="section" id="universal-variables">
+<span id="tut-universal"></span><h2>Universal Variables<a class="headerlink" href="#universal-variables" title="Permalink to this headline">¶</a></h2>
+<p>A universal variable is a variable whose value is shared across all instances of fish, now and in the future – even after a reboot. You can make a variable universal with <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-U</span></code>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-U</span><span class="w"> </span><span class="no">EDITOR</span><span class="w"> </span><span class="no">vim</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Now in another shell:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$EDITOR</span><span class="w"></span>
+vim
+</pre></div>
+</div>
+</div>
+<div class="section" id="switching-to-fish">
+<span id="id6"></span><h2>Switching to fish?<a class="headerlink" href="#switching-to-fish" title="Permalink to this headline">¶</a></h2>
+<p>If you wish to use fish (or any other shell) as your default shell,
+you need to enter your new shell's executable in two places.</p>
+<p>Add the shell to <code class="docutils literal notranslate"><span class="pre">/etc/shells</span></code> with:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="no">/usr/local/bin/fish</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">sudo</span><span class="w"> </span><span class="no">tee</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">/etc/shells</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Change your default shell with:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">chsh</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">/usr/local/bin/fish</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This assumes you installed fish to /usr/local/bin, which is the default location when you've compiled it yourself. If you installed it with a package manager, the usual location is /usr/bin/fish, but package managers typically already add it to /etc/shells. Just substitute the correct location.</p>
+<p>(To change it back to another shell, just substitute <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/fish</span></code>
+with <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code>, <code class="docutils literal notranslate"><span class="pre">/bin/tcsh</span></code> or <code class="docutils literal notranslate"><span class="pre">/bin/zsh</span></code> as appropriate in the steps above.)</p>
+</div>
+<div class="section" id="ready-for-more">
+<h2>Ready for more?<a class="headerlink" href="#ready-for-more" title="Permalink to this headline">¶</a></h2>
+<p>If you want to learn more about fish, there is <a class="reference internal" href="index.html#intro"><span class="std std-ref">lots of detailed documentation</span></a>, the <a class="reference external" href="https://gitter.im/fish-shell/fish-shell">official gitter channel</a>, an <a class="reference external" href="https://lists.sourceforge.net/lists/listinfo/fish-users">official mailing list</a>, and the <a class="reference external" href="https://github.com/fish-shell/fish-shell/">github page</a>.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div> 
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+        <li class="nav-item nav-item-this"><a href="">Tutorial</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2021, fish-shell developers.
+    <br />
+    <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+</div>
+
+  </body>
+</html>

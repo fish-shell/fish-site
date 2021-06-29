@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>status - query fish runtime information &#8212; fish-shell 3.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="string - manipulate strings" href="string.html" />
+    <link rel="prev" title="source - evaluate contents of file" href="source.html" />
+    <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
+     
+
+  </head><body><div id="fmain">  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">status - query fish runtime information</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div>
+<h3><a href="../index.html">Documents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div>
+<h4><a href="../index.html">Sections</a></h4>
+<ul>
+<li><a class="reference internal" href="#">status - query fish runtime information</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="status-query-fish-runtime-information">
+<span id="cmd-status"></span><h1>status - query fish runtime information<a class="headerlink" href="#status-query-fish-runtime-information" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">status</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-login</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-interactive</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-block</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-breakpoint</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-command-substitution</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-no-job-control</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-full-job-control</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-interactive-job-control</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">current-command</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">filename</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">basename</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">dirname</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">fish-path</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">function</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">line-number</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">stack-trace</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">job-control</span><span class="w"> </span><span class="no">CONTROL_TYPE</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">features</span><span class="w"></span>
+<span class="nf">status</span><span class="w"> </span><span class="no">test-feature</span><span class="w"> </span><span class="no">FEATURE</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>With no arguments, <code class="docutils literal notranslate"><span class="pre">status</span></code> displays a summary of the current login and job control status of the shell.</p>
+<p>The following operations (sub-commands) are available:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">is-command-substitution</span></code> returns 0 if fish is currently executing a command substitution. Also <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--is-command-substitution</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is-block</span></code> returns 0 if fish is currently executing a block of code. Also <code class="docutils literal notranslate"><span class="pre">-b</span></code> or <code class="docutils literal notranslate"><span class="pre">--is-block</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is-breakpoint</span></code> returns 0 if fish is currently showing a prompt in the context of a <code class="docutils literal notranslate"><span class="pre">breakpoint</span></code> command. See also the <code class="docutils literal notranslate"><span class="pre">fish_breakpoint_prompt</span></code> function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is-interactive</span></code> returns 0 if fish is interactive - that is, connected to a keyboard. Also <code class="docutils literal notranslate"><span class="pre">-i</span></code> or <code class="docutils literal notranslate"><span class="pre">--is-interactive</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is-login</span></code> returns 0 if fish is a login shell - that is, if fish should perform login tasks such as setting up the PATH. Also <code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--is-login</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is-full-job-control</span></code> returns 0 if full job control is enabled. Also <code class="docutils literal notranslate"><span class="pre">--is-full-job-control</span></code> (no short flag).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is-interactive-job-control</span></code> returns 0 if interactive job control is enabled. Also, <code class="docutils literal notranslate"><span class="pre">--is-interactive-job-control</span></code> (no short flag).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is-no-job-control</span></code> returns 0 if no job control is enabled. Also <code class="docutils literal notranslate"><span class="pre">--is-no-job-control</span></code> (no short flag).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">current-command</span></code> prints the name of the currently-running function or command, like the deprecated <code class="docutils literal notranslate"><span class="pre">_</span></code> variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code> prints the filename of the currently running script. Also <code class="docutils literal notranslate"><span class="pre">current-filename</span></code>, <code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-filename</span></code>. This depends on how the script was called - if it was called via a symlink, the symlink will be returned, and if the current script was received via <code class="docutils literal notranslate"><span class="pre">source</span></code> it will be <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basename</span></code> prints just the filename of the running script, without any path-components before.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dirname</span></code> prints just the path to the running script, without the actual filename itself. This can be relative to $PWD (including just &quot;.&quot;), depending on how the script was called. This is the same as passing the <code class="docutils literal notranslate"><span class="pre">filename</span></code> to <code class="docutils literal notranslate"><span class="pre">dirname(3)</span></code>. It's useful if you want to use other files in the current script's directory or similar.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish-path</span></code> prints the absolute path to the currently executing instance of fish.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">function</span></code> prints the name of the currently called function if able, when missing displays &quot;Not a
+function&quot; (or equivalent translated string). Also <code class="docutils literal notranslate"><span class="pre">current-function</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">line-number</span></code> prints the line number of the currently running script. Also <code class="docutils literal notranslate"><span class="pre">current-line-number</span></code>, <code class="docutils literal notranslate"><span class="pre">-n</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-line-number</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stack-trace</span></code> prints a stack trace of all function calls on the call stack. Also <code class="docutils literal notranslate"><span class="pre">print-stack-trace</span></code>, <code class="docutils literal notranslate"><span class="pre">-t</span></code> or <code class="docutils literal notranslate"><span class="pre">--print-stack-trace</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">job-control</span> <span class="pre">CONTROL_TYPE</span></code> sets the job control type, which can be <code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">full</span></code>, or <code class="docutils literal notranslate"><span class="pre">interactive</span></code>. Also <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">CONTROL_TYPE</span></code> or <code class="docutils literal notranslate"><span class="pre">--job-control</span> <span class="pre">CONTROL_TYPE</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">features</span></code> lists all available feature flags.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test-feature</span> <span class="pre">FEATURE</span></code> returns 0 when FEATURE is enabled, 1 if it is disabled, and 2 if it is not recognized.</p></li>
+</ul>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>For backwards compatibility most subcommands can also be specified as a long or short option. For example, rather than <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">is-login</span></code> you can type <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">--is-login</span></code>. The flag forms are deprecated and may be removed in a future release (but not before fish 4.0).</p>
+<p>You can only specify one subcommand per invocation even if you use the flag form of the subcommand.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div> 
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">status - query fish runtime information</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2021, fish-shell developers.
+    <br />
+    <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+</div>
+
+  </body>
+</html>

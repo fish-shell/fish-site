@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>functions - print or erase functions &#8212; fish-shell 3.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="help - display fish documentation" href="help.html" />
+    <link rel="prev" title="function - create a function" href="function.html" />
+    <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
+     
+
+  </head><body><div id="fmain">  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">functions - print or erase functions</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div>
+<h3><a href="../index.html">Documents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div>
+<h4><a href="../index.html">Sections</a></h4>
+<ul>
+<li><a class="reference internal" href="#">functions - print or erase functions</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#see-more">See more</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="functions-print-or-erase-functions">
+<span id="cmd-functions"></span><h1>functions - print or erase functions<a class="headerlink" href="#functions-print-or-erase-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">functions</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--all</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--names</span><span class="w"> </span><span class="no">]</span><span class="w"></span>
+<span class="nf">functions</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">-D</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--details</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">-v</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">FUNCTION</span><span class="w"></span>
+<span class="nf">functions</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">OLDNAME</span><span class="w"> </span><span class="no">NEWNAME</span><span class="w"></span>
+<span class="nf">functions</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="no">DESCRIPTION</span><span class="w"> </span><span class="no">FUNCTION</span><span class="w"></span>
+<span class="nf">functions</span><span class="w"> </span><span class="no">[</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">-q</span><span class="w"> </span><span class="no">]</span><span class="w"> </span><span class="no">FUNCTIONS...</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">functions</span></code> prints or erases functions.</p>
+<p>The following options are available:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--all</span></code> lists all functions, even those whose name starts with an underscore.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">OLDNAME</span> <span class="pre">NEWNAME</span></code> or <code class="docutils literal notranslate"><span class="pre">--copy</span> <span class="pre">OLDNAME</span> <span class="pre">NEWNAME</span></code> creates a new function named NEWNAME, using the definition of the OLDNAME function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">DESCRIPTION</span></code> or <code class="docutils literal notranslate"><span class="pre">--description=DESCRIPTION</span></code> changes the description of this function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code> causes the specified functions to be erased. This also means that it is prevented from autoloading.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-D</span></code> or <code class="docutils literal notranslate"><span class="pre">--details</span></code> reports the path name where the specified function is defined or could be autoloaded, <code class="docutils literal notranslate"><span class="pre">stdin</span></code> if the function was defined interactively or on the command line or by reading stdin, <code class="docutils literal notranslate"><span class="pre">-</span></code> if the function was created via <a class="reference internal" href="source.html#cmd-source"><span class="std std-ref">source</span></a>, and <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn't available. (Functions created via <a class="reference internal" href="alias.html#cmd-alias"><span class="std std-ref">alias</span></a> will return <code class="docutils literal notranslate"><span class="pre">-</span></code>, because <code class="docutils literal notranslate"><span class="pre">alias</span></code> uses <code class="docutils literal notranslate"><span class="pre">source</span></code> internally.) If the <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> option is also specified then five lines are written:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the pathname as already described,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">autoloaded</span></code>, <code class="docutils literal notranslate"><span class="pre">not-autoloaded</span></code> or <code class="docutils literal notranslate"><span class="pre">n/a</span></code>,</p></li>
+<li><p>the line number within the file or zero if not applicable,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scope-shadowing</span></code> if the function shadows the vars in the calling function (the normal case if it wasn't defined with <code class="docutils literal notranslate"><span class="pre">--no-scope-shadowing</span></code>), else <code class="docutils literal notranslate"><span class="pre">no-scope-shadowing</span></code>, or <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn't defined,</p></li>
+<li><p>the function description minimally escaped so it is a single line or <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn't defined.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>You should not assume that only five lines will be written since we may add additional information to the output in the future.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--no-details</span></code> turns off function path reporting, so just the definition will be printed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code> or <code class="docutils literal notranslate"><span class="pre">--names</span></code> lists the names of all defined functions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-q</span></code> or <code class="docutils literal notranslate"><span class="pre">--query</span></code> tests if the specified functions exist.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> will make some output more verbose.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-H</span></code> or <code class="docutils literal notranslate"><span class="pre">--handlers</span></code> will show all event handlers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code> or <code class="docutils literal notranslate"><span class="pre">--handlers-type</span> <span class="pre">TYPE</span></code> will show all event handlers matching the given type</p></li>
+</ul>
+<p>The default behavior of <code class="docutils literal notranslate"><span class="pre">functions</span></code>, when called with no arguments, is to print the names of all defined functions. Unless the <code class="docutils literal notranslate"><span class="pre">-a</span></code> option is given, no functions starting with underscores are included in the output.</p>
+<p>If any non-option parameters are given, the definition of the specified functions are printed.</p>
+<p>Copying a function using <code class="docutils literal notranslate"><span class="pre">-c</span></code> copies only the body of the function, and does not attach any event notifications from the original function.</p>
+<p>Only one function's description can be changed in a single invocation of <code class="docutils literal notranslate"><span class="pre">functions</span> <span class="pre">-d</span></code>.</p>
+<p>The exit status of <code class="docutils literal notranslate"><span class="pre">functions</span></code> is the number of functions specified in the argument list that do not exist, which can be used in concert with the <code class="docutils literal notranslate"><span class="pre">-q</span></code> option.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">functions</span><span class="w"> </span><span class="no">-n</span><span class="w"></span>
+<span class="c"># Displays a list of currently-defined functions</span><span class="w"></span>
+
+<span class="nf">functions</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">bar</span><span class="w"></span>
+<span class="c"># Copies the &#39;foo&#39; function to a new function called &#39;bar&#39;</span><span class="w"></span>
+
+<span class="nf">functions</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">bar</span><span class="w"></span>
+<span class="c"># Erases the function ``bar``</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="see-more">
+<h2>See more<a class="headerlink" href="#see-more" title="Permalink to this headline">¶</a></h2>
+<p>For more explanation of how functions fit into fish, see <a class="reference internal" href="../language.html#syntax-function"><span class="std std-ref">Functions</span></a>.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div> 
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">functions - print or erase functions</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2021, fish-shell developers.
+    <br />
+    <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+</div>
+
+  </body>
+</html>

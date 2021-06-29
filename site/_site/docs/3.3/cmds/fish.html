@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fish - the friendly interactive shell &#8212; fish-shell 3.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="fish_add_path - add to the path" href="fish_add_path.html" />
+    <link rel="prev" title="fg - bring job to foreground" href="fg.html" />
+    <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
+     
+
+  </head><body><div id="fmain">  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fish - the friendly interactive shell</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div>
+<h3><a href="../index.html">Documents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div>
+<h4><a href="../index.html">Sections</a></h4>
+<ul>
+<li><a class="reference internal" href="#">fish - the friendly interactive shell</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#debugging">Debugging</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="fish-the-friendly-interactive-shell">
+<span id="cmd-fish"></span><h1>fish - the friendly interactive shell<a class="headerlink" href="#fish-the-friendly-interactive-shell" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">fish</span><span class="w"> </span><span class="no">[OPTIONS]</span><span class="w"> </span><span class="no">[-c</span><span class="w"> </span><span class="no">command]</span><span class="w"> </span><span class="no">[FILE]</span><span class="w"> </span><span class="no">[ARGUMENTS...]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>fish is a command-line shell written mainly with interactive use in mind. This page briefly describes the options for invoking fish. The <a class="reference internal" href="../index.html#intro"><span class="std std-ref">full manual</span></a> is available in HTML by using the <a class="reference internal" href="help.html#cmd-help"><span class="std std-ref">help</span></a> command from inside fish, and in the <cite>fish-doc(1)</cite> man page. The <a class="reference internal" href="../tutorial.html#tutorial"><span class="std std-ref">tutorial</span></a> is available as HTML via <code class="docutils literal notranslate"><span class="pre">help</span> <span class="pre">tutorial</span></code> or in <cite>fish-tutorial(1)</cite>.</p>
+<p>The following options are available:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--command=COMMANDS</span></code> evaluate the specified commands instead of reading from the commandline, passing any additional positional arguments via <a class="reference internal" href="../language.html#variables-argv"><span class="std std-ref">$argv</span></a>. Note that, unlike other shells, the first argument is <em>not</em> the name of the program (<code class="docutils literal notranslate"><span class="pre">$0</span></code>), but simply the first normal argument.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-C</span></code> or <code class="docutils literal notranslate"><span class="pre">--init-command=COMMANDS</span></code> evaluate the specified commands after reading the configuration, before running the command specified by <code class="docutils literal notranslate"><span class="pre">-c</span></code> or reading interactive input</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span></code> or <code class="docutils literal notranslate"><span class="pre">--debug=DEBUG_CATEGORIES</span></code> enable debug output and specify a pattern for matching debug categories. See <a class="reference internal" href="#debugging-fish"><span class="std std-ref">Debugging</span></a> below for details.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span></code> or <code class="docutils literal notranslate"><span class="pre">--debug-output=DEBUG_FILE</span></code> specify a file path to receive the debug output, including categories and <code class="docutils literal notranslate"><span class="pre">fish_trace</span></code>. The default is stderr.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span></code> or <code class="docutils literal notranslate"><span class="pre">--interactive</span></code> specify that fish is to run in interactive mode</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--login</span></code> specify that fish is to run as a login shell</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-execute</span></code> do not execute any commands, only perform syntax checking</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--profile=PROFILE_FILE</span></code> when fish exits, output timing information on all executed commands to the specified file. This excludes time spent starting up and reading the configuration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--profile-startup=PROFILE_FILE</span></code> will write timing information for fish's startup to the specified file. This is useful to profile your configuration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-P</span></code> or <code class="docutils literal notranslate"><span class="pre">--private</span></code> enables <a class="reference internal" href="../interactive.html#private-mode"><span class="std std-ref">private mode</span></a>, so fish will not access old or store new history.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--print-rusage-self</span></code> when fish exits, output stats from getrusage</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--print-debug-categories</span></code> outputs the list of debug categories, and then exits.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--version</span></code> display version and exit</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--features=FEATURES</span></code> enables one or more <a class="reference internal" href="../language.html#featureflags"><span class="std std-ref">feature flags</span></a> (separated by a comma). These are how fish stages changes that might break scripts.</p></li>
+</ul>
+<p>The fish exit status is generally the <a class="reference internal" href="../language.html#variables-status"><span class="std std-ref">exit status of the last foreground command</span></a>.</p>
+</div>
+<div class="section" id="debugging">
+<span id="debugging-fish"></span><h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<p>While fish provides extensive support for <a class="reference internal" href="../language.html#debugging"><span class="std std-ref">debugging fish scripts</span></a>, it is also possible to debug and instrument its internals. Debugging can be enabled by passing the <code class="docutils literal notranslate"><span class="pre">--debug</span></code> option. For example, the following command turns on debugging for background IO thread events, in addition to the default categories, i.e. <em>debug</em>, <em>error</em>, <em>warning</em>, and <em>warning-path</em>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish</span><span class="w"> </span><span class="no">--debug=iothread</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Available categories are listed by <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">--print-debug-categories</span></code>. The <code class="docutils literal notranslate"><span class="pre">--debug</span></code> option accepts a comma-separated list of categories, and supports glob syntax. The following command turns on debugging for <em>complete</em>, <em>history</em>, <em>history-file</em>, and <em>profile-history</em>, as well as the default categories:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish</span><span class="w"> </span><span class="no">--debug=</span><span class="s1">&#39;complete,*history*&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Debug messages output to stderr by default. Note that if <code class="docutils literal notranslate"><span class="pre">fish_trace</span></code> is set, execution tracing also outputs to stderr by default. You can output to a file using the <code class="docutils literal notranslate"><span class="pre">--debug-output</span></code> option:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish</span><span class="w"> </span><span class="no">--debug=</span><span class="s1">&#39;complete,*history*&#39;</span><span class="w"> </span><span class="no">--debug-output=/tmp/fish.log</span><span class="w"> </span><span class="no">--init-command=</span><span class="s1">&#39;set fish_trace on&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>These options can also be changed via the $FISH_DEBUG and $FISH_DEBUG_OUTPUT variables. The categories enabled via <code class="docutils literal notranslate"><span class="pre">--debug</span></code> are <em>added</em> to the ones enabled by $FISH_DEBUG, so they can be disabled by prefixing them with <code class="docutils literal notranslate"><span class="pre">-</span></code> (<code class="docutils literal notranslate"><span class="pre">reader-*,-ast*</span></code> enables reader debugging and disables ast debugging).</p>
+<p>The file given in <code class="docutils literal notranslate"><span class="pre">--debug-output</span></code> takes precedence over the file in $FISH_DEBUG_OUTPUT.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div> 
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fish - the friendly interactive shell</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2021, fish-shell developers.
+    <br />
+    <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>printf - display text according to a format string &#8212; fish-shell 3.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="prompt_login - describe the login suitable for prompt" href="prompt_login.html" />
+    <link rel="prev" title="prevd - move backward through directory history" href="prevd.html" />
+    <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
+     
+
+  </head><body><div id="fmain">  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">printf - display text according to a format string</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div>
+<h3><a href="../index.html">Documents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div>
+<h4><a href="../index.html">Sections</a></h4>
+<ul>
+<li><a class="reference internal" href="#">printf - display text according to a format string</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#format-specifiers">Format Specifiers</a></li>
+<li><a class="reference internal" href="#backslash-escapes">Backslash Escapes</a></li>
+<li><a class="reference internal" href="#errors-and-return-status">Errors and Return Status</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+<li><a class="reference internal" href="#footnotes">Footnotes</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="printf-display-text-according-to-a-format-string">
+<span id="cmd-printf"></span><h1>printf - display text according to a format string<a class="headerlink" href="#printf-display-text-according-to-a-format-string" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">printf</span><span class="w"> </span><span class="no">FORMAT</span><span class="w"> </span><span class="no">[ARGUMENT</span><span class="w"> </span><span class="no">...]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>printf uses the format string FORMAT to print the ARGUMENT arguments. This means that it takes format specifiers in the format string and replaces each with an argument.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">format</span></code> argument is re-used as many times as necessary to convert all of the given arguments. So <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%s\n</span> <span class="pre">flounder</span> <span class="pre">catfish</span> <span class="pre">clownfish</span> <span class="pre">shark</span></code> will print four lines.</p>
+<p>Unlike <a class="reference internal" href="echo.html#cmd-echo"><span class="std std-ref">echo</span></a>, <code class="docutils literal notranslate"><span class="pre">printf</span></code> does not append a new line unless it is specified as part of the string.</p>
+<p>It doesn't support any options, so there is no need for a <code class="docutils literal notranslate"><span class="pre">--</span></code> separator, which makes it easier to use for arbitrary input than <code class="docutils literal notranslate"><span class="pre">echo</span></code>. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+</div>
+<div class="section" id="format-specifiers">
+<h2>Format Specifiers<a class="headerlink" href="#format-specifiers" title="Permalink to this headline">¶</a></h2>
+<p>Valid format specifiers are taken from the C library function <code class="docutils literal notranslate"><span class="pre">printf(3)</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%d</span></code> or <code class="docutils literal notranslate"><span class="pre">%i</span></code>: Argument will be used as decimal integer (signed or unsigned)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%o</span></code>: An octal unsigned integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%u</span></code>: An unsigned decimal integer - this means negative numbers will wrap around</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%x</span></code> or <code class="docutils literal notranslate"><span class="pre">%X</span></code>: An unsigned hexadecimal integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%f</span></code>, <code class="docutils literal notranslate"><span class="pre">%g</span></code> or <code class="docutils literal notranslate"><span class="pre">%G</span></code>: A floating-point number. <code class="docutils literal notranslate"><span class="pre">%f</span></code> defaults to 6 places after the decimal point (which is locale-dependent - e.g. in de_DE it will be a <code class="docutils literal notranslate"><span class="pre">,</span></code>). <code class="docutils literal notranslate"><span class="pre">%g</span></code> and <code class="docutils literal notranslate"><span class="pre">%G</span></code> will trim trailing zeroes and switch to scientific notation (like <code class="docutils literal notranslate"><span class="pre">%e</span></code>) if the numbers get small or large enough.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%e</span></code> or <code class="docutils literal notranslate"><span class="pre">%E</span></code>: A floating-point number in scientific (XXXeYY) notation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%s</span></code>: A string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%b</span></code>: As a string, interpreting backslash escapes, except that octal escapes are of the form 0 or 0ooo.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">%%</span></code> signifies a literal &quot;%&quot;.</p>
+<p>Conversion can fail, e.g. &quot;102.234&quot; can't losslessly convert to an integer, causing printf to print an error. If you are okay with losing information, silence errors with <code class="docutils literal notranslate"><span class="pre">2&gt;/dev/null</span></code>.</p>
+<p>A number between the <code class="docutils literal notranslate"><span class="pre">%</span></code> and the format letter specifies the width. The result will be left-padded with spaces.</p>
+</div>
+<div class="section" id="backslash-escapes">
+<h2>Backslash Escapes<a class="headerlink" href="#backslash-escapes" title="Permalink to this headline">¶</a></h2>
+<p>printf also knows a number of backslash escapes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\&quot;</span></code> double quote</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\\</span></code> backslash</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\a</span></code> alert (bell)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\b</span></code> backspace</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\c</span></code> produce no further output</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\e</span></code> escape</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\f</span></code> form feed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\n</span></code> new line</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\r</span></code> carriage return</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\t</span></code> horizontal tab</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\v</span></code> vertical tab</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\ooo</span></code> octal number (ooo is 1 to 3 digits)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\xhh</span></code> hexadecimal number (hhh is 1 to 2 digits)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\uhhhh</span></code> 16-bit Unicode character (hhhh is 4 digits)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\Uhhhhhhhh</span></code> 32-bit Unicode character (hhhhhhhh is 8 digits)</p></li>
+</ul>
+</div>
+<div class="section" id="errors-and-return-status">
+<h2>Errors and Return Status<a class="headerlink" href="#errors-and-return-status" title="Permalink to this headline">¶</a></h2>
+<p>If the given argument doesn't work for the given format (like when you try to convert a number like 3.141592 to an integer), printf prints an error, to stderr. printf will then also return non-zero, but will still try to print as much as it can.</p>
+<p>It will also return non-zero if no argument at all was given, in which case it will print nothing.</p>
+<p>This printf has been imported from the printf in GNU Coreutils version 6.9. If you would like to use a newer version of printf, for example the one shipped with your OS, try <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">printf</span></code>.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s\t%s\n&#39;</span><span class="w"> </span><span class="no">flounder</span><span class="w"> </span><span class="no">fish</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Will print &quot;flounder    fish&quot; (separated with a tab character), followed by a newline character. This is useful for writing completions, as fish expects completion scripts to output the option followed by the description, separated with a tab character.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s: %d&#39;</span><span class="w"> </span><span class="s2">&quot;Number of bananas in my pocket&quot;</span><span class="w"> </span><span class="no">42</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Will print &quot;Number of bananas in my pocket: 42&quot;, <cite>without</cite> a newline.</p>
+</div>
+<div class="section" id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>the <a class="reference internal" href="echo.html#cmd-echo"><span class="std std-ref">echo</span></a> command, for simpler output</p></li>
+</ul>
+</div>
+<div class="section" id="footnotes">
+<h2>Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>(in fact while fish's <code class="docutils literal notranslate"><span class="pre">echo</span></code> supports <code class="docutils literal notranslate"><span class="pre">--</span></code>, POSIX forbids it, so other implementations can't be used if the input contains anything starting with <code class="docutils literal notranslate"><span class="pre">-</span></code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div> 
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">printf - display text according to a format string</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2021, fish-shell developers.
+    <br />
+    <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>complete - edit command specific tab-completions &#8212; fish-shell 3.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="contains - test if a word is present in a list" href="contains.html" />
+    <link rel="prev" title="commandline - set or get the current command line buffer" href="commandline.html" />
+    <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
+     
+
+  </head><body><div id="fmain">  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">complete - edit command specific tab-completions</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div>
+<h3><a href="../index.html">Documents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div>
+<h4><a href="../index.html">Sections</a></h4>
+<ul>
+<li><a class="reference internal" href="#">complete - edit command specific tab-completions</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="complete-edit-command-specific-tab-completions">
+<span id="cmd-complete"></span><h1>complete - edit command specific tab-completions<a class="headerlink" href="#complete-edit-command-specific-tab-completions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="w"> </span><span class="nf">-c</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--command</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">-p</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--path</span><span class="w"> </span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">COMMAND</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -c | --command | -p | --path </span><span class="o">)</span><span class="w"> </span><span class="no">COMMAND]...</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -e | --erase </span><span class="o">)</span><span class="nf">]</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -s | --short-option </span><span class="o">)</span><span class="w"> </span><span class="no">SHORT_OPTION]...</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -l | --long-option | -o | --old-option </span><span class="o">)</span><span class="w"> </span><span class="no">LONG_OPTION]...</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -a | --arguments </span><span class="o">)</span><span class="w"> </span><span class="no">ARGUMENTS]</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -k | --keep-order </span><span class="o">)</span><span class="nf">]</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -f | --no-files </span><span class="o">)</span><span class="nf">]</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -F | --force-files </span><span class="o">)</span><span class="nf">]</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -r | --require-parameter </span><span class="o">)</span><span class="nf">]</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -x | --exclusive </span><span class="o">)</span><span class="nf">]</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -w | --wraps </span><span class="o">)</span><span class="w"> </span><span class="no">WRAPPED_COMMAND]...</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -n | --condition </span><span class="o">)</span><span class="w"> </span><span class="no">CONDITION]</span><span class="w"></span>
+<span class="w">        </span><span class="nf">[</span><span class="o">(</span><span class="nf"> -d | --description </span><span class="o">)</span><span class="w"> </span><span class="no">DESCRIPTION]</span><span class="w"></span>
+<span class="nf">complete</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nf">-C</span><span class="w"> </span><span class="no">[STRING]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--do-complete[=STRING]</span><span class="w"> </span><span class="o">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">complete</span></code> defines, removes or lists completions for a command.</p>
+<p>For an introduction to writing your own completions, see <a class="reference internal" href="../completions.html#completion-own"><span class="std std-ref">Writing your own completions</span></a> in
+the fish manual.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">COMMAND</span></code> or <code class="docutils literal notranslate"><span class="pre">--command</span> <span class="pre">COMMAND</span></code> specifies that <code class="docutils literal notranslate"><span class="pre">COMMAND</span></code> is the name of the command. If there is no <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">-p</span></code>, one non-option argument will be used as the command.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">COMMAND</span></code> or <code class="docutils literal notranslate"><span class="pre">--path</span> <span class="pre">COMMAND</span></code> specifies that <code class="docutils literal notranslate"><span class="pre">COMMAND</span></code> is the absolute path of the command (optionally containing wildcards).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code> deletes the specified completion.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">SHORT_OPTION</span></code> or <code class="docutils literal notranslate"><span class="pre">--short-option=SHORT_OPTION</span></code> adds a short option to the completions list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">LONG_OPTION</span></code> or <code class="docutils literal notranslate"><span class="pre">--long-option=LONG_OPTION</span></code> adds a GNU style long option to the completions list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">LONG_OPTION</span></code> or <code class="docutils literal notranslate"><span class="pre">--old-option=LONG_OPTION</span></code> adds an old style long option to the completions list (See below for details).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-a</span> <span class="pre">ARGUMENTS</span></code> or <code class="docutils literal notranslate"><span class="pre">--arguments=ARGUMENTS</span></code> adds the specified option arguments to the completions list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-k</span></code> or <code class="docutils literal notranslate"><span class="pre">--keep-order</span></code> keeps the order of <code class="docutils literal notranslate"><span class="pre">ARGUMENTS</span></code> instead of sorting alphabetically. Multiple <code class="docutils literal notranslate"><span class="pre">complete</span></code> calls with <code class="docutils literal notranslate"><span class="pre">-k</span></code> result in arguments of the later ones displayed first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-files</span></code> says that this completion may not be followed by a filename.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-F</span></code> or <code class="docutils literal notranslate"><span class="pre">--force-files</span></code> says that this completion may be followed by a filename, even if another applicable <code class="docutils literal notranslate"><span class="pre">complete</span></code> specified <code class="docutils literal notranslate"><span class="pre">--no-files</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code> or <code class="docutils literal notranslate"><span class="pre">--require-parameter</span></code> says that this completion must have an option argument, i.e. may not be followed by another option.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-x</span></code> or <code class="docutils literal notranslate"><span class="pre">--exclusive</span></code> is short for <code class="docutils literal notranslate"><span class="pre">-r</span></code> and <code class="docutils literal notranslate"><span class="pre">-f</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">WRAPPED_COMMAND</span></code> or <code class="docutils literal notranslate"><span class="pre">--wraps=WRAPPED_COMMAND</span></code> causes the specified command to inherit completions from the wrapped command (See below for details).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">CONDITION</span></code> or <code class="docutils literal notranslate"><span class="pre">--condition</span> <span class="pre">CONDITION</span></code> specifies that this completion should only be used if the CONDITION (a shell command) returns 0. This makes it possible to specify completions that should only be used in some cases.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-C</span> <span class="pre">STRING</span></code> or <code class="docutils literal notranslate"><span class="pre">--do-complete=STRING</span></code> makes complete try to find all possible completions for the specified string. If there is no STRING, the current commandline is used instead.</p></li>
+</ul>
+<p>Command specific tab-completions in <code class="docutils literal notranslate"><span class="pre">fish</span></code> are based on the notion of options and arguments. An option is a parameter which begins with a hyphen, such as <code class="docutils literal notranslate"><span class="pre">-h</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code> or <code class="docutils literal notranslate"><span class="pre">--help</span></code>. Arguments are parameters that do not begin with a hyphen. Fish recognizes three styles of options, the same styles as the GNU getopt library. These styles are:</p>
+<ul class="simple">
+<li><p>Short options, like <code class="docutils literal notranslate"><span class="pre">-a</span></code>. Short options are a single character long, are preceded by a single hyphen and can be grouped together (like <code class="docutils literal notranslate"><span class="pre">-la</span></code>, which is equivalent to <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-a</span></code>). Option arguments may be specified in the following parameter (<code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">32</span></code>) or by appending the option with the value (<code class="docutils literal notranslate"><span class="pre">-w32</span></code>).</p></li>
+<li><p>Old style long options, like <code class="docutils literal notranslate"><span class="pre">-Wall</span></code> or <code class="docutils literal notranslate"><span class="pre">-name</span></code>. Old style long options can be more than one character long, are preceded by a single hyphen and may not be grouped together. Option arguments are specified in the following parameter (<code class="docutils literal notranslate"><span class="pre">-ao</span> <span class="pre">null</span></code>).</p></li>
+<li><p>GNU style long options, like <code class="docutils literal notranslate"><span class="pre">--colors</span></code>. GNU style long options can be more than one character long, are preceded by two hyphens, and can't be grouped together. Option arguments may be specified in the following parameter (<code class="docutils literal notranslate"><span class="pre">--quoting-style</span> <span class="pre">shell</span></code>) or after a <code class="docutils literal notranslate"><span class="pre">=</span></code> (<code class="docutils literal notranslate"><span class="pre">--quoting-style=shell</span></code>).</p></li>
+</ul>
+<p>Multiple commands and paths can be given in one call to define the same completions for multiple commands.</p>
+<p>Multiple command switches and wrapped commands can also be given to define multiple completions in one call.</p>
+<p>Invoking <code class="docutils literal notranslate"><span class="pre">complete</span></code> multiple times for the same command adds the new definitions on top of any existing completions defined for the command.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--arguments</span></code> is specified in conjunction with long, short, or old style options, the specified arguments are only completed as arguments for any of the specified options. If <code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--arguments</span></code> is specified without any long, short, or old style options, the specified arguments are used when completing non-option arguments to the command (except when completing an option argument that was specified with <code class="docutils literal notranslate"><span class="pre">-r</span></code> or <code class="docutils literal notranslate"><span class="pre">--require-parameter</span></code>).</p>
+<p>Command substitutions found in <code class="docutils literal notranslate"><span class="pre">ARGUMENTS</span></code> should return a newline-separated list of arguments, and each argument may optionally have a tab character followed by the argument description. Description given this way override a description given with <code class="docutils literal notranslate"><span class="pre">-d</span></code> or <code class="docutils literal notranslate"><span class="pre">--description</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-w</span></code> or <code class="docutils literal notranslate"><span class="pre">--wraps</span></code> options causes the specified command to inherit completions from another command, &quot;wrapping&quot; the other command. The wrapping command can also have additional completions. A command can wrap multiple commands, and wrapping is transitive: if A wraps B, and B wraps C, then A automatically inherits all of C's completions. Wrapping can be removed using the <code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code> options. Wrapping only works for completions specified with <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--command</span></code> and are ignored when specifying completions with <code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--path</span></code>.</p>
+<p>When erasing completions, it is possible to either erase all completions for a specific command by specifying <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">COMMAND</span> <span class="pre">-e</span></code>, or by specifying a specific completion option to delete.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">complete</span></code> is called without anything that would define or erase completions (options, arguments, wrapping, ...), it shows matching completions instead. So <code class="docutils literal notranslate"><span class="pre">complete</span></code> without any arguments shows all loaded completions, <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">foo</span></code> shows all loaded completions for <code class="docutils literal notranslate"><span class="pre">foo</span></code>. Since completions are <a class="reference internal" href="../language.html#syntax-function-autoloading"><span class="std std-ref">autoloaded</span></a>, you will have to trigger them first.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The short style option <code class="docutils literal notranslate"><span class="pre">-o</span></code> for the <code class="docutils literal notranslate"><span class="pre">gcc</span></code> command needs a file argument:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">gcc</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-r</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The short style option <code class="docutils literal notranslate"><span class="pre">-d</span></code> for the <code class="docutils literal notranslate"><span class="pre">grep</span></code> command requires one of <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">skip</span></code> or <code class="docutils literal notranslate"><span class="pre">recurse</span></code>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">grep</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">d</span><span class="w"> </span><span class="no">-x</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;read skip recurse&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">su</span></code> command takes any username as an argument. Usernames are given as the first colon-separated field in the file /etc/passwd. This can be specified as:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-x</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">su</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s2">&quot;Username&quot;</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;(cat /etc/passwd | cut -d : -f 1)&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">rpm</span></code> command has several different modes. If the <code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code> flag has been specified, <code class="docutils literal notranslate"><span class="pre">rpm</span></code> should delete one or more packages, in which case several switches related to deleting packages are valid, like the <code class="docutils literal notranslate"><span class="pre">nodeps</span></code> switch.</p>
+<p>This can be written as:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">rpm</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="s2">&quot;__fish_contains_opt -s e erase&quot;</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">nodeps</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s2">&quot;Don&#39;t check dependencies&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">__fish_contains_opt</span></code> is a function that checks the command line buffer for the presence of a specified set of options.</p>
+<p>To implement an alias, use the <code class="docutils literal notranslate"><span class="pre">-w</span></code> or <code class="docutils literal notranslate"><span class="pre">--wraps</span></code> option:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">hub</span><span class="w"> </span><span class="no">-w</span><span class="w"> </span><span class="no">git</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Now hub inherits all of the completions from git. Note this can also be specified in a function declaration (<code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">thing</span> <span class="pre">-w</span> <span class="pre">otherthing</span></code>).</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">git</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Show all completions for <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div> 
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">complete - edit command specific tab-completions</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2021, fish-shell developers.
+    <br />
+    <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>string-sub - extract substrings &#8212; fish-shell 3.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="string-trim - remove trailing whitespace" href="string-trim.html" />
+    <link rel="prev" title="string-split0 - split on zero bytes" href="string-split0.html" />
+    <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
+     
+
+  </head><body><div id="fmain">  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">string-sub - extract substrings</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div>
+<h3><a href="../index.html">Documents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div>
+<h4><a href="../index.html">Sections</a></h4>
+<ul>
+<li><a class="reference internal" href="#">string-sub - extract substrings</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="string-sub-extract-substrings">
+<h1>string-sub - extract substrings<a class="headerlink" href="#string-sub-extract-substrings" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">sub</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-s</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--start</span><span class="o">)</span><span class="w"> </span><span class="no">START]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-e</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--end</span><span class="o">)</span><span class="w"> </span><span class="no">END]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-l</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--length</span><span class="o">)</span><span class="w"> </span><span class="no">LENGTH]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[STRING...]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">sub</span></code> prints a substring of each string argument. The start/end of the substring can be specified with <code class="docutils literal notranslate"><span class="pre">-s</span></code>/<code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--start</span></code>/<code class="docutils literal notranslate"><span class="pre">--end</span></code> followed by a 1-based index value. Positive index values are relative to the start of the string and negative index values are relative to the end of the string. The default start value is 1. The length of the substring can be specified with <code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--length</span></code>. If the length or end is not specified, the substring continues to the end of each STRING. Exit status: 0 if at least one substring operation was performed, 1 otherwise. <code class="docutils literal notranslate"><span class="pre">--length</span></code> is mutually exclusive with <code class="docutils literal notranslate"><span class="pre">--end</span></code>.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">sub</span><span class="w"> </span><span class="no">--length</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">abcde</span><span class="w"></span>
+ab
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">sub</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">abcde</span><span class="w"></span>
+bc
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">sub</span><span class="w"> </span><span class="no">--start=-2</span><span class="w"> </span><span class="no">abcde</span><span class="w"></span>
+de
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">sub</span><span class="w"> </span><span class="no">--end=3</span><span class="w"> </span><span class="no">abcde</span><span class="w"></span>
+abc
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">sub</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">-1</span><span class="w"> </span><span class="no">abcde</span><span class="w"></span>
+abcd
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">sub</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">-1</span><span class="w"> </span><span class="no">abcde</span><span class="w"></span>
+bcd
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">sub</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">-3</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">-2</span><span class="w"> </span><span class="no">abcde</span><span class="w"></span>
+c
+</pre></div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div> 
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.3.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">string-sub - extract substrings</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2021, fish-shell developers.
+    <br />
+    <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+</div>
+
+  </body>
+</html>
