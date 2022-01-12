@@ -519,6 +519,11 @@ h3 {
 
 .jumbotron {
     margin: 36px 0;
+    position: relative;
+    /* Put above Logo */
+    z-index: 50;
+    background-color: rgba(238, 238, 250, 0.5);
+    width: fit-content;
 }
 
 .jumbotron h1 {
@@ -683,19 +688,23 @@ input.tabselector {
         background: linear-gradient(to top, #1f1f3f 0%,#051f3a 100%);
     }
 
-    body {
+    body, .container-narrow, .jumbotron {
         color: #DDD;
     }
-    .container-narrow, .jumbotron {
-        color: #DDD;
-        background-color: #202028;
-    }
+
     .container-narrow {
+        background-color: #202028;
         box-shadow: 0 0 5px 1px #000;
     }
+
+    .jumbotron {
+        background-color: rgba(32, 32, 40, 0.5);
+    }
+
     .lead {
         color: #AAA;
     }
+
     .download_tabs {
         border: 1px solid #222;
         border-top-width: 0;
