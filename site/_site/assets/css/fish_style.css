@@ -243,7 +243,6 @@ body.gradient_body {
 }
 
 .container-narrow, .container-wide {
-    color: #222;
     padding: 10px 50px 30px;
     background-color: #EEEEFA;
     border-radius: 14px;
@@ -254,6 +253,11 @@ body.gradient_body {
     -moz-box-shadow: 0 0 1px 1px #333;
     -webkit-box-shadow: 0 0 1px 1px #333;
     box-shadow: 0 0 5px 1px #333;
+}
+
+body, .container-narrow, .jumbotron, .lead, .btn-large,
+.post_list li, .post_title {
+    color: var(--text-color);
 }
 
 .container-narrow {
@@ -535,7 +539,6 @@ h3 {
     margin-bottom: 30px;
     line-height: normal;
     font-weight: normal;
-    color: #444;
 }
 
 .marketing p + h4 {
@@ -679,7 +682,7 @@ input.tabselector {
 :root {
     --active-color: #fff;
     --border-color: #ddd;
-    --text-color: #555;
+    --text-color: #222;
 }
 
 .dark {
@@ -690,15 +693,16 @@ input.tabselector {
     :root {
         --active-color: #282830;
         --border-color: transparent;
-        --text-color: #AAA;
+        --text-color: #DDD;
     }
 
     body.gradient_body {
         background: linear-gradient(to top, #1f1f3f 0%,#051f3a 100%);
     }
 
-    body, .container-narrow, .jumbotron {
-        color: #DDD;
+    body, .container-narrow, .jumbotron, .lead, .btn-large,
+    .post_list li, .post_title {
+        color: var(--text-color);
     }
 
     .container-narrow {
@@ -710,10 +714,6 @@ input.tabselector {
         background-color: rgba(32, 32, 40, 0.5);
     }
 
-    .lead {
-        color: #AAA;
-    }
-
     .download_tabs {
         border: 1px solid #222;
         border-top-width: 0;
@@ -723,7 +723,6 @@ input.tabselector {
         font-size: larger;
         background-image: unset;
         background-color: #40404F;
-        color: #DDD;
     }
 
     .logofix {
@@ -748,10 +747,6 @@ input.tabselector {
 
     .download_tab > div {
         border: solid #888 1px;
-    }
-
-    .post_list li, .post_title {
-        color: #AAA;
     }
 }
 
