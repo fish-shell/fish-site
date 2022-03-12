@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>trap - perform an action when the shell receives a signal &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>trap - perform an action when the shell receives a signal &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="true - return a successful result" href="true.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -102,7 +101,7 @@
 <span id="cmd-trap"></span><h1>trap - perform an action when the shell receives a signal<a class="headerlink" href="#trap-perform-an-action-when-the-shell-receives-a-signal" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">trap</span><span class="w"> </span><span class="no">[OPTIONS]</span><span class="w"> </span><span class="no">[[ARG]</span><span class="w"> </span><span class="no">REASON</span><span class="w"> </span><span class="no">...</span><span class="w"> </span><span class="no">]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">trap</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[[</span><span class="no">ARG</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">REASON</span><span class="w"> </span><span class="g g-Other">...</span><span class="no"> ]</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -110,17 +109,23 @@
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">trap</span></code> is a wrapper around the fish event delivery framework. It exists for backwards compatibility with POSIX shells. For other uses, it is recommended to define an <a class="reference internal" href="../language.html#event"><span class="std std-ref">event handler</span></a>.</p>
 <p>The following parameters are available:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ARG</span></code> is the command to be executed on signal delivery.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">REASON</span></code> is the name of the event to trap. For example, a signal like <code class="docutils literal notranslate"><span class="pre">INT</span></code> or <code class="docutils literal notranslate"><span class="pre">SIGINT</span></code>, or the special symbol <code class="docutils literal notranslate"><span class="pre">EXIT</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--list-signals</span></code> prints a list of signal names.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--print</span></code> prints all defined signal handlers.</p></li>
-</ul>
-<p>If <code class="docutils literal notranslate"><span class="pre">ARG</span></code> and <code class="docutils literal notranslate"><span class="pre">REASON</span></code> are both specified, <code class="docutils literal notranslate"><span class="pre">ARG</span></code> is the command to be executed when the event specified by <code class="docutils literal notranslate"><span class="pre">REASON</span></code> occurs (e.g., the signal is delivered).</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">ARG</span></code> is absent (and there is a single REASON) or -, each specified signal is reset to its original disposition (the value it had upon entrance to the shell).  If <code class="docutils literal notranslate"><span class="pre">ARG</span></code> is the null string the signal specified by each <code class="docutils literal notranslate"><span class="pre">REASON</span></code> is ignored by the shell and by the commands it invokes.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">ARG</span></code> is not present and <code class="docutils literal notranslate"><span class="pre">-p</span></code> has been supplied, then the trap commands associated with each <code class="docutils literal notranslate"><span class="pre">REASON</span></code> are displayed. If no arguments are supplied or if only <code class="docutils literal notranslate"><span class="pre">-p</span></code> is given, <code class="docutils literal notranslate"><span class="pre">trap</span></code> prints the list of commands associated with each signal.</p>
+<dl class="simple">
+<dt><em>ARG</em></dt><dd><p>Command to be executed on signal delivery.</p>
+</dd>
+<dt><em>REASON</em></dt><dd><p>Name of the event to trap. For example, a signal like <code class="docutils literal notranslate"><span class="pre">INT</span></code> or <code class="docutils literal notranslate"><span class="pre">SIGINT</span></code>, or the special symbol <code class="docutils literal notranslate"><span class="pre">EXIT</span></code>.</p>
+</dd>
+<dt><strong>-l</strong> or <strong>--list-signals</strong></dt><dd><p>Prints a list of signal names.</p>
+</dd>
+<dt><strong>-p</strong> or <strong>--print</strong></dt><dd><p>Prints all defined signal handlers.</p>
+</dd>
+<dt><strong>-h</strong> or <strong>--help</strong></dt><dd><p>Displays help about using this command.</p>
+</dd>
+</dl>
+<p>If <em>ARG</em> and <em>REASON</em> are both specified, <em>ARG</em> is the command to be executed when the event specified by <em>REASON</em> occurs (e.g., the signal is delivered).</p>
+<p>If <em>ARG</em> is absent (and there is a single <em>REASON</em>) or <code class="docutils literal notranslate"><span class="pre">-</span></code>, each specified signal is reset to its original disposition (the value it had upon entrance to the shell).  If <em>ARG</em> is the null string the signal specified by each <em>REASON</em> is ignored by the shell and by the commands it invokes.</p>
+<p>If <em>ARG</em> is not present and <strong>-p</strong> has been supplied, then the trap commands associated with each <em>REASON</em> are displayed. If no arguments are supplied or if only <strong>-p</strong> is given, <code class="docutils literal notranslate"><span class="pre">trap</span></code> prints the list of commands associated with each signal.</p>
 <p>Signal names are case insensitive and the <code class="docutils literal notranslate"><span class="pre">SIG</span></code> prefix is optional.</p>
-<p>The exit status is 1 if any <code class="docutils literal notranslate"><span class="pre">REASON</span></code> is invalid; otherwise trap returns 0.</p>
+<p>The exit status is 1 if any <em>REASON</em> is invalid; otherwise trap returns 0.</p>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
@@ -145,7 +150,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -167,14 +172,68 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

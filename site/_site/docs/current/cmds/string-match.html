@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>string-match - match substrings &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>string-match - match substrings &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="string-pad - pad strings to a fixed width" href="string-pad.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -106,19 +105,22 @@
 <h1>string-match - match substrings<a class="headerlink" href="#string-match-match-substrings" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-a</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--all</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-e</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--entire</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-i</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--ignore-case</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-r</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--regex</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-n</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--index</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-v</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--invert</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">PATTERN</span><span class="w"> </span><span class="no">[STRING...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-e</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--entire</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-i</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--ignore-case</span><span class="g g-Other">]</span><span class="w"></span>
+<span class="w">             </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--regex</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--index</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-v</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--invert</span><span class="g g-Other">]</span><span class="w"></span>
+<span class="w">             </span><span class="no">PATTERN</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> tests each STRING against PATTERN and prints matching substrings. Only the first match for each STRING is reported unless <code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--all</span></code> is given, in which case all matches are reported.</p>
-<p>If you specify the <code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--entire</span></code> then each matching string is printed including any prefix or suffix not matched by the pattern (equivalent to <code class="docutils literal notranslate"><span class="pre">grep</span></code> without the <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag). You can, obviously, achieve the same result by prepending and appending <code class="docutils literal notranslate"><span class="pre">*</span></code> or <code class="docutils literal notranslate"><span class="pre">.*</span></code> depending on whether or not you have specified the <code class="docutils literal notranslate"><span class="pre">--regex</span></code> flag. The <code class="docutils literal notranslate"><span class="pre">--entire</span></code> flag is simply a way to avoid having to complicate the pattern in that fashion and make the intent of the <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> clearer. Without <code class="docutils literal notranslate"><span class="pre">--entire</span></code> and <code class="docutils literal notranslate"><span class="pre">--regex</span></code>, a PATTERN will need to match the entire STRING before it will be reported.</p>
-<p>Matching can be made case-insensitive with <code class="docutils literal notranslate"><span class="pre">--ignore-case</span></code> or <code class="docutils literal notranslate"><span class="pre">-i</span></code>.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">--index</span></code> or <code class="docutils literal notranslate"><span class="pre">-n</span></code> is given, each match is reported as a 1-based start position and a length. By default, PATTERN is interpreted as a glob pattern matched against each entire STRING argument. A glob pattern is only considered a valid match if it matches the entire STRING.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">--regex</span></code> or <code class="docutils literal notranslate"><span class="pre">-r</span></code> is given, PATTERN is interpreted as a Perl-compatible regular expression, which does not have to match the entire STRING. For a regular expression containing capturing groups, multiple items will be reported for each match, one for the entire match and one for each capturing group. With this, only the matching part of the STRING will be reported, unless <code class="docutils literal notranslate"><span class="pre">--entire</span></code> is given.</p>
-<p>When matching via regular expressions, <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> automatically sets variables for all named capturing groups (<code class="docutils literal notranslate"><span class="pre">(?&lt;name&gt;expression)</span></code>). It will create a variable with the name of the group, in the default scope, for each named capturing group, and set it to the value of the capturing group in the first matched argument. If a named capture group matched an empty string, the variable will be set to the empty string (like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">var</span> <span class="pre">&quot;&quot;</span></code>). If it did not match, the variable will be set to nothing (like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">var</span></code>).  When <code class="docutils literal notranslate"><span class="pre">--regex</span></code> is used with <code class="docutils literal notranslate"><span class="pre">--all</span></code>, this behavior changes. Each named variable will contain a list of matches, with the first match contained in the first element, the second match in the second, and so on. If the group was empty or did not match, the corresponding element will be an empty string.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">--invert</span></code> or <code class="docutils literal notranslate"><span class="pre">-v</span></code> is used the selected lines will be only those which do not match the given glob pattern or regular expression.</p>
+<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> tests each <em>STRING</em> against <em>PATTERN</em> and prints matching substrings. Only the first match for each <em>STRING</em> is reported unless <strong>-a</strong> or <strong>--all</strong> is given, in which case all matches are reported.</p>
+<p>If you specify the <strong>-e</strong> or <strong>--entire</strong> then each matching string is printed including any prefix or suffix not matched by the pattern (equivalent to <code class="docutils literal notranslate"><span class="pre">grep</span></code> without the <strong>-o</strong> flag). You can, obviously, achieve the same result by prepending and appending <strong>*</strong> or <strong>.*</strong> depending on whether or not you have specified the <strong>--regex</strong> flag. The <strong>--entire</strong> flag is simply a way to avoid having to complicate the pattern in that fashion and make the intent of the <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> clearer. Without <strong>--entire</strong> and <strong>--regex</strong>, a <em>PATTERN</em> will need to match the entire <em>STRING</em> before it will be reported.</p>
+<p>Matching can be made case-insensitive with <strong>--ignore-case</strong> or <strong>-i</strong>.</p>
+<p>If <strong>--groups-only</strong> or <strong>-g</strong> is given, only the capturing groups will be reported - meaning the full match will be skipped. This is incompatible with <strong>--entire</strong> and <strong>--invert</strong>, and requires <strong>--regex</strong>. It is useful as a simple cutting tool instead of <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">replace</span></code>, so you can simply choose “this part” of a string.</p>
+<p>If <strong>--index</strong> or <strong>-n</strong> is given, each match is reported as a 1-based start position and a length. By default, PATTERN is interpreted as a glob pattern matched against each entire <em>STRING</em> argument. A glob pattern is only considered a valid match if it matches the entire <em>STRING</em>.</p>
+<p>If <strong>--regex</strong> or <strong>-r</strong> is given, <em>PATTERN</em> is interpreted as a Perl-compatible regular expression, which does not have to match the entire <em>STRING</em>. For a regular expression containing capturing groups, multiple items will be reported for each match, one for the entire match and one for each capturing group. With this, only the matching part of the <em>STRING</em> will be reported, unless <strong>--entire</strong> is given.</p>
+<p>When matching via regular expressions, <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> automatically sets variables for all named capturing groups (<code class="docutils literal notranslate"><span class="pre">(?&lt;name&gt;expression)</span></code>). It will create a variable with the name of the group, in the default scope, for each named capturing group, and set it to the value of the capturing group in the first matched argument. If a named capture group matched an empty string, the variable will be set to the empty string (like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">var</span> <span class="pre">&quot;&quot;</span></code>). If it did not match, the variable will be set to nothing (like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">var</span></code>).  When <strong>--regex</strong> is used with <strong>--all</strong>, this behavior changes. Each named variable will contain a list of matches, with the first match contained in the first element, the second match in the second, and so on. If the group was empty or did not match, the corresponding element will be an empty string.</p>
+<p>If <strong>--invert</strong> or <strong>-v</strong> is used the selected lines will be only those which do not match the given glob pattern or regular expression.</p>
 <p>Exit status: 0 if at least one match was found, or 1 otherwise.</p>
 </div>
 <div class="section" id="examples">
@@ -126,81 +128,81 @@
 <div class="section" id="match-glob-examples">
 <h3>Match Glob Examples<a class="headerlink" href="#match-glob-examples" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;?&#39;</span><span class="w"> </span><span class="no">a</span><span class="w"></span>
-a
+<span class="go">a</span>
 
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;a*b&#39;</span><span class="w"> </span><span class="no">axxb</span><span class="w"></span>
-axxb
+<span class="go">axxb</span>
 
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-i</span><span class="w"> </span><span class="s1">&#39;a??B&#39;</span><span class="w"> </span><span class="no">Axxb</span><span class="w"></span>
-Axxb
+<span class="go">Axxb</span>
 
 <span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;ok?&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;*\?&#39;</span><span class="w"></span>
-ok?
+<span class="go">ok?</span>
 
-# Note that only the second STRING will match here.
+<span class="go"># Note that only the second STRING will match here.</span>
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span><span class="w"></span>
-foo
+<span class="go">foo</span>
 
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span><span class="w"></span>
-foo1
-foo
-foo2
+<span class="go">foo1</span>
+<span class="go">foo</span>
+<span class="go">foo2</span>
 
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;foo?&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span><span class="w"></span>
-foo1
-foo2
+<span class="go">foo1</span>
+<span class="go">foo2</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="match-regex-examples">
 <h3>Match Regex Examples<a class="headerlink" href="#match-regex-examples" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;cat|dog|fish&#39;</span><span class="w"> </span><span class="s1">&#39;nice dog&#39;</span><span class="w"></span>
-dog
+<span class="go">dog</span>
 
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-v</span><span class="w"> </span><span class="s2">&quot;c.*[12]&quot;</span><span class="w"> </span><span class="o">{</span><span class="no">cat</span><span class="o">,</span><span class="no">dog</span><span class="o">}(</span><span class="nf">seq</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">4</span><span class="o">)</span><span class="w"></span>
-dog1
-dog2
-cat3
-dog3
-cat4
-dog4
+<span class="go">dog1</span>
+<span class="go">dog2</span>
+<span class="go">cat3</span>
+<span class="go">dog3</span>
+<span class="go">cat4</span>
+<span class="go">dog4</span>
 
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;(\d\d?):(\d\d):(\d\d)&#39;</span><span class="w"> </span><span class="no">2:34:56</span><span class="w"></span>
-2:34:56
-2
-34
-56
+<span class="go">2:34:56</span>
+<span class="go">2</span>
+<span class="go">34</span>
+<span class="go">56</span>
 
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;^(\w{2,4})\1$&#39;</span><span class="w"> </span><span class="no">papa</span><span class="w"> </span><span class="no">mud</span><span class="w"> </span><span class="no">murmur</span><span class="w"></span>
-papa
-pa
-murmur
-mur
+<span class="go">papa</span>
+<span class="go">pa</span>
+<span class="go">murmur</span>
+<span class="go">mur</span>
 
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="no">at</span><span class="w"> </span><span class="no">ratatat</span><span class="w"></span>
-2 2
-4 2
-6 2
+<span class="go">2 2</span>
+<span class="go">4 2</span>
+<span class="go">6 2</span>
 
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-i</span><span class="w"> </span><span class="s1">&#39;0x[0-9a-f]{1,8}&#39;</span><span class="w"> </span><span class="s1">&#39;int magic = 0xBadC0de;&#39;</span><span class="w"></span>
-0xBadC0de
+<span class="go">0xBadC0de</span>
 
 <span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="o">$version</span><span class="w"></span>
-3.1.2-1575-ga2ff32d90
+<span class="go">3.1.2-1575-ga2ff32d90</span>
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rq</span><span class="w"> </span><span class="s1">&#39;(?&lt;major&gt;\d+).(?&lt;minor&gt;\d+).(?&lt;revision&gt;\d+)&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$version</span><span class="w"></span>
 <span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;You are using fish </span><span class="o">$major</span><span class="s2">!&quot;</span><span class="w"></span>
-You are using fish 3!
+<span class="go">You are using fish 3!</span>
 
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-raq</span><span class="w"> </span><span class="s1">&#39; *(?&lt;sentence&gt;[^.!?]+)(?&lt;punctuation&gt;[.!?])?&#39;</span><span class="w"> </span><span class="s2">&quot;hello, friend. goodbye&quot;</span><span class="w"></span>
 <span class="gp">&gt;_ </span><span class="nf">printf</span><span class="w"> </span><span class="s2">&quot;%s\n&quot;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$sentence</span><span class="w"></span>
-hello, friend
-goodbye
+<span class="go">hello, friend</span>
+<span class="go">goodbye</span>
 <span class="gp">&gt;_ </span><span class="nf">printf</span><span class="w"> </span><span class="s2">&quot;%s\n&quot;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$punctuation</span><span class="w"></span>
-.
+<span class="go">.</span>
 
 <span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rq</span><span class="w"> </span><span class="s1">&#39;(?&lt;word&gt;hello)&#39;</span><span class="w"> </span><span class="s1">&#39;hi&#39;</span><span class="w"></span>
 <span class="gp">&gt;_ </span><span class="nf">count</span><span class="w"> </span><span class="o">$word</span><span class="w"></span>
-0
+<span class="go">0</span>
 </pre></div>
 </div>
 </div>
@@ -221,7 +223,7 @@ goodbye
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -243,14 +245,68 @@ goodbye
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

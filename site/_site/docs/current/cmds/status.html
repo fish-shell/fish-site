@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>status - query fish runtime information &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>status - query fish runtime information &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="string - manipulate strings" href="string.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -102,7 +101,7 @@
 <span id="cmd-status"></span><h1>status - query fish runtime information<a class="headerlink" href="#status-query-fish-runtime-information" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">status</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">status</span><span class="w"></span>
 <span class="nf">status</span><span class="w"> </span><span class="no">is-login</span><span class="w"></span>
 <span class="nf">status</span><span class="w"> </span><span class="no">is-interactive</span><span class="w"></span>
 <span class="nf">status</span><span class="w"> </span><span class="no">is-block</span><span class="w"></span>
@@ -128,29 +127,47 @@
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>With no arguments, <code class="docutils literal notranslate"><span class="pre">status</span></code> displays a summary of the current login and job control status of the shell.</p>
-<p>The following operations (sub-commands) are available:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">is-command-substitution</span></code> returns 0 if fish is currently executing a command substitution. Also <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--is-command-substitution</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">is-block</span></code> returns 0 if fish is currently executing a block of code. Also <code class="docutils literal notranslate"><span class="pre">-b</span></code> or <code class="docutils literal notranslate"><span class="pre">--is-block</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">is-breakpoint</span></code> returns 0 if fish is currently showing a prompt in the context of a <code class="docutils literal notranslate"><span class="pre">breakpoint</span></code> command. See also the <code class="docutils literal notranslate"><span class="pre">fish_breakpoint_prompt</span></code> function.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">is-interactive</span></code> returns 0 if fish is interactive - that is, connected to a keyboard. Also <code class="docutils literal notranslate"><span class="pre">-i</span></code> or <code class="docutils literal notranslate"><span class="pre">--is-interactive</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">is-login</span></code> returns 0 if fish is a login shell - that is, if fish should perform login tasks such as setting up the PATH. Also <code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--is-login</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">is-full-job-control</span></code> returns 0 if full job control is enabled. Also <code class="docutils literal notranslate"><span class="pre">--is-full-job-control</span></code> (no short flag).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">is-interactive-job-control</span></code> returns 0 if interactive job control is enabled. Also, <code class="docutils literal notranslate"><span class="pre">--is-interactive-job-control</span></code> (no short flag).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">is-no-job-control</span></code> returns 0 if no job control is enabled. Also <code class="docutils literal notranslate"><span class="pre">--is-no-job-control</span></code> (no short flag).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">current-command</span></code> prints the name of the currently-running function or command, like the deprecated <code class="docutils literal notranslate"><span class="pre">_</span></code> variable.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code> prints the filename of the currently running script. Also <code class="docutils literal notranslate"><span class="pre">current-filename</span></code>, <code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-filename</span></code>. This depends on how the script was called - if it was called via a symlink, the symlink will be returned, and if the current script was received via <code class="docutils literal notranslate"><span class="pre">source</span></code> it will be <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">basename</span></code> prints just the filename of the running script, without any path-components before.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dirname</span></code> prints just the path to the running script, without the actual filename itself. This can be relative to $PWD (including just &quot;.&quot;), depending on how the script was called. This is the same as passing the <code class="docutils literal notranslate"><span class="pre">filename</span></code> to <code class="docutils literal notranslate"><span class="pre">dirname(3)</span></code>. It's useful if you want to use other files in the current script's directory or similar.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">fish-path</span></code> prints the absolute path to the currently executing instance of fish.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">function</span></code> prints the name of the currently called function if able, when missing displays &quot;Not a
-function&quot; (or equivalent translated string). Also <code class="docutils literal notranslate"><span class="pre">current-function</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">line-number</span></code> prints the line number of the currently running script. Also <code class="docutils literal notranslate"><span class="pre">current-line-number</span></code>, <code class="docutils literal notranslate"><span class="pre">-n</span></code> or <code class="docutils literal notranslate"><span class="pre">--current-line-number</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">stack-trace</span></code> prints a stack trace of all function calls on the call stack. Also <code class="docutils literal notranslate"><span class="pre">print-stack-trace</span></code>, <code class="docutils literal notranslate"><span class="pre">-t</span></code> or <code class="docutils literal notranslate"><span class="pre">--print-stack-trace</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">job-control</span> <span class="pre">CONTROL_TYPE</span></code> sets the job control type, which can be <code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">full</span></code>, or <code class="docutils literal notranslate"><span class="pre">interactive</span></code>. Also <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">CONTROL_TYPE</span></code> or <code class="docutils literal notranslate"><span class="pre">--job-control</span> <span class="pre">CONTROL_TYPE</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">features</span></code> lists all available feature flags.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">test-feature</span> <span class="pre">FEATURE</span></code> returns 0 when FEATURE is enabled, 1 if it is disabled, and 2 if it is not recognized.</p></li>
-</ul>
+<p>The following operations (subcommands) are available:</p>
+<dl class="simple">
+<dt><strong>is-command-substitution</strong>, <strong>-c</strong> or <strong>--is-command-substitution</strong></dt><dd><p>Returns 0 if fish is currently executing a command substitution.</p>
+</dd>
+<dt><strong>is-block</strong>, <strong>-b</strong> or <strong>--is-block</strong></dt><dd><p>Returns 0 if fish is currently executing a block of code.</p>
+</dd>
+<dt><strong>is-breakpoint</strong></dt><dd><p>Returns 0 if fish is currently showing a prompt in the context of a <a class="reference internal" href="breakpoint.html#cmd-breakpoint"><span class="std std-ref">breakpoint</span></a> command. See also the <a class="reference internal" href="fish_breakpoint_prompt.html#cmd-fish-breakpoint-prompt"><span class="std std-ref">fish_breakpoint_prompt</span></a> function.</p>
+</dd>
+<dt><strong>is-interactive</strong>, <strong>-i</strong> or <strong>--is-interactive</strong></dt><dd><p>Returns 0 if fish is interactive - that is, connected to a keyboard.</p>
+</dd>
+<dt><strong>is-login</strong>, <strong>-l</strong> or <strong>--is-login</strong></dt><dd><p>Returns 0 if fish is a login shell - that is, if fish should perform login tasks such as setting up <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a>.</p>
+</dd>
+<dt><strong>is-full-job-control</strong> or <strong>--is-full-job-control</strong></dt><dd><p>Returns 0 if full job control is enabled.</p>
+</dd>
+<dt><strong>is-interactive-job-control</strong> or <strong>--is-interactive-job-control</strong></dt><dd><p>Returns 0 if interactive job control is enabled.</p>
+</dd>
+<dt><strong>is-no-job-control</strong> or <strong>--is-no-job-control</strong></dt><dd><p>Returns 0 if no job control is enabled.</p>
+</dd>
+<dt><strong>current-command</strong></dt><dd><p>Prints the name of the currently-running function or command, like the deprecated <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-_"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">_</span></code></a> variable.</p>
+</dd>
+<dt><strong>filename</strong>, <strong>current-filename</strong>, <strong>-f</strong> or <strong>--current-filename</strong></dt><dd><p>Prints the filename of the currently-running script. If the current script was called via a symlink, this will return the symlink. If the current script was received by piping into <a class="reference internal" href="source.html#cmd-source"><span class="std std-ref">source</span></a>, then this will return <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
+</dd>
+<dt><strong>basename</strong></dt><dd><p>Prints just the filename of the running script, without any path components before.</p>
+</dd>
+<dt><strong>dirname</strong></dt><dd><p>Prints just the path to the running script, without the actual filename itself. This can be relative to <span class="target" id="index-2"></span><a class="reference internal" href="../language.html#envvar-PWD"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PWD</span></code></a> (including just “.”), depending on how the script was called. This is the same as passing the filename to <code class="docutils literal notranslate"><span class="pre">dirname(3)</span></code>. It’s useful if you want to use other files in the current script’s directory or similar.</p>
+</dd>
+<dt><strong>fish-path</strong></dt><dd><p>Prints the absolute path to the currently executing instance of fish.</p>
+</dd>
+<dt><strong>function</strong> or <strong>current-function</strong></dt><dd><p>Prints the name of the currently called function if able, when missing displays “Not a function” (or equivalent translated string).</p>
+</dd>
+<dt><strong>line-number</strong>, <strong>current-line-number</strong>, <strong>-n</strong> or <strong>--current-line-number</strong></dt><dd><p>Prints the line number of the currently running script.</p>
+</dd>
+<dt><strong>stack-trace</strong>, <strong>print-stack-trace</strong>, <strong>-t</strong> or <strong>--print-stack-trace</strong></dt><dd><p>Prints a stack trace of all function calls on the call stack.</p>
+</dd>
+<dt><strong>job-control</strong>, <strong>-j</strong> or <strong>--job-control</strong> <em>CONTROL_TYPE</em></dt><dd><p>Sets the job control type to <em>CONTROL_TYPE</em>, which can be <strong>none</strong>, <strong>full</strong>, or <strong>interactive</strong>.</p>
+</dd>
+<dt><strong>features</strong></dt><dd><p>Lists all available feature flags.</p>
+</dd>
+<dt><strong>test-feature</strong> <em>FEATURE</em></dt><dd><p>Returns 0 when FEATURE is enabled, 1 if it is disabled, and 2 if it is not recognized.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
@@ -173,7 +190,7 @@ function&quot; (or equivalent translated string). Also <code class="docutils lit
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -195,14 +212,68 @@ function&quot; (or equivalent translated string). Also <code class="docutils lit
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

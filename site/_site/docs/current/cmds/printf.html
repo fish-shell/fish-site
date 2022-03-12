@@ -1,21 +1,20 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>printf - display text according to a format string &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>printf - display text according to a format string &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="prompt_login - describe the login suitable for prompt" href="prompt_login.html" />
+    <link rel="next" title="prompt_hostname - print the hostname, shortened for use in the prompt" href="prompt_hostname.html" />
     <link rel="prev" title="prevd - move backward through directory history" href="prevd.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
      
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -107,16 +106,16 @@
 <span id="cmd-printf"></span><h1>printf - display text according to a format string<a class="headerlink" href="#printf-display-text-according-to-a-format-string" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">printf</span><span class="w"> </span><span class="no">FORMAT</span><span class="w"> </span><span class="no">[ARGUMENT</span><span class="w"> </span><span class="no">...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">printf</span><span class="w"> </span><span class="no">FORMAT</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">ARGUMENT</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>printf uses the format string FORMAT to print the ARGUMENT arguments. This means that it takes format specifiers in the format string and replaces each with an argument.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">format</span></code> argument is re-used as many times as necessary to convert all of the given arguments. So <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%s\n</span> <span class="pre">flounder</span> <span class="pre">catfish</span> <span class="pre">clownfish</span> <span class="pre">shark</span></code> will print four lines.</p>
+<p><code class="docutils literal notranslate"><span class="pre">printf</span></code> uses the format string <em>FORMAT</em> to print the <em>ARGUMENT</em> arguments. This means that it takes format specifiers in the format string and replaces each with an argument.</p>
+<p>The <em>FORMAT</em> argument is re-used as many times as necessary to convert all of the given arguments. So <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%s\n</span> <span class="pre">flounder</span> <span class="pre">catfish</span> <span class="pre">clownfish</span> <span class="pre">shark</span></code> will print four lines.</p>
 <p>Unlike <a class="reference internal" href="echo.html#cmd-echo"><span class="std std-ref">echo</span></a>, <code class="docutils literal notranslate"><span class="pre">printf</span></code> does not append a new line unless it is specified as part of the string.</p>
-<p>It doesn't support any options, so there is no need for a <code class="docutils literal notranslate"><span class="pre">--</span></code> separator, which makes it easier to use for arbitrary input than <code class="docutils literal notranslate"><span class="pre">echo</span></code>. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<p>It doesn’t support any options, so there is no need for a <code class="docutils literal notranslate"><span class="pre">--</span></code> separator, which makes it easier to use for arbitrary input than <code class="docutils literal notranslate"><span class="pre">echo</span></code>. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
 </div>
 <div class="section" id="format-specifiers">
 <h2>Format Specifiers<a class="headerlink" href="#format-specifiers" title="Permalink to this headline">¶</a></h2>
@@ -131,8 +130,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">%s</span></code>: A string</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">%b</span></code>: As a string, interpreting backslash escapes, except that octal escapes are of the form 0 or 0ooo.</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">%%</span></code> signifies a literal &quot;%&quot;.</p>
-<p>Conversion can fail, e.g. &quot;102.234&quot; can't losslessly convert to an integer, causing printf to print an error. If you are okay with losing information, silence errors with <code class="docutils literal notranslate"><span class="pre">2&gt;/dev/null</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">%%</span></code> signifies a literal “%”.</p>
+<p>Conversion can fail, e.g. “102.234” can’t losslessly convert to an integer, causing printf to print an error. If you are okay with losing information, silence errors with <code class="docutils literal notranslate"><span class="pre">2&gt;/dev/null</span></code>.</p>
 <p>A number between the <code class="docutils literal notranslate"><span class="pre">%</span></code> and the format letter specifies the width. The result will be left-padded with spaces.</p>
 </div>
 <div class="section" id="backslash-escapes">
@@ -158,7 +157,7 @@
 </div>
 <div class="section" id="errors-and-return-status">
 <h2>Errors and Return Status<a class="headerlink" href="#errors-and-return-status" title="Permalink to this headline">¶</a></h2>
-<p>If the given argument doesn't work for the given format (like when you try to convert a number like 3.141592 to an integer), printf prints an error, to stderr. printf will then also return non-zero, but will still try to print as much as it can.</p>
+<p>If the given argument doesn’t work for the given format (like when you try to convert a number like 3.141592 to an integer), printf prints an error, to stderr. printf will then also return non-zero, but will still try to print as much as it can.</p>
 <p>It will also return non-zero if no argument at all was given, in which case it will print nothing.</p>
 <p>This printf has been imported from the printf in GNU Coreutils version 6.9. If you would like to use a newer version of printf, for example the one shipped with your OS, try <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">printf</span></code>.</p>
 </div>
@@ -167,11 +166,11 @@
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s\t%s\n&#39;</span><span class="w"> </span><span class="no">flounder</span><span class="w"> </span><span class="no">fish</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Will print &quot;flounder    fish&quot; (separated with a tab character), followed by a newline character. This is useful for writing completions, as fish expects completion scripts to output the option followed by the description, separated with a tab character.</p>
+<p>Will print “flounder    fish” (separated with a tab character), followed by a newline character. This is useful for writing completions, as fish expects completion scripts to output the option followed by the description, separated with a tab character.</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s: %d&#39;</span><span class="w"> </span><span class="s2">&quot;Number of bananas in my pocket&quot;</span><span class="w"> </span><span class="no">42</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Will print &quot;Number of bananas in my pocket: 42&quot;, <cite>without</cite> a newline.</p>
+<p>Will print “Number of bananas in my pocket: 42”, <cite>without</cite> a newline.</p>
 </div>
 <div class="section" id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
@@ -183,7 +182,7 @@
 <h2>Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>(in fact while fish's <code class="docutils literal notranslate"><span class="pre">echo</span></code> supports <code class="docutils literal notranslate"><span class="pre">--</span></code>, POSIX forbids it, so other implementations can't be used if the input contains anything starting with <code class="docutils literal notranslate"><span class="pre">-</span></code>)</p>
+<dd><p>In fact, while fish’s <code class="docutils literal notranslate"><span class="pre">echo</span></code> supports <code class="docutils literal notranslate"><span class="pre">--</span></code>, POSIX forbids it, so other implementations can’t be used if the input contains anything starting with <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
 </dd>
 </dl>
 </div>
@@ -203,7 +202,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -225,14 +224,68 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

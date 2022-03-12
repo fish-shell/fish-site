@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fish_status_to_signal - Convert exit codes to human-friendly signals &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>fish_status_to_signal - convert exit codes to human-friendly signals &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fish_svn_prompt - output Subversion information for use in a prompt" href="fish_svn_prompt.html" />
@@ -28,11 +27,11 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">fish_status_to_signal - Convert exit codes to human-friendly signals</a></li>
+        <li class="nav-item nav-item-this"><a href="">fish_status_to_signal - convert exit codes to human-friendly signals</a></li>
     <li class="right">
         
 
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -83,7 +82,7 @@
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
-<li><a class="reference internal" href="#">fish_status_to_signal - Convert exit codes to human-friendly signals</a><ul>
+<li><a class="reference internal" href="#">fish_status_to_signal - convert exit codes to human-friendly signals</a><ul>
 <li><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li><a class="reference internal" href="#description">Description</a></li>
 <li><a class="reference internal" href="#example">Example</a></li>
@@ -99,12 +98,15 @@
           <div class="body" role="main">
             
   <div class="section" id="fish-status-to-signal-convert-exit-codes-to-human-friendly-signals">
-<span id="cmd-fish-status-to-signal"></span><h1>fish_status_to_signal - Convert exit codes to human-friendly signals<a class="headerlink" href="#fish-status-to-signal-convert-exit-codes-to-human-friendly-signals" title="Permalink to this headline">¶</a></h1>
+<span id="cmd-fish-status-to-signal"></span><h1>fish_status_to_signal - convert exit codes to human-friendly signals<a class="headerlink" href="#fish-status-to-signal-convert-exit-codes-to-human-friendly-signals" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_status_to_signal</span><span class="w"> </span><span class="no">NUM</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
 <span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="o">(</span><span class="nf">fish_status_to_signal</span><span class="w"> </span><span class="o">$pipestatus</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">prompt_pwd</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39;$ &#39;</span><span class="w"></span>
-<span class="k">end</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -116,9 +118,9 @@ This is likely to be useful for prompts in conjunction with the <code class="doc
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">sleep</span><span class="w"> </span><span class="no">5</span><span class="w"></span>
-^C⏎
+<span class="go">^C⏎</span>
 <span class="gp">&gt;_ </span><span class="nf">fish_status_to_signal</span><span class="w"> </span><span class="o">$status</span><span class="w"></span>
-SIGINT
+<span class="go">SIGINT</span>
 </pre></div>
 </div>
 </div>
@@ -138,11 +140,11 @@ SIGINT
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">fish_status_to_signal - Convert exit codes to human-friendly signals</a></li>
+        <li class="nav-item nav-item-this"><a href="">fish_status_to_signal - convert exit codes to human-friendly signals</a></li>
     <li class="right">
         
 
@@ -160,14 +162,68 @@ SIGINT
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

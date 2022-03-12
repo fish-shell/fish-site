@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>string-collect - join strings into one &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>string-collect - join strings into one &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="string-escape - escape special characters" href="string-escape.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -102,28 +101,38 @@
 <h1>string-collect - join strings into one<a class="headerlink" href="#string-collect-join-strings-into-one" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-N</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--no-trim-newlines</span><span class="o">)</span><span class="no">]</span><span class="w"> </span><span class="no">[STRING...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-N</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-trim-newlines</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code> collects its input into a single output argument, without splitting the output when used in a command substitution. This is useful when trying to collect multiline output from another command into a variable. Exit status: 0 if any output argument is non-empty, or 1 otherwise.</p>
+<p>A command like <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">(cmd</span> <span class="pre">|</span> <span class="pre">string</span> <span class="pre">collect)</span></code> is mostly equivalent to a quoted command substitution (<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;$(cmd)&quot;</span></code>). The main difference is that the former evaluates to zero or one elements whereas the quoted command substitution always evaluates to one element due to string interpolation.</p>
 <p>If invoked with multiple arguments instead of input, <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code> preserves each argument separately, where the number of output arguments is equal to the number of arguments given to <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code>.</p>
-<p>Any trailing newlines on the input are trimmed, just as with <code class="docutils literal notranslate"><span class="pre">&quot;$(cmd)&quot;</span></code> substitution in sh. <code class="docutils literal notranslate"><span class="pre">--no-trim-newlines</span></code> can be used to disable this behavior, which may be useful when running a command such as <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">contents</span> <span class="pre">(cat</span> <span class="pre">filename</span> <span class="pre">|</span> <span class="pre">string</span> <span class="pre">collect</span> <span class="pre">-N)</span></code>.</p>
+<p>Any trailing newlines on the input are trimmed, just as with <code class="docutils literal notranslate"><span class="pre">&quot;$(cmd)&quot;</span></code> substitution. Use <strong>--no-trim-newlines</strong> to disable this behavior, which may be useful when running a command such as <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">contents</span> <span class="pre">(cat</span> <span class="pre">filename</span> <span class="pre">|</span> <span class="pre">string</span> <span class="pre">collect</span> <span class="pre">-N)</span></code>.</p>
+<p>With <strong>--allow-empty</strong>, <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code> always prints one (empty) argument. This can be used to prevent an argument from disappearing.</p>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="se">\&quot;</span><span class="o">(</span><span class="nf">echo</span><span class="w"> </span><span class="no">one</span><span class="se">\n</span><span class="no">two</span><span class="se">\n</span><span class="no">three</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="o">)</span><span class="se">\&quot;</span><span class="w"></span>
-&quot;one
-two
-three&quot;
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;zero </span><span class="o">$(</span><span class="nf">echo</span><span class="w"> </span><span class="no">one</span><span class="se">\n</span><span class="no">two</span><span class="se">\n</span><span class="no">three</span><span class="o">)</span><span class="s2"> four&quot;</span><span class="w"></span>
+<span class="go">zero one</span>
+<span class="go">two</span>
+<span class="go">three four</span>
+
+<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="se">\&quot;</span><span class="o">(</span><span class="nf">echo</span><span class="w"> </span><span class="no">one</span><span class="se">\n</span><span class="no">two</span><span class="se">\n</span><span class="no">three</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="o">)</span><span class="se">\&quot;</span><span class="w"></span>
+<span class="go">&quot;one</span>
+<span class="go">two</span>
+<span class="go">three&quot;</span>
 
 <span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="se">\&quot;</span><span class="o">(</span><span class="nf">echo</span><span class="w"> </span><span class="no">one</span><span class="se">\n</span><span class="no">two</span><span class="se">\n</span><span class="no">three</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="w"> </span><span class="no">-N</span><span class="o">)</span><span class="se">\&quot;</span><span class="w"></span>
-&quot;one
-two
-three
-&quot;
+<span class="go">&quot;one</span>
+<span class="go">two</span>
+<span class="go">three</span>
+<span class="go">&quot;</span>
+
+<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="no">foo</span><span class="o">(</span><span class="nf">true</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="w"> </span><span class="no">--allow-empty</span><span class="o">)</span><span class="no">bar</span><span class="w"></span>
+<span class="go">foobar</span>
 </pre></div>
 </div>
 </div>
@@ -143,7 +152,7 @@ three
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -165,14 +174,68 @@ three
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

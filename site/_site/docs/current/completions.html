@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Writing your own completions &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <title>Writing your own completions &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Design" href="design.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -73,7 +72,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -100,12 +99,12 @@
 <span id="completion-own"></span><h1>Writing your own completions<a class="headerlink" href="#writing-your-own-completions" title="Permalink to this headline">¶</a></h1>
 <p>To specify a completion, use the <code class="docutils literal notranslate"><span class="pre">complete</span></code> command. <code class="docutils literal notranslate"><span class="pre">complete</span></code> takes as a parameter the name of the command to specify a completion for. For example, to add a completion for the program <code class="docutils literal notranslate"><span class="pre">myprog</span></code>, one would start the completion command with <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">myprog</span> <span class="pre">...</span></code></p>
 <p>To provide a list of possible completions for myprog, use the <code class="docutils literal notranslate"><span class="pre">-a</span></code> switch. If <code class="docutils literal notranslate"><span class="pre">myprog</span></code> accepts the arguments start and stop, this can be specified as <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">myprog</span> <span class="pre">-a</span> <span class="pre">'start</span> <span class="pre">stop'</span></code>. The argument to the <code class="docutils literal notranslate"><span class="pre">-a</span></code> switch is always a single string. At completion time, it will be tokenized on spaces and tabs, and variable expansion, command substitution and other forms of parameter expansion will take place.</p>
-<p><code class="docutils literal notranslate"><span class="pre">fish</span></code> has a special syntax to support specifying switches accepted by a command. The switches <code class="docutils literal notranslate"><span class="pre">-s</span></code>, <code class="docutils literal notranslate"><span class="pre">-l</span></code> and <code class="docutils literal notranslate"><span class="pre">-o</span></code> are used to specify a short switch (single character, such as <code class="docutils literal notranslate"><span class="pre">-l</span></code>), a gnu style long switch (such as <code class="docutils literal notranslate"><span class="pre">--color</span></code>) and an old-style long switch (like <code class="docutils literal notranslate"><span class="pre">-shuffle</span></code>), respectively. If the command 'myprog' has an option '-o' which can also be written as <code class="docutils literal notranslate"><span class="pre">--output</span></code>, and which can take an additional value of either 'yes' or 'no', this can be specified by writing:</p>
+<p><code class="docutils literal notranslate"><span class="pre">fish</span></code> has a special syntax to support specifying switches accepted by a command. The switches <code class="docutils literal notranslate"><span class="pre">-s</span></code>, <code class="docutils literal notranslate"><span class="pre">-l</span></code> and <code class="docutils literal notranslate"><span class="pre">-o</span></code> are used to specify a short switch (single character, such as <code class="docutils literal notranslate"><span class="pre">-l</span></code>), a gnu style long switch (such as <code class="docutils literal notranslate"><span class="pre">--color</span></code>) and an old-style long switch (like <code class="docutils literal notranslate"><span class="pre">-shuffle</span></code>), respectively. If the command ‘myprog’ has an option ‘-o’ which can also be written as <code class="docutils literal notranslate"><span class="pre">--output</span></code>, and which can take an additional value of either ‘yes’ or ‘no’, this can be specified by writing:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">output</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;yes no&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>There are also special switches for specifying that a switch requires an argument, to disable filename completion, to create completions that are only available in some combinations, etc..  For a complete description of the various switches accepted by the <code class="docutils literal notranslate"><span class="pre">complete</span></code> command, see the documentation for the <a class="reference internal" href="cmds/complete.html#cmd-complete"><span class="std std-ref">complete</span></a> builtin, or write <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">--help</span></code> inside the <code class="docutils literal notranslate"><span class="pre">fish</span></code> shell.</p>
-<p>As a more comprehensive example, here's a commented excerpt of the completions for systemd's <code class="docutils literal notranslate"><span class="pre">timedatectl</span></code>:</p>
+<p>As a more comprehensive example, here’s a commented excerpt of the completions for systemd’s <code class="docutils literal notranslate"><span class="pre">timedatectl</span></code>:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># All subcommands that timedatectl knows - this is useful for later.</span><span class="w"></span>
 <span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">commands</span><span class="w"> </span><span class="no">status</span><span class="w"> </span><span class="no">set-time</span><span class="w"> </span><span class="no">set-timezone</span><span class="w"> </span><span class="no">list-timezones</span><span class="w"> </span><span class="no">set-local-rtc</span><span class="w"> </span><span class="no">set-ntp</span><span class="w"></span>
 
@@ -187,12 +186,12 @@
 <li><p>A directory for systems administrators to install completions for all users on the system, usually <code class="docutils literal notranslate"><span class="pre">/etc/fish/completions</span></code>;</p></li>
 <li><p>A directory for third-party software vendors to ship their own completions for their software, usually <code class="docutils literal notranslate"><span class="pre">/usr/share/fish/vendor_completions.d</span></code>;</p></li>
 <li><p>The completions shipped with fish, usually installed in <code class="docutils literal notranslate"><span class="pre">/usr/share/fish/completions</span></code>; and</p></li>
-<li><p>Completions automatically generated from the operating system's manual, usually stored in <code class="docutils literal notranslate"><span class="pre">~/.local/share/fish/generated_completions</span></code>.</p></li>
+<li><p>Completions automatically generated from the operating system’s manual, usually stored in <code class="docutils literal notranslate"><span class="pre">~/.local/share/fish/generated_completions</span></code>.</p></li>
 </ul>
 <p>These paths are controlled by parameters set at build, install, or run time, and may vary from the defaults listed above.</p>
 <p>This wide search may be confusing. If you are unsure, your completions probably belong in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/completions</span></code>.</p>
 <p>If you have written new completions for a common Unix command, please consider sharing your work by submitting it via the instructions in <a class="reference internal" href="index.html#more-help"><span class="std std-ref">Further help and development</span></a></p>
-<p>If you are developing another program and would like to ship completions with your program, install them to the &quot;vendor&quot; completions directory. As this path may vary from system to system, the <code class="docutils literal notranslate"><span class="pre">pkgconfig</span></code> framework should be used to discover this path with the output of <code class="docutils literal notranslate"><span class="pre">pkg-config</span> <span class="pre">--variable</span> <span class="pre">completionsdir</span> <span class="pre">fish</span></code>.</p>
+<p>If you are developing another program and would like to ship completions with your program, install them to the “vendor” completions directory. As this path may vary from system to system, the <code class="docutils literal notranslate"><span class="pre">pkgconfig</span></code> framework should be used to discover this path with the output of <code class="docutils literal notranslate"><span class="pre">pkg-config</span> <span class="pre">--variable</span> <span class="pre">completionsdir</span> <span class="pre">fish</span></code>.</p>
 </div>
 </div>
 
@@ -210,7 +209,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -231,14 +230,68 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

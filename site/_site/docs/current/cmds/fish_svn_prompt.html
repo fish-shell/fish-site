@@ -1,22 +1,21 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fish_svn_prompt - output Subversion information for use in a prompt &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>fish_svn_prompt - output Subversion information for use in a prompt &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="fish_title - define the terminal&#39;s title" href="fish_title.html" />
-    <link rel="prev" title="fish_status_to_signal - Convert exit codes to human-friendly signals" href="fish_status_to_signal.html" />
+    <link rel="next" title="fish_title - define the terminal’s title" href="fish_title.html" />
+    <link rel="prev" title="fish_status_to_signal - convert exit codes to human-friendly signals" href="fish_status_to_signal.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
      
 
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -102,9 +101,12 @@
 <span id="cmd-fish-svn-prompt"></span><h1>fish_svn_prompt - output Subversion information for use in a prompt<a class="headerlink" href="#fish-svn-prompt-output-subversion-information-for-use-in-a-prompt" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_svn_prompt</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
 <span class="w">     </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s&#39;</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="o">(</span><span class="nf">fish_svn_prompt</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39; $ &#39;</span><span class="w"></span>
-<span class="k">end</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -115,62 +117,62 @@
 <p>There are numerous customization options, which can be controlled with fish variables.</p>
 <ul class="simple">
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_color_revision</span></code></dt><dd><p>the colour of the revision number to display in the prompt</p>
+<dt><span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_color_revision</span></code></dt><dd><p>the colour of the revision number to display in the prompt</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_separator</span></code></dt><dd><p>the separator between status characters</p>
+<dt><span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_separator</span></code></dt><dd><p>the separator between status characters</p>
 </dd>
 </dl>
 </li>
 </ul>
-<p>A number of variables control the symbol (&quot;display&quot;) and color (&quot;color&quot;) for the different status indicators:</p>
+<p>A number of variables control the symbol (“display”) and color (“color”) for the different status indicators:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_added_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_added_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_conflicted_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_conflicted_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_deleted_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_deleted_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_ignored_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_ignored_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_modified_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_modified_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_replaced_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_replaced_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_unversioned_external_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_unversioned_external_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_unversioned_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_unversioned_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_missing_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_missing_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_versioned_obstructed_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_versioned_obstructed_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_locked_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_locked_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_scheduled_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_scheduled_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_switched_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_switched_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_token_present_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_token_present_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_token_other_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_token_other_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_token_stolen_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_token_stolen_color</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_token_broken_display</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_svn_prompt_char_token_broken_color</span></code></p></li>
+<li><p><span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_added_display</span></code></p></li>
+<li><p><span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_added_color</span></code></p></li>
+<li><p><span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_conflicted_display</span></code></p></li>
+<li><p><span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_conflicted_color</span></code></p></li>
+<li><p><span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_deleted_display</span></code></p></li>
+<li><p><span class="target" id="index-7"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_deleted_color</span></code></p></li>
+<li><p><span class="target" id="index-8"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_ignored_display</span></code></p></li>
+<li><p><span class="target" id="index-9"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_ignored_color</span></code></p></li>
+<li><p><span class="target" id="index-10"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_modified_display</span></code></p></li>
+<li><p><span class="target" id="index-11"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_modified_color</span></code></p></li>
+<li><p><span class="target" id="index-12"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_replaced_display</span></code></p></li>
+<li><p><span class="target" id="index-13"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_replaced_color</span></code></p></li>
+<li><p><span class="target" id="index-14"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_unversioned_external_display</span></code></p></li>
+<li><p><span class="target" id="index-15"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_unversioned_external_color</span></code></p></li>
+<li><p><span class="target" id="index-16"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_unversioned_display</span></code></p></li>
+<li><p><span class="target" id="index-17"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_unversioned_color</span></code></p></li>
+<li><p><span class="target" id="index-18"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_missing_display</span></code></p></li>
+<li><p><span class="target" id="index-19"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_missing_color</span></code></p></li>
+<li><p><span class="target" id="index-20"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_versioned_obstructed_display</span></code></p></li>
+<li><p><span class="target" id="index-21"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_versioned_obstructed_color</span></code></p></li>
+<li><p><span class="target" id="index-22"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_locked_display</span></code></p></li>
+<li><p><span class="target" id="index-23"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_locked_color</span></code></p></li>
+<li><p><span class="target" id="index-24"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_scheduled_display</span></code></p></li>
+<li><p><span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_scheduled_color</span></code></p></li>
+<li><p><span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_switched_display</span></code></p></li>
+<li><p><span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_switched_color</span></code></p></li>
+<li><p><span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_token_present_display</span></code></p></li>
+<li><p><span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_token_present_color</span></code></p></li>
+<li><p><span class="target" id="index-30"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_token_other_display</span></code></p></li>
+<li><p><span class="target" id="index-31"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_token_other_color</span></code></p></li>
+<li><p><span class="target" id="index-32"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_token_stolen_display</span></code></p></li>
+<li><p><span class="target" id="index-33"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_token_stolen_color</span></code></p></li>
+<li><p><span class="target" id="index-34"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_token_broken_display</span></code></p></li>
+<li><p><span class="target" id="index-35"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">__fish_svn_prompt_char_token_broken_color</span></code></p></li>
 </ul>
 <p>See also <a class="reference internal" href="fish_vcs_prompt.html#cmd-fish-vcs-prompt"><span class="std std-ref">fish_vcs_prompt</span></a>, which will call all supported version control prompt functions, including git, Mercurial and Subversion.</p>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>A simple prompt that displays svn info:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
 <span class="w">    </span><span class="nf">...</span><span class="w"></span>
 <span class="w">    </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s %s$&#39;</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="o">(</span><span class="nf">fish_svn_prompt</span><span class="o">)</span><span class="w"></span>
-<span class="k">end</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -190,7 +192,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -212,14 +214,68 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

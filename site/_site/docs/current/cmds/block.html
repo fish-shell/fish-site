@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>block - temporarily block delivery of events &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>block - temporarily block delivery of events &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="break - stop the current inner loop" href="break.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -103,7 +102,8 @@
 <span id="cmd-block"></span><h1>block - temporarily block delivery of events<a class="headerlink" href="#block-temporarily-block-delivery-of-events" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">block</span><span class="w"> </span><span class="no">[OPTIONS...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">block</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">--local</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--global</span><span class="g g-Other">)]</span><span class="w"></span>
+<span class="nf">block</span><span class="w"> </span><span class="no">--erase</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -113,17 +113,23 @@
 <p>In functions, <code class="docutils literal notranslate"><span class="pre">block</span></code> can be useful while performing work that should not be interrupted by the shell.</p>
 <p>The block can be removed. Any events which triggered while the block was in place will then be delivered.</p>
 <p>Event blocks should not be confused with code blocks, which are created with <code class="docutils literal notranslate"><span class="pre">begin</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code> or <code class="docutils literal notranslate"><span class="pre">for</span></code></p>
-<p>The following parameters are available:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--local</span></code> Release the block automatically at the end of the current innermost code block scope</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-g</span></code> or <code class="docutils literal notranslate"><span class="pre">--global</span></code> Never automatically release the lock</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code> Release global block</p></li>
-</ul>
+<p>Without options, the <code class="docutils literal notranslate"><span class="pre">block</span></code> command acts with function scope.</p>
+<p>The following options are available:</p>
+<dl class="simple">
+<dt><strong>-l</strong> or <strong>--local</strong></dt><dd><p>Release the block automatically at the end of the current innermost code block scope.</p>
+</dd>
+<dt><strong>-g</strong> or <strong>--global</strong></dt><dd><p>Never automatically release the lock.</p>
+</dd>
+<dt><strong>-e</strong> or <strong>--erase</strong></dt><dd><p>Release global block.</p>
+</dd>
+<dt><strong>-h</strong> or <strong>--help</strong></dt><dd><p>Displays help about using this command.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># Create a function that listens for events</span><span class="w"></span>
-<span class="k">function</span><span class="w"> </span><span class="no">--on-event</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">foo</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;foo fired&#39;</span><span class="p">;</span><span class="w"> </span><span class="k">end</span><span class="w"></span>
+<span class="nf">function</span><span class="w"> </span><span class="no">--on-event</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">foo</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;foo fired&#39;</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span><span class="w"></span>
 
 <span class="c"># Block the delivery of events</span><span class="w"></span>
 <span class="nf">block</span><span class="w"> </span><span class="no">-g</span><span class="w"></span>
@@ -138,7 +144,7 @@
 </div>
 <div class="section" id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
-<p>Note that events are only received from the current fish process as there is no way to send events from one fish process to another.</p>
+<p>Events are only received from the current fish process as there is no way to send events from one fish process to another (yet).</p>
 </div>
 </div>
 
@@ -156,7 +162,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -178,14 +184,68 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

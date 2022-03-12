@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>contains - test if a word is present in a list &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>contains - test if a word is present in a list &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="continue - skip the remainder of the current iteration of the current inner loop" href="continue.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -102,44 +101,50 @@
 <span id="cmd-contains"></span><h1>contains - test if a word is present in a list<a class="headerlink" href="#contains-test-if-a-word-is-present-in-a-list" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">contains</span><span class="w"> </span><span class="no">[OPTIONS]</span><span class="w"> </span><span class="no">KEY</span><span class="w"> </span><span class="no">[VALUES...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">contains</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">KEY</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">VALUES</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">contains</span></code> tests whether the set <code class="docutils literal notranslate"><span class="pre">VALUES</span></code> contains the string <code class="docutils literal notranslate"><span class="pre">KEY</span></code>. If so, <code class="docutils literal notranslate"><span class="pre">contains</span></code> exits with status 0; if not, it exits with status 1.</p>
+<p><code class="docutils literal notranslate"><span class="pre">contains</span></code> tests whether the set <em>VALUES</em> contains the string <em>KEY</em>.
+If so, <code class="docutils literal notranslate"><span class="pre">contains</span></code> exits with code 0; if not, it exits with code 1.</p>
 <p>The following options are available:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-i</span></code> or <code class="docutils literal notranslate"><span class="pre">--index</span></code> print the word index</p></li>
-</ul>
-<p>Note that, like GNU tools and most of fish's builtins, <code class="docutils literal notranslate"><span class="pre">contains</span></code> interprets all arguments starting with a <code class="docutils literal notranslate"><span class="pre">-</span></code> as options to contains, until it reaches an argument that is <code class="docutils literal notranslate"><span class="pre">--</span></code> (two dashes). See the examples below.</p>
+<dl class="simple">
+<dt><strong>-i</strong> or <strong>--index</strong></dt><dd><p>Print the index (number of the element in the set) of the first matching element.</p>
+</dd>
+<dt><strong>-h</strong> or <strong>--help</strong></dt><dd><p>Displays help about using this command.</p>
+</dd>
+</dl>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">contains</span></code> interprets all arguments starting with a <strong>-</strong> as an option to <code class="docutils literal notranslate"><span class="pre">contains</span></code>, until an <strong>--</strong> argument is reached.</p>
+<p>See the examples below.</p>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>If $animals is a list of animals, the following will test if it contains a cat:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="no">cat</span><span class="w"> </span><span class="o">$animals</span><span class="w"></span>
+<p>If <em>animals</em> is a list of animals, the following will test if <em>animals</em> contains “cat”:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="no">cat</span><span class="w"> </span><span class="o">$animals</span><span class="w"></span>
 <span class="w">   </span><span class="nf">echo</span><span class="w"> </span><span class="no">Your</span><span class="w"> </span><span class="no">animal</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">evil!</span><span class="w"></span>
-<span class="k">end</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
-<p>This code will add some directories to $PATH if they aren't yet included:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">~</span><span class="no">/bin</span><span class="w"> </span><span class="no">/usr/local/bin</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">not</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="o">$i</span><span class="w"> </span><span class="o">$PATH</span><span class="w"></span>
+<p>This code will add some directories to <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a> if they aren’t yet included:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">~</span><span class="no">/bin</span><span class="w"> </span><span class="no">/usr/local/bin</span><span class="w"></span>
+<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="o">not</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="o">$i</span><span class="w"> </span><span class="o">$PATH</span><span class="w"></span>
 <span class="w">        </span><span class="nf">set</span><span class="w"> </span><span class="no">PATH</span><span class="w"> </span><span class="o">$PATH</span><span class="w"> </span><span class="o">$i</span><span class="w"></span>
-<span class="w">    </span><span class="k">end</span><span class="w"></span>
-<span class="k">end</span><span class="w"></span>
+<span class="w">    </span><span class="nf">end</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
-<p>While this will check if <code class="docutils literal notranslate"><span class="pre">hasargs</span></code> was run with the <code class="docutils literal notranslate"><span class="pre">-q</span></code> option:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="no">hasargs</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="o">$argv</span><span class="w"></span>
+<p>While this will check if function <code class="docutils literal notranslate"><span class="pre">hasargs</span></code> is being ran with the <strong>-q</strong> option:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">hasargs</span><span class="w"></span>
+<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="o">$argv</span><span class="w"></span>
 <span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;$argv contains a -q option&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="k">end</span><span class="w"></span>
-<span class="k">end</span><span class="w"></span>
+<span class="w">    </span><span class="nf">end</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">--</span></code> here stops <code class="docutils literal notranslate"><span class="pre">contains</span></code> from treating <code class="docutils literal notranslate"><span class="pre">-q</span></code> to an option to itself. Instead it treats it as a normal string to check.</p>
+<p>The <strong>--</strong> here stops <code class="docutils literal notranslate"><span class="pre">contains</span></code> from treating <strong>-q</strong> to an option to itself.
+Instead it treats it as a normal string to check.</p>
 </div>
 </div>
 
@@ -157,7 +162,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -179,14 +184,68 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>source - evaluate contents of file &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>source - evaluate contents of file &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="status - query fish runtime information" href="status.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -103,19 +102,20 @@
 <span id="cmd-source"></span><h1>source - evaluate contents of file<a class="headerlink" href="#source-evaluate-contents-of-file" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="w"> </span><span class="no">FILENAME</span><span class="w"> </span><span class="no">[ARGUMENTS...]</span><span class="w"></span>
-<span class="nf">somecommand</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">source</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="w"> </span><span class="no">FILE</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">ARGUMENTS</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
+<span class="nf">SOMECOMMAND</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">source</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">source</span></code> evaluates the commands of the specified file in the current shell as a new block of code. This is different from starting a new process to perform the commands (i.e. <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">&lt;</span> <span class="pre">FILENAME</span></code>) since the commands will be evaluated by the current shell, which means that changes in shell variables will affect the current shell. If additional arguments are specified after the file name, they will be inserted into the <code class="docutils literal notranslate"><span class="pre">$argv</span></code> variable. The <code class="docutils literal notranslate"><span class="pre">$argv</span></code> variable will not include the name of the sourced file.</p>
-<p>fish will search the working directory to resolve relative paths but will not search <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">source</span></code> evaluates the commands of the specified <em>FILE</em> in the current shell as a new block of code. This is different from starting a new process to perform the commands (i.e. <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">&lt;</span> <span class="pre">FILE</span></code>) since the commands will be evaluated by the current shell, which means that changes in shell variables will affect the current shell. If additional arguments are specified after the file name, they will be inserted into the <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-argv"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">argv</span></code></a> variable. The <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-argv"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">argv</span></code></a> variable will not include the name of the sourced file.</p>
+<p>fish will search the working directory to resolve relative paths but will not search <span class="target" id="index-2"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a> .</p>
 <p>If no file is specified and stdin is not the terminal, or if the file name <code class="docutils literal notranslate"><span class="pre">-</span></code> is used, stdin will be read.</p>
 <p>The exit status of <code class="docutils literal notranslate"><span class="pre">source</span></code> is the exit status of the last job to execute. If something goes wrong while opening or reading the file, <code class="docutils literal notranslate"><span class="pre">source</span></code> exits with a non-zero status.</p>
-<p><code class="docutils literal notranslate"><span class="pre">.</span></code> (a single period) is an alias for the <code class="docutils literal notranslate"><span class="pre">source</span></code> command. The use of <code class="docutils literal notranslate"><span class="pre">.</span></code> is deprecated in favour of <code class="docutils literal notranslate"><span class="pre">source</span></code>, and <code class="docutils literal notranslate"><span class="pre">.</span></code> will be removed in a future version of fish.</p>
+<p><strong>.</strong> (a single period) is an alias for the <code class="docutils literal notranslate"><span class="pre">source</span></code> command. The use of <strong>.</strong> is deprecated in favour of <code class="docutils literal notranslate"><span class="pre">source</span></code>, and <strong>.</strong> will be removed in a future version of fish.</p>
 <p><code class="docutils literal notranslate"><span class="pre">source</span></code> creates a new <a class="reference internal" href="../language.html#variables-scope"><span class="std std-ref">local scope</span></a>; <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--local</span></code> within a sourced block will not affect variables in the enclosing scope.</p>
+<p>The <strong>-h</strong> or <strong>--help</strong> option displays help about using this command.</p>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
@@ -126,7 +126,7 @@
 </div>
 <div class="section" id="caveats">
 <h2>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline">¶</a></h2>
-<p>In fish versions prior to 2.3.0, the <code class="docutils literal notranslate"><span class="pre">$argv</span></code> variable would have a single element (the name of the sourced file) if no arguments are present. Otherwise, it would contain arguments without the name of the sourced file. That behavior was very confusing and unlike other shells such as bash and zsh.</p>
+<p>In fish versions prior to 2.3.0, the <span class="target" id="index-3"></span><a class="reference internal" href="../language.html#envvar-argv"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">argv</span></code></a> variable would have a single element (the name of the sourced file) if no arguments are present. Otherwise, it would contain arguments without the name of the sourced file. That behavior was very confusing and unlike other shells such as bash and zsh.</p>
 </div>
 </div>
 
@@ -144,7 +144,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -166,14 +166,68 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

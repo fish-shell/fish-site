@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fish_git_prompt - output git information for use in a prompt &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>fish_git_prompt - output git information for use in a prompt &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fish_greeting - display a welcome message in interactive shells" href="fish_greeting.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -102,9 +101,12 @@
 <span id="cmd-fish-git-prompt"></span><h1>fish_git_prompt - output git information for use in a prompt<a class="headerlink" href="#fish-git-prompt-output-git-information-for-use-in-a-prompt" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_git_prompt</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
 <span class="w">     </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s&#39;</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="o">(</span><span class="nf">fish_git_prompt</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39; $ &#39;</span><span class="w"></span>
-<span class="k">end</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -114,9 +116,9 @@
 <p><a class="reference external" href="https://git-scm.com">Git</a> must be installed.</p>
 <p>There are numerous customization options, which can be controlled with git options or fish variables. git options, where available, take precedence over the fish variable with the same function. git options can be set on a per-repository or global basis. git options can be set with the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span></code> command, while fish variables can be set as usual with the <a class="reference internal" href="set.html#cmd-set"><span class="std std-ref">set</span></a> command.</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_show_informative_status</span></code> or the git option <code class="docutils literal notranslate"><span class="pre">bash.showInformativeStatus</span></code> can be set to enable the &quot;informative&quot; display, which will show a large amount of information - the number of untracked files, dirty files, unpushed/unpulled commits, and more. In large repositories, this can take a lot of time, so it you may wish to disable it in these repositories with  <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--local</span> <span class="pre">bash.showInformativeStatus</span> <span class="pre">false</span></code>. It also changes the characters the prompt uses to less plain ones (<code class="docutils literal notranslate"><span class="pre">✚</span></code> instead of <code class="docutils literal notranslate"><span class="pre">*</span></code> for the dirty state for example) , and if you are only interested in that, set <code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_use_informative_chars</span></code> instead.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_showdirtystate</span></code> or the git option <code class="docutils literal notranslate"><span class="pre">bash.showDirtyState</span></code> can be set to show if the repository is &quot;dirty&quot;, i.e. has uncommitted changes.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_showuntrackedfiles</span></code> or the git option <code class="docutils literal notranslate"><span class="pre">bash.showUntrackedFiles</span></code> can be set to show if the repository has untracked files (that aren't ignored).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_show_informative_status</span></code> or the git option <code class="docutils literal notranslate"><span class="pre">bash.showInformativeStatus</span></code> can be set to enable the “informative” display, which will show a large amount of information - the number of untracked files, dirty files, unpushed/unpulled commits, and more. In large repositories, this can take a lot of time, so it you may wish to disable it in these repositories with  <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--local</span> <span class="pre">bash.showInformativeStatus</span> <span class="pre">false</span></code>. It also changes the characters the prompt uses to less plain ones (<code class="docutils literal notranslate"><span class="pre">✚</span></code> instead of <code class="docutils literal notranslate"><span class="pre">*</span></code> for the dirty state for example) , and if you are only interested in that, set <code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_use_informative_chars</span></code> instead.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_showdirtystate</span></code> or the git option <code class="docutils literal notranslate"><span class="pre">bash.showDirtyState</span></code> can be set to show if the repository is “dirty”, i.e. has uncommitted changes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_showuntrackedfiles</span></code> or the git option <code class="docutils literal notranslate"><span class="pre">bash.showUntrackedFiles</span></code> can be set to show if the repository has untracked files (that aren’t ignored).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_showupstream</span></code> can be set to a list of values to determine how changes between HEAD and upstream are shown:</p>
 <blockquote>
 <div><dl class="simple">
@@ -158,7 +160,7 @@
 </ul>
 <p>A number of variables set characters and color used as indicators. Many of these have a different default if used with informative status enabled, or <code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_use_informative_chars</span></code> set. The usual default is given first, then the informative default (if it is different). If no default for the colors is given, they default to <code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color</span></code>.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_stateseparator</span></code> (' ', <code class="docutils literal notranslate"><span class="pre">|</span></code>) - the character to be used between the state characters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_stateseparator</span></code> (‘ ‘, <code class="docutils literal notranslate"><span class="pre">|</span></code>) - the character to be used between the state characters</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color</span></code> (no default)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color_prefix</span></code> - the color of the <code class="docutils literal notranslate"><span class="pre">(</span></code> prefix</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color_suffix</span></code> - the color of the <code class="docutils literal notranslate"><span class="pre">)</span></code> suffix</p></li>
@@ -172,8 +174,8 @@
 </ul>
 <p>Variables used with <code class="docutils literal notranslate"><span class="pre">showdirtystate</span></code>:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_dirtystate</span></code> (<cite>*</cite>, ✚) - the number of &quot;dirty&quot; changes, i.e. unstaged files with changes</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_invalidstate</span></code> (#, ✖) - the number of &quot;unmerged&quot; changes, e.g. additional changes to already added files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_dirtystate</span></code> (<cite>*</cite>, ✚) - the number of “dirty” changes, i.e. unstaged files with changes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_invalidstate</span></code> (#, ✖) - the number of “unmerged” changes, e.g. additional changes to already added files</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_stagedstate</span></code> (+, ●) - the number of staged files without additional changes</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color_dirtystate</span></code> (red with showcolorhints, same as color_flags otherwise)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color_invalidstate</span></code></p></li>
@@ -195,13 +197,13 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_upstream_behind</span></code> (&lt;, ↓) - the character for the commits this repository is behind upstream</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_upstream_diverged</span></code> (&lt;&gt;) - the symbol if this repository is both ahead and behind upstream</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_upstream_equal</span></code> (=) - the symbol if this repo is equal to upstream</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_upstream_prefix</span></code> ('')</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_char_upstream_prefix</span></code> (‘’)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color_upstream</span></code></p></li>
 </ul>
 <p>Colors used with <code class="docutils literal notranslate"><span class="pre">showcolorhints</span></code>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color_branch</span></code> (green) - the color of the branch</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color_branch_detached</span></code> (red) the color of the branch if it's detached (e.g. a commit is checked out)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color_branch_detached</span></code> (red) the color of the branch if it’s detached (e.g. a commit is checked out)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color_flags</span></code> (--bold blue) - the default color for dirty/staged/stashed/untracked state</p></li>
 </ul>
 <p>Note that all colors can also have a corresponding <code class="docutils literal notranslate"><span class="pre">_done</span></code> color. For example, the contents of <code class="docutils literal notranslate"><span class="pre">$__fish_git_prompt_color_upstream_done</span></code> is printed right _after_ the upstream.</p>
@@ -210,11 +212,11 @@
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>A simple prompt that displays git info:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
 <span class="w">    </span><span class="c"># ...</span><span class="w"></span>
 <span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">__fish_git_prompt_showupstream</span><span class="w"> </span><span class="no">auto</span><span class="w"></span>
 <span class="w">    </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s %s$&#39;</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="o">(</span><span class="nf">fish_git_prompt</span><span class="o">)</span><span class="w"></span>
-<span class="k">end</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -234,7 +236,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -256,14 +258,68 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

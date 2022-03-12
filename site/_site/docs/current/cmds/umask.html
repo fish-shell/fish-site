@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>umask - set or get the file creation mode mask &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <title>umask - set or get the file creation mode mask &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="vared - interactively edit the value of an environment variable" href="vared.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -74,7 +73,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -102,22 +101,25 @@
 <span id="cmd-umask"></span><h1>umask - set or get the file creation mode mask<a class="headerlink" href="#umask-set-or-get-the-file-creation-mode-mask" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">umask</span><span class="w"> </span><span class="no">[OPTIONS]</span><span class="w"> </span><span class="no">[MASK]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">umask</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">MASK</span><span class="g g-Other">]</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">umask</span></code> displays and manipulates the &quot;umask&quot;, or file creation mode mask, which is used to restrict the default access to files.</p>
+<p><code class="docutils literal notranslate"><span class="pre">umask</span></code> displays and manipulates the “umask”, or file creation mode mask, which is used to restrict the default access to files.</p>
 <p>The umask may be expressed either as an octal number, which represents the rights that will be removed by default, or symbolically, which represents the only rights that will be granted by default.</p>
 <p>Access rights are explained in the manual page for the <code class="docutils literal notranslate"><span class="pre">chmod(1)</span></code> program.</p>
 <p>With no parameters, the current file creation mode mask is printed as an octal number.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-h</span></code> or <code class="docutils literal notranslate"><span class="pre">--help</span></code> prints this message.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-S</span></code> or <code class="docutils literal notranslate"><span class="pre">--symbolic</span></code> prints the umask in symbolic form instead of octal form.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--as-command</span></code> outputs the umask in a form that may be reused as input</p></li>
-</ul>
-<p>If a numeric mask is specified as a parameter, the current shell's umask will be set to that value, and the rights specified by that mask will be removed from new files and directories by default.</p>
+<dl class="simple">
+<dt><strong>-S</strong> or <strong>--symbolic</strong></dt><dd><p>Prints the umask in symbolic form instead of octal form.</p>
+</dd>
+<dt><strong>-p</strong> or <strong>--as-command</strong></dt><dd><p>Outputs the umask in a form that may be reused as input.</p>
+</dd>
+<dt><strong>-h</strong> or <strong>--help</strong></dt><dd><p>Displays help about using this command.</p>
+</dd>
+</dl>
+<p>If a numeric mask is specified as a parameter, the current shell’s umask will be set to that value, and the rights specified by that mask will be removed from new files and directories by default.</p>
 <p>If a symbolic mask is specified, the desired permission bits, and not the inverse, should be specified. A symbolic mask is a comma separated list of rights. Each right consists of three parts:</p>
 <ul class="simple">
 <li><p>The first part specifies to whom this set of right applies, and can be one of <code class="docutils literal notranslate"><span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>, <code class="docutils literal notranslate"><span class="pre">o</span></code> or <code class="docutils literal notranslate"><span class="pre">a</span></code>, where <code class="docutils literal notranslate"><span class="pre">u</span></code> specifies the user who owns the file, <code class="docutils literal notranslate"><span class="pre">g</span></code> specifies the group owner of the file, <code class="docutils literal notranslate"><span class="pre">o</span></code> specific other users rights and <code class="docutils literal notranslate"><span class="pre">a</span></code> specifies all three should be changed.</p></li>
@@ -147,7 +149,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -169,14 +171,68 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>

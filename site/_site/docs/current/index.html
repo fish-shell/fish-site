@@ -1,18 +1,17 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction &#8212; fish-shell 3.3.1 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <title>Introduction &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Frequently asked questions" href="faq.html" />
@@ -27,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="#">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="#">fish-shell 3.4.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Introduction</a></li>
@@ -72,7 +71,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -82,18 +81,20 @@
 <h4><a href="#">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Introduction</a><ul>
-<li><a class="reference internal" href="#further-reading">Further Reading</a></li>
-<li><a class="reference internal" href="#installation-and-start">Installation and Start</a><ul>
-<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#where-to-go">Where to go?</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#id1">Installation</a></li>
 <li><a class="reference internal" href="#starting-and-exiting">Starting and Exiting</a></li>
-<li><a class="reference internal" href="#executing-bash">Executing Bash</a></li>
 <li><a class="reference internal" href="#default-shell">Default Shell</a></li>
 <li><a class="reference internal" href="#uninstalling">Uninstalling</a></li>
 <li><a class="reference internal" href="#shebang-line">Shebang Line</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#configuration-files">Configuration files</a></li>
-<li><a class="reference internal" href="#further-help-and-development">Further help and development</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#examples">Examples:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#resources">Resources</a></li>
 <li><a class="reference internal" href="#other-help-pages">Other help pages</a></li>
 </ul>
 </li>
@@ -108,9 +109,8 @@
             
   <div class="section" id="introduction">
 <span id="intro"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>This is the documentation for <strong>fish</strong>, the <strong>f</strong>riendly <strong>i</strong>nteractive <strong>sh</strong>ell.</p>
+<p>This is the documentation for <strong class="command">fish</strong>, the <strong>f</strong>riendly <strong>i</strong>nteractive <strong>sh</strong>ell.</p>
 <p>A shell is a program that helps you operate your computer by starting other programs. fish offers a command-line interface focused on usability and interactive use.</p>
-<p>Unlike other shells, fish does not follow the POSIX standard, but still uses roughly the same model.</p>
 <p>Some of the special features of fish are:</p>
 <ul class="simple">
 <li><p><strong>Extensive UI</strong>: <a class="reference internal" href="interactive.html#color"><span class="std std-ref">Syntax highlighting</span></a>, <a class="reference internal" href="interactive.html#autosuggestions"><span class="std std-ref">Autosuggestions</span></a>, <a class="reference internal" href="interactive.html#tab-completion"><span class="std std-ref">tab completion</span></a> and selection lists that can be navigated and filtered.</p></li>
@@ -118,64 +118,60 @@
 <li><p><strong>Easy scripting</strong>: New <a class="reference internal" href="language.html#syntax-function"><span class="std std-ref">functions</span></a> can be added on the fly. The syntax is easy to learn and use.</p></li>
 </ul>
 <p>This page explains how to install and set up fish and where to get more information.</p>
-<div class="section" id="further-reading">
-<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="where-to-go">
+<h2>Where to go?<a class="headerlink" href="#where-to-go" title="Permalink to this headline">¶</a></h2>
 <p>If this is your first time using fish, see the <a class="reference internal" href="tutorial.html#tutorial"><span class="std std-ref">tutorial</span></a>.</p>
 <p>If you are already familiar with other shells like bash and want to see the scripting differences, see <a class="reference internal" href="fish_for_bash_users.html#fish-for-bash-users"><span class="std std-ref">Fish For Bash Users</span></a>.</p>
-<p>For a comprehensive overview of fish's scripting language, see <a class="reference internal" href="language.html#language"><span class="std std-ref">The Fish Language</span></a>.</p>
+<p>For a comprehensive overview of fish’s scripting language, see <a class="reference internal" href="language.html#language"><span class="std std-ref">The Fish Language</span></a>.</p>
 <p>For information on using fish interactively, see <a class="reference internal" href="interactive.html#interactive"><span class="std std-ref">Interactive use</span></a>.</p>
+<p>If you need to install fish first, read on, the rest of this document will tell you how to get, install and configure fish.</p>
 </div>
-<div class="section" id="installation-and-start">
-<h2>Installation and Start<a class="headerlink" href="#installation-and-start" title="Permalink to this headline">¶</a></h2>
-<p>This section describes how to install, uninstall, start, and exit the fish shell. It also explains how to make fish the default shell.</p>
 <div class="section" id="installation">
-<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how to install, uninstall, start, and exit <strong class="command">fish</strong>. It also explains how to make fish the default shell.</p>
+<div class="section" id="id1">
+<h3>Installation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Up-to-date instructions for installing the latest version of fish are on the <a class="reference external" href="https://fishshell.com/">fish homepage</a>.</p>
-<p>To install the development version of fish, see the instructions on the <a class="reference external" href="https://github.com/fish-shell/fish-shell">project's GitHub page</a>.</p>
+<p>To install the development version of fish, see the instructions on the <a class="reference external" href="https://github.com/fish-shell/fish-shell">project’s GitHub page</a>.</p>
 </div>
 <div class="section" id="starting-and-exiting">
 <h3>Starting and Exiting<a class="headerlink" href="#starting-and-exiting" title="Permalink to this headline">¶</a></h3>
 <p>Once fish has been installed, open a terminal. If fish is not the default shell:</p>
 <ul>
-<li><p>Type <code class="docutils literal notranslate"><span class="pre">fish</span></code> to start a fish shell:</p>
+<li><p>Type <strong class="command">fish</strong> to start a shell:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
-<li><p>Type <code class="docutils literal notranslate"><span class="pre">exit</span></code> to exit a fish shell:</p>
+<li><p>Type <strong class="command">exit</strong> to end the session:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">exit</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
 </ul>
 </div>
-<div class="section" id="executing-bash">
-<h3>Executing Bash<a class="headerlink" href="#executing-bash" title="Permalink to this headline">¶</a></h3>
-<p>If fish is your default shell and you want to copy commands from the internet that are written in bash (the default shell on most systems), you can proceed in one of the following two ways:</p>
-<ul>
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">bash</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-c</span></code> switch to read from a string:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">bash</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="s1">&#39;some bash command&#39;</span><span class="w"></span>
-</pre></div>
-</div>
-</li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">bash</span></code> without a switch to open a bash shell you can use and <code class="docutils literal notranslate"><span class="pre">exit</span></code> afterward:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">bash</span><span class="w"></span>
-$ some bash command
-$ exit
-<span class="gp">&gt; </span><span class="nf">_</span><span class="w"></span>
-</pre></div>
-</div>
-</li>
-</ul>
-</div>
 <div class="section" id="default-shell">
-<h3>Default Shell<a class="headerlink" href="#default-shell" title="Permalink to this headline">¶</a></h3>
-<p>To make fish your default shell:</p>
-<ul class="simple">
-<li><p>Add the line <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/fish</span></code> to <code class="docutils literal notranslate"><span class="pre">/etc/shells</span></code>.</p></li>
-<li><p>Change your default shell with <code class="docutils literal notranslate"><span class="pre">chsh</span> <span class="pre">-s</span> <span class="pre">/usr/local/bin/fish</span></code>.</p></li>
-</ul>
-<p>For detailed instructions see <a class="reference internal" href="tutorial.html#switching-to-fish"><span class="std std-ref">Switching to fish</span></a>.</p>
+<span id="id2"></span><h3>Default Shell<a class="headerlink" href="#default-shell" title="Permalink to this headline">¶</a></h3>
+<p>There are multiple ways to switch to fish (or any other shell) as your default.</p>
+<p>The simpler is to set your terminal to start fish. See its configuration and set the program to start to <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/fish</span></code> (if that’s where fish is installed - substitute another location as appropriate).</p>
+<p>The more involved and complete way is to set fish as your login shell. To do that, you need to:</p>
+<ol class="arabic">
+<li><p>Add the shell to <code class="docutils literal notranslate"><span class="pre">/etc/shells</span></code> with:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="no">/usr/local/bin/fish</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">sudo</span><span class="w"> </span><span class="no">tee</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">/etc/shells</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Change your default shell with:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">chsh</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">/usr/local/bin/fish</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Again, substitute the path to fish for /usr/local/bin/fish - see <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">-s</span> <span class="pre">fish</span></code> inside fish. To change it back to another shell, just substitute <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/fish</span></code> with <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code>, <code class="docutils literal notranslate"><span class="pre">/bin/tcsh</span></code> or <code class="docutils literal notranslate"><span class="pre">/bin/zsh</span></code> as appropriate in the steps above.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Setting fish as your login shell may have issues, because some operating systems (including a bunch of linux distributions) only do some of their configuration in shell startup files like /etc/profile. So you could notice e.g. $PATH being wrong, and you would have to redo that setup.</p>
+</div>
 </div>
 <div class="section" id="uninstalling">
 <h3>Uninstalling<a class="headerlink" href="#uninstalling" title="Permalink to this headline">¶</a></h3>
@@ -184,54 +180,40 @@ $ exit
 <div class="section" id="shebang-line">
 <h3>Shebang Line<a class="headerlink" href="#shebang-line" title="Permalink to this headline">¶</a></h3>
 <p>Because shell scripts are written in many different languages, they need to carry information about which interpreter should be used to execute them. For this, they are expected to have a first line, the shebang line, which names the interpreter executable.</p>
-<p>A script written in <code class="docutils literal notranslate"><span class="pre">bash</span></code> would need a first line like this:</p>
+<p>A script written in <strong class="command">bash</strong> would need a first line like this:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c">#!/bin/bash</span><span class="w"></span>
 </pre></div>
 </div>
 <p>When the shell tells the kernel to execute the file, it will use the interpreter <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code>.</p>
 <p>For a script written in another language, just replace <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code> with the interpreter for that language (for example: <code class="docutils literal notranslate"><span class="pre">/usr/bin/python</span></code> for a python script, or <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/fish</span></code> for a fish script).</p>
-<p>This line is only needed when scripts are executed without specifying the interpreter. For functions inside fish or when executing a script with <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">/path/to/script</span></code>, a shebang is not required (but it doesn't hurt!).</p>
+<p>This line is only needed when scripts are executed without specifying the interpreter. For functions inside fish or when executing a script with <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">/path/to/script</span></code>, a shebang is not required (but it doesn’t hurt!).</p>
 </div>
 </div>
-<div class="section" id="configuration-files">
-<span id="configuration"></span><h2>Configuration files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">¶</a></h2>
-<p>When fish is started, it reads and runs its configuration files. Where these are depends on build configuration and environment variables.</p>
-<p>The main file is <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code> (or more precisely <code class="docutils literal notranslate"><span class="pre">$XDG_CONFIG_HOME/fish/config.fish</span></code>).</p>
-<p>Configuration files are evaluated in the following order:</p>
-<ul>
-<li><p>Configuration snippets in files ending in <code class="docutils literal notranslate"><span class="pre">.fish</span></code>, in the directories:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_config_dir/conf.d</span></code> (by default, <code class="docutils literal notranslate"><span class="pre">~/.config/fish/conf.d/</span></code>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$__fish_sysconf_dir/conf.d</span></code> (by default, <code class="docutils literal notranslate"><span class="pre">/etc/fish/conf.d/</span></code>)</p></li>
-<li><p>Directories for third-party software vendors to ship their own configuration snippets for their software. Fish searches the directories in the <code class="docutils literal notranslate"><span class="pre">XDG_DATA_DIRS</span></code> environment variable for a <code class="docutils literal notranslate"><span class="pre">fish/vendor_conf.d</span></code> directory; if that variable is not defined, the default is <code class="docutils literal notranslate"><span class="pre">/usr/share/fish/vendor_conf.d</span></code> and <code class="docutils literal notranslate"><span class="pre">/usr/local/share/fish/vendor_conf.d</span></code>, unless your distribution customized this.</p></li>
-</ul>
-<p>If there are multiple files with the same name in these directories, only the first will be executed.
-They are executed in order of their filename, sorted (like globs) in a natural order (i.e. &quot;01&quot; sorts before &quot;2&quot;).</p>
-</li>
-<li><p>System-wide configuration files, where administrators can include initialization that should be run for all users on the system - similar to <code class="docutils literal notranslate"><span class="pre">/etc/profile</span></code> for POSIX-style shells - in <code class="docutils literal notranslate"><span class="pre">$__fish_sysconf_dir</span></code> (usually <code class="docutils literal notranslate"><span class="pre">/etc/fish/config.fish</span></code>).</p></li>
-<li><p>User initialization, usually in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code> (controlled by the <code class="docutils literal notranslate"><span class="pre">XDG_CONFIG_HOME</span></code> environment variable, and accessible as <code class="docutils literal notranslate"><span class="pre">$__fish_config_dir</span></code>).</p></li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code> is sourced <em>after</em> the snippets. This is so users can copy snippets and override some of their behavior.</p>
-<p>These files are all executed on the startup of every shell. If you want to run a command only on starting an interactive shell, use the exit status of the command <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">--is-interactive</span></code> to determine if the shell is interactive. If you want to run a command only when using a login shell, use <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">--is-login</span></code> instead. This will speed up the starting of non-interactive or non-login shells.</p>
-<p>If you are developing another program, you may wish to install configuration which is run for all users of the fish shell on a system. This is discouraged; if not carefully written, they may have side-effects or slow the startup of the shell. Additionally, users of other shells will not benefit from the Fish-specific configuration. However, if they are absolutely required, you may install them to the &quot;vendor&quot; configuration directory. As this path may vary from system to system, the <code class="docutils literal notranslate"><span class="pre">pkgconfig</span></code> framework should be used to discover this path with the output of <code class="docutils literal notranslate"><span class="pre">pkg-config</span> <span class="pre">--variable</span> <span class="pre">confdir</span> <span class="pre">fish</span></code>.</p>
-<p>Examples:</p>
-<p>If you want to add the directory <code class="docutils literal notranslate"><span class="pre">~/linux/bin</span></code> to your PATH variable when using a login shell, add this to your <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code> file:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="nf">status</span><span class="w"> </span><span class="no">--is-login</span><span class="w"></span>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>To store configuration write it to a file called <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.fish</span></code> scripts in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/conf.d/</span></code> are also automatically executed before <code class="docutils literal notranslate"><span class="pre">config.fish</span></code>.</p>
+<p>These files are read on the startup of every shell, whether interactive and/or if they’re login shells. Use <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">--is-interactive</span></code> and <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">--is-login</span></code> to do things only in interactive/login shells, respectively.</p>
+<p>This is the short version; for a full explanation, like for sysadmins or integration for developers of other software, see <a class="reference internal" href="language.html#configuration"><span class="std std-ref">Configuration files</span></a>.</p>
+<div class="section" id="examples">
+<h3>Examples:<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>To add <code class="docutils literal notranslate"><span class="pre">~/linux/bin</span></code> to PATH variable when using a login shell, add this to <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code> file:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">status</span><span class="w"> </span><span class="no">--is-login</span><span class="w"></span>
 <span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-gx</span><span class="w"> </span><span class="no">PATH</span><span class="w"> </span><span class="o">$PATH</span><span class="w"> </span><span class="o">~</span><span class="no">/linux/bin</span><span class="w"></span>
-<span class="k">end</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
-<p>(alternatively use <a class="reference internal" href="cmds/fish_add_path.html#cmd-fish-add-path"><span class="std std-ref">fish_add_path</span></a> like <code class="docutils literal notranslate"><span class="pre">fish_add_path</span> <span class="pre">~/linux/bin</span></code>, which only adds the path if it isn't included yet)</p>
-<p>If you want to run a set of commands when fish exits, use an <a class="reference internal" href="language.html#event"><span class="std std-ref">event handler</span></a> that is triggered by the exit of the shell:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="no">on_exit</span><span class="w"> </span><span class="no">--on-event</span><span class="w"> </span><span class="no">fish_exit</span><span class="w"></span>
+<p>This is just an example; using <a class="reference internal" href="cmds/fish_add_path.html#cmd-fish-add-path"><span class="std std-ref">fish_add_path</span></a> e.g. <code class="docutils literal notranslate"><span class="pre">fish_add_path</span> <span class="pre">~/linux/bin</span></code> which only adds the path if it isn’t included yet is easier.</p>
+<p>To run commands on exit, use an <a class="reference internal" href="language.html#event"><span class="std std-ref">event handler</span></a> that is triggered by the exit of the shell:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">on_exit</span><span class="w"> </span><span class="no">--on-event</span><span class="w"> </span><span class="no">fish_exit</span><span class="w"></span>
 <span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">now</span><span class="w"> </span><span class="no">exiting</span><span class="w"></span>
-<span class="k">end</span><span class="w"></span>
+<span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="further-help-and-development">
-<span id="more-help"></span><h2>Further help and development<a class="headerlink" href="#further-help-and-development" title="Permalink to this headline">¶</a></h2>
-<p>If you have a question not answered by this documentation, there are several avenues for help:</p>
+</div>
+<div class="section" id="resources">
+<span id="more-help"></span><h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://github.com/fish-shell/fish-shell/">GitHub page</a></p></li>
 <li><p>The official <a class="reference external" href="https://gitter.im/fish-shell/fish-shell">Gitter channel</a></p></li>
@@ -273,7 +255,7 @@ They are executed in order of their filename, sorted (like globs) in a natural o
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="#">fish-shell 3.3.1 documentation</a> &#187;
+    <a href="#">fish-shell 3.4.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Introduction</a></li>
@@ -294,14 +276,68 @@ They are executed in order of their filename, sorted (like globs) in a natural o
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2021, fish-shell developers.
+    &copy; Copyright 2022, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
 </div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
 
   </body>
 </html>
