@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>math - perform mathematics calculations &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="nextd - move forward through directory history" href="nextd.html" />
+    <link rel="prev" title="jobs - print currently running jobs" href="jobs.html" />
+    <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
+     
+
+  </head><body><div id="fmain">  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">math - perform mathematics calculations</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div>
+<h3><a href="../index.html">Documents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div>
+<h4><a href="../index.html">Sections</a></h4>
+<ul>
+<li><a class="reference internal" href="#">math - perform mathematics calculations</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#return-values">Return Values</a></li>
+<li><a class="reference internal" href="#syntax">Syntax</a></li>
+<li><a class="reference internal" href="#operators">Operators</a></li>
+<li><a class="reference internal" href="#constants">Constants</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#compatibility-notes">Compatibility notes</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="math-perform-mathematics-calculations">
+<span id="cmd-math"></span><h1>math - perform mathematics calculations<a class="headerlink" href="#math-perform-mathematics-calculations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">math</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-s</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--scale</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">N</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-b</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--base</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">BASE</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">EXPRESSION</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">math</span></code> performs mathematical calculations.
+It supports simple operations such as addition, subtraction, and so on, as well as functions like <code class="docutils literal notranslate"><span class="pre">abs()</span></code>, <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> and <code class="docutils literal notranslate"><span class="pre">ln()</span></code>.</p>
+<p>By default, the output is a floating-point number with trailing zeroes trimmed.
+To get a fixed representation, the <code class="docutils literal notranslate"><span class="pre">--scale</span></code> option can be used, including <code class="docutils literal notranslate"><span class="pre">--scale=0</span></code> for integer output.</p>
+<p>Keep in mind that parameter expansion happens before expressions are evaluated.
+This can be very useful in order to perform calculations involving shell variables or the output of command substitutions, but it also means that parenthesis (<code class="docutils literal notranslate"><span class="pre">()</span></code>) and the asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) glob character have to be escaped or quoted.
+<code class="docutils literal notranslate"><span class="pre">x</span></code> can also be used to denote multiplication, but it needs to be followed by whitespace to distinguish it from hexadecimal numbers.</p>
+<p>Parentheses for functions are optional - <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">sin</span> <span class="pre">pi</span></code> prints <code class="docutils literal notranslate"><span class="pre">0</span></code>.
+However, a comma will bind to the inner function, so <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">pow</span> <span class="pre">sin</span> <span class="pre">3,</span> <span class="pre">5</span></code> is an error because it tries to give <code class="docutils literal notranslate"><span class="pre">sin</span></code> the arguments <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code>.
+When in doubt, use parentheses.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span></code> ignores whitespace between arguments and takes its input as multiple arguments (internally joined with a space), so <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">2</span> <span class="pre">+2</span></code> and <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;2</span> <span class="pre">+</span>&#160;&#160;&#160; <span class="pre">2&quot;</span></code> work the same.
+<code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">2</span> <span class="pre">2</span></code> is an error.</p>
+<p>The following options are available:</p>
+<dl class="simple">
+<dt><strong>-s</strong> <em>N</em> or <strong>--scale</strong> <em>N</em></dt><dd><p>Sets the scale of the result.
+<code class="docutils literal notranslate"><span class="pre">N</span></code> must be an integer or the word “max” for the maximum scale.
+A scale of zero causes results to be rounded down to the nearest integer.
+So <code class="docutils literal notranslate"><span class="pre">3/2</span></code> returns <code class="docutils literal notranslate"><span class="pre">1</span></code> rather than <code class="docutils literal notranslate"><span class="pre">2</span></code> which <code class="docutils literal notranslate"><span class="pre">1.5</span></code> would normally round to.
+This is for compatibility with <code class="docutils literal notranslate"><span class="pre">bc</span></code> which was the basis for this command prior to fish 3.0.0.
+Scale values greater than zero causes the result to be rounded using the usual rules to the specified number of decimal places.</p>
+</dd>
+<dt><strong>-b</strong> <em>BASE</em> or <strong>--base</strong> <em>BASE</em></dt><dd><p>Sets the numeric base used for output (<code class="docutils literal notranslate"><span class="pre">math</span></code> always understands hexadecimal numbers as input).
+It currently understands “hex” or “16” for hexadecimal and “octal” or “8” for octal and implies a scale of 0 (other scales cause an error), so it will truncate the result down to an integer.
+This might change in the future.
+Hex numbers will be printed with a <code class="docutils literal notranslate"><span class="pre">0x</span></code> prefix.
+Octal numbers will have a prefix of <code class="docutils literal notranslate"><span class="pre">0</span></code> but aren’t understood by <code class="docutils literal notranslate"><span class="pre">math</span></code> as input.</p>
+</dd>
+<dt><strong>-h</strong> or <strong>--help</strong></dt><dd><p>Displays help about using this command.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="return-values">
+<h2>Return Values<a class="headerlink" href="#return-values" title="Permalink to this headline">¶</a></h2>
+<p>If the expression is successfully evaluated and doesn’t over/underflow or return NaN the return <code class="docutils literal notranslate"><span class="pre">status</span></code> is zero (success) else one.</p>
+</div>
+<div class="section" id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">math</span></code> knows some operators, constants, functions and can (obviously) read numbers.</p>
+<p>For numbers, <code class="docutils literal notranslate"><span class="pre">.</span></code> is always the radix character regardless of locale - <code class="docutils literal notranslate"><span class="pre">2.5</span></code>, not <code class="docutils literal notranslate"><span class="pre">2,5</span></code>.
+Scientific notation (<code class="docutils literal notranslate"><span class="pre">10e5</span></code>) and hexadecimal (<code class="docutils literal notranslate"><span class="pre">0xFF</span></code>) are also available.</p>
+</div>
+<div class="section" id="operators">
+<h2>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">math</span></code> knows the following operators:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">+</span></code></dt><dd><p>for addition</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-</span></code></dt><dd><p>for subtraction</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">*</span></code> or <code class="docutils literal notranslate"><span class="pre">x</span></code></dt><dd><p>for multiplication</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">/</span></code></dt><dd><p>for division
+(Note that <code class="docutils literal notranslate"><span class="pre">*</span></code> is the glob character and needs to be quoted or escaped, <code class="docutils literal notranslate"><span class="pre">x</span></code> needs to be followed by whitespace or it looks like <code class="docutils literal notranslate"><span class="pre">0x</span></code> hexadecimal notation.)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">^</span></code></dt><dd><p>for exponentiation</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">%</span></code></dt><dd><p>for modulo</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">(</span></code> or <code class="docutils literal notranslate"><span class="pre">)</span></code></dt><dd><p>for grouping.
+(These need to be quoted or escaped because <code class="docutils literal notranslate"><span class="pre">()</span></code> denotes a command substitution.)</p>
+</dd>
+</dl>
+<p>They are all used in an infix manner - <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">+</span> <span class="pre">2</span></code>, not <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">5</span> <span class="pre">2</span></code>.</p>
+</div>
+<div class="section" id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">math</span></code> knows the following constants:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">e</span></code></dt><dd><p>Euler’s number</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pi</span></code></dt><dd><p>π, you know this one.
+Half of Tau</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tau</span></code></dt><dd><p>Equivalent to 2π, or the number of radians in a circle</p>
+</dd>
+</dl>
+<p>Use them without a leading <code class="docutils literal notranslate"><span class="pre">$</span></code> - <code class="docutils literal notranslate"><span class="pre">pi</span> <span class="pre">-</span> <span class="pre">3</span></code> should be about 0.</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">math</span></code> supports the following functions:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">abs</span></code></dt><dd><p>the absolute value, with positive sign</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">acos</span></code></dt><dd><p>arc cosine</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">asin</span></code></dt><dd><p>arc sine</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">atan</span></code></dt><dd><p>arc tangent</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">atan2</span></code></dt><dd><p>arc tangent of two variables</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">bitand</span></code>, <code class="docutils literal notranslate"><span class="pre">bitor</span></code> and <code class="docutils literal notranslate"><span class="pre">bitxor</span></code></dt><dd><p>perform bitwise operations.
+These will throw away any non-integer parts andd interpret the rest as an int.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ceil</span></code></dt><dd><p>round number up to nearest integer</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cos</span></code></dt><dd><p>the cosine</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cosh</span></code></dt><dd><p>hyperbolic cosine</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">exp</span></code></dt><dd><p>the base-e exponential function</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">fac</span></code></dt><dd><p>factorial - also known as <code class="docutils literal notranslate"><span class="pre">x!</span></code> (<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">*</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">2)</span> <span class="pre">*</span> <span class="pre">...</span> <span class="pre">*</span> <span class="pre">1</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">floor</span></code></dt><dd><p>round number down to nearest integer</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ln</span></code></dt><dd><p>the base-e logarithm</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">log</span></code> or <code class="docutils literal notranslate"><span class="pre">log10</span></code></dt><dd><p>the base-10 logarithm</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">log2</span></code></dt><dd><p>the base-2 logarithm</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">max</span></code></dt><dd><p>returns the larger of two numbers</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">min</span></code></dt><dd><p>returns the smaller of two numbers</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ncr</span></code></dt><dd><p>“from n choose r” combination function - how many subsets of size r can be taken from n (order doesn’t matter)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">npr</span></code></dt><dd><p>the number of subsets of size r that can be taken from a set of n elements (including different order)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">pow(x,y)</span></code></dt><dd><p>returns x to the y (and can be written as <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">^</span> <span class="pre">y</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">round</span></code></dt><dd><p>rounds to the nearest integer, away from 0</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sin</span></code></dt><dd><p>the sine function</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sinh</span></code></dt><dd><p>the hyperbolic sine</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sqrt</span></code></dt><dd><p>the square root - (can also be written as <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">^</span> <span class="pre">0.5</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tan</span></code></dt><dd><p>the tangent</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">tanh</span></code></dt><dd><p>the hyperbolic tangent</p>
+</dd>
+</dl>
+<p>All of the trigonometric functions use radians (the pi-based scale, not 360°).</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">1+1</span></code> outputs 2.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">$status</span> <span class="pre">-</span> <span class="pre">128</span></code> outputs the numerical exit status of the last command minus 128.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">10</span> <span class="pre">/</span> <span class="pre">6</span></code> outputs <code class="docutils literal notranslate"><span class="pre">1.666667</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">-s0</span> <span class="pre">10.0</span> <span class="pre">/</span> <span class="pre">6.0</span></code> outputs <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">-s3</span> <span class="pre">10</span> <span class="pre">/</span> <span class="pre">6</span></code> outputs <code class="docutils literal notranslate"><span class="pre">1.666</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;sin(pi)&quot;</span></code> outputs <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">5</span> <span class="pre">\*</span> <span class="pre">2</span></code> or <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;5</span> <span class="pre">*</span> <span class="pre">2&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">5</span> <span class="pre">&quot;*&quot;</span> <span class="pre">2</span></code> all output <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">0xFF</span></code> outputs 255, <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">0</span> <span class="pre">x</span> <span class="pre">3</span></code> outputs 0 (because it computes 0 multiplied by 3).</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">bitand</span> <span class="pre">0xFE,</span> <span class="pre">0x2e</span></code> outputs 46.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;bitor(9,2)&quot;</span></code> outputs 11.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">--base=hex</span> <span class="pre">192</span></code> prints <code class="docutils literal notranslate"><span class="pre">0xc0</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">'ncr(49,6)'</span></code> prints 13983816 - that’s the number of possible picks in 6-from-49 lotto.</p>
+</div>
+<div class="section" id="compatibility-notes">
+<h2>Compatibility notes<a class="headerlink" href="#compatibility-notes" title="Permalink to this headline">¶</a></h2>
+<p>Fish 1.x and 2.x releases relied on the <code class="docutils literal notranslate"><span class="pre">bc</span></code> command for handling <code class="docutils literal notranslate"><span class="pre">math</span></code> expressions. Starting with fish 3.0.0 fish uses the tinyexpr library and evaluates the expression without the involvement of any external commands.</p>
+<p>You don’t need to use <code class="docutils literal notranslate"><span class="pre">--</span></code> before the expression, even if it begins with a minus sign which might otherwise be interpreted as an invalid option. If you do insert <code class="docutils literal notranslate"><span class="pre">--</span></code> before the expression, it will cause option scanning to stop just like for every other command and it won’t be part of the expression.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div> 
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">math - perform mathematics calculations</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2022, fish-shell developers.
+    <br />
+    <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+</div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
+
+  </body>
+</html>

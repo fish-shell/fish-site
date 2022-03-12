@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design &#8212; fish-shell 3.4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Release notes" href="relnotes.html" />
+    <link rel="prev" title="Writing your own completions" href="completions.html" />
+    <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
+     
+
+  </head><body><div id="fmain">  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="index.html">fish-shell 3.4.0 documentation</a> &#187;
+    
+
+        <li class="nav-item nav-item-this"><a href="">Design</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div>
+<h3><a href="index.html">Documents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="language.html">The fish language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="completions.html">Writing your own completions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div>
+<h4><a href="index.html">Sections</a></h4>
+<ul>
+<li><a class="reference internal" href="#">Design</a><ul>
+<li><a class="reference internal" href="#the-law-of-orthogonality">The law of orthogonality</a></li>
+<li><a class="reference internal" href="#the-law-of-responsiveness">The law of responsiveness</a></li>
+<li><a class="reference internal" href="#configurability-is-the-root-of-all-evil">Configurability is the root of all evil</a></li>
+<li><a class="reference internal" href="#the-law-of-user-focus">The law of user focus</a></li>
+<li><a class="reference internal" href="#the-law-of-discoverability">The law of discoverability</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="design">
+<span id="id1"></span><h1>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h1>
+<p>This is a description of the design principles that have been used to design fish. The fish design has three high level goals. These are:</p>
+<ol class="arabic simple">
+<li><p>Everything that can be done in other shell languages should be possible to do in fish, though fish may rely on external commands in doing so.</p></li>
+<li><p>Fish should be user friendly, but not at the expense of expressiveness. Most tradeoffs between power and ease of use can be avoided with careful design.</p></li>
+<li><p>Whenever possible without breaking the above goals, fish should follow POSIX.</p></li>
+</ol>
+<p>To achieve these high-level goals, the fish design relies on a number of more specific design principles. These are presented below, together with a rationale and a few examples for each.</p>
+<div class="section" id="the-law-of-orthogonality">
+<h2>The law of orthogonality<a class="headerlink" href="#the-law-of-orthogonality" title="Permalink to this headline">¶</a></h2>
+<p>The shell language should have a small set of orthogonal features. Any situation where two features are related but not identical, one of them should be removed, and the other should be made powerful and general enough to handle all common use cases of either feature.</p>
+<p>Rationale:
+Related features make the language larger, which makes it harder to learn. It also increases the size of the source code, making the program harder to maintain and update.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>Here documents are too similar to using echo inside of a pipeline.</p></li>
+<li><p>Subshells, command substitution and process substitution are strongly related. <code class="docutils literal notranslate"><span class="pre">fish</span></code> only supports command substitution, the others can be achieved either using a block or the psub shellscript function.</p></li>
+<li><p>Having both aliases and functions is confusing, especially since both of them have limitations and problems. <code class="docutils literal notranslate"><span class="pre">fish</span></code> functions have none of the drawbacks of either syntax.</p></li>
+<li><p>The many Posix quoting styles are silly, especially <code class="docutils literal notranslate"><span class="pre">$</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="the-law-of-responsiveness">
+<h2>The law of responsiveness<a class="headerlink" href="#the-law-of-responsiveness" title="Permalink to this headline">¶</a></h2>
+<p>The shell should attempt to remain responsive to the user at all times, even in the face of contended or unresponsive filesystems. It is only acceptable to block in response to a user initiated action, such as running a command.</p>
+<p>Rationale:
+Bad performance increases user-facing complexity, because it trains users to recognize and route around slow use cases. It is also incredibly frustrating.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>Features like syntax highlighting and autosuggestions must perform all of their disk I/O asynchronously.</p></li>
+<li><p>Startup should minimize forks and disk I/O, so that fish can be started even if the system is under load.</p></li>
+</ul>
+</div>
+<div class="section" id="configurability-is-the-root-of-all-evil">
+<h2>Configurability is the root of all evil<a class="headerlink" href="#configurability-is-the-root-of-all-evil" title="Permalink to this headline">¶</a></h2>
+<p>Every configuration option in a program is a place where the program is too stupid to figure out for itself what the user really wants, and should be considered a failure of both the program and the programmer who implemented it.</p>
+<p>Rationale:
+Different configuration options are a nightmare to maintain, since the number of potential bugs caused by specific configuration combinations quickly becomes an issue. Configuration options often imply assumptions about the code which change when reimplementing the code, causing issues with backwards compatibility. But mostly, configuration options should be avoided since they simply should not exist, as the program should be smart enough to do what is best, or at least a good enough approximation of it.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>Fish allows the user to set various syntax highlighting colors. This is needed because fish does not know what colors the terminal uses by default, which might make some things unreadable. The proper solution would be for text color preferences to be defined centrally by the user for all programs, and for the terminal emulator to send these color properties to fish.</p></li>
+<li><p>Fish does not allow you to set the number of history entries, different language substyles or any number of other common shell configuration options.</p></li>
+</ul>
+<p>A special note on the evils of configurability is the long list of very useful features found in some shells, that are not turned on by default. Both zsh and bash support command-specific completions, but no such completions are shipped with bash by default, and they are turned off by default in zsh. Other features that zsh supports that are disabled by default include tab-completion of strings containing wildcards, a sane completion pager and a history file.</p>
+</div>
+<div class="section" id="the-law-of-user-focus">
+<h2>The law of user focus<a class="headerlink" href="#the-law-of-user-focus" title="Permalink to this headline">¶</a></h2>
+<p>When designing a program, one should first think about how to make an intuitive and powerful program. Implementation issues should only be considered once a user interface has been designed.</p>
+<p>Rationale:
+This design rule is different than the others, since it describes how one should go about designing new features, not what the features should be. The problem with focusing on what can be done, and what is easy to do, is that too much of the implementation is exposed. This means that the user must know a great deal about the underlying system to be able to guess how the shell works, it also means that the language will often be rather low-level.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>There should only be one type of input to the shell, lists of commands. Loops, conditionals and variable assignments are all performed through regular commands.</p></li>
+<li><p>The differences between built-in commands and shellscript functions should be made as small as possible. Built-ins and shellscript functions should have exactly the same types of argument expansion as other commands, should be possible to use in any position in a pipeline, and should support any I/O redirection.</p></li>
+<li><p>Instead of forking when performing command substitution to provide a fake variable scope, all fish commands are performed from the same process, and fish instead supports true scoping.</p></li>
+<li><p>All blocks end with the <code class="docutils literal notranslate"><span class="pre">end</span></code> built-in.</p></li>
+</ul>
+</div>
+<div class="section" id="the-law-of-discoverability">
+<h2>The law of discoverability<a class="headerlink" href="#the-law-of-discoverability" title="Permalink to this headline">¶</a></h2>
+<p>A program should be designed to make its features as easy as possible to discover for the user.</p>
+<p>Rationale:
+A program whose features are discoverable turns a new user into an expert in a shorter span of time, since the user will become an expert on the program simply by using it.</p>
+<p>The main benefit of a graphical program over a command-line-based program is discoverability. In a graphical program, one can discover all the common features by simply looking at the user interface and guessing what the different buttons, menus and other widgets do. The traditional way to discover features in command-line programs is through manual pages. This requires both that the user starts to use a different program, and then they remember the new information until the next time they use the same program.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>Everything should be tab-completable, and every tab completion should have a description.</p></li>
+<li><p>Every syntax error and error in a built-in command should contain an error message describing what went wrong and a relevant help page. Whenever possible, errors should be flagged red by the syntax highlighter.</p></li>
+<li><p>The help manual should be easy to read, easily available from the shell, complete and contain many examples</p></li>
+<li><p>The language should be uniform, so that once the user understands the command/argument syntax, they will know the whole language, and be able to use tab-completion to discover new features.</p></li>
+</ul>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div> 
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="index.html">fish-shell 3.4.0 documentation</a> &#187;
+    
+
+        <li class="nav-item nav-item-this"><a href="">Design</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2022, fish-shell developers.
+    <br />
+    <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+</div>
+
+<script type="text/javascript">
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
+
+  </body>
+</html>
