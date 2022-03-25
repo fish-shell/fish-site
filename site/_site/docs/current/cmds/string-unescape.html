@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>string-unescape - expand escape sequences &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>string-unescape - expand escape sequences &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -97,24 +98,24 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="string-unescape-expand-escape-sequences">
+  <section id="string-unescape-expand-escape-sequences">
 <h1>string-unescape - expand escape sequences<a class="headerlink" href="#string-unescape-expand-escape-sequences" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">escape</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-quoted</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--style=</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 <span class="nf">string</span><span class="w"> </span><span class="no">unescape</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--style=</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">escape</span></code> escapes each <em>STRING</em> in one of three ways. The first is <strong>--style=script</strong>. This is the default. It alters the string such that it can be passed back to <code class="docutils literal notranslate"><span class="pre">eval</span></code> to produce the original argument again. By default, all special characters are escaped, and quotes are used to simplify the output when possible. If <strong>-n</strong> or <strong>--no-quoted</strong> is given, the simplifying quoted format is not used. Exit status: 0 if at least one string was escaped, or 1 otherwise.</p>
 <p><strong>--style=var</strong> ensures the string can be used as a variable name by hex encoding any non-alphanumeric characters. The string is first converted to UTF-8 before being encoded.</p>
 <p><strong>--style=url</strong> ensures the string can be used as a URL by hex encoding any character which is not legal in a URL. The string is first converted to UTF-8 before being encoded.</p>
 <p><strong>--style=regex</strong> escapes an input string for literal matching within a regex expression. The string is first converted to UTF-8 before being encoded.</p>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">unescape</span></code> performs the inverse of the <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">escape</span></code> command. If the string to be unescaped is not properly formatted it is ignored. For example, doing <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">unescape</span> <span class="pre">--style=var</span> <span class="pre">(string</span> <span class="pre">escape</span> <span class="pre">--style=var</span> <span class="pre">$str)</span></code> will return the original string. There is no support for unescaping <strong>--style=regex</strong>.</p>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="se">\x07</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">escape</span><span class="w"></span>
 <span class="go">\cg</span>
@@ -123,8 +124,8 @@
 <span class="go">a1_20_b2_E6_85_A1_</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -140,7 +141,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

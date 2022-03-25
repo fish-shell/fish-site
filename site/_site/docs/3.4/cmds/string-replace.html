@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>string-replace - replace substrings &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>string-replace - replace substrings &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -101,25 +102,25 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="string-replace-replace-substrings">
+  <section id="string-replace-replace-substrings">
 <h1>string-replace - replace substrings<a class="headerlink" href="#string-replace-replace-substrings" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--filter</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-i</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--ignore-case</span><span class="g g-Other">]</span><span class="w"></span>
 <span class="w">               </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--regex</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">PATTERN</span><span class="w"> </span><span class="no">REPLACEMENT</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">replace</span></code> is similar to <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> but replaces non-overlapping matching substrings with a replacement string and prints the result. By default, <em>PATTERN</em> is treated as a literal substring to be matched.</p>
 <p>If <strong>-r</strong> or <strong>--regex</strong> is given, <em>PATTERN</em> is interpreted as a Perl-compatible regular expression, and <em>REPLACEMENT</em> can contain C-style escape sequences like <strong>t</strong> as well as references to capturing groups by number or name as <em>$n</em> or <em>${n}</em>.</p>
 <p>If you specify the <strong>-f</strong> or <strong>--filter</strong> flag then each input string is printed only if a replacement was done. This is useful where you would otherwise use this idiom: <code class="docutils literal notranslate"><span class="pre">a_cmd</span> <span class="pre">|</span> <span class="pre">string</span> <span class="pre">match</span> <span class="pre">pattern</span> <span class="pre">|</span> <span class="pre">string</span> <span class="pre">replace</span> <span class="pre">pattern</span> <span class="pre">new_pattern</span></code>. You can instead just write <code class="docutils literal notranslate"><span class="pre">a_cmd</span> <span class="pre">|</span> <span class="pre">string</span> <span class="pre">replace</span> <span class="pre">--filter</span> <span class="pre">pattern</span> <span class="pre">new_pattern</span></code>.</p>
 <p>Exit status: 0 if at least one replacement was performed, or 1 otherwise.</p>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="replace-literal-examples">
+<section id="replace-literal-examples">
 <h3>Replace Literal Examples<a class="headerlink" href="#replace-literal-examples" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">was</span><span class="w"> </span><span class="s1">&#39;blue is my favorite&#39;</span><span class="w"></span>
 <span class="go">blue was my favorite</span>
@@ -133,8 +134,8 @@
 <span class="go">spaces_to_underscores</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="replace-regex-examples">
+</section>
+<section id="replace-regex-examples">
 <h3>Replace Regex Examples<a class="headerlink" href="#replace-regex-examples" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s1">&#39;[^\d.]+&#39;</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="s1">&#39;0 one two 3.14 four 5x&#39;</span><span class="w"></span>
 <span class="go">0 3.14 5</span>
@@ -147,9 +148,9 @@
 <span class="go">here</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -165,7 +166,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

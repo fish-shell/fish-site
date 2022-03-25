@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>complete - edit command specific tab-completions &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>complete - edit command specific tab-completions &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -97,16 +98,16 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="complete-edit-command-specific-tab-completions">
+  <section id="complete-edit-command-specific-tab-completions">
 <span id="cmd-complete"></span><h1>complete - edit command specific tab-completions<a class="headerlink" href="#complete-edit-command-specific-tab-completions" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="g g-Other">((</span><span class="no">-c</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--command</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-p</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--path</span><span class="g g-Other">))</span><span class="w"> </span><span class="no">COMMAND</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span><span class="w"></span>
 <span class="nf">complete</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-C</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--do-complete</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--escape</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">STRING</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">complete</span></code> defines, removes or lists completions for a command.</p>
 <p>For an introduction to writing your own completions, see <a class="reference internal" href="../completions.html#completion-own"><span class="std std-ref">Writing your own completions</span></a> in
@@ -163,8 +164,8 @@ the fish manual.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">-w</span></code> or <code class="docutils literal notranslate"><span class="pre">--wraps</span></code> options causes the specified command to inherit completions from another command, “wrapping” the other command. The wrapping command can also have additional completions. A command can wrap multiple commands, and wrapping is transitive: if A wraps B, and B wraps C, then A automatically inherits all of C’s completions. Wrapping can be removed using the <code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code> options. Wrapping only works for completions specified with <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--command</span></code> and are ignored when specifying completions with <code class="docutils literal notranslate"><span class="pre">-p</span></code> or <code class="docutils literal notranslate"><span class="pre">--path</span></code>.</p>
 <p>When erasing completions, it is possible to either erase all completions for a specific command by specifying <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">COMMAND</span> <span class="pre">-e</span></code>, or by specifying a specific completion option to delete.</p>
 <p>When <code class="docutils literal notranslate"><span class="pre">complete</span></code> is called without anything that would define or erase completions (options, arguments, wrapping, …), it shows matching completions instead. So <code class="docutils literal notranslate"><span class="pre">complete</span></code> without any arguments shows all loaded completions, <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">foo</span></code> shows all loaded completions for <code class="docutils literal notranslate"><span class="pre">foo</span></code>. Since completions are <a class="reference internal" href="../language.html#syntax-function-autoloading"><span class="std std-ref">autoloaded</span></a>, you will have to trigger them first.</p>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>The short style option <code class="docutils literal notranslate"><span class="pre">-o</span></code> for the <code class="docutils literal notranslate"><span class="pre">gcc</span></code> command needs a file argument:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">gcc</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-r</span><span class="w"></span>
@@ -193,8 +194,8 @@ the fish manual.</p>
 </pre></div>
 </div>
 <p>Show all completions for <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -210,7 +211,7 @@ the fish manual.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

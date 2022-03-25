@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>string-pad - pad strings to a fixed width &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>string-pad - pad strings to a fixed width &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -98,24 +99,24 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="string-pad-pad-strings-to-a-fixed-width">
+  <section id="string-pad-pad-strings-to-a-fixed-width">
 <h1>string-pad - pad strings to a fixed width<a class="headerlink" href="#string-pad-pad-strings-to-a-fixed-width" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">pad</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--right</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-c</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--char</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">CHAR</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-w</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--width</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">INTEGER</span><span class="g g-Other">]</span><span class="w"></span>
 <span class="w">           </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">pad</span></code> extends each <em>STRING</em> to the given visible width by adding <em>CHAR</em> to the left. That means the width of all visible characters added together, excluding escape sequences and accounting for <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-fish_emoji_width"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_emoji_width</span></code></a> and <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-fish_ambiguous_width"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_ambiguous_width</span></code></a>. It is the amount of columns in a terminal the <em>STRING</em> occupies.</p>
 <p>The escape sequences reflect what fish knows about, and how it computes its output. Your terminal might support more escapes, or not support escape sequences that fish knows about.</p>
 <p>If <strong>-r</strong> or <strong>--right</strong> is given, add the padding after a string.</p>
 <p>If <strong>-c</strong> or <strong>--char</strong> is given, pad with <em>CHAR</em> instead of whitespace.</p>
 <p>The output is padded to the maximum width of all input strings. If <strong>-w</strong> or <strong>--width</strong> is given, use at least that.</p>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">pad</span><span class="w"> </span><span class="no">-w</span><span class="w"> </span><span class="no">10</span><span class="w"> </span><span class="no">abc</span><span class="w"> </span><span class="no">abcdef</span><span class="w"></span>
 <span class="go">       abc</span>
@@ -129,15 +130,15 @@
 <span class="go"># Prints the current time on the right edge of the screen.</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="see-also">
+</section>
+<section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The <a class="reference internal" href="printf.html#cmd-printf"><span class="std std-ref">printf</span></a> command can do simple padding, for example <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%10s\n</span></code> works like <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">pad</span> <span class="pre">-w10</span></code>.</p></li>
 <li><p><a class="reference internal" href="string-length.html#cmd-string-length"><span class="std std-ref">string length</span></a> with the <code class="docutils literal notranslate"><span class="pre">--visible</span></code> option can be used to show what fish thinks the width is.</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -153,7 +154,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

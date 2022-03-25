@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>abbr - manage fish abbreviations &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>abbr - manage fish abbreviations &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -99,9 +100,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="abbr-manage-fish-abbreviations">
+  <section id="abbr-manage-fish-abbreviations">
 <span id="cmd-abbr"></span><h1>abbr - manage fish abbreviations<a class="headerlink" href="#abbr-manage-fish-abbreviations" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">--add</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">SCOPE</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">WORD</span><span class="w"> </span><span class="no">EXPANSION</span><span class="w"></span>
 <span class="nf">abbr</span><span class="w"> </span><span class="no">--erase</span><span class="w"> </span><span class="no">WORD</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"></span>
@@ -111,14 +112,14 @@
 <span class="nf">abbr</span><span class="w"> </span><span class="no">--query</span><span class="w"> </span><span class="no">WORD</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">abbr</span></code> manages abbreviations - user-defined words that are replaced with longer phrases after they are entered.</p>
 <p>For example, a frequently-run command like <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> can be abbreviated to <code class="docutils literal notranslate"><span class="pre">gco</span></code>.
 After entering <code class="docutils literal notranslate"><span class="pre">gco</span></code> and pressing <kbd class="kbd docutils literal notranslate">Space</kbd> or <kbd class="kbd docutils literal notranslate">Enter</kbd>, the full text <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> will appear in the command line.</p>
-</div>
-<div class="section" id="options">
+</section>
+<section id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <p>The following options are available:</p>
 <dl class="simple">
@@ -145,8 +146,8 @@ After entering <code class="docutils literal notranslate"><span class="pre">gco<
 </dd>
 </dl>
 <p>See the “Internals” section for more on them.</p>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">gco</span><span class="w"> </span><span class="no">git</span><span class="w"> </span><span class="no">checkout</span><span class="w"></span>
 </pre></div>
@@ -170,15 +171,15 @@ Note that you omit the <strong>-U</strong> since it is the default.</p>
 </pre></div>
 </div>
 <p>Import the abbreviations defined on another_host over SSH.</p>
-</div>
-<div class="section" id="internals">
+</section>
+<section id="internals">
 <h2>Internals<a class="headerlink" href="#internals" title="Permalink to this headline">¶</a></h2>
 <p>Each abbreviation is stored in its own global or universal variable.
 The name consists of the prefix <code class="docutils literal notranslate"><span class="pre">_fish_abbr_</span></code> followed by the WORD after being transformed by <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">escape</span> <span class="pre">style=var</span></code>.
 The WORD cannot contain a space but all other characters are legal.</p>
 <p>Abbreviations created with the <strong>--universal</strong> flag will be visible to other fish sessions, whilst <strong>--global</strong> will be limited to the current session.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -194,7 +195,7 @@ The WORD cannot contain a space but all other characters are legal.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

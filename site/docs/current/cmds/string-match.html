@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>string-match - match substrings &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>string-match - match substrings &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -101,17 +102,17 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="string-match-match-substrings">
+  <section id="string-match-match-substrings">
 <h1>string-match - match substrings<a class="headerlink" href="#string-match-match-substrings" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-e</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--entire</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-i</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--ignore-case</span><span class="g g-Other">]</span><span class="w"></span>
 <span class="w">             </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--regex</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--index</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-v</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--invert</span><span class="g g-Other">]</span><span class="w"></span>
 <span class="w">             </span><span class="no">PATTERN</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> tests each <em>STRING</em> against <em>PATTERN</em> and prints matching substrings. Only the first match for each <em>STRING</em> is reported unless <strong>-a</strong> or <strong>--all</strong> is given, in which case all matches are reported.</p>
 <p>If you specify the <strong>-e</strong> or <strong>--entire</strong> then each matching string is printed including any prefix or suffix not matched by the pattern (equivalent to <code class="docutils literal notranslate"><span class="pre">grep</span></code> without the <strong>-o</strong> flag). You can, obviously, achieve the same result by prepending and appending <strong>*</strong> or <strong>.*</strong> depending on whether or not you have specified the <strong>--regex</strong> flag. The <strong>--entire</strong> flag is simply a way to avoid having to complicate the pattern in that fashion and make the intent of the <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> clearer. Without <strong>--entire</strong> and <strong>--regex</strong>, a <em>PATTERN</em> will need to match the entire <em>STRING</em> before it will be reported.</p>
@@ -122,10 +123,10 @@
 <p>When matching via regular expressions, <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> automatically sets variables for all named capturing groups (<code class="docutils literal notranslate"><span class="pre">(?&lt;name&gt;expression)</span></code>). It will create a variable with the name of the group, in the default scope, for each named capturing group, and set it to the value of the capturing group in the first matched argument. If a named capture group matched an empty string, the variable will be set to the empty string (like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">var</span> <span class="pre">&quot;&quot;</span></code>). If it did not match, the variable will be set to nothing (like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">var</span></code>).  When <strong>--regex</strong> is used with <strong>--all</strong>, this behavior changes. Each named variable will contain a list of matches, with the first match contained in the first element, the second match in the second, and so on. If the group was empty or did not match, the corresponding element will be an empty string.</p>
 <p>If <strong>--invert</strong> or <strong>-v</strong> is used the selected lines will be only those which do not match the given glob pattern or regular expression.</p>
 <p>Exit status: 0 if at least one match was found, or 1 otherwise.</p>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="match-glob-examples">
+<section id="match-glob-examples">
 <h3>Match Glob Examples<a class="headerlink" href="#match-glob-examples" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;?&#39;</span><span class="w"> </span><span class="no">a</span><span class="w"></span>
 <span class="go">a</span>
@@ -153,8 +154,8 @@
 <span class="go">foo2</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="match-regex-examples">
+</section>
+<section id="match-regex-examples">
 <h3>Match Regex Examples<a class="headerlink" href="#match-regex-examples" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;cat|dog|fish&#39;</span><span class="w"> </span><span class="s1">&#39;nice dog&#39;</span><span class="w"></span>
 <span class="go">dog</span>
@@ -205,9 +206,9 @@
 <span class="go">0</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -223,7 +224,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

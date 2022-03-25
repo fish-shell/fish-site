@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>history - show and manipulate command history &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>history - show and manipulate command history &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -99,9 +100,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="history-show-and-manipulate-command-history">
+  <section id="history-show-and-manipulate-command-history">
 <span id="cmd-history"></span><h1>history - show and manipulate command history<a class="headerlink" href="#history-show-and-manipulate-command-history" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">history</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">search</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--show-time</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--case-sensitive</span><span class="g g-Other">]</span><span class="w"></span>
 <span class="w">                 </span><span class="g g-Other">[</span><span class="no">--exact</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--prefix</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--contains</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--max</span><span class="w"> </span><span class="no">N</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--null</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--reverse</span><span class="g g-Other">]</span><span class="w"></span>
@@ -114,8 +115,8 @@
 <span class="nf">history</span><span class="w"> </span><span class="no">clear-session</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">history</span></code> is used to search, delete, and otherwise manipulate the <a class="reference internal" href="../interactive.html#history-search"><span class="std std-ref">history of interactive commands</span></a>.</p>
 <p>The following operations (sub-commands) are available:</p>
@@ -155,8 +156,8 @@
 <dt><strong>-h</strong> or <strong>--help</strong></dt><dd><p>Displays help for this command.</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="example">
+</section>
+<section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">history</span><span class="w"> </span><span class="no">clear</span><span class="w"></span>
 <span class="c"># Deletes all history items</span><span class="w"></span>
@@ -169,20 +170,20 @@
 <span class="c"># You can select more than one entry by entering their IDs separated by a space.</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="customizing-the-name-of-the-history-file">
+</section>
+<section id="customizing-the-name-of-the-history-file">
 <h2>Customizing the name of the history file<a class="headerlink" href="#customizing-the-name-of-the-history-file" title="Permalink to this headline">¶</a></h2>
 <p>By default interactive commands are logged to <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/fish/fish_history</span></code> (typically <code class="docutils literal notranslate"><span class="pre">~/.local/share/fish/fish_history</span></code>).</p>
 <p>You can set the <code class="docutils literal notranslate"><span class="pre">fish_history</span></code> variable to another name for the current shell session. The default value (when the variable is unset) is <code class="docutils literal notranslate"><span class="pre">fish</span></code> which corresponds to <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/fish/fish_history</span></code>. If you set it to e.g. <code class="docutils literal notranslate"><span class="pre">fun</span></code>, the history would be written to <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/fish/fun_history</span></code>. An empty string means history will not be stored at all. This is similar to the private session features in web browsers.</p>
 <p>You can change <code class="docutils literal notranslate"><span class="pre">fish_history</span></code> at any time (by using <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-x</span> <span class="pre">fish_history</span> <span class="pre">&quot;session_name&quot;</span></code>) and it will take effect right away. If you set it to <code class="docutils literal notranslate"><span class="pre">&quot;default&quot;</span></code>, it will use the default session name (which is <code class="docutils literal notranslate"><span class="pre">&quot;fish&quot;</span></code>).</p>
 <p>Other shells such as bash and zsh use a variable named <code class="docutils literal notranslate"><span class="pre">HISTFILE</span></code> for a similar purpose. Fish uses a different name to avoid conflicts and signal that the behavior is different (session name instead of a file path). Also, if you set the var to anything other than <code class="docutils literal notranslate"><span class="pre">fish</span></code> or <code class="docutils literal notranslate"><span class="pre">default</span></code> it will inhibit importing the bash history. That’s because the most common use case for this feature is to avoid leaking private or sensitive history when giving a presentation.</p>
-</div>
-<div class="section" id="notes">
+</section>
+<section id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
 <p>If you specify both <strong>--prefix</strong> and <strong>--contains</strong> the last flag seen is used.</p>
 <p>Note that for backwards compatibility each subcommand can also be specified as a long option. For example, rather than <code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">search</span></code> you can type <code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">--search</span></code>. Those long options are deprecated and will be removed in a future release.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -198,7 +199,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

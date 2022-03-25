@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>set_color - set the terminal color &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>set_color - set the terminal color &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -99,15 +100,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="set-color-set-the-terminal-color">
+  <section id="set-color-set-the-terminal-color">
 <span id="cmd-set-color"></span><h1>set_color - set the terminal color<a class="headerlink" href="#set-color-set-the-terminal-color" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">set_color</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">VALUE</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">set_color</span></code> is used to control the color and styling of text in the terminal. <em>VALUE</em> describes that styling. <em>VALUE</em> can be a reserved color name like <strong>red</strong> or a RGB color value given as 3 or 6 hexadecimal digits (“F27” or “FF2277”). A special keyword <strong>normal</strong> resets text formatting to terminal defaults.</p>
 <p>Valid colors include:</p>
@@ -140,8 +141,8 @@
 </dd>
 </dl>
 <p>Using the <strong>normal</strong> keyword will reset foreground, background, and all formatting back to default.</p>
-</div>
-<div class="section" id="notes">
+</section>
+<section id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Using the <strong>normal</strong> keyword will reset both background and foreground colors to whatever is the default for the terminal.</p></li>
@@ -149,8 +150,8 @@
 <li><p>Some terminals use the <code class="docutils literal notranslate"><span class="pre">--bold</span></code> escape sequence to switch to a brighter color set rather than increasing the weight of text.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_color</span></code> works by printing sequences of characters to standard output. If used in command substitution or a pipe, these characters will also be captured. This may or may not be desirable. Checking the exit status of <code class="docutils literal notranslate"><span class="pre">isatty</span> <span class="pre">stdout</span></code> before using <code class="docutils literal notranslate"><span class="pre">set_color</span></code> can be useful to decide not to colorize output in a script.</p></li>
 </ol>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set_color</span><span class="w"> </span><span class="no">red</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Roses are red&quot;</span><span class="w"></span>
 <span class="nf">set_color</span><span class="w"> </span><span class="no">blue</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Violets are blue&quot;</span><span class="w"></span>
@@ -158,8 +159,8 @@
 <span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Normal is nice&quot;</span><span class="w"> </span><span class="c"># Resets the background too</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="terminal-capability-detection">
+</section>
+<section id="terminal-capability-detection">
 <h2>Terminal Capability Detection<a class="headerlink" href="#terminal-capability-detection" title="Permalink to this headline">¶</a></h2>
 <p>Fish uses some heuristics to determine what colors a terminal supports to avoid sending sequences that it won’t understand.</p>
 <p>In particular it will:</p>
@@ -172,8 +173,8 @@
 <p>To force true-color support on or off, set <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_term24bit`</span></code> to “1” for on and 0 for off - <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-g</span> <span class="pre">fish_term24bit</span> <span class="pre">1</span></code>.</p>
 <p>To debug color palette problems, <code class="docutils literal notranslate"><span class="pre">tput</span> <span class="pre">colors</span></code> may be useful to see the number of colors in terminfo for a terminal. Fish launched as <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">-d2</span></code> will include diagnostic messages that indicate the color support mode in use.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">set_color</span></code> command uses the terminfo database to look up how to change terminal colors on whatever terminal is in use. Some systems have old and incomplete terminfo databases, and lack color information for terminals that support it. Fish assumes that all terminals can use the [ANSI X3.64](<a class="reference external" href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a>) escape sequences if the terminfo definition indicates a color below 16 is not supported.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -189,7 +190,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

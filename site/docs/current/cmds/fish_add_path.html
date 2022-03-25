@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fish_add_path - add to the path &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>fish_add_path - add to the path &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -98,16 +99,16 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="cmd-fish-add-path"></span><div class="section" id="fish-add-path-add-to-the-path">
+  <span class="target" id="cmd-fish-add-path"></span><section id="fish-add-path-add-to-the-path">
 <h1>fish_add_path - add to the path<a class="headerlink" href="#fish-add-path-add-to-the-path" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">path</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"></span>
 <span class="nf">fish_add_path</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-g</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--global</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-U</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--universal</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-P</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--path</span><span class="g g-Other">)]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--move</span><span class="g g-Other">)]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--append</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-p</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--prepend</span><span class="g g-Other">)]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-v</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--verbose</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--dry-run</span><span class="g g-Other">)]</span><span class="w"> </span><span class="no">PATHS</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><strong class="program">fish_add_path</strong> is a simple way to add more components to fish’s <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a>. It does this by adding the components either to $fish_user_paths or directly to $PATH (if the <code class="docutils literal notranslate"><span class="pre">--path</span></code> switch is given).</p>
 <p>It is (by default) safe to use <strong class="program">fish_add_path</strong> in config.fish, or it can be used once, interactively, and the paths will stay in future because of <a class="reference internal" href="../language.html#variables-universal"><span class="std std-ref">universal variables</span></a>. This is a “do what I mean” style command, if you need more control, consider modifying the variable yourself.</p>
@@ -115,8 +116,8 @@
 <p>Components are added in the order they are given, and they are prepended to the path unless <code class="docutils literal notranslate"><span class="pre">--append</span></code> is given (if $fish_user_paths is used, that means they are last in $fish_user_paths, which is itself prepended to $PATH, so they still stay ahead of the system paths).</p>
 <p>If no component is new, the variable (<span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-fish_user_paths"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_user_paths</span></code></a> or <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">$PATH</span></code>) is not set again or otherwise modified, so variable handlers are not triggered.</p>
 <p>If a component is not an existing directory, <code class="docutils literal notranslate"><span class="pre">fish_add_path</span></code> ignores it.</p>
-</div>
-<div class="section" id="options">
+</section>
+<section id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
 <dt><strong>-a</strong> or <strong>--append</strong></dt><dd><p>Add components to the <em>end</em> of the variable.</p>
@@ -139,8 +140,8 @@
 </dd>
 </dl>
 <p>If <code class="docutils literal notranslate"><span class="pre">--move</span></code> is used, it may of course lead to the path swapping order, so you should be careful doing that in config.fish.</p>
-</div>
-<div class="section" id="example">
+</section>
+<section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="go"># I just installed mycoolthing and need to add it to the path to use it.</span>
 <span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">/opt/mycoolthing/bin</span><span class="w"></span>
@@ -162,8 +163,8 @@
 <span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">/usr/local/opt/ruby/bin</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -179,7 +180,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Design &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Design</a></li>
@@ -98,7 +99,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="design">
+  <section id="design">
 <span id="id1"></span><h1>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h1>
 <p>This is a description of the design principles that have been used to design fish. The fish design has three high level goals. These are:</p>
 <ol class="arabic simple">
@@ -107,7 +108,7 @@
 <li><p>Whenever possible without breaking the above goals, fish should follow POSIX.</p></li>
 </ol>
 <p>To achieve these high-level goals, the fish design relies on a number of more specific design principles. These are presented below, together with a rationale and a few examples for each.</p>
-<div class="section" id="the-law-of-orthogonality">
+<section id="the-law-of-orthogonality">
 <h2>The law of orthogonality<a class="headerlink" href="#the-law-of-orthogonality" title="Permalink to this headline">¶</a></h2>
 <p>The shell language should have a small set of orthogonal features. Any situation where two features are related but not identical, one of them should be removed, and the other should be made powerful and general enough to handle all common use cases of either feature.</p>
 <p>Rationale:
@@ -119,8 +120,8 @@ Related features make the language larger, which makes it harder to learn. It al
 <li><p>Having both aliases and functions is confusing, especially since both of them have limitations and problems. <code class="docutils literal notranslate"><span class="pre">fish</span></code> functions have none of the drawbacks of either syntax.</p></li>
 <li><p>The many Posix quoting styles are silly, especially <code class="docutils literal notranslate"><span class="pre">$</span></code>.</p></li>
 </ul>
-</div>
-<div class="section" id="the-law-of-responsiveness">
+</section>
+<section id="the-law-of-responsiveness">
 <h2>The law of responsiveness<a class="headerlink" href="#the-law-of-responsiveness" title="Permalink to this headline">¶</a></h2>
 <p>The shell should attempt to remain responsive to the user at all times, even in the face of contended or unresponsive filesystems. It is only acceptable to block in response to a user initiated action, such as running a command.</p>
 <p>Rationale:
@@ -130,8 +131,8 @@ Bad performance increases user-facing complexity, because it trains users to rec
 <li><p>Features like syntax highlighting and autosuggestions must perform all of their disk I/O asynchronously.</p></li>
 <li><p>Startup should minimize forks and disk I/O, so that fish can be started even if the system is under load.</p></li>
 </ul>
-</div>
-<div class="section" id="configurability-is-the-root-of-all-evil">
+</section>
+<section id="configurability-is-the-root-of-all-evil">
 <h2>Configurability is the root of all evil<a class="headerlink" href="#configurability-is-the-root-of-all-evil" title="Permalink to this headline">¶</a></h2>
 <p>Every configuration option in a program is a place where the program is too stupid to figure out for itself what the user really wants, and should be considered a failure of both the program and the programmer who implemented it.</p>
 <p>Rationale:
@@ -142,8 +143,8 @@ Different configuration options are a nightmare to maintain, since the number of
 <li><p>Fish does not allow you to set the number of history entries, different language substyles or any number of other common shell configuration options.</p></li>
 </ul>
 <p>A special note on the evils of configurability is the long list of very useful features found in some shells, that are not turned on by default. Both zsh and bash support command-specific completions, but no such completions are shipped with bash by default, and they are turned off by default in zsh. Other features that zsh supports that are disabled by default include tab-completion of strings containing wildcards, a sane completion pager and a history file.</p>
-</div>
-<div class="section" id="the-law-of-user-focus">
+</section>
+<section id="the-law-of-user-focus">
 <h2>The law of user focus<a class="headerlink" href="#the-law-of-user-focus" title="Permalink to this headline">¶</a></h2>
 <p>When designing a program, one should first think about how to make an intuitive and powerful program. Implementation issues should only be considered once a user interface has been designed.</p>
 <p>Rationale:
@@ -155,8 +156,8 @@ This design rule is different than the others, since it describes how one should
 <li><p>Instead of forking when performing command substitution to provide a fake variable scope, all fish commands are performed from the same process, and fish instead supports true scoping.</p></li>
 <li><p>All blocks end with the <code class="docutils literal notranslate"><span class="pre">end</span></code> built-in.</p></li>
 </ul>
-</div>
-<div class="section" id="the-law-of-discoverability">
+</section>
+<section id="the-law-of-discoverability">
 <h2>The law of discoverability<a class="headerlink" href="#the-law-of-discoverability" title="Permalink to this headline">¶</a></h2>
 <p>A program should be designed to make its features as easy as possible to discover for the user.</p>
 <p>Rationale:
@@ -169,8 +170,8 @@ A program whose features are discoverable turns a new user into an expert in a s
 <li><p>The help manual should be easy to read, easily available from the shell, complete and contain many examples</p></li>
 <li><p>The language should be uniform, so that once the user understands the command/argument syntax, they will know the whole language, and be able to use tab-completion to discover new features.</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -186,7 +187,7 @@ A program whose features are discoverable turns a new user into an expert in a s
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Design</a></li>

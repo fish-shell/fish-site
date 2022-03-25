@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>switch - conditionally execute a block of commands &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>switch - conditionally execute a block of commands &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -97,22 +98,22 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="switch-conditionally-execute-a-block-of-commands">
+  <section id="switch-conditionally-execute-a-block-of-commands">
 <span id="cmd-switch"></span><h1>switch - conditionally execute a block of commands<a class="headerlink" href="#switch-conditionally-execute-a-block-of-commands" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">switch</span><span class="w"> </span><span class="no">VALUE</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">case</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">GLOB</span><span class="w"> </span><span class="g g-Other">...]</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">COMMANDS</span><span class="w"> </span><span class="g g-Other">...]</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"> </span><span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">switch</span></code> performs one of several blocks of commands, depending on whether a specified value equals one of several globbed values. <code class="docutils literal notranslate"><span class="pre">case</span></code> is used together with the <code class="docutils literal notranslate"><span class="pre">switch</span></code> statement in order to determine which block should be executed.</p>
 <p>Each <code class="docutils literal notranslate"><span class="pre">case</span></code> command is given one or more parameters. The first <code class="docutils literal notranslate"><span class="pre">case</span></code> command with a parameter that matches the string specified in the switch command will be evaluated. <code class="docutils literal notranslate"><span class="pre">case</span></code> parameters may contain globs. These need to be escaped or quoted in order to avoid regular glob expansion using filenames.</p>
 <p>Note that fish does not fall through on case statements. Only the first matching case is executed.</p>
 <p>Note that command substitutions in a case statement will be evaluated even if its body is not taken. All substitutions, including command substitutions, must be performed before the value can be compared against the parameter.</p>
-</div>
-<div class="section" id="example">
+</section>
+<section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>If the variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">animal</span></code> contains the name of an animal, the following code would attempt to classify it:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">switch</span><span class="w"> </span><span class="o">$animal</span><span class="w"></span>
@@ -131,8 +132,8 @@
 </div>
 <p>If the above code was run with <code class="docutils literal notranslate"><span class="pre">$animal</span></code> set to <code class="docutils literal notranslate"><span class="pre">whale</span></code>, the output
 would be <code class="docutils literal notranslate"><span class="pre">mammal</span></code>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -148,7 +149,7 @@ would be <code class="docutils literal notranslate"><span class="pre">mammal</sp
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

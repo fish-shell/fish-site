@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>string-collect - join strings into one &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>string-collect - join strings into one &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -97,23 +98,23 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="string-collect-join-strings-into-one">
+  <section id="string-collect-join-strings-into-one">
 <h1>string-collect - join strings into one<a class="headerlink" href="#string-collect-join-strings-into-one" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">collect</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-N</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-trim-newlines</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code> collects its input into a single output argument, without splitting the output when used in a command substitution. This is useful when trying to collect multiline output from another command into a variable. Exit status: 0 if any output argument is non-empty, or 1 otherwise.</p>
 <p>A command like <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">(cmd</span> <span class="pre">|</span> <span class="pre">string</span> <span class="pre">collect)</span></code> is mostly equivalent to a quoted command substitution (<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;$(cmd)&quot;</span></code>). The main difference is that the former evaluates to zero or one elements whereas the quoted command substitution always evaluates to one element due to string interpolation.</p>
 <p>If invoked with multiple arguments instead of input, <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code> preserves each argument separately, where the number of output arguments is equal to the number of arguments given to <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code>.</p>
 <p>Any trailing newlines on the input are trimmed, just as with <code class="docutils literal notranslate"><span class="pre">&quot;$(cmd)&quot;</span></code> substitution. Use <strong>--no-trim-newlines</strong> to disable this behavior, which may be useful when running a command such as <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">contents</span> <span class="pre">(cat</span> <span class="pre">filename</span> <span class="pre">|</span> <span class="pre">string</span> <span class="pre">collect</span> <span class="pre">-N)</span></code>.</p>
 <p>With <strong>--allow-empty</strong>, <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">collect</span></code> always prints one (empty) argument. This can be used to prevent an argument from disappearing.</p>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;zero </span><span class="o">$(</span><span class="nf">echo</span><span class="w"> </span><span class="no">one</span><span class="se">\n</span><span class="no">two</span><span class="se">\n</span><span class="no">three</span><span class="o">)</span><span class="s2"> four&quot;</span><span class="w"></span>
 <span class="go">zero one</span>
@@ -135,8 +136,8 @@
 <span class="go">foobar</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -152,7 +153,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>string-join - join strings with delimiter &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>string-join - join strings with delimiter &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -97,22 +98,22 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="string-join-join-strings-with-delimiter">
+  <section id="string-join-join-strings-with-delimiter">
 <h1>string-join - join strings with delimiter<a class="headerlink" href="#string-join-join-strings-with-delimiter" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEP</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 <span class="nf">string</span><span class="w"> </span><span class="no">join0</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join</span></code> joins its <em>STRING</em> arguments into a single string separated by <em>SEP</em>, which can be an empty string. Exit status: 0 if at least one join was performed, or 1 otherwise.</p>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join0</span></code> joins its <em>STRING</em> arguments into a single string separated by the zero byte (NUL), and adds a trailing NUL. This is most useful in conjunction with tools that accept NUL-delimited input, such as <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-z</span></code>. Exit status: 0 if at least one join was performed, or 1 otherwise.</p>
 <p>Because Unix uses NUL as the string terminator, passing the output of <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join0</span></code> as an <em>argument</em> to a command (via a <a class="reference internal" href="../language.html#expand-command-substitution"><span class="std std-ref">command substitution</span></a>) won’t actually work. Fish will pass the correct bytes along, but the command won’t be able to tell where the argument ends. This is a limitation of Unix’ argument passing.</p>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">seq</span><span class="w"> </span><span class="no">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="no">...</span><span class="w"></span>
 <span class="go">1...2...3</span>
@@ -125,8 +126,8 @@
 <span class="go">abc</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -142,7 +143,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

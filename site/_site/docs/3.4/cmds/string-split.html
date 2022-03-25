@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>string-split - split strings by delimiter &#8212; fish-shell 3.4.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>string-split - split strings by delimiter &#8212; fish-shell 3.4.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -27,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -100,9 +101,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="string-split-split-strings-by-delimiter">
+  <section id="string-split-split-strings-by-delimiter">
 <h1>string-split - split strings by delimiter<a class="headerlink" href="#string-split-split-strings-by-delimiter" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="synopsis">
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">split</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--max</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MAX</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-empty</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"></span>
 <span class="w">             </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--right</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEP</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
@@ -110,16 +111,16 @@
 <span class="w">              </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--right</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">split</span></code> splits each <em>STRING</em> on the separator <em>SEP</em>, which can be an empty string. If <strong>-m</strong> or <strong>--max</strong> is specified, at most MAX splits are done on each <em>STRING</em>. If <strong>-r</strong> or <strong>--right</strong> is given, splitting is performed right-to-left. This is useful in combination with <strong>-m</strong> or <strong>--max</strong>. With <strong>-n</strong> or <strong>--no-empty</strong>, empty results are excluded from consideration (e.g. <code class="docutils literal notranslate"><span class="pre">hello\n\nworld</span></code> would expand to two strings and not three). Exit status: 0 if at least one split was performed, or 1 otherwise.</p>
 <p>Use <strong>-f</strong> or <strong>--fields</strong> to print out specific fields. Unless <strong>--allow-empty</strong> is used, if a given field does not exist, then the command exits with status 1 and does not print anything.</p>
 <p>See also the <strong>--delimiter</strong> option of the <a class="reference internal" href="read.html#cmd-read"><span class="std std-ref">read</span></a> command.</p>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">split0</span></code> splits each <em>STRING</em> on the zero byte (NUL). Options are the same as <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">split</span></code> except that no separator is given.</p>
 <p><code class="docutils literal notranslate"><span class="pre">split0</span></code> has the important property that its output is not further split when used in a command substitution, allowing for the command substitution to produce elements containing newlines. This is most useful when used with Unix tools that produce zero bytes, such as <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">-print0</span></code> or <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-z</span></code>. See split0 examples below.</p>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">split</span><span class="w"> </span><span class="no">.</span><span class="w"> </span><span class="no">example.com</span><span class="w"></span>
 <span class="go">example</span>
@@ -139,7 +140,7 @@
 <span class="go">c</span>
 </pre></div>
 </div>
-<div class="section" id="nul-delimited-examples">
+<section id="nul-delimited-examples">
 <h3>NUL Delimited Examples<a class="headerlink" href="#nul-delimited-examples" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="c"># Count files in a directory, without being confused by newlines.</span><span class="w"></span>
 <span class="gp">&gt;_ </span><span class="nf">count</span><span class="w"> </span><span class="o">(</span><span class="nf">find</span><span class="w"> </span><span class="no">.</span><span class="w"> </span><span class="no">-print0</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">split0</span><span class="o">)</span><span class="w"></span>
@@ -152,9 +153,9 @@
 <span class="go">alpha\ngamma</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -170,7 +171,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.4.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
