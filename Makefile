@@ -6,7 +6,7 @@ build:
 	@# which has no glob capability and would need to be
 	@# updated every release.
 	@# So just copy the docs directory entirely.
-	rsync --recursive --exclude '.*' site/docs/ ./docs/
+	rsync --recursive --exclude '.*' site/docs/ ./docs/docs/
 	@echo "Open $$PWD/docs/index.html"
 
 .PHONY: update-releases-json
