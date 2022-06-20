@@ -24,17 +24,16 @@ This assumes that the relevant release has been published in the [fish-shell git
     2. Name it with the proper major version number only (e.g. 2.7). The minor version number is omitted.
     3. `current` is just a copy of the most recent docs.  Delete `current` and replace it with a copy of the new directory.
 2. Run `make new-release`. This downloads `releases.json` and rebuilds the site using it.
-3. Open `site/_site/index.html` and check it. In particular ensure the tarball and Mac download links work.
+3. Open `docs/index.html` and check it. In particular ensure the tarball and Mac download links work.
 
 ## Publish the site
 
-The site is hosted via GitHub pages with a custom domain. Publishing the site is as simple as pushing to the `gh-pages` branch of `fish-site`. This branch is a little tricky because it reflects a subtree of `master`. However `git subtree` is not used; instead we use the subtree merge strategy.
+The site is hosted via GitHub pages with a custom domain. The site is served out of the `docs` directory.
 
 After building the site (see above), do the following:
 
-1. `git commit` your changes to `master`
-2. `git checkout gh-pages`
-3. `git merge --strategy recursive --strategy-option subtree=site/_site master`
+1. `git make` to build the site.
+2. `git commit` your changes to `master`. Ensure the site is checked in.
 4. `git push`
 
 The public site will update immediately.
