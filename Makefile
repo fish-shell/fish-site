@@ -7,6 +7,7 @@ build:
 	@# updated every release.
 	@# So just copy the docs directory entirely.
 	rsync --recursive --exclude '.*' site/docs/ ./docs/docs/
+	touch ./docs/.nojekyll
 	@echo "Open $$PWD/docs/index.html"
 
 .PHONY: update-releases-json
