@@ -4,12 +4,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Release notes &#8212; fish-shell 3.5.0 documentation</title>
+    <title>Release notes &#8212; fish-shell 3.5.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -30,7 +29,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -47,11 +46,6 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>    
@@ -90,6 +84,7 @@
 <h4><a href="index.html">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
+<li><a class="reference internal" href="#fish-3-5-1-released-july-20-2022">fish 3.5.1 (released July 20, 2022)</a></li>
 <li><a class="reference internal" href="#fish-3-5-0-released-june-16-2022">fish 3.5.0 (released June 16, 2022)</a><ul>
 <li><a class="reference internal" href="#notable-improvements-and-fixes">Notable improvements and fixes</a></li>
 <li><a class="reference internal" href="#deprecations-and-removed-features">Deprecations and removed features</a></li>
@@ -302,6 +297,36 @@
             
   <section id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this heading">¶</a></h1>
+<section id="fish-3-5-1-released-july-20-2022">
+<h2>fish 3.5.1 (released July 20, 2022)<a class="headerlink" href="#fish-3-5-1-released-july-20-2022" title="Permalink to this heading">¶</a></h2>
+<p>This release of fish introduces the following small enhancements:</p>
+<ul class="simple">
+<li><p>Cursor shaping for Vi mode is enabled by default in tmux, and will be used if the outer terminal is capable (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/8981">#8981</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">printf</span></code> returns a better error when used with arguments interpreted as octal numbers (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9035">#9035</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">merge</span></code> when in private mode is now an error, rather than wiping out other sessions’ history (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9050">#9050</a>).</p></li>
+<li><p>The error message when launching a command that is built for the wrong architecture on macOS is more helpful (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9052">#9052</a>).</p></li>
+<li><p>Added completions for:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">choose</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9065">#9065</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9060">#9060</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">navi</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9064">#9064</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qdbus</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9031">#9031</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reflector</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9027">#9027</a>)</p></li>
+</ul>
+</li>
+<li><p>Improvements to some completions.</p></li>
+</ul>
+<p>This release also fixes a number of problems identified in fish 3.5.0.</p>
+<ul class="simple">
+<li><p>Completing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">blame</span></code> or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">-C</span></code> works correctly (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9053">#9053</a>).</p></li>
+<li><p>On terminals that emit a <code class="docutils literal notranslate"><span class="pre">CSI</span> <span class="pre">u</span></code> sequence for <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Space</kbd></kbd>, fish inserts a space instead of printing an error. (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9054">#9054</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">fish-path</span></code> on Linux-based platforms could print the path with a “ (deleted)” suffix (such as <code class="docutils literal notranslate"><span class="pre">/usr/bin/fish</span> <span class="pre">(deleted)</span></code>), which is now removed (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9019">#9019</a>).</p></li>
+<li><p>Cancelling an initial command (from fish’s <code class="docutils literal notranslate"><span class="pre">--init-command</span></code> option) with <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>-<kbd class="kbd docutils literal notranslate">C</kbd></kbd> no longer prevents configuration scripts from running (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9024">#9024</a>).</p></li>
+<li><p>The job summary contained extra blank lines if the prompt used multiple lines, which is now fixed (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9044">#9044</a>).</p></li>
+<li><p>Using special input functions in bindings, in combination with <code class="docutils literal notranslate"><span class="pre">and</span></code>/<code class="docutils literal notranslate"><span class="pre">or</span></code> conditionals, no longer crashes (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9051">#9051</a>).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
 <section id="fish-3-5-0-released-june-16-2022">
 <h2>fish 3.5.0 (released June 16, 2022)<a class="headerlink" href="#fish-3-5-0-released-june-16-2022" title="Permalink to this heading">¶</a></h2>
 <section id="notable-improvements-and-fixes">
@@ -3590,7 +3615,7 @@ track.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -3607,11 +3632,6 @@ track.</p>
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>  
@@ -3626,8 +3646,6 @@ track.</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.5";
-
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -3680,7 +3698,6 @@ track.</p>
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

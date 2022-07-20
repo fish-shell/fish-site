@@ -4,12 +4,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Interactive use &#8212; fish-shell 3.5.0 documentation</title>
+    <title>Interactive use &#8212; fish-shell 3.5.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -30,7 +29,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Interactive use</a></li>
@@ -47,11 +46,6 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>    
@@ -204,10 +198,6 @@
 </div>
 <p>The following variables are available to change the highlighting colors in fish:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 62%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Variable</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -308,10 +298,6 @@
 </div>
 <p>Variables affecting the pager colors:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 42%" />
-<col style="width: 58%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Variable</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -572,14 +558,15 @@
 <section id="copy-and-paste-kill-ring">
 <span id="killring"></span><h2>Copy and paste (Kill Ring)<a class="headerlink" href="#copy-and-paste-kill-ring" title="Permalink to this heading">¶</a></h2>
 <p>Fish uses an Emacs-style kill ring for copy and paste functionality. For example, use <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">K</kbd> (<cite>kill-line</cite>) to cut from the current cursor position to the end of the line. The string that is cut (a.k.a. killed in emacs-ese) is inserted into a list of kills, called the kill ring. To paste the latest value from the kill ring (emacs calls this “yanking”) use <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">Y</kbd> (the <code class="docutils literal notranslate"><span class="pre">yank</span></code> input function). After pasting, use <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">Y</kbd> (<code class="docutils literal notranslate"><span class="pre">yank-pop</span></code>) to rotate to the previous kill.</p>
-<p>Copy and paste from outside are also supported, both via the <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">X</kbd> / <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">V</kbd> bindings (the <code class="docutils literal notranslate"><span class="pre">fish_clipboard_copy</span></code> and <code class="docutils literal notranslate"><span class="pre">fish_clipboard_paste</span></code> functions <a class="footnote-reference brackets" href="#id6" id="id5">1</a>) and via the terminal’s paste function, for which fish enables “Bracketed Paste Mode”, so it can tell a paste from manually entered text.
+<p>Copy and paste from outside are also supported, both via the <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">X</kbd> / <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">V</kbd> bindings (the <code class="docutils literal notranslate"><span class="pre">fish_clipboard_copy</span></code> and <code class="docutils literal notranslate"><span class="pre">fish_clipboard_paste</span></code> functions <a class="footnote-reference brackets" href="#id6" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>) and via the terminal’s paste function, for which fish enables “Bracketed Paste Mode”, so it can tell a paste from manually entered text.
 In addition, when pasting inside single quotes, pasted single quotes and backslashes are automatically escaped so that the result can be used as a single token simply by closing the quote after.
 Kill ring entries are stored in <code class="docutils literal notranslate"><span class="pre">fish_killring</span></code> variable.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id5">1</a></span></dt>
-<dd><p>These rely on external tools. Currently xsel, xclip, wl-copy/wl-paste and pbcopy/pbpaste are supported.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id6" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">1</a><span class="fn-bracket">]</span></span>
+<p>These rely on external tools. Currently xsel, xclip, wl-copy/wl-paste and pbcopy/pbpaste are supported.</p>
+</aside>
+</aside>
 </section>
 <section id="multiline-editing">
 <span id="multiline"></span><h2>Multiline editing<a class="headerlink" href="#multiline-editing" title="Permalink to this heading">¶</a></h2>
@@ -647,7 +634,7 @@ Kill ring entries are stored in <code class="docutils literal notranslate"><span
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Interactive use</a></li>
@@ -664,11 +651,6 @@ Kill ring entries are stored in <code class="docutils literal notranslate"><span
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>  
@@ -683,8 +665,6 @@ Kill ring entries are stored in <code class="docutils literal notranslate"><span
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.5";
-
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -737,7 +717,6 @@ Kill ring entries are stored in <code class="docutils literal notranslate"><span
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

@@ -4,12 +4,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Frequently asked questions &#8212; fish-shell 3.5.0 documentation</title>
+    <title>Frequently asked questions &#8212; fish-shell 3.5.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -30,7 +29,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Frequently asked questions</a></li>
@@ -47,11 +46,6 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>    
@@ -187,7 +181,7 @@ add a statement to your <a class="reference internal" href="language.html#config
 </section>
 <section id="how-do-i-run-a-command-every-login-what-s-fish-s-equivalent-to-bashrc-or-profile">
 <h2>How do I run a command every login? What’s fish’s equivalent to .bashrc or .profile?<a class="headerlink" href="#how-do-i-run-a-command-every-login-what-s-fish-s-equivalent-to-bashrc-or-profile" title="Permalink to this heading">¶</a></h2>
-<p>Edit the file <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code> <a class="footnote-reference brackets" href="#id2" id="id1">1</a>, creating it if it does not exist (Note the leading period).</p>
+<p>Edit the file <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code> <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, creating it if it does not exist (Note the leading period).</p>
 <p>Unlike .bashrc and .profile, this file is always read, even in non-interactive or login shells.</p>
 <p>To do something only in interactive shells, check <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">is-interactive</span></code> like:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">status</span><span class="w"> </span><span class="no">is-interactive</span><span class="w"></span>
@@ -196,11 +190,12 @@ add a statement to your <a class="reference internal" href="language.html#config
 <span class="nf">end</span><span class="w"></span>
 </pre></div>
 </div>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>The “~/.config” part of this can be set via $XDG_CONFIG_HOME, that’s just the default.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>The “~/.config” part of this can be set via $XDG_CONFIG_HOME, that’s just the default.</p>
+</aside>
+</aside>
 </section>
 <section id="how-do-i-set-my-prompt">
 <h2>How do I set my prompt?<a class="headerlink" href="#how-do-i-set-my-prompt" title="Permalink to this heading">¶</a></h2>
@@ -300,7 +295,7 @@ add a statement to your <a class="reference internal" href="language.html#config
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">count</span><span class="w"> </span><span class="o">(</span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s &#39;</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="no">c</span><span class="o">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>It will print <code class="docutils literal notranslate"><span class="pre">1</span></code>, because the “a b c ” is used in one piece. But if you do</p>
+<p>It will print <code class="docutils literal notranslate"><span class="pre">1</span></code>, because the “a b c “ is used in one piece. But if you do</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">count</span><span class="w"> </span><span class="o">(</span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s\n&#39;</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="no">c</span><span class="o">)</span><span class="w"></span>
 </pre></div>
 </div>
@@ -453,7 +448,7 @@ whether it’s in an interactive or login or non-interactive or non-login shell.
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Frequently asked questions</a></li>
@@ -470,11 +465,6 @@ whether it’s in an interactive or login or non-interactive or non-login shell.
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>  
@@ -489,8 +479,6 @@ whether it’s in an interactive or login or non-interactive or non-login shell.
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.5";
-
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -543,7 +531,6 @@ whether it’s in an interactive or login or non-interactive or non-login shell.
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

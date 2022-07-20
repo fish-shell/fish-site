@@ -4,12 +4,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>printf - display text according to a format string &#8212; fish-shell 3.5.0 documentation</title>
+    <title>printf - display text according to a format string &#8212; fish-shell 3.5.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -30,7 +29,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -48,11 +47,6 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>    
@@ -123,7 +117,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">printf</span></code> uses the format string <em>FORMAT</em> to print the <em>ARGUMENT</em> arguments. This means that it takes format specifiers in the format string and replaces each with an argument.</p>
 <p>The <em>FORMAT</em> argument is re-used as many times as necessary to convert all of the given arguments. So <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%s\n</span> <span class="pre">flounder</span> <span class="pre">catfish</span> <span class="pre">clownfish</span> <span class="pre">shark</span></code> will print four lines.</p>
 <p>Unlike <a class="reference internal" href="echo.html#cmd-echo"><span class="std std-ref">echo</span></a>, <code class="docutils literal notranslate"><span class="pre">printf</span></code> does not append a new line unless it is specified as part of the string.</p>
-<p>It doesn’t support any options, so there is no need for a <code class="docutils literal notranslate"><span class="pre">--</span></code> separator, which makes it easier to use for arbitrary input than <code class="docutils literal notranslate"><span class="pre">echo</span></code>. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<p>It doesn’t support any options, so there is no need for a <code class="docutils literal notranslate"><span class="pre">--</span></code> separator, which makes it easier to use for arbitrary input than <code class="docutils literal notranslate"><span class="pre">echo</span></code>. <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
 </section>
 <section id="format-specifiers">
 <h2>Format Specifiers<a class="headerlink" href="#format-specifiers" title="Permalink to this heading">¶</a></h2>
@@ -188,11 +182,12 @@
 </section>
 <section id="footnotes">
 <h2>Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this heading">¶</a></h2>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>In fact, while fish’s <code class="docutils literal notranslate"><span class="pre">echo</span></code> supports <code class="docutils literal notranslate"><span class="pre">--</span></code>, POSIX forbids it, so other implementations can’t be used if the input contains anything starting with <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>In fact, while fish’s <code class="docutils literal notranslate"><span class="pre">echo</span></code> supports <code class="docutils literal notranslate"><span class="pre">--</span></code>, POSIX forbids it, so other implementations can’t be used if the input contains anything starting with <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
+</aside>
+</aside>
 </section>
 </section>
 
@@ -210,7 +205,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -228,11 +223,6 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>  
@@ -247,8 +237,6 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.5";
-
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -301,7 +289,6 @@
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

@@ -4,12 +4,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>The fish language &#8212; fish-shell 3.5.0 documentation</title>
+    <title>The fish language &#8212; fish-shell 3.5.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -30,7 +29,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -47,11 +46,6 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>    
@@ -278,7 +272,7 @@
 <ul class="simple">
 <li><p>To read standard input from a file, use <code class="docutils literal notranslate"><span class="pre">&lt;SOURCE_FILE</span></code>.</p></li>
 <li><p>To write standard output to a file, use <code class="docutils literal notranslate"><span class="pre">&gt;DESTINATION</span></code>.</p></li>
-<li><p>To write standard error to a file, use <code class="docutils literal notranslate"><span class="pre">2&gt;DESTINATION</span></code>. <a class="footnote-reference brackets" href="#id4" id="id3">1</a></p></li>
+<li><p>To write standard error to a file, use <code class="docutils literal notranslate"><span class="pre">2&gt;DESTINATION</span></code>. <a class="footnote-reference brackets" href="#id4" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
 <li><p>To append standard output to a file, use <code class="docutils literal notranslate"><span class="pre">&gt;&gt;DESTINATION_FILE</span></code>.</p></li>
 <li><p>To append standard error to a file, use <code class="docutils literal notranslate"><span class="pre">2&gt;&gt;DESTINATION_FILE</span></code>.</p></li>
 <li><p>To not overwrite (“clobber”) an existing file, use <code class="docutils literal notranslate"><span class="pre">&gt;?DESTINATION</span></code> or <code class="docutils literal notranslate"><span class="pre">2&gt;?DESTINATION</span></code>. This is known as the “noclobber” redirection.</p></li>
@@ -298,11 +292,12 @@
 </ul>
 <p>For example, <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">hello</span> <span class="pre">2&gt;</span> <span class="pre">output.stderr</span></code> writes the standard error (file descriptor 2) to <code class="docutils literal notranslate"><span class="pre">output.stderr</span></code>.</p>
 <p>It is an error to redirect a builtin, function, or block to a file descriptor above 2. However this is supported for external commands.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
-<dd><p>Previous versions of fish also allowed specifying this as <code class="docutils literal notranslate"><span class="pre">^DESTINATION</span></code>, but that made another character special so it was deprecated and removed. See <a class="reference internal" href="#featureflags"><span class="std std-ref">feature flags</span></a>.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
+<p>Previous versions of fish also allowed specifying this as <code class="docutils literal notranslate"><span class="pre">^DESTINATION</span></code>, but that made another character special so it was deprecated and removed. See <a class="reference internal" href="#featureflags"><span class="std std-ref">feature flags</span></a>.</p>
+</aside>
+</aside>
 </section>
 <section id="piping">
 <span id="pipes"></span><h2>Piping<a class="headerlink" href="#piping" title="Permalink to this heading">¶</a></h2>
@@ -315,13 +310,14 @@
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">make</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="p">2&gt;|</span><span class="w"> </span><span class="nf">less</span><span class="w"></span>
 </pre></div>
 </div>
-<p>will attempt to build <code class="docutils literal notranslate"><span class="pre">fish</span></code>, and any errors will be shown using the <code class="docutils literal notranslate"><span class="pre">less</span></code> pager. <a class="footnote-reference brackets" href="#id6" id="id5">2</a></p>
+<p>will attempt to build <code class="docutils literal notranslate"><span class="pre">fish</span></code>, and any errors will be shown using the <code class="docutils literal notranslate"><span class="pre">less</span></code> pager. <a class="footnote-reference brackets" href="#id6" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
 <p>As a convenience, the pipe <code class="docutils literal notranslate"><span class="pre">&amp;|</span></code> redirects both stdout and stderr to the same process. This is different from bash, which uses <code class="docutils literal notranslate"><span class="pre">|&amp;</span></code>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id5">2</a></span></dt>
-<dd><p>A “pager” here is a program that takes output and “paginates” it. <code class="docutils literal notranslate"><span class="pre">less</span></code> doesn’t just do pages, it allows arbitrary scrolling (even back!).</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id6" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">2</a><span class="fn-bracket">]</span></span>
+<p>A “pager” here is a program that takes output and “paginates” it. <code class="docutils literal notranslate"><span class="pre">less</span></code> doesn’t just do pages, it allows arbitrary scrolling (even back!).</p>
+</aside>
+</aside>
 </section>
 <section id="job-control">
 <span id="syntax-job-control"></span><h2>Job control<a class="headerlink" href="#job-control" title="Permalink to this heading">¶</a></h2>
@@ -576,7 +572,7 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <p>If $WORD here is undefined or an empty list, the “s” is not printed. However, it is printed if $WORD is the empty string (like after <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">WORD</span> <span class="pre">&quot;&quot;</span></code>).</p>
 <section id="quoting-variables">
 <h4>Quoting variables<a class="headerlink" href="#quoting-variables" title="Permalink to this heading">¶</a></h4>
-<p>Unlike all the other expansions, variable expansion also happens in double quoted strings. Inside double quotes (<code class="docutils literal notranslate"><span class="pre">&quot;these&quot;</span></code>), variables will always expand to exactly one argument. If they are empty or undefined, it will result in an empty string. If they have one element, they’ll expand to that element. If they have more than that, the elements will be joined with spaces, unless the variable is a <a class="reference internal" href="#variables-path"><span class="std std-ref">path variable</span></a> - in that case it will use a colon (<cite>:</cite>) instead <a class="footnote-reference brackets" href="#id8" id="id7">3</a>.</p>
+<p>Unlike all the other expansions, variable expansion also happens in double quoted strings. Inside double quotes (<code class="docutils literal notranslate"><span class="pre">&quot;these&quot;</span></code>), variables will always expand to exactly one argument. If they are empty or undefined, it will result in an empty string. If they have one element, they’ll expand to that element. If they have more than that, the elements will be joined with spaces, unless the variable is a <a class="reference internal" href="#variables-path"><span class="std std-ref">path variable</span></a> - in that case it will use a colon (<cite>:</cite>) instead <a class="footnote-reference brackets" href="#id8" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
 <p>Outside of double quotes, variables will expand to as many arguments as they have elements. That means an empty list will expand to nothing, a variable with one element will expand to that element, and a variable with multiple elements will expand to each of those elements separately.</p>
 <p>If a variable expands to nothing, it will cancel out any other strings attached to it. See the <a class="reference internal" href="#cartesian-product"><span class="std std-ref">cartesian product</span></a> section for more information.</p>
 <p>Unlike other shells, fish doesn’t do what is known as “Word Splitting”. Once a variable is set to a particular set of elements, those elements expand as themselves. They aren’t split on spaces or newlines or anything:</p>
@@ -600,11 +596,12 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <span class="nf">test</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="s2">&quot;one two three&quot;</span><span class="w"></span>
 </pre></div>
 </div>
-<dl class="footnote brackets">
-<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id7">3</a></span></dt>
-<dd><p>Unlike bash or zsh, which will join with the first character of $IFS (which usually is space).</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id8" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">3</a><span class="fn-bracket">]</span></span>
+<p>Unlike bash or zsh, which will join with the first character of $IFS (which usually is space).</p>
+</aside>
+</aside>
 </section>
 <section id="dereferencing-variables">
 <h4>Dereferencing variables<a class="headerlink" href="#dereferencing-variables" title="Permalink to this heading">¶</a></h4>
@@ -628,7 +625,7 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <section id="command-substitution">
 <span id="expand-command-substitution"></span><h3>Command substitution<a class="headerlink" href="#command-substitution" title="Permalink to this heading">¶</a></h3>
 <p>The output of a command (or an entire <a class="reference internal" href="#pipes"><span class="std std-ref">pipeline</span></a>) can be used as the arguments to another command.</p>
-<p>When you write a command in parenthesis like <code class="docutils literal notranslate"><span class="pre">outercommand</span> <span class="pre">(innercommand)</span></code>, the <code class="docutils literal notranslate"><span class="pre">innercommand</span></code> will be executed first. Its output will be taken and each line given as a separate argument to <code class="docutils literal notranslate"><span class="pre">outercommand</span></code>, which will then be executed. <a class="footnote-reference brackets" href="#id10" id="id9">4</a></p>
+<p>When you write a command in parenthesis like <code class="docutils literal notranslate"><span class="pre">outercommand</span> <span class="pre">(innercommand)</span></code>, the <code class="docutils literal notranslate"><span class="pre">innercommand</span></code> will be executed first. Its output will be taken and each line given as a separate argument to <code class="docutils literal notranslate"><span class="pre">outercommand</span></code>, which will then be executed. <a class="footnote-reference brackets" href="#id10" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p>
 <p>A command substitution can have a dollar sign before the opening parenthesis like <code class="docutils literal notranslate"><span class="pre">outercommand</span> <span class="pre">$(innercommand)</span></code>. This variant is also allowed inside double quotes. When using double quotes, the command output is not split up by lines.</p>
 <p>If the output is piped to <a class="reference internal" href="cmds/string.html#cmd-string-split"><span class="std std-ref">string split or string split0</span></a> as the last step, those splits are used as they appear instead of splitting lines.</p>
 <p>The exit status of the last run command substitution is available in the <a class="reference internal" href="#variables-status"><span class="std std-ref">status</span></a> variable if the substitution happens in the context of a <a class="reference internal" href="cmds/set.html#cmd-set"><span class="std std-ref">set</span></a> command (so <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">set</span> <span class="pre">-l</span> <span class="pre">(something)</span></code> checks if <code class="docutils literal notranslate"><span class="pre">something</span></code> returned true).</p>
@@ -660,11 +657,12 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 </pre></div>
 </div>
 <p>This creates a temporary file, stores the output of the command in that file and prints the filename, so it is given to the outer command.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id9">4</a></span></dt>
-<dd><p>Setting <code class="docutils literal notranslate"><span class="pre">$IFS</span></code> to empty will disable line splitting. This is deprecated, use <a class="reference internal" href="cmds/string.html#cmd-string-split"><span class="std std-ref">string split</span></a> instead.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id10" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">4</a><span class="fn-bracket">]</span></span>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">$IFS</span></code> to empty will disable line splitting. This is deprecated, use <a class="reference internal" href="cmds/string.html#cmd-string-split"><span class="std std-ref">string split</span></a> instead.</p>
+</aside>
+</aside>
 </section>
 <section id="brace-expansion">
 <span id="expand-brace"></span><h3>Brace expansion<a class="headerlink" href="#brace-expansion" title="Permalink to this heading">¶</a></h3>
@@ -1642,7 +1640,7 @@ They are executed in order of their filename, sorted (like globs) in a natural o
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -1659,11 +1657,6 @@ They are executed in order of their filename, sorted (like globs) in a natural o
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>  
@@ -1678,8 +1671,6 @@ They are executed in order of their filename, sorted (like globs) in a natural o
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.5";
-
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -1732,7 +1723,6 @@ They are executed in order of their filename, sorted (like globs) in a natural o
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

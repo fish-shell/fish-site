@@ -4,12 +4,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Tutorial &#8212; fish-shell 3.5.0 documentation</title>
+    <title>Tutorial &#8212; fish-shell 3.5.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -30,7 +29,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Tutorial</a></li>
@@ -47,11 +46,6 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>    
@@ -449,13 +443,14 @@ builtin_list_io_merge (Branch) builtin_set_color (Branch) busted_events (Tag)</p
 </pre></div>
 </div>
 <p>This indicates how the command fared - 0 usually means success, while the others signify kinds of failure. For instance fish’s <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span></code> returns the number of variables it queried that weren’t set - <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span> <span class="pre">PATH</span></code> usually returns 0, <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span> <span class="pre">arglbargl</span> <span class="pre">boogagoogoo</span></code> usually returns 2.</p>
-<p>There is also a <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code> list variable for the exit statuses <a class="footnote-reference brackets" href="#id3" id="id2">1</a> of processes in a pipe.</p>
+<p>There is also a <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code> list variable for the exit statuses <a class="footnote-reference brackets" href="#id3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> of processes in a pipe.</p>
 <p>For more, see <a class="reference internal" href="language.html#variables-status"><span class="std std-ref">The status variable</span></a>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
-<dd><p>or “stati” if you prefer, or “statūs” if you’ve time-travelled from ancient Rome or work as a latin teacher</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>or “stati” if you prefer, or “statūs” if you’ve time-travelled from ancient Rome or work as a latin teacher</p>
+</aside>
+</aside>
 </section>
 <section id="combiners-and-or-not">
 <span id="tut-combiners"></span><h2>Combiners (And, Or, Not)<a class="headerlink" href="#combiners-and-or-not" title="Permalink to this heading">¶</a></h2>
@@ -547,7 +542,7 @@ builtin_list_io_merge (Branch) builtin_set_color (Branch) busted_events (Tag)</p
 <span class="c"># prints: Hello everybody!</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Unlike other shells, fish does not have aliases or special prompt syntax. Functions take their place. <a class="footnote-reference brackets" href="#id5" id="id4">2</a></p>
+<p>Unlike other shells, fish does not have aliases or special prompt syntax. Functions take their place. <a class="footnote-reference brackets" href="#id5" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
 <p>You can list the names of all functions with the <a class="reference internal" href="cmds/functions.html#cmd-functions"><span class="std std-ref">functions</span></a> builtin (note the plural!). fish starts out with a number of functions:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">functions</span><span class="w"></span>
 <span class="go">N_, abbr, alias, bg, cd, cdh, contains_seq, dirh, dirs, disown, down-or-search, edit_command_buffer, export, fg, fish_add_path, fish_breakpoint_prompt, fish_clipboard_copy, fish_clipboard_paste, fish_config, fish_default_key_bindings, fish_default_mode_prompt, fish_git_prompt, fish_hg_prompt, fish_hybrid_key_bindings, fish_indent, fish_is_root_user, fish_job_summary, fish_key_reader, fish_md5, fish_mode_prompt, fish_npm_helper, fish_opt, fish_print_git_action, fish_print_hg_root, fish_prompt, fish_sigtrap_handler, fish_svn_prompt, fish_title, fish_update_completions, fish_vcs_prompt, fish_vi_cursor, fish_vi_key_bindings, funced, funcsave, grep, help, history, hostname, isatty, kill, la, ll, ls, man, nextd, open, popd, prevd, prompt_hostname, prompt_pwd, psub, pushd, realpath, seq, setenv, suspend, trap, type, umask, up-or-search, vared, wait</span>
@@ -561,11 +556,12 @@ builtin_list_io_merge (Branch) builtin_set_color (Branch) busted_events (Tag)</p
 </pre></div>
 </div>
 <p>For more, see <a class="reference internal" href="language.html#syntax-function"><span class="std std-ref">Functions</span></a>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
-<dd><p>There is a function called <a class="reference internal" href="cmds/alias.html#cmd-alias"><span class="std std-ref">alias</span></a>, but it’s just a shortcut to make functions.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id5" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
+<p>There is a function called <a class="reference internal" href="cmds/alias.html#cmd-alias"><span class="std std-ref">alias</span></a>, but it’s just a shortcut to make functions.</p>
+</aside>
+</aside>
 </section>
 <section id="loops">
 <h2>Loops<a class="headerlink" href="#loops" title="Permalink to this heading">¶</a></h2>
@@ -710,7 +706,7 @@ builtin_list_io_merge (Branch) builtin_set_color (Branch) busted_events (Tag)</p
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Tutorial</a></li>
@@ -727,11 +723,6 @@ builtin_list_io_merge (Branch) builtin_set_color (Branch) busted_events (Tag)</p
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
-    
-    <div id="old-docs-notice" style="display: none">
-        This documents an old version of fish.
-        <a href="../current/">See the latest release.</a>
-    </div>
 
       </ul>
     </div>  
@@ -746,8 +737,6 @@ builtin_list_io_merge (Branch) builtin_set_color (Branch) busted_events (Tag)</p
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.5";
-
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -800,7 +789,6 @@ builtin_list_io_merge (Branch) builtin_set_color (Branch) busted_events (Tag)</p
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>
