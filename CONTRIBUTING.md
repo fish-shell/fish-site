@@ -13,7 +13,7 @@ The fish site is built via the Jekyll static site generator. Jekyll is used to p
 
 1. Make the change in `site/`
 2. Run `make` from the top level directory.
-3. Open `site/_site/index.html` to see your change.
+3. Open `docs/index.html` to see your change.
 
 ##  Making a new release
 
