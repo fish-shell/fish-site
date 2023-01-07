@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>or - conditionally execute a command &#8212; fish-shell 3.5.1 documentation</title>
+    <title>or - conditionally execute a command &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="path - manipulate and check paths" href="path.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -104,28 +108,28 @@
 <span id="cmd-or"></span><h1>or - conditionally execute a command<a class="headerlink" href="#or-conditionally-execute-a-command" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">COMMAND1</span><span class="p">;</span><span class="w"> </span><span class="o">or</span><span class="w"> </span><span class="nf">COMMAND2</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">COMMAND1</span><span class="p">;</span><span class="w"> </span><span class="o">or</span><span class="w"> </span><span class="nf">COMMAND2</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">or</span></code> is used to execute a command if the previous command was not successful (returned a status of something other than 0).</p>
-<p><code class="docutils literal notranslate"><span class="pre">or</span></code> statements may be used as part of the condition in an <a class="reference internal" href="if.html#cmd-if"><span class="std std-ref">and</span></a> or <a class="reference internal" href="while.html#cmd-while"><span class="std std-ref">while</span></a> block.</p>
+<p><code class="docutils literal notranslate"><span class="pre">or</span></code> statements may be used as part of the condition in an <a class="reference internal" href="if.html"><span class="doc">if</span></a> or <a class="reference internal" href="while.html"><span class="doc">while</span></a> block.</p>
 <p><code class="docutils literal notranslate"><span class="pre">or</span></code> does not change the current exit status itself, but the command it runs most likely will. The exit status of the last foreground command to exit can always be accessed using the <a class="reference internal" href="../language.html#variables-status"><span class="std std-ref">$status</span></a> variable.</p>
 <p>The <strong>-h</strong> or <strong>--help</strong> option displays help about using this command.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>The following code runs the <code class="docutils literal notranslate"><span class="pre">make</span></code> command to build a program. If the build succeeds, the program is installed. If either step fails, <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> is run, which removes the files created by the build process.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">make</span><span class="p">;</span><span class="w"> </span><span class="o">and</span><span class="w"> </span><span class="nf">make</span><span class="w"> </span><span class="no">install</span><span class="p">;</span><span class="w"> </span><span class="o">or</span><span class="w"> </span><span class="nf">make</span><span class="w"> </span><span class="no">clean</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">make</span><span class="p">;</span><span class="w"> </span><span class="o">and</span><span class="w"> </span><span class="nf">make</span><span class="w"> </span><span class="no">install</span><span class="p">;</span><span class="w"> </span><span class="o">or</span><span class="w"> </span><span class="nf">make</span><span class="w"> </span><span class="no">clean</span>
 </pre></div>
 </div>
 </section>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="and.html#cmd-and"><span class="std std-ref">and</span></a> command</p></li>
+<li><p><a class="reference internal" href="and.html"><span class="doc">and</span></a> command</p></li>
 </ul>
 </section>
 </section>
@@ -144,7 +148,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -162,20 +166,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -228,6 +239,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

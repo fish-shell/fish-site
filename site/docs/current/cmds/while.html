@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>while - perform a set of commands multiple times &#8212; fish-shell 3.5.1 documentation</title>
+    <title>while - perform a set of commands multiple times &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Fish for bash users" href="../fish_for_bash_users.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,7 +107,7 @@
 <span id="cmd-while"></span><h1>while - perform a set of commands multiple times<a class="headerlink" href="#while-perform-a-set-of-commands-multiple-times" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">while</span><span class="w"> </span><span class="no">CONDITION</span><span class="p">;</span><span class="w"> </span><span class="nf">COMMANDS</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">while</span><span class="w"> </span><span class="no">CONDITION</span><span class="p">;</span><span class="w"> </span><span class="nf">COMMANDS</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
 </pre></div>
 </div>
 </section>
@@ -111,14 +115,14 @@
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p><strong>while</strong> repeatedly executes <code class="docutils literal notranslate"><span class="pre">CONDITION</span></code>, and if the exit status is 0, then executes <code class="docutils literal notranslate"><span class="pre">COMMANDS</span></code>.</p>
 <p>The exit status of the <strong>while</strong> loop is the exit status of the last iteration of the <code class="docutils literal notranslate"><span class="pre">COMMANDS</span></code> executed, or 0 if none were executed. (This matches other shells and is POSIX-compatible.)</p>
-<p>You can use <a class="reference internal" href="and.html#cmd-and"><span class="std std-ref">and</span></a> or <a class="reference internal" href="or.html#cmd-or"><span class="std std-ref">or</span></a> for complex conditions. Even more complex control can be achieved with <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> containing a <a class="reference internal" href="break.html#cmd-break"><span class="std std-ref">break</span></a>.</p>
+<p>You can use <a class="reference internal" href="and.html"><span class="doc">and</span></a> or <a class="reference internal" href="or.html"><span class="doc">or</span></a> for complex conditions. Even more complex control can be achieved with <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> containing a <a class="reference internal" href="break.html"><span class="doc">break</span></a>.</p>
 <p>The <strong>-h</strong> or <strong>--help</strong> option displays help about using this command.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">while</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">foo.txt</span><span class="p">;</span><span class="w"> </span><span class="o">or</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">bar.txt</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="no">file</span><span class="w"> </span><span class="no">exists</span><span class="p">;</span><span class="w"> </span><span class="nf">sleep</span><span class="w"> </span><span class="no">10</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span><span class="w"></span>
-<span class="c"># outputs &#39;file exists&#39; at 10 second intervals,</span><span class="w"></span>
-<span class="c"># as long as the file foo.txt or bar.txt exists.</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">while</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">foo.txt</span><span class="p">;</span><span class="w"> </span><span class="o">or</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">bar.txt</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="no">file</span><span class="w"> </span><span class="no">exists</span><span class="p">;</span><span class="w"> </span><span class="nf">sleep</span><span class="w"> </span><span class="no">10</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
+<span class="c"># outputs &#39;file exists&#39; at 10 second intervals,</span>
+<span class="c"># as long as the file foo.txt or bar.txt exists.</span>
 </pre></div>
 </div>
 </section>
@@ -138,7 +142,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -156,20 +160,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -222,6 +233,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

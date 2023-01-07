@@ -6,17 +6,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>fish_config - start the web-based configuration interface &#8212; fish-shell 3.5.1 documentation</title>
+    <title>fish_config - start the web-based configuration interface &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="fish_git_prompt - output git information for use in a prompt" href="fish_git_prompt.html" />
+    <link rel="next" title="fish_delta - compare functions and completions to the default" href="fish_delta.html" />
     <link rel="prev" title="fish_command_not_found - what to do when a command wasn’t found" href="fish_command_not_found.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
      
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,9 +107,9 @@
 <span id="cmd-fish-config"></span><h1>fish_config - start the web-based configuration interface<a class="headerlink" href="#fish-config-start-the-web-based-configuration-interface" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_config</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">browse</span><span class="g g-Other">]</span><span class="w"></span>
-<span class="nf">fish_config</span><span class="w"> </span><span class="no">prompt</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">choose</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">save</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">show</span><span class="g g-Other">)</span><span class="w"></span>
-<span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">choose</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">demo</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">dump</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">save</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">show</span><span class="g g-Other">)</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_config</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">browse</span><span class="g g-Other">]</span>
+<span class="nf">fish_config</span><span class="w"> </span><span class="no">prompt</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">choose</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">save</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">show</span><span class="g g-Other">)</span>
+<span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">choose</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">demo</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">dump</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">save</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">show</span><span class="g g-Other">)</span>
 </pre></div>
 </div>
 </section>
@@ -119,7 +123,7 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">choose</span></code> loads a sample prompt in the current session.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">list</span></code> lists the names of the available sample prompts.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">save</span></code> saves the current prompt to a file (via <a class="reference internal" href="funcsave.html#cmd-funcsave"><span class="std std-ref">funcsave</span></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save</span></code> saves the current prompt to a file (via <a class="reference internal" href="funcsave.html"><span class="doc">funcsave</span></a>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">show</span></code> shows what the given sample prompts (or all) would look like.</p></li>
 </ul>
 <p>With the <code class="docutils literal notranslate"><span class="pre">theme</span></code> command <code class="docutils literal notranslate"><span class="pre">fish_config</span></code> can be used to view and choose a theme (meaning a color scheme) inside the terminal.</p>
@@ -129,7 +133,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">demo</span></code> displays some sample text in the current theme.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dump</span></code> prints the current theme in a loadable format.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">list</span></code> lists the names of the available sample themes.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">save</span></code> saves the current prompt to <a class="reference internal" href="../language.html#variables-universal"><span class="std std-ref">universal variables</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save</span></code> saves the given theme to <a class="reference internal" href="../language.html#variables-universal"><span class="std std-ref">universal variables</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">show</span></code> shows what the given sample theme (or all) would look like.</p></li>
 </ul>
 <p>The themes are loaded from the theme directory shipped with fish or a <code class="docutils literal notranslate"><span class="pre">themes</span></code> directory in the fish configuration directory (typically <code class="docutils literal notranslate"><span class="pre">~/.config/fish/themes</span></code>).</p>
@@ -159,7 +163,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -177,20 +181,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -243,6 +254,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

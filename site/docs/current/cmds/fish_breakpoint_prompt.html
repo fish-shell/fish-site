@@ -6,17 +6,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>fish_breakpoint_prompt - define the prompt when stopped at a breakpoint &#8212; fish-shell 3.5.1 documentation</title>
+    <title>fish_breakpoint_prompt - define the prompt when stopped at a breakpoint &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="fish_command_not_found - what to do when a command wasn’t found" href="fish_command_not_found.html" />
+    <link rel="next" title="fish_clipboard_copy - copy text to the system’s clipboard" href="fish_clipboard_copy.html" />
     <link rel="prev" title="fish_add_path - add to the path" href="fish_add_path.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
      
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,30 +107,30 @@
 <span id="cmd-fish-breakpoint-prompt"></span><h1>fish_breakpoint_prompt - define the prompt when stopped at a breakpoint<a class="headerlink" href="#fish-breakpoint-prompt-define-the-prompt-when-stopped-at-a-breakpoint" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_breakpoint_prompt</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_breakpoint_prompt</span>
 </pre></div>
 </div>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_breakpoint_prompt</span><span class="w"></span>
-<span class="w">    </span><span class="nf">...</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_breakpoint_prompt</span>
+<span class="w">    </span><span class="nf">...</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">fish_breakpoint_prompt</span></code> is the prompt function when asking for input in response to a <a class="reference internal" href="breakpoint.html#cmd-breakpoint"><span class="std std-ref">breakpoint</span></a> command.</p>
+<p><code class="docutils literal notranslate"><span class="pre">fish_breakpoint_prompt</span></code> is the prompt function when asking for input in response to a <a class="reference internal" href="breakpoint.html"><span class="doc">breakpoint</span></a> command.</p>
 <p>The exit status of commands within <code class="docutils literal notranslate"><span class="pre">fish_breakpoint_prompt</span></code> will not modify the value of <a class="reference internal" href="../language.html#variables-status"><span class="std std-ref">$status</span></a> outside of the <code class="docutils literal notranslate"><span class="pre">fish_breakpoint_prompt</span></code> function.</p>
 <p><code class="docutils literal notranslate"><span class="pre">fish</span></code> ships with a default version of this function that displays the function name and line number of the current execution context.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>A simple prompt that is a simplified version of the default debugging prompt:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_breakpoint_prompt</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s2">&quot;Write out the debug prompt&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">function</span><span class="w"> </span><span class="o">(</span><span class="nf">status</span><span class="w"> </span><span class="no">current-function</span><span class="o">)</span><span class="w"></span>
-<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">line</span><span class="w"> </span><span class="o">(</span><span class="nf">status</span><span class="w"> </span><span class="no">current-line-number</span><span class="o">)</span><span class="w"></span>
-<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">prompt</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$function</span><span class="s2">:</span><span class="o">$line</span><span class="s2"> &gt;&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">-ns</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="o">$fish_color_status)</span><span class="w"> </span><span class="s2">&quot;BP </span><span class="o">$prompt</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_breakpoint_prompt</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s2">&quot;Write out the debug prompt&quot;</span>
+<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">function</span><span class="w"> </span><span class="o">(</span><span class="nf">status</span><span class="w"> </span><span class="no">current-function</span><span class="o">)</span>
+<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">line</span><span class="w"> </span><span class="o">(</span><span class="nf">status</span><span class="w"> </span><span class="no">current-line-number</span><span class="o">)</span>
+<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">prompt</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$function</span><span class="s2">:</span><span class="o">$line</span><span class="s2"> &gt;&quot;</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">-ns</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="o">$fish_color_status)</span><span class="w"> </span><span class="s2">&quot;BP </span><span class="o">$prompt</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39; &#39;</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 </section>
@@ -146,7 +150,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -164,20 +168,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -230,6 +241,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>return - stop the current inner function &#8212; fish-shell 3.5.1 documentation</title>
+    <title>return - stop the current inner function &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="set - display and change shell variables" href="set.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,7 +107,7 @@
 <h1>return - stop the current inner function<a class="headerlink" href="#return-stop-the-current-inner-function" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">return</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">N</span><span class="g g-Other">]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">return</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">N</span><span class="g g-Other">]</span>
 </pre></div>
 </div>
 </section>
@@ -112,17 +116,17 @@
 <p><strong class="program">return</strong> halts a currently running function.
 The exit status is set to <em>N</em> if it is given.
 If <strong class="program">return</strong> is invoked outside of a function or dot script it is equivalent to exit.</p>
-<p>It is often added inside of a conditional block such as an <a class="reference internal" href="if.html#cmd-if"><span class="std std-ref">if</span></a> statement or a <a class="reference internal" href="switch.html#cmd-switch"><span class="std std-ref">switch</span></a> statement to conditionally stop the executing function and return to the caller; it can also be used to specify the exit status of a function.</p>
-<p>If at the top level of a script, it exits with the given status, like <a class="reference internal" href="exit.html#cmd-exit"><span class="std std-ref">exit</span></a>.
+<p>It is often added inside of a conditional block such as an <a class="reference internal" href="if.html"><span class="doc">if</span></a> statement or a <a class="reference internal" href="switch.html"><span class="doc">switch</span></a> statement to conditionally stop the executing function and return to the caller; it can also be used to specify the exit status of a function.</p>
+<p>If at the top level of a script, it exits with the given status, like <a class="reference internal" href="exit.html"><span class="doc">exit</span></a>.
 If at the top level in an interactive session, it will set <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-status"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">status</span></code></a>, but not exit the shell.</p>
 <p>The <strong>-h</strong> or <strong>--help</strong> option displays help about using this command.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>An implementation of the false command as a fish function:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">false</span><span class="w"></span>
-<span class="w">    </span><span class="nf">return</span><span class="w"> </span><span class="no">1</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">false</span>
+<span class="w">    </span><span class="nf">return</span><span class="w"> </span><span class="no">1</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 </section>
@@ -142,7 +146,7 @@ If at the top level in an interactive session, it will set <span class="target" 
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -160,20 +164,27 @@ If at the top level in an interactive session, it will set <span class="target" 
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -226,6 +237,7 @@ If at the top level in an interactive session, it will set <span class="target" 
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

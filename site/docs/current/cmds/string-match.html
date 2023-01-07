@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>string-match - match substrings &#8212; fish-shell 3.5.1 documentation</title>
+    <title>string-match - match substrings &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="string-pad - pad strings to a fixed width" href="string-pad.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -107,10 +111,10 @@
 <h1>string-match - match substrings<a class="headerlink" href="#string-match-match-substrings" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-e</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--entire</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-i</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--ignore-case</span><span class="g g-Other">]</span><span class="w"></span>
-<span class="w">             </span><span class="g g-Other">[</span><span class="no">-g</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--groups-only</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--regex</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--index</span><span class="g g-Other">]</span><span class="w"></span>
-<span class="w">             </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-v</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--invert</span><span class="g g-Other">]</span><span class="w"></span>
-<span class="w">             </span><span class="no">PATTERN</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-e</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--entire</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-i</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--ignore-case</span><span class="g g-Other">]</span>
+<span class="w">             </span><span class="g g-Other">[</span><span class="no">-g</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--groups-only</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--regex</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--index</span><span class="g g-Other">]</span>
+<span class="w">             </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-v</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--invert</span><span class="g g-Other">]</span>
+<span class="w">             </span><span class="no">PATTERN</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
@@ -130,28 +134,28 @@
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <section id="match-glob-examples">
 <h3>Match Glob Examples<a class="headerlink" href="#match-glob-examples" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;?&#39;</span><span class="w"> </span><span class="no">a</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;?&#39;</span><span class="w"> </span><span class="no">a</span>
 <span class="go">a</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;a*b&#39;</span><span class="w"> </span><span class="no">axxb</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;a*b&#39;</span><span class="w"> </span><span class="no">axxb</span>
 <span class="go">axxb</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-i</span><span class="w"> </span><span class="s1">&#39;a??B&#39;</span><span class="w"> </span><span class="no">Axxb</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-i</span><span class="w"> </span><span class="s1">&#39;a??B&#39;</span><span class="w"> </span><span class="no">Axxb</span>
 <span class="go">Axxb</span>
 
-<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;ok?&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;*\?&#39;</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;ok?&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;*\?&#39;</span>
 <span class="go">ok?</span>
 
 <span class="go"># Note that only the second STRING will match here.</span>
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span>
 <span class="go">foo</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span>
 <span class="go">foo1</span>
 <span class="go">foo</span>
 <span class="go">foo2</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;foo?&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;foo?&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span>
 <span class="go">foo1</span>
 <span class="go">foo2</span>
 </pre></div>
@@ -159,10 +163,10 @@
 </section>
 <section id="match-regex-examples">
 <h3>Match Regex Examples<a class="headerlink" href="#match-regex-examples" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;cat|dog|fish&#39;</span><span class="w"> </span><span class="s1">&#39;nice dog&#39;</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;cat|dog|fish&#39;</span><span class="w"> </span><span class="s1">&#39;nice dog&#39;</span>
 <span class="go">dog</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-v</span><span class="w"> </span><span class="s2">&quot;c.*[12]&quot;</span><span class="w"> </span><span class="o">{</span><span class="no">cat</span><span class="o">,</span><span class="no">dog</span><span class="o">}(</span><span class="nf">seq</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">4</span><span class="o">)</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-v</span><span class="w"> </span><span class="s2">&quot;c.*[12]&quot;</span><span class="w"> </span><span class="o">{</span><span class="no">cat</span><span class="o">,</span><span class="no">dog</span><span class="o">}(</span><span class="nf">seq</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">4</span><span class="o">)</span>
 <span class="go">dog1</span>
 <span class="go">dog2</span>
 <span class="go">cat3</span>
@@ -170,41 +174,41 @@
 <span class="go">cat4</span>
 <span class="go">dog4</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;(\d\d?):(\d\d):(\d\d)&#39;</span><span class="w"> </span><span class="no">2:34:56</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;(\d\d?):(\d\d):(\d\d)&#39;</span><span class="w"> </span><span class="no">2:34:56</span>
 <span class="go">2:34:56</span>
 <span class="go">2</span>
 <span class="go">34</span>
 <span class="go">56</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;^(\w{2,4})\1$&#39;</span><span class="w"> </span><span class="no">papa</span><span class="w"> </span><span class="no">mud</span><span class="w"> </span><span class="no">murmur</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;^(\w{2,4})\1$&#39;</span><span class="w"> </span><span class="no">papa</span><span class="w"> </span><span class="no">mud</span><span class="w"> </span><span class="no">murmur</span>
 <span class="go">papa</span>
 <span class="go">pa</span>
 <span class="go">murmur</span>
 <span class="go">mur</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="no">at</span><span class="w"> </span><span class="no">ratatat</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="no">at</span><span class="w"> </span><span class="no">ratatat</span>
 <span class="go">2 2</span>
 <span class="go">4 2</span>
 <span class="go">6 2</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-i</span><span class="w"> </span><span class="s1">&#39;0x[0-9a-f]{1,8}&#39;</span><span class="w"> </span><span class="s1">&#39;int magic = 0xBadC0de;&#39;</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-i</span><span class="w"> </span><span class="s1">&#39;0x[0-9a-f]{1,8}&#39;</span><span class="w"> </span><span class="s1">&#39;int magic = 0xBadC0de;&#39;</span>
 <span class="go">0xBadC0de</span>
 
-<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="o">$version</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="o">$version</span>
 <span class="go">3.1.2-1575-ga2ff32d90</span>
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rq</span><span class="w"> </span><span class="s1">&#39;(?&lt;major&gt;\d+).(?&lt;minor&gt;\d+).(?&lt;revision&gt;\d+)&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$version</span><span class="w"></span>
-<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;You are using fish </span><span class="o">$major</span><span class="s2">!&quot;</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rq</span><span class="w"> </span><span class="s1">&#39;(?&lt;major&gt;\d+).(?&lt;minor&gt;\d+).(?&lt;revision&gt;\d+)&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$version</span>
+<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;You are using fish </span><span class="o">$major</span><span class="s2">!&quot;</span>
 <span class="go">You are using fish 3!</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-raq</span><span class="w"> </span><span class="s1">&#39; *(?&lt;sentence&gt;[^.!?]+)(?&lt;punctuation&gt;[.!?])?&#39;</span><span class="w"> </span><span class="s2">&quot;hello, friend. goodbye&quot;</span><span class="w"></span>
-<span class="gp">&gt;_ </span><span class="nf">printf</span><span class="w"> </span><span class="s2">&quot;%s\n&quot;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$sentence</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-raq</span><span class="w"> </span><span class="s1">&#39; *(?&lt;sentence&gt;[^.!?]+)(?&lt;punctuation&gt;[.!?])?&#39;</span><span class="w"> </span><span class="s2">&quot;hello, friend. goodbye&quot;</span>
+<span class="gp">&gt;_ </span><span class="nf">printf</span><span class="w"> </span><span class="s2">&quot;%s\n&quot;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$sentence</span>
 <span class="go">hello, friend</span>
 <span class="go">goodbye</span>
-<span class="gp">&gt;_ </span><span class="nf">printf</span><span class="w"> </span><span class="s2">&quot;%s\n&quot;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$punctuation</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">printf</span><span class="w"> </span><span class="s2">&quot;%s\n&quot;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$punctuation</span>
 <span class="go">.</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rq</span><span class="w"> </span><span class="s1">&#39;(?&lt;word&gt;hello)&#39;</span><span class="w"> </span><span class="s1">&#39;hi&#39;</span><span class="w"></span>
-<span class="gp">&gt;_ </span><span class="nf">count</span><span class="w"> </span><span class="o">$word</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rq</span><span class="w"> </span><span class="s1">&#39;(?&lt;word&gt;hello)&#39;</span><span class="w"> </span><span class="s1">&#39;hi&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">count</span><span class="w"> </span><span class="o">$word</span>
 <span class="go">0</span>
 </pre></div>
 </div>
@@ -226,7 +230,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -244,20 +248,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -310,6 +321,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

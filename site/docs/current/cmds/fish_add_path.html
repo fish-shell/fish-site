@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>fish_add_path - add to the path &#8212; fish-shell 3.5.1 documentation</title>
+    <title>fish_add_path - add to the path &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fish_breakpoint_prompt - define the prompt when stopped at a breakpoint" href="fish_breakpoint_prompt.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -104,18 +108,18 @@
 <h1>fish_add_path - add to the path<a class="headerlink" href="#fish-add-path-add-to-the-path" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">path</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"></span>
-<span class="nf">fish_add_path</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-g</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--global</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-U</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--universal</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-P</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--path</span><span class="g g-Other">)]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--move</span><span class="g g-Other">)]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--append</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-p</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--prepend</span><span class="g g-Other">)]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-v</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--verbose</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--dry-run</span><span class="g g-Other">)]</span><span class="w"> </span><span class="no">PATHS</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">path</span><span class="w"> </span><span class="g g-Other">...</span>
+<span class="nf">fish_add_path</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-g</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--global</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-U</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--universal</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-P</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--path</span><span class="g g-Other">)]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--move</span><span class="g g-Other">)]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--append</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-p</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--prepend</span><span class="g g-Other">)]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-v</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--verbose</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--dry-run</span><span class="g g-Other">)]</span><span class="w"> </span><span class="no">PATHS</span><span class="w"> </span><span class="g g-Other">...</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
-<p><strong class="program">fish_add_path</strong> is a simple way to add more components to fish’s <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a>. It does this by adding the components either to $fish_user_paths or directly to $PATH (if the <code class="docutils literal notranslate"><span class="pre">--path</span></code> switch is given).</p>
+<p><strong class="program">fish_add_path</strong> is a simple way to add more components to fish’s <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a>. It does this by adding the components either to $fish_user_paths or directly to <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a> (if the <code class="docutils literal notranslate"><span class="pre">--path</span></code> switch is given).</p>
 <p>It is (by default) safe to use <strong class="program">fish_add_path</strong> in config.fish, or it can be used once, interactively, and the paths will stay in future because of <a class="reference internal" href="../language.html#variables-universal"><span class="std std-ref">universal variables</span></a>. This is a “do what I mean” style command, if you need more control, consider modifying the variable yourself.</p>
-<p>Components are normalized by <a class="reference internal" href="realpath.html#cmd-realpath"><span class="std std-ref">realpath</span></a>. Trailing slashes are ignored and relative paths are made absolute (but symlinks are not resolved). If a component already exists, it is not added again and stays in the same place unless the <code class="docutils literal notranslate"><span class="pre">--move</span></code> switch is given.</p>
-<p>Components are added in the order they are given, and they are prepended to the path unless <code class="docutils literal notranslate"><span class="pre">--append</span></code> is given (if $fish_user_paths is used, that means they are last in $fish_user_paths, which is itself prepended to $PATH, so they still stay ahead of the system paths).</p>
-<p>If no component is new, the variable (<span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-fish_user_paths"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_user_paths</span></code></a> or <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">$PATH</span></code>) is not set again or otherwise modified, so variable handlers are not triggered.</p>
+<p>Components are normalized by <a class="reference internal" href="realpath.html"><span class="doc">realpath</span></a>. Trailing slashes are ignored and relative paths are made absolute (but symlinks are not resolved). If a component already exists, it is not added again and stays in the same place unless the <code class="docutils literal notranslate"><span class="pre">--move</span></code> switch is given.</p>
+<p>Components are added in the order they are given, and they are prepended to the path unless <code class="docutils literal notranslate"><span class="pre">--append</span></code> is given (if $fish_user_paths is used, that means they are last in $fish_user_paths, which is itself prepended to <span class="target" id="index-2"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a>, so they still stay ahead of the system paths).</p>
+<p>If no component is new, the variable (<span class="target" id="index-3"></span><a class="reference internal" href="../language.html#envvar-fish_user_paths"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_user_paths</span></code></a> or <span class="target" id="index-4"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a>) is not set again or otherwise modified, so variable handlers are not triggered.</p>
 <p>If a component is not an existing directory, <code class="docutils literal notranslate"><span class="pre">fish_add_path</span></code> ignores it.</p>
 </section>
 <section id="options">
@@ -125,15 +129,15 @@
 </dd>
 <dt><strong>-p</strong> or <strong>--prepend</strong></dt><dd><p>Add components to the <em>front</em> of the variable (this is the default).</p>
 </dd>
-<dt><strong>-g</strong> or <strong>--global</strong></dt><dd><p>Use a global <span class="target" id="index-3"></span><a class="reference internal" href="../language.html#envvar-fish_user_paths"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_user_paths</span></code></a>.</p>
+<dt><strong>-g</strong> or <strong>--global</strong></dt><dd><p>Use a global <span class="target" id="index-5"></span><a class="reference internal" href="../language.html#envvar-fish_user_paths"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_user_paths</span></code></a>.</p>
 </dd>
-<dt><strong>-U</strong> or <strong>--universal</strong></dt><dd><p>Use a universal <span class="target" id="index-4"></span><a class="reference internal" href="../language.html#envvar-fish_user_paths"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_user_paths</span></code></a> - this is the default if it doesn’t already exist.</p>
+<dt><strong>-U</strong> or <strong>--universal</strong></dt><dd><p>Use a universal <span class="target" id="index-6"></span><a class="reference internal" href="../language.html#envvar-fish_user_paths"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_user_paths</span></code></a> - this is the default if it doesn’t already exist.</p>
 </dd>
-<dt><strong>-P</strong> or <strong>--path</strong></dt><dd><p>Manipulate <span class="target" id="index-5"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a> directly.</p>
+<dt><strong>-P</strong> or <strong>--path</strong></dt><dd><p>Manipulate <span class="target" id="index-7"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a> directly.</p>
 </dd>
 <dt><strong>-m</strong> or <strong>--move</strong></dt><dd><p>Move already-existing components to the place they would be added - by default they would be left in place and not added again.</p>
 </dd>
-<dt><strong>-v</strong> or <strong>--verbose</strong></dt><dd><p>Print the <a class="reference internal" href="set.html#cmd-set"><span class="std std-ref">set</span></a> command used.</p>
+<dt><strong>-v</strong> or <strong>--verbose</strong></dt><dd><p>Print the <a class="reference internal" href="set.html"><span class="doc">set</span></a> command used.</p>
 </dd>
 <dt><strong>-n</strong> or <strong>--dry-run</strong></dt><dd><p>Print the <code class="docutils literal notranslate"><span class="pre">set</span></code> command that would be used without executing it.</p>
 </dd>
@@ -145,23 +149,23 @@
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="go"># I just installed mycoolthing and need to add it to the path to use it.</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">/opt/mycoolthing/bin</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">/opt/mycoolthing/bin</span>
 
 <span class="go"># I want my ~/.local/bin to be checked first.</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">-m</span><span class="w"> </span><span class="o">~</span><span class="no">/.local/bin</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">-m</span><span class="w"> </span><span class="o">~</span><span class="no">/.local/bin</span>
 
 <span class="go"># I prefer using a global fish_user_paths</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="o">~</span><span class="no">/.local/bin</span><span class="w"> </span><span class="o">~</span><span class="no">/.otherbin</span><span class="w"> </span><span class="no">/usr/local/sbin</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="o">~</span><span class="no">/.local/bin</span><span class="w"> </span><span class="o">~</span><span class="no">/.otherbin</span><span class="w"> </span><span class="no">/usr/local/sbin</span>
 
 <span class="go"># I want to append to the entire $PATH because this directory contains fallbacks</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">-aP</span><span class="w"> </span><span class="no">/opt/fallback/bin</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">-aP</span><span class="w"> </span><span class="no">/opt/fallback/bin</span>
 
 <span class="go"># I want to add the bin/ directory of my current $PWD (say /home/nemo/)</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">-v</span><span class="w"> </span><span class="no">bin/</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">-v</span><span class="w"> </span><span class="no">bin/</span>
 <span class="go">set fish_user_paths /home/nemo/bin /usr/bin /home/nemo/.local/bin</span>
 
 <span class="go"># I have installed ruby via homebrew</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">/usr/local/opt/ruby/bin</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">/usr/local/opt/ruby/bin</span>
 </pre></div>
 </div>
 </section>
@@ -181,7 +185,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -199,20 +203,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -265,6 +276,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

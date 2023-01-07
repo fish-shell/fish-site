@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>switch - conditionally execute a block of commands &#8212; fish-shell 3.5.1 documentation</title>
+    <title>switch - conditionally execute a block of commands &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="test - perform tests on files and text" href="test.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,7 +107,7 @@
 <span id="cmd-switch"></span><h1>switch - conditionally execute a block of commands<a class="headerlink" href="#switch-conditionally-execute-a-block-of-commands" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">switch</span><span class="w"> </span><span class="no">VALUE</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">case</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">GLOB</span><span class="w"> </span><span class="g g-Other">...]</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">COMMANDS</span><span class="w"> </span><span class="g g-Other">...]</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"> </span><span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">switch</span><span class="w"> </span><span class="no">VALUE</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">case</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">GLOB</span><span class="w"> </span><span class="g g-Other">...]</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">COMMANDS</span><span class="w"> </span><span class="g g-Other">...]</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"> </span><span class="nf">end</span>
 </pre></div>
 </div>
 </section>
@@ -112,23 +116,24 @@
 <p><code class="docutils literal notranslate"><span class="pre">switch</span></code> performs one of several blocks of commands, depending on whether a specified value equals one of several globbed values. <code class="docutils literal notranslate"><span class="pre">case</span></code> is used together with the <code class="docutils literal notranslate"><span class="pre">switch</span></code> statement in order to determine which block should be executed.</p>
 <p>Each <code class="docutils literal notranslate"><span class="pre">case</span></code> command is given one or more parameters. The first <code class="docutils literal notranslate"><span class="pre">case</span></code> command with a parameter that matches the string specified in the switch command will be evaluated. <code class="docutils literal notranslate"><span class="pre">case</span></code> parameters may contain globs. These need to be escaped or quoted in order to avoid regular glob expansion using filenames.</p>
 <p>Note that fish does not fall through on case statements. Only the first matching case is executed.</p>
+<p>Note that <a class="reference internal" href="break.html"><span class="doc">break</span></a> cannot be used to exit a case/switch block early like in other languages. It can only be used in loops.</p>
 <p>Note that command substitutions in a case statement will be evaluated even if its body is not taken. All substitutions, including command substitutions, must be performed before the value can be compared against the parameter.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>If the variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">animal</span></code> contains the name of an animal, the following code would attempt to classify it:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">switch</span><span class="w"> </span><span class="o">$animal</span><span class="w"></span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">cat</span><span class="w"></span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">evil</span><span class="w"></span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">wolf</span><span class="w"> </span><span class="no">dog</span><span class="w"> </span><span class="no">human</span><span class="w"> </span><span class="no">moose</span><span class="w"> </span><span class="no">dolphin</span><span class="w"> </span><span class="no">whale</span><span class="w"></span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">mammal</span><span class="w"></span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">duck</span><span class="w"> </span><span class="no">goose</span><span class="w"> </span><span class="no">albatross</span><span class="w"></span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">bird</span><span class="w"></span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">shark</span><span class="w"> </span><span class="no">trout</span><span class="w"> </span><span class="no">stingray</span><span class="w"></span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">fish</span><span class="w"></span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"></span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">I</span><span class="w"> </span><span class="no">have</span><span class="w"> </span><span class="no">no</span><span class="w"> </span><span class="no">idea</span><span class="w"> </span><span class="no">what</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="o">$animal</span><span class="w"> </span><span class="no">is</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">switch</span><span class="w"> </span><span class="o">$animal</span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">cat</span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">evil</span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">wolf</span><span class="w"> </span><span class="no">dog</span><span class="w"> </span><span class="no">human</span><span class="w"> </span><span class="no">moose</span><span class="w"> </span><span class="no">dolphin</span><span class="w"> </span><span class="no">whale</span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">mammal</span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">duck</span><span class="w"> </span><span class="no">goose</span><span class="w"> </span><span class="no">albatross</span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">bird</span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">shark</span><span class="w"> </span><span class="no">trout</span><span class="w"> </span><span class="no">stingray</span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">fish</span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">I</span><span class="w"> </span><span class="no">have</span><span class="w"> </span><span class="no">no</span><span class="w"> </span><span class="no">idea</span><span class="w"> </span><span class="no">what</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="o">$animal</span><span class="w"> </span><span class="no">is</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 <p>If the above code was run with <code class="docutils literal notranslate"><span class="pre">$animal</span></code> set to <code class="docutils literal notranslate"><span class="pre">whale</span></code>, the output
@@ -150,7 +155,7 @@ would be <code class="docutils literal notranslate"><span class="pre">mammal</sp
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -168,20 +173,27 @@ would be <code class="docutils literal notranslate"><span class="pre">mammal</sp
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -234,6 +246,7 @@ would be <code class="docutils literal notranslate"><span class="pre">mammal</sp
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

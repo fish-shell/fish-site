@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>math - perform mathematics calculations &#8212; fish-shell 3.5.1 documentation</title>
+    <title>math - perform mathematics calculations &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="nextd - move forward through directory history" href="nextd.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -109,7 +113,7 @@
 <span id="cmd-math"></span><h1>math - perform mathematics calculations<a class="headerlink" href="#math-perform-mathematics-calculations" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">math</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-s</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--scale</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">N</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-b</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--base</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">BASE</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">EXPRESSION</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">math</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-s</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--scale</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">N</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-b</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--base</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">BASE</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">EXPRESSION</span><span class="w"> </span><span class="g g-Other">...</span>
 </pre></div>
 </div>
 </section>
@@ -131,7 +135,7 @@ When in doubt, use parentheses.</p>
 <dl class="simple">
 <dt><strong>-s</strong> <em>N</em> or <strong>--scale</strong> <em>N</em></dt><dd><p>Sets the scale of the result.
 <code class="docutils literal notranslate"><span class="pre">N</span></code> must be an integer or the word “max” for the maximum scale.
-A scale of zero causes results to be rounded down to the nearest integer.
+A scale of zero causes results to be truncated, not rounded. Any non-integer component is thrown away.
 So <code class="docutils literal notranslate"><span class="pre">3/2</span></code> returns <code class="docutils literal notranslate"><span class="pre">1</span></code> rather than <code class="docutils literal notranslate"><span class="pre">2</span></code> which <code class="docutils literal notranslate"><span class="pre">1.5</span></code> would normally round to.
 This is for compatibility with <code class="docutils literal notranslate"><span class="pre">bc</span></code> which was the basis for this command prior to fish 3.0.0.
 Scale values greater than zero causes the result to be rounded using the usual rules to the specified number of decimal places.</p>
@@ -195,7 +199,7 @@ Half of Tau</p>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> supports the following functions:</p>
-<dl class="simple">
+<dl>
 <dt><code class="docutils literal notranslate"><span class="pre">abs</span></code></dt><dd><p>the absolute value, with positive sign</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">acos</span></code></dt><dd><p>arc cosine</p>
@@ -208,8 +212,20 @@ Half of Tau</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">bitand</span></code>, <code class="docutils literal notranslate"><span class="pre">bitor</span></code> and <code class="docutils literal notranslate"><span class="pre">bitxor</span></code></dt><dd><p>perform bitwise operations.
 These will throw away any non-integer parts and interpret the rest as an int.</p>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">bitnot</span></code> and <code class="docutils literal notranslate"><span class="pre">bitnand</span></code> don’t exist. This is because numbers in math don’t really have a <em>width</em> in terms of bits,
+and these operations necessarily care about leading zeroes.</p>
+<p>If you need to negate a specific number you can do it with an xor with a mask, e.g.:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">math</span><span class="w"> </span><span class="no">--base=hex</span><span class="w"> </span><span class="no">bitxor</span><span class="w"> </span><span class="no">0x0F,</span><span class="w"> </span><span class="no">0xFF</span>
+<span class="go">0xF0</span>
+
+<span class="gp">&gt; </span><span class="nf">math</span><span class="w"> </span><span class="no">--base=hex</span><span class="w"> </span><span class="no">bitxor</span><span class="w"> </span><span class="no">0x2,</span><span class="w"> </span><span class="no">0x3</span>
+<span class="go"># Here we mask with 0x3 == 0b111, so our number is 3 bits wide</span>
+<span class="go"># Only the 1 bit isn&#39;t set.</span>
+<span class="go">0x1</span>
+</pre></div>
+</div>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">ceil</span></code></dt><dd><p>round number up to nearest integer</p>
+<dt><code class="docutils literal notranslate"><span class="pre">ceil</span></code></dt><dd><p>round number up to the nearest integer</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">cos</span></code></dt><dd><p>the cosine</p>
 </dd>
@@ -219,7 +235,7 @@ These will throw away any non-integer parts and interpret the rest as an int.</p
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">fac</span></code></dt><dd><p>factorial - also known as <code class="docutils literal notranslate"><span class="pre">x!</span></code> (<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">*</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">2)</span> <span class="pre">*</span> <span class="pre">...</span> <span class="pre">*</span> <span class="pre">1</span></code>)</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">floor</span></code></dt><dd><p>round number down to nearest integer</p>
+<dt><code class="docutils literal notranslate"><span class="pre">floor</span></code></dt><dd><p>round number down to the nearest integer</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">ln</span></code></dt><dd><p>the base-e logarithm</p>
 </dd>
@@ -289,7 +305,7 @@ These will throw away any non-integer parts and interpret the rest as an int.</p
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -307,20 +323,27 @@ These will throw away any non-integer parts and interpret the rest as an int.</p
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -373,6 +396,7 @@ These will throw away any non-integer parts and interpret the rest as an int.</p
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

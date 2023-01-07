@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Commands &#8212; fish-shell 3.5.1 documentation</title>
+    <title>Commands &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="_ - call fish’s translations" href="cmds/_.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Commands</a></li>
@@ -46,6 +45,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -85,8 +89,7 @@
 <ul>
 <li><a class="reference internal" href="#">Commands</a><ul>
 <li><a class="reference internal" href="#keywords">Keywords</a></li>
-<li><a class="reference internal" href="#decorations">Decorations</a></li>
-<li><a class="reference internal" href="#tools-to-do-a-task">Tools to do a task</a></li>
+<li><a class="reference internal" href="#tools">Tools</a></li>
 <li><a class="reference internal" href="#known-functions">Known functions</a></li>
 <li><a class="reference internal" href="#helper-functions">Helper functions</a></li>
 <li><a class="reference internal" href="#helper-commands">Helper commands</a></li>
@@ -110,75 +113,76 @@
 <h2>Keywords<a class="headerlink" href="#keywords" title="Permalink to this heading">¶</a></h2>
 <p>Core language keywords that make up the syntax, like</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="cmds/if.html#cmd-if"><span class="std std-ref">if</span></a> for conditions.</p></li>
-<li><p><a class="reference internal" href="cmds/for.html#cmd-for"><span class="std std-ref">for</span></a> and <a class="reference internal" href="cmds/while.html#cmd-while"><span class="std std-ref">while</span></a> for loops.</p></li>
-<li><p><a class="reference internal" href="cmds/break.html#cmd-break"><span class="std std-ref">break</span></a> and <a class="reference internal" href="cmds/continue.html#cmd-continue"><span class="std std-ref">continue</span></a> to control loops.</p></li>
-<li><p><a class="reference internal" href="cmds/function.html#cmd-function"><span class="std std-ref">function</span></a> to define functions.</p></li>
-<li><p><a class="reference internal" href="cmds/return.html#cmd-return"><span class="std std-ref">return</span></a> to return a status from a function.</p></li>
-<li><p><a class="reference internal" href="cmds/begin.html#cmd-begin"><span class="std std-ref">begin</span></a> to begin a block and <a class="reference internal" href="cmds/end.html#cmd-end"><span class="std std-ref">end</span></a> to end any block (including ifs and loops).</p></li>
-<li><p><a class="reference internal" href="cmds/and.html#cmd-and"><span class="std std-ref">and</span></a>, <a class="reference internal" href="cmds/or.html#cmd-or"><span class="std std-ref">or</span></a> and <a class="reference internal" href="cmds/not.html#cmd-not"><span class="std std-ref">not</span></a> to combine commands logically.</p></li>
-<li><p><a class="reference internal" href="cmds/switch.html#cmd-switch"><span class="std std-ref">switch</span></a> and <a class="reference internal" href="cmds/case.html#cmd-case"><span class="std std-ref">case</span></a> to make multiple blocks depending on the value of a variable.</p></li>
+<li><p><a class="reference internal" href="cmds/if.html"><span class="doc">if</span></a> for conditions.</p></li>
+<li><p><a class="reference internal" href="cmds/for.html"><span class="doc">for</span></a> and <a class="reference internal" href="cmds/while.html"><span class="doc">while</span></a> for loops.</p></li>
+<li><p><a class="reference internal" href="cmds/break.html"><span class="doc">break</span></a> and <a class="reference internal" href="cmds/continue.html"><span class="doc">continue</span></a> to control loops.</p></li>
+<li><p><a class="reference internal" href="cmds/function.html"><span class="doc">function</span></a> to define functions.</p></li>
+<li><p><a class="reference internal" href="cmds/return.html"><span class="doc">return</span></a> to return a status from a function.</p></li>
+<li><p><a class="reference internal" href="cmds/begin.html"><span class="doc">begin</span></a> to begin a block and <a class="reference internal" href="cmds/end.html"><span class="doc">end</span></a> to end any block (including ifs and loops).</p></li>
+<li><p><a class="reference internal" href="cmds/and.html"><span class="doc">and</span></a>, <a class="reference internal" href="cmds/or.html"><span class="doc">or</span></a> and <a class="reference internal" href="cmds/not.html"><span class="doc">not</span></a> to combine commands logically.</p></li>
+<li><p><a class="reference internal" href="cmds/switch.html"><span class="doc">switch</span></a> and <a class="reference internal" href="cmds/case.html"><span class="doc">case</span></a> to make multiple blocks depending on the value of a variable.</p></li>
+<li><p><a class="reference internal" href="cmds/command.html"><span class="doc">command</span></a> or <a class="reference internal" href="cmds/builtin.html"><span class="doc">builtin</span></a> to tell fish what sort of thing to execute</p></li>
+<li><p><a class="reference internal" href="cmds/time.html"><span class="doc">time</span></a> to time execution</p></li>
+<li><p><a class="reference internal" href="cmds/exec.html"><span class="doc">exec</span></a> tells fish to replace itself with a command.</p></li>
 </ul>
 </section>
-<section id="decorations">
-<h2>Decorations<a class="headerlink" href="#decorations" title="Permalink to this heading">¶</a></h2>
-<p>Command decorations are keywords like <a class="reference internal" href="cmds/command.html#cmd-command"><span class="std std-ref">command</span></a> or <a class="reference internal" href="cmds/builtin.html#cmd-builtin"><span class="std std-ref">builtin</span></a> to tell fish what sort of thing to execute, and <a class="reference internal" href="cmds/time.html#cmd-time"><span class="std std-ref">time</span></a> to time its execution. <a class="reference internal" href="cmds/exec.html#cmd-exec"><span class="std std-ref">exec</span></a> tells fish to replace itself with the command.</p>
-</section>
-<section id="tools-to-do-a-task">
-<h2>Tools to do a task<a class="headerlink" href="#tools-to-do-a-task" title="Permalink to this heading">¶</a></h2>
+<section id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h2>
 <p>Builtins to do a task, like</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="cmds/cd.html#cmd-cd"><span class="std std-ref">cd</span></a> to change the current directory.</p></li>
-<li><p><a class="reference internal" href="cmds/echo.html#cmd-echo"><span class="std std-ref">echo</span></a> or <a class="reference internal" href="cmds/printf.html#cmd-printf"><span class="std std-ref">printf</span></a> to produce output.</p></li>
-<li><p><a class="reference internal" href="cmds/set.html#cmd-set"><span class="std std-ref">set</span></a> to set, query or erase variables.</p></li>
-<li><p><a class="reference internal" href="cmds/read.html#cmd-read"><span class="std std-ref">read</span></a> to read input.</p></li>
-<li><p><a class="reference internal" href="cmds/string.html#cmd-string"><span class="std std-ref">string</span></a> for string manipulation.</p></li>
-<li><p><a class="reference internal" href="cmds/math.html#cmd-math"><span class="std std-ref">math</span></a> does arithmetic.</p></li>
-<li><p><a class="reference internal" href="cmds/argparse.html#cmd-argparse"><span class="std std-ref">argparse</span></a> to make arguments easier to handle.</p></li>
-<li><p><a class="reference internal" href="cmds/count.html#cmd-count"><span class="std std-ref">count</span></a> to count arguments.</p></li>
-<li><p><a class="reference internal" href="cmds/type.html#cmd-type"><span class="std std-ref">type</span></a> to find out what sort of thing (command, builtin or function) fish would call, or if it exists at all.</p></li>
-<li><p><a class="reference internal" href="cmds/test.html#cmd-test"><span class="std std-ref">test</span></a> checks conditions like if a file exists or a string is empty.</p></li>
-<li><p><a class="reference internal" href="cmds/contains.html#cmd-contains"><span class="std std-ref">contains</span></a> to see if a list contains an entry.</p></li>
-<li><p><a class="reference internal" href="cmds/abbr.html#cmd-abbr"><span class="std std-ref">abbr</span></a> manages <a class="reference internal" href="interactive.html#abbreviations"><span class="std std-ref">Abbreviations</span></a>.</p></li>
-<li><p><a class="reference internal" href="cmds/eval.html#cmd-eval"><span class="std std-ref">eval</span></a> and <a class="reference internal" href="cmds/source.html#cmd-source"><span class="std std-ref">source</span></a> to run fish code from a string or file.</p></li>
-<li><p><a class="reference internal" href="cmds/set_color.html#cmd-set-color"><span class="std std-ref">set_color</span></a> to colorize your output.</p></li>
-<li><p><a class="reference internal" href="cmds/status.html#cmd-status"><span class="std std-ref">status</span></a> to get shell information, like whether it’s interactive or a login shell, or which file it is currently running.</p></li>
-<li><p><a class="reference internal" href="cmds/bind.html#cmd-bind"><span class="std std-ref">bind</span></a> to change bindings.</p></li>
-<li><p><a class="reference internal" href="cmds/commandline.html#cmd-commandline"><span class="std std-ref">commandline</span></a> to get or change the commandline contents.</p></li>
-<li><p><a class="reference internal" href="cmds/fish_config.html#cmd-fish-config"><span class="std std-ref">fish_config</span></a> to easily change fish’s configuration, like the prompt or colorscheme.</p></li>
-<li><p><a class="reference internal" href="cmds/random.html#cmd-random"><span class="std std-ref">random</span></a> to generate random numbers or pick from a list.</p></li>
+<li><p><a class="reference internal" href="cmds/cd.html"><span class="doc">cd</span></a> to change the current directory.</p></li>
+<li><p><a class="reference internal" href="cmds/echo.html"><span class="doc">echo</span></a> or <a class="reference internal" href="cmds/printf.html"><span class="doc">printf</span></a> to produce output.</p></li>
+<li><p><a class="reference internal" href="cmds/set_color.html"><span class="doc">set_color</span></a> to colorize output.</p></li>
+<li><p><a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a> to set, query or erase variables.</p></li>
+<li><p><a class="reference internal" href="cmds/read.html"><span class="doc">read</span></a> to read input.</p></li>
+<li><p><a class="reference internal" href="cmds/string.html"><span class="doc">string</span></a> for string manipulation.</p></li>
+<li><p><a class="reference internal" href="cmds/math.html"><span class="doc">math</span></a> does arithmetic.</p></li>
+<li><p><a class="reference internal" href="cmds/argparse.html"><span class="doc">argparse</span></a> to make arguments easier to handle.</p></li>
+<li><p><a class="reference internal" href="cmds/count.html"><span class="doc">count</span></a> to count arguments.</p></li>
+<li><p><a class="reference internal" href="cmds/type.html"><span class="doc">type</span></a> to find out what sort of thing (command, builtin or function) fish would call, or if it exists at all.</p></li>
+<li><p><a class="reference internal" href="cmds/test.html"><span class="doc">test</span></a> checks conditions like if a file exists or a string is empty.</p></li>
+<li><p><a class="reference internal" href="cmds/contains.html"><span class="doc">contains</span></a> to see if a list contains an entry.</p></li>
+<li><p><a class="reference internal" href="cmds/eval.html"><span class="doc">eval</span></a> and <a class="reference internal" href="cmds/source.html"><span class="doc">source</span></a> to run fish code from a string or file.</p></li>
+<li><p><a class="reference internal" href="cmds/status.html"><span class="doc">status</span></a> to get shell information, like whether it’s interactive or a login shell, or which file it is currently running.</p></li>
+<li><p><a class="reference internal" href="cmds/abbr.html"><span class="doc">abbr</span></a> manages <a class="reference internal" href="interactive.html#abbreviations"><span class="std std-ref">Abbreviations</span></a>.</p></li>
+<li><p><a class="reference internal" href="cmds/bind.html"><span class="doc">bind</span></a> to change bindings.</p></li>
+<li><p><a class="reference internal" href="cmds/complete.html"><span class="doc">complete</span></a> manages <a class="reference internal" href="interactive.html#tab-completion"><span class="std std-ref">completions</span></a>.</p></li>
+<li><p><a class="reference internal" href="cmds/commandline.html"><span class="doc">commandline</span></a> to get or change the commandline contents.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_config.html"><span class="doc">fish_config</span></a> to easily change fish’s configuration, like the prompt or colorscheme.</p></li>
+<li><p><a class="reference internal" href="cmds/random.html"><span class="doc">random</span></a> to generate random numbers or pick from a list.</p></li>
 </ul>
 </section>
 <section id="known-functions">
 <h2>Known functions<a class="headerlink" href="#known-functions" title="Permalink to this heading">¶</a></h2>
 <p>Known functions are a customization point. You can change them to change how your fish behaves. This includes:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="cmds/fish_prompt.html#cmd-fish-prompt"><span class="std std-ref">fish_prompt</span></a> and <a class="reference internal" href="cmds/fish_right_prompt.html#cmd-fish-right-prompt"><span class="std std-ref">fish_right_prompt</span></a> and <a class="reference internal" href="cmds/fish_mode_prompt.html#cmd-fish-mode-prompt"><span class="std std-ref">fish_mode_prompt</span></a> to print your prompt.</p></li>
-<li><p><a class="reference internal" href="cmds/fish_command_not_found.html#cmd-fish-command-not-found"><span class="std std-ref">fish_command_not_found</span></a> to tell fish what to do when a command is not found.</p></li>
-<li><p><a class="reference internal" href="cmds/fish_title.html#cmd-fish-title"><span class="std std-ref">fish_title</span></a> to change the terminal’s title.</p></li>
-<li><p><a class="reference internal" href="cmds/fish_greeting.html#cmd-fish-greeting"><span class="std std-ref">fish_greeting</span></a> to show a greeting when fish starts.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_prompt.html"><span class="doc">fish_prompt</span></a> and <a class="reference internal" href="cmds/fish_right_prompt.html"><span class="doc">fish_right_prompt</span></a> and <a class="reference internal" href="cmds/fish_mode_prompt.html"><span class="doc">fish_mode_prompt</span></a> to print your prompt.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_command_not_found.html"><span class="doc">fish_command_not_found</span></a> to tell fish what to do when a command is not found.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_title.html"><span class="doc">fish_title</span></a> to change the terminal’s title.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_greeting.html"><span class="doc">fish_greeting</span></a> to show a greeting when fish starts.</p></li>
 </ul>
 </section>
 <section id="helper-functions">
 <h2>Helper functions<a class="headerlink" href="#helper-functions" title="Permalink to this heading">¶</a></h2>
 <p>Some helper functions, often to give you information for use in your prompt:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="cmds/fish_git_prompt.html#cmd-fish-git-prompt"><span class="std std-ref">fish_git_prompt</span></a> and <a class="reference internal" href="cmds/fish_hg_prompt.html#cmd-fish-hg-prompt"><span class="std std-ref">fish_hg_prompt</span></a> to print information about the current git or mercurial repository.</p></li>
-<li><p><a class="reference internal" href="cmds/fish_vcs_prompt.html#cmd-fish-vcs-prompt"><span class="std std-ref">fish_vcs_prompt</span></a> to print information for either.</p></li>
-<li><p><a class="reference internal" href="cmds/fish_svn_prompt.html#cmd-fish-svn-prompt"><span class="std std-ref">fish_svn_prompt</span></a> to print information about the current svn repository.</p></li>
-<li><p><a class="reference internal" href="cmds/fish_status_to_signal.html#cmd-fish-status-to-signal"><span class="std std-ref">fish_status_to_signal</span></a> to give a signal name from a return status.</p></li>
-<li><p><a class="reference internal" href="cmds/prompt_pwd.html#cmd-prompt-pwd"><span class="std std-ref">prompt_pwd</span></a> to give the current directory in a nicely formatted and shortened way.</p></li>
-<li><p><a class="reference internal" href="cmds/prompt_login.html#cmd-prompt-login"><span class="std std-ref">prompt_login</span></a> to describe the current login, with user and hostname, and to explain if you are in a chroot or connected via ssh.</p></li>
-<li><p><a class="reference internal" href="cmds/prompt_hostname.html#cmd-prompt-hostname"><span class="std std-ref">prompt_hostname</span></a> to give the hostname, shortened for use in the prompt.</p></li>
-<li><p><a class="reference internal" href="cmds/fish_is_root_user.html#cmd-fish-is-root-user"><span class="std std-ref">fish_is_root_user</span></a> to check if the current user is an administrator user like root.</p></li>
-<li><p><a class="reference internal" href="cmds/fish_add_path.html#cmd-fish-add-path"><span class="std std-ref">fish_add_path</span></a> to easily add a path to $PATH.</p></li>
-<li><p><a class="reference internal" href="cmds/alias.html#cmd-alias"><span class="std std-ref">alias</span></a> to quickly define wrapper functions (“aliases”).</p></li>
+<li><p><a class="reference internal" href="cmds/fish_git_prompt.html"><span class="doc">fish_git_prompt</span></a> and <a class="reference internal" href="cmds/fish_hg_prompt.html"><span class="doc">fish_hg_prompt</span></a> to print information about the current git or mercurial repository.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_vcs_prompt.html"><span class="doc">fish_vcs_prompt</span></a> to print information for either.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_svn_prompt.html"><span class="doc">fish_svn_prompt</span></a> to print information about the current svn repository.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_status_to_signal.html"><span class="doc">fish_status_to_signal</span></a> to give a signal name from a return status.</p></li>
+<li><p><a class="reference internal" href="cmds/prompt_pwd.html"><span class="doc">prompt_pwd</span></a> to give the current directory in a nicely formatted and shortened way.</p></li>
+<li><p><a class="reference internal" href="cmds/prompt_login.html"><span class="doc">prompt_login</span></a> to describe the current login, with user and hostname, and to explain if you are in a chroot or connected via ssh.</p></li>
+<li><p><a class="reference internal" href="cmds/prompt_hostname.html"><span class="doc">prompt_hostname</span></a> to give the hostname, shortened for use in the prompt.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_is_root_user.html"><span class="doc">fish_is_root_user</span></a> to check if the current user is an administrator user like root.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_add_path.html"><span class="doc">fish_add_path</span></a> to easily add a path to $PATH.</p></li>
+<li><p><a class="reference internal" href="cmds/alias.html"><span class="doc">alias</span></a> to quickly define wrapper functions (“aliases”).</p></li>
+<li><p><a class="reference internal" href="cmds/fish_delta.html"><span class="doc">fish_delta</span></a> to show what you have changed from the default configuration.</p></li>
 </ul>
 </section>
 <section id="helper-commands">
 <h2>Helper commands<a class="headerlink" href="#helper-commands" title="Permalink to this heading">¶</a></h2>
 <p>fish also ships some things as external commands so they can be easily called from elsewhere.</p>
-<p>This includes <a class="reference internal" href="cmds/fish_indent.html#cmd-fish-indent"><span class="std std-ref">fish_indent</span></a> to format fish code and <a class="reference internal" href="cmds/fish_key_reader.html#cmd-fish-key-reader"><span class="std std-ref">fish_key_reader</span></a> to show you what escape sequence a keypress produces.</p>
+<p>This includes <a class="reference internal" href="cmds/fish_indent.html"><span class="doc">fish_indent</span></a> to format fish code and <a class="reference internal" href="cmds/fish_key_reader.html"><span class="doc">fish_key_reader</span></a> to show you what escape sequence a keypress produces.</p>
 </section>
 <section id="the-full-list">
 <h2>The full list<a class="headerlink" href="#the-full-list" title="Permalink to this heading">¶</a></h2>
@@ -221,8 +225,11 @@
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish.html">fish - the friendly interactive shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_add_path.html">fish_add_path - add to the path</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_breakpoint_prompt.html">fish_breakpoint_prompt - define the prompt when stopped at a breakpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmds/fish_clipboard_copy.html">fish_clipboard_copy - copy text to the system’s clipboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmds/fish_clipboard_paste.html">fish_clipboard_paste - get text from the system’s clipboard</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_command_not_found.html">fish_command_not_found - what to do when a command wasn’t found</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_config.html">fish_config - start the web-based configuration interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmds/fish_delta.html">fish_delta - compare functions and completions to the default</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_git_prompt.html">fish_git_prompt - output git information for use in a prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_greeting.html">fish_greeting - display a welcome message in interactive shells</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_hg_prompt.html">fish_hg_prompt - output Mercurial information for use in a prompt</a></li>
@@ -282,6 +289,7 @@
 <li class="toctree-l1"><a class="reference internal" href="cmds/string-pad.html">string-pad - pad strings to a fixed width</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/string-repeat.html">string-repeat - multiply a string</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/string-replace.html">string-replace - replace substrings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmds/string-shorten.html">string-shorten - shorten strings to a width, with an ellipsis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/string-split.html">string-split - split strings by delimiter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/string-split0.html">string-split0 - split on zero bytes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/string-sub.html">string-sub - extract substrings</a></li>
@@ -319,7 +327,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Commands</a></li>
@@ -336,20 +344,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -402,6 +417,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

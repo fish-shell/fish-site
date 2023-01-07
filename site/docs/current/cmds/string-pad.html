@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>string-pad - pad strings to a fixed width &#8212; fish-shell 3.5.1 documentation</title>
+    <title>string-pad - pad strings to a fixed width &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="string-repeat - multiply a string" href="string-repeat.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -104,8 +108,8 @@
 <h1>string-pad - pad strings to a fixed width<a class="headerlink" href="#string-pad-pad-strings-to-a-fixed-width" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">pad</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--right</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-c</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--char</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">CHAR</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-w</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--width</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">INTEGER</span><span class="g g-Other">]</span><span class="w"></span>
-<span class="w">           </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">pad</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--right</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-c</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--char</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">CHAR</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-w</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--width</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">INTEGER</span><span class="g g-Other">]</span>
+<span class="w">           </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
@@ -119,15 +123,15 @@
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">pad</span><span class="w"> </span><span class="no">-w</span><span class="w"> </span><span class="no">10</span><span class="w"> </span><span class="no">abc</span><span class="w"> </span><span class="no">abcdef</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">pad</span><span class="w"> </span><span class="no">-w</span><span class="w"> </span><span class="no">10</span><span class="w"> </span><span class="no">abc</span><span class="w"> </span><span class="no">abcdef</span>
 <span class="go">       abc</span>
 <span class="go">    abcdef</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">pad</span><span class="w"> </span><span class="no">--right</span><span class="w"> </span><span class="no">--char=🐟</span><span class="w"> </span><span class="s2">&quot;fish are pretty&quot;</span><span class="w"> </span><span class="s2">&quot;rich. &quot;</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">pad</span><span class="w"> </span><span class="no">--right</span><span class="w"> </span><span class="no">--char=🐟</span><span class="w"> </span><span class="s2">&quot;fish are pretty&quot;</span><span class="w"> </span><span class="s2">&quot;rich. &quot;</span>
 <span class="go">fish are pretty</span>
 <span class="go">rich.  🐟🐟🐟🐟</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">pad</span><span class="w"> </span><span class="no">-w</span><span class="o">$COLUMNS</span><span class="w"> </span><span class="o">(</span><span class="nf">date</span><span class="o">)</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">pad</span><span class="w"> </span><span class="no">-w</span><span class="o">$COLUMNS</span><span class="w"> </span><span class="o">(</span><span class="nf">date</span><span class="o">)</span>
 <span class="go"># Prints the current time on the right edge of the screen.</span>
 </pre></div>
 </div>
@@ -135,8 +139,8 @@
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>The <a class="reference internal" href="printf.html#cmd-printf"><span class="std std-ref">printf</span></a> command can do simple padding, for example <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%10s\n</span></code> works like <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">pad</span> <span class="pre">-w10</span></code>.</p></li>
-<li><p><a class="reference internal" href="string-length.html#cmd-string-length"><span class="std std-ref">string length</span></a> with the <code class="docutils literal notranslate"><span class="pre">--visible</span></code> option can be used to show what fish thinks the width is.</p></li>
+<li><p>The <a class="reference internal" href="printf.html"><span class="doc">printf</span></a> command can do simple padding, for example <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%10s\n</span></code> works like <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">pad</span> <span class="pre">-w10</span></code>.</p></li>
+<li><p><a class="reference internal" href="string-length.html"><span class="doc">string length</span></a> with the <code class="docutils literal notranslate"><span class="pre">--visible</span></code> option can be used to show what fish thinks the width is.</p></li>
 </ul>
 </section>
 </section>
@@ -155,7 +159,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -173,20 +177,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -239,6 +250,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

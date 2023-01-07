@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>random - generate random number &#8212; fish-shell 3.5.1 documentation</title>
+    <title>random - generate random number &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="read - read line of input into variables" href="read.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,11 +107,11 @@
 <span id="cmd-random"></span><h1>random - generate random number<a class="headerlink" href="#random-generate-random-number" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">random</span><span class="w"></span>
-<span class="nf">random</span><span class="w"> </span><span class="no">SEED</span><span class="w"></span>
-<span class="nf">random</span><span class="w"> </span><span class="no">START</span><span class="w"> </span><span class="no">END</span><span class="w"></span>
-<span class="nf">random</span><span class="w"> </span><span class="no">START</span><span class="w"> </span><span class="no">STEP</span><span class="w"> </span><span class="no">END</span><span class="w"></span>
-<span class="nf">random</span><span class="w"> </span><span class="no">choice</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">ITEMS</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">random</span>
+<span class="nf">random</span><span class="w"> </span><span class="no">SEED</span>
+<span class="nf">random</span><span class="w"> </span><span class="no">START</span><span class="w"> </span><span class="no">END</span>
+<span class="nf">random</span><span class="w"> </span><span class="no">START</span><span class="w"> </span><span class="no">STEP</span><span class="w"> </span><span class="no">END</span>
+<span class="nf">random</span><span class="w"> </span><span class="no">choice</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">ITEMS</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
@@ -131,21 +135,21 @@ statistically accurate.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>The following code will count down from a random even number between 10 and 20 to 1:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">(</span><span class="nf">seq</span><span class="w"> </span><span class="o">(</span><span class="nf">random</span><span class="w"> </span><span class="no">10</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">20</span><span class="o">)</span><span class="w"> </span><span class="no">-1</span><span class="w"> </span><span class="no">1</span><span class="o">)</span><span class="w"></span>
-<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$i</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">(</span><span class="nf">seq</span><span class="w"> </span><span class="o">(</span><span class="nf">random</span><span class="w"> </span><span class="no">10</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">20</span><span class="o">)</span><span class="w"> </span><span class="no">-1</span><span class="w"> </span><span class="no">1</span><span class="o">)</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$i</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 <p>And this will open a random picture from any of the subdirectories:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">open</span><span class="w"> </span><span class="o">(</span><span class="nf">random</span><span class="w"> </span><span class="no">choice</span><span class="w"> </span><span class="o">**</span><span class="no">.jpg</span><span class="o">)</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">open</span><span class="w"> </span><span class="o">(</span><span class="nf">random</span><span class="w"> </span><span class="no">choice</span><span class="w"> </span><span class="o">**</span><span class="no">.jpg</span><span class="o">)</span>
 </pre></div>
 </div>
 <p>Or, to only get even numbers from 2 to 20:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">random</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">20</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">random</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">20</span>
 </pre></div>
 </div>
 <p>Or odd numbers from 1 to 3:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">random</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">3</span><span class="w"> </span><span class="c"># or 1 2 4</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">random</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">3</span><span class="w"> </span><span class="c"># or 1 2 4</span>
 </pre></div>
 </div>
 </section>
@@ -165,7 +169,7 @@ statistically accurate.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -183,20 +187,27 @@ statistically accurate.</p>
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -249,6 +260,7 @@ statistically accurate.</p>
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

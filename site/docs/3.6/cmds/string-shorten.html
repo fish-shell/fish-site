@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>string-shorten - shorten strings to a width, with an ellipsis &#8212; fish-shell 3.6.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="string-split - split strings by delimiter" href="string-split.html" />
+    <link rel="prev" title="string-replace - replace substrings" href="string-replace.html" />
+    <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
+     
+
+  </head><body><div id="fmain">  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">string-shorten - shorten strings to a width, with an ellipsis</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div>
+<h3><a href="../index.html">Documents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div>
+<h4><a href="../index.html">Sections</a></h4>
+<ul>
+<li><a class="reference internal" href="#">string-shorten - shorten strings to a width, with an ellipsis</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="string-shorten-shorten-strings-to-a-width-with-an-ellipsis">
+<h1>string-shorten - shorten strings to a width, with an ellipsis<a class="headerlink" href="#string-shorten-shorten-strings-to-a-width-with-an-ellipsis" title="Permalink to this heading">¶</a></h1>
+<section id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-c</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--char</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">CHARS</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--max</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">INTEGER</span><span class="g g-Other">]</span>
+<span class="w">               </span><span class="g g-Other">[</span><span class="no">-N</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-newline</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-l</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--left</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">shorten</span></code> truncates each <em>STRING</em> to the given visible width and adds an ellipsis to indicate it. “Visible width” means the width of all visible characters added together, excluding escape sequences and accounting for <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-fish_emoji_width"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_emoji_width</span></code></a> and <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-fish_ambiguous_width"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_ambiguous_width</span></code></a>. It is the amount of columns in a terminal the <em>STRING</em> occupies.</p>
+<p>The escape sequences reflect what fish knows about, and how it computes its output. Your terminal might support more escapes, or not support escape sequences that fish knows about.</p>
+<p>If <strong>-m</strong> or <strong>--max</strong> is given, truncate at the given width. Otherwise, the lowest non-zero width of all input strings is used. A max of 0 means no shortening takes place, all STRINGs are printed as-is.</p>
+<p>If <strong>-N</strong> or <strong>--no-newline</strong> is given, only the first line (or last line with <strong>--left</strong>) of each STRING is used, and an ellipsis is added if it was multiline. This only works for STRINGs being given as arguments, multiple lines given on stdin will be interpreted as separate STRINGs instead.</p>
+<p>If <strong>-c</strong> or <strong>--char</strong> is given, add <em>CHAR</em> instead of an ellipsis. This can also be empty or more than one character.</p>
+<p>If <strong>-l</strong> or <strong>--left</strong> is given, remove text from the left on instead, so this prints the longest <em>suffix</em> of the string that fits. With <strong>--no-newline</strong>, this will take from the last line instead of the first.</p>
+<p>If <strong>-q</strong> or <strong>--quiet</strong> is given, <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">shorten</span></code> only runs for the return value - if anything would be shortened, it returns 0, else 1.</p>
+<p>The default ellipsis is <code class="docutils literal notranslate"><span class="pre">…</span></code>. If fish thinks your system is incapable because of your locale, it will use <code class="docutils literal notranslate"><span class="pre">...</span></code> instead.</p>
+<p>The return value is 0 if any shortening occured, 1 otherwise.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">foobar</span>
+<span class="go"># No width was given, we infer, and &quot;foo&quot; is the shortest.</span>
+<span class="go">foo</span>
+<span class="go">fo…</span>
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">--char=</span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">foobar</span>
+<span class="go"># The target width is 3 because of &quot;foo&quot;,</span>
+<span class="go"># and our ellipsis is 3 too, so we can&#39;t really show anything.</span>
+<span class="go"># This is the default ellipsis if your locale doesn&#39;t allow &quot;…&quot;.</span>
+<span class="go">foo</span>
+<span class="go">...</span>
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">--char=</span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="no">--max</span><span class="w"> </span><span class="no">4</span><span class="w"> </span><span class="no">abcdef</span><span class="w"> </span><span class="no">123456</span>
+<span class="go"># Leaving the char empty makes us not add an ellipsis</span>
+<span class="go"># So this truncates at 4 columns:</span>
+<span class="go">abcd</span>
+<span class="go">1234</span>
+
+<span class="gp">&gt;_ </span><span class="nf">touch</span><span class="w"> </span><span class="s2">&quot;a multiline&quot;</span><span class="se">\n</span><span class="s2">&quot;file&quot;</span>
+<span class="gp">&gt;_ </span><span class="nf">for</span><span class="w"> </span><span class="no">file</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">*</span><span class="p">;</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">-N</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$file</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
+<span class="go"># Shorten the multiline file so we only show one line per file:</span>
+<span class="go">a multiline…</span>
+
+<span class="gp">&gt;_ </span><span class="nf">ss</span><span class="w"> </span><span class="no">-p</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">-m</span><span class="o">$COLUMNS</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="go"># `ss` from Linux&#39; iproute2 shows socket information, but prints extremely long lines.</span>
+<span class="go"># This shortens input so it fits on the screen without overflowing lines.</span>
+
+<span class="gp">&gt;_ </span><span class="nf">git</span><span class="w"> </span><span class="no">branch</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rg</span><span class="w"> </span><span class="s1">&#39;^\* (.*)&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">-m20</span>
+<span class="go"># Take the current git branch and shorten it at 20 columns.</span>
+<span class="go"># Here the branch is &quot;builtin-path-with-expand&quot;</span>
+<span class="go">builtin-path-with-e…</span>
+
+<span class="gp">&gt;_ </span><span class="nf">git</span><span class="w"> </span><span class="no">branch</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rg</span><span class="w"> </span><span class="s1">&#39;^\* (.*)&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">-m20</span><span class="w"> </span><span class="no">--left</span>
+<span class="go"># Taking 20 columns from the right instead:</span>
+<span class="go">…in-path-with-expand</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="string.html#cmd-string"><span class="std std-ref">string</span></a>’s <code class="docutils literal notranslate"><span class="pre">pad</span></code> subcommand does the inverse of this command, adding padding to a specific width instead.</p></li>
+<li><p>The <a class="reference internal" href="printf.html"><span class="doc">printf</span></a> command can do simple padding, for example <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%10s\n</span></code> works like <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">pad</span> <span class="pre">-w10</span></code>.</p></li>
+<li><p><a class="reference internal" href="string-length.html"><span class="doc">string length</span></a> with the <code class="docutils literal notranslate"><span class="pre">--visible</span></code> option can be used to show what fish thinks the width is.</p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div> 
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><img src="../_static/fish.png" alt=""
+             style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
+    <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
+    
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
+    
+
+          <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">string-shorten - shorten strings to a width, with an ellipsis</a></li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+    </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2023, fish-shell developers.
+    <br />
+    <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
+    </div>
+</div>
+
+<script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
+ function copy_to_clipboard(it) {
+     // Find the pre tag we're interested in.
+     var pre = it.target;
+     while (pre.tagName != "PRE") pre = pre.parentNode;
+     var txt = "";
+     // Cheesy: If we have a prompt,
+     // we only copy prompted lines,
+     // by splitting and matching and stuff
+     if (pre.querySelector('span.gp')) {
+         var texts= [];
+         for (var line of pre.innerText.split('\n')) {
+             if (line.match(/^>_?.*/)) {
+                 texts.push(line.replace(/^>_?/, ""));
+             }
+         }
+         txt = texts.join("\n");
+     } else {
+         // Even cheesier: If we don't have a prompt, we remove the button text from the end.
+         var txt = pre.innerText.substring(0, pre.innerText.length - it.target.innerText.length).trim();
+     }
+
+     navigator.clipboard.writeText(txt).then(function() {
+         // Success - set the text to indicate it,
+         // then set it back after 2 seconds.
+         var span = pre.querySelector("button span");
+         if (span) {
+             var oldText = span.innerText;
+             span.innerText = "COPIED!";
+             setTimeout(function() {
+                 span.innerText = oldText;
+             }, 2000);
+         }
+     }, function() {
+     });
+ }
+
+  (function () {
+      // Add copy buttons to all the codeblocks.
+      var codeblocks = document.querySelectorAll('div > pre');
+
+      var button = document.createElement('button');
+      var span = document.createElement('span');
+      span.innerText = "COPY";
+      button.appendChild(span);
+
+      for (var i of codeblocks) {
+          var newButton = button.cloneNode(true);
+          newButton.addEventListener('click', copy_to_clipboard);
+          i.appendChild(newButton);
+      }
+  })();
+</script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
+
+  </body>
+</html>

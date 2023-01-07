@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>fish_hg_prompt - output Mercurial information for use in a prompt &#8212; fish-shell 3.5.1 documentation</title>
+    <title>fish_hg_prompt - output Mercurial information for use in a prompt &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fish_indent - indenter and prettifier" href="fish_indent.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,12 +107,12 @@
 <span id="cmd-fish-hg-prompt"></span><h1>fish_hg_prompt - output Mercurial information for use in a prompt<a class="headerlink" href="#fish-hg-prompt-output-mercurial-information-for-use-in-a-prompt" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_hg_prompt</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_hg_prompt</span>
 </pre></div>
 </div>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
-<span class="w">     </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s&#39;</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="o">(</span><span class="nf">fish_hg_prompt</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39; $ &#39;</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span>
+<span class="w">     </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s&#39;</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="o">(</span><span class="nf">fish_hg_prompt</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39; $ &#39;</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 </section>
@@ -117,7 +121,7 @@
 <p>The fish_hg_prompt function displays information about the current Mercurial repository, if any.</p>
 <p><a class="reference external" href="https://www.mercurial-scm.org/">Mercurial</a> (<code class="docutils literal notranslate"><span class="pre">hg</span></code>) must be installed.</p>
 <p>By default, only the current branch is shown because <code class="docutils literal notranslate"><span class="pre">hg</span> <span class="pre">status</span></code> can be slow on a large repository. You can enable a more informative prompt by setting the variable <code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_show_informative_status</span></code>, for example:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">--universal</span><span class="w"> </span><span class="no">fish_prompt_hg_show_informative_status</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">--universal</span><span class="w"> </span><span class="no">fish_prompt_hg_show_informative_status</span>
 </pre></div>
 </div>
 <p>If you enabled the informative status, there are numerous customization options, which can be controlled with fish variables.</p>
@@ -143,16 +147,16 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_unmerged</span></code>, default ‘!’</p></li>
 </ul>
 <p>Finally, <code class="docutils literal notranslate"><span class="pre">$fish_prompt_hg_status_order</span></code>, which can be used to change the order the status symbols appear in. It defaults to <code class="docutils literal notranslate"><span class="pre">added</span> <span class="pre">modified</span> <span class="pre">copied</span> <span class="pre">deleted</span> <span class="pre">untracked</span> <span class="pre">unmerged</span></code>.</p>
-<p>See also <a class="reference internal" href="fish_vcs_prompt.html#cmd-fish-vcs-prompt"><span class="std std-ref">fish_vcs_prompt</span></a>, which will call all supported version control prompt functions, including git, Mercurial and Subversion.</p>
+<p>See also <a class="reference internal" href="fish_vcs_prompt.html"><span class="doc">fish_vcs_prompt</span></a>, which will call all supported version control prompt functions, including git, Mercurial and Subversion.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>A simple prompt that displays hg info:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"></span>
-<span class="w">    </span><span class="nf">...</span><span class="w"></span>
-<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_prompt_hg_show_informative_status</span><span class="w"></span>
-<span class="w">    </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s %s$&#39;</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="o">(</span><span class="nf">fish_hg_prompt</span><span class="o">)</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span>
+<span class="w">    </span><span class="nf">...</span>
+<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_prompt_hg_show_informative_status</span>
+<span class="w">    </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s %s$&#39;</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="o">(</span><span class="nf">fish_hg_prompt</span><span class="o">)</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 </section>
@@ -172,7 +176,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -190,20 +194,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -256,6 +267,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

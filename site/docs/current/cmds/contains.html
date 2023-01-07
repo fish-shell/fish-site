@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>contains - test if a word is present in a list &#8212; fish-shell 3.5.1 documentation</title>
+    <title>contains - test if a word is present in a list &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="continue - skip the remainder of the current iteration of the current inner loop" href="continue.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,7 +107,7 @@
 <span id="cmd-contains"></span><h1>contains - test if a word is present in a list<a class="headerlink" href="#contains-test-if-a-word-is-present-in-a-list" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">contains</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">KEY</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">VALUES</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">contains</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">KEY</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">VALUES</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
@@ -124,25 +128,25 @@ If so, <code class="docutils literal notranslate"><span class="pre">contains</sp
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>If <em>animals</em> is a list of animals, the following will test if <em>animals</em> contains “cat”:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="no">cat</span><span class="w"> </span><span class="o">$animals</span><span class="w"></span>
-<span class="w">   </span><span class="nf">echo</span><span class="w"> </span><span class="no">Your</span><span class="w"> </span><span class="no">animal</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">evil!</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="no">cat</span><span class="w"> </span><span class="o">$animals</span>
+<span class="w">   </span><span class="nf">echo</span><span class="w"> </span><span class="no">Your</span><span class="w"> </span><span class="no">animal</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">evil!</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 <p>This code will add some directories to <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a> if they aren’t yet included:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">~</span><span class="no">/bin</span><span class="w"> </span><span class="no">/usr/local/bin</span><span class="w"></span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="o">not</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="o">$i</span><span class="w"> </span><span class="o">$PATH</span><span class="w"></span>
-<span class="w">        </span><span class="nf">set</span><span class="w"> </span><span class="no">PATH</span><span class="w"> </span><span class="o">$PATH</span><span class="w"> </span><span class="o">$i</span><span class="w"></span>
-<span class="w">    </span><span class="nf">end</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">~</span><span class="no">/bin</span><span class="w"> </span><span class="no">/usr/local/bin</span>
+<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="o">not</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="o">$i</span><span class="w"> </span><span class="o">$PATH</span>
+<span class="w">        </span><span class="nf">set</span><span class="w"> </span><span class="no">PATH</span><span class="w"> </span><span class="o">$PATH</span><span class="w"> </span><span class="o">$i</span>
+<span class="w">    </span><span class="nf">end</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 <p>While this will check if function <code class="docutils literal notranslate"><span class="pre">hasargs</span></code> is being ran with the <strong>-q</strong> option:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">hasargs</span><span class="w"></span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="o">$argv</span><span class="w"></span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;$argv contains a -q option&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nf">end</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">hasargs</span>
+<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">contains</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="o">$argv</span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;$argv contains a -q option&#39;</span>
+<span class="w">    </span><span class="nf">end</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 <p>The <strong>--</strong> here stops <code class="docutils literal notranslate"><span class="pre">contains</span></code> from treating <strong>-q</strong> to an option to itself.
@@ -164,7 +168,7 @@ Instead it treats it as a normal string to check.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -182,20 +186,27 @@ Instead it treats it as a normal string to check.</p>
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -248,6 +259,7 @@ Instead it treats it as a normal string to check.</p>
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

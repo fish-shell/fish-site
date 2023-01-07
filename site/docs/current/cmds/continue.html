@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>continue - skip the remainder of the current iteration of the current inner loop &#8212; fish-shell 3.5.1 documentation</title>
+    <title>continue - skip the remainder of the current iteration of the current inner loop &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="count - count the number of elements of a list" href="count.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -104,33 +108,33 @@
 <span id="cmd-continue"></span><h1>continue - skip the remainder of the current iteration of the current inner loop<a class="headerlink" href="#continue-skip-the-remainder-of-the-current-iteration-of-the-current-inner-loop" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">LOOP_CONSTRUCT</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">COMMANDS</span><span class="w"> </span><span class="g g-Other">...</span><span class="p">;</span><span class="g g-Other">]</span><span class="w"> </span><span class="nf">continue</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">COMMANDS</span><span class="w"> </span><span class="g g-Other">...</span><span class="p">;</span><span class="g g-Other">]</span><span class="w"> </span><span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">LOOP_CONSTRUCT</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">COMMANDS</span><span class="w"> </span><span class="g g-Other">...</span><span class="p">;</span><span class="g g-Other">]</span><span class="w"> </span><span class="nf">continue</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">COMMANDS</span><span class="w"> </span><span class="g g-Other">...</span><span class="p">;</span><span class="g g-Other">]</span><span class="w"> </span><span class="nf">end</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">continue</span></code> skips the remainder of the current iteration of the current inner loop, such as a <a class="reference internal" href="for.html#cmd-for"><span class="std std-ref">for</span></a> loop or a <a class="reference internal" href="while.html#cmd-while"><span class="std std-ref">while</span></a> loop. It is usually added inside of a conditional block such as an <a class="reference internal" href="if.html#cmd-if"><span class="std std-ref">if</span></a> statement or a <a class="reference internal" href="switch.html#cmd-switch"><span class="std std-ref">switch</span></a> statement.</p>
+<p><code class="docutils literal notranslate"><span class="pre">continue</span></code> skips the remainder of the current iteration of the current inner loop, such as a <a class="reference internal" href="for.html"><span class="doc">for</span></a> loop or a <a class="reference internal" href="while.html"><span class="doc">while</span></a> loop. It is usually added inside of a conditional block such as an <a class="reference internal" href="if.html"><span class="doc">if</span></a> statement or a <a class="reference internal" href="switch.html"><span class="doc">switch</span></a> statement.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>The following code removes all tmp files that do not contain the word smurf.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">*</span><span class="no">.tmp</span><span class="w"></span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">grep</span><span class="w"> </span><span class="no">smurf</span><span class="w"> </span><span class="o">$i</span><span class="w"></span>
-<span class="w">        </span><span class="nf">continue</span><span class="w"></span>
-<span class="w">    </span><span class="nf">end</span><span class="w"></span>
-<span class="w">    </span><span class="c"># This &quot;rm&quot; is skipped over if &quot;continue&quot; is executed.</span><span class="w"></span>
-<span class="w">    </span><span class="nf">rm</span><span class="w"> </span><span class="o">$i</span><span class="w"></span>
-<span class="w">    </span><span class="c"># As is this &quot;echo&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$i</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">*</span><span class="no">.tmp</span>
+<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">grep</span><span class="w"> </span><span class="no">smurf</span><span class="w"> </span><span class="o">$i</span>
+<span class="w">        </span><span class="nf">continue</span>
+<span class="w">    </span><span class="nf">end</span>
+<span class="w">    </span><span class="c"># This &quot;rm&quot; is skipped over if &quot;continue&quot; is executed.</span>
+<span class="w">    </span><span class="nf">rm</span><span class="w"> </span><span class="o">$i</span>
+<span class="w">    </span><span class="c"># As is this &quot;echo&quot;</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$i</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 </section>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>the <a class="reference internal" href="break.html#cmd-break"><span class="std std-ref">break</span></a> command, to stop the current inner loop</p></li>
+<li><p>the <a class="reference internal" href="break.html"><span class="doc">break</span></a> command, to stop the current inner loop</p></li>
 </ul>
 </section>
 </section>
@@ -149,7 +153,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -167,20 +171,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -233,6 +244,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

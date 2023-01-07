@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>argparse - parse options passed to a fish script or function &#8212; fish-shell 3.5.1 documentation</title>
+    <title>argparse - parse options passed to a fish script or function &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="begin - start a new block of code" href="begin.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -110,7 +114,7 @@
 <span id="cmd-argparse"></span><h1>argparse - parse options passed to a fish script or function<a class="headerlink" href="#argparse-parse-options-passed-to-a-fish-script-or-function" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">argparse</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">OPTION_SPEC</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">ARG</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">argparse</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">OPTION_SPEC</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">ARG</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
@@ -145,20 +149,21 @@
 <span id="cmd-argparse-usage"></span><h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
 <p>To use this command, pass the option specifications (<strong>OPTION_SPEC</strong>), a mandatory <strong>--</strong>, and then the arguments to be parsed.</p>
 <p>A simple example:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">argparse</span><span class="w"> </span><span class="no">--name=my_function</span><span class="w"> </span><span class="s1">&#39;h/help&#39;</span><span class="w"> </span><span class="s1">&#39;n/name=&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$argv</span><span class="w"></span>
-<span class="o">or</span><span class="w"> </span><span class="nf">return</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">argparse</span><span class="w"> </span><span class="no">--name=my_function</span><span class="w"> </span><span class="s1">&#39;h/help&#39;</span><span class="w"> </span><span class="s1">&#39;n/name=&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$argv</span>
+<span class="o">or</span><span class="w"> </span><span class="nf">return</span>
 </pre></div>
 </div>
 <p>If <code class="docutils literal notranslate"><span class="pre">$argv</span></code> is empty then there is nothing to parse and <code class="docutils literal notranslate"><span class="pre">argparse</span></code> returns zero to indicate success. If <code class="docutils literal notranslate"><span class="pre">$argv</span></code> is not empty then it is checked for flags <code class="docutils literal notranslate"><span class="pre">-h</span></code>, <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-n</span></code> and <code class="docutils literal notranslate"><span class="pre">--name</span></code>. If they are found they are removed from the arguments and local variables called <code class="docutils literal notranslate"><span class="pre">_flag_OPTION</span></code> are set so the script can determine which options were seen. If <code class="docutils literal notranslate"><span class="pre">$argv</span></code> doesn’t have any errors, like a missing mandatory value for an option, then <code class="docutils literal notranslate"><span class="pre">argparse</span></code> exits with a status of zero. Otherwise it writes appropriate error messages to stderr and exits with a status of one.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">or</span> <span class="pre">return</span></code> means that the function returns <code class="docutils literal notranslate"><span class="pre">argparse</span></code>’s status if it failed, so if it goes on <code class="docutils literal notranslate"><span class="pre">argparse</span></code> succeeded.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">--</span></code> argument is required. You do not have to include any arguments after the <code class="docutils literal notranslate"><span class="pre">--</span></code> but you must include the <code class="docutils literal notranslate"><span class="pre">--</span></code>. For example, this is acceptable:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">argv</span><span class="w"></span>
-<span class="nf">argparse</span><span class="w"> </span><span class="s1">&#39;h/help&#39;</span><span class="w"> </span><span class="s1">&#39;n/name&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$argv</span><span class="w"></span>
+<p>The <code class="docutils literal notranslate"><span class="pre">--</span></code> argument is required. You do not have to include any option specifications or arguments after the <code class="docutils literal notranslate"><span class="pre">--</span></code> but you must include the <code class="docutils literal notranslate"><span class="pre">--</span></code>. For example, this is acceptable:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">argv</span><span class="w"> </span><span class="no">foo</span>
+<span class="nf">argparse</span><span class="w"> </span><span class="s1">&#39;h/help&#39;</span><span class="w"> </span><span class="s1">&#39;n/name&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$argv</span>
+<span class="nf">argparse</span><span class="w"> </span><span class="no">--min-args=1</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$argv</span>
 </pre></div>
 </div>
 <p>But this is not:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">argv</span><span class="w"></span>
-<span class="nf">argparse</span><span class="w"> </span><span class="s1">&#39;h/help&#39;</span><span class="w"> </span><span class="s1">&#39;n/name&#39;</span><span class="w"> </span><span class="o">$argv</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">argv</span>
+<span class="nf">argparse</span><span class="w"> </span><span class="s1">&#39;h/help&#39;</span><span class="w"> </span><span class="s1">&#39;n/name&#39;</span><span class="w"> </span><span class="o">$argv</span>
 </pre></div>
 </div>
 <p>The first <code class="docutils literal notranslate"><span class="pre">--</span></code> seen is what allows the <code class="docutils literal notranslate"><span class="pre">argparse</span></code> command to reliably separate the option specifications and options to <code class="docutils literal notranslate"><span class="pre">argparse</span></code> itself (like <code class="docutils literal notranslate"><span class="pre">--ignore-unknown</span></code>) from the command arguments, so it is required.</p>
@@ -180,14 +185,14 @@
 </li>
 <li><p>Optionally a <code class="docutils literal notranslate"><span class="pre">!</span></code> followed by fish script to validate the value. Typically this will be a function to run. If the exit status is zero the value for the flag is valid. If non-zero the value is invalid. Any error messages should be written to stdout (not stderr). See the section on <a class="reference internal" href="#flag-value-validation"><span class="std std-ref">Flag Value Validation</span></a> for more information.</p></li>
 </ul>
-<p>See the <a class="reference internal" href="fish_opt.html#cmd-fish-opt"><span class="std std-ref">fish_opt</span></a> command for a friendlier but more verbose way to create option specifications.</p>
+<p>See the <a class="reference internal" href="fish_opt.html"><span class="doc">fish_opt</span></a> command for a friendlier but more verbose way to create option specifications.</p>
 <p>If a flag is not seen when parsing the arguments then the corresponding _flag_X var(s) will not be set.</p>
 </section>
 <section id="integer-flag">
 <h2>Integer flag<a class="headerlink" href="#integer-flag" title="Permalink to this heading">¶</a></h2>
 <p>Sometimes commands take numbers directly as options, like <code class="docutils literal notranslate"><span class="pre">foo</span> <span class="pre">-55</span></code>. To allow this one option spec can have the <code class="docutils literal notranslate"><span class="pre">#</span></code> modifier so that any integer will be understood as this flag, and the last number will be given as its value (as if <code class="docutils literal notranslate"><span class="pre">=</span></code> was used).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">#</span></code> must follow the short flag letter (if any), and other modifiers like <code class="docutils literal notranslate"><span class="pre">=</span></code> are not allowed, except for <code class="docutils literal notranslate"><span class="pre">-</span></code> (for backwards compatibility):</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">m#maximum</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">m#maximum</span>
 </pre></div>
 </div>
 <p>This does not read numbers given as <code class="docutils literal notranslate"><span class="pre">+NNN</span></code>, only those that look like flags - <code class="docutils literal notranslate"><span class="pre">-NNN</span></code>.</p>
@@ -196,26 +201,26 @@
 <h2>Note: Optional arguments<a class="headerlink" href="#note-optional-arguments" title="Permalink to this heading">¶</a></h2>
 <p>An option defined with <code class="docutils literal notranslate"><span class="pre">=?</span></code> can take optional arguments. Optional arguments have to be <em>directly attached</em> to the option they belong to.</p>
 <p>That means the argument will only be used for the option if you use it like:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cmd</span><span class="w"> </span><span class="no">--flag=value</span><span class="w"></span>
-<span class="c"># or</span><span class="w"></span>
-<span class="nf">cmd</span><span class="w">  </span><span class="no">-fvalue</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cmd</span><span class="w"> </span><span class="no">--flag=value</span>
+<span class="c"># or</span>
+<span class="nf">cmd</span><span class="w">  </span><span class="no">-fvalue</span>
 </pre></div>
 </div>
 <p>but not if used like:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cmd</span><span class="w"> </span><span class="no">--flag</span><span class="w"> </span><span class="no">value</span><span class="w"></span>
-<span class="c"># &quot;value&quot; here will be used as a positional argument</span><span class="w"></span>
-<span class="c"># and &quot;--flag&quot; won&#39;t have an argument.</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cmd</span><span class="w"> </span><span class="no">--flag</span><span class="w"> </span><span class="no">value</span>
+<span class="c"># &quot;value&quot; here will be used as a positional argument</span>
+<span class="c"># and &quot;--flag&quot; won&#39;t have an argument.</span>
 </pre></div>
 </div>
 <p>If this weren’t the case, using an option without an optional argument would be difficult if you also wanted to use positional arguments.</p>
 <p>For example:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">grep</span><span class="w"> </span><span class="no">--color</span><span class="w"> </span><span class="no">auto</span><span class="w"></span>
-<span class="c"># Here &quot;auto&quot; will be used as the search string,</span><span class="w"></span>
-<span class="c"># &quot;color&quot; will not have an argument and will fall back to the default,</span><span class="w"></span>
-<span class="c"># which also *happens to be* auto.</span><span class="w"></span>
-<span class="nf">grep</span><span class="w"> </span><span class="no">--color</span><span class="w"> </span><span class="no">always</span><span class="w"></span>
-<span class="c"># Here grep will still only use color &quot;auto&quot;matically</span><span class="w"></span>
-<span class="c"># and search for the string &quot;always&quot;.</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">grep</span><span class="w"> </span><span class="no">--color</span><span class="w"> </span><span class="no">auto</span>
+<span class="c"># Here &quot;auto&quot; will be used as the search string,</span>
+<span class="c"># &quot;color&quot; will not have an argument and will fall back to the default,</span>
+<span class="c"># which also *happens to be* auto.</span>
+<span class="nf">grep</span><span class="w"> </span><span class="no">--color</span><span class="w"> </span><span class="no">always</span>
+<span class="c"># Here grep will still only use color &quot;auto&quot;matically</span>
+<span class="c"># and search for the string &quot;always&quot;.</span>
 </pre></div>
 </div>
 <p>This isn’t specific to argparse but common to all things using <code class="docutils literal notranslate"><span class="pre">getopt(3)</span></code> (if they have optional arguments at all). That <code class="docutils literal notranslate"><span class="pre">grep</span></code> example is how GNU grep actually behaves.</p>
@@ -236,13 +241,13 @@
 <h2>Example OPTION_SPECs<a class="headerlink" href="#example-option-specs" title="Permalink to this heading">¶</a></h2>
 <p>Some <em>OPTION_SPEC</em> examples:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">h/help</span></code> means that both <code class="docutils literal notranslate"><span class="pre">-h</span></code> and <code class="docutils literal notranslate"><span class="pre">--help</span></code> are valid. The flag is a boolean and can be used more than once. If either flag is used then <code class="docutils literal notranslate"><span class="pre">_flag_h</span></code> and <code class="docutils literal notranslate"><span class="pre">_flag_help</span></code> will be set to the count of how many times either flag was seen.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">help</span></code> means that only <code class="docutils literal notranslate"><span class="pre">--help</span></code> is valid. The flag is a boolean and can be used more than once. If it is used then <code class="docutils literal notranslate"><span class="pre">_flag_help</span></code> will be set to the count of how many times the long flag was seen. Also <code class="docutils literal notranslate"><span class="pre">h-help</span></code> (with an arbitrary short letter) for backwards compatibility.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h/help</span></code> means that both <code class="docutils literal notranslate"><span class="pre">-h</span></code> and <code class="docutils literal notranslate"><span class="pre">--help</span></code> are valid. The flag is a boolean and can be used more than once. If either flag is used then <code class="docutils literal notranslate"><span class="pre">_flag_h</span></code> and <code class="docutils literal notranslate"><span class="pre">_flag_help</span></code> will be set to however either flag was seen, as many times as it was seen. So it could be set to <code class="docutils literal notranslate"><span class="pre">-h</span></code>, <code class="docutils literal notranslate"><span class="pre">-h</span></code> and <code class="docutils literal notranslate"><span class="pre">--help</span></code>, and <code class="docutils literal notranslate"><span class="pre">count</span> <span class="pre">$_flag_h</span></code> would yield “3”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">help</span></code> means that only <code class="docutils literal notranslate"><span class="pre">--help</span></code> is valid. The flag is a boolean and can be used more than once. If it is used then <code class="docutils literal notranslate"><span class="pre">_flag_help</span></code> will be set as above. Also <code class="docutils literal notranslate"><span class="pre">h-help</span></code> (with an arbitrary short letter) for backwards compatibility.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">longonly=</span></code> is a flag <code class="docutils literal notranslate"><span class="pre">--longonly</span></code> that requires an option, there is no short flag or even short flag variable.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">n/name=</span></code> means that both <code class="docutils literal notranslate"><span class="pre">-n</span></code> and <code class="docutils literal notranslate"><span class="pre">--name</span></code> are valid. It requires a value and can be used at most once. If the flag is seen then <code class="docutils literal notranslate"><span class="pre">_flag_n</span></code> and <code class="docutils literal notranslate"><span class="pre">_flag_name</span></code> will be set with the single mandatory value associated with the flag.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">n/name=?</span></code> means that both <code class="docutils literal notranslate"><span class="pre">-n</span></code> and <code class="docutils literal notranslate"><span class="pre">--name</span></code> are valid. It accepts an optional value and can be used at most once. If the flag is seen then <code class="docutils literal notranslate"><span class="pre">_flag_n</span></code> and <code class="docutils literal notranslate"><span class="pre">_flag_name</span></code> will be set with the value associated with the flag if one was provided else it will be set with no values.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">name=+</span></code> means that only <code class="docutils literal notranslate"><span class="pre">--name</span></code> is valid. It requires a value and can be used more than once. If the flag is seen then <code class="docutils literal notranslate"><span class="pre">_flag_name</span></code> will be set with the values associated with each occurrence.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> means that only <code class="docutils literal notranslate"><span class="pre">-x</span></code> is valid. It is a boolean that can be used more than once. If it is seen then <code class="docutils literal notranslate"><span class="pre">_flag_x</span></code> will be set to the count of how many times the flag was seen.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> means that only <code class="docutils literal notranslate"><span class="pre">-x</span></code> is valid. It is a boolean that can be used more than once. If it is seen then <code class="docutils literal notranslate"><span class="pre">_flag_x</span></code> will be set as above.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">x=</span></code>, <code class="docutils literal notranslate"><span class="pre">x=?</span></code>, and <code class="docutils literal notranslate"><span class="pre">x=+</span></code> are similar to the n/name examples above but there is no long flag alternative to the short flag <code class="docutils literal notranslate"><span class="pre">-x</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">#max</span></code> (or <code class="docutils literal notranslate"><span class="pre">#-max</span></code>) means that flags matching the regex “^--?\d+$” are valid. When seen they are assigned to the variable <code class="docutils literal notranslate"><span class="pre">_flag_max</span></code>. This allows any valid positive or negative integer to be specified by prefixing it with a single “-”. Many commands support this idiom. For example <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">-3</span> <span class="pre">/a/file</span></code> to emit only the first three lines of /a/file.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">n#max</span></code> means that flags matching the regex “^--?\d+$” are valid. When seen they are assigned to the variables <code class="docutils literal notranslate"><span class="pre">_flag_n</span></code> and <code class="docutils literal notranslate"><span class="pre">_flag_max</span></code>. This allows any valid positive or negative integer to be specified by prefixing it with a single “-”. Many commands support this idiom. For example <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">-3</span> <span class="pre">/a/file</span></code> to emit only the first three lines of /a/file. You can also specify the value using either flag: <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">NNN</span></code> or <code class="docutils literal notranslate"><span class="pre">--max</span> <span class="pre">NNN</span></code> in this example.</p></li>
@@ -255,9 +260,9 @@
 <h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading">¶</a></h2>
 <p>One limitation with <strong>--ignore-unknown</strong> is that, if an unknown option is given in a group with known options, the entire group will be kept in $argv. <code class="docutils literal notranslate"><span class="pre">argparse</span></code> will not do any permutations here.</p>
 <p>For instance:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">argparse</span><span class="w"> </span><span class="no">--ignore-unknown</span><span class="w"> </span><span class="no">h</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">-ho</span><span class="w"></span>
-<span class="nf">echo</span><span class="w"> </span><span class="o">$_flag_h</span><span class="w"> </span><span class="c"># is -h, because -h was given</span><span class="w"></span>
-<span class="nf">echo</span><span class="w"> </span><span class="o">$argv</span><span class="w"> </span><span class="c"># is still -ho</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">argparse</span><span class="w"> </span><span class="no">--ignore-unknown</span><span class="w"> </span><span class="no">h</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">-ho</span>
+<span class="nf">echo</span><span class="w"> </span><span class="o">$_flag_h</span><span class="w"> </span><span class="c"># is -h, because -h was given</span>
+<span class="nf">echo</span><span class="w"> </span><span class="o">$argv</span><span class="w"> </span><span class="c"># is still -ho</span>
 </pre></div>
 </div>
 <p>This limitation may be lifted in future.</p>
@@ -279,7 +284,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -297,20 +302,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -363,6 +375,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

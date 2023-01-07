@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>time - measure how long a command or block takes &#8212; fish-shell 3.5.1 documentation</title>
+    <title>time - measure how long a command or block takes &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="trap - perform an action when the shell receives a signal" href="trap.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -87,6 +91,7 @@
 <li><a class="reference internal" href="#">time - measure how long a command or block takes</a><ul>
 <li><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#how-to-interpret-the-output">How to interpret the output</a></li>
 <li><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
@@ -103,7 +108,7 @@
 <span id="cmd-time"></span><h1>time - measure how long a command or block takes<a class="headerlink" href="#time-measure-how-long-a-command-or-block-takes" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="o">time</span><span class="w"> </span><span class="nf">COMMAND</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="o">time</span><span class="w"> </span><span class="nf">COMMAND</span>
 </pre></div>
 </div>
 </section>
@@ -113,17 +118,35 @@
 <p>For checking timing after a command has completed, check <a class="reference internal" href="../language.html#variables-special"><span class="std std-ref">$CMD_DURATION</span></a>.</p>
 <p>Your system most likely also has a <code class="docutils literal notranslate"><span class="pre">time</span></code> command. To use that use something like <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">time</span></code>, as in <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">time</span> <span class="pre">sleep</span> <span class="pre">10</span></code>. Because it’s not inside fish, it won’t have access to fish functions and won’t be able to time blocks and such.</p>
 </section>
+<section id="how-to-interpret-the-output">
+<h2>How to interpret the output<a class="headerlink" href="#how-to-interpret-the-output" title="Permalink to this heading">¶</a></h2>
+<p>Time outputs a few different values. Let’s look at an example:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="o">time</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">repeat</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="no">10000000</span><span class="w"> </span><span class="no">y</span><span class="se">\n</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">command</span><span class="w"> </span><span class="nf">grep</span><span class="w"> </span><span class="no">y</span><span class="w"> </span><span class="p">&gt;/dev/null</span>
+<span class="go">________________________________________________________</span>
+<span class="go">Executed in  805.98 millis    fish           external</span>
+<span class="go">   usr time  798.88 millis  763.88 millis   34.99 millis</span>
+<span class="go">   sys time  141.22 millis   40.20 millis  101.02 millis</span>
+</pre></div>
+</div>
+<p>The time after “Executed in” is what is known as the “wall-clock time”. It is simply a measure of how long it took from the start of the command until it finished. Typically it is reasonably close to <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-CMD_DURATION"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CMD_DURATION</span></code></a>, except for a slight skew because the two are taken at slightly different times.</p>
+<p>The other times are all measures of CPU time. That means they measure how long the CPU was used in this part, and they count multiple cores separately. So a program with four threads using all CPU for a second will have a time of 4 seconds.</p>
+<p>The “usr” time is how much CPU time was spent inside the program itself, the “sys” time is how long was spent in the kernel on behalf of that program.</p>
+<p>The “fish” time is how much CPU was spent in fish, the “external” time how much was spent in external commands.</p>
+<p>So in this example, since <code class="docutils literal notranslate"><span class="pre">string</span></code> is a builtin, everything that <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">repeat</span></code> did is accounted to fish. Any time it spends doing syscalls like <code class="docutils literal notranslate"><span class="pre">write()</span></code> is accounted for in the fish/sys time.</p>
+<p>And <code class="docutils literal notranslate"><span class="pre">grep</span></code> here is explicitly invoked as an external command, so its times will be counted in the “external” column.</p>
+<p>Note that, as in this example, the CPU times can add up to more than the execution time. This is because things can be done in parallel - <code class="docutils literal notranslate"><span class="pre">grep</span></code> can match while <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">repeat</span></code> writes.</p>
+</section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>(for obvious reasons exact results will vary on your system)</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="o">time</span><span class="w"> </span><span class="nf">sleep</span><span class="w"> </span><span class="no">1s</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="o">time</span><span class="w"> </span><span class="nf">sleep</span><span class="w"> </span><span class="no">1s</span>
 
 <span class="go">________________________________________________________</span>
 <span class="go">Executed in    1,01 secs   fish           external</span>
 <span class="go">   usr time    2,32 millis    0,00 micros    2,32 millis</span>
 <span class="go">   sys time    0,88 millis  877,00 micros    0,00 millis</span>
 
-<span class="gp">&gt;_ </span><span class="o">time</span><span class="w"> </span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">3</span><span class="p">;</span><span class="w"> </span><span class="nf">sleep</span><span class="w"> </span><span class="no">1s</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="o">time</span><span class="w"> </span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">3</span><span class="p">;</span><span class="w"> </span><span class="nf">sleep</span><span class="w"> </span><span class="no">1s</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
 
 <span class="go">________________________________________________________</span>
 <span class="go">Executed in    3,01 secs   fish           external</span>
@@ -132,7 +155,7 @@
 </pre></div>
 </div>
 <p>Inline variable assignments need to follow the <code class="docutils literal notranslate"><span class="pre">time</span></code> keyword:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="o">time</span><span class="w"> </span><span class="no">a_moment</span><span class="o">=</span><span class="no">1.5m</span><span class="w"> </span><span class="nf">sleep</span><span class="w"> </span><span class="o">$a_moment</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="o">time</span><span class="w"> </span><span class="no">a_moment</span><span class="o">=</span><span class="no">1.5m</span><span class="w"> </span><span class="nf">sleep</span><span class="w"> </span><span class="o">$a_moment</span>
 
 <span class="go">________________________________________________________</span>
 <span class="go">Executed in   90.00 secs      fish           external</span>
@@ -157,7 +180,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -175,20 +198,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -241,6 +271,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

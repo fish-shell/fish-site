@@ -6,17 +6,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>string-replace - replace substrings &#8212; fish-shell 3.5.1 documentation</title>
+    <title>string-replace - replace substrings &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="string-split - split strings by delimiter" href="string-split.html" />
+    <link rel="next" title="string-shorten - shorten strings to a width, with an ellipsis" href="string-shorten.html" />
     <link rel="prev" title="string-repeat - multiply a string" href="string-repeat.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
      
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -107,8 +111,8 @@
 <h1>string-replace - replace substrings<a class="headerlink" href="#string-replace-replace-substrings" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--filter</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-i</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--ignore-case</span><span class="g g-Other">]</span><span class="w"></span>
-<span class="w">               </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--regex</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">PATTERN</span><span class="w"> </span><span class="no">REPLACEMENT</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--filter</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-i</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--ignore-case</span><span class="g g-Other">]</span>
+<span class="w">               </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--regex</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">PATTERN</span><span class="w"> </span><span class="no">REPLACEMENT</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
@@ -123,28 +127,28 @@
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <section id="replace-literal-examples">
 <h3>Replace Literal Examples<a class="headerlink" href="#replace-literal-examples" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">was</span><span class="w"> </span><span class="s1">&#39;blue is my favorite&#39;</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">was</span><span class="w"> </span><span class="s1">&#39;blue is my favorite&#39;</span>
 <span class="go">blue was my favorite</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">3rd</span><span class="w"> </span><span class="no">last</span><span class="w"> </span><span class="no">1st</span><span class="w"> </span><span class="no">2nd</span><span class="w"> </span><span class="no">3rd</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">3rd</span><span class="w"> </span><span class="no">last</span><span class="w"> </span><span class="no">1st</span><span class="w"> </span><span class="no">2nd</span><span class="w"> </span><span class="no">3rd</span>
 <span class="go">1st</span>
 <span class="go">2nd</span>
 <span class="go">last</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="no">_</span><span class="w"> </span><span class="s1">&#39;spaces to underscores&#39;</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="no">_</span><span class="w"> </span><span class="s1">&#39;spaces to underscores&#39;</span>
 <span class="go">spaces_to_underscores</span>
 </pre></div>
 </div>
 </section>
 <section id="replace-regex-examples">
 <h3>Replace Regex Examples<a class="headerlink" href="#replace-regex-examples" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s1">&#39;[^\d.]+&#39;</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="s1">&#39;0 one two 3.14 four 5x&#39;</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s1">&#39;[^\d.]+&#39;</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="s1">&#39;0 one two 3.14 four 5x&#39;</span>
 <span class="go">0 3.14 5</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;(\w+)\s+(\w+)&#39;</span><span class="w"> </span><span class="s1">&#39;$2 $1 $$&#39;</span><span class="w"> </span><span class="s1">&#39;left right&#39;</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;(\w+)\s+(\w+)&#39;</span><span class="w"> </span><span class="s1">&#39;$2 $1 $$&#39;</span><span class="w"> </span><span class="s1">&#39;left right&#39;</span>
 <span class="go">right left $</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;\s*newline\s*&#39;</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="s1">&#39;put a newline here&#39;</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;\s*newline\s*&#39;</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="s1">&#39;put a newline here&#39;</span>
 <span class="go">put a</span>
 <span class="go">here</span>
 </pre></div>
@@ -167,7 +171,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -185,20 +189,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -251,6 +262,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

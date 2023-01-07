@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>prompt_pwd - print pwd suitable for prompt &#8212; fish-shell 3.5.1 documentation</title>
+    <title>prompt_pwd - print pwd suitable for prompt &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="psub - perform process substitution" href="psub.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -104,7 +108,7 @@
 <span id="cmd-prompt-pwd"></span><h1>prompt_pwd - print pwd suitable for prompt<a class="headerlink" href="#prompt-pwd-print-pwd-suitable-for-prompt" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">prompt_pwd</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">prompt_pwd</span>
 </pre></div>
 </div>
 </section>
@@ -112,15 +116,15 @@
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">prompt_pwd</span></code> is a function to print the current working directory in a way suitable for prompts. It will replace the home directory with “~” and shorten every path component but the last to a default of one character.</p>
 <p>To change the number of characters per path component, pass <code class="docutils literal notranslate"><span class="pre">--dir-length=</span></code> or set <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_prompt_pwd_dir_length</span></code> to the number of characters. Setting it to 0 or an invalid value will disable shortening entirely. This defaults to 1.</p>
-<p>To keep some components unshortened, pass <code class="docutils literal notranslate"><span class="pre">--full-length-dirs=</span></code> or set <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">$fish_prompt_pwd_full_dirs</span></code> to the number of components. This defaults to 1, keeping the last component.</p>
-<p>If any positional arguments are given, <code class="docutils literal notranslate"><span class="pre">prompt_pwd</span></code> shortens them instead of $PWD.</p>
+<p>To keep some components unshortened, pass <code class="docutils literal notranslate"><span class="pre">--full-length-dirs=</span></code> or set <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_prompt_pwd_full_dirs</span></code> to the number of components. This defaults to 1, keeping the last component.</p>
+<p>If any positional arguments are given, <code class="docutils literal notranslate"><span class="pre">prompt_pwd</span></code> shortens them instead of <span class="target" id="index-2"></span><a class="reference internal" href="../language.html#envvar-PWD"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PWD</span></code></a>.</p>
 </section>
 <section id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h2>
 <dl class="simple">
-<dt><strong>-d</strong> or <strong>--dir-length</strong> <em>MAX</em></dt><dd><p>Causes the components to be shortened to <em>MAX</em> characters each. This overrides <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_prompt_pwd_dir_length</span></code>.</p>
+<dt><strong>-d</strong> or <strong>--dir-length</strong> <em>MAX</em></dt><dd><p>Causes the components to be shortened to <em>MAX</em> characters each. This overrides <span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_prompt_pwd_dir_length</span></code>.</p>
 </dd>
-<dt><strong>-D</strong> or <strong>--full-length-dirs</strong> <em>NUM</em></dt><dd><p>Keeps <em>NUM</em> components (counted from the right) as full length without shortening. This overrides <span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_prompt_pwd_full_dirs</span></code>.</p>
+<dt><strong>-D</strong> or <strong>--full-length-dirs</strong> <em>NUM</em></dt><dd><p>Keeps <em>NUM</em> components (counted from the right) as full length without shortening. This overrides <span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_prompt_pwd_full_dirs</span></code>.</p>
 </dd>
 <dt><strong>-h</strong> or <strong>--help</strong></dt><dd><p>Displays help about using this command.</p>
 </dd>
@@ -128,22 +132,22 @@
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">cd</span><span class="w"> </span><span class="o">~</span><span class="no">/</span><span class="w"></span>
-<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="o">$PWD</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">cd</span><span class="w"> </span><span class="o">~</span><span class="no">/</span>
+<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="o">$PWD</span>
 <span class="go">/home/alfa</span>
 
-<span class="gp">&gt;_ </span><span class="nf">prompt_pwd</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">prompt_pwd</span>
 <span class="go">~</span>
 
-<span class="gp">&gt;_ </span><span class="nf">cd</span><span class="w"> </span><span class="no">/tmp/banana/sausage/with/mustard</span><span class="w"></span>
-<span class="gp">&gt;_ </span><span class="nf">prompt_pwd</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">cd</span><span class="w"> </span><span class="no">/tmp/banana/sausage/with/mustard</span>
+<span class="gp">&gt;_ </span><span class="nf">prompt_pwd</span>
 <span class="go">/t/b/s/w/mustard</span>
 
-<span class="gp">&gt;_ </span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_prompt_pwd_dir_length</span><span class="w"> </span><span class="no">3</span><span class="w"></span>
-<span class="gp">&gt;_ </span><span class="nf">prompt_pwd</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_prompt_pwd_dir_length</span><span class="w"> </span><span class="no">3</span>
+<span class="gp">&gt;_ </span><span class="nf">prompt_pwd</span>
 <span class="go">/tmp/ban/sau/wit/mustard</span>
 
-<span class="gp">&gt;_ </span><span class="nf">prompt_pwd</span><span class="w"> </span><span class="no">--full-length-dirs=2</span><span class="w"> </span><span class="no">--dir-length=1</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">prompt_pwd</span><span class="w"> </span><span class="no">--full-length-dirs=2</span><span class="w"> </span><span class="no">--dir-length=1</span>
 <span class="go">/t/b/s/with/mustard</span>
 </pre></div>
 </div>
@@ -164,7 +168,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -182,20 +186,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -248,6 +259,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

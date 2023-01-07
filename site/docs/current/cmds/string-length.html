@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>string-length - print string lengths &#8212; fish-shell 3.5.1 documentation</title>
+    <title>string-length - print string lengths &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="string-lower - convert strings to lowercase" href="string-lower.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,7 +107,7 @@
 <span id="cmd-string-length"></span><h1>string-length - print string lengths<a class="headerlink" href="#string-length-print-string-lengths" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-V</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--visible</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-V</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--visible</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
@@ -114,28 +118,28 @@
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="s1">&#39;hello, world&#39;</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="s1">&#39;hello, world&#39;</span>
 <span class="go">12</span>
 
-<span class="gp">&gt;_ </span><span class="nf">set</span><span class="w"> </span><span class="no">str</span><span class="w"> </span><span class="no">foo</span><span class="w"></span>
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="o">$str</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="o">$status</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">set</span><span class="w"> </span><span class="no">str</span><span class="w"> </span><span class="no">foo</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="o">$str</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="o">$status</span>
 <span class="go">0</span>
 <span class="go"># Equivalent to test -n &quot;$str&quot;</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">red</span><span class="o">)</span><span class="no">foobar</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">red</span><span class="o">)</span><span class="no">foobar</span>
 <span class="go"># the set_color is discounted, so this is the width of &quot;foobar&quot;</span>
 <span class="go">6</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="no">🐟🐟🐟🐟</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="no">🐟🐟🐟🐟</span>
 <span class="go"># depending on $fish_emoji_width, this is either 4 or 8</span>
 <span class="go"># in new terminals it should be</span>
 <span class="go">8</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="no">abcdef</span><span class="se">\r</span><span class="no">123</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="no">abcdef</span><span class="se">\r</span><span class="no">123</span>
 <span class="go"># this displays as &quot;123def&quot;, so the width is 6</span>
 <span class="go">6</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="no">a</span><span class="se">\n</span><span class="no">bc</span><span class="w"></span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="no">a</span><span class="se">\n</span><span class="no">bc</span>
 <span class="go"># counts &quot;a&quot; and &quot;bc&quot; as separate lines, so it prints width for each</span>
 <span class="go">1</span>
 <span class="go">2</span>
@@ -158,7 +162,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -176,20 +180,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -242,6 +253,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

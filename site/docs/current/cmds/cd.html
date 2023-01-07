@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>cd - change directory &#8212; fish-shell 3.5.1 documentation</title>
+    <title>cd - change directory &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="cdh - change to a recently visited directory" href="cdh.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -104,7 +108,7 @@
 <span id="cmd-cd"></span><h1>cd - change directory<a class="headerlink" href="#cd-change-directory" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">cd</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">DIRECTORY</span><span class="g g-Other">]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">cd</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">DIRECTORY</span><span class="g g-Other">]</span>
 </pre></div>
 </div>
 </section>
@@ -116,7 +120,7 @@
 It is recommended to keep <strong>.</strong> as the first element of <span class="target" id="index-3"></span><a class="reference internal" href="../language.html#envvar-CDPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CDPATH</span></code></a>, or <span class="target" id="index-4"></span><a class="reference internal" href="../language.html#envvar-PWD"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PWD</span></code></a> will be tried last.</p>
 <p>Fish will also try to change directory if given a command that looks like a directory (starting with <strong>.</strong>, <strong>/</strong> or <strong>~</strong>, or ending with <strong>/</strong>), without explicitly requiring <strong>cd</strong>.</p>
 <p>Fish also ships a wrapper function around the builtin <strong>cd</strong> that understands <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">-</span></code> as changing to the previous directory.
-See also <a class="reference internal" href="prevd.html#cmd-prevd"><span class="std std-ref">prevd</span></a>.
+See also <a class="reference internal" href="prevd.html"><span class="doc">prevd</span></a>.
 This wrapper function maintains a history of the 25 most recently visited directories in the <code class="docutils literal notranslate"><span class="pre">$dirprev</span></code> and <code class="docutils literal notranslate"><span class="pre">$dirnext</span></code> global variables.
 If you make those universal variables your <strong>cd</strong> history is shared among all fish instances.</p>
 <p>As a special case, <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">.</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$PWD</span></code>, which is useful in cases where a mountpoint has been recycled or a directory has been removed and recreated.</p>
@@ -124,11 +128,11 @@ If you make those universal variables your <strong>cd</strong> history is shared
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cd</span><span class="w"></span>
-<span class="c"># changes the working directory to your home directory.</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cd</span>
+<span class="c"># changes the working directory to your home directory.</span>
 
-<span class="nf">cd</span><span class="w"> </span><span class="no">/usr/src/fish-shell</span><span class="w"></span>
-<span class="c"># changes the working directory to /usr/src/fish-shell</span><span class="w"></span>
+<span class="nf">cd</span><span class="w"> </span><span class="no">/usr/src/fish-shell</span>
+<span class="c"># changes the working directory to /usr/src/fish-shell</span>
 </pre></div>
 </div>
 </section>
@@ -152,7 +156,7 @@ If you make those universal variables your <strong>cd</strong> history is shared
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -170,20 +174,27 @@ If you make those universal variables your <strong>cd</strong> history is shared
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -236,6 +247,7 @@ If you make those universal variables your <strong>cd</strong> history is shared
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

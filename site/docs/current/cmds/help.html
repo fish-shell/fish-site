@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>help - display fish documentation &#8212; fish-shell 3.5.1 documentation</title>
+    <title>help - display fish documentation &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="history - show and manipulate command history" href="history.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -104,7 +108,7 @@
 <span id="cmd-help"></span><h1>help - display fish documentation<a class="headerlink" href="#help-display-fish-documentation" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">help</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">SECTION</span><span class="g g-Other">]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">help</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">SECTION</span><span class="g g-Other">]</span>
 </pre></div>
 </div>
 </section>
@@ -113,14 +117,14 @@
 <p><code class="docutils literal notranslate"><span class="pre">help</span></code> displays the fish help documentation.</p>
 <p>If a <em>SECTION</em> is specified, the help for that command is shown.</p>
 <p>The <strong>-h</strong> or <strong>--help</strong> option displays help about using this command.</p>
-<p>If the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">BROWSER`</span></code> environment variable is set, it will be used to display the documentation.
+<p>If the <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-BROWSER"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">BROWSER</span></code></a> environment variable is set, it will be used to display the documentation.
 Otherwise, fish will search for a suitable browser.
 To use a different browser than as described above, one can set the <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_help_browser</span></code> variable.
 This variable may be set as a list, where the first element is the browser command and the rest are browser options.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">help</span> <span class="pre">fg</span></code> shows the documentation for the <a class="reference internal" href="fg.html#cmd-fg"><span class="std std-ref">fg</span></a> builtin.</p>
+<p><code class="docutils literal notranslate"><span class="pre">help</span> <span class="pre">fg</span></code> shows the documentation for the <a class="reference internal" href="fg.html"><span class="doc">fg</span></a> builtin.</p>
 </section>
 <section id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">¶</a></h2>
@@ -142,7 +146,7 @@ This variable may be set as a list, where the first element is the browser comma
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -160,20 +164,27 @@ This variable may be set as a list, where the first element is the browser comma
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -226,6 +237,7 @@ This variable may be set as a list, where the first element is the browser comma
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

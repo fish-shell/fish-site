@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Writing your own completions &#8212; fish-shell 3.5.1 documentation</title>
+    <title>Writing your own completions &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Design" href="design.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -46,6 +45,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -102,63 +106,63 @@
 <p>To specify a completion, use the <code class="docutils literal notranslate"><span class="pre">complete</span></code> command. <code class="docutils literal notranslate"><span class="pre">complete</span></code> takes as a parameter the name of the command to specify a completion for. For example, to add a completion for the program <code class="docutils literal notranslate"><span class="pre">myprog</span></code>, one would start the completion command with <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">myprog</span> <span class="pre">...</span></code></p>
 <p>To provide a list of possible completions for myprog, use the <code class="docutils literal notranslate"><span class="pre">-a</span></code> switch. If <code class="docutils literal notranslate"><span class="pre">myprog</span></code> accepts the arguments start and stop, this can be specified as <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">myprog</span> <span class="pre">-a</span> <span class="pre">'start</span> <span class="pre">stop'</span></code>. The argument to the <code class="docutils literal notranslate"><span class="pre">-a</span></code> switch is always a single string. At completion time, it will be tokenized on spaces and tabs, and variable expansion, command substitution and other forms of parameter expansion will take place.</p>
 <p><code class="docutils literal notranslate"><span class="pre">fish</span></code> has a special syntax to support specifying switches accepted by a command. The switches <code class="docutils literal notranslate"><span class="pre">-s</span></code>, <code class="docutils literal notranslate"><span class="pre">-l</span></code> and <code class="docutils literal notranslate"><span class="pre">-o</span></code> are used to specify a short switch (single character, such as <code class="docutils literal notranslate"><span class="pre">-l</span></code>), a gnu style long switch (such as <code class="docutils literal notranslate"><span class="pre">--color</span></code>) and an old-style long switch (like <code class="docutils literal notranslate"><span class="pre">-shuffle</span></code>), respectively. If the command ‘myprog’ has an option ‘-o’ which can also be written as <code class="docutils literal notranslate"><span class="pre">--output</span></code>, and which can take an additional value of either ‘yes’ or ‘no’, this can be specified by writing:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">output</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;yes no&quot;</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">output</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;yes no&quot;</span>
 </pre></div>
 </div>
-<p>There are also special switches for specifying that a switch requires an argument, to disable filename completion, to create completions that are only available in some combinations, etc..  For a complete description of the various switches accepted by the <code class="docutils literal notranslate"><span class="pre">complete</span></code> command, see the documentation for the <a class="reference internal" href="cmds/complete.html#cmd-complete"><span class="std std-ref">complete</span></a> builtin, or write <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">--help</span></code> inside the <code class="docutils literal notranslate"><span class="pre">fish</span></code> shell.</p>
+<p>There are also special switches for specifying that a switch requires an argument, to disable filename completion, to create completions that are only available in some combinations, etc..  For a complete description of the various switches accepted by the <code class="docutils literal notranslate"><span class="pre">complete</span></code> command, see the documentation for the <a class="reference internal" href="cmds/complete.html"><span class="doc">complete</span></a> builtin, or write <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">--help</span></code> inside the <code class="docutils literal notranslate"><span class="pre">fish</span></code> shell.</p>
 <p>As a more comprehensive example, here’s a commented excerpt of the completions for systemd’s <code class="docutils literal notranslate"><span class="pre">timedatectl</span></code>:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># All subcommands that timedatectl knows - this is useful for later.</span><span class="w"></span>
-<span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">commands</span><span class="w"> </span><span class="no">status</span><span class="w"> </span><span class="no">set-time</span><span class="w"> </span><span class="no">set-timezone</span><span class="w"> </span><span class="no">list-timezones</span><span class="w"> </span><span class="no">set-local-rtc</span><span class="w"> </span><span class="no">set-ntp</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># All subcommands that timedatectl knows - this is useful for later.</span>
+<span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">commands</span><span class="w"> </span><span class="no">status</span><span class="w"> </span><span class="no">set-time</span><span class="w"> </span><span class="no">set-timezone</span><span class="w"> </span><span class="no">list-timezones</span><span class="w"> </span><span class="no">set-local-rtc</span><span class="w"> </span><span class="no">set-ntp</span>
 
-<span class="c"># Disable file completions for the entire command</span><span class="w"></span>
-<span class="c"># because it does not take files anywhere</span><span class="w"></span>
-<span class="c"># Note that this can be undone by using &quot;-F&quot;.</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="c"># File completions also need to be disabled</span><span class="w"></span>
-<span class="c"># if you want to have more control over what files are offered</span><span class="w"></span>
-<span class="c"># (e.g. just directories, or just files ending in &quot;.mp3&quot;).</span><span class="w"></span>
-<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-f</span><span class="w"></span>
+<span class="c"># Disable file completions for the entire command</span>
+<span class="c"># because it does not take files anywhere</span>
+<span class="c"># Note that this can be undone by using &quot;-F&quot;.</span>
+<span class="c">#</span>
+<span class="c"># File completions also need to be disabled</span>
+<span class="c"># if you want to have more control over what files are offered</span>
+<span class="c"># (e.g. just directories, or just files ending in &quot;.mp3&quot;).</span>
+<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-f</span>
 
-<span class="c"># This line offers the subcommands</span><span class="w"></span>
-<span class="c"># -&quot;status&quot;,</span><span class="w"></span>
-<span class="c"># -&quot;set-timezone&quot;,</span><span class="w"></span>
-<span class="c"># -&quot;set-time&quot;</span><span class="w"></span>
-<span class="c"># -&quot;list-timezones&quot;</span><span class="w"></span>
-<span class="c"># if no subcommand has been given so far.</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="c"># The `-n`/`--condition` option takes script as a string, which it executes.</span><span class="w"></span>
-<span class="c"># If it returns true, the completion is offered.</span><span class="w"></span>
-<span class="c"># Here the condition is the `__fish_seen_subcommands_from` helper function.</span><span class="w"></span>
-<span class="c"># If returns true if any of the given commands is used on the commandline,</span><span class="w"></span>
-<span class="c"># as determined by a simple heuristic.</span><span class="w"></span>
-<span class="c"># For more complex uses, you can write your own function.</span><span class="w"></span>
-<span class="c"># See e.g. the git completions for an example.</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
+<span class="c"># This line offers the subcommands</span>
+<span class="c"># -&quot;status&quot;,</span>
+<span class="c"># -&quot;set-timezone&quot;,</span>
+<span class="c"># -&quot;set-time&quot;</span>
+<span class="c"># -&quot;list-timezones&quot;</span>
+<span class="c"># if no subcommand has been given so far.</span>
+<span class="c">#</span>
+<span class="c"># The `-n`/`--condition` option takes script as a string, which it executes.</span>
+<span class="c"># If it returns true, the completion is offered.</span>
+<span class="c"># Here the condition is the `__fish_seen_subcommands_from` helper function.</span>
+<span class="c"># If returns true if any of the given commands is used on the commandline,</span>
+<span class="c"># as determined by a simple heuristic.</span>
+<span class="c"># For more complex uses, you can write your own function.</span>
+<span class="c"># See e.g. the git completions for an example.</span>
+<span class="c">#</span>
 <span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="s2">&quot;not __fish_seen_subcommand_from </span><span class="o">$commands</span><span class="s2">&quot;</span><span class="nv"> \</span>
-<span class="nv">    </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;status set-time set-timezone list-timezones&quot;</span><span class="w"></span>
+<span class="nv">    </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;status set-time set-timezone list-timezones&quot;</span>
 
-<span class="c"># If the &quot;set-timezone&quot; subcommand is used,</span><span class="w"></span>
-<span class="c"># offer the output of `timedatectl list-timezones` as completions.</span><span class="w"></span>
-<span class="c"># Each line of output is used as a separate candidate,</span><span class="w"></span>
-<span class="c"># and anything after a tab is taken as the description.</span><span class="w"></span>
-<span class="c"># It&#39;s often useful to transform command output with `string` into that form.</span><span class="w"></span>
+<span class="c"># If the &quot;set-timezone&quot; subcommand is used,</span>
+<span class="c"># offer the output of `timedatectl list-timezones` as completions.</span>
+<span class="c"># Each line of output is used as a separate candidate,</span>
+<span class="c"># and anything after a tab is taken as the description.</span>
+<span class="c"># It&#39;s often useful to transform command output with `string` into that form.</span>
 <span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="s2">&quot;__fish_seen_subcommand_from set-timezone&quot;</span><span class="nv"> \</span>
-<span class="nv">    </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;(timedatectl list-timezones)&quot;</span><span class="w"></span>
+<span class="nv">    </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;(timedatectl list-timezones)&quot;</span>
 
-<span class="c"># Completion candidates can also be described via `-d`,</span><span class="w"></span>
-<span class="c"># which is useful if the description is constant.</span><span class="w"></span>
-<span class="c"># Try to keep these short, because that means the user gets to see more at once.</span><span class="w"></span>
+<span class="c"># Completion candidates can also be described via `-d`,</span>
+<span class="c"># which is useful if the description is constant.</span>
+<span class="c"># Try to keep these short, because that means the user gets to see more at once.</span>
 <span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="s2">&quot;not __fish_seen_subcommand_from </span><span class="o">$commands</span><span class="s2">&quot;</span><span class="nv"> \</span>
-<span class="nv">    </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;set-local-rtc&quot;</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s2">&quot;Maintain RTC in local time&quot;</span><span class="w"></span>
+<span class="nv">    </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;set-local-rtc&quot;</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s2">&quot;Maintain RTC in local time&quot;</span>
 
-<span class="c"># We can also limit options to certain subcommands by using conditions.</span><span class="w"></span>
+<span class="c"># We can also limit options to certain subcommands by using conditions.</span>
 <span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="s2">&quot;__fish_seen_subcommand_from set-local-rtc&quot;</span><span class="nv"> \</span>
-<span class="nv">    </span><span class="no">-l</span><span class="w"> </span><span class="no">adjust-system-clock</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s1">&#39;Synchronize system clock from the RTC&#39;</span><span class="w"></span>
+<span class="nv">    </span><span class="no">-l</span><span class="w"> </span><span class="no">adjust-system-clock</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s1">&#39;Synchronize system clock from the RTC&#39;</span>
 
-<span class="c"># These are simple options that can be used everywhere.</span><span class="w"></span>
-<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">h</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">help</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s1">&#39;Print a short help text and exit&#39;</span><span class="w"></span>
-<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">version</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s1">&#39;Print a short version string and exit&#39;</span><span class="w"></span>
-<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">no-pager</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s1">&#39;Do not pipe output into a pager&#39;</span><span class="w"></span>
+<span class="c"># These are simple options that can be used everywhere.</span>
+<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">h</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">help</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s1">&#39;Print a short help text and exit&#39;</span>
+<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">version</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s1">&#39;Print a short version string and exit&#39;</span>
+<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">no-pager</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s1">&#39;Do not pipe output into a pager&#39;</span>
 </pre></div>
 </div>
 <p>For examples of how to write your own complex completions, study the completions in <code class="docutils literal notranslate"><span class="pre">/usr/share/fish/completions</span></code>. (The exact path depends on your chosen installation prefix and may be slightly different)</p>
@@ -174,7 +178,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">__fish_complete_suffix</span> <span class="pre">SUFFIX</span></code> performs file completion but sorts files ending in SUFFIX first. This is useful in conjunction with <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">--keep-order</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">__fish_complete_users</span></code> prints a list of all users with their full name as description.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">__fish_print_filesystems</span></code> prints a list of all known file systems. Currently, this is a static list, and not dependent on what file systems the host operating system actually understands.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">__fish_print_hostnames</span></code> prints a list of all known hostnames. This functions searches the fstab for nfs servers, ssh for known hosts and checks the <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__fish_print_hostnames</span></code> prints a list of all known hostnames. This function searches the fstab for nfs servers, ssh for known hosts and checks the <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> file.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">__fish_print_interfaces</span></code> prints a list of all known network interfaces.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">__fish_print_packages</span></code> prints a list of all installed packages. This function currently handles Debian, rpm and Gentoo packages.</p></li>
 </ul>
@@ -212,7 +216,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -229,20 +233,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -295,6 +306,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

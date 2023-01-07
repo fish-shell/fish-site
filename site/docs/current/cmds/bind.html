@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>bind - handle fish key bindings &#8212; fish-shell 3.5.1 documentation</title>
+    <title>bind - handle fish key bindings &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="block - temporarily block delivery of events" href="block.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -108,12 +112,12 @@
 <span id="cmd-bind"></span><h1>bind - handle fish key bindings<a class="headerlink" href="#bind-handle-fish-key-bindings" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-M</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--sets-mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">NEW_MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-s</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--silent</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-k</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEQUENCE</span><span class="w"> </span><span class="no">COMMAND</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"></span>
-<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-M</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-k</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEQUENCE</span><span class="w"></span>
-<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-K</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key-names</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"></span>
-<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--function-names</span><span class="g g-Other">)</span><span class="w"></span>
-<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-L</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--list-modes</span><span class="g g-Other">)</span><span class="w"></span>
-<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-e</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--erase</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-M</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-k</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEQUENCE</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-M</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--sets-mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">NEW_MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-s</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--silent</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-k</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEQUENCE</span><span class="w"> </span><span class="no">COMMAND</span><span class="w"> </span><span class="g g-Other">...</span>
+<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-M</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-k</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEQUENCE</span>
+<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-K</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key-names</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span>
+<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--function-names</span><span class="g g-Other">)</span>
+<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-L</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--list-modes</span><span class="g g-Other">)</span>
+<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-e</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--erase</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-M</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-k</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEQUENCE</span><span class="w"> </span><span class="g g-Other">...</span>
 </pre></div>
 </div>
 </section>
@@ -124,14 +128,16 @@
 <p>For example, <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">W</kbd> can be written as <code class="docutils literal notranslate"><span class="pre">\ew</span></code>, and <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">X</kbd> (^X) can be written as <code class="docutils literal notranslate"><span class="pre">\cx</span></code>. Note that Alt-based key bindings are case sensitive and Control-based key bindings are not. This is a constraint of text-based terminals, not <code class="docutils literal notranslate"><span class="pre">fish</span></code>.</p>
 <p>The generic key binding that matches if no other binding does can be set by specifying a <code class="docutils literal notranslate"><span class="pre">SEQUENCE</span></code> of the empty string (that is, <code class="docutils literal notranslate"><span class="pre">''</span></code> ). For most key bindings, it makes sense to bind this to the <code class="docutils literal notranslate"><span class="pre">self-insert</span></code> function (i.e. <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">''</span> <span class="pre">self-insert</span></code>). This will insert any keystrokes not specifically bound to into the editor. Non-printable characters are ignored by the editor, so this will not result in control sequences being inserted.</p>
 <p>If the <code class="docutils literal notranslate"><span class="pre">-k</span></code> switch is used, the name of a key (such as ‘down’, ‘up’ or ‘backspace’) is used instead of a sequence. The names used are the same as the corresponding curses variables, but without the ‘key_’ prefix. (See <code class="docutils literal notranslate"><span class="pre">terminfo(5)</span></code> for more information, or use <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">--key-names</span></code> for a list of all available named keys). Normally this will print an error if the current <code class="docutils literal notranslate"><span class="pre">$TERM</span></code> entry doesn’t have a given key, unless the <code class="docutils literal notranslate"><span class="pre">-s</span></code> switch is given.</p>
-<p>To find out what sequence a key combination sends, you can use <a class="reference internal" href="fish_key_reader.html#cmd-fish-key-reader"><span class="std std-ref">fish_key_reader</span></a>.</p>
+<p>To find out what sequence a key combination sends, you can use <a class="reference internal" href="fish_key_reader.html"><span class="doc">fish_key_reader</span></a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">COMMAND</span></code> can be any fish command, but it can also be one of a set of special input functions. These include functions for moving the cursor, operating on the kill-ring, performing tab completion, etc. Use <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">--function-names</span></code> for a complete list of these input functions.</p>
 <p>When <code class="docutils literal notranslate"><span class="pre">COMMAND</span></code> is a shellscript command, it is a good practice to put the actual code into a <a class="reference internal" href="../language.html#syntax-function"><span class="std std-ref">function</span></a> and simply bind to the function name. This way it becomes significantly easier to test the function while editing, and the result is usually more readable as well.</p>
-<p>If a script produces output, it should finish by calling <code class="docutils literal notranslate"><span class="pre">commandline</span> <span class="pre">-f</span> <span class="pre">repaint</span></code> to tell fish that a repaint is in order.</p>
-<p>Note that special input functions cannot be combined with ordinary shell script commands. The commands must be entirely a sequence of special input functions (from <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">-f</span></code>) or all shell script commands (i.e., valid fish script).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Special input functions cannot be combined with ordinary shell script commands. The commands must be entirely a sequence of special input functions (from <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">-f</span></code>) or all shell script commands (i.e., valid fish script). To run special input functions from regular fish script, use <code class="docutils literal notranslate"><span class="pre">commandline</span> <span class="pre">-f</span></code> (see also <a class="reference internal" href="commandline.html"><span class="doc">commandline</span></a>). If a script produces output, it should finish by calling <code class="docutils literal notranslate"><span class="pre">commandline</span> <span class="pre">-f</span> <span class="pre">repaint</span></code> to tell fish that a repaint is in order.</p>
+</div>
 <p>If no <code class="docutils literal notranslate"><span class="pre">SEQUENCE</span></code> is provided, all bindings (or just the bindings in the given <code class="docutils literal notranslate"><span class="pre">MODE</span></code>) are printed. If <code class="docutils literal notranslate"><span class="pre">SEQUENCE</span></code> is provided but no <code class="docutils literal notranslate"><span class="pre">COMMAND</span></code>, just the binding matching that sequence is printed.</p>
-<p>To save custom keybindings, put the <code class="docutils literal notranslate"><span class="pre">bind</span></code> statements into <a class="reference internal" href="../language.html#configuration"><span class="std std-ref">config.fish</span></a>. Alternatively, fish also automatically executes a function called <code class="docutils literal notranslate"><span class="pre">fish_user_key_bindings</span></code> if it exists.</p>
-<p>Key bindings may use “modes”, which mimics Vi’s modal input behavior. The default mode is “default”, and every bind applies to a single mode. The mode can be viewed/changed with the <code class="docutils literal notranslate"><span class="pre">$fish_bind_mode</span></code> variable.</p>
+<p>To save custom key bindings, put the <code class="docutils literal notranslate"><span class="pre">bind</span></code> statements into <a class="reference internal" href="../language.html#configuration"><span class="std std-ref">config.fish</span></a>. Alternatively, fish also automatically executes a function called <code class="docutils literal notranslate"><span class="pre">fish_user_key_bindings</span></code> if it exists.</p>
+<p>Key bindings may use “modes”, which mimics Vi’s modal input behavior. The default mode is “default”. Every key binding applies to a single mode; you can specify which one with <code class="docutils literal notranslate"><span class="pre">-M</span> <span class="pre">MODE</span></code>. If the key binding should change the mode, you can specify the new mode with <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">NEW_MODE</span></code>. The mode can be viewed and changed via the <code class="docutils literal notranslate"><span class="pre">$fish_bind_mode</span></code> variable. If you want to change the mode from inside a fish function, use <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">fish_bind_mode</span> <span class="pre">MODE</span></code>.</p>
 </section>
 <section id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h2>
@@ -161,6 +167,8 @@ User bindings take precedence over preset bindings when fish looks up mappings.
 By default, all <code class="docutils literal notranslate"><span class="pre">bind</span></code> invocations work on the “user” level except for listing, which will show both levels.
 All invocations except for inserting new bindings can operate on both levels at the same time (if both <strong>--preset</strong> and <strong>--user</strong> are given).
 <strong>--preset</strong> should only be used in full binding sets (like when working on <code class="docutils literal notranslate"><span class="pre">fish_vi_key_bindings</span></code>).</p>
+</dd>
+<dt><strong>-s</strong> or <strong>--silent</strong></dt><dd><p>Silences some of the error messages, including for unknown key names and unbound sequences.</p>
 </dd>
 <dt><strong>-h</strong> or <strong>--help</strong></dt><dd><p>Displays help about using this command.</p>
 </dd>
@@ -241,6 +249,8 @@ If the completion pager is active, select the next completion instead.</p>
 <dt><code class="docutils literal notranslate"><span class="pre">forward-word</span></code></dt><dd><p>move one word to the right; or if at the end of the commandline, accept one word
 from the current autosuggestion.</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">history-pager</span></code></dt><dd><p>invoke the searchable pager on history (incremental search); or if the history pager is already active, search further backwards in time.</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">history-search-backward</span></code></dt><dd><p>search the history for the previous match</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">history-search-forward</span></code></dt><dd><p>search the history for the next match</p>
@@ -274,15 +284,15 @@ from the current autosuggestion.</p>
 <dt><code class="docutils literal notranslate"><span class="pre">nextd-or-forward-word</span></code></dt><dd><p>if the commandline is empty, then move forward in the directory history, otherwise move one word to the right;
 or if at the end of the commandline, accept one word from the current autosuggestion.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">or</span></code></dt><dd><p>only execute the next function if the previous succeeded (note: only some functions report success)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">or</span></code></dt><dd><p>only execute the next function if the previous did not succeed (note: only some functions report failure)</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">pager-toggle-search</span></code></dt><dd><p>toggles the search field if the completions pager is visible.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">pager-toggle-search</span></code></dt><dd><p>toggles the search field if the completions pager is visible; or if used after <code class="docutils literal notranslate"><span class="pre">history-pager</span></code>, search forwards in time.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">prevd-or-backward-word</span></code></dt><dd><p>if the commandline is empty, then move backward in the directory history, otherwise move one word to the left</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">repaint</span></code></dt><dd><p>reexecutes the prompt functions and redraws the prompt (also <code class="docutils literal notranslate"><span class="pre">force-repaint</span></code> for backwards-compatibility)</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">repaint-mode</span></code></dt><dd><p>reexecutes the <a class="reference internal" href="fish_mode_prompt.html#cmd-fish-mode-prompt"><span class="std std-ref">fish_mode_prompt</span></a> and redraws the prompt. This is useful for vi-mode. If no <code class="docutils literal notranslate"><span class="pre">fish_mode_prompt</span></code> exists or it prints nothing, it acts like a normal repaint.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">repaint-mode</span></code></dt><dd><p>reexecutes the <a class="reference internal" href="fish_mode_prompt.html"><span class="doc">fish_mode_prompt</span></a> and redraws the prompt. This is useful for vi-mode. If no <code class="docutils literal notranslate"><span class="pre">fish_mode_prompt</span></code> exists or it prints nothing, it acts like a normal repaint.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">self-insert</span></code></dt><dd><p>inserts the matching sequence into the command line</p>
 </dd>
@@ -337,20 +347,20 @@ or if at the end of the commandline, accept one word from the current autosugges
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <p>Exit the shell when <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">D</kbd> is pressed:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="se">\c</span><span class="no">d</span><span class="w"> </span><span class="s1">&#39;exit&#39;</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="se">\c</span><span class="no">d</span><span class="w"> </span><span class="s1">&#39;exit&#39;</span>
 </pre></div>
 </div>
 <p>Perform a history search when <kbd class="kbd docutils literal notranslate">Page Up</kbd> is pressed:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="no">-k</span><span class="w"> </span><span class="no">ppage</span><span class="w"> </span><span class="no">history-search-backward</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="no">-k</span><span class="w"> </span><span class="no">ppage</span><span class="w"> </span><span class="no">history-search-backward</span>
 </pre></div>
 </div>
 <p>Turn on <a class="reference internal" href="../interactive.html#vi-mode"><span class="std std-ref">Vi key bindings</span></a> and rebind <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">C</kbd> to clear the input line:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_key_bindings</span><span class="w"> </span><span class="no">fish_vi_key_bindings</span><span class="w"></span>
-<span class="nf">bind</span><span class="w"> </span><span class="no">-M</span><span class="w"> </span><span class="no">insert</span><span class="w"> </span><span class="se">\c</span><span class="no">c</span><span class="w"> </span><span class="no">kill-whole-line</span><span class="w"> </span><span class="no">repaint</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_key_bindings</span><span class="w"> </span><span class="no">fish_vi_key_bindings</span>
+<span class="nf">bind</span><span class="w"> </span><span class="no">-M</span><span class="w"> </span><span class="no">insert</span><span class="w"> </span><span class="se">\c</span><span class="no">c</span><span class="w"> </span><span class="no">kill-whole-line</span><span class="w"> </span><span class="no">repaint</span>
 </pre></div>
 </div>
 <p>Launch <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> and repaint the commandline afterwards when <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">G</kbd> is pressed:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="se">\c</span><span class="no">g</span><span class="w"> </span><span class="s1">&#39;git diff; commandline -f repaint&#39;</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="se">\c</span><span class="no">g</span><span class="w"> </span><span class="s1">&#39;git diff; commandline -f repaint&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -386,7 +396,7 @@ or if at the end of the commandline, accept one word from the current autosugges
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -404,20 +414,27 @@ or if at the end of the commandline, accept one word from the current autosugges
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -470,6 +487,7 @@ or if at the end of the commandline, accept one word from the current autosugges
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

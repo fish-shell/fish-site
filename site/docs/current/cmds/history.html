@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>history - show and manipulate command history &#8212; fish-shell 3.5.1 documentation</title>
+    <title>history - show and manipulate command history &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="if - conditionally execute a command" href="if.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -105,15 +109,15 @@
 <span id="cmd-history"></span><h1>history - show and manipulate command history<a class="headerlink" href="#history-show-and-manipulate-command-history" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">history</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">search</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--show-time</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--case-sensitive</span><span class="g g-Other">]</span><span class="w"></span>
-<span class="w">                 </span><span class="g g-Other">[</span><span class="no">--exact</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--prefix</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--contains</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--max</span><span class="w"> </span><span class="no">N</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--null</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--reverse</span><span class="g g-Other">]</span><span class="w"></span>
-<span class="w">                 </span><span class="g g-Other">[</span><span class="no">SEARCH_STRING</span><span class="w"> </span><span class="g g-Other">...]</span><span class="w"></span>
-<span class="nf">history</span><span class="w"> </span><span class="no">delete</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--case-sensitive</span><span class="g g-Other">]</span><span class="w"></span>
-<span class="w">               </span><span class="g g-Other">[</span><span class="no">--exact</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--prefix</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--contains</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEARCH_STRING</span><span class="w"> </span><span class="g g-Other">...</span><span class="w"></span>
-<span class="nf">history</span><span class="w"> </span><span class="no">merge</span><span class="w"></span>
-<span class="nf">history</span><span class="w"> </span><span class="no">save</span><span class="w"></span>
-<span class="nf">history</span><span class="w"> </span><span class="no">clear</span><span class="w"></span>
-<span class="nf">history</span><span class="w"> </span><span class="no">clear-session</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">history</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">search</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--show-time</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--case-sensitive</span><span class="g g-Other">]</span>
+<span class="w">                 </span><span class="g g-Other">[</span><span class="no">--exact</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--prefix</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--contains</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--max</span><span class="w"> </span><span class="no">N</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--null</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--reverse</span><span class="g g-Other">]</span>
+<span class="w">                 </span><span class="g g-Other">[</span><span class="no">SEARCH_STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
+<span class="nf">history</span><span class="w"> </span><span class="no">delete</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--case-sensitive</span><span class="g g-Other">]</span>
+<span class="w">               </span><span class="g g-Other">[</span><span class="no">--exact</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--prefix</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--contains</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEARCH_STRING</span><span class="w"> </span><span class="g g-Other">...</span>
+<span class="nf">history</span><span class="w"> </span><span class="no">merge</span>
+<span class="nf">history</span><span class="w"> </span><span class="no">save</span>
+<span class="nf">history</span><span class="w"> </span><span class="no">clear</span>
+<span class="nf">history</span><span class="w"> </span><span class="no">clear-session</span>
 </pre></div>
 </div>
 </section>
@@ -160,15 +164,15 @@
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">history</span><span class="w"> </span><span class="no">clear</span><span class="w"></span>
-<span class="c"># Deletes all history items</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">history</span><span class="w"> </span><span class="no">clear</span>
+<span class="c"># Deletes all history items</span>
 
-<span class="nf">history</span><span class="w"> </span><span class="no">search</span><span class="w"> </span><span class="no">--contains</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="w"></span>
-<span class="c"># Outputs a list of all previous commands containing the string &quot;foo&quot;.</span><span class="w"></span>
+<span class="nf">history</span><span class="w"> </span><span class="no">search</span><span class="w"> </span><span class="no">--contains</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span>
+<span class="c"># Outputs a list of all previous commands containing the string &quot;foo&quot;.</span>
 
-<span class="nf">history</span><span class="w"> </span><span class="no">delete</span><span class="w"> </span><span class="no">--prefix</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="w"></span>
-<span class="c"># Interactively deletes commands which start with &quot;foo&quot; from the history.</span><span class="w"></span>
-<span class="c"># You can select more than one entry by entering their IDs separated by a space.</span><span class="w"></span>
+<span class="nf">history</span><span class="w"> </span><span class="no">delete</span><span class="w"> </span><span class="no">--prefix</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span>
+<span class="c"># Interactively deletes commands which start with &quot;foo&quot; from the history.</span>
+<span class="c"># You can select more than one entry by entering their IDs separated by a space.</span>
 </pre></div>
 </div>
 </section>
@@ -200,7 +204,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -218,20 +222,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -284,6 +295,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

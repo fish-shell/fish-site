@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>status - query fish runtime information &#8212; fish-shell 3.5.1 documentation</title>
+    <title>status - query fish runtime information &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="string - manipulate strings" href="string.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,26 +107,27 @@
 <span id="cmd-status"></span><h1>status - query fish runtime information<a class="headerlink" href="#status-query-fish-runtime-information" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">status</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">is-login</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">is-interactive</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">is-block</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">is-breakpoint</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">is-command-substitution</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">is-no-job-control</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">is-full-job-control</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">is-interactive-job-control</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">current-command</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">filename</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">basename</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">dirname</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">fish-path</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">function</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">line-number</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">stack-trace</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">job-control</span><span class="w"> </span><span class="no">CONTROL_TYPE</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">features</span><span class="w"></span>
-<span class="nf">status</span><span class="w"> </span><span class="no">test-feature</span><span class="w"> </span><span class="no">FEATURE</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">status</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-login</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-interactive</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-block</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-breakpoint</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-command-substitution</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-no-job-control</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-full-job-control</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">is-interactive-job-control</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">current-command</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">current-commandline</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">filename</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">basename</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">dirname</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">fish-path</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">function</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">line-number</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">stack-trace</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">job-control</span><span class="w"> </span><span class="no">CONTROL_TYPE</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">features</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">test-feature</span><span class="w"> </span><span class="no">FEATURE</span>
 </pre></div>
 </div>
 </section>
@@ -135,7 +140,7 @@
 </dd>
 <dt><strong>is-block</strong>, <strong>-b</strong> or <strong>--is-block</strong></dt><dd><p>Returns 0 if fish is currently executing a block of code.</p>
 </dd>
-<dt><strong>is-breakpoint</strong></dt><dd><p>Returns 0 if fish is currently showing a prompt in the context of a <a class="reference internal" href="breakpoint.html#cmd-breakpoint"><span class="std std-ref">breakpoint</span></a> command. See also the <a class="reference internal" href="fish_breakpoint_prompt.html#cmd-fish-breakpoint-prompt"><span class="std std-ref">fish_breakpoint_prompt</span></a> function.</p>
+<dt><strong>is-breakpoint</strong></dt><dd><p>Returns 0 if fish is currently showing a prompt in the context of a <a class="reference internal" href="breakpoint.html"><span class="doc">breakpoint</span></a> command. See also the <a class="reference internal" href="fish_breakpoint_prompt.html"><span class="doc">fish_breakpoint_prompt</span></a> function.</p>
 </dd>
 <dt><strong>is-interactive</strong>, <strong>-i</strong> or <strong>--is-interactive</strong></dt><dd><p>Returns 0 if fish is interactive - that is, connected to a keyboard.</p>
 </dd>
@@ -149,13 +154,15 @@
 </dd>
 <dt><strong>current-command</strong></dt><dd><p>Prints the name of the currently-running function or command, like the deprecated <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-_"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">_</span></code></a> variable.</p>
 </dd>
-<dt><strong>filename</strong>, <strong>current-filename</strong>, <strong>-f</strong> or <strong>--current-filename</strong></dt><dd><p>Prints the filename of the currently-running script. If the current script was called via a symlink, this will return the symlink. If the current script was received by piping into <a class="reference internal" href="source.html#cmd-source"><span class="std std-ref">source</span></a>, then this will return <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
+<dt><strong>current-commandline</strong></dt><dd><p>Prints the entirety of the currently-running commandline, inclusive of all jobs and operators.</p>
+</dd>
+<dt><strong>filename</strong>, <strong>current-filename</strong>, <strong>-f</strong> or <strong>--current-filename</strong></dt><dd><p>Prints the filename of the currently-running script. If the current script was called via a symlink, this will return the symlink. If the current script was received by piping into <a class="reference internal" href="source.html"><span class="doc">source</span></a>, then this will return <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
 </dd>
 <dt><strong>basename</strong></dt><dd><p>Prints just the filename of the running script, without any path components before.</p>
 </dd>
 <dt><strong>dirname</strong></dt><dd><p>Prints just the path to the running script, without the actual filename itself. This can be relative to <span class="target" id="index-2"></span><a class="reference internal" href="../language.html#envvar-PWD"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PWD</span></code></a> (including just “.”), depending on how the script was called. This is the same as passing the filename to <code class="docutils literal notranslate"><span class="pre">dirname(3)</span></code>. It’s useful if you want to use other files in the current script’s directory or similar.</p>
 </dd>
-<dt><strong>fish-path</strong></dt><dd><p>Prints the absolute path to the currently executing instance of fish.</p>
+<dt><strong>fish-path</strong></dt><dd><p>Prints the absolute path to the currently executing instance of fish. This is a best-effort attempt and the exact output is down to what the platform gives fish. In some cases you might only get “fish”.</p>
 </dd>
 <dt><strong>function</strong> or <strong>current-function</strong></dt><dd><p>Prints the name of the currently called function if able, when missing displays “Not a function” (or equivalent translated string).</p>
 </dd>
@@ -192,7 +199,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -210,20 +217,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -276,6 +290,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

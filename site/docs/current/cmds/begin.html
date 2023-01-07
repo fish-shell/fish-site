@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>begin - start a new block of code &#8212; fish-shell 3.5.1 documentation</title>
+    <title>begin - start a new block of code &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="bg - send jobs to background" href="bg.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,7 +107,7 @@
 <span id="cmd-begin"></span><h1>begin - start a new block of code<a class="headerlink" href="#begin-start-a-new-block-of-code" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">begin</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">COMMANDS</span><span class="w"> </span><span class="g g-Other">...]</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">begin</span><span class="p">;</span><span class="w"> </span><span class="g g-Other">[</span><span class="nf">COMMANDS</span><span class="w"> </span><span class="g g-Other">...]</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
 </pre></div>
 </div>
 </section>
@@ -118,26 +122,26 @@
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>The following code sets a number of variables inside of a block scope. Since the variables are set inside the block and have local scope, they will be automatically deleted when the block ends.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">begin</span><span class="w"></span>
-<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">PIRATE</span><span class="w"> </span><span class="no">Yarrr</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">begin</span>
+<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">PIRATE</span><span class="w"> </span><span class="no">Yarrr</span>
 
-<span class="w">    </span><span class="nf">...</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<span class="w">    </span><span class="nf">...</span>
+<span class="nf">end</span>
 
-<span class="nf">echo</span><span class="w"> </span><span class="o">$PIRATE</span><span class="w"></span>
-<span class="c"># This will not output anything, since the PIRATE variable</span><span class="w"></span>
-<span class="c"># went out of scope at the end of the block</span><span class="w"></span>
+<span class="nf">echo</span><span class="w"> </span><span class="o">$PIRATE</span>
+<span class="c"># This will not output anything, since the PIRATE variable</span>
+<span class="c"># went out of scope at the end of the block</span>
 </pre></div>
 </div>
 <p>In the following code, all output is redirected to the file out.html.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">begin</span><span class="w"></span>
-<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$xml_header</span><span class="w"></span>
-<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$html_header</span><span class="w"></span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="o">$file</span><span class="w"></span>
-<span class="w">        </span><span class="nf">...</span><span class="w"></span>
-<span class="w">    </span><span class="nf">end</span><span class="w"></span>
-<span class="w">    </span><span class="nf">...</span><span class="w"></span>
-<span class="nf">end</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="p">out.html</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">begin</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$xml_header</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$html_header</span>
+<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="o">$file</span>
+<span class="w">        </span><span class="nf">...</span>
+<span class="w">    </span><span class="nf">end</span>
+<span class="w">    </span><span class="nf">...</span>
+<span class="nf">end</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="p">out.html</span>
 </pre></div>
 </div>
 </section>
@@ -157,7 +161,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -175,20 +179,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -241,6 +252,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

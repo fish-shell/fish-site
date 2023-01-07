@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>fish_mode_prompt - define the appearance of the mode indicator &#8212; fish-shell 3.5.1 documentation</title>
+    <title>fish_mode_prompt - define the appearance of the mode indicator &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fish_opt - create an option specification for the argparse command" href="fish_opt.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -103,12 +107,12 @@
 <span id="cmd-fish-mode-prompt"></span><h1>fish_mode_prompt - define the appearance of the mode indicator<a class="headerlink" href="#fish-mode-prompt-define-the-appearance-of-the-mode-indicator" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_mode_prompt</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_mode_prompt</span>
 </pre></div>
 </div>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_mode_prompt</span><span class="w"></span>
-<span class="w">     </span><span class="nf">echo</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$fish_bind_mode</span><span class="s2"> &quot;</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_mode_prompt</span>
+<span class="w">     </span><span class="nf">echo</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$fish_bind_mode</span><span class="s2"> &quot;</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 </section>
@@ -117,34 +121,34 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">fish_mode_prompt</span></code> function outputs the mode indicator for use in vi-mode.</p>
 <p>The default <code class="docutils literal notranslate"><span class="pre">fish_mode_prompt</span></code> function will output indicators about the current Vi editor mode displayed to the left of the regular prompt. Define your own function to customize the appearance of the mode indicator. The <code class="docutils literal notranslate"><span class="pre">$fish_bind_mode</span> <span class="pre">variable</span></code> can be used to determine the current mode. It will be one of <code class="docutils literal notranslate"><span class="pre">default</span></code>, <code class="docutils literal notranslate"><span class="pre">insert</span></code>, <code class="docutils literal notranslate"><span class="pre">replace_one</span></code>, or <code class="docutils literal notranslate"><span class="pre">visual</span></code>.</p>
 <p>You can also define an empty <code class="docutils literal notranslate"><span class="pre">fish_mode_prompt</span></code> function to remove the Vi mode indicators:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_mode_prompt</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span><span class="w"></span>
-<span class="nf">funcsave</span><span class="w"> </span><span class="no">fish_mode_prompt</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_mode_prompt</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
+<span class="nf">funcsave</span><span class="w"> </span><span class="no">fish_mode_prompt</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">fish_mode_prompt</span></code> will be executed when the vi mode changes. If it produces any output, it is displayed and used. If it does not, the other prompt functions (<a class="reference internal" href="fish_prompt.html#cmd-fish-prompt"><span class="std std-ref">fish_prompt</span></a> and <a class="reference internal" href="fish_right_prompt.html#cmd-fish-right-prompt"><span class="std std-ref">fish_right_prompt</span></a>) will be executed as well in case they contain a mode display.</p>
+<p><code class="docutils literal notranslate"><span class="pre">fish_mode_prompt</span></code> will be executed when the vi mode changes. If it produces any output, it is displayed and used. If it does not, the other prompt functions (<a class="reference internal" href="fish_prompt.html"><span class="doc">fish_prompt</span></a> and <a class="reference internal" href="fish_right_prompt.html"><span class="doc">fish_right_prompt</span></a>) will be executed as well in case they contain a mode display.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_mode_prompt</span><span class="w"></span>
-<span class="w">  </span><span class="nf">switch</span><span class="w"> </span><span class="o">$fish_bind_mode</span><span class="w"></span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">default</span><span class="w"></span>
-<span class="w">      </span><span class="nf">set_color</span><span class="w"> </span><span class="no">--bold</span><span class="w"> </span><span class="no">red</span><span class="w"></span>
-<span class="w">      </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;N&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">insert</span><span class="w"></span>
-<span class="w">      </span><span class="nf">set_color</span><span class="w"> </span><span class="no">--bold</span><span class="w"> </span><span class="no">green</span><span class="w"></span>
-<span class="w">      </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;I&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">replace_one</span><span class="w"></span>
-<span class="w">      </span><span class="nf">set_color</span><span class="w"> </span><span class="no">--bold</span><span class="w"> </span><span class="no">green</span><span class="w"></span>
-<span class="w">      </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;R&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">visual</span><span class="w"></span>
-<span class="w">      </span><span class="nf">set_color</span><span class="w"> </span><span class="no">--bold</span><span class="w"> </span><span class="no">brmagenta</span><span class="w"></span>
-<span class="w">      </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;V&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"></span>
-<span class="w">      </span><span class="nf">set_color</span><span class="w"> </span><span class="no">--bold</span><span class="w"> </span><span class="no">red</span><span class="w"></span>
-<span class="w">      </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;?&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="nf">end</span><span class="w"></span>
-<span class="w">  </span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="w"></span>
-<span class="nf">end</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_mode_prompt</span>
+<span class="w">  </span><span class="nf">switch</span><span class="w"> </span><span class="o">$fish_bind_mode</span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">default</span>
+<span class="w">      </span><span class="nf">set_color</span><span class="w"> </span><span class="no">--bold</span><span class="w"> </span><span class="no">red</span>
+<span class="w">      </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;N&#39;</span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">insert</span>
+<span class="w">      </span><span class="nf">set_color</span><span class="w"> </span><span class="no">--bold</span><span class="w"> </span><span class="no">green</span>
+<span class="w">      </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;I&#39;</span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">replace_one</span>
+<span class="w">      </span><span class="nf">set_color</span><span class="w"> </span><span class="no">--bold</span><span class="w"> </span><span class="no">green</span>
+<span class="w">      </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;R&#39;</span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">visual</span>
+<span class="w">      </span><span class="nf">set_color</span><span class="w"> </span><span class="no">--bold</span><span class="w"> </span><span class="no">brmagenta</span>
+<span class="w">      </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;V&#39;</span>
+<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="w">      </span><span class="nf">set_color</span><span class="w"> </span><span class="no">--bold</span><span class="w"> </span><span class="no">red</span>
+<span class="w">      </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;?&#39;</span>
+<span class="w">  </span><span class="nf">end</span>
+<span class="w">  </span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span>
+<span class="nf">end</span>
 </pre></div>
 </div>
 <p>Outputting multiple lines is not supported in <code class="docutils literal notranslate"><span class="pre">fish_mode_prompt</span></code>.</p>
@@ -165,7 +169,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -183,20 +187,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -249,6 +260,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

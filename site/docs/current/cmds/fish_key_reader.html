@@ -6,14 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>fish_key_reader - explore what characters keyboard keys send &#8212; fish-shell 3.5.1 documentation</title>
+    <title>fish_key_reader - explore what characters keyboard keys send &#8212; fish-shell 3.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fish_mode_prompt - define the appearance of the mode indicator" href="fish_mode_prompt.html" />
@@ -29,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -47,6 +46,11 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>    
@@ -104,13 +108,13 @@
 <span id="cmd-fish-key-reader"></span><h1>fish_key_reader - explore what characters keyboard keys send<a class="headerlink" href="#fish-key-reader-explore-what-characters-keyboard-keys-send" title="Permalink to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_key_reader</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span><span class="w"></span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_key_reader</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
-<p><strong class="program">fish_key_reader</strong> is used to explain how you would bind a certain key sequence. By default, it prints the <a class="reference internal" href="bind.html#cmd-bind"><span class="std std-ref">bind</span></a> command for one key sequence read interactively over standard input.</p>
+<p><strong class="program">fish_key_reader</strong> is used to explain how you would bind a certain key sequence. By default, it prints the <a class="reference internal" href="bind.html"><span class="doc">bind</span></a> command for one key sequence read interactively over standard input.</p>
 <p>If the character sequence matches a special key name (see <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">--key-names</span></code>),  both <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">CHARS</span> <span class="pre">...</span></code> and <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">-k</span> <span class="pre">KEYNAME</span> <span class="pre">...</span></code> usage will be shown. In verbose mode (enabled by passing <code class="docutils literal notranslate"><span class="pre">--verbose</span></code>), additional details about the characters received, such as the delay between chars, are written to standard error.</p>
 <p>The following options are available:</p>
 <dl class="simple">
@@ -137,12 +141,12 @@
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish_key_reader</span><span class="w"></span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish_key_reader</span>
 <span class="go">Press a key:</span>
 <span class="go"># press up-arrow</span>
 <span class="go">bind \e\[A &#39;do something&#39;</span>
 
-<span class="gp">&gt; </span><span class="nf">fish_key_reader</span><span class="w"> </span><span class="no">--verbose</span><span class="w"></span>
+<span class="gp">&gt; </span><span class="nf">fish_key_reader</span><span class="w"> </span><span class="no">--verbose</span>
 <span class="go">Press a key:</span>
 <span class="go"># press alt+enter</span>
 <span class="go">           hex:   1B  char: \c[  (or \e)</span>
@@ -167,7 +171,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.5.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -185,20 +189,27 @@
     </div>
     <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
+    
+    <div id="old-docs-notice" style="display: none">
+        This documents an old version of fish.
+        <a href="../../current/">See the latest release.</a>
+    </div>
 
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2022, fish-shell developers.
+    &copy; Copyright 2023, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
     </div>
 </div>
 
 <script type="text/javascript">
+ FISH_DOCS_VERSION = "3.6";
+
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
      var pre = it.target;
@@ -251,6 +262,7 @@
       }
   })();
 </script>
+<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>
