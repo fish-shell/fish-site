@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Interactive use &#8212; fish-shell 3.6.0 documentation</title>
+    <title>Interactive use &#8212; fish-shell 3.6.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
@@ -28,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Interactive use</a></li>
@@ -110,7 +110,10 @@
 <li><a class="reference internal" href="#visual-mode">Visual mode</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#custom-bindings">Custom bindings</a></li>
+<li><a class="reference internal" href="#custom-bindings">Custom bindings</a><ul>
+<li><a class="reference internal" href="#key-sequences">Key sequences</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#copy-and-paste-kill-ring">Copy and paste (Kill Ring)</a></li>
 <li><a class="reference internal" href="#multiline-editing">Multiline editing</a></li>
 <li><a class="reference internal" href="#searchable-command-history">Searchable command history</a></li>
@@ -156,7 +159,7 @@
 <section id="tab-completion">
 <span id="id2"></span><h2>Tab Completion<a class="headerlink" href="#tab-completion" title="Permalink to this heading">¶</a></h2>
 <p>Tab completion is a time saving feature of any modern shell. When you type <kbd class="kbd docutils literal notranslate">Tab</kbd>, fish tries to guess the rest of the word under the cursor. If it finds just one possibility, it inserts it. If it finds more, it inserts the longest unambiguous part and then opens a menu (the “pager”) that you can navigate to find what you’re looking for.</p>
-<p>The pager can be navigated with the arrow keys, <kbd class="kbd docutils literal notranslate">Page Up</kbd> / <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Page</kbd> <kbd class="kbd docutils literal notranslate">Down</kbd></kbd>, <kbd class="kbd docutils literal notranslate">Tab</kbd> or <kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">Tab</kbd>. Pressing <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">S</kbd> (the <code class="docutils literal notranslate"><span class="pre">pager-toggle-search</span></code> binding - <kbd class="kbd docutils literal notranslate">/</kbd> in vi-mode) opens up a search menu that you can use to filter the list.</p>
+<p>The pager can be navigated with the arrow keys, <kbd class="kbd docutils literal notranslate">Page Up</kbd> / <kbd class="kbd docutils literal notranslate">Page Down</kbd>, <kbd class="kbd docutils literal notranslate">Tab</kbd> or <kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">Tab</kbd>. Pressing <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">S</kbd> (the <code class="docutils literal notranslate"><span class="pre">pager-toggle-search</span></code> binding - <kbd class="kbd docutils literal notranslate">/</kbd> in vi-mode) opens up a search menu that you can use to filter the list.</p>
 <p>Fish provides some general purpose completions, like for commands, variable names, usernames or files.</p>
 <p>It also provides a large number of program specific scripted completions. Most of these completions are simple options like the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option for <code class="docutils literal notranslate"><span class="pre">ls</span></code>, but a lot are more advanced. For example:</p>
 <ul class="simple">
@@ -573,7 +576,21 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 </section>
 <section id="configurable-greeting">
 <span id="greeting"></span><h2>Configurable greeting<a class="headerlink" href="#configurable-greeting" title="Permalink to this heading">¶</a></h2>
-<p>When it is started interactively, fish tries to run the <a class="reference internal" href="cmds/fish_greeting.html"><span class="doc">fish_greeting</span></a> function. The default fish_greeting prints a simple greeting. You can change its text by changing the <code class="docutils literal notranslate"><span class="pre">$fish_greeting</span></code> variable.</p>
+<p>When it is started interactively, fish tries to run the <a class="reference internal" href="cmds/fish_greeting.html"><span class="doc">fish_greeting</span></a> function. The default fish_greeting prints a simple greeting. You can change its text by changing the <code class="docutils literal notranslate"><span class="pre">$fish_greeting</span></code> variable, for instance using a <a class="reference internal" href="language.html#variables-universal"><span class="std std-ref">universal variable</span></a>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-U</span><span class="w"> </span><span class="no">fish_greeting</span>
+</pre></div>
+</div>
+<p>or you can set it <a class="reference internal" href="language.html#variables-scope"><span class="std std-ref">globally</span></a> in <a class="reference internal" href="language.html#configuration"><span class="std std-ref">config.fish</span></a>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_greeting</span><span class="w"> </span><span class="s1">&#39;Hey, stranger!&#39;</span>
+</pre></div>
+</div>
+<p>or you can script it by changing the function:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_greeting</span>
+<span class="w">    </span><span class="nf">random</span><span class="w"> </span><span class="no">choice</span><span class="w"> </span><span class="s2">&quot;Hello!&quot;</span><span class="w"> </span><span class="s2">&quot;Hi&quot;</span><span class="w"> </span><span class="s2">&quot;G&#39;day&quot;</span><span class="w"> </span><span class="s2">&quot;Howdy&quot;</span>
+<span class="nf">end</span>
+</pre></div>
+</div>
+<p>save this in config.fish or <a class="reference internal" href="language.html#syntax-function-autoloading"><span class="std std-ref">a function file</span></a>. You can also use <a class="reference internal" href="cmds/funced.html"><span class="doc">funced</span></a> and <a class="reference internal" href="cmds/funcsave.html"><span class="doc">funcsave</span></a> to edit it easily.</p>
 </section>
 <section id="private-mode">
 <span id="id6"></span><h2>Private mode<a class="headerlink" href="#private-mode" title="Permalink to this heading">¶</a></h2>
@@ -639,6 +656,7 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 <li><p><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">Backspace</kbd> removes one word backwards.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">&lt;</kbd> moves to the beginning of the commandline, <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">&gt;</kbd> moves to the end.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">K</kbd> deletes from the cursor to the end of line (moving it to the <a class="reference internal" href="#killring"><span class="std std-ref">Copy and paste (Kill Ring)</span></a>).</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Escape</kbd> and <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">G</kbd> cancel the current operation. Immediately after an unambiguous completion this undoes it.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">C</kbd> capitalizes the current word.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">U</kbd> makes the current word uppercase.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">T</kbd> transposes the last two characters.</p></li>
@@ -695,14 +713,19 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 <li><p><kbd class="kbd docutils literal notranslate">v</kbd> enters <a class="reference internal" href="#vi-mode-visual"><span class="std std-ref">visual mode</span></a> at the current cursor position.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">a</kbd> enters <a class="reference internal" href="#vi-mode-insert"><span class="std std-ref">insert mode</span></a> after the current cursor position.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">A</kbd> enters <a class="reference internal" href="#vi-mode-insert"><span class="std std-ref">insert mode</span></a> at the end of the line.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">o</kbd> inserts a new line under the current one and enters <a class="reference internal" href="#vi-mode-insert"><span class="std std-ref">insert mode</span></a></p></li>
+<li><p><kbd class="kbd docutils literal notranslate">O</kbd> (capital-“o”) inserts a new line above the current one and enters <a class="reference internal" href="#vi-mode-insert"><span class="std std-ref">insert mode</span></a></p></li>
 <li><p><kbd class="kbd docutils literal notranslate">0</kbd> (zero) moves the cursor to beginning of line (remaining in command mode).</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">d</kbd>+<kbd class="kbd docutils literal notranslate">d</kbd> deletes the current line and moves it to the <a class="reference internal" href="#killring"><span class="std std-ref">Copy and paste (Kill Ring)</span></a>.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">D</kbd> deletes text after the current cursor position and moves it to the <a class="reference internal" href="#killring"><span class="std std-ref">Copy and paste (Kill Ring)</span></a>.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">p</kbd> pastes text from the <a class="reference internal" href="#killring"><span class="std std-ref">Copy and paste (Kill Ring)</span></a>.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">u</kbd> undoes the most recent edit of the command line.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">R</kbd> redoes the most recent edit.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">[</kbd> and <kbd class="kbd docutils literal notranslate">]</kbd> search the command history for the previous/next token containing the token under the cursor before the search was started. See the <a class="reference internal" href="#history-search"><span class="std std-ref">history</span></a> section for more information on history searching.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">/</kbd> opens the history in a pager. This will show history entries matching the search, a few at a time. Pressing it again will search older entries, pressing <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">S</kbd> (that otherwise toggles pager search) will go to newer entries. The search bar will always be selected.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">Backspace</kbd> moves the cursor left.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">g</kbd> / <kbd class="kbd docutils literal notranslate">G</kbd> moves the cursor to the beginning/end of the commandline, respectively.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">:q</kbd> exits fish.</p></li>
 </ul>
 </section>
 <section id="insert-mode">
@@ -739,7 +762,15 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 </pre></div>
 </div>
 <p>Put <code class="docutils literal notranslate"><span class="pre">bind</span></code> statements into <a class="reference internal" href="language.html#configuration"><span class="std std-ref">config.fish</span></a> or a function called <code class="docutils literal notranslate"><span class="pre">fish_user_key_bindings</span></code>.</p>
-<p>The key sequence (the <code class="docutils literal notranslate"><span class="pre">\cc</span></code>) here depends on your setup, in particular the terminal. To find out what the terminal sends use <a class="reference internal" href="cmds/fish_key_reader.html"><span class="doc">fish_key_reader</span></a>:</p>
+<p>If you change your mind on a binding and want to go back to fish’s default, you can simply erase it again:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="no">--erase</span><span class="w"> </span><span class="se">\c</span><span class="no">c</span>
+</pre></div>
+</div>
+<p>Fish remembers its preset bindings and so it will take effect again. This saves you from having to remember what it was before and add it again yourself.</p>
+<section id="key-sequences">
+<h4>Key sequences<a class="headerlink" href="#key-sequences" title="Permalink to this heading">¶</a></h4>
+<p>The terminal tells fish which keys you pressed by sending some sequences of bytes to describe that key. For some keys, this is easy - pressing <kbd class="kbd docutils literal notranslate">a</kbd> simply means the terminal sends “a”. In others it’s more complicated and terminals disagree on which they send.</p>
+<p>In these cases, <a class="reference internal" href="cmds/fish_key_reader.html"><span class="doc">fish_key_reader</span></a> can tell you how to write the key sequence for your terminal. Just start it and press the keys you are interested in:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish_key_reader</span><span class="w"> </span><span class="c"># pressing control-c</span>
 <span class="go">Press a key:</span>
 <span class="go">Press [ctrl-C] again to exit</span>
@@ -756,6 +787,7 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_escape_delay_ms</span><span class="w"> </span><span class="no">100</span>
 </pre></div>
 </div>
+</section>
 </section>
 <section id="copy-and-paste-kill-ring">
 <span id="killring"></span><h3>Copy and paste (Kill Ring)<a class="headerlink" href="#copy-and-paste-kill-ring" title="Permalink to this heading">¶</a></h3>
@@ -787,7 +819,7 @@ The variable <span class="target" id="index-0"></span><a class="reference intern
 <p>After a command has been executed, it is remembered in the history list. Any duplicate history items are automatically removed. By pressing the up and down keys, you can search forwards and backwards in the history. If the current command line is not empty when starting a history search, only the commands containing the string entered into the command line are shown.</p>
 <p>By pressing <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">↑</kbd> and <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">↓</kbd>, a history search is also performed, but instead of searching for a complete commandline, each commandline is broken into separate elements just like it would be before execution, and the history is searched for an element matching that under the cursor.</p>
 <p>For more complicated searches, you can press <kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">R</kbd> to open a pager that allows you to search the history. It shows a limited number of entries in one page, press <kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">R</kbd> <a class="footnote-reference brackets" href="#id11" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> again to move to the next page and <kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">S</kbd> <a class="footnote-reference brackets" href="#id12" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a> to move to the previous page. You can change the text to refine your search.</p>
-<p>History searches are case-insensitive unless the search string contains an uppercase character. You can stop a search to edit your search string by pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> or <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Page</kbd> <kbd class="kbd docutils literal notranslate">Down</kbd></kbd>.</p>
+<p>History searches are case-insensitive unless the search string contains an uppercase character. You can stop a search to edit your search string by pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> or <kbd class="kbd docutils literal notranslate">Page Down</kbd>.</p>
 <p>Prefixing the commandline with a space will prevent the entire line from being stored in the history. It will still be available for recall until the next command is executed, but will not be stored on disk. This is to allow you to fix misspellings and such.</p>
 <p>The command history is stored in the file <code class="docutils literal notranslate"><span class="pre">~/.local/share/fish/fish_history</span></code> (or
 <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/fish/fish_history</span></code> if that variable is set) by default. However, you can set the
@@ -850,7 +882,7 @@ The variable <span class="target" id="index-0"></span><a class="reference intern
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Interactive use</a></li>
@@ -881,7 +913,7 @@ The variable <span class="target" id="index-0"></span><a class="reference intern
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
 </div>
 

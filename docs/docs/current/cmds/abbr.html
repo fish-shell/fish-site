@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>abbr - manage fish abbreviations &#8212; fish-shell 3.6.0 documentation</title>
+    <title>abbr - manage fish abbreviations &#8212; fish-shell 3.6.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
@@ -28,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -133,7 +133,22 @@ After entering <code class="docutils literal notranslate"><span class="pre">gco<
 To avoid expanding something that looks like an abbreviation, the default <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">Space</kbd> binding inserts a space without expanding.</p>
 <p>An abbreviation may match a literal word, or it may match a pattern given by a regular expression. When an abbreviation matches a word, that word is replaced by new text, called its <em>expansion</em>. This expansion may be a fixed new phrase, or it can be dynamically created via a fish function. This expansion occurs after pressing space or enter.</p>
 <p>Combining these features, it is possible to create custom syntaxes, where a regular expression recognizes matching tokens, and the expansion function interprets them. See the <a class="reference internal" href="#examples">Examples</a> section.</p>
-<p>Abbreviations may be added to <a class="reference internal" href="../language.html#configuration"><span class="std std-ref">config.fish</span></a>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.6.0: </span>Previous versions of this allowed saving abbreviations in universal variables.
+That’s no longer possible. Existing variables will still be imported and <code class="docutils literal notranslate"><span class="pre">abbr</span> <span class="pre">--erase</span></code> will also erase the variables.
+We recommend adding abbreviations to <a class="reference internal" href="../language.html#configuration"><span class="std std-ref">config.fish</span></a> by just adding the <code class="docutils literal notranslate"><span class="pre">abbr</span> <span class="pre">--add</span></code> command.
+When you run <code class="docutils literal notranslate"><span class="pre">abbr</span></code>, you will see output like this</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">abbr</span>
+<span class="go">abbr -a -- foo bar # imported from a universal variable, see `help abbr`</span>
+</pre></div>
+</div>
+<p>In that case you should take the part before the <code class="docutils literal notranslate"><span class="pre">#</span></code> comment and save it in <a class="reference internal" href="../language.html#configuration"><span class="std std-ref">config.fish</span></a>,
+then you can run <code class="docutils literal notranslate"><span class="pre">abbr</span> <span class="pre">--erase</span></code> to remove the universal variable:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">abbr</span><span class="w"> </span><span class="p">&gt;&gt;</span><span class="w"> </span><span class="p">~/.config/fish/config.fish</span>
+<span class="gp">&gt; </span><span class="nf">abbr</span><span class="w"> </span><span class="no">--erase</span><span class="w"> </span><span class="o">(</span><span class="nf">abbr</span><span class="w"> </span><span class="no">--list</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
 </section>
 <section id="add-subcommand">
 <h2>“add” subcommand<a class="headerlink" href="#add-subcommand" title="Permalink to this heading">¶</a></h2>
@@ -223,7 +238,7 @@ To avoid expanding something that looks like an abbreviation, the default <kbd c
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -255,7 +270,7 @@ To avoid expanding something that looks like an abbreviation, the default <kbd c
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
 </div>
 

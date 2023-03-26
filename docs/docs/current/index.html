@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Introduction &#8212; fish-shell 3.6.0 documentation</title>
+    <title>Introduction &#8212; fish-shell 3.6.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
@@ -27,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="#">fish-shell 3.6.0 documentation</a> &#187;
+    <a href="#">fish-shell 3.6.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Introduction</a></li>
@@ -192,8 +192,15 @@
 </pre></div>
 </div>
 <p>When the shell tells the kernel to execute the file, it will use the interpreter <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code>.</p>
-<p>For a script written in another language, just replace <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code> with the interpreter for that language (for example: <code class="docutils literal notranslate"><span class="pre">/usr/bin/python</span></code> for a python script, or <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/fish</span></code> for a fish script).</p>
-<p>This line is only needed when scripts are executed without specifying the interpreter. For functions inside fish or when executing a script with <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">/path/to/script</span></code>, a shebang is not required (but it doesn’t hurt!).</p>
+<p>For a script written in another language, just replace <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code> with the interpreter for that language. For example: <code class="docutils literal notranslate"><span class="pre">/usr/bin/python</span></code> for a python script, or <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/fish</span></code> for a fish script, if that is where you have them installed.</p>
+<p>If you want to share your script with others, you might want to use <strong class="command">env</strong> to allow for the interpreter to be installed in other locations. For example:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c">#!/usr/bin/env fish</span>
+<span class="nf">echo</span><span class="w"> </span><span class="no">Hello</span><span class="w"> </span><span class="no">from</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="o">$version</span>
+</pre></div>
+</div>
+<p>This will call <code class="docutils literal notranslate"><span class="pre">env</span></code>, which then goes through <span class="target" id="index-1"></span><a class="reference internal" href="language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a> to find a program called “fish”. This makes it work, whether fish is installed in (for example) <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/fish</span></code>, <code class="docutils literal notranslate"><span class="pre">/usr/bin/fish</span></code>, or <code class="docutils literal notranslate"><span class="pre">~/.local/bin/fish</span></code>, as long as that directory is in <span class="target" id="index-2"></span><a class="reference internal" href="language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a>.</p>
+<p>The shebang line is only used when scripts are executed without specifying the interpreter. For functions inside fish or when executing a script with <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">/path/to/script</span></code>, a shebang is not required (but it doesn’t hurt!).</p>
+<p>When executing files without an interpreter, fish, like other shells, tries your system shell, typically <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code>. This is needed because some scripts are shipped without a shebang line.</p>
 </section>
 </section>
 <section id="configuration">
@@ -263,7 +270,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="#">fish-shell 3.6.0 documentation</a> &#187;
+    <a href="#">fish-shell 3.6.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Introduction</a></li>
@@ -294,7 +301,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
 </div>
 

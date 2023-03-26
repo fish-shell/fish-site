@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>argparse - parse options passed to a fish script or function &#8212; fish-shell 3.6.0 documentation</title>
+    <title>argparse - parse options passed to a fish script or function &#8212; fish-shell 3.6.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
@@ -28,7 +28,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -236,6 +236,17 @@
 <p>These variables are passed to the function as local exported variables.</p>
 <p>The script should write any error messages to stdout, not stderr. It should return a status of zero if the flag value is valid otherwise a non-zero status to indicate it is invalid.</p>
 <p>Fish ships with a <code class="docutils literal notranslate"><span class="pre">_validate_int</span></code> function that accepts a <code class="docutils literal notranslate"><span class="pre">--min</span></code> and <code class="docutils literal notranslate"><span class="pre">--max</span></code> flag. Let’s say your command accepts a <code class="docutils literal notranslate"><span class="pre">-m</span></code> or <code class="docutils literal notranslate"><span class="pre">--max</span></code> flag and the minimum allowable value is zero and the maximum is 5. You would define the option like this: <code class="docutils literal notranslate"><span class="pre">m/max=!_validate_int</span> <span class="pre">--min</span> <span class="pre">0</span> <span class="pre">--max</span> <span class="pre">5</span></code>. The default if you just call <code class="docutils literal notranslate"><span class="pre">_validate_int</span></code> without those flags is to simply check that the value is a valid integer with no limits on the min or max value allowed.</p>
+<p>Here are some examples of flag validations:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># validate that a path is a directory</span>
+<span class="nf">argparse</span><span class="w"> </span><span class="s1">&#39;p/path=!test -d &quot;$_flag_value&quot;&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">--path</span><span class="w"> </span><span class="o">$__fish_config_dir</span>
+<span class="c"># validate that a function does not exist</span>
+<span class="nf">argparse</span><span class="w"> </span><span class="s1">&#39;f/func=!not functions -q &quot;$_flag_value&quot;&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">alias</span>
+<span class="c"># validate that a string matches a regex</span>
+<span class="nf">argparse</span><span class="w"> </span><span class="s1">&#39;c/color=!string match -rq </span><span class="se">\&#39;</span><span class="s2">^#?[0-9a-fA-F]{6}$</span><span class="se">\&#39;</span><span class="s2"> &quot;$_flag_value&quot;&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="s1">&#39;c0ffee&#39;</span>
+<span class="c"># validate with a validator function</span>
+<span class="nf">argparse</span><span class="w"> </span><span class="s1">&#39;n/num=!_validate_int --min 0 --max 99&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">--num</span><span class="w"> </span><span class="no">42</span>
+</pre></div>
+</div>
 </section>
 <section id="example-option-specs">
 <h2>Example OPTION_SPECs<a class="headerlink" href="#example-option-specs" title="Permalink to this heading">¶</a></h2>
@@ -284,7 +295,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -316,7 +327,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.0.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
 </div>
 
