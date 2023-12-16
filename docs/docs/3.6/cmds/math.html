@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>math - perform mathematics calculations &#8212; fish-shell 3.6.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <title>math - perform mathematics calculations &#8212; fish-shell 3.6.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4900ad2e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=908890c3" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/documentation_options.js?v=6200d54f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="nextd - move forward through directory history" href="nextd.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -110,15 +109,15 @@
           <div class="body" role="main">
             
   <section id="math-perform-mathematics-calculations">
-<span id="cmd-math"></span><h1>math - perform mathematics calculations<a class="headerlink" href="#math-perform-mathematics-calculations" title="Permalink to this heading">¶</a></h1>
+<span id="cmd-math"></span><h1>math - perform mathematics calculations<a class="headerlink" href="#math-perform-mathematics-calculations" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
-<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">math</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-s</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--scale</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">N</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-b</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--base</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">BASE</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">EXPRESSION</span><span class="w"> </span><span class="g g-Other">...</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> performs mathematical calculations.
 It supports simple operations such as addition, subtraction, and so on, as well as functions like <code class="docutils literal notranslate"><span class="pre">abs()</span></code>, <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> and <code class="docutils literal notranslate"><span class="pre">ln()</span></code>.</p>
 <p>By default, the output is a floating-point number with trailing zeroes trimmed.
@@ -151,18 +150,18 @@ Octal numbers will have a prefix of <code class="docutils literal notranslate"><
 </dl>
 </section>
 <section id="return-values">
-<h2>Return Values<a class="headerlink" href="#return-values" title="Permalink to this heading">¶</a></h2>
+<h2>Return Values<a class="headerlink" href="#return-values" title="Link to this heading">¶</a></h2>
 <p>If the expression is successfully evaluated and doesn’t over/underflow or return NaN the return <code class="docutils literal notranslate"><span class="pre">status</span></code> is zero (success) else one.</p>
 </section>
 <section id="syntax">
-<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this heading">¶</a></h2>
+<h2>Syntax<a class="headerlink" href="#syntax" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> knows some operators, constants, functions and can (obviously) read numbers.</p>
 <p>For numbers, <code class="docutils literal notranslate"><span class="pre">.</span></code> is always the radix character regardless of locale - <code class="docutils literal notranslate"><span class="pre">2.5</span></code>, not <code class="docutils literal notranslate"><span class="pre">2,5</span></code>.
 Scientific notation (<code class="docutils literal notranslate"><span class="pre">10e5</span></code>) and hexadecimal (<code class="docutils literal notranslate"><span class="pre">0xFF</span></code>) are also available.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> allows you to use underscores as visual separators for digit grouping. For example, you can write <code class="docutils literal notranslate"><span class="pre">1_000_000</span></code>, <code class="docutils literal notranslate"><span class="pre">0x_89_AB_CD_EF</span></code>, and <code class="docutils literal notranslate"><span class="pre">1.234_567_e89</span></code>.</p>
 </section>
 <section id="operators">
-<h2>Operators<a class="headerlink" href="#operators" title="Permalink to this heading">¶</a></h2>
+<h2>Operators<a class="headerlink" href="#operators" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> knows the following operators:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">+</span></code></dt><dd><p>for addition</p>
@@ -183,7 +182,7 @@ Scientific notation (<code class="docutils literal notranslate"><span class="pre
 <p>They are all used in an infix manner - <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">+</span> <span class="pre">2</span></code>, not <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">5</span> <span class="pre">2</span></code>.</p>
 </section>
 <section id="constants">
-<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this heading">¶</a></h2>
+<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> knows the following constants:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">e</span></code></dt><dd><p>Euler’s number</p>
@@ -197,7 +196,7 @@ Half of Tau</p>
 <p>Use them without a leading <code class="docutils literal notranslate"><span class="pre">$</span></code> - <code class="docutils literal notranslate"><span class="pre">pi</span> <span class="pre">-</span> <span class="pre">3</span></code> should be about 0.</p>
 </section>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> supports the following functions:</p>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">abs</span></code></dt><dd><p>the absolute value, with positive sign</p>
@@ -269,7 +268,7 @@ and these operations necessarily care about leading zeroes.</p>
 <p>All of the trigonometric functions use radians (the pi-based scale, not 360°).</p>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">1+1</span></code> outputs 2.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">$status</span> <span class="pre">-</span> <span class="pre">128</span></code> outputs the numerical exit status of the last command minus 128.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">10</span> <span class="pre">/</span> <span class="pre">6</span></code> outputs <code class="docutils literal notranslate"><span class="pre">1.666667</span></code>.</p>
@@ -285,7 +284,7 @@ and these operations necessarily care about leading zeroes.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">max</span> <span class="pre">5,2,3,1</span></code> prints 5.</p>
 </section>
 <section id="compatibility-notes">
-<h2>Compatibility notes<a class="headerlink" href="#compatibility-notes" title="Permalink to this heading">¶</a></h2>
+<h2>Compatibility notes<a class="headerlink" href="#compatibility-notes" title="Link to this heading">¶</a></h2>
 <p>Fish 1.x and 2.x releases relied on the <code class="docutils literal notranslate"><span class="pre">bc</span></code> command for handling <code class="docutils literal notranslate"><span class="pre">math</span></code> expressions. Starting with fish 3.0.0 fish uses the tinyexpr library and evaluates the expression without the involvement of any external commands.</p>
 <p>You don’t need to use <code class="docutils literal notranslate"><span class="pre">--</span></code> before the expression, even if it begins with a minus sign which might otherwise be interpreted as an invalid option. If you do insert <code class="docutils literal notranslate"><span class="pre">--</span></code> before the expression, it will cause option scanning to stop just like for every other command and it won’t be part of the expression.</p>
 </section>
@@ -305,7 +304,7 @@ and these operations necessarily care about leading zeroes.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -337,7 +336,7 @@ and these operations necessarily care about leading zeroes.</p>
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 </div>
 

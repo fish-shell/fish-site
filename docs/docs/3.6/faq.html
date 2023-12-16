@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Frequently asked questions &#8212; fish-shell 3.6.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
+    <title>Frequently asked questions &#8212; fish-shell 3.6.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4900ad2e" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=908890c3" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/documentation_options.js?v=6200d54f"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Interactive use" href="interactive.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Frequently asked questions</a></li>
@@ -122,13 +121,13 @@
           <div class="body" role="main">
             
   <section id="frequently-asked-questions">
-<h1>Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this heading">¶</a></h1>
+<h1>Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Link to this heading">¶</a></h1>
 <section id="what-is-the-equivalent-to-this-thing-from-bash-or-other-shells">
-<h2>What is the equivalent to this thing from bash (or other shells)?<a class="headerlink" href="#what-is-the-equivalent-to-this-thing-from-bash-or-other-shells" title="Permalink to this heading">¶</a></h2>
+<h2>What is the equivalent to this thing from bash (or other shells)?<a class="headerlink" href="#what-is-the-equivalent-to-this-thing-from-bash-or-other-shells" title="Link to this heading">¶</a></h2>
 <p>See <a class="reference internal" href="fish_for_bash_users.html#fish-for-bash-users"><span class="std std-ref">Fish for bash users</span></a></p>
 </section>
 <section id="how-do-i-set-or-clear-an-environment-variable">
-<h2>How do I set or clear an environment variable?<a class="headerlink" href="#how-do-i-set-or-clear-an-environment-variable" title="Permalink to this heading">¶</a></h2>
+<h2>How do I set or clear an environment variable?<a class="headerlink" href="#how-do-i-set-or-clear-an-environment-variable" title="Link to this heading">¶</a></h2>
 <p>Use the <a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a> command:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-x</span><span class="w"> </span><span class="no">key</span><span class="w"> </span><span class="no">value</span><span class="w"> </span><span class="c"># typically set -gx key value</span>
 <span class="nf">set</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">key</span>
@@ -142,7 +141,7 @@
 <p>Note that “exported” is not a <a class="reference internal" href="language.html#variables-scope"><span class="std std-ref">scope</span></a>, but an additional bit of state. A variable can be global and exported or local and exported or even universal and exported. Typically it makes sense to make an exported variable global.</p>
 </section>
 <section id="how-do-i-check-whether-a-variable-is-defined">
-<h2>How do I check whether a variable is defined?<a class="headerlink" href="#how-do-i-check-whether-a-variable-is-defined" title="Permalink to this heading">¶</a></h2>
+<h2>How do I check whether a variable is defined?<a class="headerlink" href="#how-do-i-check-whether-a-variable-is-defined" title="Link to this heading">¶</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-q</span> <span class="pre">var</span></code>.  For example, <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">set</span> <span class="pre">-q</span> <span class="pre">var;</span> <span class="pre">echo</span> <span class="pre">variable</span> <span class="pre">defined;</span> <span class="pre">end</span></code>.  To check multiple variables you can combine with <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code> like so:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="no">var1</span><span class="p">;</span><span class="w"> </span><span class="o">or</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="no">var2</span>
 <span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">either</span><span class="w"> </span><span class="no">variable</span><span class="w"> </span><span class="no">defined</span>
@@ -152,7 +151,7 @@
 <p>Keep in mind that a defined variable could also be empty, either by having no elements (if set like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">var</span></code>) or only empty elements (if set like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">var</span> <span class="pre">&quot;&quot;</span></code>). Read on for how to deal with those.</p>
 </section>
 <section id="how-do-i-check-whether-a-variable-is-not-empty">
-<h2>How do I check whether a variable is not empty?<a class="headerlink" href="#how-do-i-check-whether-a-variable-is-not-empty" title="Permalink to this heading">¶</a></h2>
+<h2>How do I check whether a variable is not empty?<a class="headerlink" href="#how-do-i-check-whether-a-variable-is-not-empty" title="Link to this heading">¶</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">length</span> <span class="pre">-q</span> <span class="pre">--</span> <span class="pre">$var</span></code>.  For example, <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">string</span> <span class="pre">length</span> <span class="pre">-q</span> <span class="pre">--</span> <span class="pre">$var;</span> <span class="pre">echo</span> <span class="pre">not</span> <span class="pre">empty;</span> <span class="pre">end</span></code>.  Note that <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">length</span></code> will interpret a list of multiple variables as a disjunction (meaning any/or):</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$var1</span><span class="w"> </span><span class="o">$var2</span><span class="w"> </span><span class="o">$var3</span>
 <span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">at</span><span class="w"> </span><span class="no">least</span><span class="w"> </span><span class="no">one</span><span class="w"> </span><span class="no">of</span><span class="w"> </span><span class="no">these</span><span class="w"> </span><span class="no">variables</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">not</span><span class="w"> </span><span class="no">empty</span>
@@ -168,7 +167,7 @@
 <p>If you want to know if a variable has <em>no elements</em>, use <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-q</span> <span class="pre">var[1]</span></code>.</p>
 </section>
 <section id="why-doesn-t-set-ux-exported-universal-variables-seem-to-work">
-<h2>Why doesn’t <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-Ux</span></code> (exported universal variables) seem to work?<a class="headerlink" href="#why-doesn-t-set-ux-exported-universal-variables-seem-to-work" title="Permalink to this heading">¶</a></h2>
+<h2>Why doesn’t <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-Ux</span></code> (exported universal variables) seem to work?<a class="headerlink" href="#why-doesn-t-set-ux-exported-universal-variables-seem-to-work" title="Link to this heading">¶</a></h2>
 <p>A global variable of the same name already exists.</p>
 <p>Environment variables such as <code class="docutils literal notranslate"><span class="pre">EDITOR</span></code> or <code class="docutils literal notranslate"><span class="pre">TZ</span></code> can be set universally using <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-Ux</span></code>.  However, if
 there is an environment variable already set before fish starts (such as by login scripts or system
@@ -184,7 +183,7 @@ add a statement to your <a class="reference internal" href="language.html#config
 </div>
 </section>
 <section id="how-do-i-run-a-command-every-login-what-s-fish-s-equivalent-to-bashrc-or-profile">
-<h2>How do I run a command every login? What’s fish’s equivalent to .bashrc or .profile?<a class="headerlink" href="#how-do-i-run-a-command-every-login-what-s-fish-s-equivalent-to-bashrc-or-profile" title="Permalink to this heading">¶</a></h2>
+<h2>How do I run a command every login? What’s fish’s equivalent to .bashrc or .profile?<a class="headerlink" href="#how-do-i-run-a-command-every-login-what-s-fish-s-equivalent-to-bashrc-or-profile" title="Link to this heading">¶</a></h2>
 <p>Edit the file <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code> <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, creating it if it does not exist (Note the leading period).</p>
 <p>Unlike .bashrc and .profile, this file is always read, even in non-interactive or login shells.</p>
 <p>To do something only in interactive shells, check <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">is-interactive</span></code> like:</p>
@@ -195,14 +194,14 @@ add a statement to your <a class="reference internal" href="language.html#config
 </pre></div>
 </div>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id2" role="note">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>The “~/.config” part of this can be set via $XDG_CONFIG_HOME, that’s just the default.</p>
 </aside>
 </aside>
 </section>
 <section id="how-do-i-set-my-prompt">
-<h2>How do I set my prompt?<a class="headerlink" href="#how-do-i-set-my-prompt" title="Permalink to this heading">¶</a></h2>
+<h2>How do I set my prompt?<a class="headerlink" href="#how-do-i-set-my-prompt" title="Link to this heading">¶</a></h2>
 <p>The prompt is the output of the <code class="docutils literal notranslate"><span class="pre">fish_prompt</span></code> function. Put it in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/functions/fish_prompt.fish</span></code>. For example, a simple prompt is:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span>
 <span class="w">    </span><span class="nf">set_color</span><span class="w"> </span><span class="o">$fish_color_cwd</span>
@@ -234,13 +233,13 @@ add a statement to your <a class="reference internal" href="language.html#config
 <p>This also applies to <a class="reference internal" href="cmds/fish_right_prompt.html"><span class="doc">fish_right_prompt</span></a> and <a class="reference internal" href="cmds/fish_mode_prompt.html"><span class="doc">fish_mode_prompt</span></a>.</p>
 </section>
 <section id="why-does-my-prompt-show-a-i">
-<h2>Why does my prompt show a <code class="docutils literal notranslate"><span class="pre">[I]</span></code>?<a class="headerlink" href="#why-does-my-prompt-show-a-i" title="Permalink to this heading">¶</a></h2>
+<h2>Why does my prompt show a <code class="docutils literal notranslate"><span class="pre">[I]</span></code>?<a class="headerlink" href="#why-does-my-prompt-show-a-i" title="Link to this heading">¶</a></h2>
 <p>That’s the <a class="reference internal" href="cmds/fish_mode_prompt.html"><span class="doc">fish_mode_prompt</span></a>. It is displayed by default when you’ve activated vi mode using <code class="docutils literal notranslate"><span class="pre">fish_vi_key_bindings</span></code>.</p>
 <p>If you haven’t activated vi mode on purpose, you might have installed a third-party theme or plugin that does it.</p>
 <p>If you want to change or disable this display, modify the <code class="docutils literal notranslate"><span class="pre">fish_mode_prompt</span></code> function, for instance via <a class="reference internal" href="cmds/funced.html"><span class="doc">funced</span></a>.</p>
 </section>
 <section id="how-do-i-customize-my-syntax-highlighting-colors">
-<h2>How do I customize my syntax highlighting colors?<a class="headerlink" href="#how-do-i-customize-my-syntax-highlighting-colors" title="Permalink to this heading">¶</a></h2>
+<h2>How do I customize my syntax highlighting colors?<a class="headerlink" href="#how-do-i-customize-my-syntax-highlighting-colors" title="Link to this heading">¶</a></h2>
 <p>Use the web configuration tool, <a class="reference internal" href="cmds/fish_config.html"><span class="doc">fish_config</span></a>, or alter the <a class="reference internal" href="interactive.html#variables-color"><span class="std std-ref">fish_color family of environment variables</span></a>.</p>
 <p>You can also use <code class="docutils literal notranslate"><span class="pre">fish_config</span></code> on the commandline, like:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="no">show</span>
@@ -253,7 +252,7 @@ add a statement to your <a class="reference internal" href="language.html#config
 </div>
 </section>
 <section id="how-do-i-change-the-greeting-message">
-<h2>How do I change the greeting message?<a class="headerlink" href="#how-do-i-change-the-greeting-message" title="Permalink to this heading">¶</a></h2>
+<h2>How do I change the greeting message?<a class="headerlink" href="#how-do-i-change-the-greeting-message" title="Link to this heading">¶</a></h2>
 <p>Change the value of the variable <code class="docutils literal notranslate"><span class="pre">fish_greeting</span></code> or create a <a class="reference internal" href="cmds/fish_greeting.html"><span class="doc">fish_greeting</span></a> function. For example, to remove the greeting use:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-U</span><span class="w"> </span><span class="no">fish_greeting</span>
 </pre></div>
@@ -265,12 +264,12 @@ add a statement to your <a class="reference internal" href="language.html#config
 <p>in <a class="reference internal" href="language.html#configuration"><span class="std std-ref">config.fish</span></a>.</p>
 </section>
 <section id="how-do-i-run-a-command-from-history">
-<h2>How do I run a command from history?<a class="headerlink" href="#how-do-i-run-a-command-from-history" title="Permalink to this heading">¶</a></h2>
+<h2>How do I run a command from history?<a class="headerlink" href="#how-do-i-run-a-command-from-history" title="Link to this heading">¶</a></h2>
 <p>Type some part of the command, and then hit the <kbd class="kbd docutils literal notranslate">↑</kbd> (up) or <kbd class="kbd docutils literal notranslate">↓</kbd> (down) arrow keys to navigate through history matches, or press <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">R</kbd> to open the history in a searchable pager. In this pager you can press <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">R</kbd> or <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">S</kbd> to move to older or younger history respectively.</p>
 <p>Additional default key bindings include <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">P</kbd> (up) and <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">N</kbd> (down). See <a class="reference internal" href="interactive.html#history-search"><span class="std std-ref">Searchable command history</span></a> for more information.</p>
 </section>
 <section id="why-doesn-t-history-substitution-etc-work">
-<h2>Why doesn’t history substitution (“!$” etc.) work?<a class="headerlink" href="#why-doesn-t-history-substitution-etc-work" title="Permalink to this heading">¶</a></h2>
+<h2>Why doesn’t history substitution (“!$” etc.) work?<a class="headerlink" href="#why-doesn-t-history-substitution-etc-work" title="Link to this heading">¶</a></h2>
 <p>Because history substitution is an awkward interface that was invented before interactive line editing was even possible. Instead of adding this pseudo-syntax, fish opts for nice history searching and recall features.  Switching requires a small change of habits: if you want to modify an old line/word, first recall it, then edit.</p>
 <p>As a special case, most of the time history substitution is used as <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">!!</span></code>. In that case just press <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">S</kbd>, and it will recall your last commandline with <code class="docutils literal notranslate"><span class="pre">sudo</span></code> prefixed (or toggle a <code class="docutils literal notranslate"><span class="pre">sudo</span></code> prefix on the current commandline if there is anything).</p>
 <p>In general, fish’s history recall works like this:</p>
@@ -284,7 +283,7 @@ add a statement to your <a class="reference internal" href="language.html#config
 <p>See <a class="reference internal" href="interactive.html#editor"><span class="std std-ref">documentation</span></a> for more details about line editing in fish.</p>
 </section>
 <section id="how-do-i-run-a-subcommand-the-backtick-doesn-t-work">
-<h2>How do I run a subcommand? The backtick doesn’t work!<a class="headerlink" href="#how-do-i-run-a-subcommand-the-backtick-doesn-t-work" title="Permalink to this heading">¶</a></h2>
+<h2>How do I run a subcommand? The backtick doesn’t work!<a class="headerlink" href="#how-do-i-run-a-subcommand-the-backtick-doesn-t-work" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">fish</span></code> uses parentheses for subcommands. For example:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">(</span><span class="nf">ls</span><span class="o">)</span>
 <span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$i</span>
@@ -294,7 +293,7 @@ add a statement to your <a class="reference internal" href="language.html#config
 <p>It also supports the familiar <code class="docutils literal notranslate"><span class="pre">$()</span></code> syntax, even in quotes. Backticks are not supported because they are discouraged even in POSIX shells. They nest poorly and are hard to tell from single quotes (<code class="docutils literal notranslate"><span class="pre">''</span></code>).</p>
 </section>
 <section id="my-command-pkg-config-gives-its-output-as-a-single-long-string">
-<h2>My command (pkg-config) gives its output as a single long string?<a class="headerlink" href="#my-command-pkg-config-gives-its-output-as-a-single-long-string" title="Permalink to this heading">¶</a></h2>
+<h2>My command (pkg-config) gives its output as a single long string?<a class="headerlink" href="#my-command-pkg-config-gives-its-output-as-a-single-long-string" title="Link to this heading">¶</a></h2>
 <p>Unlike other shells, fish splits command substitutions only on newlines, not spaces or tabs or the characters in $IFS.</p>
 <p>That means if you run</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">count</span><span class="w"> </span><span class="o">(</span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s &#39;</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="no">c</span><span class="o">)</span>
@@ -314,7 +313,7 @@ add a statement to your <a class="reference internal" href="language.html#config
 <p>The <code class="docutils literal notranslate"><span class="pre">-n</span></code> is so empty elements are removed like POSIX shells would do.</p>
 </section>
 <section id="how-do-i-get-the-exit-status-of-a-command">
-<h2>How do I get the exit status of a command?<a class="headerlink" href="#how-do-i-get-the-exit-status-of-a-command" title="Permalink to this heading">¶</a></h2>
+<h2>How do I get the exit status of a command?<a class="headerlink" href="#how-do-i-get-the-exit-status-of-a-command" title="Link to this heading">¶</a></h2>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">$status</span></code> variable. This replaces the <code class="docutils literal notranslate"><span class="pre">$?</span></code> variable used in other shells.</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">somecommand</span>
 <span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="o">$status</span><span class="w"> </span><span class="no">-eq</span><span class="w"> </span><span class="no">7</span>
@@ -338,7 +337,7 @@ add a statement to your <a class="reference internal" href="language.html#config
 <p>See the <a class="reference internal" href="language.html#syntax-conditional"><span class="std std-ref">Conditions</span></a> and the documentation for <a class="reference internal" href="cmds/test.html"><span class="doc">test</span></a> and <a class="reference internal" href="cmds/if.html"><span class="doc">if</span></a> for more information.</p>
 </section>
 <section id="my-command-prints-no-matches-for-wildcard-but-works-in-bash">
-<h2>My command prints “No matches for wildcard” but works in bash<a class="headerlink" href="#my-command-prints-no-matches-for-wildcard-but-works-in-bash" title="Permalink to this heading">¶</a></h2>
+<h2>My command prints “No matches for wildcard” but works in bash<a class="headerlink" href="#my-command-prints-no-matches-for-wildcard-but-works-in-bash" title="Link to this heading">¶</a></h2>
 <p>In short: <a class="reference internal" href="language.html#quotes"><span class="std std-ref">quote</span></a> or <a class="reference internal" href="language.html#escapes"><span class="std std-ref">escape</span></a> the wildcard:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">scp</span><span class="w"> </span><span class="no">user@ip:/dir/</span><span class="s2">&quot;string-*&quot;</span>
 </pre></div>
@@ -375,15 +374,15 @@ add a statement to your <a class="reference internal" href="language.html#config
 <p>This is similar to bash’s “failglob” option.</p>
 </section>
 <section id="i-accidentally-entered-a-directory-path-and-fish-changed-directory-what-happened">
-<h2>I accidentally entered a directory path and fish changed directory. What happened?<a class="headerlink" href="#i-accidentally-entered-a-directory-path-and-fish-changed-directory-what-happened" title="Permalink to this heading">¶</a></h2>
+<h2>I accidentally entered a directory path and fish changed directory. What happened?<a class="headerlink" href="#i-accidentally-entered-a-directory-path-and-fish-changed-directory-what-happened" title="Link to this heading">¶</a></h2>
 <p>If fish is unable to locate a command with a given name, and it starts with <code class="docutils literal notranslate"><span class="pre">.</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code> or <code class="docutils literal notranslate"><span class="pre">~</span></code>, fish will test if a directory of that name exists. If it does, it assumes that you want to change your directory. For example, the fastest way to switch to your home directory is to simply press <code class="docutils literal notranslate"><span class="pre">~</span></code> and enter.</p>
 </section>
 <section id="the-open-command-doesn-t-work">
-<h2>The open command doesn’t work.<a class="headerlink" href="#the-open-command-doesn-t-work" title="Permalink to this heading">¶</a></h2>
+<h2>The open command doesn’t work.<a class="headerlink" href="#the-open-command-doesn-t-work" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">open</span></code> command uses the MIME type database and the <code class="docutils literal notranslate"><span class="pre">.desktop</span></code> files used by Gnome and KDE to identify filetypes and default actions. If at least one of these environments is installed, but the open command is not working, this probably means that the relevant files are installed in a non-standard location. Consider <a class="reference internal" href="index.html#more-help"><span class="std std-ref">asking for more help</span></a>.</p>
 </section>
 <section id="why-won-t-ssh-scp-rsync-connect-properly-when-fish-is-my-login-shell">
-<span id="faq-ssh-interactive"></span><h2>Why won’t SSH/SCP/rsync connect properly when fish is my login shell?<a class="headerlink" href="#why-won-t-ssh-scp-rsync-connect-properly-when-fish-is-my-login-shell" title="Permalink to this heading">¶</a></h2>
+<span id="faq-ssh-interactive"></span><h2>Why won’t SSH/SCP/rsync connect properly when fish is my login shell?<a class="headerlink" href="#why-won-t-ssh-scp-rsync-connect-properly-when-fish-is-my-login-shell" title="Link to this heading">¶</a></h2>
 <p>This problem may show up as messages like “<code class="docutils literal notranslate"><span class="pre">Received</span> <span class="pre">message</span> <span class="pre">too</span> <span class="pre">long</span></code>”, “<code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">terminal</span>
 <span class="pre">failed:</span> <span class="pre">not</span> <span class="pre">a</span> <span class="pre">terminal</span></code>”, “<code class="docutils literal notranslate"><span class="pre">Bad</span> <span class="pre">packet</span> <span class="pre">length</span></code>”, or “<code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">refused</span></code>” with strange output
 in <code class="docutils literal notranslate"><span class="pre">ssh_exchange_identification</span></code> messages in the debug log.</p>
@@ -399,7 +398,7 @@ whether it’s in an interactive or login or non-interactive or non-login shell.
 <p>The same applies for example when you start <code class="docutils literal notranslate"><span class="pre">tmux</span></code> in config.fish without guards, which will cause a message like <code class="docutils literal notranslate"><span class="pre">sessions</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">nested</span> <span class="pre">with</span> <span class="pre">care,</span> <span class="pre">unset</span> <span class="pre">$TMUX</span> <span class="pre">to</span> <span class="pre">force</span></code>.</p>
 </section>
 <section id="i-m-getting-weird-graphical-glitches-a-staircase-effect-ghost-characters-cursor-in-the-wrong-position">
-<span id="faq-unicode"></span><h2>I’m getting weird graphical glitches (a staircase effect, ghost characters, cursor in the wrong position,…)?<a class="headerlink" href="#i-m-getting-weird-graphical-glitches-a-staircase-effect-ghost-characters-cursor-in-the-wrong-position" title="Permalink to this heading">¶</a></h2>
+<span id="faq-unicode"></span><h2>I’m getting weird graphical glitches (a staircase effect, ghost characters, cursor in the wrong position,…)?<a class="headerlink" href="#i-m-getting-weird-graphical-glitches-a-staircase-effect-ghost-characters-cursor-in-the-wrong-position" title="Link to this heading">¶</a></h2>
 <p>In a terminal, the application running inside it and the terminal itself need to agree on the width of characters in order to handle cursor movement.</p>
 <p>This is more important to fish than other shells because features like syntax highlighting and autosuggestions are implemented by moving the cursor.</p>
 <p>Sometimes, there is disagreement on the width. There are numerous causes and fixes for this:</p>
@@ -416,7 +415,7 @@ whether it’s in an interactive or login or non-interactive or non-login shell.
 </ul>
 </section>
 <section id="uninstalling-fish">
-<span id="faq-uninstalling"></span><h2>Uninstalling fish<a class="headerlink" href="#uninstalling-fish" title="Permalink to this heading">¶</a></h2>
+<span id="faq-uninstalling"></span><h2>Uninstalling fish<a class="headerlink" href="#uninstalling-fish" title="Link to this heading">¶</a></h2>
 <p>If you want to uninstall fish, first make sure fish is not set as your shell. Run <code class="docutils literal notranslate"><span class="pre">chsh</span> <span class="pre">-s</span> <span class="pre">/bin/bash</span></code> if you are not sure.</p>
 <p>If you installed it with a package manager, just use that package manager’s uninstall function. If you built fish yourself, assuming you installed it to /usr/local, do this:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="w"> </span><span class="no">-Rf</span><span class="w"> </span><span class="no">/usr/local/etc/fish</span><span class="w"> </span><span class="no">/usr/local/share/fish</span><span class="w"> </span><span class="o">~</span><span class="no">/.config/fish</span>
@@ -427,7 +426,7 @@ whether it’s in an interactive or login or non-interactive or non-login shell.
 </div>
 </section>
 <section id="where-can-i-find-extra-tools-for-fish">
-<h2>Where can I find extra tools for fish?<a class="headerlink" href="#where-can-i-find-extra-tools-for-fish" title="Permalink to this heading">¶</a></h2>
+<h2>Where can I find extra tools for fish?<a class="headerlink" href="#where-can-i-find-extra-tools-for-fish" title="Link to this heading">¶</a></h2>
 <p>The fish user community extends fish in unique and useful ways via scripts that aren’t always appropriate for bundling with the fish package. Typically because they solve a niche problem unlikely to appeal to a broad audience. You can find those extensions, including prompts, themes and useful functions, in various third-party repositories. These include:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/jorgebucaran/fisher">Fisher</a></p></li>
@@ -453,7 +452,7 @@ whether it’s in an interactive or login or non-interactive or non-login shell.
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Frequently asked questions</a></li>
@@ -484,7 +483,7 @@ whether it’s in an interactive or login or non-interactive or non-login shell.
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 </div>
 

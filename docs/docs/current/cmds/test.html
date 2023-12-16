@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>test - perform tests on files and text &#8212; fish-shell 3.6.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <title>test - perform tests on files and text &#8212; fish-shell 3.6.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4900ad2e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=908890c3" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/documentation_options.js?v=6200d54f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="time - measure how long a command or block takes" href="time.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -110,23 +109,23 @@
           <div class="body" role="main">
             
   <section id="test-perform-tests-on-files-and-text">
-<span id="cmd-test"></span><h1>test - perform tests on files and text<a class="headerlink" href="#test-perform-tests-on-files-and-text" title="Permalink to this heading">¶</a></h1>
+<span id="cmd-test"></span><h1>test - perform tests on files and text<a class="headerlink" href="#test-perform-tests-on-files-and-text" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
-<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">test</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">EXPRESSION</span><span class="g g-Other">]</span>
 <span class="nf">[ </span><span class="g g-Other">[</span><span class="no">EXPRESSION</span><span class="g g-Other">]</span><span class="no"> ]</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>Tests the expression given and sets the exit status to 0 if true, and 1 if false. An expression is made up of one or more operators and their arguments.</p>
 <p>The first form (<code class="docutils literal notranslate"><span class="pre">test</span></code>) is preferred. For compatibility with other shells, the second form is available: a matching pair of square brackets (<code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">[EXPRESSION]</span> <span class="pre">]</span></code>).</p>
 <p>This test is mostly POSIX-compatible.</p>
 <p>When using a variable as an argument for a test operator you should almost always enclose it in double-quotes. There are only two situations it is safe to omit the quote marks. The first is when the argument is a literal string with no whitespace or other characters special to the shell (e.g., semicolon). For example, <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">-b</span> <span class="pre">/my/file</span></code>. The second is using a variable that expands to exactly one element including if that element is the empty string (e.g., <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">x</span> <span class="pre">''</span></code>). If the variable is not set, set but with no value, or set to more than one value you must enclose it in double-quotes. For example, <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">&quot;$x&quot;</span> <span class="pre">=</span> <span class="pre">&quot;$y&quot;</span></code>. Since it is always safe to enclose variables in double-quotes when used as <code class="docutils literal notranslate"><span class="pre">test</span></code> arguments that is the recommended practice.</p>
 </section>
 <section id="operators-for-files-and-directories">
-<h2>Operators for files and directories<a class="headerlink" href="#operators-for-files-and-directories" title="Permalink to this heading">¶</a></h2>
+<h2>Operators for files and directories<a class="headerlink" href="#operators-for-files-and-directories" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt><strong>-b</strong> <em>FILE</em></dt><dd><p>Returns true if <em>FILE</em> is a block device.</p>
 </dd>
@@ -167,7 +166,7 @@
 </dl>
 </section>
 <section id="operators-to-compare-files-and-directories">
-<h2>Operators to compare files and directories<a class="headerlink" href="#operators-to-compare-files-and-directories" title="Permalink to this heading">¶</a></h2>
+<h2>Operators to compare files and directories<a class="headerlink" href="#operators-to-compare-files-and-directories" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt><em>FILE1</em> <strong>-nt</strong> <em>FILE2</em></dt><dd><p>Returns true if <em>FILE1</em> is newer than <em>FILE2</em>, or <em>FILE1</em> exists and <em>FILE2</em> does not.</p>
 </dd>
@@ -178,7 +177,7 @@
 </dl>
 </section>
 <section id="operators-for-text-strings">
-<h2>Operators for text strings<a class="headerlink" href="#operators-for-text-strings" title="Permalink to this heading">¶</a></h2>
+<h2>Operators for text strings<a class="headerlink" href="#operators-for-text-strings" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt><em>STRING1</em> <strong>=</strong> <em>STRING2</em></dt><dd><p>Returns true if the strings <em>STRING1</em> and <em>STRING2</em> are identical.</p>
 </dd>
@@ -191,7 +190,7 @@
 </dl>
 </section>
 <section id="operators-to-compare-and-examine-numbers">
-<h2>Operators to compare and examine numbers<a class="headerlink" href="#operators-to-compare-and-examine-numbers" title="Permalink to this heading">¶</a></h2>
+<h2>Operators to compare and examine numbers<a class="headerlink" href="#operators-to-compare-and-examine-numbers" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt><em>NUM1</em> <strong>-eq</strong> <em>NUM2</em></dt><dd><p>Returns true if <em>NUM1</em> and <em>NUM2</em> are numerically equal.</p>
 </dd>
@@ -209,7 +208,7 @@
 <p>Both integers and floating point numbers are supported.</p>
 </section>
 <section id="operators-to-combine-expressions">
-<h2>Operators to combine expressions<a class="headerlink" href="#operators-to-combine-expressions" title="Permalink to this heading">¶</a></h2>
+<h2>Operators to combine expressions<a class="headerlink" href="#operators-to-combine-expressions" title="Link to this heading">¶</a></h2>
 <dl class="simple">
 <dt><em>COND1</em> <strong>-a</strong> <em>COND2</em></dt><dd><p>Returns true if both <em>COND1</em> and <em>COND2</em> are true.</p>
 </dd>
@@ -229,7 +228,7 @@
 <p>Note that parentheses will usually require escaping with <code class="docutils literal notranslate"><span class="pre">\(</span></code> to avoid being interpreted as a command substitution.</p>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>If the <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> directory exists, copy the <code class="docutils literal notranslate"><span class="pre">/etc/motd</span></code> file to it:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="no">/tmp</span>
 <span class="w">    </span><span class="nf">cp</span><span class="w"> </span><span class="no">/etc/motd</span><span class="w"> </span><span class="no">/tmp/motd</span>
@@ -274,7 +273,7 @@
 </div>
 </section>
 <section id="standards">
-<h2>Standards<a class="headerlink" href="#standards" title="Permalink to this heading">¶</a></h2>
+<h2>Standards<a class="headerlink" href="#standards" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">test</span></code> implements a subset of the <a class="reference external" href="https://www.unix.com/man-page/posix/1p/test/">IEEE Std 1003.1-2008 (POSIX.1) standard</a>. The following exceptions apply:</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> operators for comparing strings are not implemented.</p></li>
@@ -300,7 +299,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -332,7 +331,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 </div>
 

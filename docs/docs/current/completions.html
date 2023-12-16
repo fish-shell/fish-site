@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Writing your own completions &#8212; fish-shell 3.6.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
+    <title>Writing your own completions &#8212; fish-shell 3.6.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4900ad2e" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=908890c3" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/documentation_options.js?v=6200d54f"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Design" href="design.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -102,7 +101,7 @@
           <div class="body" role="main">
             
   <section id="writing-your-own-completions">
-<span id="completion-own"></span><h1>Writing your own completions<a class="headerlink" href="#writing-your-own-completions" title="Permalink to this heading">¶</a></h1>
+<span id="completion-own"></span><h1>Writing your own completions<a class="headerlink" href="#writing-your-own-completions" title="Link to this heading">¶</a></h1>
 <p>To specify a completion, use the <code class="docutils literal notranslate"><span class="pre">complete</span></code> command. <code class="docutils literal notranslate"><span class="pre">complete</span></code> takes as a parameter the name of the command to specify a completion for. For example, to add a completion for the program <code class="docutils literal notranslate"><span class="pre">myprog</span></code>, one would start the completion command with <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">myprog</span> <span class="pre">...</span></code></p>
 <p>To provide a list of possible completions for myprog, use the <code class="docutils literal notranslate"><span class="pre">-a</span></code> switch. If <code class="docutils literal notranslate"><span class="pre">myprog</span></code> accepts the arguments start and stop, this can be specified as <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">myprog</span> <span class="pre">-a</span> <span class="pre">'start</span> <span class="pre">stop'</span></code>. The argument to the <code class="docutils literal notranslate"><span class="pre">-a</span></code> switch is always a single string. At completion time, it will be tokenized on spaces and tabs, and variable expansion, command substitution and other forms of parameter expansion will take place.</p>
 <p><code class="docutils literal notranslate"><span class="pre">fish</span></code> has a special syntax to support specifying switches accepted by a command. The switches <code class="docutils literal notranslate"><span class="pre">-s</span></code>, <code class="docutils literal notranslate"><span class="pre">-l</span></code> and <code class="docutils literal notranslate"><span class="pre">-o</span></code> are used to specify a short switch (single character, such as <code class="docutils literal notranslate"><span class="pre">-l</span></code>), a gnu style long switch (such as <code class="docutils literal notranslate"><span class="pre">--color</span></code>) and an old-style long switch (like <code class="docutils literal notranslate"><span class="pre">-shuffle</span></code>), respectively. If the command ‘myprog’ has an option ‘-o’ which can also be written as <code class="docutils literal notranslate"><span class="pre">--output</span></code>, and which can take an additional value of either ‘yes’ or ‘no’, this can be specified by writing:</p>
@@ -167,7 +166,7 @@
 </div>
 <p>For examples of how to write your own complex completions, study the completions in <code class="docutils literal notranslate"><span class="pre">/usr/share/fish/completions</span></code>. (The exact path depends on your chosen installation prefix and may be slightly different)</p>
 <section id="useful-functions-for-writing-completions">
-<span id="completion-func"></span><h2>Useful functions for writing completions<a class="headerlink" href="#useful-functions-for-writing-completions" title="Permalink to this heading">¶</a></h2>
+<span id="completion-func"></span><h2>Useful functions for writing completions<a class="headerlink" href="#useful-functions-for-writing-completions" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">fish</span></code> ships with several functions that are very useful when writing command specific completions. Most of these functions name begins with the string <code class="docutils literal notranslate"><span class="pre">__fish_</span></code>. Such functions are internal to <code class="docutils literal notranslate"><span class="pre">fish</span></code> and their name and interface may change in future fish versions. Still, some of them may be very useful when writing completions. A few of these functions are described here. Be aware that they may be removed or changed in future versions of fish.</p>
 <p>Functions beginning with the string <code class="docutils literal notranslate"><span class="pre">__fish_print_</span></code> print a newline separated list of strings. For example, <code class="docutils literal notranslate"><span class="pre">__fish_print_filesystems</span></code> prints a list of all known file systems. Functions beginning with <code class="docutils literal notranslate"><span class="pre">__fish_complete_</span></code> print out a newline separated list of completions with descriptions. The description is separated from the completion by a tab character.</p>
 <ul class="simple">
@@ -184,7 +183,7 @@
 </ul>
 </section>
 <section id="where-to-put-completions">
-<span id="completion-path"></span><h2>Where to put completions<a class="headerlink" href="#where-to-put-completions" title="Permalink to this heading">¶</a></h2>
+<span id="completion-path"></span><h2>Where to put completions<a class="headerlink" href="#where-to-put-completions" title="Link to this heading">¶</a></h2>
 <p>Completions can be defined on the commandline or in a configuration file, but they can also be automatically loaded. Fish automatically searches through any directories in the list variable <code class="docutils literal notranslate"><span class="pre">$fish_complete_path</span></code>, and any completions defined are automatically loaded when needed. A completion file must have a filename consisting of the name of the command to complete and the suffix <code class="docutils literal notranslate"><span class="pre">.fish</span></code>.</p>
 <p>By default, Fish searches the following for completions, using the first available file that it finds:</p>
 <ul class="simple">
@@ -216,7 +215,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -247,7 +246,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 </div>
 

@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>fish_key_reader - explore what characters keyboard keys send &#8212; fish-shell 3.6.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <title>fish_key_reader - explore what characters keyboard keys send &#8212; fish-shell 3.6.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4900ad2e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=908890c3" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/documentation_options.js?v=6200d54f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fish_mode_prompt - define the appearance of the mode indicator" href="fish_mode_prompt.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -105,15 +104,15 @@
           <div class="body" role="main">
             
   <section id="fish-key-reader-explore-what-characters-keyboard-keys-send">
-<span id="cmd-fish-key-reader"></span><h1>fish_key_reader - explore what characters keyboard keys send<a class="headerlink" href="#fish-key-reader-explore-what-characters-keyboard-keys-send" title="Permalink to this heading">¶</a></h1>
+<span id="cmd-fish-key-reader"></span><h1>fish_key_reader - explore what characters keyboard keys send<a class="headerlink" href="#fish-key-reader-explore-what-characters-keyboard-keys-send" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
-<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_key_reader</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p><strong class="program">fish_key_reader</strong> is used to explain how you would bind a certain key sequence. By default, it prints the <a class="reference internal" href="bind.html"><span class="doc">bind</span></a> command for one key sequence read interactively over standard input.</p>
 <p>If the character sequence matches a special key name (see <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">--key-names</span></code>),  both <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">CHARS</span> <span class="pre">...</span></code> and <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">-k</span> <span class="pre">KEYNAME</span> <span class="pre">...</span></code> usage will be shown. In verbose mode (enabled by passing <code class="docutils literal notranslate"><span class="pre">--verbose</span></code>), additional details about the characters received, such as the delay between chars, are written to standard error.</p>
 <p>The following options are available:</p>
@@ -129,7 +128,7 @@
 </dl>
 </section>
 <section id="usage-notes">
-<h2>Usage Notes<a class="headerlink" href="#usage-notes" title="Permalink to this heading">¶</a></h2>
+<h2>Usage Notes<a class="headerlink" href="#usage-notes" title="Link to this heading">¶</a></h2>
 <p>In verbose mode, the delay in milliseconds since the previous character was received is included in the diagnostic information written to standard error. This information may be useful to determine the optimal <code class="docutils literal notranslate"><span class="pre">fish_escape_delay_ms</span></code> setting or learn the amount of lag introduced by tools like <code class="docutils literal notranslate"><span class="pre">ssh</span></code>, <code class="docutils literal notranslate"><span class="pre">mosh</span></code> or <code class="docutils literal notranslate"><span class="pre">tmux</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">fish_key_reader</span></code> intentionally disables handling of many signals. To terminate <code class="docutils literal notranslate"><span class="pre">fish_key_reader</span></code> in <code class="docutils literal notranslate"><span class="pre">--continuous</span></code> mode do:</p>
 <ul class="simple">
@@ -140,7 +139,7 @@
 </ul>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish_key_reader</span>
 <span class="go">Press a key:</span>
 <span class="go"># press up-arrow</span>
@@ -171,7 +170,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -203,7 +202,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 </div>
 
