@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>string-shorten - shorten strings to a width, with an ellipsis &#8212; fish-shell 3.6.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <title>string-shorten - shorten strings to a width, with an ellipsis &#8212; fish-shell 3.6.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4900ad2e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=908890c3" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/documentation_options.js?v=6200d54f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="string-split - split strings by delimiter" href="string-split.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -105,16 +104,16 @@
           <div class="body" role="main">
             
   <section id="string-shorten-shorten-strings-to-a-width-with-an-ellipsis">
-<h1>string-shorten - shorten strings to a width, with an ellipsis<a class="headerlink" href="#string-shorten-shorten-strings-to-a-width-with-an-ellipsis" title="Permalink to this heading">¶</a></h1>
+<h1>string-shorten - shorten strings to a width, with an ellipsis<a class="headerlink" href="#string-shorten-shorten-strings-to-a-width-with-an-ellipsis" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
-<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-c</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--char</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">CHARS</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--max</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">INTEGER</span><span class="g g-Other">]</span>
 <span class="w">               </span><span class="g g-Other">[</span><span class="no">-N</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-newline</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-l</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--left</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">shorten</span></code> truncates each <em>STRING</em> to the given visible width and adds an ellipsis to indicate it. “Visible width” means the width of all visible characters added together, excluding escape sequences and accounting for <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-fish_emoji_width"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_emoji_width</span></code></a> and <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-fish_ambiguous_width"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_ambiguous_width</span></code></a>. It is the amount of columns in a terminal the <em>STRING</em> occupies.</p>
 <p>The escape sequences reflect what fish knows about, and how it computes its output. Your terminal might support more escapes, or not support escape sequences that fish knows about.</p>
 <p>If <strong>-m</strong> or <strong>--max</strong> is given, truncate at the given width. Otherwise, the lowest non-zero width of all input strings is used. A max of 0 means no shortening takes place, all STRINGs are printed as-is.</p>
@@ -126,7 +125,7 @@
 <p>The return value is 0 if any shortening occured, 1 otherwise.</p>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">foobar</span>
 <span class="go"># No width was given, we infer, and &quot;foo&quot; is the shortest.</span>
 <span class="go">foo</span>
@@ -166,7 +165,7 @@
 </div>
 </section>
 <section id="see-also">
-<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="string.html#cmd-string"><span class="std std-ref">string</span></a>’s <code class="docutils literal notranslate"><span class="pre">pad</span></code> subcommand does the inverse of this command, adding padding to a specific width instead.</p></li>
 <li><p>The <a class="reference internal" href="printf.html"><span class="doc">printf</span></a> command can do simple padding, for example <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%10s\n</span></code> works like <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">pad</span> <span class="pre">-w10</span></code>.</p></li>
@@ -189,7 +188,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -221,7 +220,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 </div>
 

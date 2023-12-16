@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>fish_delta - compare functions and completions to the default &#8212; fish-shell 3.6.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <title>fish_delta - compare functions and completions to the default &#8212; fish-shell 3.6.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4900ad2e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=908890c3" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/documentation_options.js?v=6200d54f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fish_git_prompt - output git information for use in a prompt" href="fish_git_prompt.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -105,9 +104,9 @@
           <div class="body" role="main">
             
   <section id="fish-delta-compare-functions-and-completions-to-the-default">
-<h1>fish_delta - compare functions and completions to the default<a class="headerlink" href="#fish-delta-compare-functions-and-completions-to-the-default" title="Permalink to this heading">¶</a></h1>
+<h1>fish_delta - compare functions and completions to the default<a class="headerlink" href="#fish-delta-compare-functions-and-completions-to-the-default" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
-<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_delta</span><span class="w"> </span><span class="no">name</span><span class="w"> </span><span class="g g-Other">...</span>
 <span class="nf">fish_delta</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-functions</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-c</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-completions</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-C</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-config</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-d</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-diff</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--new</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-V</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--vendor=</span><span class="g g-Other">]</span>
 <span class="nf">fish_delta</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-h</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--help</span><span class="g g-Other">]</span>
@@ -115,7 +114,7 @@
 </div>
 </section>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">fish_delta</span></code> function tells you, at a glance, which of your functions and completions differ from the set that fish ships.</p>
 <p>It does this by going through the relevant variables (<span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-fish_function_path"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_function_path</span></code></a> for functions and <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-fish_complete_path"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_complete_path</span></code></a> for completions) and comparing the files against fish’s default directories.</p>
 <p>If any names are given, it will only compare files by those names (plus a “.fish” extension).</p>
@@ -123,7 +122,7 @@
 <p>The exit status is 1 if there was a difference and 2 for other errors, otherwise 0.</p>
 </section>
 <section id="options">
-<h2>Options<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h2>
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
 <p>The following options are available:</p>
 <dl class="simple">
 <dt><strong>-f</strong> or <strong>--no-functions</strong></dt><dd><p>Stops checking functions</p>
@@ -148,7 +147,7 @@
 </dl>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <p>Running just:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_delta</span>
 </pre></div>
@@ -186,7 +185,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -218,7 +217,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 </div>
 

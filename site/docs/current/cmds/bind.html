@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>bind - handle fish key bindings &#8212; fish-shell 3.6.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <title>bind - handle fish key bindings &#8212; fish-shell 3.6.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4900ad2e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=908890c3" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/documentation_options.js?v=6200d54f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="block - temporarily block delivery of events" href="block.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -109,9 +108,9 @@
           <div class="body" role="main">
             
   <section id="bind-handle-fish-key-bindings">
-<span id="cmd-bind"></span><h1>bind - handle fish key bindings<a class="headerlink" href="#bind-handle-fish-key-bindings" title="Permalink to this heading">¶</a></h1>
+<span id="cmd-bind"></span><h1>bind - handle fish key bindings<a class="headerlink" href="#bind-handle-fish-key-bindings" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
-<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-M</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--sets-mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">NEW_MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-s</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--silent</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-k</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEQUENCE</span><span class="w"> </span><span class="no">COMMAND</span><span class="w"> </span><span class="g g-Other">...</span>
 <span class="nf">bind</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-M</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-k</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEQUENCE</span>
 <span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-K</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key-names</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span>
@@ -122,7 +121,7 @@
 </div>
 </section>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">bind</span></code> manages bindings.</p>
 <p>It can add bindings if given a SEQUENCE of characters to bind to. These should be written as <a class="reference internal" href="../language.html#escapes"><span class="std std-ref">fish escape sequences</span></a>. The most important of these are <code class="docutils literal notranslate"><span class="pre">\c</span></code> for the control key, and <code class="docutils literal notranslate"><span class="pre">\e</span></code> for escape, and because of historical reasons also the Alt key (sometimes also called “Meta”).</p>
 <p>For example, <kbd class="kbd docutils literal notranslate">Alt</kbd>+<kbd class="kbd docutils literal notranslate">W</kbd> can be written as <code class="docutils literal notranslate"><span class="pre">\ew</span></code>, and <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">X</kbd> (^X) can be written as <code class="docutils literal notranslate"><span class="pre">\cx</span></code>. Note that Alt-based key bindings are case sensitive and Control-based key bindings are not. This is a constraint of text-based terminals, not <code class="docutils literal notranslate"><span class="pre">fish</span></code>.</p>
@@ -140,7 +139,7 @@
 <p>Key bindings may use “modes”, which mimics Vi’s modal input behavior. The default mode is “default”. Every key binding applies to a single mode; you can specify which one with <code class="docutils literal notranslate"><span class="pre">-M</span> <span class="pre">MODE</span></code>. If the key binding should change the mode, you can specify the new mode with <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">NEW_MODE</span></code>. The mode can be viewed and changed via the <code class="docutils literal notranslate"><span class="pre">$fish_bind_mode</span></code> variable. If you want to change the mode from inside a fish function, use <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">fish_bind_mode</span> <span class="pre">MODE</span></code>.</p>
 </section>
 <section id="options">
-<h2>Options<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h2>
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
 <p>The following options are available:</p>
 <dl class="simple">
 <dt><strong>-k</strong> or <strong>--key</strong></dt><dd><p>Specify a key name, such as ‘left’ or ‘backspace’ instead of a character sequence</p>
@@ -175,7 +174,7 @@ All invocations except for inserting new bindings can operate on both levels at 
 </dl>
 </section>
 <section id="special-input-functions">
-<h2>Special input functions<a class="headerlink" href="#special-input-functions" title="Permalink to this heading">¶</a></h2>
+<h2>Special input functions<a class="headerlink" href="#special-input-functions" title="Link to this heading">¶</a></h2>
 <p>The following special input functions are available:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">and</span></code></dt><dd><p>only execute the next function if the previous succeeded (note: only some functions report success)</p>
@@ -327,7 +326,7 @@ or if at the end of the commandline, accept one word from the current autosugges
 </dl>
 </section>
 <section id="additional-functions">
-<h2>Additional functions<a class="headerlink" href="#additional-functions" title="Permalink to this heading">¶</a></h2>
+<h2>Additional functions<a class="headerlink" href="#additional-functions" title="Link to this heading">¶</a></h2>
 <p>The following functions are included as normal functions, but are particularly useful for input editing:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">up-or-search</span></code> and <code class="docutils literal notranslate"><span class="pre">down-or-search</span></code></dt><dd><p>move the cursor or search the history depending on the cursor position and current mode</p>
@@ -345,7 +344,7 @@ or if at the end of the commandline, accept one word from the current autosugges
 </dl>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>Exit the shell when <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">D</kbd> is pressed:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="se">\c</span><span class="no">d</span><span class="w"> </span><span class="s1">&#39;exit&#39;</span>
 </pre></div>
@@ -365,7 +364,7 @@ or if at the end of the commandline, accept one word from the current autosugges
 </div>
 </section>
 <section id="terminal-limitations">
-<span id="cmd-bind-termlimits"></span><h2>Terminal Limitations<a class="headerlink" href="#terminal-limitations" title="Permalink to this heading">¶</a></h2>
+<span id="cmd-bind-termlimits"></span><h2>Terminal Limitations<a class="headerlink" href="#terminal-limitations" title="Link to this heading">¶</a></h2>
 <p>Unix terminals, like the ones fish operates in, are at heart 70s technology. They have some limitations that applications running inside them can’t workaround.</p>
 <p>For instance, the control key modifies a character by setting the top three bits to 0. This means:</p>
 <ul class="simple">
@@ -375,7 +374,7 @@ or if at the end of the commandline, accept one word from the current autosugges
 <p>Other keys don’t have a direct encoding, and are sent as escape sequences. For example <kbd class="kbd docutils literal notranslate">→</kbd> (Right) often sends <code class="docutils literal notranslate"><span class="pre">\e\[C</span></code>. These can differ from terminal to terminal, and the mapping is typically available in <cite>terminfo(5)</cite>. Sometimes however a terminal identifies as e.g. <code class="docutils literal notranslate"><span class="pre">xterm-256color</span></code> for compatibility, but then implements xterm’s sequences incorrectly.</p>
 </section>
 <section id="special-case-the-escape-character">
-<span id="cmd-bind-escape"></span><h2>Special Case: The Escape Character<a class="headerlink" href="#special-case-the-escape-character" title="Permalink to this heading">¶</a></h2>
+<span id="cmd-bind-escape"></span><h2>Special Case: The Escape Character<a class="headerlink" href="#special-case-the-escape-character" title="Link to this heading">¶</a></h2>
 <p>The escape key can be used standalone, for example, to switch from insertion mode to normal mode when using Vi keybindings. Escape can also be used as a “meta” key, to indicate the start of an escape sequence, like for function or arrow keys. Custom bindings can also be defined that begin with an escape character.</p>
 <p>Holding alt and something else also typically sends escape, for example holding alt+a will send an escape character and then an “a”.</p>
 <p>fish waits for a period after receiving the escape character, to determine whether it is standalone or part of an escape sequence. While waiting, additional key presses make the escape key behave as a meta key. If no other key presses come in, it is handled as a standalone escape. The waiting period is set to 30 milliseconds (0.03 seconds). It can be configured by setting the <code class="docutils literal notranslate"><span class="pre">fish_escape_delay_ms</span></code> variable to a value between 10 and 5000 ms. This can be a universal variable that you set once from an interactive session.</p>
@@ -396,7 +395,7 @@ or if at the end of the commandline, accept one word from the current autosugges
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -428,7 +427,7 @@ or if at the end of the commandline, accept one word from the current autosugges
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 </div>
 

@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Design &#8212; fish-shell 3.6.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css" />
+    <title>Design &#8212; fish-shell 3.6.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4900ad2e" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=908890c3" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/documentation_options.js?v=6200d54f"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Release notes" href="relnotes.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Design</a></li>
@@ -105,7 +104,7 @@
           <div class="body" role="main">
             
   <section id="design">
-<span id="id1"></span><h1>Design<a class="headerlink" href="#design" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>Design<a class="headerlink" href="#design" title="Link to this heading">¶</a></h1>
 <p>This is a description of the design principles that have been used to design fish. The fish design has three high level goals. These are:</p>
 <ol class="arabic simple">
 <li><p>Everything that can be done in other shell languages should be possible to do in fish, though fish may rely on external commands in doing so.</p></li>
@@ -114,7 +113,7 @@
 </ol>
 <p>To achieve these high-level goals, the fish design relies on a number of more specific design principles. These are presented below, together with a rationale and a few examples for each.</p>
 <section id="the-law-of-orthogonality">
-<h2>The law of orthogonality<a class="headerlink" href="#the-law-of-orthogonality" title="Permalink to this heading">¶</a></h2>
+<h2>The law of orthogonality<a class="headerlink" href="#the-law-of-orthogonality" title="Link to this heading">¶</a></h2>
 <p>The shell language should have a small set of orthogonal features. Any situation where two features are related but not identical, one of them should be removed, and the other should be made powerful and general enough to handle all common use cases of either feature.</p>
 <p>Rationale:
 Related features make the language larger, which makes it harder to learn. It also increases the size of the source code, making the program harder to maintain and update.</p>
@@ -127,7 +126,7 @@ Related features make the language larger, which makes it harder to learn. It al
 </ul>
 </section>
 <section id="the-law-of-responsiveness">
-<h2>The law of responsiveness<a class="headerlink" href="#the-law-of-responsiveness" title="Permalink to this heading">¶</a></h2>
+<h2>The law of responsiveness<a class="headerlink" href="#the-law-of-responsiveness" title="Link to this heading">¶</a></h2>
 <p>The shell should attempt to remain responsive to the user at all times, even in the face of contended or unresponsive filesystems. It is only acceptable to block in response to a user initiated action, such as running a command.</p>
 <p>Rationale:
 Bad performance increases user-facing complexity, because it trains users to recognize and route around slow use cases. It is also incredibly frustrating.</p>
@@ -138,7 +137,7 @@ Bad performance increases user-facing complexity, because it trains users to rec
 </ul>
 </section>
 <section id="configurability-is-the-root-of-all-evil">
-<h2>Configurability is the root of all evil<a class="headerlink" href="#configurability-is-the-root-of-all-evil" title="Permalink to this heading">¶</a></h2>
+<h2>Configurability is the root of all evil<a class="headerlink" href="#configurability-is-the-root-of-all-evil" title="Link to this heading">¶</a></h2>
 <p>Every configuration option in a program is a place where the program is too stupid to figure out for itself what the user really wants, and should be considered a failure of both the program and the programmer who implemented it.</p>
 <p>Rationale:
 Different configuration options are a nightmare to maintain, since the number of potential bugs caused by specific configuration combinations quickly becomes an issue. Configuration options often imply assumptions about the code which change when reimplementing the code, causing issues with backwards compatibility. But mostly, configuration options should be avoided since they simply should not exist, as the program should be smart enough to do what is best, or at least a good enough approximation of it.</p>
@@ -150,7 +149,7 @@ Different configuration options are a nightmare to maintain, since the number of
 <p>A special note on the evils of configurability is the long list of very useful features found in some shells, that are not turned on by default. Both zsh and bash support command-specific completions, but no such completions are shipped with bash by default, and they are turned off by default in zsh. Other features that zsh supports that are disabled by default include tab-completion of strings containing wildcards, a sane completion pager and a history file.</p>
 </section>
 <section id="the-law-of-user-focus">
-<h2>The law of user focus<a class="headerlink" href="#the-law-of-user-focus" title="Permalink to this heading">¶</a></h2>
+<h2>The law of user focus<a class="headerlink" href="#the-law-of-user-focus" title="Link to this heading">¶</a></h2>
 <p>When designing a program, one should first think about how to make an intuitive and powerful program. Implementation issues should only be considered once a user interface has been designed.</p>
 <p>Rationale:
 This design rule is different than the others, since it describes how one should go about designing new features, not what the features should be. The problem with focusing on what can be done, and what is easy to do, is that too much of the implementation is exposed. This means that the user must know a great deal about the underlying system to be able to guess how the shell works, it also means that the language will often be rather low-level.</p>
@@ -163,7 +162,7 @@ This design rule is different than the others, since it describes how one should
 </ul>
 </section>
 <section id="the-law-of-discoverability">
-<h2>The law of discoverability<a class="headerlink" href="#the-law-of-discoverability" title="Permalink to this heading">¶</a></h2>
+<h2>The law of discoverability<a class="headerlink" href="#the-law-of-discoverability" title="Link to this heading">¶</a></h2>
 <p>A program should be designed to make its features as easy as possible to discover for the user.</p>
 <p>Rationale:
 A program whose features are discoverable turns a new user into an expert in a shorter span of time, since the user will become an expert on the program simply by using it.</p>
@@ -192,7 +191,7 @@ A program whose features are discoverable turns a new user into an expert in a s
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Design</a></li>
@@ -223,7 +222,7 @@ A program whose features are discoverable turns a new user into an expert in a s
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 </div>
 

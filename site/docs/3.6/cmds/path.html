@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>path - manipulate and check paths &#8212; fish-shell 3.6.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css" />
+    <title>path - manipulate and check paths &#8212; fish-shell 3.6.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4900ad2e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=908890c3" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/documentation_options.js?v=6200d54f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="popd - move through directory stack" href="popd.html" />
@@ -28,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -144,9 +143,9 @@
           <div class="body" role="main">
             
   <section id="path-manipulate-and-check-paths">
-<span id="cmd-path"></span><h1>path - manipulate and check paths<a class="headerlink" href="#path-manipulate-and-check-paths" title="Permalink to this heading">¶</a></h1>
+<span id="cmd-path"></span><h1>path - manipulate and check paths<a class="headerlink" href="#path-manipulate-and-check-paths" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
-<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">path</span><span class="w"> </span><span class="no">basename</span><span class="w"> </span><span class="no">GENERAL_OPTIONS</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">PATH</span><span class="w"> </span><span class="g g-Other">...]</span>
 <span class="nf">path</span><span class="w"> </span><span class="no">dirname</span><span class="w"> </span><span class="no">GENERAL_OPTIONS</span><span class="w">  </span><span class="g g-Other">[</span><span class="no">PATH</span><span class="w"> </span><span class="g g-Other">...]</span>
 <span class="nf">path</span><span class="w"> </span><span class="no">extension</span><span class="w"> </span><span class="no">GENERAL_OPTIONS</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">PATH</span><span class="w"> </span><span class="g g-Other">...]</span>
@@ -169,7 +168,7 @@
 </div>
 </section>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">path</span></code> performs operations on paths.</p>
 <p>PATH arguments are taken from the command line unless standard input is connected to a pipe or a file, in which case they are read from standard input, one PATH per line. It is an error to supply PATH arguments on both the command line and on standard input.</p>
 <p>Arguments starting with <code class="docutils literal notranslate"><span class="pre">-</span></code> are normally interpreted as switches; <code class="docutils literal notranslate"><span class="pre">--</span></code> causes the following arguments not to be treated as switches even if they begin with <code class="docutils literal notranslate"><span class="pre">-</span></code>. Switches and required arguments are recognized only on the command line.</p>
@@ -181,14 +180,14 @@
 <p>The following subcommands are available.</p>
 </section>
 <section id="basename-subcommand">
-<span id="cmd-path-basename"></span><h2>“basename” subcommand<a class="headerlink" href="#basename-subcommand" title="Permalink to this heading">¶</a></h2>
+<span id="cmd-path-basename"></span><h2>“basename” subcommand<a class="headerlink" href="#basename-subcommand" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">path</span><span class="w"> </span><span class="no">basename</span><span class="w"> </span><span class="no">[-z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-in]</span><span class="w"> </span><span class="no">[-Z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-out]</span><span class="w"> </span><span class="no">[-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet]</span><span class="w"> </span><span class="no">[PATH</span><span class="w"> </span><span class="no">...]</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">basename</span></code> returns the last path component of the given path, by removing the directory prefix and removing trailing slashes. In other words, it is the part that is not the dirname. For files you might call it the “filename”.</p>
 <p>It returns 0 if there was a basename, i.e. if the path wasn’t empty or just slashes.</p>
 <section id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">path</span><span class="w"> </span><span class="no">basename</span><span class="w"> </span><span class="no">./foo.mp4</span>
 <span class="go">foo.mp4</span>
 
@@ -210,14 +209,14 @@
 </section>
 </section>
 <section id="dirname-subcommand">
-<h2>“dirname” subcommand<a class="headerlink" href="#dirname-subcommand" title="Permalink to this heading">¶</a></h2>
+<h2>“dirname” subcommand<a class="headerlink" href="#dirname-subcommand" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">path</span><span class="w"> </span><span class="no">dirname</span><span class="w"> </span><span class="no">[-z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-in]</span><span class="w"> </span><span class="no">[-Z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-out]</span><span class="w"> </span><span class="no">[-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet]</span><span class="w"> </span><span class="no">[PATH</span><span class="w"> </span><span class="no">...]</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">dirname</span></code> returns the dirname for the given path. This is the part before the last “/”, discounting trailing slashes. In other words, it is the part that is not the basename (discounting superfluous slashes).</p>
 <p>It returns 0 if there was a dirname, i.e. if the path wasn’t empty or just slashes.</p>
 <section id="id1">
-<h3>Examples<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">path</span><span class="w"> </span><span class="no">dirname</span><span class="w"> </span><span class="no">./foo.mp4</span>
 <span class="go">.</span>
 
@@ -231,7 +230,7 @@
 </section>
 </section>
 <section id="extension-subcommand">
-<h2>“extension” subcommand<a class="headerlink" href="#extension-subcommand" title="Permalink to this heading">¶</a></h2>
+<h2>“extension” subcommand<a class="headerlink" href="#extension-subcommand" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">path</span><span class="w"> </span><span class="no">extension</span><span class="w"> </span><span class="no">[-z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-in]</span><span class="w"> </span><span class="no">[-Z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-out]</span><span class="w"> </span><span class="no">[-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet]</span><span class="w"> </span><span class="no">[PATH</span><span class="w"> </span><span class="no">...]</span>
 </pre></div>
 </div>
@@ -239,7 +238,7 @@
 <p>If the filename ends in a “.”, only a “.” is printed.</p>
 <p>It returns 0 if there was an extension.</p>
 <section id="id2">
-<h3>Examples<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">path</span><span class="w"> </span><span class="no">extension</span><span class="w"> </span><span class="no">./foo.mp4</span>
 <span class="go">.mp4</span>
 
@@ -265,7 +264,7 @@
 </section>
 </section>
 <section id="filter-subcommand">
-<span id="cmd-path-filter"></span><h2>“filter” subcommand<a class="headerlink" href="#filter-subcommand" title="Permalink to this heading">¶</a></h2>
+<span id="cmd-path-filter"></span><h2>“filter” subcommand<a class="headerlink" href="#filter-subcommand" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">path</span><span class="w"> </span><span class="no">filter</span><span class="w"> </span><span class="no">[-z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-in]</span><span class="w"> </span><span class="no">[-Z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-out]</span><span class="w"> </span><span class="no">[-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet]</span><span class="nv"> \</span>
 <span class="nv">    </span><span class="no">[-d]</span><span class="w"> </span><span class="no">[-f]</span><span class="w"> </span><span class="no">[-l]</span><span class="w"> </span><span class="no">[-r]</span><span class="w"> </span><span class="no">[-w]</span><span class="w"> </span><span class="no">[-x]</span><span class="nv"> \</span>
 <span class="nv">    </span><span class="no">[-v</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--invert]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-t</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--type</span><span class="o">)</span><span class="w"> </span><span class="no">TYPE]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-p</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--perm</span><span class="o">)</span><span class="w"> </span><span class="no">PERMISSION]</span><span class="w"> </span><span class="no">[PATH</span><span class="w"> </span><span class="no">...]</span>
@@ -286,7 +285,7 @@
 <p>It returns 0 if at least one path passed the filter.</p>
 <p><code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">is</span></code> is shorthand for <code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">filter</span> <span class="pre">-q</span></code>, i.e. just checking without producing output, see <a class="reference internal" href="#cmd-path-is"><span class="std std-ref">The is subcommand</span></a>.</p>
 <section id="id3">
-<h3>Examples<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">path</span><span class="w"> </span><span class="no">filter</span><span class="w"> </span><span class="no">/usr/bin</span><span class="w"> </span><span class="no">/usr/argagagji</span>
 <span class="go"># The (hopefully) nonexistent argagagji is filtered implicitly:</span>
 <span class="go">/usr/bin</span>
@@ -315,7 +314,7 @@
 </section>
 </section>
 <section id="is-subcommand">
-<span id="cmd-path-is"></span><h2>“is” subcommand<a class="headerlink" href="#is-subcommand" title="Permalink to this heading">¶</a></h2>
+<span id="cmd-path-is"></span><h2>“is” subcommand<a class="headerlink" href="#is-subcommand" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">path</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">[-z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-in]</span><span class="w"> </span><span class="no">[-Z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-out]</span><span class="w"> </span><span class="no">[-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet]</span><span class="nv"> \</span>
 <span class="nv">    </span><span class="no">[-d]</span><span class="w"> </span><span class="no">[-f]</span><span class="w"> </span><span class="no">[-l]</span><span class="w"> </span><span class="no">[-r]</span><span class="w"> </span><span class="no">[-w]</span><span class="w"> </span><span class="no">[-x]</span><span class="nv"> \</span>
 <span class="nv">    </span><span class="no">[-v</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--invert]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-t</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--type</span><span class="o">)</span><span class="w"> </span><span class="no">TYPE]</span><span class="w"> </span><span class="no">[</span><span class="o">(</span><span class="nf">-p</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--perm</span><span class="o">)</span><span class="w"> </span><span class="no">PERMISSION]</span><span class="w"> </span><span class="no">[PATH</span><span class="w"> </span><span class="no">...]</span>
@@ -324,7 +323,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">is</span></code> is short for <code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">filter</span> <span class="pre">-q</span></code>. It returns true if any of the given files passes the filter, but does not produce any output.</p>
 <p><code class="docutils literal notranslate"><span class="pre">--quiet</span></code> can still be passed for compatibility but is redundant. The options are the same as for <code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">filter</span></code>.</p>
 <section id="id4">
-<h3>Examples<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">path</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">/usr/bin</span><span class="w"> </span><span class="no">/usr/argagagji</span>
 <span class="go"># /usr/bin exists, so this returns a status of 0 (true). It prints nothing.</span>
 <span class="gp">&gt;_ </span><span class="nf">path</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">/usr/argagagji</span>
@@ -336,7 +335,7 @@
 </section>
 </section>
 <section id="mtime-subcommand">
-<h2>“mtime” subcommand<a class="headerlink" href="#mtime-subcommand" title="Permalink to this heading">¶</a></h2>
+<h2>“mtime” subcommand<a class="headerlink" href="#mtime-subcommand" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">path</span><span class="w"> </span><span class="no">mtime</span><span class="w"> </span><span class="no">[-z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-in]</span><span class="w"> </span><span class="no">[-Z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-out]</span><span class="w"> </span><span class="no">[-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet]</span><span class="w"> </span><span class="no">[-R</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--relative]</span><span class="w"> </span><span class="no">[PATH</span><span class="w"> </span><span class="no">...]</span>
 </pre></div>
 </div>
@@ -345,7 +344,7 @@
 <p>If you want to know if a file is newer or older than another file, consider using <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">-nt</span></code> instead. See <a class="reference internal" href="test.html"><span class="doc">the test documentation</span></a>.</p>
 <p>It returns 0 if reading mtime for any path succeeded.</p>
 <section id="id5">
-<h3>Examples<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">date</span><span class="w"> </span><span class="no">+%s</span>
 <span class="go"># This prints the current time as seconds since the epoch</span>
 <span class="go">1657217847</span>
@@ -364,7 +363,7 @@
 </section>
 </section>
 <section id="normalize-subcommand">
-<h2>“normalize” subcommand<a class="headerlink" href="#normalize-subcommand" title="Permalink to this heading">¶</a></h2>
+<h2>“normalize” subcommand<a class="headerlink" href="#normalize-subcommand" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">path</span><span class="w"> </span><span class="no">normalize</span><span class="w"> </span><span class="no">[-z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-in]</span><span class="w"> </span><span class="no">[-Z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-out]</span><span class="w"> </span><span class="no">[-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet]</span><span class="w"> </span><span class="no">[PATH</span><span class="w"> </span><span class="no">...]</span>
 </pre></div>
 </div>
@@ -374,7 +373,7 @@
 <p>Leading “./” components are usually removed. But when a path starts with <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">normalize</span></code> will add it instead to avoid confusion with options.</p>
 <p>It returns 0 if any normalization was done, i.e. any given path wasn’t in canonical form.</p>
 <section id="id6">
-<h3>Examples<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">path</span><span class="w"> </span><span class="no">normalize</span><span class="w"> </span><span class="no">/usr/bin//../../etc/fish</span>
 <span class="go"># The &quot;//&quot; is squashed and the &quot;..&quot; components neutralize the components before</span>
 <span class="go">/etc/fish</span>
@@ -393,7 +392,7 @@
 </section>
 </section>
 <section id="resolve-subcommand">
-<h2>“resolve” subcommand<a class="headerlink" href="#resolve-subcommand" title="Permalink to this heading">¶</a></h2>
+<h2>“resolve” subcommand<a class="headerlink" href="#resolve-subcommand" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">path</span><span class="w"> </span><span class="no">resolve</span><span class="w"> </span><span class="no">[-z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-in]</span><span class="w"> </span><span class="no">[-Z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-out]</span><span class="w"> </span><span class="no">[-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet]</span><span class="w"> </span><span class="no">[PATH</span><span class="w"> </span><span class="no">...]</span>
 </pre></div>
 </div>
@@ -402,7 +401,7 @@
 <p>Because it resolves symlinks, it works sort of like <code class="docutils literal notranslate"><span class="pre">pwd</span> <span class="pre">-P</span></code>. E.g. <code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">resolve</span> <span class="pre">link/..</span></code> will return the parent directory of what the link points to, just like <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">link;</span> <span class="pre">cd</span> <span class="pre">(pwd</span> <span class="pre">-P)/..</span></code> would go to it. For a logical view of the filesystem, see <code class="docutils literal notranslate"><span class="pre">path</span> <span class="pre">normalize</span></code>.</p>
 <p>It returns 0 if any normalization or resolution was done, i.e. any given path wasn’t in canonical form.</p>
 <section id="id7">
-<h3>Examples<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">path</span><span class="w"> </span><span class="no">resolve</span><span class="w"> </span><span class="no">/bin//sh</span>
 <span class="go"># The &quot;//&quot; is squashed, and /bin is resolved if your system links it to /usr/bin.</span>
 <span class="go"># sh here is bash (this is common on linux systems)</span>
@@ -417,7 +416,7 @@
 </section>
 </section>
 <section id="change-extension-subcommand">
-<h2>“change-extension” subcommand<a class="headerlink" href="#change-extension-subcommand" title="Permalink to this heading">¶</a></h2>
+<h2>“change-extension” subcommand<a class="headerlink" href="#change-extension-subcommand" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">path</span><span class="w"> </span><span class="no">change-extension</span><span class="w"> </span><span class="no">[-z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-in]</span><span class="w"> </span><span class="no">[-Z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-out]</span><span class="nv"> \</span>
 <span class="nv">    </span><span class="no">[-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet]</span><span class="w"> </span><span class="no">EXTENSION</span><span class="w"> </span><span class="no">[PATH</span><span class="w"> </span><span class="no">...]</span>
 </pre></div>
@@ -427,7 +426,7 @@
 <p>One leading dot on the extension is ignored, so “.mp3” and “mp3” are treated the same.</p>
 <p>It returns 0 if it was given any paths.</p>
 <section id="id8">
-<h3>Examples<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">path</span><span class="w"> </span><span class="no">change-extension</span><span class="w"> </span><span class="no">mp4</span><span class="w"> </span><span class="no">./foo.wmv</span>
 <span class="go">./foo.mp4</span>
 
@@ -454,7 +453,7 @@
 </section>
 </section>
 <section id="sort-subcommand">
-<h2>“sort” subcommand<a class="headerlink" href="#sort-subcommand" title="Permalink to this heading">¶</a></h2>
+<h2>“sort” subcommand<a class="headerlink" href="#sort-subcommand" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">path</span><span class="w"> </span><span class="no">sort</span><span class="w"> </span><span class="no">[-z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-in]</span><span class="w"> </span><span class="no">[-Z</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--null-out]</span><span class="nv"> \</span>
 <span class="nv">    </span><span class="no">[-q</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--quiet]</span><span class="w"> </span><span class="no">[-r</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--reverse]</span><span class="nv"> \</span>
 <span class="nv">    </span><span class="no">[--key=basename</span><span class="p">|</span><span class="nf">dirname</span><span class="p">|</span><span class="nf">path]</span><span class="w"> </span><span class="no">[PATH</span><span class="w"> </span><span class="no">...]</span>
@@ -467,7 +466,7 @@
 <p>The sort used is stable, so sorting first by basename and then by dirname works and causes the files to be grouped according to directory.</p>
 <p>It currently returns 0 if it was given any paths.</p>
 <section id="id9">
-<h3>Examples<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">path</span><span class="w"> </span><span class="no">sort</span><span class="w"> </span><span class="no">10-foo</span><span class="w"> </span><span class="no">2-bar</span>
 <span class="go">2-bar</span>
 <span class="go">10-foo</span>
@@ -483,7 +482,7 @@
 </section>
 </section>
 <section id="combining-path">
-<h2>Combining <code class="docutils literal notranslate"><span class="pre">path</span></code><a class="headerlink" href="#combining-path" title="Permalink to this heading">¶</a></h2>
+<h2>Combining <code class="docutils literal notranslate"><span class="pre">path</span></code><a class="headerlink" href="#combining-path" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">path</span></code> is meant to be easy to combine with itself, other tools and fish.</p>
 <p>This is why</p>
 <ul class="simple">
@@ -520,7 +519,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -552,7 +551,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
 </div>
 
