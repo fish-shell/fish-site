@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>set - display and change shell variables &#8212; fish-shell 3.6.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4900ad2e" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=908890c3" />
+    <title>set - display and change shell variables &#8212; fish-shell 3.7.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=6200d54f"></script>
+    <script src="../_static/documentation_options.js?v=3888ae04"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -27,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.7.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -68,6 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
@@ -124,15 +125,15 @@
 <p>If both <em>NAME</em> and <em>VALUE</em> are provided, <code class="docutils literal notranslate"><span class="pre">set</span></code> assigns any values to variable <em>NAME</em>.
 Variables in fish are <a class="reference internal" href="../language.html#variables-lists"><span class="std std-ref">lists</span></a>, multiple values are allowed.
 One or more variable <em>INDEX</em> can be specified including ranges (not for all options.)</p>
-<p>If no <em>VALUE</em> is given, the variable will be set to the empty list i.e. <code class="docutils literal notranslate"><span class="pre">''</span></code>.</p>
+<p>If no <em>VALUE</em> is given, the variable will be set to the empty list.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">set</span></code> is ran without arguments, it prints the names and values of all shell variables in sorted order.
 Passing <a class="reference internal" href="../language.html#variables-scope"><span class="std std-ref">scope</span></a> or <a class="reference internal" href="../language.html#variables-export"><span class="std std-ref">export</span></a> flags allows filtering this to only matching variables, so <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--local</span></code> would only show local variables.</p>
 <p>With <code class="docutils literal notranslate"><span class="pre">--erase</span></code> and optionally a scope flag <code class="docutils literal notranslate"><span class="pre">set</span></code> will erase the matching variable (or the variable of that name in the smallest possible scope).</p>
 <p>With <code class="docutils literal notranslate"><span class="pre">--show</span></code>, <code class="docutils literal notranslate"><span class="pre">set</span></code> will describe the given variable names, explaining how they have been defined - in which scope with which values and options.</p>
-<p>The following scope control variable scope:</p>
+<p>The following options control variable scope:</p>
 <dl class="simple">
 <dt><strong>-U</strong> or <strong>--universal</strong></dt><dd><p>Sets a universal variable.
-The variable will be immediately available to all the user’s <code class="docutils literal notranslate"><span class="pre">fish</span></code> instances on the machine, and will be persist across restarts of the shell.</p>
+The variable will be immediately available to all the user’s <code class="docutils literal notranslate"><span class="pre">fish</span></code> instances on the machine, and will be persisted across restarts of the shell.</p>
 </dd>
 <dt><strong>-f</strong> or <strong>--function</strong></dt><dd><p>Sets a variable scoped to the executing function.
 It is erased when the function ends.</p>
@@ -152,9 +153,9 @@ They can be modified or erased.</p>
 </dd>
 <dt><strong>--unexport</strong> or <strong>-u</strong></dt><dd><p>Causes the specified shell variable to NOT be exported to child processes.</p>
 </dd>
-<dt><strong>--path</strong></dt><dd><p>Treat specified variable as a <a class="reference internal" href="../language.html#variables-path"><span class="std std-ref">path variable</span></a>; variable will be split on colons (<code class="docutils literal notranslate"><span class="pre">:</span></code>) and will be displayed joined by colons colons when quoted (<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;$PATH&quot;</span></code>) or exported.</p>
+<dt><strong>--path</strong></dt><dd><p>Treat specified variable as a <a class="reference internal" href="../language.html#variables-path"><span class="std std-ref">path variable</span></a>; variable will be split on colons (<code class="docutils literal notranslate"><span class="pre">:</span></code>) and will be displayed joined by colons when quoted (<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;$PATH&quot;</span></code>) or exported.</p>
 </dd>
-<dt><strong>--unpath</strong></dt><dd><p>Causes variable to no longer be tred as a <a class="reference internal" href="../language.html#variables-path"><span class="std std-ref">path variable</span></a>.
+<dt><strong>--unpath</strong></dt><dd><p>Causes variable to no longer be treated as a <a class="reference internal" href="../language.html#variables-path"><span class="std std-ref">path variable</span></a>.
 Note: variables ending in “PATH” are automatically path variables.</p>
 </dd>
 </dl>
@@ -302,7 +303,7 @@ This runs fish with a temporary home directory:</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.7.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -339,7 +340,7 @@ This runs fish with a temporary home directory:</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.6";
+ FISH_DOCS_VERSION = "3.7";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

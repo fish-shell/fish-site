@@ -5,16 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>commandline - set or get the current command line buffer &#8212; fish-shell 3.6.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4900ad2e" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=908890c3" />
+    <title>commandline - set or get the current command line buffer &#8212; fish-shell 3.7.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=6200d54f"></script>
+    <script src="../_static/documentation_options.js?v=3888ae04"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="complete - edit command specific tab-completions" href="complete.html" />
+    <link rel="next" title="complete - edit command-specific tab-completions" href="complete.html" />
     <link rel="prev" title="command - run a program" href="command.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
      
@@ -27,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.7.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -68,6 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
@@ -158,7 +159,11 @@ Stops at logical operators, terminators, and pipes.</p>
 </dl>
 <p>The following options change the way <code class="docutils literal notranslate"><span class="pre">commandline</span></code> prints the current commandline buffer:</p>
 <dl class="simple">
-<dt><strong>-c</strong> or <strong>--cut-at-cursor</strong></dt><dd><p>Only print selection up until the current cursor position.</p>
+<dt><strong>-c</strong> or <strong>--cut-at-cursor</strong></dt><dd><p>Only print selection up until the current cursor position.
+If combined with <code class="docutils literal notranslate"><span class="pre">--tokenize</span></code>, this will print up until the last completed token - excluding the token the cursor is in.
+This is typically what you would want for instance in completions.
+To get both, use both <code class="docutils literal notranslate"><span class="pre">commandline</span> <span class="pre">--cut-at-cursor</span> <span class="pre">--tokenize;</span> <span class="pre">commandline</span> <span class="pre">--cut-at-cursor</span> <span class="pre">--current-token</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">commandline</span> <span class="pre">-co;</span> <span class="pre">commandline</span> <span class="pre">-ct</span></code> for short.</p>
 </dd>
 <dt><strong>-o</strong> or <strong>--tokenize</strong></dt><dd><p>Tokenize the selection and print one string-type token per line.</p>
 </dd>
@@ -191,6 +196,17 @@ If the commandline is incomplete, return 2, if erroneus, return 1.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$flounder</span> <span class="pre">&gt;&amp;</span></code> is the first process, <code class="docutils literal notranslate"><span class="pre">less</span></code> the second and <code class="docutils literal notranslate"><span class="pre">and</span> <span class="pre">echo</span> <span class="pre">$catfish</span></code> the third.</p>
 <p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$flounder</span> <span class="pre">&gt;&amp;2</span> <span class="pre">|</span> <span class="pre">less</span></code> is the first job, <code class="docutils literal notranslate"><span class="pre">and</span> <span class="pre">echo</span> <span class="pre">$catfish</span></code> the second.</p>
 <p><strong>$flounder</strong> is the current token.</p>
+<p>The most common use for something like completions is</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">tokens</span><span class="w"> </span><span class="o">(</span><span class="nf">commandline</span><span class="w"> </span><span class="no">-opc</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>which gives the current <em>process</em> (what is being completed), tokenized into separate entries, up to but excluding the currently being completed token</p>
+<p>If you are then also interested in the in-progress token, add</p>
+<dl class="simple">
+<dt>::</dt><dd><p>set -l current (commandline -ct)</p>
+</dd>
+</dl>
+<p>Note that this makes it easy to render fish’s infix matching moot - if possible it’s best if the completions just print all possibilities and leave the matching to the current token up to fish’s logic.</p>
 <p>More examples:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">commandline</span><span class="w"> </span><span class="no">-t</span>
 <span class="go">$flounder</span>
@@ -221,7 +237,7 @@ If the commandline is incomplete, return 2, if erroneus, return 1.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.7.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -258,7 +274,7 @@ If the commandline is incomplete, return 2, if erroneus, return 1.</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.6";
+ FISH_DOCS_VERSION = "3.7";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

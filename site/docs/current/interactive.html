@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Interactive use &#8212; fish-shell 3.6.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4900ad2e" />
-    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=908890c3" />
+    <title>Interactive use &#8212; fish-shell 3.7.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a864bcb0" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=4e2636db" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="_static/documentation_options.js?v=6200d54f"></script>
+    <script src="_static/documentation_options.js?v=3888ae04"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -27,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.4 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.7.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Interactive use</a></li>
@@ -67,6 +67,7 @@
 <li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -389,6 +390,14 @@
 </td>
 <td><p>history search matches and selected pager items (background only)</p></td>
 </tr>
+<tr class="row-odd"><td><dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-fish_color_history_current">
+<span class="sig-name descname"><span class="pre">fish_color_history_current</span></span><a class="headerlink" href="#envvar-fish_color_history_current" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>the current position in the history for commands like <code class="docutils literal notranslate"><span class="pre">dirh</span></code> and <code class="docutils literal notranslate"><span class="pre">cdh</span></code></p></td>
+</tr>
 </tbody>
 </table>
 <p>If a variable isn’t set or is empty, fish usually tries <code class="docutils literal notranslate"><span class="pre">$fish_color_normal</span></code>, except for:</p>
@@ -600,7 +609,7 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 <section id="command-line-editor">
 <span id="editor"></span><h2>Command line editor<a class="headerlink" href="#command-line-editor" title="Link to this heading">¶</a></h2>
 <p>The fish editor features copy and paste, a <a class="reference internal" href="#history-search"><span class="std std-ref">searchable history</span></a> and many editor functions that can be bound to special keyboard shortcuts.</p>
-<p>Like bash and other shells, fish includes two sets of keyboard shortcuts (or key bindings): one inspired by the Emacs text editor, and one by the Vi text editor. The default editing mode is Emacs. You can switch to Vi mode by running <code class="docutils literal notranslate"><span class="pre">fish_vi_key_bindings</span></code> and switch back with <code class="docutils literal notranslate"><span class="pre">fish_default_key_bindings</span></code>. You can also make your own key bindings by creating a function and setting the <code class="docutils literal notranslate"><span class="pre">fish_key_bindings</span></code> variable to its name. For example:</p>
+<p>Like bash and other shells, fish includes two sets of keyboard shortcuts (or key bindings): one inspired by the Emacs text editor, and one by the Vi text editor. The default editing mode is Emacs. You can switch to Vi mode by running <a class="reference internal" href="cmds/fish_vi_key_bindings.html"><span class="doc">fish_vi_key_bindings</span></a> and switch back with <a class="reference internal" href="cmds/fish_default_key_bindings.html"><span class="doc">fish_default_key_bindings</span></a>. You can also make your own key bindings by creating a function and setting the <code class="docutils literal notranslate"><span class="pre">fish_key_bindings</span></code> variable to its name. For example:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_hybrid_key_bindings</span><span class="w"> </span><span class="no">--description</span><span class="nv"> \</span>
 <span class="s2">&quot;Vi-style bindings that inherit emacs-style bindings in all modes&quot;</span>
 <span class="w">    </span><span class="nf">for</span><span class="w"> </span><span class="no">mode</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="no">default</span><span class="w"> </span><span class="no">insert</span><span class="w"> </span><span class="no">visual</span>
@@ -645,7 +654,7 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 </section>
 <section id="emacs-mode-commands">
 <span id="emacs-mode"></span><h3>Emacs mode commands<a class="headerlink" href="#emacs-mode-commands" title="Link to this heading">¶</a></h3>
-<p>To enable emacs mode, use <code class="docutils literal notranslate"><span class="pre">fish_default_key_bindings</span></code>. This is also the default.</p>
+<p>To enable emacs mode, use <a class="reference internal" href="cmds/fish_default_key_bindings.html"><span class="doc">fish_default_key_bindings</span></a>. This is also the default.</p>
 <ul class="simple">
 <li><p><kbd class="kbd docutils literal notranslate">Home</kbd> or <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">A</kbd> moves the cursor to the beginning of the line.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">End</kbd> or <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">E</kbd> moves to the end of line. If the cursor is already at the end of the line, and an autosuggestion is available, <kbd class="kbd docutils literal notranslate">End</kbd> or <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">E</kbd> accepts the autosuggestion.</p></li>
@@ -669,8 +678,8 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 <section id="vi-mode-commands">
 <span id="vi-mode"></span><h3>Vi mode commands<a class="headerlink" href="#vi-mode-commands" title="Link to this heading">¶</a></h3>
 <p>Vi mode allows for the use of Vi-like commands at the prompt. Initially, <a class="reference internal" href="#vi-mode-insert"><span class="std std-ref">insert mode</span></a> is active. <kbd class="kbd docutils literal notranslate">Escape</kbd> enters <a class="reference internal" href="#vi-mode-command"><span class="std std-ref">command mode</span></a>. The commands available in command, insert and visual mode are described below. Vi mode shares <a class="reference internal" href="#shared-binds"><span class="std std-ref">some bindings</span></a> with <a class="reference internal" href="#emacs-mode"><span class="std std-ref">Emacs mode</span></a>.</p>
-<p>To enable vi mode, use <code class="docutils literal notranslate"><span class="pre">fish_vi_key_bindings</span></code>.</p>
-<p>It is also possible to add all emacs-mode bindings to vi-mode by using something like:</p>
+<p>To enable vi mode, use <a class="reference internal" href="cmds/fish_vi_key_bindings.html"><span class="doc">fish_vi_key_bindings</span></a>.
+It is also possible to add all emacs-mode bindings to vi-mode by using something like:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_user_key_bindings</span>
 <span class="w">    </span><span class="c"># Execute this once per mode that emacs bindings should be used in</span>
 <span class="w">    </span><span class="nf">fish_default_key_bindings</span><span class="w"> </span><span class="no">-M</span><span class="w"> </span><span class="no">insert</span>
@@ -691,14 +700,19 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 <span class="nf">set</span><span class="w"> </span><span class="no">fish_cursor_default</span><span class="w"> </span><span class="no">block</span>
 <span class="c"># Set the insert mode cursor to a line</span>
 <span class="nf">set</span><span class="w"> </span><span class="no">fish_cursor_insert</span><span class="w"> </span><span class="no">line</span>
-<span class="c"># Set the replace mode cursor to an underscore</span>
+<span class="c"># Set the replace mode cursors to an underscore</span>
 <span class="nf">set</span><span class="w"> </span><span class="no">fish_cursor_replace_one</span><span class="w"> </span><span class="no">underscore</span>
+<span class="nf">set</span><span class="w"> </span><span class="no">fish_cursor_replace</span><span class="w"> </span><span class="no">underscore</span>
+<span class="c"># Set the external cursor to a line. The external cursor appears when a command is started.</span>
+<span class="c"># The cursor shape takes the value of fish_cursor_default when fish_cursor_external is not specified.</span>
+<span class="nf">set</span><span class="w"> </span><span class="no">fish_cursor_external</span><span class="w"> </span><span class="no">line</span>
 <span class="c"># The following variable can be used to configure cursor shape in</span>
 <span class="c"># visual mode, but due to fish_cursor_default, is redundant here</span>
 <span class="nf">set</span><span class="w"> </span><span class="no">fish_cursor_visual</span><span class="w"> </span><span class="no">block</span>
 </pre></div>
 </div>
 <p>Additionally, <code class="docutils literal notranslate"><span class="pre">blink</span></code> can be added after each of the cursor shape parameters to set a blinking cursor in the specified shape.</p>
+<p>Fish knows the shapes “block”, “line” and “underscore”, other values will be ignored.</p>
 <p>If the cursor shape does not appear to be changing after setting the above variables, it’s likely your terminal emulator does not support the capabilities necessary to do this. It may also be the case, however, that <code class="docutils literal notranslate"><span class="pre">fish_vi_cursor</span></code> has not detected your terminal’s features correctly (for example, if you are using <code class="docutils literal notranslate"><span class="pre">tmux</span></code>). If this is the case, you can force <code class="docutils literal notranslate"><span class="pre">fish_vi_cursor</span></code> to set the cursor shape by setting <code class="docutils literal notranslate"><span class="pre">$fish_vi_force_cursor</span></code> in <code class="docutils literal notranslate"><span class="pre">config.fish</span></code>. You’ll have to restart fish for any changes to take effect. If cursor shape setting remains broken after this, it’s almost certainly an issue with your terminal emulator, and not fish.</p>
 <section id="command-mode">
 <span id="vi-mode-command"></span><h4>Command mode<a class="headerlink" href="#command-mode" title="Link to this heading">¶</a></h4>
@@ -708,7 +722,7 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 <li><p><kbd class="kbd docutils literal notranslate">l</kbd> moves the cursor right.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">k</kbd> and <kbd class="kbd docutils literal notranslate">j</kbd> search the command history for the previous/next command containing the string that was specified on the commandline before the search was started. If the commandline was empty when the search started, all commands match. See the <a class="reference internal" href="#history-search"><span class="std std-ref">history</span></a> section for more information on history searching. In multi-line commands, they move the cursor up and down respectively.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">i</kbd> enters <a class="reference internal" href="#vi-mode-insert"><span class="std std-ref">insert mode</span></a> at the current cursor position.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">R</kbd> enters <a class="reference internal" href="#vi-mode-insert"><span class="std std-ref">insert mode</span></a> at the beginning of the line.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">I</kbd> enters <a class="reference internal" href="#vi-mode-insert"><span class="std std-ref">insert mode</span></a> at the beginning of the line.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">v</kbd> enters <a class="reference internal" href="#vi-mode-visual"><span class="std std-ref">visual mode</span></a> at the current cursor position.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">a</kbd> enters <a class="reference internal" href="#vi-mode-insert"><span class="std std-ref">insert mode</span></a> after the current cursor position.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">Shift</kbd>+<kbd class="kbd docutils literal notranslate">A</kbd> enters <a class="reference internal" href="#vi-mode-insert"><span class="std std-ref">insert mode</span></a> at the end of the line.</p></li>
@@ -766,8 +780,12 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 </pre></div>
 </div>
 <p>Fish remembers its preset bindings and so it will take effect again. This saves you from having to remember what it was before and add it again yourself.</p>
+<p>If you use <a class="reference internal" href="#vi-mode"><span class="std std-ref">vi bindings</span></a>, note that <code class="docutils literal notranslate"><span class="pre">bind</span></code> will by default bind keys in <a class="reference internal" href="#vi-mode-command"><span class="std std-ref">command mode</span></a>. To bind something in <a class="reference internal" href="#vi-mode-insert"><span class="std std-ref">insert mode</span></a>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="no">--mode</span><span class="w"> </span><span class="no">insert</span><span class="w"> </span><span class="se">\c</span><span class="no">c</span><span class="w"> </span><span class="s1">&#39;commandline -r &quot;&quot;&#39;</span>
+</pre></div>
+</div>
 <section id="key-sequences">
-<h4>Key sequences<a class="headerlink" href="#key-sequences" title="Link to this heading">¶</a></h4>
+<span id="interactive-key-sequences"></span><h4>Key sequences<a class="headerlink" href="#key-sequences" title="Link to this heading">¶</a></h4>
 <p>The terminal tells fish which keys you pressed by sending some sequences of bytes to describe that key. For some keys, this is easy - pressing <kbd class="kbd docutils literal notranslate">a</kbd> simply means the terminal sends “a”. In others it’s more complicated and terminals disagree on which they send.</p>
 <p>In these cases, <a class="reference internal" href="cmds/fish_key_reader.html"><span class="doc">fish_key_reader</span></a> can tell you how to write the key sequence for your terminal. Just start it and press the keys you are interested in:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">fish_key_reader</span><span class="w"> </span><span class="c"># pressing control-c</span>
@@ -780,10 +798,21 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 <span class="go">bind \e\[C &#39;do something&#39;</span>
 </pre></div>
 </div>
-<p>Note that some key combinations are indistinguishable or unbindable. For instance control-i <em>is the same</em> as the tab key. This is a terminal limitation that fish can’t do anything about.</p>
-<p>Also, <kbd class="kbd docutils literal notranslate">Escape</kbd> is the same thing as <kbd class="kbd docutils literal notranslate">Alt</kbd> in a terminal. To distinguish between pressing <kbd class="kbd docutils literal notranslate">Escape</kbd> and then another key, and pressing <kbd class="kbd docutils literal notranslate">Alt</kbd> and that key (or an escape sequence the key sends), fish waits for a certain time after seeing an escape character. This is configurable via the <code class="docutils literal notranslate"><span class="pre">fish_escape_delay_ms</span></code> variable.</p>
+<p>Note that some key combinations are indistinguishable or unbindable. For instance control-i <em>is the same</em> as the tab key. This is a terminal limitation that fish can’t do anything about. When <code class="docutils literal notranslate"><span class="pre">fish_key_reader</span></code> prints the same sequence for two different keys, then that is because your terminal sends the same sequence for them.</p>
+<p>Also, <kbd class="kbd docutils literal notranslate">Escape</kbd> is the same thing as <kbd class="kbd docutils literal notranslate">Alt</kbd> in a terminal. To distinguish between pressing <kbd class="kbd docutils literal notranslate">Escape</kbd> and then another key, and pressing <kbd class="kbd docutils literal notranslate">Alt</kbd> and that key (or an escape sequence the key sends), fish waits for a certain time after seeing an escape character. This is configurable via the <span class="target" id="index-0"></span><a class="reference internal" href="language.html#envvar-fish_escape_delay_ms"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_escape_delay_ms</span></code></a> variable.</p>
 <p>If you want to be able to press <kbd class="kbd docutils literal notranslate">Escape</kbd> and then a character and have it count as <kbd class="kbd docutils literal notranslate">Alt</kbd>+that character, set it to a higher value, e.g.:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_escape_delay_ms</span><span class="w"> </span><span class="no">100</span>
+</pre></div>
+</div>
+<p>Similarly, to disambiguate <em>other</em> keypresses where you’ve bound a subsequence and a longer sequence, fish has <span class="target" id="index-1"></span><a class="reference internal" href="language.html#envvar-fish_sequence_key_delay_ms"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_sequence_key_delay_ms</span></code></a>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># This binds &quot;jk&quot; to switch to normal mode in vi-mode.</span>
+<span class="c"># If you kept it like that, every time you press &quot;j&quot;,</span>
+<span class="c"># fish would wait for a &quot;k&quot; or other key to disambiguate</span>
+<span class="nf">bind</span><span class="w"> </span><span class="no">-M</span><span class="w"> </span><span class="no">insert</span><span class="w"> </span><span class="no">-m</span><span class="w"> </span><span class="no">default</span><span class="w"> </span><span class="no">jk</span><span class="w"> </span><span class="no">cancel</span><span class="w"> </span><span class="no">repaint-mode</span>
+
+<span class="c"># After setting this, fish only waits 200ms for the &quot;k&quot;,</span>
+<span class="c"># or decides to treat the &quot;j&quot; as a separate sequence, inserting it.</span>
+<span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_sequence_key_delay_ms</span><span class="w"> </span><span class="no">200</span>
 </pre></div>
 </div>
 </section>
@@ -795,7 +824,7 @@ like <code class="docutils literal notranslate"><span class="pre">$fish_color_pa
 In addition, when pasting inside single quotes, pasted single quotes and backslashes are automatically escaped so that the result can be used as a single token simply by closing the quote after.
 Kill ring entries are stored in <code class="docutils literal notranslate"><span class="pre">fish_killring</span></code> variable.</p>
 <p>The commands <code class="docutils literal notranslate"><span class="pre">begin-selection</span></code> and <code class="docutils literal notranslate"><span class="pre">end-selection</span></code> (unbound by default; used for selection in vi visual mode) control text selection together with cursor movement commands that extend the current selection.
-The variable <span class="target" id="index-0"></span><a class="reference internal" href="language.html#envvar-fish_cursor_selection_mode"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_cursor_selection_mode</span></code></a> can be used to configure if that selection should include the character under the cursor (<code class="docutils literal notranslate"><span class="pre">inclusive</span></code>) or not (<code class="docutils literal notranslate"><span class="pre">exclusive</span></code>). The default is <code class="docutils literal notranslate"><span class="pre">exclusive</span></code>, which works well with any cursor shape. For vi mode, and particularly for the <code class="docutils literal notranslate"><span class="pre">block</span></code> or <code class="docutils literal notranslate"><span class="pre">underscore</span></code> cursor shapes you may prefer <code class="docutils literal notranslate"><span class="pre">inclusive</span></code>.</p>
+The variable <span class="target" id="index-2"></span><a class="reference internal" href="language.html#envvar-fish_cursor_selection_mode"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_cursor_selection_mode</span></code></a> can be used to configure if that selection should include the character under the cursor (<code class="docutils literal notranslate"><span class="pre">inclusive</span></code>) or not (<code class="docutils literal notranslate"><span class="pre">exclusive</span></code>). The default is <code class="docutils literal notranslate"><span class="pre">exclusive</span></code>, which works well with any cursor shape. For vi mode, and particularly for the <code class="docutils literal notranslate"><span class="pre">block</span></code> or <code class="docutils literal notranslate"><span class="pre">underscore</span></code> cursor shapes you may prefer <code class="docutils literal notranslate"><span class="pre">inclusive</span></code>.</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id8" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">2</a><span class="fn-bracket">]</span></span>
@@ -881,7 +910,7 @@ The variable <span class="target" id="index-0"></span><a class="reference intern
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.4 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.7.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Interactive use</a></li>
@@ -917,7 +946,7 @@ The variable <span class="target" id="index-0"></span><a class="reference intern
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.6";
+ FISH_DOCS_VERSION = "3.7";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

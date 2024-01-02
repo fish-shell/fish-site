@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>complete - edit command specific tab-completions &#8212; fish-shell 3.6.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4900ad2e" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=908890c3" />
+    <title>complete - edit command-specific tab-completions &#8212; fish-shell 3.7.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=6200d54f"></script>
+    <script src="../_static/documentation_options.js?v=3888ae04"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -27,11 +27,11 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.7.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">complete - edit command specific tab-completions</a></li>
+        <li class="nav-item nav-item-this"><a href="">complete - edit command-specific tab-completions</a></li>
     <li class="right">
         
 
@@ -68,6 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
@@ -87,7 +88,7 @@
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
-<li><a class="reference internal" href="#">complete - edit command specific tab-completions</a><ul>
+<li><a class="reference internal" href="#">complete - edit command-specific tab-completions</a><ul>
 <li><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li><a class="reference internal" href="#description">Description</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
@@ -103,7 +104,7 @@
           <div class="body" role="main">
             
   <section id="complete-edit-command-specific-tab-completions">
-<span id="cmd-complete"></span><h1>complete - edit command specific tab-completions<a class="headerlink" href="#complete-edit-command-specific-tab-completions" title="Link to this heading">¶</a></h1>
+<span id="cmd-complete"></span><h1>complete - edit command-specific tab-completions<a class="headerlink" href="#complete-edit-command-specific-tab-completions" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="g g-Other">((</span><span class="no">-c</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--command</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-p</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--path</span><span class="g g-Other">))</span><span class="w"> </span><span class="no">COMMAND</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">OPTIONS</span><span class="g g-Other">]</span>
@@ -153,7 +154,7 @@ the fish manual.</p>
 <dt><strong>-h</strong> or <strong>--help</strong></dt><dd><p>Displays help about using this command.</p>
 </dd>
 </dl>
-<p>Command specific tab-completions in <code class="docutils literal notranslate"><span class="pre">fish</span></code> are based on the notion of options and arguments. An option is a parameter which begins with a hyphen, such as <code class="docutils literal notranslate"><span class="pre">-h</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code> or <code class="docutils literal notranslate"><span class="pre">--help</span></code>. Arguments are parameters that do not begin with a hyphen. Fish recognizes three styles of options, the same styles as the GNU getopt library. These styles are:</p>
+<p>Command-specific tab-completions in <code class="docutils literal notranslate"><span class="pre">fish</span></code> are based on the notion of options and arguments. An option is a parameter which begins with a hyphen, such as <code class="docutils literal notranslate"><span class="pre">-h</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code> or <code class="docutils literal notranslate"><span class="pre">--help</span></code>. Arguments are parameters that do not begin with a hyphen. Fish recognizes three styles of options, the same styles as the GNU getopt library. These styles are:</p>
 <ul class="simple">
 <li><p>Short options, like <code class="docutils literal notranslate"><span class="pre">-a</span></code>. Short options are a single character long, are preceded by a single hyphen and can be grouped together (like <code class="docutils literal notranslate"><span class="pre">-la</span></code>, which is equivalent to <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-a</span></code>). Option arguments may be specified by appending the option with the value (<code class="docutils literal notranslate"><span class="pre">-w32</span></code>), or, if <code class="docutils literal notranslate"><span class="pre">--require-parameter</span></code> is given, in the following parameter (<code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">32</span></code>).</p></li>
 <li><p>Old-style options, long like <code class="docutils literal notranslate"><span class="pre">-Wall</span></code> or <code class="docutils literal notranslate"><span class="pre">-name</span></code> or even short like <code class="docutils literal notranslate"><span class="pre">-a</span></code>. Old-style options can be more than one character long, are preceded by a single hyphen and may not be grouped together. Option arguments are specified by default following a space (<code class="docutils literal notranslate"><span class="pre">-foo</span> <span class="pre">null</span></code>) or after <code class="docutils literal notranslate"><span class="pre">=</span></code> (<code class="docutils literal notranslate"><span class="pre">-foo=null</span></code>).</p></li>
@@ -216,11 +217,11 @@ the fish manual.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.6.4 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.7.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">complete - edit command specific tab-completions</a></li>
+        <li class="nav-item nav-item-this"><a href="">complete - edit command-specific tab-completions</a></li>
     <li class="right">
         
 
@@ -253,7 +254,7 @@ the fish manual.</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.6";
+ FISH_DOCS_VERSION = "3.7";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

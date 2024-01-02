@@ -5,16 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Writing your own completions &#8212; fish-shell 3.6.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4900ad2e" />
-    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=908890c3" />
+    <title>Writing your own completions &#8212; fish-shell 3.7.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a864bcb0" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=4e2636db" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="_static/documentation_options.js?v=6200d54f"></script>
+    <script src="_static/documentation_options.js?v=3888ae04"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Design" href="design.html" />
+    <link rel="next" title="Writing your own prompt" href="prompt.html" />
     <link rel="prev" title="Tutorial" href="tutorial.html" />
     <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
      
@@ -27,7 +27,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.4 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.7.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -67,6 +67,7 @@
 <li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Writing your own completions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -108,7 +109,86 @@
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">output</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;yes no&quot;</span>
 </pre></div>
 </div>
-<p>There are also special switches for specifying that a switch requires an argument, to disable filename completion, to create completions that are only available in some combinations, etc..  For a complete description of the various switches accepted by the <code class="docutils literal notranslate"><span class="pre">complete</span></code> command, see the documentation for the <a class="reference internal" href="cmds/complete.html"><span class="doc">complete</span></a> builtin, or write <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">--help</span></code> inside the <code class="docutils literal notranslate"><span class="pre">fish</span></code> shell.</p>
+<p>In the complete call above, the <code class="docutils literal notranslate"><span class="pre">-a</span></code> arguments apply when the option -o/--output has been given, so this offers them for:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">-o</span><span class="p">&lt;TAB&gt;</span>
+<span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">--output=</span><span class="p">&lt;TAB&gt;</span>
+</pre></div>
+</div>
+<p>By default, option arguments are <em>optional</em>, so the candidates are only offered directly attached like that, so they aren’t given in this case:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">-o</span><span class="w"> </span><span class="p">&lt;TAB&gt;</span>
+</pre></div>
+</div>
+<p>Usually options <em>require</em> a parameter, so you would give <code class="docutils literal notranslate"><span class="pre">--require-parameter</span></code> / <code class="docutils literal notranslate"><span class="pre">-r</span></code>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">output</span><span class="w"> </span><span class="no">-ra</span><span class="w"> </span><span class="s2">&quot;yes no&quot;</span>
+</pre></div>
+</div>
+<p>which offers yes/no in these cases:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">-o</span><span class="p">&lt;TAB&gt;</span>
+<span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">--output=</span><span class="p">&lt;TAB&gt;</span>
+<span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">-o</span><span class="w"> </span><span class="p">&lt;TAB&gt;</span>
+<span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">--output</span><span class="w"> </span><span class="p">&lt;TAB&gt;</span>
+</pre></div>
+</div>
+<p>In the latter two cases, files will also be offered because file completion is enabled by default.</p>
+<p>You would either inhibit file completion for a single option:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">output</span><span class="w"> </span><span class="no">--no-files</span><span class="w"> </span><span class="no">-ra</span><span class="w"> </span><span class="s2">&quot;yes no&quot;</span>
+</pre></div>
+</div>
+<p>or with a specific condition:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">--condition</span><span class="w"> </span><span class="s1">&#39;__fish_seen_subcommand_from somesubcommand&#39;</span>
+</pre></div>
+</div>
+<p>or you can disable file completions globally for the command:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-f</span>
+</pre></div>
+</div>
+<p>If you have disabled them globally, you can enable them just for a specific condition or option with the <code class="docutils literal notranslate"><span class="pre">--force-files</span></code> / <code class="docutils literal notranslate"><span class="pre">-F</span></code> option:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable files by default</span>
+<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-f</span>
+<span class="c"># but reenable them for --config-file</span>
+<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">config-file</span><span class="w"> </span><span class="no">--force-files</span><span class="w"> </span><span class="no">-r</span>
+</pre></div>
+</div>
+<p>In the complete call above, the <code class="docutils literal notranslate"><span class="pre">-a</span></code> arguments apply when the option -o/--output has been given, so this offers them for:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">-o</span><span class="p">&lt;TAB&gt;</span>
+<span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">--output=</span><span class="p">&lt;TAB&gt;</span>
+</pre></div>
+</div>
+<p>By default, option arguments are <em>optional</em>, so the candidates are only offered directly attached like that, so they aren’t given in this case:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">-o</span><span class="w"> </span><span class="p">&lt;TAB&gt;</span>
+</pre></div>
+</div>
+<p>Usually options <em>require</em> a parameter, so you would give <code class="docutils literal notranslate"><span class="pre">--require-parameter</span></code> / <code class="docutils literal notranslate"><span class="pre">-r</span></code>:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">output</span><span class="w"> </span><span class="no">-ra</span><span class="w"> </span><span class="s2">&quot;yes no&quot;</span>
+</pre></div>
+</div>
+<p>which offers yes/no in these cases:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">-o</span><span class="p">&lt;TAB&gt;</span>
+<span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">--output=</span><span class="p">&lt;TAB&gt;</span>
+<span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">-o</span><span class="w"> </span><span class="p">&lt;TAB&gt;</span>
+<span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">--output</span><span class="w"> </span><span class="p">&lt;TAB&gt;</span>
+</pre></div>
+</div>
+<p>In the latter two cases, files will also be offered because file completion is enabled by default.</p>
+<p>You would either inhibit file completion for a single option:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">output</span><span class="w"> </span><span class="no">--no-files</span><span class="w"> </span><span class="no">-ra</span><span class="w"> </span><span class="s2">&quot;yes no&quot;</span>
+</pre></div>
+</div>
+<p>or with a specific condition:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">--condition</span><span class="w"> </span><span class="s1">&#39;__fish_seen_subcommand_from somesubcommand&#39;</span>
+</pre></div>
+</div>
+<p>or you can disable file completions globally for the command:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-f</span>
+</pre></div>
+</div>
+<p>If you have disabled them globally, you can enable them just for a specific condition or option with the <code class="docutils literal notranslate"><span class="pre">--force-files</span></code> / <code class="docutils literal notranslate"><span class="pre">-F</span></code> option:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable files by default</span>
+<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-f</span>
+<span class="c"># but reenable them for --config-file</span>
+<span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">config-file</span><span class="w"> </span><span class="no">--force-files</span><span class="w"> </span><span class="no">-r</span>
+</pre></div>
+</div>
 <p>As a more comprehensive example, here’s a commented excerpt of the completions for systemd’s <code class="docutils literal notranslate"><span class="pre">timedatectl</span></code>:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># All subcommands that timedatectl knows - this is useful for later.</span>
 <span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">commands</span><span class="w"> </span><span class="no">status</span><span class="w"> </span><span class="no">set-time</span><span class="w"> </span><span class="no">set-timezone</span><span class="w"> </span><span class="no">list-timezones</span><span class="w"> </span><span class="no">set-local-rtc</span><span class="w"> </span><span class="no">set-ntp</span>
@@ -167,7 +247,7 @@
 <p>For examples of how to write your own complex completions, study the completions in <code class="docutils literal notranslate"><span class="pre">/usr/share/fish/completions</span></code>. (The exact path depends on your chosen installation prefix and may be slightly different)</p>
 <section id="useful-functions-for-writing-completions">
 <span id="completion-func"></span><h2>Useful functions for writing completions<a class="headerlink" href="#useful-functions-for-writing-completions" title="Link to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">fish</span></code> ships with several functions that are very useful when writing command specific completions. Most of these functions name begins with the string <code class="docutils literal notranslate"><span class="pre">__fish_</span></code>. Such functions are internal to <code class="docutils literal notranslate"><span class="pre">fish</span></code> and their name and interface may change in future fish versions. Still, some of them may be very useful when writing completions. A few of these functions are described here. Be aware that they may be removed or changed in future versions of fish.</p>
+<p><code class="docutils literal notranslate"><span class="pre">fish</span></code> ships with several functions that may be useful when writing command-specific completions. Most of these function names begin with the string <code class="docutils literal notranslate"><span class="pre">__fish_</span></code>. Such functions are internal to <code class="docutils literal notranslate"><span class="pre">fish</span></code> and their name and interface may change in future fish versions. A few of these functions are described here.</p>
 <p>Functions beginning with the string <code class="docutils literal notranslate"><span class="pre">__fish_print_</span></code> print a newline separated list of strings. For example, <code class="docutils literal notranslate"><span class="pre">__fish_print_filesystems</span></code> prints a list of all known file systems. Functions beginning with <code class="docutils literal notranslate"><span class="pre">__fish_complete_</span></code> print out a newline separated list of completions with descriptions. The description is separated from the completion by a tab character.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">__fish_complete_directories</span> <span class="pre">STRING</span> <span class="pre">DESCRIPTION</span></code> performs path completion on STRING, allowing only directories, and giving them the description DESCRIPTION.</p></li>
@@ -196,7 +276,7 @@
 </ul>
 <p>These paths are controlled by parameters set at build, install, or run time, and may vary from the defaults listed above.</p>
 <p>This wide search may be confusing. If you are unsure, your completions probably belong in <code class="docutils literal notranslate"><span class="pre">~/.config/fish/completions</span></code>.</p>
-<p>If you have written new completions for a common Unix command, please consider sharing your work by submitting it via the instructions in <a class="reference internal" href="index.html#more-help"><span class="std std-ref">Further help and development</span></a></p>
+<p>If you have written new completions for a common Unix command, please consider sharing your work by submitting it via the instructions in <a class="reference internal" href="index.html#more-help"><span class="std std-ref">Further help and development</span></a>.</p>
 <p>If you are developing another program and would like to ship completions with your program, install them to the “vendor” completions directory. As this path may vary from system to system, the <code class="docutils literal notranslate"><span class="pre">pkgconfig</span></code> framework should be used to discover this path with the output of <code class="docutils literal notranslate"><span class="pre">pkg-config</span> <span class="pre">--variable</span> <span class="pre">completionsdir</span> <span class="pre">fish</span></code>.</p>
 </section>
 </section>
@@ -215,7 +295,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.6.4 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.7.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -251,7 +331,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.6";
+ FISH_DOCS_VERSION = "3.7";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
