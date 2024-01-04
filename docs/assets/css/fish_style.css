@@ -10,10 +10,6 @@ img {
     border: 0;
 }
 
-h1 {
-    font-size: 38.5px;
-}
-
 h1, h2, h3, h4, h5, h6 {
     margin: 10px 0;
     font-family: inherit;
@@ -22,12 +18,16 @@ h1, h2, h3, h4, h5, h6 {
     text-rendering: optimizelegibility;
 }
 
-h3 {
-    font-size: 24.5px;
-}
-
 h1, h2, h3 {
     line-height: 40px;
+}
+
+h1 {
+    font-size: 38.5px;
+}
+
+h3 {
+    font-size: 24.5px;
 }
 
 .lead {
@@ -40,40 +40,27 @@ p {
 
 hr {
     border: 0;
+    border-top: 1px solid #CCF;
+    border-bottom: 1px solid #FFF;
 }
 
-
-.btn {
-    border-color: #c5c5c5;
-    border-color: rgba(0,0,0,0.15) rgba(0,0,0,0.15) rgba(0,0,0,0.25);
-}
-
-.btn-large {
-    padding: 11px 19px;
-    font-size: 17.5px;
-    border-radius: 6px;
-}
 
 .btn {
     display: inline-block;
     margin-bottom: 0;
-    font-size: 14px;
     line-height: 20px;
-    color: #333;
     text-align: center;
     text-shadow: 0 1px 1px rgba(255,255,255,0.75);
     vertical-align: middle;
     cursor: pointer;
-    background-color: #f5f5f5;
+    background-color: var(--btn-color);
     border: 1px solid #bbb;
     border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
     border-radius: 4px;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
-}
-
-a, label {
-    color: #08c;
-    text-decoration: none;
+    font-size: larger;
+    color: rgb(0, 85, 128);
+    padding: 11px 19px;
 }
 
 .btn:hover {
@@ -87,6 +74,11 @@ a, label {
     background-color: #e6e6e6;
 }
 
+a, label {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
 a:hover {
     color: #005580;
     text-decoration: underline;
@@ -96,17 +88,15 @@ a:hover, a:active {
     outline: 0;
 }
 
+ul, ol {
+    padding: 0;
+    margin: 0 0 10px 25px;
+}
+
 .nav {
     margin-bottom: 20px;
     margin-left: 0;
     list-style: none;
-}
-
-ul, ol {
-    padding: 0;
-    margin: 0 0 10px 25px;
-        margin-bottom: 10px;
-        margin-left: 25px;
 }
 
 .nav-tabs > li {
@@ -143,37 +133,17 @@ ul, ol {
 }
 /* END bootstrap nick */
 
-body.tutorial_body {
-    font-family: "Segoe UI", system-ui, sans-serif;
-    font-size: 13pt;
-    background-color: #1E335E;
-    margin: 0;
-}
-
 body.gradient_body {
     font-size: 13pt;
     margin: 30px 0;
     padding: 0 10px;
     font-family: "Segoe UI", system-ui, sans-serif;
-    color: white;
 
     background: #a7cfdf; /* Old browsers */
-    background: linear-gradient(to bottom, #a7cfdf 0%,#23538a 100%);
+    background: var(--outer-background);
 
     height: 100%;
     background-attachment: fixed;
-}
-
-.hero {
-    line-height: normal;
-    font-size: 30pt;
-    letter-spacing: 2px;
-    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Ubuntu Mono", "Hack", "Noto Sans Mono", Liberation Mono, monospace;
-    font-weight: bold;
-    margin: 15px 15px 5px 15px;
-    color: white;
-    position: relative;
-    top: 10px;
 }
 
 #platform_tabs {
@@ -185,9 +155,9 @@ body.gradient_body {
 
 .download_tabs {
     min-height: 100px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-top-width: 0;
-    background-color: #ffffff;
+    background-color: var(--active-color);
     padding: 10px 20px;
     text-align: center;
     border-radius: 5px;
@@ -245,9 +215,9 @@ body.gradient_body {
     height: auto;
 }
 
-.container-narrow, .container-wide {
+.container-narrow {
     padding: 10px 50px 30px;
-    background-color: #EEEEFA;
+    background-color: var(--main-background);
     border-radius: 14px;
     position: relative;
 
@@ -256,25 +226,12 @@ body.gradient_body {
     -moz-box-shadow: 0 0 1px 1px #333;
     -webkit-box-shadow: 0 0 1px 1px #333;
     box-shadow: 0 0 5px 1px #333;
-}
-
-body, .container-narrow, .jumbotron, .lead, .btn-large,
-.post_list li, .post_title {
-    color: var(--text-color);
-}
-
-.container-narrow {
     max-width: 1270px;
 }
 
-.container-wide {
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-hr {
-    border-top: 1px solid #CCF;
-    border-bottom: 1px solid #FFF;
+body, .container-narrow, .jumbotron, .lead, .btn,
+.post_list li, .post_title {
+    color: var(--text-color);
 }
 
 ul li {
@@ -290,63 +247,10 @@ ul li {
     font-size: 11pt;
 }
 
-#ancestor {
-    width: 850px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 25px;
-}
-
-.fish_header {
-    font-size: 30pt;
-}
-
-.fish_header a {
-    text-decoration: none;
-    color: inherit;
-}
-
-#parent {
-    font-family: "Segoe UI", system-ui, sans-serif;
-    color: #383838;
-    margin-top: 20px;
-    padding: 10px 50px 30px;
-    background-color: #EEEED4;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    position: relative;
-}
-
 .shadow {
     -moz-box-shadow: 0 0 1px 1px #333;
     -webkit-box-shadow: 0 0 1px 1px #333;
     box-shadow: 0 0 3px 1px #333;
-}
-
-.headline {
-    padding: 0 30px 20px 0;
-    font-size: 30pt;
-    width: 400px;
-}
-
-#fish_icon {
-    float: right;
-    margin-right: 80px;
-    margin-top: 15px;
-    width: 200px;
-    height: 120px;
-    /*border: 3px dashed black;*/
-}
-
-#fish_icon_img {
-    float: right;
-    margin-right: 80px;
-    margin-top: 15px;
-    width: 246px;
-    height: 172px;
-    position: relative;
-    bottom: 15px;
-    left: 25px;
 }
 
 .promo_table {
@@ -366,16 +270,11 @@ h3 {
     margin-bottom: 12px;
 }
 
-.thin_separator {
-    width: 100%;
-    border-bottom: 1px solid #AA9;
-}
-
 .promo_image {
     height: fit-content;
     width: fit-content;
-    border: 3px double #333;
     overflow: hidden;
+    margin-bottom: 3px;
     border-radius: 5px;
 }
 
@@ -386,18 +285,6 @@ h3 {
     vertical-align: bottom;
 }
 
-#autosuggestion {
-}
-
-#vga {
-}
-
-#man_completions {
-}
-
-#web_config {
-}
-
 .fish_logo {
     width: 320px;
     height: 240px;
@@ -406,65 +293,8 @@ h3 {
     right: 55px;
 }
 
-#fish_icon pre {
-    font-weight: bold;
-    font-size: 10pt;
-    position: relative;
-    bottom: 60px;
-    right: 80px;
-    color: #006090;
-}
-
-.install_float {
-    float: left;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px;
-    border: 1px solid #888;
-    background-color: #FFFFD8;
-    font-size: 13pt;
-    margin: 10px;
-}
-
-.install_icon {
-    width: 48px;
-    height: 48px;
-    margin-top: 10px;
-}
-
 .nounderline {
     text-decoration: none;
-}
-
-.install_button {
-    display: block;
-    width: 128px;
-    height: 24px;
-    border: solid 1px #606080;
-    padding: 10px;
-    color: white;
-    border-radius: 5px;
-    text-align: center;
-    line-height: 24px;
-    font-size: 18pt;
-    margin-top: 25px;
-
-    background: rgb(95, 169, 226); /* Old browsers */
-    background: -moz-linear-gradient(top, rgba(95, 169, 226, 1) 3%, rgba(41, 137, 216, 1) 50%, rgba(32, 124, 202, 1) 51%, rgba(30, 87, 153, 1) 95%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, rgba(95, 169, 226, 1)), color-stop(50%, rgba(41, 137, 216, 1)), color-stop(51%, rgba(32, 124, 202, 1)), color-stop(95%, rgba(30, 87, 153, 1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(95, 169, 226, 1) 3%, rgba(41, 137, 216, 1) 50%, rgba(32, 124, 202, 1) 51%, rgba(30, 87, 153, 1) 95%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(95, 169, 226, 1) 3%, rgba(41, 137, 216, 1) 50%, rgba(32, 124, 202, 1) 51%, rgba(30, 87, 153, 1) 95%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, rgba(95, 169, 226, 1) 3%, rgba(41, 137, 216, 1) 50%, rgba(32, 124, 202, 1) 51%, rgba(30, 87, 153, 1) 95%); /* IE10+ */
-    background: linear-gradient(top, rgba(95, 169, 226, 1) 3%, rgba(41, 137, 216, 1) 50%, rgba(32, 124, 202, 1) 51%, rgba(30, 87, 153, 1) 95%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5fa9e2', endColorstr='#1e5799', GradientType=0); /* IE6-9 */
-}
-
-.faq_question {
-    font-size: 13pt;
-}
-
-.faq_answer {
-    margin-left: 25px;
 }
 
 .arrow_box {
@@ -518,7 +348,7 @@ h3 {
     position: relative;
     /* Put above Logo */
     z-index: 50;
-    background-color: rgba(238, 238, 250, 0.5);
+    background-color: var(--jumbotron-color);
     width: fit-content;
     border-radius: 5px;
     padding: 0 1em;
@@ -535,10 +365,6 @@ h3 {
     font-weight: normal;
 }
 
-.marketing p + h4 {
-    margin-top: 28px;
-}
-
 .logo {
     float: right;
     width: 255px;
@@ -547,11 +373,6 @@ h3 {
     left: 5px;
     bottom: 15px;
     margin-left: -100%;
-}
-
-.btn-large {
-    font-size: larger;
-    color: rgb(0, 85, 128);
 }
 
 .app-download {
@@ -593,7 +414,6 @@ h3 {
 
 .post_list li {
     font-size: 20pt;
-    color: #404040;
     margin-bottom: 18px;
 }
 
@@ -604,7 +424,6 @@ h3 {
 
 .post_title {
     margin-bottom: 0;
-    color: #404040;
 }
 
 .post_date {
@@ -676,23 +495,15 @@ input.tabselector {
     --active-color: #fff;
     --border-color: #ddd;
     --text-color: #222;
+    --link-color: #08c;
+    --btn-color: #f5f5f5;
+    --main-background: #EEEEFA;
+    --jumbotron-color: rgba(238, 238, 250, 0.5);
+    --outer-background: linear-gradient(to bottom, #a7cfdf 0%,#23538a 100%);
 }
 
 .dark {
     display: none;
-}
-
-
-:root {
-    --active-color: white;
-    --border-color: transparent;
-    --text-color: black;
-    --btn-color: #00d2ff;
-    --main-background: hotpink;
-    --outer-background: linear-gradient(to top, #1f1f3f 0%, purple 100%);
-    --link-color: indigo;
-    --jumbotron-color: rgba(238, 238, 250, 0.5);
-    --scrollbar-color: white purple;
 }
 
 
@@ -705,19 +516,19 @@ html {
         --active-color: darkslateblue;
         --border-color: transparent;
         --text-color: #DDD;
+        --btn-color: darkorchid;
+        --link-color: lightskyblue;
+        --main-background: purple;
+        --outer-background: linear-gradient(to top, #1f1f3f 0%,#051f3a 100%);
+        --jumbotron-color: rgba(138, 138, 150, 0.5);
+        --scrollbar-color: black hotpink;
     }
 
     body.gradient_body {
         background: linear-gradient(to top, #1f1f3f 0%,#051f3a 100%);
     }
 
-    body, .container-narrow, .jumbotron, .lead, .btn-large,
-    .post_list li, .post_title {
-        color: var(--text-color);
-    }
-
     .container-narrow {
-        background-color: #202028;
         box-shadow: 0 0 5px 1px #000;
     }
 
@@ -736,6 +547,7 @@ html {
     .light {
         display: none;
     }
+
     hr {
         border-top: 1px solid #222;
         border-bottom: 1px solid #222;
@@ -760,4 +572,8 @@ html {
     border-color: var(--border-color);
     border-bottom-color: rgb(221, 221, 221);
     border-bottom-color: transparent;
+}
+
+body.gradient_body {
+    font-family: "Comic Sans MS", "Comic Sans", "Comic Mono", "ComicShannsMono Nerd Font Propo", 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, system-ui, sans-serif;
 }
