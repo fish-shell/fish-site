@@ -32,7 +32,7 @@ The site is hosted via GitHub pages with a custom domain. The site is served out
 
 After building the site (see above), do the following:
 
-1. `git make` to build the site.
+1. `make` to build the site.
 2. `git commit` your changes to `master`. Ensure the site is checked in.
 4. `git push`
 
