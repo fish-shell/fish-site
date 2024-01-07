@@ -54,6 +54,8 @@ hr {
     vertical-align: middle;
     cursor: pointer;
     background-color: var(--btn-color);
+    background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+    background-repeat: repeat-x;
     border: 1px solid #bbb;
     border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
     border-radius: 4px;
@@ -72,6 +74,7 @@ hr {
 .btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] {
     color: #333;
     background-color: #e6e6e6;
+    background-image: unset;
 }
 
 a, label {
@@ -430,6 +433,7 @@ h3 {
     margin-left: 8px;
     font-weight: bold;
     font-size: smaller;
+    color: #606060;
     margin-bottom: 25px;
 }
 
@@ -506,22 +510,15 @@ input.tabselector {
     display: none;
 }
 
-
-html {
-    scrollbar-color: var(--scrollbar-color);
-}
-
 @media (prefers-color-scheme: dark) {
     :root {
-        --active-color: darkslateblue;
+        --active-color: #282830;
         --border-color: transparent;
         --text-color: #DDD;
-        --btn-color: darkorchid;
-        --link-color: lightskyblue;
-        --main-background: purple;
+        --btn-color: #40404F;
+        --main-background: #202028;
         --outer-background: linear-gradient(to top, #1f1f3f 0%,#051f3a 100%);
-        --jumbotron-color: rgba(138, 138, 150, 0.5);
-        --scrollbar-color: black hotpink;
+        --jumbotron-color: rgba(32, 32, 40, 0.5);
     }
 
     body.gradient_body {
@@ -530,6 +527,11 @@ html {
 
     .container-narrow {
         box-shadow: 0 0 5px 1px #000;
+    }
+
+    .btn-large {
+        font-size: larger;
+        background-image: unset;
     }
 
     .logofix {
@@ -549,8 +551,8 @@ html {
     }
 
     hr {
-        border-top: 1px solid #222;
-        border-bottom: 1px solid #222;
+        border-top: 1px solid #444;
+        border-bottom: 1px solid #444;
     }
 
     .download_tab > div {
@@ -572,8 +574,4 @@ html {
     border-color: var(--border-color);
     border-bottom-color: rgb(221, 221, 221);
     border-bottom-color: transparent;
-}
-
-body.gradient_body {
-    font-family: "Comic Sans MS", "Comic Sans", "Comic Mono", "ComicShannsMono Nerd Font Propo", 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, system-ui, sans-serif;
 }
