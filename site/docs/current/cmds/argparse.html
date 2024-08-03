@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>argparse - parse options passed to a fish script or function &#8212; fish-shell 3.7.0 documentation</title>
+    <title>argparse - parse options passed to a fish script or function &#8212; fish-shell 3.7.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=3888ae04"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/documentation_options.js?v=5c477e40"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -20,14 +20,14 @@
      
 
   </head><body><div id="fmain">  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -55,7 +55,7 @@
     </div>    
 
     <div class="document">
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="../index.html">Documents</a></h3>
@@ -75,7 +75,7 @@
 </ul>
 
 </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
@@ -83,7 +83,7 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
 <div>
 <h4><a href="../index.html">Sections</a></h4>
@@ -98,6 +98,7 @@
 <li><a class="reference internal" href="#note-optional-arguments">Note: Optional arguments</a></li>
 <li><a class="reference internal" href="#flag-value-validation">Flag Value Validation</a></li>
 <li><a class="reference internal" href="#example-option-specs">Example OPTION_SPECs</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
 <li><a class="reference internal" href="#limitations">Limitations</a></li>
 </ul>
 </li>
@@ -131,7 +132,8 @@
 <dl class="simple">
 <dt><strong>-n</strong> or <strong>--name</strong></dt><dd><p>The command name for use in error messages. By default the current function name will be used, or <code class="docutils literal notranslate"><span class="pre">argparse</span></code> if run outside of a function.</p>
 </dd>
-<dt><strong>-x</strong> or <strong>--exclusive</strong> <em>OPTIONS</em></dt><dd><p>A comma separated list of options that are mutually exclusive. You can use this more than once to define multiple sets of mutually exclusive options.</p>
+<dt><strong>-x</strong> or <strong>--exclusive</strong> <em>OPTIONS</em></dt><dd><p>A comma separated list of options that are mutually exclusive. You can use this more than once to define multiple sets of mutually exclusive options.
+You give either the short or long version of each option, and you still need to otherwise define the options.</p>
 </dd>
 <dt><strong>-N</strong> or <strong>--min-args</strong> <em>NUMBER</em></dt><dd><p>The minimum number of acceptable non-option arguments. The default is zero.</p>
 </dd>
@@ -267,6 +269,33 @@
 <p>After parsing the arguments the <code class="docutils literal notranslate"><span class="pre">argv</span></code> variable is set with local scope to any values not already consumed during flag processing. If there are no unbound values the variable is set but <code class="docutils literal notranslate"><span class="pre">count</span> <span class="pre">$argv</span></code> will be zero.</p>
 <p>If an error occurs during argparse processing it will exit with a non-zero status and print error messages to stderr.</p>
 </section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<p>A simple use:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">argparse</span><span class="w"> </span><span class="no">h/help</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$argv</span>
+<span class="o">or</span><span class="w"> </span><span class="nf">return</span>
+
+<span class="nf">if</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="no">_flag_help</span>
+<span class="w">    </span><span class="c"># TODO: Print help here</span>
+<span class="w">    </span><span class="nf">return</span><span class="w"> </span><span class="no">0</span>
+<span class="nf">end</span>
+</pre></div>
+</div>
+<p>This just wants one option - <code class="docutils literal notranslate"><span class="pre">-h</span></code> / <code class="docutils literal notranslate"><span class="pre">--help</span></code>. Any other option is an error. If it is given it prints help and exits.</p>
+<p>How <a class="reference internal" href="fish_add_path.html"><span class="doc">fish_add_path - add to the path</span></a> parses its args:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">argparse</span><span class="w"> </span><span class="no">-x</span><span class="w"> </span><span class="no">g,U</span><span class="w"> </span><span class="no">-x</span><span class="w"> </span><span class="no">P,U</span><span class="w"> </span><span class="no">-x</span><span class="w"> </span><span class="no">a,p</span><span class="w"> </span><span class="no">g/global</span><span class="w"> </span><span class="no">U/universal</span><span class="w"> </span><span class="no">P/path</span><span class="w"> </span><span class="no">p/prepend</span><span class="w"> </span><span class="no">a/append</span><span class="w"> </span><span class="no">h/help</span><span class="w"> </span><span class="no">m/move</span><span class="w"> </span><span class="no">v/verbose</span><span class="w"> </span><span class="no">n/dry-run</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$argv</span>
+</pre></div>
+</div>
+<p>There are a variety of boolean flags, all with long and short versions. A few of these cannot be used together, and that is what the <code class="docutils literal notranslate"><span class="pre">-x</span></code> flag is used for.
+<code class="docutils literal notranslate"><span class="pre">-x</span> <span class="pre">g,U</span></code> means that <code class="docutils literal notranslate"><span class="pre">--global</span></code> and <code class="docutils literal notranslate"><span class="pre">--universal</span></code> or their short equivalents conflict, and if they are used together you get an error.
+In this case you only need to give the short or long flag, not the full option specification.</p>
+<p>After this it figures out which variable it should operate on according to the <code class="docutils literal notranslate"><span class="pre">--path</span></code> flag:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">var</span><span class="w"> </span><span class="no">fish_user_paths</span>
+<span class="nf">set</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="no">_flag_path</span>
+<span class="o">and</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">var</span><span class="w"> </span><span class="no">PATH</span>
+</pre></div>
+</div>
+</section>
 <section id="limitations">
 <h2>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">¶</a></h2>
 <p>One limitation with <strong>--ignore-unknown</strong> is that, if an unknown option is given in a group with known options, the entire group will be kept in $argv. <code class="docutils literal notranslate"><span class="pre">argparse</span></code> will not do any permutations here.</p>
@@ -288,14 +317,14 @@
       </div> 
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
     <li><img src="../_static/fish.png" alt=""
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -327,7 +356,7 @@
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     </div>
 </div>
 

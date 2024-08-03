@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release notes &#8212; fish-shell 3.7.0 documentation</title>
+    <title>Release notes &#8212; fish-shell 3.7.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a864bcb0" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=4e2636db" />
     <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="_static/documentation_options.js?v=3888ae04"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/documentation_options.js?v=5c477e40"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -20,14 +20,14 @@
      
 
   </head><body><div id="fmain">  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.7.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.7.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -54,7 +54,7 @@
     </div>    
 
     <div class="document">
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="index.html">Documents</a></h3>
@@ -74,7 +74,7 @@
 </ul>
 
 </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -82,12 +82,13 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
 <div>
 <h4><a href="index.html">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
+<li><a class="reference internal" href="#fish-3-7-1-released-march-19-2024">fish 3.7.1 (released March 19, 2024)</a></li>
 <li><a class="reference internal" href="#fish-3-7-0-released-january-1-2024">fish 3.7.0 (released January 1, 2024)</a><ul>
 <li><a class="reference internal" href="#notable-improvements-and-fixes">Notable improvements and fixes</a></li>
 <li><a class="reference internal" href="#deprecations-and-removed-features">Deprecations and removed features</a></li>
@@ -344,6 +345,31 @@
             
   <section id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading">¶</a></h1>
+<section id="fish-3-7-1-released-march-19-2024">
+<h2>fish 3.7.1 (released March 19, 2024)<a class="headerlink" href="#fish-3-7-1-released-march-19-2024" title="Link to this heading">¶</a></h2>
+<p>This release of fish fixes the following problems identified in fish 3.7.0:</p>
+<ul class="simple">
+<li><p>Deleting the last history entry via <code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">delete</span></code> works again (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10190">#10190</a>).</p></li>
+<li><p>Wildcards (<code class="docutils literal notranslate"><span class="pre">*</span></code>) will no longer sometimes generate paths that did not exist (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10205">#10205</a>).</p></li>
+</ul>
+<p>This release also contains some improvements:</p>
+<ul class="simple">
+<li><p>A crash when trying to run an ELF program with a missing interpreter has been fixed. This crashed in the process after fork, so did not affect the fish process that tried to start the program (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10199">#10199</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">funced</span></code> will now always <code class="docutils literal notranslate"><span class="pre">source</span></code> the file after it has written it, even if the contents did not change. This prevents issues if the file was otherwise modified (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10318">#10318</a>).</p></li>
+<li><p>The warning for when a builtin returns a negative exit code was improved, now mentioning the original status (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10187">#10187</a>).</p></li>
+<li><p>Added completions for</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">cobra-cli</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10293">#10293</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dmidecode</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10368">#10368</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mycli</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10309">#10309</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ollama</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10327">#10327</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pstree</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10317">#10317</a>)</p></li>
+</ul>
+</li>
+<li><p>Some improvements to documentation and completions.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
 <section id="fish-3-7-0-released-january-1-2024">
 <h2>fish 3.7.0 (released January 1, 2024)<a class="headerlink" href="#fish-3-7-0-released-january-1-2024" title="Link to this heading">¶</a></h2>
 <p>This release of fish includes a number of improvements over fish 3.6.4, detailed below. Although work continues on the porting of fish internals to the Rust programming language, that work is not included in this release. fish 3.7.0 and any future releases in the 3.7 series remain C++ programs.</p>
@@ -4125,14 +4151,14 @@ track.</p>
       </div> 
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.7.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 3.7.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -4163,7 +4189,7 @@ track.</p>
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     </div>
 </div>
 
