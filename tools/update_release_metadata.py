@@ -15,11 +15,11 @@ def format_size(bytecount):
   """ Format a byte count in megabytes """
   return '%.1f MB' % (int(bytecount) / (1024 * 1024))
 
-def sha1of(url):
+def sha256of(url):
   """ return the sha1 of the contents of the URL """
-  sys.stderr.write("sha1 of %s...\n" % url)
+  sys.stderr.write("sha256 of %s...\n" % url)
   data = requests.get(url).content
-  result = hashlib.sha1(data).hexdigest()
+  result = hashlib.sha256(data).hexdigest()
   sys.stderr.write("Got %s\n" % result)
   return result
 
@@ -57,9 +57,9 @@ for rel in releases:
   # diff noise.
   for asset in rel['assets']:
     del asset['download_count']
-  # Compute the SHA1 for the first tarball only.
+  # Compute the SHA256 for the first tarball only.
   if first:
-    rel['md_tarball_sha1'] = sha1of(tarball['browser_download_url'])
+    rel['md_tarball_sha256'] = sha256of(tarball['browser_download_url'])
     first = False
 
 # We've modified the dictionaries in place, output them again.
