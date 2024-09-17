@@ -19,7 +19,12 @@
             // which is reasonably unlikely.
             // But pointing to paragraphs would break more, so we don't.
             const link = elem.querySelector("a");
-            const doc = window.location.pathname.split("/").pop();
+            const paths = window.location.pathname.split("/");
+            let doc = paths.pop();
+            const lastpath = paths.pop();
+            if (lastpath != this_version) {
+                doc = lastpath + "/" + doc;
+            }
             link.href += doc;
         }
     };
