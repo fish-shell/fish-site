@@ -14,6 +14,13 @@
         if (maj_version !== this_version) {
             const elem = document.getElementById("old-docs-notice");
             if (elem) elem.style.removeProperty('display');
+            // Fix up the link to point to the same page.
+            // Note: This will break if we remove a page,
+            // which is reasonably unlikely.
+            // But pointing to paragraphs would break more, so we don't.
+            const link = elem.querySelector("a");
+            const doc = window.location.pathname.split("/").pop();
+            link.href += doc;
         }
     };
 
