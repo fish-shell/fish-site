@@ -566,13 +566,11 @@ title: fish shell
     {%- for rel in site.data.releases %}
       <li>
         {{ rel.tag_name }}, released {{ rel.published_at | date: '%B %e, %Y' }}
-        {%- unless forloop.first %}
         <small>(<a href="{{ rel.md_tarball_url }}">tarball</a>
           {%- if site.data.release_comments[rel.tag_name] %}
             - {{ site.data.release_comments[rel.tag_name] }}
           {%- endif %})
         </small>
-        {%- endunless %}
       </li>
     {%- endfor %}
   </ul>
