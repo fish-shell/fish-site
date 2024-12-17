@@ -26,7 +26,8 @@ def sha256of(url):
 def get_asset(release, extension):
   """ return the asset dictionary for the asset with the given extension """
   vals = [asset for asset in release['assets']
-          if asset['name'].endswith(extension)]
+          # skip over static builds
+          if asset['name'].endswith(extension) and not "-static" in asset['name']]
   if len(vals) > 1:
     sys.stderr.write('Warning: Multiple %s found for release %s'
                      % (extension, release['tag_name']))
@@ -36,7 +37,8 @@ first = True
 releases = json.load(sys.stdin, object_pairs_hook=OrderedDict)
 
 # Remove pre-releases.
-releases = [rel for rel in releases if not rel.get('prerelease')]
+# We don't want to do this for the current beta, so let's include *all* and filter them later
+# releases = [rel for rel in releases if not rel.get('prerelease')]
 
 # Remove certain old releases without tarballs.
 releases = [rel for rel in releases if get_asset(rel, '.tar.xz') or get_asset(rel, '.tar.gz')]

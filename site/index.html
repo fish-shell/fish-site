@@ -563,7 +563,18 @@ title: fish shell
   </p>
 
   <ul class="releases-list">
+    {%- if release.prerelease %}
+      <li>
+        {{ release.tag_name }}, released {{ release.published_at | date: '%B %e, %Y' }}
+        <small>(<a href="{{ release.md_tarball_url }}">tarball</a>
+          {%- if site.data.release_comments[release.tag_name] %}
+            - {{ site.data.release_comments[release.tag_name] }}
+          {%- endif %})
+        </small>
+      </li>
+    {%- endif %}
     {%- for rel in site.data.releases %}
+      {%- unless rel.prerelease %}
       <li>
         {{ rel.tag_name }}, released {{ rel.published_at | date: '%B %e, %Y' }}
         <small>(<a href="{{ rel.md_tarball_url }}">tarball</a>
@@ -572,6 +583,7 @@ title: fish shell
           {%- endif %})
         </small>
       </li>
+      {%- endunless %}
     {%- endfor %}
   </ul>
   <hr>
