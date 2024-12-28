@@ -70,7 +70,7 @@ and one long-term project is to add concurrency to the language.</p>
 <p>Here’s a dirty secret: while external commands run in parallel, fish’s execution of internal commands (builtins and functions) is currently serial and can’t be backgrounded. Lifting this limitation will enable features like asynchronous prompts or non-blocking completions, as well as performance gains.</p>
 
 <p>POSIX shells use subshells to get around this, but subshells are a leaky abstraction that can bite you in the behind when you least expect it.
-For instance you can’t set variables from inside a pipe (except on some shells, but only in the last part of the pipe, maybe, if you have enabled the correct option).
+For instance, you can’t set variables from inside a pipe (except on some shells, but only in the last part of the pipe, maybe, if you have enabled the correct option).
 We would like to avoid that, and so the heavy hand of forking off a process isn’t appealing.</p>
 
 <p>We prototyped true multithreaded execution in C++, but it just didn’t work out. For example, it was too easy to accidentally share objects across threads, with only post-hoc tools like Thread Sanitizer to prevent it.</p>
@@ -118,11 +118,11 @@ it is amazing how the Rust answer can just be “use rustup”.</p>
 
 <p>A lot of hay has also been made online about Rust’s platform support (e.g. <a href="https://lwn.net/Articles/998115/">in the git project</a>). We don’t see a big problem here - all of our big platforms (macOS, Linux, the BSDs) are supported, as are Opensolaris/Illumos and Haiku. We have never heard of anyone trying to run fish on NonStop.</p>
 
-<p>Architecture support is even less of a problem - going by <a href="https://popcon.debian.org/">debian’s popcon</a>, 99.9995% (the actual result, not an exaggeration) of machines run an architecture that has Rust packages in Debian. Given that fish is <a href="https://qa.debian.org/popcon.php?package=fish">installed on 1.92% of Debian systems</a>, we would project two (2) or three (3) machines of the quarter million responses to have fish on an unsupported architecture <sup id="fnref:stats"><a href="#fn:stats" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>.</p>
+<p>Architecture support is even less of a problem - going by <a href="https://popcon.debian.org/">Debian’s popcon</a>, 99.9995% (the actual result, not an exaggeration) of machines run an architecture that has Rust packages in Debian. Given that fish is <a href="https://qa.debian.org/popcon.php?package=fish">installed on 1.92% of Debian systems</a>, we would project two (2) or three (3) machines of the quarter million responses to have fish on an unsupported architecture <sup id="fnref:stats"><a href="#fn:stats" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>.</p>
 
 <p>Unlike what some online have assumed, a native Windows port was not a reason for switching to Rust as it was never in the cards. Fish is, at heart, a UNIX shell that relies not only on UNIX APIs but also their semantics, and exposes them in the scripting language. What would <code class="language-plaintext highlighter-rouge">test -x</code> say on Windows, which has no executable bit? These are issues that <em>could</em> be solved with a lot of work, but we’re unix nerds making a unix shell, not one for Windows.</p>
 
-<p>The one platform we care about a bit that it does not currently seem to have enough support for is Cygwin, which is sad but we have to make a cut somewhere.</p>
+<p>The one platform we care about a bit that it does not currently seem to have enough support for is Cygwin, which is sad, but we have to make a cut somewhere.</p>
 
 <h2 id="the-story-of-the-port">The Story Of The Port</h2>
 
@@ -277,7 +277,7 @@ For now, the only way to run fish on Windows is to use WSL.</p>
 
 <h2 id="the-present--the-future">The Present &amp; The Future</h2>
 
-<p>We’ve succeeded. This was a gigantic project and <em>we made it</em>. The sheer scale of this is perhaps best expresed in numbers:</p>
+<p>We’ve succeeded. This was a gigantic project and <em>we made it</em>. The sheer scale of this is perhaps best expressed in numbers:</p>
 
 <ul>
   <li>1155 files changed, 110247 insertions(+), 88941 deletions(-) (excluding translations)</li>
