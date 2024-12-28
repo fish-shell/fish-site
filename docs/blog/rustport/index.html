@@ -153,7 +153,7 @@ That means it’s easy to port them separately from the rest of the shell once y
 <p>For instance, almost every builtin needs to parse its options. We have our own implementation of getopt, that we reimplemented in Rust in the initial PR,
 but the C++ version stuck around until it had no more callers remaining. Otherwise we would have had to write a C++-to-Rust bridge and adjust the C++ callers to use it.</p>
 
-<p>Or the <code class="language-plaintext highlighter-rouge">builtin</code> builtin needs access to the names of all builtins to print them for <code class="language-plaintext highlighter-rouge">builtin --get-names</code>. In that case we bridged some access to what amounts to a constant vector of strings in the C++, and eventually moved it over once the users were in Rust.</p>
+<p>Or the <code class="language-plaintext highlighter-rouge">builtin</code> builtin (the builtin called <code class="language-plaintext highlighter-rouge">builtin</code>) needs access to the names of all builtins to print them for <code class="language-plaintext highlighter-rouge">builtin --get-names</code>. In that case we bridged some access to what amounts to a constant vector of strings in the C++, and eventually moved it over once the users were in Rust.</p>
 
 <p>That’s how it went for a while, but we finally hit the more entangled systems, where porting larger chunks felt more productive,
 since that reduced the amount of tricky FFI code to be written only to be thrown away. These were ported in solo efforts.
