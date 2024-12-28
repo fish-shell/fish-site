@@ -1,0 +1,354 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fish 4.0: The Fish Of Theseus</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="A smart and user-friendly command line shell">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../../assets/css/fish_style.css" rel="stylesheet" type="text/css">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+<style type="text/css">
+li {
+  margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body class="gradient_body">
+<div class="container-narrow">
+  <h3 class="post_title">Fish 4.0: The Fish Of Theseus</h3>
+  <div class="post_date">Dec 28, 2024</div>
+
+  <div class="post_body"><p>About two years ago, our head maintainer @ridiculousfish opened what quickly became our most-read pull request:</p>
+
+<ul>
+  <li><a href="https://github.com/fish-shell/fish-shell/pull/9512">#9512 - Rewrite it in Rust</a></li>
+</ul>
+
+<p>Truth be told, we did not quite expect that to be as popular as it was.
+It was written as a bit of an in-joke for the fish developers first, and not really as a press release to be shared far and wide.
+We didn’t post it anywhere, but other people did, and we got a lot of reactions.</p>
+
+<p>Observant readers will note that the PR was a proposal to rewrite the entirety of fish in Rust, from C++.</p>
+
+<p>Fish is no stranger to language changes - it was ported from pure C to C++ earlier in its life,
+but this was a much bigger project, porting to a much more different language that didn’t even exist when fish was started in 2007.</p>
+
+<p>Now that we’ve released the beta of fish 4.0, containing 0% C++ and almost 100% pure Rust, let’s look back to see what we’ve learned, what went well, what could have gone better and what we can do now.</p>
+
+<p>We’re writing this so others can learn from our experience, but it is <em>our</em> experience and not an exhaustive study.
+We hope that you’ll be able to follow along even if you have never written any rust, but
+experience with a roughly C++-shaped language should help.</p>
+
+<h2 id="why-are-we-doing-this-again">Why are we doing this again?</h2>
+
+<p>We’ve experienced some pain with C++. In short:</p>
+
+<ul>
+  <li>tools and compiler/platform differences</li>
+  <li>ergonomics and (thread) safety</li>
+  <li>community</li>
+</ul>
+
+<p>Frankly, the tooling around the language isn’t good, and we had to take on some additional pain in order to support our users.
+We want to provide up-to-date fish packages for systems that aren’t up-to-date, like LTS Linux and older macOS.
+But there is no ‘rustup’ for C++, no standard way to install recent C++ compilers on these operating systems.
+This means adopting recent C++ standards would complicate the lives of packagers and would-be contributors<sup id="fnref:Contributions"><a href="#fn:Contributions" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>.
+For example, we started using C++11 in 2016, and yet we still needed to upgrade the compilers on our build machines until 2020.</p>
+
+<p>Fish also uses threads for its award-winning (<em>note to editor</em>: find an actual award) autosuggestions and syntax highlighting,
+and one long-term project is to add concurrency to the language.</p>
+
+<p>Here’s a dirty secret: while external commands run in parallel, fish’s execution of internal commands (builtins and functions) is currently serial and can’t be backgrounded. Lifting this limitation will enable features like asynchronous prompts or non-blocking completions, as well as performance gains.</p>
+
+<p>POSIX shells use subshells to get around this, but subshells are a leaky abstraction that can bite you in the behind when you least expect it.
+For instance you can’t set variables from inside a pipe (except on some shells, but only in the last part of the pipe, maybe, if you have enabled the correct option).
+We would like to avoid that, and so the heavy hand of forking off a process isn’t appealing.</p>
+
+<p>We prototyped true multithreaded execution in C++, but it just didn’t work out. For example, it was too easy to accidentally share objects across threads, with only post-hoc tools like Thread Sanitizer to prevent it.</p>
+
+<p>The ergonomics of C++ are also simply not good - header files are annoying, templates are complicated, you can easily cause a compile error that throws <em>pages</em> of overloads in the standard library at you. Many functions are unsafe to use. C++ string handling is very verbose with
+easily confusable overloads of many methods, making it attractive to drop down to C-style char pointers, which are quite unsafe.</p>
+
+<p>And the standard prioritizes performance over ergonomics. Consider for instance string_view, which provides a non-owning slice of a string. This is an extremely modern, well-liked feature that C++ programmers often claim is a great reason to switch to C++17. And it is extremely easy to run into use-after-free bugs with it, because the ergonomics weren’t a priority.</p>
+
+<p>One good case study of the deficiencies of C++-in-practice is a C library: curses. This is a venerable library to access terminal features, and we use it to access the terminfo database, which describes differences in terminal features and behavior.</p>
+
+<p>This not only caused us grief by being unsafe to use in weird ways - the “cur_term” pointer (or sometimes macro!) can be NULL, and it is dereferenced in surprising places, but also caused a surprisingly high number of issues when building from source. This was either because there are multiple implementations of it with differences as useless as “this function takes a char on system X but an int on system Y”, but also because users kept coming to us with new and exciting(ly terrible) ways to package and install it. The dependency system is the system package manager.</p>
+
+<p>Finally, subjectively, C++ isn’t drawing in the crowds. We have never had a lot of C++ contributors. Over the 11 years fish used C++, only 17 people have at least 10 commits to the C++ code. We also don’t know a lot of people who would love to work on a C++ codebase in their free time.</p>
+
+<p>Some parting thoughts we can give the C++ community: We would like to see improvements to ergonomics and safety of the language and the tools prioritized over performance, and we would like to see efforts to make C++ compilers easier to upgrade on real systems.</p>
+
+<h2 id="why-rust">Why Rust?</h2>
+
+<p>We need to get one thing out of the way: Rust is cool. It’s fun.</p>
+
+<p>It’s tempting to try to sweep this under the rug because it feels gauche to say, but it’s actually important for a number of reasons.</p>
+
+<p>For one, fish is a hobby project, and that means we want it to be fun for us. Nobody is being paid to work on fish, so we <em>need</em> it to be fun.
+Being fun and interesting also attracts contributors.</p>
+
+<p>Rust also has great tooling. The tools have really paid a lot of attention to use, and the compiler errors are terrific. Not even “compared to C++”, they just actually rule. And as we have tried to pay attention to our own error messages (fish has a bespoke error for if it thinks a file you told it to run has Windows line endings),
+we like it.</p>
+
+<p>And it is <em>easy</em> to get that tooling installed - <code class="language-plaintext highlighter-rouge">rustup</code> is magic, and allows people to get started quickly, with minimal fuss or root permissions.
+When the answer to “how to upgrade C++ compiler” is “find a repository (with root permissions), compile it yourself, install some <em>other</em> repository or a docker image”,
+it is amazing how the Rust answer can just be “use rustup”.</p>
+
+<p>Rust has great ergonomics - the difference between C++’s pointers (which can always be NULL) and Rust’s Options are apparent very quickly even to those of us who had never used it before. We did have a backport of C++’s optional, and liked using it, but it was never as integrated as Rust’s Options were.</p>
+
+<p>Having an explicit <code class="language-plaintext highlighter-rouge">use</code> system where you know exactly which function comes from which module is a great improvement over <code class="language-plaintext highlighter-rouge">#include</code>.</p>
+
+<p>Rust makes it nice to add dependencies. We don’t want to go overboard with it, but we do want to change our history format from our homegrown “I can’t believe it’s not YAML” to something specified that other tools can actually read, and Rust makes it easy to add support for YAML/JSON/KDL.</p>
+
+<p>But the killer feature of Rust, from fish-shell’s perspective, is Send and Sync, statically enforcing rules around threading. “Fearless concurrency” is too strong - you can still blow your leg off with fork or signal handlers - but Send and Sync will be the key to unlocking fully multithreaded execution, with confidence in its correctness.</p>
+
+<p>We did not do a comprehensive survey of other languages. We were confident Rust was up to the task and either already knew it or wanted to learn it, so we picked it.</p>
+
+<h2 id="platform-support">Platform Support</h2>
+
+<p>A lot of hay has also been made online about Rust’s platform support (e.g. <a href="https://lwn.net/Articles/998115/">in the git project</a>). We don’t see a big problem here - all of our big platforms (macOS, Linux, the BSDs) are supported, as are Opensolaris/Illumos and Haiku. We have never heard of anyone trying to run fish on NonStop.</p>
+
+<p>Architecture support is even less of a problem - going by <a href="https://popcon.debian.org/">debian’s popcon</a>, 99.9995% (the actual result, not an exaggeration) of machines run an architecture that has Rust packages in Debian. Given that fish is <a href="https://qa.debian.org/popcon.php?package=fish">installed on 1.92% of Debian systems</a>, we would project two (2) or three (3) machines of the quarter million responses to have fish on an unsupported architecture <sup id="fnref:stats"><a href="#fn:stats" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>.</p>
+
+<p>Unlike what some online have assumed, a native Windows port was not a reason for switching to Rust as it was never in the cards. Fish is, at heart, a UNIX shell that relies not only on UNIX APIs but also their semantics, and exposes them in the scripting language. What would <code class="language-plaintext highlighter-rouge">test -x</code> say on Windows, which has no executable bit? These are issues that <em>could</em> be solved with a lot of work, but we’re unix nerds making a unix shell, not one for Windows.</p>
+
+<p>The one platform we care about a bit that it does not currently seem to have enough support for is Cygwin, which is sad but we have to make a cut somewhere.</p>
+
+<h2 id="the-story-of-the-port">The Story Of The Port</h2>
+
+<p>We had decided we were gonna do a “Fish <a href="https://en.wikipedia.org/wiki/Ship_of_Theseus">Of Theseus</a>” port - we would move over, component by component, until no C++ was left.
+And at every stage of that process, it would remain a working fish.</p>
+
+<p>This was a necessity - if we didn’t, we would not have a working program for months, which is not only demoralizing but would also have precluded us from
+using most of our test suite - which is end-to-end tests that run a script or fake a terminal interaction. We would also not have been able to do another C++ release,
+putting some cool improvements into the hands of our users.</p>
+
+<p>Had we chosen to disappear into a hole we might not have finished at all, and we would have to re-do a bunch of work once it became testable.
+We also mostly kept the structure of the C++ code intact - if a function is in the “env” subsystem, it would stay there. Resisting the temptation to
+clean up allowed us to compare the before and after to find places where we had mistranslated something.</p>
+
+<p>So we used <a href="https://google.github.io/autocxx/">autocxx</a> to generate bindings between C++ and Rust code, allowing us to port one component at a time.</p>
+
+<p>We started<sup id="fnref:technically"><a href="#fn:technically" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> by porting the builtins. These are essentially little self-contained programs, with their own arguments, streams, exit code, etc.
+That means it’s easy to port them separately from the rest of the shell once you have a way to call a Rust builtin from C++, which we had as part of the initial pull request.</p>
+
+<p>Where they connected to the main shell, we used one of three approaches:</p>
+
+<ol>
+  <li>Add some FFI glue to the C++ to make it callable from Rust, port the caller and leave the callee for later</li>
+  <li>Move the callee to Rust and, if necessary, make it callable from C++</li>
+  <li>Write a Rust version of the callee and call it from the ported caller, but leave the C++ version around</li>
+</ol>
+
+<p>For instance, almost every builtin needs to parse its options. We have our own implementation of getopt, that we reimplemented in Rust in the initial PR,
+but the C++ version stuck around until it had no more callers remaining. Otherwise we would have had to write a C++-to-Rust bridge and adjust the C++ callers to use it.</p>
+
+<p>Or the <code class="language-plaintext highlighter-rouge">builtin</code> builtin needs access to the names of all builtins to print them for <code class="language-plaintext highlighter-rouge">builtin --get-names</code>. In that case we bridged some access to what amounts to a constant vector of strings in the C++, and eventually moved it over once the users were in Rust.</p>
+
+<p>That’s how it went for a while, but we finally hit the more entangled systems, where porting larger chunks felt more productive,
+since that reduced the amount of tricky FFI code to be written only to be thrown away. These were ported in solo efforts.
+This includes the input/output “reader”, which is, unsurprisingly, one of fish’s biggest parts, ending up at about 13000 lines of Rust.</p>
+
+<p>During the port, we hit a bunch of snags with (auto)cxx. Sometimes it would just not understand a particular C++ construct, and we spent a lot of time trying to figure out ways to please it. As an example, we introduced a struct on the C++ side that wrapped C++’s <code class="language-plaintext highlighter-rouge">vector</code>, because for some reason autocxx liked to complain about <code class="language-plaintext highlighter-rouge">vector&lt;wstring&gt;</code>. We had to fork it to add support for wstring/wchar, which is understandable because using wchar is a horrible decision - we only do it because it’s a historical mistake.</p>
+
+<p>Similarly, we had to wrap some C++ variables in <code class="language-plaintext highlighter-rouge">unique_ptr</code> and similar to make the ownership rules understandable to (auto)cxx, or copy values that didn’t strictly need to be copied. This caused the performance during the port to go down quite a bit, but we regained all of it in most spots, and even beat the C++ version in some.</p>
+
+<p>We also patched autocxx to remove the requirement to use <code class="language-plaintext highlighter-rouge">unsafe</code> to invoke any C++ API, because that would have obscured uses of <code class="language-plaintext highlighter-rouge">unsafe</code> that wouldn’t disappear just by porting the callee. We were building something temporary, so sometimes it is okay to do something a little underhanded.
+If you used this for a permanent bridge between Rust and C++ in a few parts of your code, the <code class="language-plaintext highlighter-rouge">unsafe</code> markers might be useful, but in our case they were noise.</p>
+
+<p>Because autocxx generated a lot of code, some tools also were less helpful than they’d usually be. rust-analyzer for instance was extremely slow.</p>
+
+<p>So, even though our codebase was fairly amenable to being moved to Rust because we didn’t use exceptions or a lot of templates, autocxx isn’t the easiest to work with.
+It is absolutely magical that it works at all, and it enabled us to do this port, but it has a hard task to perform and isn’t perfect at it.</p>
+
+<h3 id="the-timeline">The Timeline</h3>
+
+<ul>
+  <li>
+    <p>The initial PR was opened on 28th January 2023, merged on 19th February 2023</p>
+  </li>
+  <li>
+    <p>fish 3.7.0, another release in the C++ branch to flush out some accumulated improvements, was released in January 2024</p>
+  </li>
+  <li>
+    <p>The last C++ code was removed in January 2024 (and some additional test code was ported from C++ to C 12th of June 2024)</p>
+  </li>
+  <li>
+    <p>The first beta was released 17th of December 2024</p>
+  </li>
+</ul>
+
+<p>The initial PR had a timeline of “handwaving, half a year”. It was clear to all of us that it might very well be entirely off, and we’re not
+disappointed that it was. Frankly, 14 months was still a pretty good pace, especially considering that we made a C++ release in-between, so it did not throw off our usual release cadence.</p>
+
+<p>Most of the work was done by 7 people (going by those with at least 10 commits to “.rs” files), but we got a lot of help from interested community members.</p>
+
+<p>The delay after that was down to a few reasons:</p>
+
+<ol>
+  <li>The “second 90%” - testing that everything worked. We flushed out a lot of bugs in this time, and if we made a release at that time it would have been a bad one.</li>
+  <li>Having something to release that’s visible to users - there’s no point in making a release that does the same thing in new code, you need it to do different things.
+So we held off until we had something.</li>
+  <li>Simple availability - sometimes, some of us took time off.</li>
+</ol>
+
+<p>So if you are trying to draw any conclusions from this, consider the context: A group of people working on a thing in their free time,
+diverting some effort to work on something else, <em>and</em> deciding that after the work is finished it actually isn’t.</p>
+
+<h2 id="the-gripes">The Gripes</h2>
+
+<p>It won’t surprise anyone who has spent any time on this world of ours that Rust is not, in fact, perfect. We have some gripes with it.</p>
+
+<p>Chief among them is how Rust handles portability. While it offers many abstractions over systems, allowing you to target a variety of systems with the same code,
+when it comes to <em>adapting</em> your code to systems at a lower-level, it’s all based on enumerating systems by hand, using checks like <code class="language-plaintext highlighter-rouge">#[cfg(any(target_os = "freebsd", target_os = "netbsd", target_os = "openbsd"))]</code>.</p>
+
+<p>This is an imperfect solution, allowing you to miss systems and ignoring version differences entirely. From what we can tell, if FreeBSD 12 gains a function that we want to use, libc would add it, but calling it would then fail on FreeBSD 11 without a good way to check, at the moment.</p>
+
+<p>But listing targets in our code is also fundamentally duplicating work that the libc crate (in our case) has already done. If you want to call libc::X, which is only defined on systems A, B and C, you need to put in that check for A, B and C yourself and if libc adds system D you need to add it as well. Instead of doing that, we are using our own <a href="https://github.com/mqudsi/rsconf">rsconf</a> crate to do compile-time feature detection in build.rs.</p>
+
+<p>Most of this would be solved if Rust had some form of saying “compile this if that function exists” - <code class="language-plaintext highlighter-rouge">#[cfg(has_fn = "fstatat")]</code>. With that, the libc crate could do whatever checks it wants and fish would just follow what it did, and we could remove a lot of the use for rsconf. It would not really help support older distributions that lack some features, tho. That could be solved by something like the <a href="https://github.com/rust-lang/rfcs/pull/3036">min_target_API_version</a> cfg.</p>
+
+<p>While we’re on portability, the tools also sometimes fail to consider other targets - clippy may warn about a conversion being useless when it isn’t on another system, it is often better to use <code class="language-plaintext highlighter-rouge">if cfg!(...)</code> instead of <code class="language-plaintext highlighter-rouge">#[cfg(...)]</code> because code behind the latter is eliminated very early, so it may be entirely wrong and only shows up when building on the affected system.</p>
+
+<p>We’ve also had issues with localization - a lot of the usual Rust relies on format strings that are checked at compile-time, but unfortunately they aren’t translatable.
+We ported printf from musl, which we required for our own <code class="language-plaintext highlighter-rouge">printf</code> builtin anyway, which allows us to reuse our preexisting format strings at runtime.</p>
+
+<h3 id="the-mistakes">The Mistakes</h3>
+
+<p>We’ve hit some false starts, dead ends and other kinds of mistakes. For instance we originally used a fancy macro to allow us to write our strings as <code class="language-plaintext highlighter-rouge">"foo"L</code>, but that did not end up carrying its weight and we removed it in favor of a regular <code class="language-plaintext highlighter-rouge">L!("foo")</code> macro call.</p>
+
+<p>We were confused by a deprecation warning in the libc crate, which explains that “time_t” will be switched to 64-bit on musl in the future.
+We initially tried to work around it, adding a lot of wrappers to try to stay agnostic on that size, but only later figured out that it does not affect us,
+as we do not pass a time_t we get from one C library to another. (https://github.com/fish-shell/fish-shell/issues/10634)</p>
+
+<p>Some bugs appeared because we missed subtleties of the original code.
+Often this turned into a crash because we used asserts or assert’s modern cousin “.unwrap()”. This was often the easiest way to translate the C++,
+and sometimes it simply turned out to be not accurate, and had to be replaced with different error handling.</p>
+
+<p>But overall most of these were, once found, pretty shallow - “it panics here, why would it do that? oh, this can be an Err? Okay, what leads to that? Ah, okay, let’s handle that in this way”.</p>
+
+<p>We’ve also caused some friction by turning on link-time-optimization combined with having release builds as the default in CMake (currently needed to run the full test suite),
+which makes it easy to accidentally have very long build time.</p>
+
+<h2 id="the-good">The Good</h2>
+
+<p>A lot of the benefits of porting to Rust will appear over time, but some are already here.</p>
+
+<p>Remember our issues with (n)curses? We will no longer have any, because we no longer use curses. Instead we switched to <a href="https://github.com/meh/rust-terminfo">a Rust crate</a> that gives us just what we need, which is access to terminfo and expanding its sequences. This removes some awkward global state, and means those building from source no longer need to ensure that curses is installed “correctly” on their system - cargo just downloads a crate and builds it.</p>
+
+<p>We do still read terminfo, which means users need to install that, but that can be done at runtime, is preinstalled on all mainstream systems <em>and</em> if it can’t be found we just use an included copy of the xterm-256color definitions<sup id="fnref:terminfo"><a href="#fn:terminfo" class="footnote" rel="footnote" role="doc-noteref">4</a></sup>.</p>
+
+<p>We have also managed to create “self-installable” fish packages that include all the functions, completions and other asset files in the fish binary to be written out at runtime.
+That allowed us to create statically linked versions of fish (for linux this uses musl, because glibc has unavoidable crashes!), so for the first time we have <em>one file</em> you can download and run on <em>any linux</em> (the only requirement being that the architecture matches!).</p>
+
+<p>This is a pretty big boon for people who want to use fish but sometimes ssh to servers, where they might not have root access to install a package. So they can just <code class="language-plaintext highlighter-rouge">scp</code> a single file and it’s available.</p>
+
+<p>This might be possible with C23’s <code class="language-plaintext highlighter-rouge">#embed</code>, but Rust allowed us to do it now and, overall, pretty easily.</p>
+
+<h2 id="the-sad">The Sad</h2>
+
+<p>The one goal of the port we did not succeed in was removing CMake.</p>
+
+<p>That’s because, while <code class="language-plaintext highlighter-rouge">cargo</code> is great at <em>building</em> things, it is very simplistic at <em>installing</em> them. Cargo wants everything in a few neat binaries,
+and that isn’t our use case. Fish has about 1200 .fish scripts (961 completions, 217 associated functions), as well as about 130 pages of documentation (as html and man pages),
+and the web-config tool and the man page generator (both written in python).</p>
+
+<p>It also has a test suite that is light on unit tests but heavy on end-to-end script and interactive tests. The scripted tests run through our own littlecheck tool,
+which runs a script and compares its output to embedded comments. The interactive tests are driven by pexpect, which fakes terminal interaction and checks that the right thing happens when you press buttons.</p>
+
+<p>We kept cmake, in a simplified form, for these tasks, but let it hand over the responsibility of <em>building</em> to cargo.</p>
+
+<p>It would be possible to switch all that to a simpler task runner like Just or even plain old makefiles, but since we already have this system we’re keeping it for now.
+The upside is that the build process hasn’t really changed for packagers.</p>
+
+<p>We’re also losing Cygwin as a supported platform for the time being, because there is no Rust target for Cygwin and so no way to build binaries targeting it.
+We hope that this situation changes in future, but we had also hoped it would improve during the almost two years of the port.
+For now, the only way to run fish on Windows is to use WSL.</p>
+
+<h2 id="the-present--the-future">The Present &amp; The Future</h2>
+
+<p>We’ve succeeded. This was a gigantic project and <em>we made it</em>. The sheer scale of this is perhaps best expresed in numbers:</p>
+
+<ul>
+  <li>1155 files changed, 110247 insertions(+), 88941 deletions(-) (excluding translations)</li>
+  <li>2604 commits by over 200 authors</li>
+  <li>498 issues</li>
+  <li>Almost 2 years of work</li>
+  <li>57K Lines of C++ to 75K Lines of Rust <sup id="fnref:formatting"><a href="#fn:formatting" class="footnote" rel="footnote" role="doc-noteref">5</a></sup> (plus 400 lines of C <sup id="fnref:ccode"><a href="#fn:ccode" class="footnote" rel="footnote" role="doc-noteref">6</a></sup>)</li>
+  <li><a href="https://github.com/fish-shell/fish-shell/pull/10564">C++–</a></li>
+</ul>
+
+<p>The beta works very well. Performance is usually slightly better in terms of time taken, memory use has a slightly higher floor but a lower ceiling - it will use 8M instead of 7M at rest, but e.g. globbing a big directory won’t make it go up as much. These things can all be improved, of course, but for a first result it is encouraging.</p>
+
+<p>Fish is still a bit of an odd duck…fish as a Rust program. It has some bits that smell like C spirit, directly using the C API and e.g. passing around file descriptors instead of File objects. It still uses UTF-32 strings - which is why we are using a fork of the pcre2 crate because we couldn’t convince the pcre2-crate maintainer to add UTF-32 support. We hope to find a nicer solution here, but it wasn’t necessary for the first release.</p>
+
+<p>The port wasn’t without challenges, and it did not all go <em>entirely</em> as planned. But overall, it went pretty dang well. We’re now left with a codebase that we like a lot more, that has already gained some features that would have been much more annoying to add with C++,
+with more on the way, and we did it while creating a separate 3.7 release that also included some cool stuff.</p>
+
+<p>And we had fun doing it.</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:Contributions">
+      <p>We rely on contributions from as diverse a set of people as we can for our completion scripts. We can only really get a completion script for a tool from
+someone who knows that tool. And ideally, they would also test their script with the newest source from git - 
+both to get more testing and to take advantage of new features we introduce.
+So we want to make this as painless as possible. This is working rather well, overall - we have over 1000 completion scripts in our codebase. <a href="#fnref:Contributions" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:stats">
+      <p>That is assuming that there isn’t a correlation between running fish and using an unusual processor architecture. Also this includes Hurd and kFreeBSD. <a href="#fnref:stats" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:technically">
+      <p>Technically the first part of fish to be switched to rust is our <a href="https://github.com/ridiculousfish/widecharwidth">widecharwidth library</a>,
+which already had a rust port that is used in Wezterm. <a href="#fnref:technically" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:terminfo">
+      <p>We have discussed switching to not reading terminfo at all because in practice it is almost entirely useless. (we could write another 3000 words on the topic, but the short of it is that it is slow to update and integrate new features, often wrong, has no versioning mechanism and, most importantly, documents differences that barely exist anymore in the types of terminals that people actually use) <a href="#fnref:terminfo" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:formatting">
+      <p>A lot of the increase in line count can be explained by rustfmt’s formatting, as it likes to spread code out over multiple lines, like:</p>
+      <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">opts</span><span class="py">.show</span>
+    <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">opts</span><span class="py">.local</span>
+        <span class="p">||</span> <span class="n">opts</span><span class="py">.function</span>
+        <span class="p">||</span> <span class="n">opts</span><span class="py">.global</span>
+        <span class="p">||</span> <span class="n">opts</span><span class="py">.erase</span>
+        <span class="p">||</span> <span class="n">opts</span><span class="py">.list</span>
+        <span class="p">||</span> <span class="n">opts</span><span class="py">.exportv</span>
+        <span class="p">||</span> <span class="n">opts</span><span class="py">.universal</span><span class="p">)</span>
+</code></pre></div>      </div>
+
+      <p>which was one line in our C++ version.</p>
+
+      <p>The rest is additional features.</p>
+
+      <p>Also note that our Rust code is in some places a straight translation of the C++, and fully idiomatic Rust might be shorter. <a href="#fnref:formatting" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ccode">
+      <p>We use C in three places:</p>
+      <ul>
+        <li>To connect some functions or variables that aren’t (yet) in the libc crate</li>
+        <li>To do compile-time feature detection</li>
+        <li>In our fish_test_helper binary, which mocks some unix behaviors for tests
+(things like “print blocked signals” or “acquire the terminal”)</li>
+      </ul>
+      <p><a href="#fnref:ccode" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+
+</div>
+</body>
+</html>
