@@ -5,12 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>functions - print or erase functions &#8212; fish-shell 3.7.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=5c477e40"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <title>functions - print or erase functions &#8212; fish-shell 4.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
+    <script src="../_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -35,7 +34,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -43,7 +42,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -71,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -129,10 +128,10 @@
 </dd>
 <dt><strong>-e</strong> or <strong>--erase</strong></dt><dd><p>Causes the specified functions to be erased. This also means that it is prevented from autoloading in the current session. Use <a class="reference internal" href="funcsave.html"><span class="doc">funcsave</span></a> to remove the saved copy.</p>
 </dd>
-<dt><strong>-D</strong> or <strong>--details</strong></dt><dd><p>Reports the path name where the specified function is defined or could be autoloaded, <code class="docutils literal notranslate"><span class="pre">stdin</span></code> if the function was defined interactively or on the command line or by reading standard input, <strong>-</strong> if the function was created via <a class="reference internal" href="source.html"><span class="doc">source</span></a>, and <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn’t available. (Functions created via <a class="reference internal" href="alias.html"><span class="doc">alias</span></a> will return <strong>-</strong>, because <code class="docutils literal notranslate"><span class="pre">alias</span></code> uses <code class="docutils literal notranslate"><span class="pre">source</span></code> internally.) If the <strong>--verbose</strong> option is also specified then five lines are written:</p>
+<dt><strong>-D</strong> or <strong>--details</strong></dt><dd><p>Reports the path name where the specified function is defined or could be autoloaded, <code class="docutils literal notranslate"><span class="pre">stdin</span></code> if the function was defined interactively or on the command line or by reading standard input, <strong>-</strong> if the function was created via <a class="reference internal" href="source.html"><span class="doc">source</span></a>, and <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn’t available. (Functions created via <a class="reference internal" href="alias.html"><span class="doc">alias</span></a> will return <strong>-</strong>, because <code class="docutils literal notranslate"><span class="pre">alias</span></code> uses <code class="docutils literal notranslate"><span class="pre">source</span></code> internally. Copied functions will return where the function was copied.) If the <strong>--verbose</strong> option is also specified then five lines are written:</p>
 <ul class="simple">
-<li><p>the pathname as already described,</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">autoloaded</span></code>, <code class="docutils literal notranslate"><span class="pre">not-autoloaded</span></code> or <code class="docutils literal notranslate"><span class="pre">n/a</span></code>,</p></li>
+<li><p>the path name as already described,</p></li>
+<li><p>if the function was copied, the path name to where the function was originally defined, otherwise <code class="docutils literal notranslate"><span class="pre">autoloaded</span></code>, <code class="docutils literal notranslate"><span class="pre">not-autoloaded</span></code> or <code class="docutils literal notranslate"><span class="pre">n/a</span></code>,</p></li>
 <li><p>the line number within the file or zero if not applicable,</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">scope-shadowing</span></code> if the function shadows the vars in the calling function (the normal case if it wasn’t defined with <strong>--no-scope-shadowing</strong>), else <code class="docutils literal notranslate"><span class="pre">no-scope-shadowing</span></code>, or <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn’t defined,</p></li>
 <li><p>the function description minimally escaped so it is a single line, or <code class="docutils literal notranslate"><span class="pre">n/a</span></code> if the function isn’t defined or has no description.</p></li>
@@ -162,13 +161,13 @@
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">functions</span><span class="w"> </span><span class="no">-n</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">functions </span><span class="no">-n</span>
 <span class="c"># Displays a list of currently-defined functions</span>
 
-<span class="nf">functions</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">bar</span>
+<span class="nf">functions </span><span class="no">-c foo bar</span>
 <span class="c"># Copies the &#39;foo&#39; function to a new function called &#39;bar&#39;</span>
 
-<span class="nf">functions</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">bar</span>
+<span class="nf">functions </span><span class="no">-e bar</span>
 <span class="c"># Erases the function ``bar``</span>
 </pre></div>
 </div>
@@ -193,7 +192,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -201,7 +200,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -209,7 +208,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -220,17 +218,17 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, fish-shell developers.
+    &copy; Copyright 2024, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.7";
+ FISH_DOCS_VERSION = "4.0";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
@@ -284,7 +282,6 @@
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

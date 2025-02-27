@@ -5,12 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>fish_config - start the web-based configuration interface &#8212; fish-shell 3.7.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=5c477e40"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <title>fish_config - start the web-based configuration interface &#8212; fish-shell 4.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
+    <script src="../_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -35,7 +34,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -43,7 +42,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -71,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -91,6 +90,7 @@
 <li><a class="reference internal" href="#">fish_config - start the web-based configuration interface</a><ul>
 <li><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#theme-files">Theme Files</a></li>
 <li><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
@@ -136,8 +136,34 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">save</span></code> saves the given theme to <a class="reference internal" href="../language.html#variables-universal"><span class="std std-ref">universal variables</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">show</span></code> shows what the given sample theme (or all) would look like.</p></li>
 </ul>
-<p>The themes are loaded from the theme directory shipped with fish or a <code class="docutils literal notranslate"><span class="pre">themes</span></code> directory in the fish configuration directory (typically <code class="docutils literal notranslate"><span class="pre">~/.config/fish/themes</span></code>).</p>
 <p>The <strong>-h</strong> or <strong>--help</strong> option displays help about using this command.</p>
+</section>
+<section id="theme-files">
+<h2>Theme Files<a class="headerlink" href="#theme-files" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">fish_config</span> <span class="pre">theme</span></code> and the theme selector in the web config tool load their themes from theme files. These are stored in the fish configuration directory, typically <code class="docutils literal notranslate"><span class="pre">~/.config/fish/themes</span></code>, with a .theme ending.</p>
+<p>You can add your own theme by adding a file in that directory.</p>
+<p>To get started quickly:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_config </span><span class="no">theme dump </span><span class="p">&gt;</span><span class="w"> </span><span class="p">~/.config/fish/themes/my.theme</span>
+</pre></div>
+</div>
+<p>which will save your current theme in .theme format.</p>
+<p>The format looks like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># name: &#39;Cool Beans&#39;
+# preferred_background: black
+
+fish_color_autosuggestion 666
+fish_color_cancel -r
+fish_color_command normal
+fish_color_comment &#39;888&#39;  &#39;--italics&#39;
+fish_color_cwd 0A0
+fish_color_cwd_root A00
+fish_color_end 009900
+</pre></div>
+</div>
+<p>The two comments at the beginning are the name and background that the web config tool shows.</p>
+<p>The other lines are just like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">variable</span> <span class="pre">value</span></code>, except that no expansions are allowed. Quotes are, but aren’t necessary.</p>
+<p>Any color variable fish knows about that the theme doesn’t set will be set to empty when it is loaded, so the old theme is completely overwritten.</p>
+<p>Other than that, .theme files can contain any variable with a name that matches the regular expression <code class="docutils literal notranslate"><span class="pre">'^fish_(?:pager_)?color.*$'</span></code> - starts with <code class="docutils literal notranslate"><span class="pre">fish_</span></code>, an optional <code class="docutils literal notranslate"><span class="pre">pager_</span></code>, then <code class="docutils literal notranslate"><span class="pre">color</span></code> and then anything.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
@@ -163,7 +189,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -171,7 +197,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -179,7 +205,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -190,17 +215,17 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, fish-shell developers.
+    &copy; Copyright 2024, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.7";
+ FISH_DOCS_VERSION = "4.0";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
@@ -254,7 +279,6 @@
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

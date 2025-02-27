@@ -53,7 +53,6 @@ body {
 div.related ul {
   margin: 0;
   padding: 0 0 0 10px;
-  list-style: none;
 }
 
 div.related {
@@ -71,12 +70,10 @@ div.related h3 {
 }
 
 div.related li.right {
-  float: right;
   margin-right: 5px;
 }
 
 div.sphinxsidebar {
-  width: 230px;
   overflow-wrap: break-word;
 }
 
@@ -113,7 +110,6 @@ div.sphinxsidebar ul {
   margin: 10px;
   padding: 0;
   color: var(--secondary-link-color);
-  margin: 10px;
   list-style: none;
 }
 
@@ -322,13 +318,19 @@ ul li, div.body li {
     line-height: 2em;
 }
 
-ul.simple p {
+ul.simple p, ol.simple p {
   /* See "special features" list on index.html */
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 ul.simple > li:not(:first-child) > p {
   margin-top: 0;
+}
+
+ul li dd {
+    /* nested lists will show up like this, the left margin is massive by default */
+    margin-left: 0;
 }
 
 form.inline-search input,
@@ -433,7 +435,7 @@ code {
     margin-right: 3px;
 }
 
-tt, code, pre, dl > dt span ~ em, #synopsis p, #synopsis code, .command, button {
+tt, code, kbd, pre, dl > dt span ~ em, #synopsis p, #synopsis code, .command, button {
     /* Pick a monospace font.
        ui-monospace is the monospace version of system-ui - the system's monospace font.
        Unfortunately it's barely supported anywhere (at time of writing only Safari does!),
@@ -531,10 +533,6 @@ div.footer {
     font-size: 12pt;
 }
 
-dl {
-    margin-bottom: 1em;
-}
-
 dl.envvar, dl.describe {
     font-size: 11pt;
     font-weight: normal;
@@ -545,10 +543,6 @@ div.sphinxsidebar ul {
     margin: 1em 10px 1em 10px;
 }
 
-
-div.bodywrapper {
-    margin-left: 230px;
-}
 
 aside.footnote > .label {
     display: inline;
@@ -563,22 +557,36 @@ div.documentwrapper {
     width: 100%;
 }
 
+div.document {
+    display: grid;
+    grid-template: 1fr min-content / 12rem minmax(0,1fr);
+}
+
 /* On screens that are less than 700px wide remove anything non-essential
    - the sidebar, the gradient background, ... */
 @media screen and (max-width: 700px) {
+    div.document {
+        display: grid;
+        grid-template: 30vh min-content / 100%;
+    }
     div.sphinxsidebar {
         font-size: 16px;
         width: 100%;
         height: auto;
         position: relative;
+        /* To separate the "side"bar from the content below */
+        border-bottom: 1px solid;
+        border-color: var(--sidebar-border-color);
     }
-    div.documentwrapper {
-        float: left;
-    }
-    div.bodywrapper {
+
+    /* Reduce margins to save space */
+    div.sphinxsidebar ul ul, div.bodywrapper, div.content {
         margin-left: 0;
     }
 
+    div.sphinxsidebar h3, div.sphinxsidebar h4 {
+        margin-top: 0;
+    }
 
     div.sphinxsidebar ul {
         flex-basis: content;
@@ -586,14 +594,15 @@ div.documentwrapper {
     }
     div.sphinxsidebarwrapper {
         display: flex;
+        gap: 1em;
+        justify-content: space-between;
     }
     div.sphinxsidebarwrapper > h3:nth-child(5) {
         display: none;
     }
-    div#searchbox {
+    #searchbox {
         display: none !important;
     }
-    div.content {margin-left: 0;}
     div.body {
         padding: 1rem;
     }
@@ -609,6 +618,71 @@ div.documentwrapper {
     }
     div.footer {
         margin: 0;
+    }
+}
+
+/* On print media remove anything non-essential. */
+@media print {
+    div.document {
+        display: block;
+    }
+    .inline-search {
+        display: none;
+    }
+
+    div.sphinxsidebar {
+        display: none;
+    }
+
+    div.bodywrapper {
+        margin-left: 0;
+    }
+
+    div.sphinxsidebar ul {
+        flex-basis: content;
+        flex-wrap: wrap;
+    }
+
+    div.sphinxsidebarwrapper {
+        display: flex;
+    }
+
+    div#searchbox {
+        display: none !important;
+    }
+
+    div.body {
+        padding: 1rem;
+    }
+
+    div#fmain {
+        border-radius: 0px;
+        margin: 0;
+        box-shadow: 0;
+        width: 100%;
+        padding: 0;
+        /* We have some padding/margins that would overflow - just remove it */
+        overflow: clip;
+    }
+
+    div.footer {
+        margin: 0;
+    }
+
+    /* Avoid splitting code blocks across multiple pages. */
+    pre {
+        page-break-inside: avoid;
+    }
+
+    /* Show section numbers. */
+    .body {
+        counter-reset: section;
+    }
+
+    h2::before {
+        counter-increment: section;
+        content: counter(section) ". ";
+        font-weight: normal;
     }
 }
 
@@ -632,7 +706,7 @@ div.documentwrapper {
 /* Color based on the Generic.Prompt (.gp) class from pygments.css. */
 .prompt { color: #8f7902; }
 
-kbd {
+kbd.compound, :not(kbd.compound) > kbd {
   background-color: var(--td-background);
   border: 1px solid;
   border-color: var(--sidebar-border-color);
@@ -640,7 +714,7 @@ kbd {
   padding: 0.1em 0.3em;
 }
 
-div.body .internal.reference:link {
+div.body a {
     /* Underline links in the body of the text */
     text-decoration: underline;
 }
@@ -671,7 +745,7 @@ div.body .internal.reference:link {
         box-shadow: 0 0 5px 1px #000;
     }
 
-    kbd {
+    kbd.compound, :not(kbd.compound) > kbd {
         box-shadow: 0.1em 0.1em 0.2em rgba(100,100,100,0.1);
         color: #FFF;
     }

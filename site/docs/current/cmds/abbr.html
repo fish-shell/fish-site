@@ -5,12 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>abbr - manage fish abbreviations &#8212; fish-shell 3.7.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=5c477e40"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <title>abbr - manage fish abbreviations &#8212; fish-shell 4.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
+    <script src="../_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -35,7 +34,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -43,7 +42,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -71,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -111,7 +110,7 @@
 <span id="cmd-abbr"></span><h1>abbr - manage fish abbreviations<a class="headerlink" href="#abbr-manage-fish-abbreviations" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">--add</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--position</span><span class="w"> </span><span class="no">command</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">anywhere</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--regex</span><span class="w"> </span><span class="no">PATTERN</span><span class="g g-Other">]</span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">--add</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--position</span><span class="w"> </span><span class="no">command</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">anywhere</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--regex</span><span class="w"> </span><span class="no">PATTERN</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-c</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--command</span><span class="w"> </span><span class="no">COMMAND</span><span class="g g-Other">]</span>
 <span class="w">                </span><span class="g g-Other">[</span><span class="no">--set-cursor</span><span class="g g-Other">[</span><span class="no">=MARKER</span><span class="g g-Other">]]</span><span class="w"> </span><span class="g g-Other">([</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--function</span><span class="w"> </span><span class="no">FUNCTION</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">EXPANSION</span><span class="g g-Other">)</span>
 <span class="nf">abbr</span><span class="w"> </span><span class="no">--erase</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">...</span>
 <span class="nf">abbr</span><span class="w"> </span><span class="no">--rename</span><span class="w"> </span><span class="no">OLD_WORD</span><span class="w"> </span><span class="no">NEW_WORD</span>
@@ -129,8 +128,8 @@
 <p>Only typed-in commands use abbreviations. Abbreviations are not expanded in scripts.</p>
 </div>
 <p>For example, a frequently-run command like <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> can be abbreviated to <code class="docutils literal notranslate"><span class="pre">gco</span></code>.
-After entering <code class="docutils literal notranslate"><span class="pre">gco</span></code> and pressing <kbd class="kbd docutils literal notranslate">Space</kbd> or <kbd class="kbd docutils literal notranslate">Enter</kbd>, the full text <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> will appear in the command line.
-To avoid expanding something that looks like an abbreviation, the default <kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">Space</kbd> binding inserts a space without expanding.</p>
+After entering <code class="docutils literal notranslate"><span class="pre">gco</span></code> and pressing <kbd class="kbd docutils literal notranslate">space</kbd> or <kbd class="kbd docutils literal notranslate">enter</kbd>, the full text <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> will appear in the command line.
+To avoid expanding something that looks like an abbreviation, the default <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">space</kbd></kbd> binding inserts a space without expanding.</p>
 <p>An abbreviation may match a literal word, or it may match a pattern given by a regular expression. When an abbreviation matches a word, that word is replaced by new text, called its <em>expansion</em>. This expansion may be a fixed new phrase, or it can be dynamically created via a fish function. This expansion occurs after pressing space or enter.</p>
 <p>Combining these features, it is possible to create custom syntaxes, where a regular expression recognizes matching tokens, and the expansion function interprets them. See the <a class="reference internal" href="#examples">Examples</a> section.</p>
 <div class="versionchanged">
@@ -144,80 +143,92 @@ When you run <code class="docutils literal notranslate"><span class="pre">abbr</
 </div>
 <p>In that case you should take the part before the <code class="docutils literal notranslate"><span class="pre">#</span></code> comment and save it in <a class="reference internal" href="../language.html#configuration"><span class="std std-ref">config.fish</span></a>,
 then you can run <code class="docutils literal notranslate"><span class="pre">abbr</span> <span class="pre">--erase</span></code> to remove the universal variable:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">abbr</span><span class="w"> </span><span class="p">&gt;&gt;</span><span class="w"> </span><span class="p">~/.config/fish/config.fish</span>
-<span class="gp">&gt; </span><span class="nf">abbr</span><span class="w"> </span><span class="no">--erase</span><span class="w"> </span><span class="o">(</span><span class="nf">abbr</span><span class="w"> </span><span class="no">--list</span><span class="o">)</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">abbr </span><span class="p">&gt;&gt;</span><span class="w"> </span><span class="p">~/.config/fish/config.fish</span>
+<span class="gp">&gt; </span><span class="nf">abbr </span><span class="no">--erase </span><span class="o">(</span><span class="nf">abbr </span><span class="no">--list</span><span class="o">)</span>
 </pre></div>
 </div>
+<p>Alternatively you can keep them in a separate <a class="reference internal" href="../language.html#configuration"><span class="std std-ref">configuration file</span></a> by doing something like the following:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">abbr </span><span class="p">&gt;</span><span class="w"> </span><span class="p">~/.config/fish/conf.d/myabbrs.fish</span>
+</pre></div>
+</div>
+<p>This will save all your abbreviations in “myabbrs.fish”, overwriting the whole file so it doesn’t leave any duplicates,
+or restore abbreviations you had erased.
+Of course any functions will have to be saved separately, see <a class="reference internal" href="funcsave.html"><span class="doc">funcsave</span></a>.</p>
 </div>
 </section>
 <section id="add-subcommand">
 <h2>“add” subcommand<a class="headerlink" href="#add-subcommand" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--add</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--position</span><span class="w"> </span><span class="no">command</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">anywhere</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--regex</span><span class="w"> </span><span class="no">PATTERN</span><span class="g g-Other">]</span>
-<span class="w">     </span><span class="g g-Other">[</span><span class="no">--set-cursor</span><span class="g g-Other">[</span><span class="no">=MARKER</span><span class="g g-Other">]]</span><span class="w"> </span><span class="g g-Other">([</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--function</span><span class="w"> </span><span class="no">FUNCTION</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">EXPANSION</span><span class="g g-Other">)</span>
+<span class="w">     </span><span class="g g-Other">[</span><span class="no">-c</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--command</span><span class="w"> </span><span class="no">COMMAND</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--set-cursor</span><span class="g g-Other">[</span><span class="no">=MARKER</span><span class="g g-Other">]]</span><span class="w"> </span><span class="g g-Other">([</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--function</span><span class="w"> </span><span class="no">FUNCTION</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">EXPANSION</span><span class="g g-Other">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">abbr</span> <span class="pre">--add</span></code> creates a new abbreviation. With no other options, the string <strong>NAME</strong> is replaced by <strong>EXPANSION</strong>.</p>
 <p>With <strong>--position command</strong>, the abbreviation will only expand when it is positioned as a command, not as an argument to another command. With <strong>--position anywhere</strong> the abbreviation may expand anywhere in the command line. The default is <strong>command</strong>.</p>
+<p>With <strong>--command COMMAND</strong>, the abbreviation will only expand when it is used as an argument to the given COMMAND. Multiple <strong>--command</strong> can be used together, and the abbreviation will expand for each. An empty <strong>COMMAND</strong> means it will expand only when there is no command. <strong>--command</strong> implies <strong>--position anywhere</strong> and disallows <strong>--position command</strong>. Even with different <strong>COMMANDS</strong>, the <strong>NAME</strong> of the abbreviation needs to be unique. Consider using <strong>--regex</strong> if you want to expand the same word differently for multiple commands.</p>
 <p>With <strong>--regex</strong>, the abbreviation matches using the regular expression given by <strong>PATTERN</strong>, instead of the literal <strong>NAME</strong>. The pattern is interpreted using PCRE2 syntax and must match the entire token. If multiple abbreviations match the same token, the last abbreviation added is used.</p>
 <p>With <strong>--set-cursor=MARKER</strong>, the cursor is moved to the first occurrence of <strong>MARKER</strong> in the expansion. The <strong>MARKER</strong> value is erased. The <strong>MARKER</strong> may be omitted (i.e. simply <code class="docutils literal notranslate"><span class="pre">--set-cursor</span></code>), in which case it defaults to <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p>
 <p>With <strong>-f FUNCTION</strong> or <strong>--function FUNCTION</strong>, <strong>FUNCTION</strong> is treated as the name of a fish function instead of a literal replacement. When the abbreviation matches, the function will be called with the matching token as an argument. If the function’s exit status is 0 (success), the token will be replaced by the function’s output; otherwise the token will be left unchanged. No <strong>EXPANSION</strong> may be given separately.</p>
 <section id="examples">
 <h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h3>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">--add</span><span class="w"> </span><span class="no">gco</span><span class="w"> </span><span class="no">git</span><span class="w"> </span><span class="no">checkout</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr </span><span class="no">--add gco git checkout</span>
 </pre></div>
 </div>
 <p>Add a new abbreviation where <code class="docutils literal notranslate"><span class="pre">gco</span></code> will be replaced with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code>.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">--position</span><span class="w"> </span><span class="no">anywhere</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">-C</span><span class="w"> </span><span class="no">--color</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr </span><span class="no">-a --position anywhere -- -C --color</span>
 </pre></div>
 </div>
 <p>Add a new abbreviation where <code class="docutils literal notranslate"><span class="pre">-C</span></code> will be replaced with <code class="docutils literal notranslate"><span class="pre">--color</span></code>. The <code class="docutils literal notranslate"><span class="pre">--</span></code> allows <code class="docutils literal notranslate"><span class="pre">-C</span></code> to be treated as the name of the abbreviation, instead of an option.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">L</span><span class="w"> </span><span class="no">--position</span><span class="w"> </span><span class="no">anywhere</span><span class="w"> </span><span class="no">--set-cursor</span><span class="w"> </span><span class="s2">&quot;% | less&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr </span><span class="no">-a L --position anywhere --set-cursor </span><span class="s2">&quot;% | less&quot;</span>
 </pre></div>
 </div>
 <p>Add a new abbreviation where <code class="docutils literal notranslate"><span class="pre">L</span></code> will be replaced with <code class="docutils literal notranslate"><span class="pre">|</span> <span class="pre">less</span></code>, placing the cursor before the pipe.</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">last_history_item</span>
-<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$history[</span><span class="no">1</span><span class="o">]</span>
+<span class="w">    </span><span class="nf">echo </span><span class="o">$history[</span><span class="no">1</span><span class="o">]</span>
 <span class="nf">end</span>
-<span class="nf">abbr</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">!!</span><span class="w"> </span><span class="no">--position</span><span class="w"> </span><span class="no">anywhere</span><span class="w"> </span><span class="no">--function</span><span class="w"> </span><span class="no">last_history_item</span>
+<span class="nf">abbr </span><span class="no">-a !! --position anywhere --function last_history_item</span>
 </pre></div>
 </div>
 <p>This first creates a function <code class="docutils literal notranslate"><span class="pre">last_history_item</span></code> which outputs the last entered command. It then adds an abbreviation which replaces <code class="docutils literal notranslate"><span class="pre">!!</span></code> with the result of calling this function. Taken together, this is similar to the <code class="docutils literal notranslate"><span class="pre">!!</span></code> history expansion feature of bash.</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">vim_edit</span>
-<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">vim</span><span class="w"> </span><span class="o">$argv</span>
+<span class="w">    </span><span class="nf">echo </span><span class="no">vim </span><span class="o">$argv</span>
 <span class="nf">end</span>
-<span class="nf">abbr</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">vim_edit_texts</span><span class="w"> </span><span class="no">--position</span><span class="w"> </span><span class="no">command</span><span class="w"> </span><span class="no">--regex</span><span class="w"> </span><span class="s2">&quot;.+\.txt&quot;</span><span class="w"> </span><span class="no">--function</span><span class="w"> </span><span class="no">vim_edit</span>
+<span class="nf">abbr </span><span class="no">-a vim_edit_texts --position command --regex </span><span class="s2">&quot;.+\.txt&quot;</span><span class="w"> </span><span class="no">--function vim_edit</span>
 </pre></div>
 </div>
 <p>This first creates a function <code class="docutils literal notranslate"><span class="pre">vim_edit</span></code> which prepends <code class="docutils literal notranslate"><span class="pre">vim</span></code> before its argument. It then adds an abbreviation which matches commands ending in <code class="docutils literal notranslate"><span class="pre">.txt</span></code>, and replaces the command with the result of calling this function. This allows text files to be “executed” as a command to open them in vim, similar to the “suffix alias” feature in zsh.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">4DIRS</span><span class="w"> </span><span class="no">--set-cursor=!</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$(</span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="se">\n</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="s1">&#39;for dir in */&#39;</span><span class="w"> </span><span class="s1">&#39;cd $dir&#39;</span><span class="w"> </span><span class="s1">&#39;!&#39;</span><span class="w"> </span><span class="s1">&#39;cd ..&#39;</span><span class="w"> </span><span class="s1">&#39;end&#39;</span><span class="o">)</span><span class="s2">&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr </span><span class="no">4DIRS --set-cursor=! </span><span class="s2">&quot;</span><span class="o">$(</span><span class="nf">string </span><span class="no">join </span><span class="se">\n</span><span class="w"> </span><span class="no">-- </span><span class="s1">&#39;for dir in */&#39;</span><span class="w"> </span><span class="s1">&#39;cd $dir&#39;</span><span class="w"> </span><span class="s1">&#39;!&#39;</span><span class="w"> </span><span class="s1">&#39;cd ..&#39;</span><span class="w"> </span><span class="s1">&#39;end&#39;</span><span class="o">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <p>This creates an abbreviation “4DIRS” which expands to a multi-line loop “template.” The template enters each directory and then leaves it. The cursor is positioned ready to enter the command to run in each directory, at the location of the <code class="docutils literal notranslate"><span class="pre">!</span></code>, which is itself erased.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr </span><span class="no">--command git co checkout</span>
+</pre></div>
+</div>
+<p>Turns “co” as an argument to “git” into “checkout”. Multiple commands are possible, <code class="docutils literal notranslate"><span class="pre">--command={git,hg}</span></code> would expand “co” to “checkout” for both git and hg.</p>
 </section>
 </section>
 <section id="other-subcommands">
 <h2>Other subcommands<a class="headerlink" href="#other-subcommands" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">--rename</span><span class="w"> </span><span class="no">OLD_NAME</span><span class="w"> </span><span class="no">NEW_NAME</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr </span><span class="no">--rename OLD_NAME NEW_NAME</span>
 </pre></div>
 </div>
 <p>Renames an abbreviation, from <em>OLD_NAME</em> to <em>NEW_NAME</em></p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">[-s</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--show]</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr </span><span class="no">[-s </span><span class="p">|</span><span class="w"> </span><span class="nf">--show]</span>
 </pre></div>
 </div>
 <p>Show all abbreviations in a manner suitable for import and export</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">[-l</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--list]</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr </span><span class="no">[-l </span><span class="p">|</span><span class="w"> </span><span class="nf">--list]</span>
 </pre></div>
 </div>
 <p>Prints the names of all abbreviation</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">[-e</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">--erase]</span><span class="w"> </span><span class="no">NAME</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr </span><span class="no">[-e </span><span class="p">|</span><span class="w"> </span><span class="nf">--erase] </span><span class="no">NAME</span>
 </pre></div>
 </div>
 <p>Erases the abbreviation with the given name</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="no">or</span><span class="w"> </span><span class="no">--query</span><span class="w"> </span><span class="no">[NAME...]</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr </span><span class="no">-q or --query [NAME...]</span>
 </pre></div>
 </div>
 <p>Return 0 (true) if one of the <em>NAME</em> is an abbreviation.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">-h</span><span class="w"> </span><span class="no">or</span><span class="w"> </span><span class="no">--help</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr </span><span class="no">-h or --help</span>
 </pre></div>
 </div>
 <p>Displays help for the <cite>abbr</cite> command.</p>
@@ -238,7 +249,7 @@ then you can run <code class="docutils literal notranslate"><span class="pre">ab
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -246,7 +257,7 @@ then you can run <code class="docutils literal notranslate"><span class="pre">ab
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -254,7 +265,6 @@ then you can run <code class="docutils literal notranslate"><span class="pre">ab
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -265,17 +275,17 @@ then you can run <code class="docutils literal notranslate"><span class="pre">ab
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, fish-shell developers.
+    &copy; Copyright 2024, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.7";
+ FISH_DOCS_VERSION = "4.0";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
@@ -329,7 +339,6 @@ then you can run <code class="docutils literal notranslate"><span class="pre">ab
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

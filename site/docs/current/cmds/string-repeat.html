@@ -5,12 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>string-repeat - multiply a string &#8212; fish-shell 3.7.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=5c477e40"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <title>string-repeat - multiply a string &#8212; fish-shell 4.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
+    <script src="../_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -35,7 +34,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -43,7 +42,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -71,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -112,28 +111,35 @@
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">repeat</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--count</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">COUNT</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--max</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MAX</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-N</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-newline</span><span class="g g-Other">]</span>
 <span class="w">              </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
+<span class="nf">string</span><span class="w"> </span><span class="no">repeat</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-N</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-newline</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">COUNT</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">repeat</span></code> repeats the <em>STRING</em> <strong>-n</strong> or <strong>--count</strong> times. The <strong>-m</strong> or <strong>--max</strong> option will limit the number of outputted characters (excluding the newline). This option can be used by itself or in conjunction with <strong>--count</strong>. If both <strong>--count</strong> and <strong>--max</strong> are present, max char will be outputed unless the final repeated string size is less than max, in that case, the string will repeat until count has been reached. Both <strong>--count</strong> and <strong>--max</strong> will accept a number greater than or equal to zero, in the case of zero, nothing will be outputed. If <strong>-N</strong> or <strong>--no-newline</strong> is given, the output won’t contain a newline character at the end. Exit status: 0 if yielded string is not empty, 1 otherwise.</p>
+<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">repeat</span></code> repeats the <em>STRING</em> <strong>-n</strong> or <strong>--count</strong> times. The <strong>-m</strong> or <strong>--max</strong> option will limit the number of outputted characters (excluding the newline). This option can be used by itself or in conjunction with <strong>--count</strong>. If both <strong>--count</strong> and <strong>--max</strong> are present, max char will be outputted unless the final repeated string size is less than max, in that case, the string will repeat until count has been reached. Both <strong>--count</strong> and <strong>--max</strong> will accept a number greater than or equal to zero, in the case of zero, nothing will be outputted. The first argument is interpreted as <em>COUNT</em> if <strong>--count</strong> or <strong>--max</strong> are not explicitly specified. If <strong>-N</strong> or <strong>--no-newline</strong> is given, the output won’t contain a newline character at the end. Exit status: 0 if yielded string is not empty, 1 otherwise.</p>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <section id="repeat-examples">
 <h3>Repeat Examples<a class="headerlink" href="#repeat-examples" title="Link to this heading">¶</a></h3>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">repeat</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="s1">&#39;foo &#39;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">repeat -n 2 </span><span class="s1">&#39;foo &#39;</span>
 <span class="go">foo foo</span>
 
-<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">repeat</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="no">2</span>
+<span class="gp">&gt;_ </span><span class="nf">echo </span><span class="no">foo </span><span class="p">|</span><span class="w"> </span><span class="nf">string </span><span class="no">repeat -n 2</span>
 <span class="go">foofoo</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">repeat</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">-m</span><span class="w"> </span><span class="no">5</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">repeat -n 2 -m 5 </span><span class="s1">&#39;foo&#39;</span>
 <span class="go">foofo</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">repeat</span><span class="w"> </span><span class="no">-m</span><span class="w"> </span><span class="no">5</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">repeat -m 5 </span><span class="s1">&#39;foo&#39;</span>
 <span class="go">foofo</span>
+
+<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">repeat 2 </span><span class="s1">&#39;foo&#39;</span>
+<span class="go">foofoo</span>
+
+<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">repeat 2 -n 3</span>
+<span class="go">222</span>
 </pre></div>
 </div>
 </section>
@@ -154,7 +160,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -162,7 +168,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -170,7 +176,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -181,17 +186,17 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, fish-shell developers.
+    &copy; Copyright 2024, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.7";
+ FISH_DOCS_VERSION = "4.0";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
@@ -245,7 +250,6 @@
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

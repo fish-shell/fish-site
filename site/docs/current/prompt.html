@@ -5,12 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Writing your own prompt &#8212; fish-shell 3.7.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a864bcb0" />
-    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=4e2636db" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="_static/documentation_options.js?v=5c477e40"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <title>Writing your own prompt &#8212; fish-shell 4.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
+    <script src="_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -27,14 +26,14 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own prompt</a></li>
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -42,7 +41,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -70,6 +68,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -90,9 +89,10 @@
 <li><a class="reference internal" href="#">Writing your own prompt</a><ul>
 <li><a class="reference internal" href="#our-first-prompt">Our first prompt</a></li>
 <li><a class="reference internal" href="#formatting">Formatting</a></li>
-<li><a class="reference internal" href="#adding-colo-u-r">Adding colo(u)r</a></li>
+<li><a class="reference internal" href="#adding-color">Adding color</a></li>
 <li><a class="reference internal" href="#shortening-the-working-directory">Shortening the working directory</a></li>
 <li><a class="reference internal" href="#status">Status</a></li>
+<li><a class="reference internal" href="#save-the-prompt">Save the prompt</a></li>
 <li><a class="reference internal" href="#where-to-go-from-here">Where to go from here?</a></li>
 </ul>
 </li>
@@ -113,7 +113,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="cmds/fish_prompt.html"><span class="doc">fish_prompt</span></a>, which is the main prompt function</p></li>
 <li><p><a class="reference internal" href="cmds/fish_right_prompt.html"><span class="doc">fish_right_prompt</span></a>, which is shown on the right side of the terminal.</p></li>
-<li><p><a class="reference internal" href="cmds/fish_mode_prompt.html"><span class="doc">fish_mode_prompt</span></a>, which is shown if <a class="reference internal" href="interactive.html#vi-mode"><span class="std std-ref">vi-mode</span></a> is used.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_mode_prompt.html"><span class="doc">fish_mode_prompt</span></a>, which is shown if <a class="reference internal" href="interactive.html#vi-mode"><span class="std std-ref">vi mode</span></a> is used.</p></li>
 </ul>
 <p>These functions are run, and whatever they print is displayed as the prompt (minus one trailing newline).</p>
 <p>Here, we will just be writing a simple fish_prompt.</p>
@@ -121,7 +121,7 @@
 <h2>Our first prompt<a class="headerlink" href="#our-first-prompt" title="Link to this heading">¶</a></h2>
 <p>Let’s look at a very simple example:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span>
-<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
+<span class="w">    </span><span class="nf">echo </span><span class="o">$PWD</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
@@ -133,45 +133,47 @@
 <h2>Formatting<a class="headerlink" href="#formatting" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">echo</span></code> adds spaces between its arguments. If you don’t want those, you can use <a class="reference internal" href="cmds/string-join.html"><span class="doc">string join</span></a> like this:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span>
-<span class="w">    </span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
+<span class="w">    </span><span class="nf">string </span><span class="no">join </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">-- </span><span class="o">$PWD</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">--</span></code> indicates to <code class="docutils literal notranslate"><span class="pre">string</span></code> that no options can come after it, in case we extend this with something that can start with a <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p>
 <p>There are other ways to remove the space, including <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">-s</span></code> and <a class="reference internal" href="cmds/printf.html"><span class="doc">printf</span></a>.</p>
 </section>
-<section id="adding-colo-u-r">
-<h2>Adding colo(u)r<a class="headerlink" href="#adding-colo-u-r" title="Link to this heading">¶</a></h2>
+<section id="adding-color">
+<h2>Adding color<a class="headerlink" href="#adding-color" title="Link to this heading">¶</a></h2>
 <p>This prompt is functional, but a bit boring. We could add some color.</p>
 <p>Fortunately, fish offers the <a class="reference internal" href="cmds/set_color.html"><span class="doc">set_color</span></a> command, so you can do:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">red</span><span class="o">)</span><span class="no">foo</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo </span><span class="o">(</span><span class="nf">set_color </span><span class="no">red</span><span class="o">)</span><span class="no">foo</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">set_color</span></code> can also handle RGB colors like <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">23b455</span></code>, and other formatting options including bold and italics.</p>
 <p>So, taking our previous prompt and adding some color:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span>
-<span class="w">    </span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">green</span><span class="o">)</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
+<span class="w">    </span><span class="nf">string </span><span class="no">join </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">-- </span><span class="o">(</span><span class="nf">set_color </span><span class="no">green</span><span class="o">)</span><span class="w"> </span><span class="o">$PWD</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>A “normal” color tells the terminal to go back to its normal formatting options.</p>
-<p>What <code class="docutils literal notranslate"><span class="pre">set_color</span></code> does internally is to print an escape sequence that tells the terminal to change color. So if you see something like:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo</span><span class="w"> </span><span class="se">\e\[</span><span class="no">31mfoo</span>
+<p><code class="docutils literal notranslate"><span class="pre">set_color</span></code> works by producing an escape sequence, which is a special piece of text that terminals
+interpret as instructions - for example, to change color. So <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">red</span></code> produces the same
+effect as:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo </span><span class="se">\e\[</span><span class="no">31m</span>
 </pre></div>
 </div>
-<p>that could just be <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">red</span></code>.</p>
+<p>Although you can write your own escape sequences by hand, it’s much easier to use <code class="docutils literal notranslate"><span class="pre">set_color</span></code>.</p>
 </section>
 <section id="shortening-the-working-directory">
 <h2>Shortening the working directory<a class="headerlink" href="#shortening-the-working-directory" title="Link to this heading">¶</a></h2>
 <p>This is fine, but our <span class="target" id="index-1"></span><a class="reference internal" href="language.html#envvar-PWD"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PWD</span></code></a> can be a bit long, and we are typically only interested in the last few directories. We can shorten this with the <a class="reference internal" href="cmds/prompt_pwd.html"><span class="doc">prompt_pwd</span></a> helper that will give us a shortened working directory:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span>
-<span class="w">    </span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">green</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">prompt_pwd</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
+<span class="w">    </span><span class="nf">string </span><span class="no">join </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">-- </span><span class="o">(</span><span class="nf">set_color </span><span class="no">green</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">prompt_pwd</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">prompt_pwd</span></code> takes options to control how much to shorten. For instance, if we want to display the last two directories, we’d use <code class="docutils literal notranslate"><span class="pre">prompt_pwd</span> <span class="pre">--full-length-dirs</span> <span class="pre">2</span></code>:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span>
-<span class="w">    </span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">green</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">prompt_pwd</span><span class="w"> </span><span class="no">--full-length-dirs</span><span class="w"> </span><span class="no">2</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
+<span class="w">    </span><span class="nf">string </span><span class="no">join </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">-- </span><span class="o">(</span><span class="nf">set_color </span><span class="no">green</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">prompt_pwd </span><span class="no">--full-length-dirs 2</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
@@ -183,32 +185,32 @@
 <p>One important bit of information that every command returns is the <a class="reference internal" href="language.html#variables-status"><span class="std std-ref">status</span></a>. This is a whole number from 0 to 255, and usually it is used as an error code - 0 if the command returned successfully, or a number from 1 to 255 if not.</p>
 <p>It’s useful to display this in your prompt, but showing it when it’s 0 seems kind of wasteful.</p>
 <p>First of all, since every command (except for <a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a>) changes the status, you need to store it for later use as the first thing in your prompt. Use a <a class="reference internal" href="language.html#variables-scope"><span class="std std-ref">local variable</span></a> so it will be confined to your prompt function:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">last_status</span><span class="w"> </span><span class="o">$status</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set </span><span class="no">-l last_status </span><span class="o">$status</span>
 </pre></div>
 </div>
-<p>And after that, you can set a string if it not zero:</p>
+<p>And after that, you can set a string if it is not zero:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># Prompt status only if it&#39;s not 0</span>
-<span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">stat</span>
-<span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="o">$last_status</span><span class="w"> </span><span class="no">-ne</span><span class="w"> </span><span class="no">0</span>
-<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">stat</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">red</span><span class="o">)</span><span class="s2">&quot;[</span><span class="o">$last_status</span><span class="s2">]&quot;</span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="o">)</span>
+<span class="nf">set </span><span class="no">-l stat</span>
+<span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="o">$last_status</span><span class="w"> </span><span class="no">-ne 0</span>
+<span class="w">    </span><span class="nf">set </span><span class="no">stat </span><span class="o">(</span><span class="nf">set_color </span><span class="no">red</span><span class="o">)</span><span class="s2">&quot;[</span><span class="o">$last_status</span><span class="s2">]&quot;</span><span class="o">(</span><span class="nf">set_color </span><span class="no">normal</span><span class="o">)</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>And to print it, we add it to our <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join</span></code>:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">green</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">prompt_pwd</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="o">$stat</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">string </span><span class="no">join </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">-- </span><span class="o">(</span><span class="nf">set_color </span><span class="no">green</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">prompt_pwd</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="o">$stat</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
 </pre></div>
 </div>
 <p>If <code class="docutils literal notranslate"><span class="pre">$last_status</span></code> was 0, <code class="docutils literal notranslate"><span class="pre">$stat</span></code> is empty, and so it will simply disappear.</p>
 <p>So our entire prompt is now:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span>
-<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">last_status</span><span class="w"> </span><span class="o">$status</span>
+<span class="w">    </span><span class="nf">set </span><span class="no">-l last_status </span><span class="o">$status</span>
 <span class="w">    </span><span class="c"># Prompt status only if it&#39;s not 0</span>
-<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">stat</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="o">$last_status</span><span class="w"> </span><span class="no">-ne</span><span class="w"> </span><span class="no">0</span>
-<span class="w">        </span><span class="nf">set</span><span class="w"> </span><span class="no">stat</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">red</span><span class="o">)</span><span class="s2">&quot;[</span><span class="o">$last_status</span><span class="s2">]&quot;</span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="o">)</span>
+<span class="w">    </span><span class="nf">set </span><span class="no">-l stat</span>
+<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="o">$last_status</span><span class="w"> </span><span class="no">-ne 0</span>
+<span class="w">        </span><span class="nf">set </span><span class="no">stat </span><span class="o">(</span><span class="nf">set_color </span><span class="no">red</span><span class="o">)</span><span class="s2">&quot;[</span><span class="o">$last_status</span><span class="s2">]&quot;</span><span class="o">(</span><span class="nf">set_color </span><span class="no">normal</span><span class="o">)</span>
 <span class="w">    </span><span class="nf">end</span>
 
-<span class="w">    </span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">green</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">prompt_pwd</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="o">$stat</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
+<span class="w">    </span><span class="nf">string </span><span class="no">join </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">-- </span><span class="o">(</span><span class="nf">set_color </span><span class="no">green</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">prompt_pwd</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color </span><span class="no">normal</span><span class="o">)</span><span class="w"> </span><span class="o">$stat</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
@@ -216,24 +218,39 @@
 <pre class="highlight literal-block"><span class="green">~/M/L/Oneknowing</span><span class="red">[1]</span>&gt;_</pre>
 <p>after we run <code class="docutils literal notranslate"><span class="pre">false</span></code> (which returns 1).</p>
 </section>
+<section id="save-the-prompt">
+<h2>Save the prompt<a class="headerlink" href="#save-the-prompt" title="Link to this heading">¶</a></h2>
+<p>Once you are happy with your prompt, you can save it with <code class="docutils literal notranslate"><span class="pre">funcsave</span> <span class="pre">fish_prompt</span></code> (see <a class="reference internal" href="cmds/funcsave.html"><span class="doc">funcsave - save the definition of a function to the user’s autoload directory</span></a>) or write it to ~/.config/fish/functions/fish_prompt.fish yourself.</p>
+<p>If you want to edit it again, open that file or use <code class="docutils literal notranslate"><span class="pre">funced</span> <span class="pre">fish_prompt</span></code> (see <a class="reference internal" href="cmds/funced.html"><span class="doc">funced - edit a function interactively</span></a>).</p>
+</section>
 <section id="where-to-go-from-here">
 <h2>Where to go from here?<a class="headerlink" href="#where-to-go-from-here" title="Link to this heading">¶</a></h2>
 <p>We have now built a simple but working and usable prompt, but of course more can be done.</p>
 <ul class="simple">
-<li><p>Fish offers more helper functions:
-- <code class="docutils literal notranslate"><span class="pre">prompt_login</span></code> to describe the user/hostname/container or <code class="docutils literal notranslate"><span class="pre">prompt_hostname</span></code> to describe just the host
-- <code class="docutils literal notranslate"><span class="pre">fish_is_root_user</span></code> to help with changing the symbol for root.
-- <code class="docutils literal notranslate"><span class="pre">fish_vcs_prompt</span></code> to show version control information (or <code class="docutils literal notranslate"><span class="pre">fish_git_prompt</span></code> / <code class="docutils literal notranslate"><span class="pre">fish_hg_prompt</span></code> / <code class="docutils literal notranslate"><span class="pre">fish_svn_prompt</span></code> to limit it to specific systems)</p></li>
-<li><p>You can add a right prompt by changing <a class="reference internal" href="cmds/fish_right_prompt.html"><span class="doc">fish_right_prompt</span></a> or a vi-mode prompt by changing <a class="reference internal" href="cmds/fish_mode_prompt.html"><span class="doc">fish_mode_prompt</span></a>.</p></li>
-<li><p>Some prompts have interesting or advanced features
-- Add the time when the prompt was printed
-- Show various integrations like python’s venv
-- Color the parts differently.</p></li>
+<li><dl class="simple">
+<dt>Fish offers more helper functions:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">prompt_login</span></code> to describe the user/hostname/container or <code class="docutils literal notranslate"><span class="pre">prompt_hostname</span></code> to describe just the host</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_is_root_user</span></code> to help with changing the symbol for root.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fish_vcs_prompt</span></code> to show version control information (or <code class="docutils literal notranslate"><span class="pre">fish_git_prompt</span></code> / <code class="docutils literal notranslate"><span class="pre">fish_hg_prompt</span></code> / <code class="docutils literal notranslate"><span class="pre">fish_svn_prompt</span></code> to limit it to specific systems)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>You can add a right prompt by changing <a class="reference internal" href="cmds/fish_right_prompt.html"><span class="doc">fish_right_prompt</span></a> or a vi mode prompt by changing <a class="reference internal" href="cmds/fish_mode_prompt.html"><span class="doc">fish_mode_prompt</span></a>.</p></li>
+<li><dl class="simple">
+<dt>Some prompts have interesting or advanced features</dt><dd><ul>
+<li><p>Add the time when the prompt was printed</p></li>
+<li><p>Show various integrations like python’s venv</p></li>
+<li><p>Color the parts differently.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 <p>You can look at fish’s sample prompts for inspiration. Open up <a class="reference internal" href="cmds/fish_config.html"><span class="doc">fish_config</span></a>, find one you like and pick it. For example:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_config</span><span class="w"> </span><span class="no">prompt</span><span class="w"> </span><span class="no">show</span><span class="w"> </span><span class="c"># &lt;- shows all the sample prompts</span>
-<span class="nf">fish_config</span><span class="w"> </span><span class="no">prompt</span><span class="w"> </span><span class="no">choose</span><span class="w"> </span><span class="no">disco</span><span class="w"> </span><span class="c"># &lt;- this picks the &quot;disco&quot; prompt for this session</span>
-<span class="nf">funced</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"> </span><span class="c"># &lt;- opens fish_prompt in your editor, and reloads it once the editor exits</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_config </span><span class="no">prompt show </span><span class="c"># &lt;- shows all the sample prompts</span>
+<span class="nf">fish_config </span><span class="no">prompt choose disco </span><span class="c"># &lt;- this picks the &quot;disco&quot; prompt for this session</span>
+<span class="nf">funced </span><span class="no">fish_prompt </span><span class="c"># &lt;- opens fish_prompt in your editor, and reloads it once the editor exits</span>
 </pre></div>
 </div>
 </section>
@@ -253,14 +270,14 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own prompt</a></li>
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -268,7 +285,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -279,17 +295,17 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, fish-shell developers.
+    &copy; Copyright 2024, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.7";
+ FISH_DOCS_VERSION = "4.0";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
@@ -343,7 +359,6 @@
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

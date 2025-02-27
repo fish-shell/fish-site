@@ -5,12 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>source - evaluate contents of file &#8212; fish-shell 3.7.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=5c477e40"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <title>source - evaluate contents of file &#8212; fish-shell 4.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
+    <script src="../_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -35,7 +34,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -43,7 +42,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -71,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -110,6 +109,7 @@
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="w"> </span><span class="no">FILE</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">ARGUMENTS</span><span class="w"> </span><span class="g g-Other">...]</span>
 <span class="nf">SOMECOMMAND</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">source</span>
+<span class="nf">. </span><span class="no">FILE</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">ARGUMENTS</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
@@ -117,15 +117,16 @@
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">source</span></code> evaluates the commands of the specified <em>FILE</em> in the current shell as a new block of code. This is different from starting a new process to perform the commands (i.e. <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">&lt;</span> <span class="pre">FILE</span></code>) since the commands will be evaluated by the current shell, which means that changes in shell variables will affect the current shell. If additional arguments are specified after the file name, they will be inserted into the <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-argv"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">argv</span></code></a> variable. The <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-argv"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">argv</span></code></a> variable will not include the name of the sourced file.</p>
 <p>fish will search the working directory to resolve relative paths but will not search <span class="target" id="index-2"></span><a class="reference internal" href="../language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a> .</p>
-<p>If no file is specified and stdin is not the terminal, or if the file name <code class="docutils literal notranslate"><span class="pre">-</span></code> is used, stdin will be read.</p>
+<p>If no file is specified and a file or pipeline is connected to standard input, or if the file name <code class="docutils literal notranslate"><span class="pre">-</span></code> is used, <code class="docutils literal notranslate"><span class="pre">source</span></code> will read from standard input. If no file is specified and there is no redirected file or pipeline on standard input, an error will be printed.</p>
 <p>The exit status of <code class="docutils literal notranslate"><span class="pre">source</span></code> is the exit status of the last job to execute. If something goes wrong while opening or reading the file, <code class="docutils literal notranslate"><span class="pre">source</span></code> exits with a non-zero status.</p>
-<p><strong>.</strong> (a single period) is an alias for the <code class="docutils literal notranslate"><span class="pre">source</span></code> command. The use of <strong>.</strong> is deprecated in favour of <code class="docutils literal notranslate"><span class="pre">source</span></code>, and <strong>.</strong> will be removed in a future version of fish.</p>
+<p>Some other shells only support the <strong>.</strong> alias (a single period).
+The use of <strong>.</strong> is deprecated in favour of <code class="docutils literal notranslate"><span class="pre">source</span></code>, and <strong>.</strong> will be removed in a future version of fish.</p>
 <p><code class="docutils literal notranslate"><span class="pre">source</span></code> creates a new <a class="reference internal" href="../language.html#variables-scope"><span class="std std-ref">local scope</span></a>; <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--local</span></code> within a sourced block will not affect variables in the enclosing scope.</p>
 <p>The <strong>-h</strong> or <strong>--help</strong> option displays help about using this command.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="w"> </span><span class="o">~</span><span class="no">/.config/fish/config.fish</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">source </span><span class="o">~</span><span class="no">/.config/fish/config.fish</span>
 <span class="c"># Causes fish to re-read its initialization file.</span>
 </pre></div>
 </div>
@@ -150,7 +151,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -158,7 +159,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -166,7 +167,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -177,17 +177,17 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, fish-shell developers.
+    &copy; Copyright 2024, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.7";
+ FISH_DOCS_VERSION = "4.0";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
@@ -241,7 +241,6 @@
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

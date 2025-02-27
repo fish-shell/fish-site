@@ -5,12 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>set - display and change shell variables &#8212; fish-shell 3.7.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=5c477e40"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <title>set - display and change shell variables &#8212; fish-shell 4.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
+    <script src="../_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -35,7 +34,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -43,7 +42,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -71,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -110,12 +109,13 @@
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span>
-<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--function</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-l</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">local</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-g</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--global</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-U</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--universal</span><span class="g g-Other">)</span>
+<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--function</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-l</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--local</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-g</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--global</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-U</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--universal</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--no-event</span><span class="g g-Other">]</span>
 <span class="nf">set</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...]</span>
 <span class="nf">set</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="g g-Other">[[</span><span class="no">INDEX</span><span class="w"> </span><span class="g g-Other">...]]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...]</span>
-<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--append</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-flgU</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...</span>
-<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--query</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-e</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--erase</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-flgU</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">NAME</span><span class="g g-Other">][[</span><span class="no">INDEX</span><span class="g g-Other">]]</span><span class="w"> </span><span class="g g-Other">...]</span>
-<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-S</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--show</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">...]</span>
+<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-x</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--export</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-u</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--unexport</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...]</span>
+<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--append</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-p</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--prepend</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...</span>
+<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--query</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-e</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--erase</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">NAME</span><span class="g g-Other">][[</span><span class="no">INDEX</span><span class="g g-Other">]]</span><span class="w"> </span><span class="g g-Other">...]</span>
+<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-S</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--show</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-L</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--long</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
@@ -169,11 +169,11 @@ This cannot be used when assigning to a variable slice.</p>
 This can be used with <strong>--append</strong> to both append and prepend at the same time.
 This cannot be used when assigning to a variable slice.</p>
 </dd>
-<dt><strong>-e</strong> or <strong>--erase</strong> <em>NAME*[*INDEX</em>]</dt><dd><p>Causes the specified shell variables to be erased.
+<dt><strong>-e</strong> or <strong>--erase</strong> <em>NAME</em>[<em>INDEX</em>]</dt><dd><p>Causes the specified shell variables to be erased.
 Supports erasing from multiple scopes at once.
 Individual items in a variable at <em>INDEX</em> in brackets can be specified.</p>
 </dd>
-<dt><strong>-q</strong> or <strong>--query</strong> <em>NAME*[*INDEX</em>]</dt><dd><p>Test if the specified variable names are defined.
+<dt><strong>-q</strong> or <strong>--query</strong> <em>NAME</em>[<em>INDEX</em>]</dt><dd><p>Test if the specified variable names are defined.
 If an <em>INDEX</em> is provided, check for items at that slot.
 Does not output anything, but the shell status is set to the number of variables specified that were not defined, up to a maximum of 255.
 If no variable was given, it also returns 255.</p>
@@ -185,6 +185,10 @@ The names are guaranteed to be sorted.</p>
 If no variable names are given then all variables are shown in sorted order.
 It shows the scopes the given variables are set in, along with the values in each and whether or not it is exported.
 No other flags can be used with this option.</p>
+</dd>
+<dt><strong>--no-event</strong></dt><dd><p>Don’t generate a variable change event when setting or erasing a variable.
+We recommend using this carefully because the event handlers are usually set up for a reason.
+Possible uses include modifying the variable inside a variable handler.</p>
 </dd>
 <dt><strong>-L</strong> or <strong>--long</strong></dt><dd><p>Do not abbreviate long values when printing set variables.</p>
 </dd>
@@ -229,55 +233,55 @@ This allows capturing the output and exit status of a subcommand, like in <code 
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>Print all global, exported variables:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-gx</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">-gx</span>
 </pre></div>
 </div>
 <p>Set the value of the variable _$foo_ to be ‘hi’.:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">hi</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">foo hi</span>
 </pre></div>
 </div>
 <p>Append the value “there” to the variable $foo:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">there</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">-a foo there</span>
 </pre></div>
 </div>
 <p>Remove _$smurf_ from the scope:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">smurf</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">-e smurf</span>
 </pre></div>
 </div>
 <p>Remove _$smurf_ from the global and universal scopes:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">-Ug</span><span class="w"> </span><span class="no">smurf</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">-e -Ug smurf</span>
 </pre></div>
 </div>
 <p>Change the fourth element of the $PATH list to ~/bin:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">PATH[4]</span><span class="w"> </span><span class="o">~</span><span class="no">/bin</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">PATH[4] </span><span class="o">~</span><span class="no">/bin</span>
 </pre></div>
 </div>
 <p>Outputs the path to Python if <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">-p</span></code> returns true:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">python_path</span><span class="w"> </span><span class="o">(</span><span class="nf">type</span><span class="w"> </span><span class="no">-p</span><span class="w"> </span><span class="no">python</span><span class="o">)</span>
-<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Python is at </span><span class="o">$python_path</span><span class="s2">&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">set </span><span class="no">python_path </span><span class="o">(</span><span class="nf">type </span><span class="no">-p python</span><span class="o">)</span>
+<span class="w">    </span><span class="nf">echo </span><span class="s2">&quot;Python is at </span><span class="o">$python_path</span><span class="s2">&quot;</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>Setting a variable doesn’t modify $status; a command substitution still will, though:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$status</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo </span><span class="o">$status</span>
 <span class="go">0</span>
 <span class="gp">&gt; </span><span class="nf">false</span>
-<span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">bar</span>
-<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$status</span>
+<span class="gp">&gt; </span><span class="nf">set </span><span class="no">foo bar</span>
+<span class="gp">&gt; </span><span class="nf">echo </span><span class="o">$status</span>
 <span class="go">1</span>
 <span class="gp">&gt; </span><span class="nf">true</span>
-<span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">banana</span><span class="w"> </span><span class="o">(</span><span class="nf">false</span><span class="o">)</span>
-<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$status</span>
+<span class="gp">&gt; </span><span class="nf">set </span><span class="no">foo banana </span><span class="o">(</span><span class="nf">false</span><span class="o">)</span>
+<span class="gp">&gt; </span><span class="nf">echo </span><span class="o">$status</span>
 <span class="go">1</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">VAR=VALUE</span> <span class="pre">command</span></code> sets a variable for just one command, like other shells.
 This runs fish with a temporary home directory:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="no">HOME</span><span class="o">=(</span><span class="nf">mktemp</span><span class="w"> </span><span class="no">-d</span><span class="o">)</span><span class="w"> </span><span class="nf">fish</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="no">HOME</span><span class="o">=(</span><span class="nf">mktemp </span><span class="no">-d</span><span class="o">)</span><span class="w"> </span><span class="nf">fish</span>
 </pre></div>
 </div>
 <p>(which is essentially the same as):</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">begin</span><span class="p">;</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">-lx</span><span class="w"> </span><span class="no">HOME</span><span class="w"> </span><span class="o">(</span><span class="nf">mktemp</span><span class="w"> </span><span class="no">-d</span><span class="o">)</span><span class="p">;</span><span class="w"> </span><span class="nf">fish</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">begin</span><span class="p">;</span><span class="w"> </span><span class="nf">set </span><span class="no">-lx HOME </span><span class="o">(</span><span class="nf">mktemp </span><span class="no">-d</span><span class="o">)</span><span class="p">;</span><span class="w"> </span><span class="nf">fish</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
 </pre></div>
 </div>
 </section>
@@ -303,7 +307,7 @@ This runs fish with a temporary home directory:</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -311,7 +315,7 @@ This runs fish with a temporary home directory:</p>
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -319,7 +323,6 @@ This runs fish with a temporary home directory:</p>
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -330,17 +333,17 @@ This runs fish with a temporary home directory:</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, fish-shell developers.
+    &copy; Copyright 2024, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.7";
+ FISH_DOCS_VERSION = "4.0";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
@@ -394,7 +397,6 @@ This runs fish with a temporary home directory:</p>
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

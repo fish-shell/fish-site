@@ -5,12 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>math - perform mathematics calculations &#8212; fish-shell 3.7.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=5c477e40"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <title>math - perform mathematics calculations &#8212; fish-shell 4.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
+    <script src="../_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -35,7 +34,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -43,7 +42,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -71,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -113,7 +112,7 @@
 <span id="cmd-math"></span><h1>math - perform mathematics calculations<a class="headerlink" href="#math-perform-mathematics-calculations" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">math</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-s</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--scale</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">N</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-b</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--base</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">BASE</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">EXPRESSION</span><span class="w"> </span><span class="g g-Other">...</span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">math</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-s</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--scale</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">N</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-b</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--base</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">BASE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--scale-mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">EXPRESSION</span><span class="w"> </span><span class="g g-Other">...</span>
 </pre></div>
 </div>
 </section>
@@ -122,8 +121,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">math</span></code> performs mathematical calculations.
 It supports simple operations such as addition, subtraction, and so on, as well as functions like <code class="docutils literal notranslate"><span class="pre">abs()</span></code>, <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> and <code class="docutils literal notranslate"><span class="pre">ln()</span></code>.</p>
 <p>By default, the output shows up to 6 decimal places.
-To change the number of decimal places, use the <code class="docutils literal notranslate"><span class="pre">--scale</span></code> option, including <code class="docutils literal notranslate"><span class="pre">--scale=0</span></code> for integer output.
-Trailing zeroes will always be trimmed.</p>
+To change the number of decimal places, use the <code class="docutils literal notranslate"><span class="pre">--scale</span></code> option, including <code class="docutils literal notranslate"><span class="pre">--scale=0</span></code> for integer output.</p>
 <p>Keep in mind that parameter expansion happens before expressions are evaluated.
 This can be very useful in order to perform calculations involving shell variables or the output of command substitutions, but it also means that parenthesis (<code class="docutils literal notranslate"><span class="pre">()</span></code>) and the asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) glob character have to be escaped or quoted.
 <code class="docutils literal notranslate"><span class="pre">x</span></code> can also be used to denote multiplication, but it needs to be followed by whitespace to distinguish it from hexadecimal numbers.</p>
@@ -136,8 +134,8 @@ When in doubt, use parentheses.</p>
 <dl class="simple">
 <dt><strong>-s</strong> <em>N</em> or <strong>--scale</strong> <em>N</em></dt><dd><p>Sets the scale of the result.
 <code class="docutils literal notranslate"><span class="pre">N</span></code> must be an integer or the word “max” for the maximum scale.
-A scale of zero causes results to be truncated, not rounded. Any non-integer component is thrown away.
-So <code class="docutils literal notranslate"><span class="pre">3/2</span></code> returns <code class="docutils literal notranslate"><span class="pre">1</span></code> rather than <code class="docutils literal notranslate"><span class="pre">2</span></code> which <code class="docutils literal notranslate"><span class="pre">1.5</span></code> would normally round to.
+A scale of zero causes results to be truncated by default. Any non-integer component is thrown away.
+So <code class="docutils literal notranslate"><span class="pre">3/2</span></code> returns <code class="docutils literal notranslate"><span class="pre">1</span></code> by default, rather than <code class="docutils literal notranslate"><span class="pre">2</span></code> which <code class="docutils literal notranslate"><span class="pre">1.5</span></code> would normally round to.
 This is for compatibility with <code class="docutils literal notranslate"><span class="pre">bc</span></code> which was the basis for this command prior to fish 3.0.0.
 Scale values greater than zero causes the result to be rounded using the usual rules to the specified number of decimal places.</p>
 </dd>
@@ -146,6 +144,10 @@ It currently understands “hex” or “16” for hexadecimal and “octal” o
 This might change in the future.
 Hex numbers will be printed with a <code class="docutils literal notranslate"><span class="pre">0x</span></code> prefix.
 Octal numbers will have a prefix of <code class="docutils literal notranslate"><span class="pre">0</span></code> but aren’t understood by <code class="docutils literal notranslate"><span class="pre">math</span></code> as input.</p>
+</dd>
+<dt><strong>-m</strong> <em>MODE</em> or <strong>--scale-mode</strong> <em>MODE</em></dt><dd><p>Sets scale behavior.
+The <code class="docutils literal notranslate"><span class="pre">MODE</span></code> can be <code class="docutils literal notranslate"><span class="pre">truncate</span></code>, <code class="docutils literal notranslate"><span class="pre">round</span></code>, <code class="docutils literal notranslate"><span class="pre">floor</span></code>, <code class="docutils literal notranslate"><span class="pre">ceiling</span></code>.
+The default value of scale mode is <code class="docutils literal notranslate"><span class="pre">round</span></code> with non zero scale and <code class="docutils literal notranslate"><span class="pre">truncate</span></code> with zero scale.</p>
 </dd>
 <dt><strong>-h</strong> or <strong>--help</strong></dt><dd><p>Displays help about using this command.</p>
 </dd>
@@ -216,10 +218,10 @@ These will throw away any non-integer parts and interpret the rest as an int.</p
 <p>Note: <code class="docutils literal notranslate"><span class="pre">bitnot</span></code> and <code class="docutils literal notranslate"><span class="pre">bitnand</span></code> don’t exist. This is because numbers in math don’t really have a <em>width</em> in terms of bits,
 and these operations necessarily care about leading zeroes.</p>
 <p>If you need to negate a specific number you can do it with an xor with a mask, e.g.:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">math</span><span class="w"> </span><span class="no">--base=hex</span><span class="w"> </span><span class="no">bitxor</span><span class="w"> </span><span class="no">0x0F,</span><span class="w"> </span><span class="no">0xFF</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">math </span><span class="no">--base=hex bitxor 0x0F, 0xFF</span>
 <span class="go">0xF0</span>
 
-<span class="gp">&gt; </span><span class="nf">math</span><span class="w"> </span><span class="no">--base=hex</span><span class="w"> </span><span class="no">bitxor</span><span class="w"> </span><span class="no">0x2,</span><span class="w"> </span><span class="no">0x3</span>
+<span class="gp">&gt; </span><span class="nf">math </span><span class="no">--base=hex bitxor 0x2, 0x3</span>
 <span class="go"># Here we mask with 0x3 == 0b111, so our number is 3 bits wide</span>
 <span class="go"># Only the 1 bit isn&#39;t set.</span>
 <span class="go">0x1</span>
@@ -275,7 +277,7 @@ and these operations necessarily care about leading zeroes.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">$status</span> <span class="pre">-</span> <span class="pre">128</span></code> outputs the numerical exit status of the last command minus 128.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">10</span> <span class="pre">/</span> <span class="pre">6</span></code> outputs <code class="docutils literal notranslate"><span class="pre">1.666667</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">-s0</span> <span class="pre">10.0</span> <span class="pre">/</span> <span class="pre">6.0</span></code> outputs <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">-s3</span> <span class="pre">10</span> <span class="pre">/</span> <span class="pre">6</span></code> outputs <code class="docutils literal notranslate"><span class="pre">1.666</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">-s3</span> <span class="pre">10</span> <span class="pre">/</span> <span class="pre">6</span></code> outputs <code class="docutils literal notranslate"><span class="pre">1.667</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;sin(pi)&quot;</span></code> outputs <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">5</span> <span class="pre">\*</span> <span class="pre">2</span></code> or <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">&quot;5</span> <span class="pre">*</span> <span class="pre">2&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">5</span> <span class="pre">&quot;*&quot;</span> <span class="pre">2</span></code> all output <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">0xFF</span></code> outputs 255, <code class="docutils literal notranslate"><span class="pre">math</span> <span class="pre">0</span> <span class="pre">x</span> <span class="pre">3</span></code> outputs 0 (because it computes 0 multiplied by 3).</p>
@@ -306,7 +308,7 @@ and these operations necessarily care about leading zeroes.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -314,7 +316,7 @@ and these operations necessarily care about leading zeroes.</p>
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -322,7 +324,6 @@ and these operations necessarily care about leading zeroes.</p>
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -333,17 +334,17 @@ and these operations necessarily care about leading zeroes.</p>
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, fish-shell developers.
+    &copy; Copyright 2024, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.7";
+ FISH_DOCS_VERSION = "4.0";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
@@ -397,7 +398,6 @@ and these operations necessarily care about leading zeroes.</p>
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

@@ -5,12 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>function - create a function &#8212; fish-shell 3.7.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=5c477e40"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <title>function - create a function &#8212; fish-shell 4.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
+    <script src="../_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -35,7 +34,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -43,7 +42,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -71,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -119,7 +118,7 @@
 <p>A function is a list of commands that will be executed when the name of the function is given as a command.</p>
 <p>The following options are available:</p>
 <dl>
-<dt><strong>-a</strong> <em>NAMES</em> or <strong>--argument-names</strong> <em>NAMES</em></dt><dd><p>Assigns the value of successive command-line arguments to the names given in <em>NAMES</em>. These are the same arguments given in <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-argv"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">argv</span></code></a>, and are still available there. See also <a class="reference internal" href="../language.html#variables-argv"><span class="std std-ref">Argument Handling</span></a>.</p>
+<dt><strong>-a</strong> <em>NAMES</em> or <strong>--argument-names</strong> <em>NAMES</em></dt><dd><p>Has to be the last option. Assigns the value of successive command-line arguments to the names given in <em>NAMES</em> (separated by space). These are the same arguments given in <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-argv"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">argv</span></code></a>, and are still available there. See also <a class="reference internal" href="../language.html#variables-argv"><span class="std std-ref">Argument Handling</span></a>.</p>
 </dd>
 <dt><strong>-d</strong> <em>DESCRIPTION</em> or <strong>--description</strong> <em>DESCRIPTION</em></dt><dd><p>A description of what the function does, suitable as a completion description.</p>
 </dd>
@@ -129,11 +128,13 @@
 </dd>
 <dt><strong>-v</strong> <em>VARIABLE_NAME</em> or <strong>--on-variable</strong> <em>VARIABLE_NAME</em></dt><dd><p>Run this function when the variable <em>VARIABLE_NAME</em> changes value. Note that <strong class="program">fish</strong> makes no guarantees on any particular timing or even that the function will be run for every single <code class="docutils literal notranslate"><span class="pre">set</span></code>. Rather it will be run when the variable has been set at least once, possibly skipping some values or being run when the variable has been set to the same value (except for universal variables set in other shells - only changes in the value will be picked up for those).</p>
 </dd>
-<dt><strong>-j</strong> <em>PID</em> or <strong>--on-job-exit</strong> <em>PID</em></dt><dd><p>Run this function when the job containing a child process with the given process identifier <em>PID</em> exits. Instead of a PID, the string ‘caller’ can be specified. This is only allowed when in a command substitution, and will result in the handler being triggered by the exit of the job which created this command substitution.</p>
+<dt><strong>-j</strong> <em>PID</em> or <strong>--on-job-exit</strong> <em>PID</em></dt><dd><p>Run this function when the job containing a child process with the given process identifier <em>PID</em> exits. Instead of a PID, the string ‘caller’ can be specified. This is only allowed when in a command substitution, and will result in the handler being triggered by the exit of the job which created this command substitution.
+This will not trigger for <a class="reference internal" href="disown.html"><span class="doc">disowned</span></a> jobs.</p>
 </dd>
-<dt><strong>-p</strong> <em>PID</em> or <strong>--on-process-exit</strong> <em>PID</em></dt><dd><p>Run this function when the fish child process with process ID PID exits. Instead of a PID, for backward compatibility, “<code class="docutils literal notranslate"><span class="pre">%self</span></code>” can be specified as an alias for <code class="docutils literal notranslate"><span class="pre">$fish_pid</span></code>, and the function will be run when the current fish instance exits.</p>
+<dt><strong>-p</strong> <em>PID</em> or <strong>--on-process-exit</strong> <em>PID</em></dt><dd><p>Run this function when the fish child process with process ID PID exits. Instead of a PID, for backward compatibility, “<code class="docutils literal notranslate"><span class="pre">%self</span></code>” can be specified as an alias for <code class="docutils literal notranslate"><span class="pre">$fish_pid</span></code>, and the function will be run when the current fish instance exits.
+This will not trigger for <a class="reference internal" href="disown.html"><span class="doc">disowned</span></a> jobs.</p>
 </dd>
-<dt><strong>-s</strong> <em>SIGSPEC</em> or <strong>--on-signal</strong> <em>SIGSPEC</em></dt><dd><p>Run this function when the signal <code class="docutils literal notranslate"><span class="pre">SIGSPEC</span></code> is delivered. <code class="docutils literal notranslate"><span class="pre">SIGSPEC</span></code> can be a signal number, or the signal name, such as <code class="docutils literal notranslate"><span class="pre">SIGHUP</span></code> (or just <code class="docutils literal notranslate"><span class="pre">HUP</span></code>). Note that the signal must have been delivered to <strong class="program">fish</strong>; for example, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">C</kbd></kbd> sends <code class="docutils literal notranslate"><span class="pre">SIGINT</span></code> to the foreground process group, which will not be <strong class="program">fish</strong> if you are running another command at the time. Observing a signal will prevent fish from exiting in response to that signal.</p>
+<dt><strong>-s</strong> <em>SIGSPEC</em> or <strong>--on-signal</strong> <em>SIGSPEC</em></dt><dd><p>Run this function when the signal <code class="docutils literal notranslate"><span class="pre">SIGSPEC</span></code> is delivered. <code class="docutils literal notranslate"><span class="pre">SIGSPEC</span></code> can be a signal number, or the signal name, such as <code class="docutils literal notranslate"><span class="pre">SIGHUP</span></code> (or just <code class="docutils literal notranslate"><span class="pre">HUP</span></code>). Note that the signal must have been delivered to <strong class="program">fish</strong>; for example, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">c</kbd></kbd> sends <code class="docutils literal notranslate"><span class="pre">SIGINT</span></code> to the foreground process group, which will not be <strong class="program">fish</strong> if you are running another command at the time. Observing a signal will prevent fish from exiting in response to that signal.</p>
 </dd>
 <dt><strong>-S</strong> or <strong>--no-scope-shadowing</strong></dt><dd><p>Allows the function to access the variables of calling functions. Normally, any variables inside the function that have the same name as variables from the calling function are “shadowed”, and their contents are independent of the calling function.</p>
 <p>It’s important to note that this does not capture referenced variables or the scope at the time of function declaration! At this time, fish does not have any concept of closures, and variable lifetimes are never extended. In other words, by using <strong>--no-scope-shadowing</strong> the scope of the function each time it is run is shared with the scope it was <em>called</em> from rather than the scope it was <em>defined</em> in.</p>
@@ -142,24 +143,44 @@
 </dd>
 </dl>
 <p>The event handler switches (<code class="docutils literal notranslate"><span class="pre">on-event</span></code>, <code class="docutils literal notranslate"><span class="pre">on-variable</span></code>, <code class="docutils literal notranslate"><span class="pre">on-job-exit</span></code>, <code class="docutils literal notranslate"><span class="pre">on-process-exit</span></code> and <code class="docutils literal notranslate"><span class="pre">on-signal</span></code>) cause a function to run automatically at specific events. New named events for <code class="docutils literal notranslate"><span class="pre">--on-event</span></code> can be fired using the <a class="reference internal" href="emit.html"><span class="doc">emit</span></a> builtin. Fish already generates a few events, see <a class="reference internal" href="../language.html#event"><span class="std std-ref">Event handlers</span></a> for more.</p>
-<p>Functions may not be named the same as a reserved keyword. These are elements of fish syntax or builtin commands which are essential for the operations of the shell. Current reserved words are <code class="docutils literal notranslate"><span class="pre">[</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">argparse</span></code>, <code class="docutils literal notranslate"><span class="pre">begin</span></code>, <code class="docutils literal notranslate"><span class="pre">break</span></code>, <code class="docutils literal notranslate"><span class="pre">builtin</span></code>, <code class="docutils literal notranslate"><span class="pre">case</span></code>, <code class="docutils literal notranslate"><span class="pre">command</span></code>, <code class="docutils literal notranslate"><span class="pre">continue</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">eval</span></code>, <code class="docutils literal notranslate"><span class="pre">exec</span></code>, <code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">function</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">return</span></code>, <code class="docutils literal notranslate"><span class="pre">set</span></code>, <code class="docutils literal notranslate"><span class="pre">status</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">switch</span></code>, <code class="docutils literal notranslate"><span class="pre">test</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, and <code class="docutils literal notranslate"><span class="pre">while</span></code>.</p>
+<p>Functions names cannot be reserved words. These are elements of fish syntax or builtin commands which are essential for the operations of the shell. Current reserved words are <code class="docutils literal notranslate"><span class="pre">[</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">argparse</span></code>, <code class="docutils literal notranslate"><span class="pre">begin</span></code>, <code class="docutils literal notranslate"><span class="pre">break</span></code>, <code class="docutils literal notranslate"><span class="pre">builtin</span></code>, <code class="docutils literal notranslate"><span class="pre">case</span></code>, <code class="docutils literal notranslate"><span class="pre">command</span></code>, <code class="docutils literal notranslate"><span class="pre">continue</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">eval</span></code>, <code class="docutils literal notranslate"><span class="pre">exec</span></code>, <code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">function</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">return</span></code>, <code class="docutils literal notranslate"><span class="pre">set</span></code>, <code class="docutils literal notranslate"><span class="pre">status</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">switch</span></code>, <code class="docutils literal notranslate"><span class="pre">test</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, and <code class="docutils literal notranslate"><span class="pre">while</span></code>.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">ll</span>
-<span class="w">    </span><span class="nf">ls</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="o">$argv</span>
+<span class="w">    </span><span class="nf">ls </span><span class="no">-l </span><span class="o">$argv</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>will run the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command, using the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option, while passing on any additional files and switches to <code class="docutils literal notranslate"><span class="pre">ls</span></code>.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">mkdir</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s2">&quot;Create a directory and set CWD&quot;</span>
-<span class="w">    </span><span class="nf">command</span><span class="w"> </span><span class="nf">mkdir</span><span class="w"> </span><span class="o">$argv</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="o">$status</span><span class="w"> </span><span class="no">=</span><span class="w"> </span><span class="no">0</span>
-<span class="w">        </span><span class="nf">switch</span><span class="w"> </span><span class="o">$argv[(</span><span class="nf">count</span><span class="w"> </span><span class="o">$argv)]</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">debug -a name val</span>
+<span class="w">    </span><span class="nf">echo </span><span class="no">[DEBUG] </span><span class="o">$name</span><span class="no">: </span><span class="o">$val</span><span class="w"> </span><span class="p">&gt;&amp;2</span>
+<span class="nf">end</span>
+
+<span class="nf">set </span><span class="no">foo bar</span>
+<span class="nf">debug </span><span class="no">foo bar</span>
+<span class="c"># prints: [DEBUG] foo: bar</span>
+
+<span class="c"># OR</span>
+
+<span class="nf">function</span><span class="no"> debug2 -a var</span>
+<span class="w">    </span><span class="nf">echo </span><span class="no">[DEBUG] </span><span class="o">$var</span><span class="no">: </span><span class="o">$$var</span><span class="w"> </span><span class="p">&gt;&amp;2</span>
+<span class="nf">end</span>
+
+<span class="nf">set </span><span class="no">foo bar</span>
+<span class="nf">debug2 </span><span class="no">foo</span>
+<span class="c"># prints: [DEBUG] foo: bar</span>
+</pre></div>
+</div>
+<p>will create a <code class="docutils literal notranslate"><span class="pre">debug</span></code> command to print chosen variables to <cite>stderr</cite>.</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">mkdir -d </span><span class="s2">&quot;Create a directory and set CWD&quot;</span>
+<span class="w">    </span><span class="nf">command</span><span class="w"> </span><span class="nf">mkdir </span><span class="o">$argv</span>
+<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="o">$status</span><span class="no"> = 0</span>
+<span class="w">        </span><span class="nf">switch</span><span class="w"> </span><span class="o">$argv[(</span><span class="nf">count </span><span class="o">$argv)]</span>
 <span class="w">            </span><span class="nf">case</span><span class="w"> </span><span class="s1">&#39;-*&#39;</span>
 
 <span class="w">            </span><span class="nf">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span>
-<span class="w">                </span><span class="nf">cd</span><span class="w"> </span><span class="o">$argv[(</span><span class="nf">count</span><span class="w"> </span><span class="o">$argv)]</span>
+<span class="w">                </span><span class="nf">cd </span><span class="o">$argv[(</span><span class="nf">count </span><span class="o">$argv)]</span>
 <span class="w">                </span><span class="nf">return</span>
 <span class="w">        </span><span class="nf">end</span>
 <span class="w">    </span><span class="nf">end</span>
@@ -168,12 +189,12 @@
 </div>
 <p>This will run the <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> command, and if it is successful, change the current working directory to the one just created.</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">notify</span>
-<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">job</span><span class="w"> </span><span class="o">(</span><span class="nf">jobs</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">-g</span><span class="o">)</span>
-<span class="w">    </span><span class="o">or</span><span class="w"> </span><span class="nf">begin</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;There are no jobs&quot;</span><span class="w"> </span><span class="p">&gt;&amp;2;</span><span class="w"> </span><span class="nf">return</span><span class="w"> </span><span class="no">1</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
+<span class="w">    </span><span class="nf">set </span><span class="no">-l job </span><span class="o">(</span><span class="nf">jobs </span><span class="no">-l -g</span><span class="o">)</span>
+<span class="w">    </span><span class="o">or</span><span class="w"> </span><span class="nf">begin</span><span class="p">;</span><span class="w"> </span><span class="nf">echo </span><span class="s2">&quot;There are no jobs&quot;</span><span class="w"> </span><span class="p">&gt;&amp;2;</span><span class="w"> </span><span class="nf">return </span><span class="no">1</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
 
-<span class="w">    </span><span class="nf">function</span><span class="w"> </span><span class="no">_notify_job_</span><span class="o">$job</span><span class="w"> </span><span class="no">--on-job-exit</span><span class="w"> </span><span class="o">$job</span><span class="w"> </span><span class="no">--inherit-variable</span><span class="w"> </span><span class="no">job</span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="se">\a</span><span class="w"> </span><span class="c"># beep</span>
-<span class="w">        </span><span class="nf">functions</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">_notify_job_</span><span class="o">$job</span>
+<span class="w">    </span><span class="nf">function</span><span class="no"> _notify_job_</span><span class="o">$job</span><span class="w"> </span><span class="no">--on-job-exit </span><span class="o">$job</span><span class="w"> </span><span class="no">--inherit-variable job</span>
+<span class="w">        </span><span class="nf">echo </span><span class="no">-n </span><span class="se">\a</span><span class="w"> </span><span class="c"># beep</span>
+<span class="w">        </span><span class="nf">functions </span><span class="no">-e _notify_job_</span><span class="o">$job</span>
 <span class="w">    </span><span class="nf">end</span>
 <span class="nf">end</span>
 </pre></div>
@@ -204,7 +225,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -212,7 +233,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -220,7 +241,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -231,17 +251,17 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, fish-shell developers.
+    &copy; Copyright 2024, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.7";
+ FISH_DOCS_VERSION = "4.0";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
@@ -295,7 +315,6 @@
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

@@ -5,12 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>switch - conditionally execute a block of commands &#8212; fish-shell 3.7.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a864bcb0" />
-    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=4e2636db" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="../_static/documentation_options.js?v=5c477e40"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <title>switch - conditionally execute a block of commands &#8212; fish-shell 4.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
+    <script src="../_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -35,7 +34,7 @@
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -43,7 +42,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -71,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -123,16 +122,16 @@
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <p>If the variable <code class="docutils literal notranslate"><span class="pre">$animal</span></code> contains the name of an animal, the following code would attempt to classify it:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">switch</span><span class="w"> </span><span class="o">$animal</span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">cat</span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">evil</span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">wolf</span><span class="w"> </span><span class="no">dog</span><span class="w"> </span><span class="no">human</span><span class="w"> </span><span class="no">moose</span><span class="w"> </span><span class="no">dolphin</span><span class="w"> </span><span class="no">whale</span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">mammal</span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">duck</span><span class="w"> </span><span class="no">goose</span><span class="w"> </span><span class="no">albatross</span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">bird</span>
-<span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="no">shark</span><span class="w"> </span><span class="no">trout</span><span class="w"> </span><span class="no">stingray</span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">fish</span>
+<span class="w">    </span><span class="nf">case</span><span class="no"> cat</span>
+<span class="w">        </span><span class="nf">echo </span><span class="no">evil</span>
+<span class="w">    </span><span class="nf">case</span><span class="no"> wolf dog human moose dolphin whale</span>
+<span class="w">        </span><span class="nf">echo </span><span class="no">mammal</span>
+<span class="w">    </span><span class="nf">case</span><span class="no"> duck goose albatross</span>
+<span class="w">        </span><span class="nf">echo </span><span class="no">bird</span>
+<span class="w">    </span><span class="nf">case</span><span class="no"> shark trout stingray</span>
+<span class="w">        </span><span class="nf">echo </span><span class="no">fish</span>
 <span class="w">    </span><span class="nf">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span>
-<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">I</span><span class="w"> </span><span class="no">have</span><span class="w"> </span><span class="no">no</span><span class="w"> </span><span class="no">idea</span><span class="w"> </span><span class="no">what</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="o">$animal</span><span class="w"> </span><span class="no">is</span>
+<span class="w">        </span><span class="nf">echo </span><span class="no">I have no idea what a </span><span class="o">$animal</span><span class="no"> is</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
@@ -155,7 +154,7 @@ would be <code class="docutils literal notranslate"><span class="pre">mammal</sp
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -163,7 +162,7 @@ would be <code class="docutils literal notranslate"><span class="pre">mammal</sp
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="../search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -171,7 +170,6 @@ would be <code class="docutils literal notranslate"><span class="pre">mammal</sp
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -182,17 +180,17 @@ would be <code class="docutils literal notranslate"><span class="pre">mammal</sp
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, fish-shell developers.
+    &copy; Copyright 2024, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.7";
+ FISH_DOCS_VERSION = "4.0";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
@@ -246,7 +244,6 @@ would be <code class="docutils literal notranslate"><span class="pre">mammal</sp
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>

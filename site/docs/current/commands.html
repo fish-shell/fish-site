@@ -5,12 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Commands &#8212; fish-shell 3.7.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a864bcb0" />
-    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=4e2636db" />
-    <link rel="stylesheet" type="text/css" href="/docs/shared/style.css" />
-    <script src="_static/documentation_options.js?v=5c477e40"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <title>Commands &#8212; fish-shell 4.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
+    <script src="_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -27,14 +26,14 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Commands</a></li>
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -42,7 +41,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -70,6 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -113,7 +112,7 @@
 <h2>Keywords<a class="headerlink" href="#keywords" title="Link to this heading">¶</a></h2>
 <p>Core language keywords that make up the syntax, like</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="cmds/if.html"><span class="doc">if</span></a> for conditions.</p></li>
+<li><p><a class="reference internal" href="cmds/if.html"><span class="doc">if</span></a> and <a class="reference internal" href="cmds/else.html"><span class="doc">else</span></a> for conditions.</p></li>
 <li><p><a class="reference internal" href="cmds/for.html"><span class="doc">for</span></a> and <a class="reference internal" href="cmds/while.html"><span class="doc">while</span></a> for loops.</p></li>
 <li><p><a class="reference internal" href="cmds/break.html"><span class="doc">break</span></a> and <a class="reference internal" href="cmds/continue.html"><span class="doc">continue</span></a> to control loops.</p></li>
 <li><p><a class="reference internal" href="cmds/function.html"><span class="doc">function</span></a> to define functions.</p></li>
@@ -124,6 +123,7 @@
 <li><p><a class="reference internal" href="cmds/command.html"><span class="doc">command</span></a> or <a class="reference internal" href="cmds/builtin.html"><span class="doc">builtin</span></a> to tell fish what sort of thing to execute</p></li>
 <li><p><a class="reference internal" href="cmds/time.html"><span class="doc">time</span></a> to time execution</p></li>
 <li><p><a class="reference internal" href="cmds/exec.html"><span class="doc">exec</span></a> tells fish to replace itself with a command.</p></li>
+<li><p><a class="reference internal" href="cmds/end.html"><span class="doc">end</span></a> to end a block</p></li>
 </ul>
 </section>
 <section id="tools">
@@ -136,6 +136,7 @@
 <li><p><a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a> to set, query or erase variables.</p></li>
 <li><p><a class="reference internal" href="cmds/read.html"><span class="doc">read</span></a> to read input.</p></li>
 <li><p><a class="reference internal" href="cmds/string.html"><span class="doc">string</span></a> for string manipulation.</p></li>
+<li><p><a class="reference internal" href="cmds/path.html"><span class="doc">path</span></a> for filtering paths and handling their components.</p></li>
 <li><p><a class="reference internal" href="cmds/math.html"><span class="doc">math</span></a> does arithmetic.</p></li>
 <li><p><a class="reference internal" href="cmds/argparse.html"><span class="doc">argparse</span></a> to make arguments easier to handle.</p></li>
 <li><p><a class="reference internal" href="cmds/count.html"><span class="doc">count</span></a> to count arguments.</p></li>
@@ -160,6 +161,7 @@
 <li><p><a class="reference internal" href="cmds/fish_command_not_found.html"><span class="doc">fish_command_not_found</span></a> to tell fish what to do when a command is not found.</p></li>
 <li><p><a class="reference internal" href="cmds/fish_title.html"><span class="doc">fish_title</span></a> to change the terminal’s title.</p></li>
 <li><p><a class="reference internal" href="cmds/fish_greeting.html"><span class="doc">fish_greeting</span></a> to show a greeting when fish starts.</p></li>
+<li><p><a class="reference internal" href="cmds/fish_should_add_to_history.html"><span class="doc">fish_should_add_to_history</span></a> to determine if a command should be added to history</p></li>
 </ul>
 </section>
 <section id="helper-functions">
@@ -177,6 +179,7 @@
 <li><p><a class="reference internal" href="cmds/fish_add_path.html"><span class="doc">fish_add_path</span></a> to easily add a path to $PATH.</p></li>
 <li><p><a class="reference internal" href="cmds/alias.html"><span class="doc">alias</span></a> to quickly define wrapper functions (“aliases”).</p></li>
 <li><p><a class="reference internal" href="cmds/fish_delta.html"><span class="doc">fish_delta</span></a> to show what you have changed from the default configuration.</p></li>
+<li><p><a class="reference internal" href="cmds/export.html"><span class="doc">export</span></a> as a compatibility function for other shells.</p></li>
 </ul>
 </section>
 <section id="helper-commands">
@@ -220,6 +223,7 @@
 <li class="toctree-l1"><a class="reference internal" href="cmds/eval.html">eval - evaluate the specified commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/exec.html">exec - execute command in current process</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/exit.html">exit - exit the shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmds/export.html">export - compatibility function for exporting variables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/false.html">false - return an unsuccessful result</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fg.html">fg - bring job to foreground</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish.html">fish - the friendly interactive shell</a></li>
@@ -241,6 +245,7 @@
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_opt.html">fish_opt - create an option specification for the argparse command</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_prompt.html">fish_prompt - define the appearance of the command line prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_right_prompt.html">fish_right_prompt - define the appearance of the right-side command line prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmds/fish_should_add_to_history.html">fish_should_add_to_history - decide whether a command should be added to the history</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_status_to_signal.html">fish_status_to_signal - convert exit codes to human-friendly signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_svn_prompt.html">fish_svn_prompt - output Subversion information for use in a prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmds/fish_title.html">fish_title - define the terminal’s title</a></li>
@@ -329,14 +334,14 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 3.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.0.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Commands</a></li>
     <li class="right">
         
 
-    <div class="inline-search" style="display: none" role="search">
+    <div class="inline-search" role="search">
         <form class="inline-search" action="search.html" method="get">
           <input placeholder="Quick search" type="text" name="q" />
           <input type="submit" value="Go" />
@@ -344,7 +349,6 @@
           <input type="hidden" name="area" value="default" />
         </form>
     </div>
-    <script type="text/javascript">$('.inline-search').show(0);</script>
     </li>
     
     <div id="old-docs-notice" style="display: none">
@@ -355,17 +359,17 @@
       </ul>
     </div>  
     <div class="footer">
-    &copy; Copyright 2023, fish-shell developers.
+    &copy; Copyright 2024, fish-shell developers.
     <br />
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "3.7";
+ FISH_DOCS_VERSION = "4.0";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
@@ -419,7 +423,6 @@
       }
   })();
 </script>
-<script defer type="text/javascript" src="/docs/shared/script.js"></script>
 
   </body>
 </html>
