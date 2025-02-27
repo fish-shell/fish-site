@@ -1,4 +1,150 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://fishshell.com/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fishshell.com/" rel="alternate" type="text/html" /><updated>2025-02-27T22:14:29+08:00</updated><id>https://fishshell.com/blog/feed.xml</id><title type="html">Fish-shell Blog</title><entry><title type="html">Fish 4.0: The Fish Of Theseus</title><link href="https://fishshell.com/blog/rustport/" rel="alternate" type="text/html" title="Fish 4.0: The Fish Of Theseus" /><published>2024-12-28T00:00:00+08:00</published><updated>2024-12-28T00:00:00+08:00</updated><id>https://fishshell.com/blog/rustport</id><content type="html" xml:base="https://fishshell.com/blog/rustport/"><![CDATA[<p>About two years ago, our head maintainer @ridiculousfish opened what quickly became our most-read pull request:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://fishshell.com/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fishshell.com/" rel="alternate" type="text/html" /><updated>2025-02-27T18:00:12+01:00</updated><id>https://fishshell.com/blog/feed.xml</id><title type="html">Fish-shell Blog</title><entry><title type="html">What’s new in fish 4.0</title><link href="https://fishshell.com/blog/new-in-40/" rel="alternate" type="text/html" title="What’s new in fish 4.0" /><published>2025-02-27T00:00:00+01:00</published><updated>2025-02-27T00:00:00+01:00</updated><id>https://fishshell.com/blog/new-in-40</id><content type="html" xml:base="https://fishshell.com/blog/new-in-40/"><![CDATA[<p>We’re proud to announce the release of <a href="https://github.com/fish-shell/fish-shell/releases/tag/4.0.0">fish 4.0</a>.</p>
+
+<p>This release represents 2731 commits by over 200 people.
+It has 1185 files changed, 111221 insertions(+), 89168 deletions(-)<sup id="fnref:linecount"><a href="#fn:linecount" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>.</p>
+
+<p>As you might know, fish was entirely rewritten in rust. But, while that’s a lot of work, it should also be invisible to you, the user - if we’ve done our job right.</p>
+
+<p>Thankfully, this release is also full of cool new features and other improvements.</p>
+
+<p>We’ve written about <a href="../rustport/index.html">the port before</a>, the rest of this post will tell you what awaits you if you’re interested in using fish 4.</p>
+
+<p>For the full list of changes you can see <a href="https://fishshell.com/docs/4.0/relnotes.html">the Release Notes</a>, this is the highlights, curated and explained.</p>
+
+<h2 id="so-what-was-changed-for-me-then">So, what was changed for me, then?</h2>
+
+<h3 id="bind-notation-and-improved-key-chord-support">Bind Notation and Improved Key Chord Support</h3>
+
+<p>Fish’s <code class="language-plaintext highlighter-rouge">bind</code> now has a key notation. That means you no longer have to write <code class="language-plaintext highlighter-rouge">bind \e\[1\;5C</code> or <code class="language-plaintext highlighter-rouge">bind \e\x7F</code>, which directly reflects the escape sequences the terminal sends, you can just write <code class="language-plaintext highlighter-rouge">bind ctrl-right</code> or <code class="language-plaintext highlighter-rouge">bind alt-backspace</code>. This requires fish to understand what <code class="language-plaintext highlighter-rouge">\e\[1\;5C</code> <em>is</em> and to map it to an understanding of keys.</p>
+
+<p>And this understanding of keys now goes deeper: Fish tries to get the terminal to encode keys better so that it can differentiate them better.</p>
+
+<p>To explain, the usual protocol terminals use to send keys to applications have a lot of limitations: control+I (or control+shift+i) sends the exact same sequence as control+i, which sends the exact same sequence as the Tab key. A lot of keys cannot be disambiguated this way!</p>
+
+<p>So fish now enables a variety of terminal features, including xterm’s “modifyOtherKey” and the kitty keyboard protocol<sup id="fnref:kkp"><a href="#fn:kkp" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>, that tell the terminal that fish understands when it sends better sequences. If this works, you can <code class="language-plaintext highlighter-rouge">bind ctrl-i</code>, <code class="language-plaintext highlighter-rouge">bind ctrl-I</code> and <code class="language-plaintext highlighter-rouge">bind tab</code> separately! If it doesn’t work, you can still use <code class="language-plaintext highlighter-rouge">bind ctrl-i</code>, but it will also be triggered when you press tab.</p>
+
+<p>It does this automatically and without requiring configuration. We have tested a lot of terminals and found that almost all terminals we could get our hands on either understood these sequences and acted on them or harmlessly ignored them.</p>
+
+<p>In some rare cases we encountered terminal bugs that we worked around by disabling these protocols. For instance we found issues in the integrated terminal in JetBrains IDEs or Wezterm<sup id="fnref:wezterm"><a href="#fn:wezterm" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> and iTerm that we hope will be fixed soon. In other cases we have sent patches, for example we improved Zellij’s support for the kitty keyboard protocol.</p>
+
+<p>If you <em>do</em> still see issues, like a mysterious “5u” or “=0” appearing in your commandline, you can disable these protocols for the time being with:</p>
+
+<pre><code class="language-fish">set -Ua fish_features no-keyboard-protocols
+</code></pre>
+
+<p>Note that this is very likely a terminal bug, so it should be reported there.</p>
+
+<p>The key notation is used by default, but we have added some exceptions so your existing bindings keep working. For example if a binding has a control character (like <code class="language-plaintext highlighter-rouge">\e</code>) inside, it will still be interpreted the old way. Our research tells us this should cover just about all bindings in the wild.</p>
+
+<h3 id="commandline">Commandline</h3>
+
+<p>Continuing on the theme of using terminal features if they are available, fish now also marks the prompt and command output with the OSC 133 sequences. That means it now better integrates with your terminal. In some cases terminals shipped “shell integration” scripts that wrote these in a hacky way, fish now just does it for them.</p>
+
+<p>Similarly, fish now prints cursor change sequences for vi-mode in any terminal. Before, it would try to detect if the terminal was capable of it,
+by sniffing for environment variables. Unfortunately, terminfo is in practice broken and useless, so this was necessary at the time.
+But now these sequences are widespread enough that we can just use them and it won’t break terminals.</p>
+
+<p>–</p>
+
+<p>Fish now also handles commandlines that are longer than the screen correctly. Previously it would get confused and misrender them, now they scroll.</p>
+
+<p>–</p>
+
+<p>When you have a binding that makes a change with <code class="language-plaintext highlighter-rouge">commandline</code>, it now applies immediately. For instance if you do <code class="language-plaintext highlighter-rouge">commandline -i foo</code> that inserts “foo” into the commandline right away, where before it would add that change to the input queue. This makes it easier and in some ways <em>possible</em> to script your own bindings.</p>
+
+<p>–</p>
+
+<p>The ctrl-r history pager (which first shipped in fish 3.6.0) has a few neat improvements - you can now search for substrings with <code class="language-plaintext highlighter-rouge">*</code> glob syntax - <code class="language-plaintext highlighter-rouge">git*HEAD</code> will search for all history entries containing “git” and “HEAD” in that order.</p>
+
+<p>It also only applies to the <em>current</em> command, so you can build bigger multiline scripts with it, instead of searching for the entire script.</p>
+
+<p>–</p>
+
+<p>The default theme had a slight adjustment: Instead of rendering commands as “blue”, it now leaves them in the terminal’s “normal” color.
+For context, the default theme is supposed to be usable on as many systems as possible, which is why it restricts itself to the 16 color palette.
+But making that readable on as many terminals as possible, no matter their palette, whether light or dark,
+can be tricky. And we discovered that the default “blue” color on many terminals was hard to read on their default terminal background.
+We think that’s a bit silly and the terminal’s palette should be improved, but we also need to support existing setups.
+So we changed it, which also makes the default theme a bit less overloaded with color<sup id="fnref:salad"><a href="#fn:salad" class="footnote" rel="footnote" role="doc-noteref">4</a></sup>.</p>
+
+<p>If you are already using the default theme, it will stay on the old version. To get the new colors, reload the theme via <code class="language-plaintext highlighter-rouge">fish_config</code>.</p>
+
+<h3 id="abbreviations">Abbreviations</h3>
+
+<p>Abbreviations had one big change: It is now possible to make an abbreviation only valid as an argument to certain commands.
+For instance, you can use abbreviations with <code class="language-plaintext highlighter-rouge">git</code> instead of using git’s own aliases.</p>
+
+<p>In the simple case this would just be <code class="language-plaintext highlighter-rouge">abbr --command git co checkout</code>, which will expand <code class="language-plaintext highlighter-rouge">co</code> to <code class="language-plaintext highlighter-rouge">checkout</code> when used with git,
+but this will expand <em>any</em> <code class="language-plaintext highlighter-rouge">co</code> to checkout. You can add a function to parse git’s arguments in order to see if it’s a subcommand,
+or you could see if it’s a commit-ish.</p>
+
+<h3 id="self-installable-builds">Self-installable Builds</h3>
+
+<p>There is also a new way to install fish: You can now build it as a “self-installable” binary.
+That means you can compile a <code class="language-plaintext highlighter-rouge">fish</code> binary that includes all the functions, the man pages, the webconfig tool, embedded inside itself.
+When you start it, it will ask to extract these to your home directory when they are missing or need to be updated.</p>
+
+<p>You can use that to make statically-linked binaries that you can move around. So you can make a fish that works on, for example, any x86_64 linux.</p>
+
+<p>One reason we hear for not using fish is that people ssh to servers where they won’t have it.
+This change makes it easy to put it there, even if you don’t want to or can’t install a package. No more root permissions,
+no fiddling with package sources. Just copy a file and run.</p>
+
+<p>And creating a build like that is easy: <code class="language-plaintext highlighter-rouge">cargo build</code> will create it by default, so <code class="language-plaintext highlighter-rouge">cargo install</code> will install it.</p>
+
+<p>We have also built these for x86_64 (aka “amd64”) and aarch64 (aka “arm64”) linux and uploaded them to <a href="https://github.com/fish-shell/fish-shell/releases/tag/4.0.0">the 4.0 github releases page</a><sup id="fnref:staticbuilds"><a href="#fn:staticbuilds" class="footnote" rel="footnote" role="doc-noteref">5</a></sup>.</p>
+
+<h3 id="ignoring-commands-in-history">Ignoring Commands In History</h3>
+
+<p>An older request was to make it possible to not add certain commands to history.</p>
+
+<p>Other shells feature e.g. the “HISTIGNORE” variable that you can set to an expression for commands that should be ignored, like</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">HISTIGNORE</span><span class="o">=</span><span class="s2">"ls:[bf]g:exit:pwd:clear:mount:umount:[ </span><span class="se">\t</span><span class="s2">]*"</span>
+</code></pre></div></div>
+
+<p>Which is a bit un-fishy. So instead of introducing a special expression, we made it a function: <code class="language-plaintext highlighter-rouge">fish_should_add_to_history</code>. When you define this, you 
+can choose to remove specific commands from your history. They will still stay as a single, temporary last entry, so you can always rerun the previous command,
+but once you run something else they’re gone. This is like how fish handles commands prefixed with a space - and if you define your own <code class="language-plaintext highlighter-rouge">fish_should_add_to_history</code>
+that also removes special handling for space-prefixed commands so you can decide to disable that feature.</p>
+
+<h3 id="scripting-features">Scripting Features</h3>
+
+<p>Fish’s scripting language also gained a bunch of new features. Most of these are a tad smaller, so let’s go through them:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">string match</code> now has a <code class="language-plaintext highlighter-rouge">--max-matches</code> option that can limit how many matches it reads until it considers its task successful. If you only want to know if <em>a match</em> is anywhere in a command’s output::
+<code class="language-plaintext highlighter-rouge">foo | string match --max-matches=1 bar</code>
+which can often quit much earlier.</li>
+  <li><code class="language-plaintext highlighter-rouge">set</code> has a new <code class="language-plaintext highlighter-rouge">--no-event</code> option to suppress the variable change event, which is great if you want to change a variable in a handler for that variable.</li>
+  <li><code class="language-plaintext highlighter-rouge">time</code> now starts measuring earlier, including any command substitutions.
+Before, <code class="language-plaintext highlighter-rouge">time set foo (bar)</code> would only measure the time of <code class="language-plaintext highlighter-rouge">set foo ...</code>, now it will also measure the <code class="language-plaintext highlighter-rouge">bar</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">complete --erase</code> will now also stop fish from autoloading the completions again.
+This is in line with <code class="language-plaintext highlighter-rouge">functions --erase</code>, and means you can now suppress completions for a command by putting <code class="language-plaintext highlighter-rouge">complete --erase thatcommand</code> in your config.fish</li>
+</ul>
+
+<p>Overall, we hope you’ll like this new release, which is a big step for fish’s future, but also a good one by itself.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:linecount">
+      <p>This is discounting translations, since they easily baloon the line count (+420k, -373k) <a href="#fnref:linecount" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:kkp">
+      <p>The “kitty keyboard protocol” was <em>invented</em> by kitty, but is also supported by a variety of other terminals, including ghostty or alacritty.
+See <a href="https://sw.kovidgoyal.net/kitty/keyboard-protocol/">kitty’s documentation</a> for details on it. <a href="#fnref:kkp" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:wezterm">
+      <p>Wezterm’s kitty keyboard protocol support is disabled by default, so we did not work around it. <a href="#fnref:wezterm" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:salad">
+      <p>The term of art here is “angry fruit salad”. It’s easy to make a theme that overuses color, especially if you’re limited to the 16 color palette. <a href="#fnref:salad" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:staticbuilds">
+      <p>Other systems are also possible, but we would like to focus on the big ones here because it is easy enough to make these yourself. <a href="#fnref:staticbuilds" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[We’re proud to announce the release of fish 4.0.]]></summary></entry><entry><title type="html">Fish 4.0: The Fish Of Theseus</title><link href="https://fishshell.com/blog/rustport/" rel="alternate" type="text/html" title="Fish 4.0: The Fish Of Theseus" /><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><id>https://fishshell.com/blog/rustport</id><content type="html" xml:base="https://fishshell.com/blog/rustport/"><![CDATA[<p>About two years ago, our head maintainer @ridiculousfish opened what quickly became our most-read pull request:</p>
 
 <ul>
   <li><a href="https://github.com/fish-shell/fish-shell/pull/9512">#9512 - Rewrite it in Rust</a></li>
@@ -317,7 +463,7 @@ which already had a rust port that is used in Wezterm. <a href="#fnref:technica
       <p><a href="#fnref:ccode" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name></name></author><category term="technical" /><summary type="html"><![CDATA[About two years ago, our head maintainer @ridiculousfish opened what quickly became our most-read pull request:]]></summary></entry><entry><title type="html">fish-shell 4.0b1, now in Rust</title><link href="https://fishshell.com/blog/fish-4b/" rel="alternate" type="text/html" title="fish-shell 4.0b1, now in Rust" /><published>2024-12-17T00:00:00+08:00</published><updated>2024-12-17T00:00:00+08:00</updated><id>https://fishshell.com/blog/fish-4b</id><content type="html" xml:base="https://fishshell.com/blog/fish-4b/"><![CDATA[<p>fish is a smart and user-friendly command line shell with clever features that just work, without needing an advanced degree in bash scriptology. Today we are announcing an open beta, inviting all users to try out the upcoming 4.0 release.</p>
+</div>]]></content><author><name></name></author><category term="technical" /><summary type="html"><![CDATA[About two years ago, our head maintainer @ridiculousfish opened what quickly became our most-read pull request:]]></summary></entry><entry><title type="html">fish-shell 4.0b1, now in Rust</title><link href="https://fishshell.com/blog/fish-4b/" rel="alternate" type="text/html" title="fish-shell 4.0b1, now in Rust" /><published>2024-12-17T00:00:00+01:00</published><updated>2024-12-17T00:00:00+01:00</updated><id>https://fishshell.com/blog/fish-4b</id><content type="html" xml:base="https://fishshell.com/blog/fish-4b/"><![CDATA[<p>fish is a smart and user-friendly command line shell with clever features that just work, without needing an advanced degree in bash scriptology. Today we are announcing an open beta, inviting all users to try out the upcoming 4.0 release.</p>
 
 <p>fish 4.0 is a big upgrade. It’s got lots of new features to make using the command line easier and more enjoyable, such as more natural key binding and expanded history search. And under the hood, we’ve rebuilt the foundation in Rust to embrace modern computing<sup id="fnref:modern-computing-advancements"><a href="#fn:modern-computing-advancements" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>.</p>
 
@@ -351,7 +497,7 @@ which already had a rust port that is used in Wezterm. <a href="#fnref:technica
       <p>In particular, the use of ? as a wildcard is now disabled by default through a feature flag. <a href="#fnref:qmark-no-glob" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name></name></author><category term="general" /><summary type="html"><![CDATA[fish is a smart and user-friendly command line shell with clever features that just work, without needing an advanced degree in bash scriptology. Today we are announcing an open beta, inviting all users to try out the upcoming 4.0 release.]]></summary></entry><entry><title type="html">Incomplete licensing information in previous fish releases</title><link href="https://fishshell.com/blog/licensing-error/" rel="alternate" type="text/html" title="Incomplete licensing information in previous fish releases" /><published>2024-01-13T00:00:00+08:00</published><updated>2024-01-13T00:00:00+08:00</updated><id>https://fishshell.com/blog/licensing-error</id><content type="html" xml:base="https://fishshell.com/blog/licensing-error/"><![CDATA[<p>During the work on fish 3.7.0, we discovered that the licensing
+</div>]]></content><author><name></name></author><category term="general" /><summary type="html"><![CDATA[fish is a smart and user-friendly command line shell with clever features that just work, without needing an advanced degree in bash scriptology. Today we are announcing an open beta, inviting all users to try out the upcoming 4.0 release.]]></summary></entry><entry><title type="html">Incomplete licensing information in previous fish releases</title><link href="https://fishshell.com/blog/licensing-error/" rel="alternate" type="text/html" title="Incomplete licensing information in previous fish releases" /><published>2024-01-13T00:00:00+01:00</published><updated>2024-01-13T00:00:00+01:00</updated><id>https://fishshell.com/blog/licensing-error</id><content type="html" xml:base="https://fishshell.com/blog/licensing-error/"><![CDATA[<p>During the work on fish 3.7.0, we discovered that the licensing
 information in the documentation for some of the derived code contained in
 fish had been removed during the work on fish 3.1.0, and that this was not
 corrected until the release of fish 3.7.0. Although the source contained
@@ -373,7 +519,7 @@ does not contain an appropriate acknowledgement.</p>
 
 <p>We regret the error. It was discovered during a routine audit of the code
 and documentation for fish, which will occur during the release cycle on
-an ongoing basis.</p>]]></content><author><name></name></author><category term="general" /><summary type="html"><![CDATA[During the work on fish 3.7.0, we discovered that the licensing information in the documentation for some of the derived code contained in fish had been removed during the work on fish 3.1.0, and that this was not corrected until the release of fish 3.7.0. Although the source contained the correct licensing information, this was not published as part of the release’s documentation.]]></summary></entry><entry><title type="html">fish shell 3.7.0 released</title><link href="https://fishshell.com/blog/release-3-7-0/" rel="alternate" type="text/html" title="fish shell 3.7.0 released" /><published>2024-01-03T00:00:00+08:00</published><updated>2024-01-03T00:00:00+08:00</updated><id>https://fishshell.com/blog/release-3-7-0</id><content type="html" xml:base="https://fishshell.com/blog/release-3-7-0/"><![CDATA[<p>fish shell 3.7.0 has been released. For the full list of changes, see <a href="https://fishshell.com/docs/3.7/relnotes.html">the release notes</a>.</p>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[fish shell 3.7.0 has been released. For the full list of changes, see the release notes.]]></summary></entry><entry><title type="html">What’s happening with fish releases?</title><link href="https://fishshell.com/blog/release-updates/" rel="alternate" type="text/html" title="What’s happening with fish releases?" /><published>2023-05-27T00:00:00+08:00</published><updated>2023-05-27T00:00:00+08:00</updated><id>https://fishshell.com/blog/release-updates</id><content type="html" xml:base="https://fishshell.com/blog/release-updates/"><![CDATA[<p>Here is a quick update on fish development and the plans for a new release.</p>
+an ongoing basis.</p>]]></content><author><name></name></author><category term="general" /><summary type="html"><![CDATA[During the work on fish 3.7.0, we discovered that the licensing information in the documentation for some of the derived code contained in fish had been removed during the work on fish 3.1.0, and that this was not corrected until the release of fish 3.7.0. Although the source contained the correct licensing information, this was not published as part of the release’s documentation.]]></summary></entry><entry><title type="html">fish shell 3.7.0 released</title><link href="https://fishshell.com/blog/release-3-7-0/" rel="alternate" type="text/html" title="fish shell 3.7.0 released" /><published>2024-01-03T00:00:00+01:00</published><updated>2024-01-03T00:00:00+01:00</updated><id>https://fishshell.com/blog/release-3-7-0</id><content type="html" xml:base="https://fishshell.com/blog/release-3-7-0/"><![CDATA[<p>fish shell 3.7.0 has been released. For the full list of changes, see <a href="https://fishshell.com/docs/3.7/relnotes.html">the release notes</a>.</p>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[fish shell 3.7.0 has been released. For the full list of changes, see the release notes.]]></summary></entry><entry><title type="html">What’s happening with fish releases?</title><link href="https://fishshell.com/blog/release-updates/" rel="alternate" type="text/html" title="What’s happening with fish releases?" /><published>2023-05-27T00:00:00+02:00</published><updated>2023-05-27T00:00:00+02:00</updated><id>https://fishshell.com/blog/release-updates</id><content type="html" xml:base="https://fishshell.com/blog/release-updates/"><![CDATA[<p>Here is a quick update on fish development and the plans for a new release.</p>
 
 <p>Earlier this year, the fish committers agreed to undertake a significant rework
 of the fish source code. In particular, efforts are underway to change the C++
@@ -405,12 +551,10 @@ timeline for doing so.</p>
 <p>Hope that helps keep you informed!</p>
 
 <p>David Adam &lt;<a href="https://github.com/zanchey">zanchey@</a>&gt;<br />
-fish committer</p>]]></content><author><name></name></author><category term="general" /><summary type="html"><![CDATA[Here is a quick update on fish development and the plans for a new release.]]></summary></entry><entry><title type="html">fish shell 3.6.0 released</title><link href="https://fishshell.com/blog/release-3-6-0/" rel="alternate" type="text/html" title="fish shell 3.6.0 released" /><published>2023-01-07T00:00:00+08:00</published><updated>2023-01-07T00:00:00+08:00</updated><id>https://fishshell.com/blog/release-3-6-0</id><content type="html" xml:base="https://fishshell.com/blog/release-3-6-0/"><![CDATA[<p>fish shell 3.6.0 has been released. Major new features include Control-R support for history search, and more powerful and customizable abbreviations. For the full list of changes, see <a href="https://fishshell.com/docs/3.6/relnotes.html">the release notes</a>.</p>
+fish committer</p>]]></content><author><name></name></author><category term="general" /><summary type="html"><![CDATA[Here is a quick update on fish development and the plans for a new release.]]></summary></entry><entry><title type="html">fish shell 3.6.0 released</title><link href="https://fishshell.com/blog/release-3-6-0/" rel="alternate" type="text/html" title="fish shell 3.6.0 released" /><published>2023-01-07T00:00:00+01:00</published><updated>2023-01-07T00:00:00+01:00</updated><id>https://fishshell.com/blog/release-3-6-0</id><content type="html" xml:base="https://fishshell.com/blog/release-3-6-0/"><![CDATA[<p>fish shell 3.6.0 has been released. Major new features include Control-R support for history search, and more powerful and customizable abbreviations. For the full list of changes, see <a href="https://fishshell.com/docs/3.6/relnotes.html">the release notes</a>.</p>
 
-<p>A big thank you to all contributors who helped make this release great!</p>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[fish shell 3.6.0 has been released. Major new features include Control-R support for history search, and more powerful and customizable abbreviations. For the full list of changes, see the release notes.]]></summary></entry><entry><title type="html">fish shell 3.4.1 released</title><link href="https://fishshell.com/blog/release-3-4-1/" rel="alternate" type="text/html" title="fish shell 3.4.1 released" /><published>2022-03-25T00:00:00+08:00</published><updated>2022-03-25T00:00:00+08:00</updated><id>https://fishshell.com/blog/release-3-4-1</id><content type="html" xml:base="https://fishshell.com/blog/release-3-4-1/"><![CDATA[<p>fish shell 3.4.1 has been released, fixing some regressions identified in 3.4.0. For the full list of changes, see <a href="https://fishshell.com/docs/3.4/relnotes.html">the release notes</a>.</p>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[fish shell 3.4.1 has been released, fixing some regressions identified in 3.4.0. For the full list of changes, see the release notes.]]></summary></entry><entry><title type="html">fish shell 3.4.0 released</title><link href="https://fishshell.com/blog/release-3-4-0/" rel="alternate" type="text/html" title="fish shell 3.4.0 released" /><published>2022-03-12T00:00:00+08:00</published><updated>2022-03-12T00:00:00+08:00</updated><id>https://fishshell.com/blog/release-3-4-0</id><content type="html" xml:base="https://fishshell.com/blog/release-3-4-0/"><![CDATA[<p>fish shell 3.4.0 has been released. This release includes support for <code class="language-plaintext highlighter-rouge">$(cmd)</code> command substitutions, a terminal interface to change themes, faster globbing, the ability to disable autosuggestions, and more. For the full list of changes, see <a href="https://fishshell.com/docs/3.4/relnotes.html">the release notes</a>.</p>
+<p>A big thank you to all contributors who helped make this release great!</p>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[fish shell 3.6.0 has been released. Major new features include Control-R support for history search, and more powerful and customizable abbreviations. For the full list of changes, see the release notes.]]></summary></entry><entry><title type="html">fish shell 3.4.1 released</title><link href="https://fishshell.com/blog/release-3-4-1/" rel="alternate" type="text/html" title="fish shell 3.4.1 released" /><published>2022-03-25T00:00:00+01:00</published><updated>2022-03-25T00:00:00+01:00</updated><id>https://fishshell.com/blog/release-3-4-1</id><content type="html" xml:base="https://fishshell.com/blog/release-3-4-1/"><![CDATA[<p>fish shell 3.4.1 has been released, fixing some regressions identified in 3.4.0. For the full list of changes, see <a href="https://fishshell.com/docs/3.4/relnotes.html">the release notes</a>.</p>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[fish shell 3.4.1 has been released, fixing some regressions identified in 3.4.0. For the full list of changes, see the release notes.]]></summary></entry><entry><title type="html">fish shell 3.4.0 released</title><link href="https://fishshell.com/blog/release-3-4-0/" rel="alternate" type="text/html" title="fish shell 3.4.0 released" /><published>2022-03-12T00:00:00+01:00</published><updated>2022-03-12T00:00:00+01:00</updated><id>https://fishshell.com/blog/release-3-4-0</id><content type="html" xml:base="https://fishshell.com/blog/release-3-4-0/"><![CDATA[<p>fish shell 3.4.0 has been released. This release includes support for <code class="language-plaintext highlighter-rouge">$(cmd)</code> command substitutions, a terminal interface to change themes, faster globbing, the ability to disable autosuggestions, and more. For the full list of changes, see <a href="https://fishshell.com/docs/3.4/relnotes.html">the release notes</a>.</p>
 
-<p>A big thank you to all contributors who helped make this release great!</p>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[fish shell 3.4.0 has been released. This release includes support for $(cmd) command substitutions, a terminal interface to change themes, faster globbing, the ability to disable autosuggestions, and more. For the full list of changes, see the release notes.]]></summary></entry><entry><title type="html">fish shell 3.3 released</title><link href="https://fishshell.com/blog/release-3-3/" rel="alternate" type="text/html" title="fish shell 3.3 released" /><published>2021-06-29T00:00:00+08:00</published><updated>2021-06-29T00:00:00+08:00</updated><id>https://fishshell.com/blog/release-3-3</id><content type="html" xml:base="https://fishshell.com/blog/release-3-3/"><![CDATA[<p>fish shell 3.3 has been released with many improvements. For the full list of changes, see <a href="https://fishshell.com/docs/3.3/relnotes.html">the release notes</a>.</p>
+<p>A big thank you to all contributors who helped make this release great!</p>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[fish shell 3.4.0 has been released. This release includes support for $(cmd) command substitutions, a terminal interface to change themes, faster globbing, the ability to disable autosuggestions, and more. For the full list of changes, see the release notes.]]></summary></entry><entry><title type="html">fish shell 3.3 released</title><link href="https://fishshell.com/blog/release-3-3/" rel="alternate" type="text/html" title="fish shell 3.3 released" /><published>2021-06-29T00:00:00+02:00</published><updated>2021-06-29T00:00:00+02:00</updated><id>https://fishshell.com/blog/release-3-3</id><content type="html" xml:base="https://fishshell.com/blog/release-3-3/"><![CDATA[<p>fish shell 3.3 has been released with many improvements. For the full list of changes, see <a href="https://fishshell.com/docs/3.3/relnotes.html">the release notes</a>.</p>
 
-<p>A big thank you to all contributors who helped make this release great!</p>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[fish shell 3.3 has been released with many improvements. For the full list of changes, see the release notes.]]></summary></entry><entry><title type="html">fish shell 3.3.1 released</title><link href="https://fishshell.com/blog/release-3-3-1/" rel="alternate" type="text/html" title="fish shell 3.3.1 released" /><published>2021-06-29T00:00:00+08:00</published><updated>2021-06-29T00:00:00+08:00</updated><id>https://fishshell.com/blog/release-3-3-1</id><content type="html" xml:base="https://fishshell.com/blog/release-3-3-1/"><![CDATA[<p>fish shell 3.3.1 has been released, addressing some problems identified in the recent 3.3.0 release. For the full list of changes, see <a href="https://fishshell.com/docs/3.3/relnotes.html">the release notes</a>.</p>
-
-<p>A big thank you to all contributors who helped make this release great!</p>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[fish shell 3.3.1 has been released, addressing some problems identified in the recent 3.3.0 release. For the full list of changes, see the release notes.]]></summary></entry></feed>
+<p>A big thank you to all contributors who helped make this release great!</p>]]></content><author><name></name></author><category term="release" /><summary type="html"><![CDATA[fish shell 3.3 has been released with many improvements. For the full list of changes, see the release notes.]]></summary></entry></feed>
