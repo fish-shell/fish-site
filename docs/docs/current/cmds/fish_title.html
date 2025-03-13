@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>fish_title - define the terminal’s title &#8212; fish-shell 4.0.0 documentation</title>
+    <title>fish_title - define the terminal’s title &#8212; fish-shell 4.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="../_static/documentation_options.js?v=4a3a2942"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -120,6 +120,7 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">fish_title</span></code> function is executed before and after a new command is executed or put into the foreground and the output is used as a titlebar message.</p>
 <p>The first argument to fish_title contains the most recently executed foreground command as a string, if any.</p>
 <p>This requires that your terminal supports programmable titles and the feature is turned on.</p>
+<p>To disable setting the title, use an empty function (see below).</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
@@ -129,6 +130,11 @@
 <span class="w">    </span><span class="c"># Looks like ~/d/fish: git log</span>
 <span class="w">    </span><span class="c"># or /e/apt: fish</span>
 <span class="w">    </span><span class="nf">echo </span><span class="o">(</span><span class="no">fish_prompt_pwd_dir_length</span><span class="o">=</span><span class="no">1 </span><span class="nf">prompt_pwd</span><span class="o">)</span><span class="no">: </span><span class="o">$argv</span><span class="p">;</span>
+<span class="nf">end</span>
+</pre></div>
+</div>
+<p>Do not change the title:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_title</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
@@ -149,7 +155,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.0.1 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>

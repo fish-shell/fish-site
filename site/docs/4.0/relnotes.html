@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release notes &#8212; fish-shell 4.0.0 documentation</title>
+    <title>Release notes &#8212; fish-shell 4.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=2ef5f906"></script>
+    <script src="_static/documentation_options.js?v=4a3a2942"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.0.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.0.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -87,6 +87,7 @@
 <h4><a href="index.html">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
+<li><a class="reference internal" href="#fish-4-0-1-released-march-12-2025">fish 4.0.1 (released March 12, 2025)</a></li>
 <li><a class="reference internal" href="#fish-4-0-0-released-february-27-2025">fish 4.0.0 (released February 27, 2025)</a><ul>
 <li><a class="reference internal" href="#notable-backwards-incompatible-changes">Notable backwards-incompatible changes</a></li>
 <li><a class="reference internal" href="#notable-improvements-and-fixes">Notable improvements and fixes</a></li>
@@ -360,6 +361,37 @@
             
   <section id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading">¶</a></h1>
+<section id="fish-4-0-1-released-march-12-2025">
+<h2>fish 4.0.1 (released March 12, 2025)<a class="headerlink" href="#fish-4-0-1-released-march-12-2025" title="Link to this heading">¶</a></h2>
+<p>This release of fish includes the following improvements compared to fish 4.0.0:</p>
+<ul class="simple">
+<li><p>Key combinations using the super (Windows/command) key can be bound using the <kbd class="kbd docutils literal notranslate">super-</kbd> prefix (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11217">#11217</a>).</p></li>
+<li><p>Konsole’s menu shows the “Open folder with” option again (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11198">#11198</a>).</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">$fish_color_search_match</span></code> will now only be applied to the foreground color if it has an explicit foreground. For example, this allows setting::</dt><dd><p>set -g fish_color_search_match --reverse</p>
+</dd>
+</dl>
+</li>
+<li><p>Cursor shape commands (<code class="docutils literal notranslate"><span class="pre">\e[2</span> <span class="pre">q</span></code>) are no longer sent in non-interactive shells or in redirections (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11255">#11255</a>).</p></li>
+<li><p><a class="reference internal" href="cmds/status.html"><span class="doc">status</span></a> gained a <code class="docutils literal notranslate"><span class="pre">is-interactive-read</span></code> subcommand, to check whether the script is being called from an interactive <a class="reference internal" href="cmds/read.html"><span class="doc">read</span></a> invocation.</p></li>
+<li><p>fish’s background tasks are now started in a way that avoids an error on macOS Terminal.app (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11181">#11181</a>).</p></li>
+<li><p>Using key combinations within qemu should work correctly.</p></li>
+<li><p>Prompts containing control characters no longer cause incorrect display of command lines (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11252">#11252</a>).</p></li>
+<li><p>Cancelling the command-line in Vi mode displays correctly again (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11261">#11261</a>).</p></li>
+<li><p>The acidhub prompt properly displays the git branch again (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11179">#11179</a>).</p></li>
+<li><p>Completions for <code class="docutils literal notranslate"><span class="pre">wine</span></code> correctly include files again (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11202">#11202</a>).</p></li>
+<li><p>On macOS, paths from <code class="docutils literal notranslate"><span class="pre">/etc/paths</span></code> and <code class="docutils literal notranslate"><span class="pre">/etc/manpaths</span></code> containing colons are handled correctly (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10684">#10684</a>). This functionality was included in the 4.0.0 release notes but was missing from the source code.</p></li>
+<li><p>The XTerm <code class="docutils literal notranslate"><span class="pre">modifyOtherKeys</span></code> keyboard encoding is no longer used under WezTerm, as it does not work correctly in all layouts (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11204">#11204</a>).</p></li>
+<li><p>kbd:<cite>option-left</cite> and other similar keys should now work in iTerm versions before 3.5.12; the kitty keyboard protocol is now disabled on these versions (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11192">#11192</a>).</p></li>
+<li><p>The kitty keyboard protocol is no longer used under Midnight Commander, as it does not work correctly (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10640">#10640</a>).</p></li>
+<li><p>fish now sends the commandline along with the OSC 133 semantic prompt command start sequence. This fixes a test in the kitty terminal (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11203">#11203</a>).</p></li>
+<li><p>Git completions for third-party commands like “git-absorb” are completed correctly again (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11205">#11205</a>).</p></li>
+<li><p>Completions for <code class="docutils literal notranslate"><span class="pre">diskutil</span></code> no longer produce an error (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11201">#11201</a>).</p></li>
+<li><p>The output of certain error messages no longer prints newlines to standard output (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11248">#11248</a>).</p></li>
+<li><p>A number of crashes have been fixed, including file names longer than 255 bytes (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11221">#11221</a>), using fish on a btrfs filesystem (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11219">#11219</a>), history files that do not have the expected format (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11236">#11236</a>), and pasting into an empty command line (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11256">#11256</a>).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
 <section id="fish-4-0-0-released-february-27-2025">
 <h2>fish 4.0.0 (released February 27, 2025)<a class="headerlink" href="#fish-4-0-0-released-february-27-2025" title="Link to this heading">¶</a></h2>
 <p>fish’s core code has been ported from C++ to Rust (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/9512">#9512</a>). This means a large change in dependencies and how to build fish. However, there should be no direct impact on users. Packagers should see the <a class="reference internal" href="#rust-packaging"><span class="std std-ref">For Distributors</span></a> section at the end.</p>
@@ -4442,7 +4474,7 @@ track.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.0.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.0.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
