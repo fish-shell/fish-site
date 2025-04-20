@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release notes &#8212; fish-shell 4.0.1 documentation</title>
+    <title>Release notes &#8212; fish-shell 4.0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=4a3a2942"></script>
+    <script src="_static/documentation_options.js?v=e76a598e"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.0.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.0.2 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -87,6 +87,7 @@
 <h4><a href="index.html">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
+<li><a class="reference internal" href="#fish-4-0-2-released-april-20-2025">fish 4.0.2 (released April 20, 2025)</a></li>
 <li><a class="reference internal" href="#fish-4-0-1-released-march-12-2025">fish 4.0.1 (released March 12, 2025)</a></li>
 <li><a class="reference internal" href="#fish-4-0-0-released-february-27-2025">fish 4.0.0 (released February 27, 2025)</a><ul>
 <li><a class="reference internal" href="#notable-backwards-incompatible-changes">Notable backwards-incompatible changes</a></li>
@@ -361,6 +362,25 @@
             
   <section id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading">¶</a></h1>
+<section id="fish-4-0-2-released-april-20-2025">
+<h2>fish 4.0.2 (released April 20, 2025)<a class="headerlink" href="#fish-4-0-2-released-april-20-2025" title="Link to this heading">¶</a></h2>
+<p>This release of fish fixes a number of issues identified in fish 4.0.1:</p>
+<ul class="simple">
+<li><p>Completions are quoted, rather than backslash-escaped, only if the completion is unambiguous. Continuing to edit the token is therefore easier (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11271">#11271</a>). This changes the behavior introduced in 4.0.0 where all completions were quoted.</p></li>
+<li><p>The warning when the terminfo database can’t be found has been downgraded to a log message. fish will act as if the terminal behaves like xterm-256color, which is correct for the vast majority of cases (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11277">#11277</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11290">#11290</a>).</p></li>
+<li><p>Key combinations using the super (Windows/command) key can now (actually) be bound using the <kbd class="kbd docutils literal notranslate">super-</kbd> prefix (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11217">#11217</a>). This was listed in the release notes for 4.0.1 but did not work correctly.</p></li>
+<li><p><a class="reference internal" href="cmds/function.html"><span class="doc">function</span></a> is stricter about argument parsing, rather than allowing additional parameters to be silently ignored (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11295">#11295</a>).</p></li>
+<li><p>Using parentheses in the <a class="reference internal" href="cmds/test.html"><span class="doc">test</span></a> builtin works correctly, following a regression in 4.0.0 where they were not recognized (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11387">#11387</a>).</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">delete</kbd> in Vi mode when Num Lock is active will work correctly (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11303">#11303</a>).</p></li>
+<li><p>Abbreviations cannot alter the command-line contents, preventing a crash (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11324">#11324</a>).</p></li>
+<li><p>Improvements to various completions, including new completions for <code class="docutils literal notranslate"><span class="pre">wl-randr</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11301">#11301</a>), performance improvements for <code class="docutils literal notranslate"><span class="pre">cargo</span></code> completions by avoiding network requests (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11347">#11347</a>), and other improvements for  <code class="docutils literal notranslate"><span class="pre">btrfs</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11320">#11320</a>), <code class="docutils literal notranslate"><span class="pre">cryptsetup</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11315">#11315</a>), <code class="docutils literal notranslate"><span class="pre">git</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11319">#11319</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11322">#11322</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11323">#11323</a>), <code class="docutils literal notranslate"><span class="pre">jj</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11046">#11046</a>), and <code class="docutils literal notranslate"><span class="pre">systemd-analyze</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11314">#11314</a>).</p></li>
+<li><p>The Mercurial (<code class="docutils literal notranslate"><span class="pre">hg</span></code>) prompt can handle working directories that contain an embedded newline, rather than producing errors (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11348">#11348</a>).</p></li>
+<li><p>A number of crashes have been fixed. Triggers include prompts containing backspace characters (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11280">#11280</a>), history pager search (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11355">#11355</a>), invalid UTF-8 in <a class="reference internal" href="cmds/read.html"><span class="doc">read</span></a> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11383">#11383</a>), and the <code class="docutils literal notranslate"><span class="pre">kill-selection</span></code> binding (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11367">#11367</a>).</p></li>
+<li><p>A race condition in the test suite has been fixed (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11254">#11254</a>), and a test for fish versioning relaxed to support downstream distributors’ modifications (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11173">#11173</a>).</p></li>
+<li><p>Small improvements to the documentation (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11264">#11264</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11329">#11329</a>, <a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11361">#11361</a>).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
 <section id="fish-4-0-1-released-march-12-2025">
 <h2>fish 4.0.1 (released March 12, 2025)<a class="headerlink" href="#fish-4-0-1-released-march-12-2025" title="Link to this heading">¶</a></h2>
 <p>This release of fish includes the following improvements compared to fish 4.0.0:</p>
@@ -4474,7 +4494,7 @@ track.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.0.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.0.2 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
