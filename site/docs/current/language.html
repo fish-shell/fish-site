@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The fish language &#8212; fish-shell 4.0.1 documentation</title>
+    <title>The fish language &#8212; fish-shell 4.0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=4a3a2942"></script>
+    <script src="_static/documentation_options.js?v=e76a598e"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.0.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.0.2 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -401,7 +401,7 @@
 </pre></div>
 </div>
 <p>will start the emacs text editor in the background. <a class="reference internal" href="cmds/fg.html"><span class="doc">fg</span></a> can be used to bring it into the foreground again when needed.</p>
-<p>Most programs allow you to suspend the program’s execution and return control to fish by pressing <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">z</kbd></kbd> (also referred to as <code class="docutils literal notranslate"><span class="pre">^Z</span></code>). Once back at the fish commandline, you can start other programs and do anything you want. If you then want you can go back to the suspended command by using the <a class="reference internal" href="cmds/fg.html"><span class="doc">fg</span></a> (foreground) command.</p>
+<p>Most programs allow you to suspend the program’s execution and return control to fish by pressing <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">z</kbd> (also referred to as <code class="docutils literal notranslate"><span class="pre">^Z</span></code>). Once back at the fish commandline, you can start other programs and do anything you want. If you then want you can go back to the suspended command by using the <a class="reference internal" href="cmds/fg.html"><span class="doc">fg</span></a> (foreground) command.</p>
 <p>If you instead want to put a suspended job into the background, use the <a class="reference internal" href="cmds/bg.html"><span class="doc">bg</span></a> command.</p>
 <p>To get a listing of all currently started jobs, use the <a class="reference internal" href="cmds/jobs.html"><span class="doc">jobs</span></a> command.
 These listed jobs can be removed with the <a class="reference internal" href="cmds/disown.html"><span class="doc">disown</span></a> command.</p>
@@ -2128,7 +2128,7 @@ Disable it with <code class="docutils literal notranslate"><span class="pre">no-
 </section>
 <section id="debugging-fish-scripts">
 <span id="debugging"></span><h2>Debugging fish scripts<a class="headerlink" href="#debugging-fish-scripts" title="Link to this heading">¶</a></h2>
-<p>Fish includes basic built-in debugging facilities that allow you to stop execution of a script at an arbitrary point. When this happens you are presented with an interactive prompt where you can execute any fish command to inspect or change state (there are no debug commands as such). For example, you can check or change the value of any variables using <a class="reference internal" href="cmds/printf.html"><span class="doc">printf</span></a> and <a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a>. As another example, you can run <a class="reference internal" href="cmds/status.html"><span class="doc">status print-stack-trace</span></a> to see how the current breakpoint was reached. To resume normal execution of the script, simply type <a class="reference internal" href="cmds/exit.html"><span class="doc">exit</span></a> or <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">d</kbd></kbd>.</p>
+<p>Fish includes basic built-in debugging facilities that allow you to stop execution of a script at an arbitrary point. When this happens you are presented with an interactive prompt where you can execute any fish command to inspect or change state (there are no debug commands as such). For example, you can check or change the value of any variables using <a class="reference internal" href="cmds/printf.html"><span class="doc">printf</span></a> and <a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a>. As another example, you can run <a class="reference internal" href="cmds/status.html"><span class="doc">status print-stack-trace</span></a> to see how the current breakpoint was reached. To resume normal execution of the script, simply type <a class="reference internal" href="cmds/exit.html"><span class="doc">exit</span></a> or <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">d</kbd>.</p>
 <p>To start a debug session simply insert the <a class="reference internal" href="cmds/breakpoint.html"><span class="doc">builtin command</span></a> <code class="docutils literal notranslate"><span class="pre">breakpoint</span></code> at the point in a function or script where you wish to gain control, then run the function or script. Also, the default action of the <code class="docutils literal notranslate"><span class="pre">TRAP</span></code> signal is to call this builtin, meaning a running script can be actively debugged by sending it the <code class="docutils literal notranslate"><span class="pre">TRAP</span></code> signal (<code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">-s</span> <span class="pre">TRAP</span> <span class="pre">&lt;PID&gt;</span></code>). There is limited support for interactively setting or modifying breakpoints from this debug prompt: it is possible to insert new breakpoints in (or remove old ones from) other functions by using the <code class="docutils literal notranslate"><span class="pre">funced</span></code> function to edit the definition of a function, but it is not possible to add or remove a breakpoint from the function/script currently loaded and being executed.</p>
 <p>Another way to debug script issues is to set the <span class="target" id="index-30"></span><a class="reference internal" href="#envvar-fish_trace"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_trace</span></code></a> variable, e.g. <code class="docutils literal notranslate"><span class="pre">fish_trace=1</span> <span class="pre">fish_prompt</span></code> to see which commands fish executes when running the <a class="reference internal" href="cmds/fish_prompt.html"><span class="doc">fish_prompt</span></a> function.</p>
 <section id="profiling-fish-scripts">
@@ -2164,7 +2164,7 @@ Disable it with <code class="docutils literal notranslate"><span class="pre">no-
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.0.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.0.2 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -2194,7 +2194,7 @@ Disable it with <code class="docutils literal notranslate"><span class="pre">no-
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 </div>
 

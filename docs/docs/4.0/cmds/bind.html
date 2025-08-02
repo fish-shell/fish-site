@@ -129,7 +129,7 @@ If only <code class="docutils literal notranslate"><span class="pre">KEYS</span>
 Modifier keys can be specified by prefixing a key name with a combination of <code class="docutils literal notranslate"><span class="pre">ctrl-</span></code>, <code class="docutils literal notranslate"><span class="pre">alt-</span></code>, <code class="docutils literal notranslate"><span class="pre">shift-</span></code> and <code class="docutils literal notranslate"><span class="pre">super-</span></code> (i.e. the “windows” or “command” key).
 For example, pressing <kbd class="kbd docutils literal notranslate">w</kbd> while holding the Alt modifier is written as <code class="docutils literal notranslate"><span class="pre">alt-w</span></code>.
 Key names are case-sensitive; for example <code class="docutils literal notranslate"><span class="pre">alt-W</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">alt-shift-w</span></code>.
-<code class="docutils literal notranslate"><span class="pre">ctrl-x,ctrl-e</span></code> would mean pressing <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">x</kbd></kbd> followed by <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">e</kbd></kbd>.</p>
+<code class="docutils literal notranslate"><span class="pre">ctrl-x,ctrl-e</span></code> would mean pressing <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">x</kbd> followed by <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">e</kbd>.</p>
 <p>Some keys have names, usually because they don’t have an obvious printable character representation.
 They are:</p>
 <ul class="simple">
@@ -400,7 +400,7 @@ or if at the end of the commandline, accept one word from the current autosugges
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
-<p>Exit the shell when <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">d</kbd></kbd> is pressed:</p>
+<p>Exit the shell when <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">d</kbd> is pressed:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind </span><span class="no">ctrl-d </span><span class="s1">&#39;exit&#39;</span>
 </pre></div>
 </div>
@@ -408,12 +408,12 @@ or if at the end of the commandline, accept one word from the current autosugges
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind </span><span class="no">pageup history-search-backward</span>
 </pre></div>
 </div>
-<p>Turn on <a class="reference internal" href="../interactive.html#vi-mode"><span class="std std-ref">vi key bindings</span></a> and rebind <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">c</kbd></kbd> to clear the input line:</p>
+<p>Turn on <a class="reference internal" href="../interactive.html#vi-mode"><span class="std std-ref">vi key bindings</span></a> and rebind <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">c</kbd> to clear the input line:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set </span><span class="no">-g fish_key_bindings fish_vi_key_bindings</span>
 <span class="nf">bind </span><span class="no">-M insert ctrl-c kill-whole-line repaint</span>
 </pre></div>
 </div>
-<p>Launch <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> and repaint the commandline afterwards when <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">g</kbd></kbd> is pressed:</p>
+<p>Launch <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> and repaint the commandline afterwards when <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">g</kbd> is pressed:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">bind </span><span class="no">ctrl-g </span><span class="s1">&#39;git diff&#39;</span><span class="no"> repaint</span>
 </pre></div>
 </div>
@@ -423,12 +423,12 @@ or if at the end of the commandline, accept one word from the current autosugges
 <p>Unix terminals, like the ones fish operates in, are at heart 70s technology. They have some limitations that applications running inside them can’t workaround.</p>
 <p>For instance, historically the control key modifies a character by setting the top three bits to 0. This means:</p>
 <ul class="simple">
-<li><p>Many characters + control are indistinguishable from other keys: <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">i</kbd></kbd> <em>is</em> <kbd class="kbd docutils literal notranslate">tab</kbd>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">j</kbd></kbd> <em>is</em> newline (<code class="docutils literal notranslate"><span class="pre">\n</span></code>).</p></li>
-<li><p>Control and shift don’t work simultaneously - <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">X</kbd></kbd> is the same as <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">x</kbd></kbd>.</p></li>
+<li><p>Many characters + control are indistinguishable from other keys: <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">i</kbd> <em>is</em> <kbd class="kbd docutils literal notranslate">tab</kbd>, <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">j</kbd> <em>is</em> newline (<code class="docutils literal notranslate"><span class="pre">\n</span></code>).</p></li>
+<li><p>Control and shift don’t work simultaneously - <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">X</kbd> is the same as <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">x</kbd>.</p></li>
 </ul>
 <p>Other keys don’t have a direct encoding, and are sent as escape sequences. For example <kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) usually sends <code class="docutils literal notranslate"><span class="pre">\e\[C</span></code>.</p>
 <p>Some modern terminals support newer encodings for keys, that allow distinguishing more characters and modifiers, and fish enables as many of these as it can, automatically.</p>
-<p>When in doubt, run <a class="reference internal" href="fish_key_reader.html"><span class="doc">fish_key_reader - explore what characters keyboard keys send</span></a>. If that tells you that pressing <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">i</kbd></kbd> sends tab, your terminal does not support these better encodings, and so fish is limited to what it sends.</p>
+<p>When in doubt, run <a class="reference internal" href="fish_key_reader.html"><span class="doc">fish_key_reader - explore what characters keyboard keys send</span></a>. If that tells you that pressing <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">i</kbd> sends tab, your terminal does not support these better encodings, and so fish is limited to what it sends.</p>
 </section>
 <section id="key-timeout">
 <span id="cmd-bind-escape"></span><h2>Key timeout<a class="headerlink" href="#key-timeout" title="Link to this heading">¶</a></h2>
@@ -490,7 +490,7 @@ or if at the end of the commandline, accept one word from the current autosugges
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 </div>
 
