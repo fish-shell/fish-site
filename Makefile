@@ -1,6 +1,6 @@
 .PHONY: build
 build:
-	cd site && jekyll build --destination ../docs/
+	cd site && bundle exec jekyll build --destination ../docs/
 	@# Sphinx likes to put stuff in _static and _sources.
 	@# Jekyll will strip these out except for a whitelist,
 	@# which has no glob capability and would need to be
@@ -9,6 +9,10 @@ build:
 	rsync --recursive --exclude '.*' site/docs/ ./docs/docs/
 	touch ./docs/.nojekyll
 	@echo "Open $$PWD/docs/index.html"
+
+update-jekyll:
+	bundle update
+	bundle outdated
 
 .PHONY: update-releases-json
 update-releases-json:
@@ -20,4 +24,5 @@ update-releases-json:
 new-release: update-releases-json build
 
 clean:
-	cd site && jekyll clean
+	bundle install
+	cd site && bundle exec jekyll clean
