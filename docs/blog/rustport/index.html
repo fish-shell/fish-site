@@ -62,7 +62,7 @@ experience with a roughly C++-shaped language should help.</p>
 <p>Frankly, the tooling around the language isn’t good, and we had to take on some additional pain in order to support our users.
 We want to provide up-to-date fish packages for systems that aren’t up-to-date, like LTS Linux and older macOS.
 But there is no ‘rustup’ for C++, no standard way to install recent C++ compilers on these operating systems.
-This means adopting recent C++ standards would complicate the lives of packagers and would-be contributors<sup id="fnref:Contributions" role="doc-noteref"><a href="#fn:Contributions" class="footnote" rel="footnote">1</a></sup>.
+This means adopting recent C++ standards would complicate the lives of packagers and would-be contributors<sup id="fnref:Contributions"><a href="#fn:Contributions" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>.
 For example, we started using C++11 in 2016, and yet we still needed to upgrade the compilers on our build machines until 2020.</p>
 
 <p>Fish also uses threads for its award-winning (<em>note to editor</em>: find an actual award) autosuggestions and syntax highlighting,
@@ -119,7 +119,7 @@ it is amazing how the Rust answer can just be “use rustup”.</p>
 
 <p>A lot of hay has also been made online about Rust’s platform support (e.g. <a href="https://lwn.net/Articles/998115/">in the git project</a>). We don’t see a big problem here - all of our big platforms (macOS, Linux, the BSDs) are supported, as are Opensolaris/Illumos and Haiku. We have never heard of anyone trying to run fish on NonStop.</p>
 
-<p>Architecture support is even less of a problem - going by <a href="https://popcon.debian.org/">Debian’s popcon</a>, 99.9995% (the actual result, not an exaggeration) of machines run an architecture that has Rust packages in Debian. Given that fish is <a href="https://qa.debian.org/popcon.php?package=fish">installed on 1.92% of Debian systems</a>, we would project two (2) or three (3) machines of the quarter million responses to have fish on an unsupported architecture <sup id="fnref:stats" role="doc-noteref"><a href="#fn:stats" class="footnote" rel="footnote">2</a></sup>.</p>
+<p>Architecture support is even less of a problem - going by <a href="https://popcon.debian.org/">Debian’s popcon</a>, 99.9995% (the actual result, not an exaggeration) of machines run an architecture that has Rust packages in Debian. Given that fish is <a href="https://qa.debian.org/popcon.php?package=fish">installed on 1.92% of Debian systems</a>, we would project two (2) or three (3) machines of the quarter million responses to have fish on an unsupported architecture <sup id="fnref:stats"><a href="#fn:stats" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>.</p>
 
 <p>Unlike what some online have assumed, a native Windows port was not a reason for switching to Rust as it was never in the cards. Fish is, at heart, a UNIX shell that relies not only on UNIX APIs but also their semantics, and exposes them in the scripting language. What would <code class="language-plaintext highlighter-rouge">test -x</code> say on Windows, which has no executable bit? These are issues that <em>could</em> be solved with a lot of work, but we’re unix nerds making a unix shell, not one for Windows.</p>
 
@@ -140,7 +140,7 @@ clean up allowed us to compare the before and after to find places where we had 
 
 <p>So we used <a href="https://google.github.io/autocxx/">autocxx</a> to generate bindings between C++ and Rust code, allowing us to port one component at a time.</p>
 
-<p>We started<sup id="fnref:technically" role="doc-noteref"><a href="#fn:technically" class="footnote" rel="footnote">3</a></sup> by porting the builtins. These are essentially little self-contained programs, with their own arguments, streams, exit code, etc.
+<p>We started<sup id="fnref:technically"><a href="#fn:technically" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> by porting the builtins. These are essentially little self-contained programs, with their own arguments, streams, exit code, etc.
 That means it’s easy to port them separately from the rest of the shell once you have a way to call a Rust builtin from C++, which we had as part of the initial pull request.</p>
 
 <p>Where they connected to the main shell, we used one of three approaches:</p>
@@ -247,7 +247,7 @@ which makes it easy to accidentally have very long build time.</p>
 
 <p>Remember our issues with (n)curses? We will no longer have any, because we no longer use curses. Instead we switched to <a href="https://github.com/meh/rust-terminfo">a Rust crate</a> that gives us just what we need, which is access to terminfo and expanding its sequences. This removes some awkward global state, and means those building from source no longer need to ensure that curses is installed “correctly” on their system - cargo just downloads a crate and builds it.</p>
 
-<p>We do still read terminfo, which means users need to install that, but that can be done at runtime, is preinstalled on all mainstream systems <em>and</em> if it can’t be found we just use an included copy of the xterm-256color definitions<sup id="fnref:terminfo" role="doc-noteref"><a href="#fn:terminfo" class="footnote" rel="footnote">4</a></sup>.</p>
+<p>We do still read terminfo, which means users need to install that, but that can be done at runtime, is preinstalled on all mainstream systems <em>and</em> if it can’t be found we just use an included copy of the xterm-256color definitions<sup id="fnref:terminfo"><a href="#fn:terminfo" class="footnote" rel="footnote" role="doc-noteref">4</a></sup>.</p>
 
 <p>We have also managed to create “self-installable” fish packages that include all the functions, completions and other asset files in the fish binary to be written out at runtime.
 That allowed us to create statically linked versions of fish (for linux this uses musl, because glibc has unavoidable crashes!), so for the first time we have <em>one file</em> you can download and run on <em>any linux</em> (the only requirement being that the architecture matches!).</p>
@@ -285,7 +285,7 @@ For now, the only way to run fish on Windows is to use WSL.</p>
   <li>2604 commits by over 200 authors</li>
   <li>498 issues</li>
   <li>Almost 2 years of work</li>
-  <li>57K Lines of C++ to 75K Lines of Rust <sup id="fnref:formatting" role="doc-noteref"><a href="#fn:formatting" class="footnote" rel="footnote">5</a></sup> (plus 400 lines of C <sup id="fnref:ccode" role="doc-noteref"><a href="#fn:ccode" class="footnote" rel="footnote">6</a></sup>)</li>
+  <li>57K Lines of C++ to 75K Lines of Rust <sup id="fnref:formatting"><a href="#fn:formatting" class="footnote" rel="footnote" role="doc-noteref">5</a></sup> (plus 400 lines of C <sup id="fnref:ccode"><a href="#fn:ccode" class="footnote" rel="footnote" role="doc-noteref">6</a></sup>)</li>
   <li><a href="https://github.com/fish-shell/fish-shell/pull/10564">C++–</a></li>
 </ul>
 
@@ -302,23 +302,23 @@ with more on the way, and we did it while creating a separate 3.7 release that a
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:Contributions" role="doc-endnote">
+    <li id="fn:Contributions">
       <p>We rely on contributions from as diverse a set of people as we can for our completion scripts. We can only really get a completion script for a tool from
 someone who knows that tool. And ideally, they would also test their script with the newest source from git - 
 both to get more testing and to take advantage of new features we introduce.
 So we want to make this as painless as possible. This is working rather well, overall - we have over 1000 completion scripts in our codebase. <a href="#fnref:Contributions" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:stats" role="doc-endnote">
+    <li id="fn:stats">
       <p>That is assuming that there isn’t a correlation between running fish and using an unusual processor architecture. Also this includes Hurd and kFreeBSD. <a href="#fnref:stats" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:technically" role="doc-endnote">
+    <li id="fn:technically">
       <p>Technically the first part of fish to be switched to rust is our <a href="https://github.com/ridiculousfish/widecharwidth">widecharwidth library</a>,
 which already had a rust port that is used in Wezterm. <a href="#fnref:technically" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:terminfo" role="doc-endnote">
+    <li id="fn:terminfo">
       <p>We have discussed switching to not reading terminfo at all because in practice it is almost entirely useless. (we could write another 3000 words on the topic, but the short of it is that it is slow to update and integrate new features, often wrong, has no versioning mechanism and, most importantly, documents differences that barely exist anymore in the types of terminals that people actually use) <a href="#fnref:terminfo" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:formatting" role="doc-endnote">
+    <li id="fn:formatting">
       <p>A lot of the increase in line count can be explained by rustfmt’s formatting, as it likes to spread code out over multiple lines, like:</p>
       <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">opts</span><span class="py">.show</span>
     <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">opts</span><span class="py">.local</span>
@@ -336,7 +336,7 @@ which already had a rust port that is used in Wezterm. <a href="#fnref:technica
 
       <p>Also note that our Rust code is in some places a straight translation of the C++, and fully idiomatic Rust might be shorter. <a href="#fnref:formatting" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:ccode" role="doc-endnote">
+    <li id="fn:ccode">
       <p>We use C in three places:</p>
       <ul>
         <li>To connect some functions or variables that aren’t (yet) in the libc crate</li>

@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://fishshell.com/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fishshell.com/" rel="alternate" type="text/html" /><updated>2025-09-12T08:55:44+02:00</updated><id>https://fishshell.com/blog/feed.xml</id><title type="html">Fish-shell Blog</title><entry><title type="html">What’s new in fish 4.0</title><link href="https://fishshell.com/blog/new-in-40/" rel="alternate" type="text/html" title="What’s new in fish 4.0" /><published>2025-02-27T00:00:00+01:00</published><updated>2025-02-27T00:00:00+01:00</updated><id>https://fishshell.com/blog/new-in-40</id><content type="html" xml:base="https://fishshell.com/blog/new-in-40/"><![CDATA[<p>We’re proud to announce the release of <a href="https://github.com/fish-shell/fish-shell/releases/tag/4.0.0">fish 4.0</a>.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://fishshell.com/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fishshell.com/" rel="alternate" type="text/html" /><updated>2025-09-12T12:03:25+02:00</updated><id>https://fishshell.com/blog/feed.xml</id><title type="html">Fish-shell Blog</title><entry><title type="html">What’s new in fish 4.0</title><link href="https://fishshell.com/blog/new-in-40/" rel="alternate" type="text/html" title="What’s new in fish 4.0" /><published>2025-02-27T00:00:00+01:00</published><updated>2025-02-27T00:00:00+01:00</updated><id>https://fishshell.com/blog/new-in-40</id><content type="html" xml:base="https://fishshell.com/blog/new-in-40/"><![CDATA[<p>We’re proud to announce the release of <a href="https://github.com/fish-shell/fish-shell/releases/tag/4.0.0">fish 4.0</a>.</p>
 
 <p>This release represents 2731 commits by over 200 people.
-It has 1185 files changed, 111221 insertions(+), 89168 deletions(-)<sup id="fnref:linecount" role="doc-noteref"><a href="#fn:linecount" class="footnote" rel="footnote">1</a></sup>.</p>
+It has 1185 files changed, 111221 insertions(+), 89168 deletions(-)<sup id="fnref:linecount"><a href="#fn:linecount" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>.</p>
 
 <p>As you might know, fish was entirely rewritten in rust. But, while that’s a lot of work, it should also be invisible to you, the user - if we’ve done our job right.</p>
 
@@ -21,11 +21,11 @@ It has 1185 files changed, 111221 insertions(+), 89168 deletions(-)<sup id="fnre
 
 <p>To explain, the usual protocol terminals use to send keys to applications have a lot of limitations: control+I (or control+shift+i) sends the exact same sequence as control+i, which sends the exact same sequence as the Tab key. A lot of keys cannot be disambiguated this way!</p>
 
-<p>So fish now enables a variety of terminal features, including xterm’s “modifyOtherKey” and the kitty keyboard protocol<sup id="fnref:kkp" role="doc-noteref"><a href="#fn:kkp" class="footnote" rel="footnote">2</a></sup>, that tell the terminal that fish understands when it sends better sequences. If this works, you can <code class="language-plaintext highlighter-rouge">bind ctrl-i</code>, <code class="language-plaintext highlighter-rouge">bind ctrl-I</code> and <code class="language-plaintext highlighter-rouge">bind tab</code> separately! If it doesn’t work, you can still use <code class="language-plaintext highlighter-rouge">bind ctrl-i</code>, but it will also be triggered when you press tab.</p>
+<p>So fish now enables a variety of terminal features, including xterm’s “modifyOtherKey” and the kitty keyboard protocol<sup id="fnref:kkp"><a href="#fn:kkp" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>, that tell the terminal that fish understands when it sends better sequences. If this works, you can <code class="language-plaintext highlighter-rouge">bind ctrl-i</code>, <code class="language-plaintext highlighter-rouge">bind ctrl-I</code> and <code class="language-plaintext highlighter-rouge">bind tab</code> separately! If it doesn’t work, you can still use <code class="language-plaintext highlighter-rouge">bind ctrl-i</code>, but it will also be triggered when you press tab.</p>
 
 <p>It does this automatically and without requiring configuration. We have tested a lot of terminals and found that almost all terminals we could get our hands on either understood these sequences and acted on them or harmlessly ignored them.</p>
 
-<p>In some rare cases we encountered terminal bugs that we worked around by disabling these protocols. For instance we found issues in the integrated terminal in JetBrains IDEs or Wezterm<sup id="fnref:wezterm" role="doc-noteref"><a href="#fn:wezterm" class="footnote" rel="footnote">3</a></sup> and iTerm that we hope will be fixed soon. In other cases we have sent patches, for example we improved Zellij’s support for the kitty keyboard protocol.</p>
+<p>In some rare cases we encountered terminal bugs that we worked around by disabling these protocols. For instance we found issues in the integrated terminal in JetBrains IDEs or Wezterm<sup id="fnref:wezterm"><a href="#fn:wezterm" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> and iTerm that we hope will be fixed soon. In other cases we have sent patches, for example we improved Zellij’s support for the kitty keyboard protocol.</p>
 
 <p>If you <em>do</em> still see issues, like a mysterious “5u” or “=0” appearing in your commandline, you can disable these protocols for the time being with:</p>
 
@@ -65,7 +65,7 @@ For context, the default theme is supposed to be usable on as many systems as po
 But making that readable on as many terminals as possible, no matter their palette, whether light or dark,
 can be tricky. And we discovered that the default “blue” color on many terminals was hard to read on their default terminal background.
 We think that’s a bit silly and the terminal’s palette should be improved, but we also need to support existing setups.
-So we changed it, which also makes the default theme a bit less overloaded with color<sup id="fnref:salad" role="doc-noteref"><a href="#fn:salad" class="footnote" rel="footnote">4</a></sup>.</p>
+So we changed it, which also makes the default theme a bit less overloaded with color<sup id="fnref:salad"><a href="#fn:salad" class="footnote" rel="footnote" role="doc-noteref">4</a></sup>.</p>
 
 <p>If you are already using the default theme, it will stay on the old version. To get the new colors, reload the theme via <code class="language-plaintext highlighter-rouge">fish_config</code>.</p>
 
@@ -92,7 +92,7 @@ no fiddling with package sources. Just copy a file and run.</p>
 
 <p>And creating a build like that is easy: <code class="language-plaintext highlighter-rouge">cargo build</code> will create it by default, so <code class="language-plaintext highlighter-rouge">cargo install</code> will install it.</p>
 
-<p>We have also built these for x86_64 (aka “amd64”) and aarch64 (aka “arm64”) linux and uploaded them to <a href="https://github.com/fish-shell/fish-shell/releases/tag/4.0.0">the 4.0 github releases page</a><sup id="fnref:staticbuilds" role="doc-noteref"><a href="#fn:staticbuilds" class="footnote" rel="footnote">5</a></sup>.</p>
+<p>We have also built these for x86_64 (aka “amd64”) and aarch64 (aka “arm64”) linux and uploaded them to <a href="https://github.com/fish-shell/fish-shell/releases/tag/4.0.0">the 4.0 github releases page</a><sup id="fnref:staticbuilds"><a href="#fn:staticbuilds" class="footnote" rel="footnote" role="doc-noteref">5</a></sup>.</p>
 
 <h3 id="ignoring-commands-in-history">Ignoring Commands In History</h3>
 
@@ -127,20 +127,20 @@ This is in line with <code class="language-plaintext highlighter-rouge">function
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:linecount" role="doc-endnote">
+    <li id="fn:linecount">
       <p>This is discounting translations, since they easily baloon the line count (+420k, -373k) <a href="#fnref:linecount" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:kkp" role="doc-endnote">
+    <li id="fn:kkp">
       <p>The “kitty keyboard protocol” was <em>invented</em> by kitty, but is also supported by a variety of other terminals, including ghostty or alacritty.
 See <a href="https://sw.kovidgoyal.net/kitty/keyboard-protocol/">kitty’s documentation</a> for details on it. <a href="#fnref:kkp" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:wezterm" role="doc-endnote">
+    <li id="fn:wezterm">
       <p>Wezterm’s kitty keyboard protocol support is disabled by default, so we did not work around it. <a href="#fnref:wezterm" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:salad" role="doc-endnote">
+    <li id="fn:salad">
       <p>The term of art here is “angry fruit salad”. It’s easy to make a theme that overuses color, especially if you’re limited to the 16 color palette. <a href="#fnref:salad" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:staticbuilds" role="doc-endnote">
+    <li id="fn:staticbuilds">
       <p>Other systems are also possible, but we would like to focus on the big ones here because it is easy enough to make these yourself. <a href="#fnref:staticbuilds" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
@@ -178,7 +178,7 @@ experience with a roughly C++-shaped language should help.</p>
 <p>Frankly, the tooling around the language isn’t good, and we had to take on some additional pain in order to support our users.
 We want to provide up-to-date fish packages for systems that aren’t up-to-date, like LTS Linux and older macOS.
 But there is no ‘rustup’ for C++, no standard way to install recent C++ compilers on these operating systems.
-This means adopting recent C++ standards would complicate the lives of packagers and would-be contributors<sup id="fnref:Contributions" role="doc-noteref"><a href="#fn:Contributions" class="footnote" rel="footnote">1</a></sup>.
+This means adopting recent C++ standards would complicate the lives of packagers and would-be contributors<sup id="fnref:Contributions"><a href="#fn:Contributions" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>.
 For example, we started using C++11 in 2016, and yet we still needed to upgrade the compilers on our build machines until 2020.</p>
 
 <p>Fish also uses threads for its award-winning (<em>note to editor</em>: find an actual award) autosuggestions and syntax highlighting,
@@ -235,7 +235,7 @@ it is amazing how the Rust answer can just be “use rustup”.</p>
 
 <p>A lot of hay has also been made online about Rust’s platform support (e.g. <a href="https://lwn.net/Articles/998115/">in the git project</a>). We don’t see a big problem here - all of our big platforms (macOS, Linux, the BSDs) are supported, as are Opensolaris/Illumos and Haiku. We have never heard of anyone trying to run fish on NonStop.</p>
 
-<p>Architecture support is even less of a problem - going by <a href="https://popcon.debian.org/">Debian’s popcon</a>, 99.9995% (the actual result, not an exaggeration) of machines run an architecture that has Rust packages in Debian. Given that fish is <a href="https://qa.debian.org/popcon.php?package=fish">installed on 1.92% of Debian systems</a>, we would project two (2) or three (3) machines of the quarter million responses to have fish on an unsupported architecture <sup id="fnref:stats" role="doc-noteref"><a href="#fn:stats" class="footnote" rel="footnote">2</a></sup>.</p>
+<p>Architecture support is even less of a problem - going by <a href="https://popcon.debian.org/">Debian’s popcon</a>, 99.9995% (the actual result, not an exaggeration) of machines run an architecture that has Rust packages in Debian. Given that fish is <a href="https://qa.debian.org/popcon.php?package=fish">installed on 1.92% of Debian systems</a>, we would project two (2) or three (3) machines of the quarter million responses to have fish on an unsupported architecture <sup id="fnref:stats"><a href="#fn:stats" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>.</p>
 
 <p>Unlike what some online have assumed, a native Windows port was not a reason for switching to Rust as it was never in the cards. Fish is, at heart, a UNIX shell that relies not only on UNIX APIs but also their semantics, and exposes them in the scripting language. What would <code class="language-plaintext highlighter-rouge">test -x</code> say on Windows, which has no executable bit? These are issues that <em>could</em> be solved with a lot of work, but we’re unix nerds making a unix shell, not one for Windows.</p>
 
@@ -256,7 +256,7 @@ clean up allowed us to compare the before and after to find places where we had 
 
 <p>So we used <a href="https://google.github.io/autocxx/">autocxx</a> to generate bindings between C++ and Rust code, allowing us to port one component at a time.</p>
 
-<p>We started<sup id="fnref:technically" role="doc-noteref"><a href="#fn:technically" class="footnote" rel="footnote">3</a></sup> by porting the builtins. These are essentially little self-contained programs, with their own arguments, streams, exit code, etc.
+<p>We started<sup id="fnref:technically"><a href="#fn:technically" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> by porting the builtins. These are essentially little self-contained programs, with their own arguments, streams, exit code, etc.
 That means it’s easy to port them separately from the rest of the shell once you have a way to call a Rust builtin from C++, which we had as part of the initial pull request.</p>
 
 <p>Where they connected to the main shell, we used one of three approaches:</p>
@@ -363,7 +363,7 @@ which makes it easy to accidentally have very long build time.</p>
 
 <p>Remember our issues with (n)curses? We will no longer have any, because we no longer use curses. Instead we switched to <a href="https://github.com/meh/rust-terminfo">a Rust crate</a> that gives us just what we need, which is access to terminfo and expanding its sequences. This removes some awkward global state, and means those building from source no longer need to ensure that curses is installed “correctly” on their system - cargo just downloads a crate and builds it.</p>
 
-<p>We do still read terminfo, which means users need to install that, but that can be done at runtime, is preinstalled on all mainstream systems <em>and</em> if it can’t be found we just use an included copy of the xterm-256color definitions<sup id="fnref:terminfo" role="doc-noteref"><a href="#fn:terminfo" class="footnote" rel="footnote">4</a></sup>.</p>
+<p>We do still read terminfo, which means users need to install that, but that can be done at runtime, is preinstalled on all mainstream systems <em>and</em> if it can’t be found we just use an included copy of the xterm-256color definitions<sup id="fnref:terminfo"><a href="#fn:terminfo" class="footnote" rel="footnote" role="doc-noteref">4</a></sup>.</p>
 
 <p>We have also managed to create “self-installable” fish packages that include all the functions, completions and other asset files in the fish binary to be written out at runtime.
 That allowed us to create statically linked versions of fish (for linux this uses musl, because glibc has unavoidable crashes!), so for the first time we have <em>one file</em> you can download and run on <em>any linux</em> (the only requirement being that the architecture matches!).</p>
@@ -401,7 +401,7 @@ For now, the only way to run fish on Windows is to use WSL.</p>
   <li>2604 commits by over 200 authors</li>
   <li>498 issues</li>
   <li>Almost 2 years of work</li>
-  <li>57K Lines of C++ to 75K Lines of Rust <sup id="fnref:formatting" role="doc-noteref"><a href="#fn:formatting" class="footnote" rel="footnote">5</a></sup> (plus 400 lines of C <sup id="fnref:ccode" role="doc-noteref"><a href="#fn:ccode" class="footnote" rel="footnote">6</a></sup>)</li>
+  <li>57K Lines of C++ to 75K Lines of Rust <sup id="fnref:formatting"><a href="#fn:formatting" class="footnote" rel="footnote" role="doc-noteref">5</a></sup> (plus 400 lines of C <sup id="fnref:ccode"><a href="#fn:ccode" class="footnote" rel="footnote" role="doc-noteref">6</a></sup>)</li>
   <li><a href="https://github.com/fish-shell/fish-shell/pull/10564">C++–</a></li>
 </ul>
 
@@ -418,23 +418,23 @@ with more on the way, and we did it while creating a separate 3.7 release that a
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:Contributions" role="doc-endnote">
+    <li id="fn:Contributions">
       <p>We rely on contributions from as diverse a set of people as we can for our completion scripts. We can only really get a completion script for a tool from
 someone who knows that tool. And ideally, they would also test their script with the newest source from git - 
 both to get more testing and to take advantage of new features we introduce.
 So we want to make this as painless as possible. This is working rather well, overall - we have over 1000 completion scripts in our codebase. <a href="#fnref:Contributions" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:stats" role="doc-endnote">
+    <li id="fn:stats">
       <p>That is assuming that there isn’t a correlation between running fish and using an unusual processor architecture. Also this includes Hurd and kFreeBSD. <a href="#fnref:stats" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:technically" role="doc-endnote">
+    <li id="fn:technically">
       <p>Technically the first part of fish to be switched to rust is our <a href="https://github.com/ridiculousfish/widecharwidth">widecharwidth library</a>,
 which already had a rust port that is used in Wezterm. <a href="#fnref:technically" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:terminfo" role="doc-endnote">
+    <li id="fn:terminfo">
       <p>We have discussed switching to not reading terminfo at all because in practice it is almost entirely useless. (we could write another 3000 words on the topic, but the short of it is that it is slow to update and integrate new features, often wrong, has no versioning mechanism and, most importantly, documents differences that barely exist anymore in the types of terminals that people actually use) <a href="#fnref:terminfo" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:formatting" role="doc-endnote">
+    <li id="fn:formatting">
       <p>A lot of the increase in line count can be explained by rustfmt’s formatting, as it likes to spread code out over multiple lines, like:</p>
       <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">opts</span><span class="py">.show</span>
     <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">opts</span><span class="py">.local</span>
@@ -452,7 +452,7 @@ which already had a rust port that is used in Wezterm. <a href="#fnref:technica
 
       <p>Also note that our Rust code is in some places a straight translation of the C++, and fully idiomatic Rust might be shorter. <a href="#fnref:formatting" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:ccode" role="doc-endnote">
+    <li id="fn:ccode">
       <p>We use C in three places:</p>
       <ul>
         <li>To connect some functions or variables that aren’t (yet) in the libc crate</li>
@@ -465,7 +465,7 @@ which already had a rust port that is used in Wezterm. <a href="#fnref:technica
   </ol>
 </div>]]></content><author><name></name></author><category term="technical" /><summary type="html"><![CDATA[About two years ago, our head maintainer @ridiculousfish opened what quickly became our most-read pull request:]]></summary></entry><entry><title type="html">fish-shell 4.0b1, now in Rust</title><link href="https://fishshell.com/blog/fish-4b/" rel="alternate" type="text/html" title="fish-shell 4.0b1, now in Rust" /><published>2024-12-17T00:00:00+01:00</published><updated>2024-12-17T00:00:00+01:00</updated><id>https://fishshell.com/blog/fish-4b</id><content type="html" xml:base="https://fishshell.com/blog/fish-4b/"><![CDATA[<p>fish is a smart and user-friendly command line shell with clever features that just work, without needing an advanced degree in bash scriptology. Today we are announcing an open beta, inviting all users to try out the upcoming 4.0 release.</p>
 
-<p>fish 4.0 is a big upgrade. It’s got lots of new features to make using the command line easier and more enjoyable, such as more natural key binding and expanded history search. And under the hood, we’ve rebuilt the foundation in Rust to embrace modern computing<sup id="fnref:modern-computing-advancements" role="doc-noteref"><a href="#fn:modern-computing-advancements" class="footnote" rel="footnote">1</a></sup>.</p>
+<p>fish 4.0 is a big upgrade. It’s got lots of new features to make using the command line easier and more enjoyable, such as more natural key binding and expanded history search. And under the hood, we’ve rebuilt the foundation in Rust to embrace modern computing<sup id="fnref:modern-computing-advancements"><a href="#fn:modern-computing-advancements" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>.</p>
 
 <p>🎶 The beta is open, the release notes are live, and we’re ready to party like it’s 1995! 💿</p>
 
@@ -482,7 +482,7 @@ which already had a rust port that is used in Wezterm. <a href="#fnref:technica
 
 <p>We are quite proud of this upcoming release. It represents a staggering amount of work and includes some really nice changes for users, as well as foundational improvements that will pay off in the future.</p>
 
-<p>We consider this beta to be highly stable, and we use it as our primary shell. All existing fish scripts and commands are expected to keep working, with the exception of the items noted in the release notes<sup id="fnref:qmark-no-glob" role="doc-noteref"><a href="#fn:qmark-no-glob" class="footnote" rel="footnote">2</a></sup>. Whether you are an existing user, or curious to give fish a try, this is a great opportunity to contribute to fish-shell.</p>
+<p>We consider this beta to be highly stable, and we use it as our primary shell. All existing fish scripts and commands are expected to keep working, with the exception of the items noted in the release notes<sup id="fnref:qmark-no-glob"><a href="#fn:qmark-no-glob" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>. Whether you are an existing user, or curious to give fish a try, this is a great opportunity to contribute to fish-shell.</p>
 
 <p>Command line users are endlessly inventive, so if you notice something that isn’t working as it should, that’s a problem and we’d like to hear about it! Please report any issues you encounter by filing a <a href="http://github.com/fish-shell/fish-shell/issues/">GitHub Issue</a>, or on our <a href="https://matrix.to/#/#fish-shell:matrix.org">Matrix channel</a>, which is also a great place to ask questions. Newbie questions welcome!</p>
 
@@ -490,10 +490,10 @@ which already had a rust port that is used in Wezterm. <a href="#fnref:technica
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:modern-computing-advancements" role="doc-endnote">
+    <li id="fn:modern-computing-advancements">
       <p>Zip disks, Sound Blaster cards, etc. <a href="#fnref:modern-computing-advancements" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:qmark-no-glob" role="doc-endnote">
+    <li id="fn:qmark-no-glob">
       <p>In particular, the use of ? as a wildcard is now disabled by default through a feature flag. <a href="#fnref:qmark-no-glob" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>

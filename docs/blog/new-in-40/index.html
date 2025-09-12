@@ -31,7 +31,7 @@ li {
   <div class="post_body"><p>We’re proud to announce the release of <a href="https://github.com/fish-shell/fish-shell/releases/tag/4.0.0">fish 4.0</a>.</p>
 
 <p>This release represents 2731 commits by over 200 people.
-It has 1185 files changed, 111221 insertions(+), 89168 deletions(-)<sup id="fnref:linecount" role="doc-noteref"><a href="#fn:linecount" class="footnote" rel="footnote">1</a></sup>.</p>
+It has 1185 files changed, 111221 insertions(+), 89168 deletions(-)<sup id="fnref:linecount"><a href="#fn:linecount" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>.</p>
 
 <p>As you might know, fish was entirely rewritten in rust. But, while that’s a lot of work, it should also be invisible to you, the user - if we’ve done our job right.</p>
 
@@ -51,11 +51,11 @@ It has 1185 files changed, 111221 insertions(+), 89168 deletions(-)<sup id="fnre
 
 <p>To explain, the usual protocol terminals use to send keys to applications have a lot of limitations: control+I (or control+shift+i) sends the exact same sequence as control+i, which sends the exact same sequence as the Tab key. A lot of keys cannot be disambiguated this way!</p>
 
-<p>So fish now enables a variety of terminal features, including xterm’s “modifyOtherKey” and the kitty keyboard protocol<sup id="fnref:kkp" role="doc-noteref"><a href="#fn:kkp" class="footnote" rel="footnote">2</a></sup>, that tell the terminal that fish understands when it sends better sequences. If this works, you can <code class="language-plaintext highlighter-rouge">bind ctrl-i</code>, <code class="language-plaintext highlighter-rouge">bind ctrl-I</code> and <code class="language-plaintext highlighter-rouge">bind tab</code> separately! If it doesn’t work, you can still use <code class="language-plaintext highlighter-rouge">bind ctrl-i</code>, but it will also be triggered when you press tab.</p>
+<p>So fish now enables a variety of terminal features, including xterm’s “modifyOtherKey” and the kitty keyboard protocol<sup id="fnref:kkp"><a href="#fn:kkp" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>, that tell the terminal that fish understands when it sends better sequences. If this works, you can <code class="language-plaintext highlighter-rouge">bind ctrl-i</code>, <code class="language-plaintext highlighter-rouge">bind ctrl-I</code> and <code class="language-plaintext highlighter-rouge">bind tab</code> separately! If it doesn’t work, you can still use <code class="language-plaintext highlighter-rouge">bind ctrl-i</code>, but it will also be triggered when you press tab.</p>
 
 <p>It does this automatically and without requiring configuration. We have tested a lot of terminals and found that almost all terminals we could get our hands on either understood these sequences and acted on them or harmlessly ignored them.</p>
 
-<p>In some rare cases we encountered terminal bugs that we worked around by disabling these protocols. For instance we found issues in the integrated terminal in JetBrains IDEs or Wezterm<sup id="fnref:wezterm" role="doc-noteref"><a href="#fn:wezterm" class="footnote" rel="footnote">3</a></sup> and iTerm that we hope will be fixed soon. In other cases we have sent patches, for example we improved Zellij’s support for the kitty keyboard protocol.</p>
+<p>In some rare cases we encountered terminal bugs that we worked around by disabling these protocols. For instance we found issues in the integrated terminal in JetBrains IDEs or Wezterm<sup id="fnref:wezterm"><a href="#fn:wezterm" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> and iTerm that we hope will be fixed soon. In other cases we have sent patches, for example we improved Zellij’s support for the kitty keyboard protocol.</p>
 
 <p>If you <em>do</em> still see issues, like a mysterious “5u” or “=0” appearing in your commandline, you can disable these protocols for the time being with:</p>
 
@@ -95,7 +95,7 @@ For context, the default theme is supposed to be usable on as many systems as po
 But making that readable on as many terminals as possible, no matter their palette, whether light or dark,
 can be tricky. And we discovered that the default “blue” color on many terminals was hard to read on their default terminal background.
 We think that’s a bit silly and the terminal’s palette should be improved, but we also need to support existing setups.
-So we changed it, which also makes the default theme a bit less overloaded with color<sup id="fnref:salad" role="doc-noteref"><a href="#fn:salad" class="footnote" rel="footnote">4</a></sup>.</p>
+So we changed it, which also makes the default theme a bit less overloaded with color<sup id="fnref:salad"><a href="#fn:salad" class="footnote" rel="footnote" role="doc-noteref">4</a></sup>.</p>
 
 <p>If you are already using the default theme, it will stay on the old version. To get the new colors, reload the theme via <code class="language-plaintext highlighter-rouge">fish_config</code>.</p>
 
@@ -122,7 +122,7 @@ no fiddling with package sources. Just copy a file and run.</p>
 
 <p>And creating a build like that is easy: <code class="language-plaintext highlighter-rouge">cargo build</code> will create it by default, so <code class="language-plaintext highlighter-rouge">cargo install</code> will install it.</p>
 
-<p>We have also built these for x86_64 (aka “amd64”) and aarch64 (aka “arm64”) linux and uploaded them to <a href="https://github.com/fish-shell/fish-shell/releases/tag/4.0.0">the 4.0 github releases page</a><sup id="fnref:staticbuilds" role="doc-noteref"><a href="#fn:staticbuilds" class="footnote" rel="footnote">5</a></sup>.</p>
+<p>We have also built these for x86_64 (aka “amd64”) and aarch64 (aka “arm64”) linux and uploaded them to <a href="https://github.com/fish-shell/fish-shell/releases/tag/4.0.0">the 4.0 github releases page</a><sup id="fnref:staticbuilds"><a href="#fn:staticbuilds" class="footnote" rel="footnote" role="doc-noteref">5</a></sup>.</p>
 
 <h3 id="ignoring-commands-in-history">Ignoring Commands In History</h3>
 
@@ -157,20 +157,20 @@ This is in line with <code class="language-plaintext highlighter-rouge">function
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:linecount" role="doc-endnote">
+    <li id="fn:linecount">
       <p>This is discounting translations, since they easily baloon the line count (+420k, -373k) <a href="#fnref:linecount" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:kkp" role="doc-endnote">
+    <li id="fn:kkp">
       <p>The “kitty keyboard protocol” was <em>invented</em> by kitty, but is also supported by a variety of other terminals, including ghostty or alacritty.
 See <a href="https://sw.kovidgoyal.net/kitty/keyboard-protocol/">kitty’s documentation</a> for details on it. <a href="#fnref:kkp" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:wezterm" role="doc-endnote">
+    <li id="fn:wezterm">
       <p>Wezterm’s kitty keyboard protocol support is disabled by default, so we did not work around it. <a href="#fnref:wezterm" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:salad" role="doc-endnote">
+    <li id="fn:salad">
       <p>The term of art here is “angry fruit salad”. It’s easy to make a theme that overuses color, especially if you’re limited to the 16 color palette. <a href="#fnref:salad" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:staticbuilds" role="doc-endnote">
+    <li id="fn:staticbuilds">
       <p>Other systems are also possible, but we would like to focus on the big ones here because it is easy enough to make these yourself. <a href="#fnref:staticbuilds" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
