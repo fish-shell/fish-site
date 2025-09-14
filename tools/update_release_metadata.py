@@ -26,10 +26,9 @@ def sha256of(url):
 def get_asset(release, extension):
   """ return the asset dictionary for the asset with the given extension """
   vals = [asset for asset in release['assets']
-          # skip over static builds
-          if asset['name'].endswith(extension) and not "-static" in asset['name']]
+          if asset['name'] == ("fish-%s%s" % (release["tag_name"], extension))]
   if len(vals) > 1:
-    sys.stderr.write('Warning: Multiple %s found for release %s'
+    raise ValueError('Multiple %s found for release %s'
                      % (extension, release['tag_name']))
   return vals[0] if vals else {}
 
