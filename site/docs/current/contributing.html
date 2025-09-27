@@ -5,16 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Contributing To Fish &#8212; fish-shell 4.0.9 documentation</title>
+    <title>Contributing To Fish &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="_static/documentation_options.js?v=3c33c51c"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="License" href="license.html" />
-    <link rel="prev" title="Release notes" href="relnotes.html" />
+    <link rel="prev" title="Terminal Compatibility" href="terminal-compatibility.html" />
     <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
      
 
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Contributing To Fish</a></li>
@@ -68,6 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
@@ -87,7 +88,8 @@
 <h4><a href="index.html">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Contributing To Fish</a><ul>
-<li><a class="reference internal" href="#getting-set-up">Getting Set Up</a></li>
+<li><a class="reference internal" href="#mailing-list">Mailing List</a></li>
+<li><a class="reference internal" href="#github">GitHub</a></li>
 <li><a class="reference internal" href="#guidelines">Guidelines</a></li>
 <li><a class="reference internal" href="#contributing-completions">Contributing completions</a></li>
 <li><a class="reference internal" href="#contributing-documentation">Contributing documentation</a></li>
@@ -102,10 +104,13 @@
 <li><a class="reference internal" href="#testing">Testing</a><ul>
 <li><a class="reference internal" href="#local-testing">Local testing</a></li>
 <li><a class="reference internal" href="#git-hooks">Git hooks</a></li>
-<li><a class="reference internal" href="#coverity-scan">Coverity Scan</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#contributing-translations">Contributing Translations</a><ul>
+<li><a class="reference internal" href="#adding-translations-for-a-new-language">Adding translations for a new language</a></li>
+<li><a class="reference internal" href="#modifying-existing-translations">Modifying existing translations</a></li>
+<li><a class="reference internal" href="#editing-po-files">Editing PO files</a></li>
+<li><a class="reference internal" href="#modifications-to-strings-in-source-files">Modifications to strings in source files</a></li>
 <li><a class="reference internal" href="#setting-code-up-for-translations">Setting Code Up For Translations</a></li>
 </ul>
 </li>
@@ -128,12 +133,17 @@
 <p>Contributions are welcome, and there are many ways to contribute!</p>
 <p>Whether you want to change some of the core Rust source, enhance or add a completion script or function,
 improve the documentation or translate something, this document will tell you how.</p>
-<section id="getting-set-up">
-<h2>Getting Set Up<a class="headerlink" href="#getting-set-up" title="Link to this heading">¶</a></h2>
-<p>Fish is developed on Github, at <a class="reference external" href="https://github.com/fish-shell/fish-shell">https://github.com/fish-shell/fish-shell</a>.</p>
+<section id="mailing-list">
+<h2>Mailing List<a class="headerlink" href="#mailing-list" title="Link to this heading">¶</a></h2>
+<p>Send patches to the public mailing list: <a class="reference external" href="mailto:~krobelus/fish-shell&#37;&#52;&#48;lists&#46;sr&#46;ht">mailto:~krobelus/fish-shell<span>&#64;</span>lists<span>&#46;</span>sr<span>&#46;</span>ht</a>.
+Archives are available at <a class="reference external" href="https://lists.sr.ht/~krobelus/fish-shell/">https://lists.sr.ht/~krobelus/fish-shell/</a>.</p>
+</section>
+<section id="github">
+<h2>GitHub<a class="headerlink" href="#github" title="Link to this heading">¶</a></h2>
+<p>Fish is available on Github, at <a class="reference external" href="https://github.com/fish-shell/fish-shell">https://github.com/fish-shell/fish-shell</a>.</p>
 <p>First, you’ll need an account there, and you’ll need a git clone of fish.
 Fork it on Github and then run:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">git </span><span class="no">clone https://github.com/</span><span class="p">&lt;USERNAME&gt;/fish-shell.git</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">git</span><span class="w"> </span><span class="no">clone</span><span class="w"> </span><span class="no">https://github.com/</span><span class="p">&lt;USERNAME&gt;/fish-shell.git</span>
 </pre></div>
 </div>
 <p>This will create a copy of the fish repository in the directory fish-shell in your current working directory.</p>
@@ -143,7 +153,7 @@ For that, you’ll require:</p>
 <li><p>Rust - when in doubt, try rustup</p></li>
 <li><p>CMake</p></li>
 <li><p>PCRE2 (headers and libraries) - optional, this will be downloaded if missing</p></li>
-<li><p>gettext (headers and libraries) - optional, for translation support</p></li>
+<li><p>gettext (only the msgfmt tool) - optional, for translation support</p></li>
 <li><p>Sphinx - optional, to build the documentation</p></li>
 </ul>
 <p>Of course not everything is required always - if you just want to contribute something to the documentation you’ll just need Sphinx,
@@ -155,13 +165,13 @@ and if the change is very simple and obvious you can just send it in. Use your j
 <p>In short:</p>
 <ul class="simple">
 <li><p>Be conservative in what you need (keep to the agreed minimum supported Rust version, limit new dependencies)</p></li>
-<li><p>Use automated tools to help you (including <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">fish_run_tests</span></code> and <code class="docutils literal notranslate"><span class="pre">build_tools/style.fish</span></code>)</p></li>
+<li><p>Use automated tools to help you (<code class="docutils literal notranslate"><span class="pre">build_tools/check.sh</span></code>)</p></li>
 </ul>
 </section>
 <section id="contributing-completions">
 <h2>Contributing completions<a class="headerlink" href="#contributing-completions" title="Link to this heading">¶</a></h2>
 <p>Completion scripts are the most common contribution to fish, and they are very welcome.</p>
-<p>In general, we’ll take all well-written completion scripts for a command that is publically available.
+<p>In general, we’ll take all well-written completion scripts for a command that is publicly available.
 This means no private tools or personal scripts, and we do reserve the right to reject for other reasons.</p>
 <p>Before you try to contribute them to fish, consider if the authors of the tool you are completing want to maintain the script instead.
 Often that makes more sense, specifically because they can add new options to the script immediately once they add them,
@@ -189,7 +199,7 @@ but if it is just a shortcut, please leave it.</p></li>
 <h2>Contributing documentation<a class="headerlink" href="#contributing-documentation" title="Link to this heading">¶</a></h2>
 <p>The documentation is stored in <code class="docutils literal notranslate"><span class="pre">doc_src/</span></code>, and written in ReStructured Text and built with Sphinx.</p>
 <p>To build it locally, run from the main fish-shell directory:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">sphinx-build </span><span class="no">-j 8 -b html -n doc_src/ /tmp/fish-doc/</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">sphinx-build</span><span class="w"> </span><span class="no">-j</span><span class="w"> </span><span class="no">8</span><span class="w"> </span><span class="no">-b</span><span class="w"> </span><span class="no">html</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="no">doc_src/</span><span class="w"> </span><span class="no">/tmp/fish-doc/</span>
 </pre></div>
 </div>
 <p>which will build the docs as html in /tmp/fish-doc. You can open it in a browser and see that it looks okay.</p>
@@ -214,7 +224,7 @@ is acceptable. However, in that case it will run <code class="docutils literal n
 ensure the entire file, not just the lines modified by the commit,
 conform to the style.</p>
 <p>If you want to check the style of the entire code base run</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">build_tools/style.fish </span><span class="no">--all</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">build_tools/style.fish</span><span class="w"> </span><span class="no">--all</span>
 </pre></div>
 </div>
 <p>That command will refuse to restyle any files if you have uncommitted
@@ -235,8 +245,8 @@ possibility of name clashes with user defined vars.</p></li>
 <h4>Configuring Your Editor for Fish Scripts<a class="headerlink" href="#configuring-your-editor-for-fish-scripts" title="Link to this heading">¶</a></h4>
 <p>If you use Vim: Install <a class="reference external" href="https://github.com/dag/vim-fish">vim-fish</a>,
 make sure you have syntax and filetype functionality in <code class="docutils literal notranslate"><span class="pre">~/.vimrc</span></code>:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">syntax </span><span class="no">enable</span>
-<span class="nf">filetype </span><span class="no">plugin indent on</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">syntax</span><span class="w"> </span><span class="no">enable</span>
+<span class="nf">filetype</span><span class="w"> </span><span class="no">plugin</span><span class="w"> </span><span class="no">indent</span><span class="w"> </span><span class="no">on</span>
 </pre></div>
 </div>
 <p>Then turn on some options for nicer display of fish scripts in
@@ -244,8 +254,8 @@ make sure you have syntax and filetype functionality in <code class="docutils li
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot; Set up :make to use fish for syntax checking.</span>
 <span class="s2">compiler fish</span>
 
-<span class="s2">&quot;</span><span class="w"> </span><span class="no">Set this to have long lines wrap inside comments.</span>
-<span class="nf">setlocal </span><span class="no">textwidth=79</span>
+<span class="s2">&quot;</span><span class="w"> </span><span class="no">Set</span><span class="w"> </span><span class="no">this</span><span class="w"> </span><span class="no">to</span><span class="w"> </span><span class="no">have</span><span class="w"> </span><span class="no">long</span><span class="w"> </span><span class="no">lines</span><span class="w"> </span><span class="no">wrap</span><span class="w"> </span><span class="no">inside</span><span class="w"> </span><span class="no">comments.</span>
+<span class="nf">setlocal</span><span class="w"> </span><span class="no">textwidth=79</span>
 
 <span class="gr">&quot;</span><span class="s2"> Enable folding of block structures in fish.</span>
 <span class="s2">setlocal foldmethod=expr</span>
@@ -283,15 +293,27 @@ regressions in the future (i.e., we don’t reintroduce the bug).</p>
 <li><p>tests/checks for script tests, run by <a class="reference external" href="https://github.com/ridiculousfish/littlecheck">littlecheck</a></p></li>
 <li><p>tests/pexpects for interactive tests using <a class="reference external" href="https://pexpect.readthedocs.io/en/stable/">pexpect</a></p></li>
 </ul>
-<p>When in doubt, the bulk of the tests should be added as a littlecheck test in tests/checks, as they are the easiest to modify and run, and much faster and more dependable than pexpect tests. The syntax is fairly self-explanatory. It’s a fish script with the expected output in <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">CHECK:</span></code> or <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">CHECKERR:</span></code> (for stderr) comments.</p>
-<p>The pexpects are written in python and can simulate input and output to/from a terminal, so they are needed for anything that needs actual interactivity. The runner is in build_tools/pexpect_helper.py, in case you need to modify something there.</p>
+<p>When in doubt, the bulk of the tests should be added as a littlecheck test in tests/checks, as they are the easiest to modify and run, and much faster and more dependable than pexpect tests. The syntax is fairly self-explanatory. It’s a fish script with the expected output in <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">CHECK:</span></code> or <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">CHECKERR:</span></code> (for stderr) comments.
+If your littlecheck test has a specific dependency, use <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">REQUIRE:</span> <span class="pre">...</span></code> with a posix sh script.</p>
+<p>The pexpects are written in python and can simulate input and output to/from a terminal, so they are needed for anything that needs actual interactivity. The runner is in tests/pexpect_helper.py, in case you need to modify something there.</p>
+<p>These tests can be run via the tests/test_driver.py python script, which will set up the environment.
+It sets up a temporary $HOME and also uses it as the current directory, so you do not need to create a temporary directory in them.</p>
+<p>If you need a command to do something weird to test something, maybe add it to the <code class="docutils literal notranslate"><span class="pre">fish_test_helper</span></code> binary (in tests/fish_test_helper.c), or see if it can already do it.</p>
 <section id="local-testing">
 <h3>Local testing<a class="headerlink" href="#local-testing" title="Link to this heading">¶</a></h3>
 <p>The tests can be run on your local computer on all operating systems.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cmake </span><span class="no">path/to/fish-shell</span>
-<span class="nf">make </span><span class="no">fish_run_tests</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cmake</span><span class="w"> </span><span class="no">path/to/fish-shell</span>
+<span class="nf">make</span><span class="w"> </span><span class="no">fish_run_tests</span>
 </pre></div>
 </div>
+<p>Or you can run them on a fish, without involving cmake:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cargo</span><span class="w"> </span><span class="no">build</span>
+<span class="nf">cargo</span><span class="w"> </span><span class="no">test</span><span class="w"> </span><span class="c"># for the unit tests</span>
+<span class="nf">tests/test_driver.py</span><span class="w"> </span><span class="no">target/debug</span><span class="w"> </span><span class="c"># for the script and interactive tests</span>
+</pre></div>
+</div>
+<p>Here, the first argument to test_driver.py refers to a directory with <code class="docutils literal notranslate"><span class="pre">fish</span></code>, <code class="docutils literal notranslate"><span class="pre">fish_indent</span></code> and <code class="docutils literal notranslate"><span class="pre">fish_key_reader</span></code> in it.
+In this example we’re in the root of the git repo and have run <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span></code> without <code class="docutils literal notranslate"><span class="pre">--release</span></code>, so it’s a debug build.</p>
 </section>
 <section id="git-hooks">
 <h3>Git hooks<a class="headerlink" href="#git-hooks" title="Link to this heading">¶</a></h3>
@@ -307,85 +329,114 @@ use git hooks (see githooks(5)) to automate it.</p>
 
 <span class="c1"># Git gives us lines like &quot;refs/heads/frombranch SOMESHA1 refs/heads/tobranch SOMESHA1&quot;</span>
 <span class="c1"># We&#39;re only interested in the branches</span>
+<span class="nv">isprotected</span><span class="o">=</span><span class="nb">false</span>
 <span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>from<span class="w"> </span>_<span class="w"> </span>to<span class="w"> </span>_<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;x</span><span class="nv">$to</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;xrefs/heads/</span><span class="nv">$protected_branch</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span><span class="nv">isprotected</span><span class="o">=</span><span class="m">1</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$to</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;refs/heads/</span><span class="nv">$protected_branch</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nv">isprotected</span><span class="o">=</span><span class="nb">true</span>
 <span class="w">    </span><span class="k">fi</span>
 <span class="k">done</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;x</span><span class="nv">$isprotected</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>x1<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Running tests before push to master&quot;</span>
-<span class="w">    </span>make<span class="w"> </span>fish_run_tests
-<span class="w">    </span><span class="nv">RESULT</span><span class="o">=</span><span class="nv">$?</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$RESULT</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Tests failed for a push to master, we can&#39;t let you do that&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-<span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-<span class="w">    </span><span class="k">fi</span>
+<span class="k">if</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$isprotected</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Running checks before push to master&quot;</span>
+<span class="w">    </span>build_tools/check.sh
 <span class="k">fi</span>
-<span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
 </pre></div>
 </div>
 <p>This will check if the push is to the master branch and, if it is, only
-allow the push if running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">fish_run_tests</span></code> succeeds. In some circumstances
+allow the push if running <code class="docutils literal notranslate"><span class="pre">build_tools/check.sh</span></code> succeeds. In some circumstances
 it may be advisable to circumvent this check with
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--no-verify</span></code>, but usually that isn’t necessary.</p>
 <p>To install the hook, place the code in a new file
 <code class="docutils literal notranslate"><span class="pre">.git/hooks/pre-push</span></code> and make it executable.</p>
 </section>
-<section id="coverity-scan">
-<h3>Coverity Scan<a class="headerlink" href="#coverity-scan" title="Link to this heading">¶</a></h3>
-<p>We use Coverity’s static analysis tool which offers free access to open
-source projects. While access to the tool itself is restricted,
-fish-shell organization members should know that they can login
-<a class="reference external" href="https://scan.coverity.com/projects/fish-shell-fish-shell?tab=overview">here</a>
-with their GitHub account. Currently, tests are triggered upon merging
-the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch into <code class="docutils literal notranslate"><span class="pre">coverity_scan_master</span></code>. Even if you are not
-a fish developer, you can keep an eye on our statistics there.</p>
-</section>
 </section>
 <section id="contributing-translations">
 <h2>Contributing Translations<a class="headerlink" href="#contributing-translations" title="Link to this heading">¶</a></h2>
-<p>Fish uses the GNU gettext library to translate messages from English to
-other languages.</p>
-<p>Creating and updating translations requires the Gettext tools, including
-<code class="docutils literal notranslate"><span class="pre">xgettext</span></code>, <code class="docutils literal notranslate"><span class="pre">msgfmt</span></code> and <code class="docutils literal notranslate"><span class="pre">msgmerge</span></code>. Translation sources are
-stored in the <code class="docutils literal notranslate"><span class="pre">po</span></code> directory, named <code class="docutils literal notranslate"><span class="pre">LANG.po</span></code>, where <code class="docutils literal notranslate"><span class="pre">LANG</span></code> is the
-two letter ISO 639-1 language code of the target language (eg <code class="docutils literal notranslate"><span class="pre">de</span></code> for
-German).</p>
-<p>To create a new translation:</p>
-<ul class="simple">
-<li><p>generate a <code class="docutils literal notranslate"><span class="pre">messages.pot</span></code> file by running <code class="docutils literal notranslate"><span class="pre">build_tools/fish_xgettext.fish</span></code> from
-the source tree</p></li>
-<li><p>copy <code class="docutils literal notranslate"><span class="pre">messages.pot</span></code> to <code class="docutils literal notranslate"><span class="pre">po/LANG.po</span></code></p></li>
-</ul>
-<p>To update a translation:</p>
-<ul class="simple">
-<li><p>generate a <code class="docutils literal notranslate"><span class="pre">messages.pot</span></code> file by running
-<code class="docutils literal notranslate"><span class="pre">build_tools/fish_xgettext.fish</span></code> from the source tree</p></li>
-<li><p>update the existing translation by running
-<code class="docutils literal notranslate"><span class="pre">msgmerge</span> <span class="pre">--update</span> <span class="pre">--no-fuzzy-matching</span> <span class="pre">po/LANG.po</span> <span class="pre">messages.pot</span></code></p></li>
-</ul>
-<p>The <code class="docutils literal notranslate"><span class="pre">--no-fuzzy-matching</span></code> is important as we have had terrible experiences with gettext’s “fuzzy” translations in the past.</p>
-<p>Many tools are available for editing translation files, including
-command-line and graphical user interface programs. For simple use, you can just use your text editor.</p>
-<p>Open up the po file, for example <code class="docutils literal notranslate"><span class="pre">po/sv.po</span></code>, and you’ll see something like:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">msgid </span><span class="s2">&quot;%ls: No suitable job\n&quot;</span>
-<span class="nf">msgstr </span><span class="s2">&quot;&quot;</span>
+<p>Fish uses GNU gettext to translate messages from English to other languages.
+We use custom tools for extracting messages from source files and to localize at runtime.
+This means that we do not have a runtime dependency on the gettext library.
+It also means that some features are not supported, such as message context and plurals.
+We also expect all files to be UTF-8-encoded.
+In practice, this should not matter much for contributing translations.</p>
+<p>Translation sources are
+stored in the <code class="docutils literal notranslate"><span class="pre">po</span></code> directory, named <code class="docutils literal notranslate"><span class="pre">ll_CC.po</span></code>, where <code class="docutils literal notranslate"><span class="pre">ll</span></code> is the
+two (or possibly three) letter ISO 639-1 language code of the target language
+(e.g. <code class="docutils literal notranslate"><span class="pre">pt</span></code> for Portuguese). <code class="docutils literal notranslate"><span class="pre">CC</span></code> is an ISO 3166 country/territory code,
+(e.g. <code class="docutils literal notranslate"><span class="pre">BR</span></code> for Brazil).
+An example for a valid name is <code class="docutils literal notranslate"><span class="pre">pt_BR.po</span></code>, indicating Brazilian Portuguese.
+These are the files you will interact with when adding translations.</p>
+<section id="adding-translations-for-a-new-language">
+<h3>Adding translations for a new language<a class="headerlink" href="#adding-translations-for-a-new-language" title="Link to this heading">¶</a></h3>
+<p>Creating new translations requires the Gettext tools.
+More specifically, you will need <code class="docutils literal notranslate"><span class="pre">msguniq</span></code> and <code class="docutils literal notranslate"><span class="pre">msgmerge</span></code> for creating translations for a new
+language.
+To create a new translation, run:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">build_tools/update_translations.fish</span><span class="w"> </span><span class="no">po/ll_CC.po</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">msgid</span></code> here is the “name” of the string to translate, typically the english string to translate. The second line (<code class="docutils literal notranslate"><span class="pre">msgstr</span></code>) is where your translation goes.</p>
+<p>This will create a new PO file containing all messages available for translation.
+If the file already exists, it will be updated.</p>
+<p>After modifying a PO file, you can recompile fish, and it will integrate the modifications you made.
+This requires that the <code class="docutils literal notranslate"><span class="pre">msgfmt</span></code> utility is installed (comes as part of <code class="docutils literal notranslate"><span class="pre">gettext</span></code>).
+It is important that the <code class="docutils literal notranslate"><span class="pre">localize-messages</span></code> cargo feature is enabled, which it is by default.
+You can explicitly enable it using:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cargo</span><span class="w"> </span><span class="no">build</span><span class="w"> </span><span class="no">--features=localize-messages</span>
+</pre></div>
+</div>
+<p>Use environment variables to tell fish which language to use, e.g.:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="no">LANG</span><span class="o">=</span><span class="no">pt_BR.utf8</span><span class="w"> </span><span class="nf">fish</span>
+</pre></div>
+</div>
+<p>or within the running fish shell:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">LANG</span><span class="w"> </span><span class="no">pt_BR.utf8</span>
+</pre></div>
+</div>
+<p>For more options regarding how to choose languages, see
+<a class="reference external" href="https://www.gnu.org/software/gettext/manual/html_node/Locale-Environment-Variables.html">the corresponding gettext documentation</a>.
+One neat thing you can do is set a list of languages to check for translations in the order defined
+using the <code class="docutils literal notranslate"><span class="pre">LANGUAGE</span></code> variable, e.g.:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">LANGUAGE</span><span class="w"> </span><span class="no">pt_BR</span><span class="w"> </span><span class="no">de_DE</span>
+</pre></div>
+</div>
+<p>to try to translate messages to Portuguese, if that fails try German, and if that fails too you will
+see the English version defined in the source code.</p>
+</section>
+<section id="modifying-existing-translations">
+<h3>Modifying existing translations<a class="headerlink" href="#modifying-existing-translations" title="Link to this heading">¶</a></h3>
+<p>If you want to work on translations for a language which already has a corresponding <code class="docutils literal notranslate"><span class="pre">po</span></code> file, it
+is sufficient to edit this file. No other changes are necessary.</p>
+<p>After recompiling fish, you should be able to see your translations in action. See the previous
+section for details.</p>
+</section>
+<section id="editing-po-files">
+<h3>Editing PO files<a class="headerlink" href="#editing-po-files" title="Link to this heading">¶</a></h3>
+<p>Many tools are available for editing translation files, including
+command-line and graphical user interface programs. For simple use, you can use your text editor.</p>
+<p>Open up the PO file, for example <code class="docutils literal notranslate"><span class="pre">po/sv.po</span></code>, and you’ll see something like:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">msgid</span><span class="w"> </span><span class="s2">&quot;%ls: No suitable job\n&quot;</span>
+<span class="nf">msgstr</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">msgid</span></code> here is the “name” of the string to translate, typically the English string to translate.
+The second line (<code class="docutils literal notranslate"><span class="pre">msgstr</span></code>) is where your translation goes.</p>
 <p>For example:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">msgid </span><span class="s2">&quot;%ls: No suitable job\n&quot;</span>
-<span class="nf">msgstr </span><span class="s2">&quot;%ls: Inget passande jobb\n&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">msgid</span><span class="w"> </span><span class="s2">&quot;%ls: No suitable job\n&quot;</span>
+<span class="nf">msgstr</span><span class="w"> </span><span class="s2">&quot;%ls: Inget passande jobb\n&quot;</span>
 </pre></div>
 </div>
 <p>Any <code class="docutils literal notranslate"><span class="pre">%s</span></code> / <code class="docutils literal notranslate"><span class="pre">%ls</span></code> or <code class="docutils literal notranslate"><span class="pre">%d</span></code> are placeholders that fish will use for formatting at runtime. It is important that they match - the translated string should have the same placeholders in the same order.</p>
 <p>Also any escaped characters, like that <code class="docutils literal notranslate"><span class="pre">\n</span></code> newline at the end, should be kept so the translation has the same behavior.</p>
 <p>Our tests run <code class="docutils literal notranslate"><span class="pre">msgfmt</span> <span class="pre">--check-format</span> <span class="pre">/path/to/file</span></code>, so they would catch mismatched placeholders - otherwise fish would crash at runtime when the string is about to be used.</p>
-<p>Be cautious about blindly updating an existing translation file. Trivial
-changes to an existing message (eg changing the punctuation) will cause
-existing translations to be removed, since the tools do literal string
-matching. Therefore, in general, you need to carefully review any
-recommended deletions.</p>
+<p>Be cautious about blindly updating an existing translation file.
+<code class="docutils literal notranslate"><span class="pre">msgid</span></code> strings should never be updated manually, only by running the appropriate script.</p>
+</section>
+<section id="modifications-to-strings-in-source-files">
+<h3>Modifications to strings in source files<a class="headerlink" href="#modifications-to-strings-in-source-files" title="Link to this heading">¶</a></h3>
+<p>If a string changes in the sources, the old translations will no longer work.
+They will be preserved in the PO files, but commented-out (starting with <code class="docutils literal notranslate"><span class="pre">#~</span></code>).
+If you add/remove/change a translatable strings in a source file,
+run <code class="docutils literal notranslate"><span class="pre">build_tools/update_translations.fish</span></code> to propagate this to all translation files (<code class="docutils literal notranslate"><span class="pre">po/*.po</span></code>).
+This is only relevant for developers modifying the source files of fish or fish scripts.</p>
+</section>
 <section id="setting-code-up-for-translations">
 <h3>Setting Code Up For Translations<a class="headerlink" href="#setting-code-up-for-translations" title="Link to this heading">¶</a></h3>
 <p>All non-debug messages output for user consumption should be marked for
@@ -398,13 +449,13 @@ macros:</p>
 characters for our message extraction script to find them.
 They must also be translated via a command substitution. This means
 that the following are <strong>not</strong> valid:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo </span><span class="o">(</span><span class="nf">_ </span><span class="no">hello</span><span class="o">)</span>
-<span class="nf">_ </span><span class="s2">&quot;goodbye&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo</span><span class="w"> </span><span class="o">(</span><span class="nf">_</span><span class="w"> </span><span class="no">hello</span><span class="o">)</span>
+<span class="nf">_</span><span class="w"> </span><span class="s2">&quot;goodbye&quot;</span>
 </pre></div>
 </div>
 <p>Above should be written like this instead:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo </span><span class="o">(</span><span class="nf">_ </span><span class="s2">&quot;hello&quot;</span><span class="o">)</span>
-<span class="nf">echo </span><span class="o">(</span><span class="nf">_ </span><span class="s2">&quot;goodbye&quot;</span><span class="o">)</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">echo</span><span class="w"> </span><span class="o">(</span><span class="nf">_</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="o">)</span>
+<span class="nf">echo</span><span class="w"> </span><span class="o">(</span><span class="nf">_</span><span class="w"> </span><span class="s2">&quot;goodbye&quot;</span><span class="o">)</span>
 </pre></div>
 </div>
 <p>You can use either single or double quotes to enclose the
@@ -436,7 +487,7 @@ recent release number (e.g., <code class="docutils literal notranslate"><span cl
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Contributing To Fish</a></li>
@@ -471,7 +522,7 @@ recent release number (e.g., <code class="docutils literal notranslate"><span cl
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

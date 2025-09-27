@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>export - compatibility function for exporting variables &#8212; fish-shell 4.0.9 documentation</title>
+    <title>export - compatibility function for exporting variables &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -125,16 +126,16 @@ scope, and exported as an environment variable to other commands.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <p>The following commands have an identical effect.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set </span><span class="no">-gx PAGER bat</span>
-<span class="nf">export </span><span class="no">PAGER=bat</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-gx</span><span class="w"> </span><span class="no">PAGER</span><span class="w"> </span><span class="no">bat</span>
+<span class="nf">export</span><span class="w"> </span><span class="no">PAGER=bat</span>
 </pre></div>
 </div>
 <p>Note: If you want to add to e.g. <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>, you need to be careful to <a class="reference internal" href="../language.html#cartesian-product"><span class="std std-ref">combine the list</span></a>. Quote it, like so:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">export </span><span class="no">PATH=</span><span class="s2">&quot;</span><span class="o">$PATH</span><span class="s2">:/opt/bin&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">export</span><span class="w"> </span><span class="no">PATH=</span><span class="s2">&quot;</span><span class="o">$PATH</span><span class="s2">:/opt/bin&quot;</span>
 </pre></div>
 </div>
 <p>Or just use <code class="docutils literal notranslate"><span class="pre">set</span></code>, which avoids this:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set </span><span class="no">-gx PATH </span><span class="o">$PATH</span><span class="no"> /opt/bin</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-gx</span><span class="w"> </span><span class="no">PATH</span><span class="w"> </span><span class="o">$PATH</span><span class="w"> </span><span class="no">/opt/bin</span>
 </pre></div>
 </div>
 </section>
@@ -160,7 +161,7 @@ scope, and exported as an environment variable to other commands.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -196,7 +197,7 @@ scope, and exported as an environment variable to other commands.</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

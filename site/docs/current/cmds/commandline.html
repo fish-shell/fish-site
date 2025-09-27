@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>commandline - set or get the current command line buffer &#8212; fish-shell 4.0.9 documentation</title>
+    <title>commandline - set or get the current command line buffer &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -136,7 +137,8 @@ See <a class="reference internal" href="bind.html"><span class="doc">bind</span>
 <dl class="simple">
 <dt><strong>-a</strong> or <strong>--append</strong></dt><dd><p>Do not remove the current commandline, append the specified string at the end of it.</p>
 </dd>
-<dt><strong>-i</strong> or <strong>--insert</strong></dt><dd><p>Do not remove the current commandline, insert the specified string at the current cursor position</p>
+<dt><strong>-i</strong>, <strong>--insert</strong> or <strong>--insert-smart</strong></dt><dd><p>Do not remove the current commandline, insert the specified string at the current cursor position.
+The <strong>--insert-smart</strong> option turns on a Do-What-I-Mean (DWIM) mode: it strips any <strong>$</strong> prefix from the first command on each line.</p>
 </dd>
 <dt><strong>-r</strong> or <strong>--replace</strong></dt><dd><p>Remove the current commandline and replace it with the specified string (default)</p>
 </dd>
@@ -157,6 +159,8 @@ Stops at logical operators, terminators, and pipes.</p>
 </dd>
 <dt><strong>--search-field</strong></dt><dd><p>Use the pager search field instead of the command line. Returns false if the search field is not shown.</p>
 </dd>
+<dt><strong>--input=INPUT</strong></dt><dd><p>Operate on this string instead of the commandline. Useful for using options like <strong>--tokens-expanded</strong>.</p>
+</dd>
 </dl>
 <p>The following options change the way <code class="docutils literal notranslate"><span class="pre">commandline</span></code> prints the current commandline buffer:</p>
 <dl class="simple">
@@ -169,9 +173,7 @@ or <code class="docutils literal notranslate"><span class="pre">commandline</spa
 <dt><strong>-x</strong> or <strong>--tokens-expanded</strong></dt><dd><p>Perform argument expansion on the selection and print one argument per line.
 Command substitutions are not expanded but forwarded as-is.</p>
 </dd>
-<dt><strong>--tokens-raw</strong></dt><dd><p>Print arguments in the selection as they appear on the command line, one per line.</p>
-</dd>
-<dt><strong>-o</strong> or <strong>tokenize</strong></dt><dd><p>Deprecated; do not use.</p>
+<dt><strong>-o</strong>, <strong>tokenize</strong>, <strong>--tokens-raw</strong></dt><dd><p>Deprecated; do not use.</p>
 </dd>
 </dl>
 <p>If <code class="docutils literal notranslate"><span class="pre">commandline</span></code> is called during a call to complete a given string using <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-C</span> <span class="pre">STRING</span></code>, <code class="docutils literal notranslate"><span class="pre">commandline</span></code> will consider the specified string to be the current contents of the command line.</p>
@@ -202,7 +204,7 @@ For example, can be used to determine if moving the cursor to the right when alr
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">commandline</span> <span class="pre">-j</span> <span class="pre">$history[3]</span></code> replaces the job under the cursor with the third item from the command line history.</p>
 <p>If the commandline contains</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">echo </span><span class="o">$flounder</span><span class="w"> </span><span class="p">&gt;&amp;2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">less</span><span class="p">;</span><span class="w"> </span><span class="o">and</span><span class="nf"> echo </span><span class="o">$catfish</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="o">$flounder</span><span class="w"> </span><span class="p">&gt;&amp;2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">less</span><span class="p">;</span><span class="w"> </span><span class="o">and</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="o">$catfish</span>
 </pre></div>
 </div>
 <p>(with the cursor on the “o” of “flounder”)</p>
@@ -210,25 +212,25 @@ For example, can be used to determine if moving the cursor to the right when alr
 <p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$flounder</span> <span class="pre">&gt;&amp;2</span> <span class="pre">|</span> <span class="pre">less</span></code> is the first job, <code class="docutils literal notranslate"><span class="pre">and</span> <span class="pre">echo</span> <span class="pre">$catfish</span></code> the second.</p>
 <p><strong>$flounder</strong> is the current token.</p>
 <p>The most common use for something like completions is</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set </span><span class="no">-l tokens </span><span class="o">(</span><span class="nf">commandline </span><span class="no">-xpc</span><span class="o">)</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">tokens</span><span class="w"> </span><span class="o">(</span><span class="nf">commandline</span><span class="w"> </span><span class="no">-xpc</span><span class="o">)</span>
 </pre></div>
 </div>
 <p>which gives the current <em>process</em> (what is being completed), tokenized into separate entries, up to but excluding the currently being completed token</p>
 <p>If you are then also interested in the in-progress token, add</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set </span><span class="no">-l current </span><span class="o">(</span><span class="nf">commandline </span><span class="no">-ct</span><span class="o">)</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">current</span><span class="w"> </span><span class="o">(</span><span class="nf">commandline</span><span class="w"> </span><span class="no">-ct</span><span class="o">)</span>
 </pre></div>
 </div>
 <p>Note that this makes it easy to render fish’s infix matching moot - if possible it’s best if the completions just print all possibilities and leave the matching to the current token up to fish’s logic.</p>
 <p>More examples:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">commandline </span><span class="no">-t</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">commandline</span><span class="w"> </span><span class="no">-t</span>
 <span class="go">$flounder</span>
-<span class="gp">&gt;_ </span><span class="nf">commandline </span><span class="no">-ct</span>
+<span class="gp">&gt;_ </span><span class="nf">commandline</span><span class="w"> </span><span class="no">-ct</span>
 <span class="go">$fl</span>
-<span class="gp">&gt;_ </span><span class="nf">commandline </span><span class="no">-b </span><span class="c"># or just commandline</span>
+<span class="gp">&gt;_ </span><span class="nf">commandline</span><span class="w"> </span><span class="no">-b</span><span class="w"> </span><span class="c"># or just commandline</span>
 <span class="go">echo $flounder &gt;&amp;2 | less; and echo $catfish</span>
-<span class="gp">&gt;_ </span><span class="nf">commandline </span><span class="no">-p</span>
+<span class="gp">&gt;_ </span><span class="nf">commandline</span><span class="w"> </span><span class="no">-p</span>
 <span class="go">echo $flounder &gt;&amp;2</span>
-<span class="gp">&gt;_ </span><span class="nf">commandline </span><span class="no">-j</span>
+<span class="gp">&gt;_ </span><span class="nf">commandline</span><span class="w"> </span><span class="no">-j</span>
 <span class="go">echo $flounder &gt;&amp;2 | less</span>
 </pre></div>
 </div>
@@ -249,7 +251,7 @@ For example, can be used to determine if moving the cursor to the right when alr
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -285,7 +287,7 @@ For example, can be used to determine if moving the cursor to the right when alr
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>fish_prompt - define the appearance of the command line prompt &#8212; fish-shell 4.0.9 documentation</title>
+    <title>fish_prompt - define the appearance of the command line prompt &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -119,17 +120,18 @@
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">fish_prompt</span></code> function is executed when the prompt is to be shown, and the output is used as a prompt.</p>
 <p>The exit status of commands within <code class="docutils literal notranslate"><span class="pre">fish_prompt</span></code> will not modify the value of <a class="reference internal" href="../language.html#variables-status"><span class="std std-ref">$status</span></a> outside of the <code class="docutils literal notranslate"><span class="pre">fish_prompt</span></code> function.</p>
+<p>If <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-fish_transient_prompt"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_transient_prompt</span></code></a> is set to 1, <code class="docutils literal notranslate"><span class="pre">fish_prompt</span> <span class="pre">--final-rendering</span></code> is run before executing the commandline.</p>
 <p><code class="docutils literal notranslate"><span class="pre">fish</span></code> ships with a number of example prompts that can be chosen with the <code class="docutils literal notranslate"><span class="pre">fish_config</span></code> command.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <p>A simple prompt:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt -d </span><span class="s2">&quot;Write out the prompt&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s2">&quot;Write out the prompt&quot;</span>
 <span class="w">    </span><span class="c"># This shows up as USER@HOST /home/user/ &gt;, with the directory colored</span>
 <span class="w">    </span><span class="c"># $USER and $hostname are set by fish, so you can just use them</span>
 <span class="w">    </span><span class="c"># instead of using `whoami` and `hostname`</span>
-<span class="w">    </span><span class="nf">printf </span><span class="s1">&#39;%s@%s %s%s%s &gt; &#39;</span><span class="w"> </span><span class="o">$USER</span><span class="w"> </span><span class="o">$hostname</span><span class="no"> \</span>
-<span class="no">        </span><span class="o">(</span><span class="nf">set_color </span><span class="o">$fish_color_cwd)</span><span class="w"> </span><span class="o">(</span><span class="nf">prompt_pwd</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color </span><span class="no">normal</span><span class="o">)</span>
+<span class="w">    </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s@%s %s%s%s &gt; &#39;</span><span class="w"> </span><span class="o">$USER</span><span class="w"> </span><span class="o">$hostname</span><span class="nv"> \</span>
+<span class="nv">        </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="o">$fish_color_cwd)</span><span class="w"> </span><span class="o">(</span><span class="nf">prompt_pwd</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">normal</span><span class="o">)</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
@@ -150,7 +152,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -186,7 +188,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

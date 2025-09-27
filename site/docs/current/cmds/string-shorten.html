@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>string-shorten - shorten strings to a width, with an ellipsis &#8212; fish-shell 4.0.9 documentation</title>
+    <title>string-shorten - shorten strings to a width, with an ellipsis &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -126,39 +127,39 @@
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">shorten foo foobar</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">foobar</span>
 <span class="go"># No width was given, we infer, and &quot;foo&quot; is the shortest.</span>
 <span class="go">foo</span>
 <span class="go">fo…</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">shorten --char=</span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="no">foo foobar</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">--char=</span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">foobar</span>
 <span class="go"># The target width is 3 because of &quot;foo&quot;,</span>
 <span class="go"># and our ellipsis is 3 too, so we can&#39;t really show anything.</span>
 <span class="go"># This is the default ellipsis if your locale doesn&#39;t allow &quot;…&quot;.</span>
 <span class="go">foo</span>
 <span class="go">...</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">shorten --char=</span><span class="s2">&quot;&quot;</span><span class="no"> --max 4 abcdef 123456</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">--char=</span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="no">--max</span><span class="w"> </span><span class="no">4</span><span class="w"> </span><span class="no">abcdef</span><span class="w"> </span><span class="no">123456</span>
 <span class="go"># Leaving the char empty makes us not add an ellipsis</span>
 <span class="go"># So this truncates at 4 columns:</span>
 <span class="go">abcd</span>
 <span class="go">1234</span>
 
-<span class="gp">&gt;_ </span><span class="nf">touch </span><span class="s2">&quot;a multiline&quot;</span><span class="se">\n</span><span class="s2">&quot;file&quot;</span>
-<span class="gp">&gt;_ </span><span class="nf">for</span><span class="w"> </span><span class="no">file</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">*</span><span class="p">;</span><span class="w"> </span><span class="nf">string </span><span class="no">shorten -N -- </span><span class="o">$file</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
+<span class="gp">&gt;_ </span><span class="nf">touch</span><span class="w"> </span><span class="s2">&quot;a multiline&quot;</span><span class="se">\n</span><span class="s2">&quot;file&quot;</span>
+<span class="gp">&gt;_ </span><span class="nf">for</span><span class="w"> </span><span class="no">file</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">*</span><span class="p">;</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">-N</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$file</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
 <span class="go"># Shorten the multiline file so we only show one line per file:</span>
 <span class="go">a multiline…</span>
 
-<span class="gp">&gt;_ </span><span class="nf">ss </span><span class="no">-p </span><span class="p">|</span><span class="w"> </span><span class="nf">string </span><span class="no">shorten -m</span><span class="o">$COLUMNS</span><span class="no"> -c </span><span class="s2">&quot;&quot;</span>
+<span class="gp">&gt;_ </span><span class="nf">ss</span><span class="w"> </span><span class="no">-p</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">-m</span><span class="o">$COLUMNS</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
 <span class="go"># `ss` from Linux&#39; iproute2 shows socket information, but prints extremely long lines.</span>
 <span class="go"># This shortens input so it fits on the screen without overflowing lines.</span>
 
-<span class="gp">&gt;_ </span><span class="nf">git </span><span class="no">branch </span><span class="p">|</span><span class="w"> </span><span class="nf">string </span><span class="no">match -rg </span><span class="s1">&#39;^\* (.*)&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string </span><span class="no">shorten -m20</span>
+<span class="gp">&gt;_ </span><span class="nf">git</span><span class="w"> </span><span class="no">branch</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rg</span><span class="w"> </span><span class="s1">&#39;^\* (.*)&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">-m20</span>
 <span class="go"># Take the current git branch and shorten it at 20 columns.</span>
 <span class="go"># Here the branch is &quot;builtin-path-with-expand&quot;</span>
 <span class="go">builtin-path-with-e…</span>
 
-<span class="gp">&gt;_ </span><span class="nf">git </span><span class="no">branch </span><span class="p">|</span><span class="w"> </span><span class="nf">string </span><span class="no">match -rg </span><span class="s1">&#39;^\* (.*)&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string </span><span class="no">shorten -m20 --left</span>
+<span class="gp">&gt;_ </span><span class="nf">git</span><span class="w"> </span><span class="no">branch</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rg</span><span class="w"> </span><span class="s1">&#39;^\* (.*)&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">shorten</span><span class="w"> </span><span class="no">-m20</span><span class="w"> </span><span class="no">--left</span>
 <span class="go"># Taking 20 columns from the right instead:</span>
 <span class="go">…in-path-with-expand</span>
 </pre></div>
@@ -188,7 +189,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -224,7 +225,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

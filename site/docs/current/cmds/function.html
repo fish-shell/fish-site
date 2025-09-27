@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>function - create a function &#8212; fish-shell 4.0.9 documentation</title>
+    <title>function - create a function &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -122,7 +123,11 @@
 </dd>
 <dt><strong>-d</strong> <em>DESCRIPTION</em> or <strong>--description</strong> <em>DESCRIPTION</em></dt><dd><p>A description of what the function does, suitable as a completion description.</p>
 </dd>
-<dt><strong>-w</strong> <em>WRAPPED_COMMAND</em> or <strong>--wraps</strong> <em>WRAPPED_COMMAND</em></dt><dd><p>Inherit completions from the given <em>WRAPPED_COMMAND</em>. See the documentation for <a class="reference internal" href="complete.html"><span class="doc">complete</span></a> for more information.</p>
+<dt><strong>-w</strong> <em>WRAPPED_COMMAND</em> or <strong>--wraps</strong> <em>WRAPPED_COMMAND</em></dt><dd><p>Inherit completions from the given <em>WRAPPED_COMMAND</em>.
+This is used to say that this function completes like that command,
+for example if you’re creating an alias.
+See the documentation for <a class="reference internal" href="complete.html"><span class="doc">complete</span></a> for more information.
+If the wrapped command is the same as the function name, this will be ignored.</p>
 </dd>
 <dt><strong>-e</strong> <em>EVENT_NAME</em> or <strong>--on-event</strong> <em>EVENT_NAME</em></dt><dd><p>Run this function when the specified named event is emitted. Fish internally generates named events, for example, when showing the prompt. Custom events can be emitted using the <a class="reference internal" href="emit.html"><span class="doc">emit</span></a> command.</p>
 </dd>
@@ -148,39 +153,39 @@ This will not trigger for <a class="reference internal" href="disown.html"><span
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">ll</span>
-<span class="w">    </span><span class="nf">ls </span><span class="no">-l </span><span class="o">$argv</span>
+<span class="w">    </span><span class="nf">ls</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="o">$argv</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>will run the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command, using the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option, while passing on any additional files and switches to <code class="docutils literal notranslate"><span class="pre">ls</span></code>.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">debug -a name val</span>
-<span class="w">    </span><span class="nf">echo </span><span class="no">[DEBUG] </span><span class="o">$name</span><span class="no">: </span><span class="o">$val</span><span class="w"> </span><span class="p">&gt;&amp;2</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">debug</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">name</span><span class="w"> </span><span class="no">val</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">[DEBUG]</span><span class="w"> </span><span class="o">$name</span><span class="no">:</span><span class="w"> </span><span class="o">$val</span><span class="w"> </span><span class="p">&gt;&amp;2</span>
 <span class="nf">end</span>
 
-<span class="nf">set </span><span class="no">foo bar</span>
-<span class="nf">debug </span><span class="no">foo bar</span>
+<span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">bar</span>
+<span class="nf">debug</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">bar</span>
 <span class="c"># prints: [DEBUG] foo: bar</span>
 
 <span class="c"># OR</span>
 
-<span class="nf">function</span><span class="no"> debug2 -a var</span>
-<span class="w">    </span><span class="nf">echo </span><span class="no">[DEBUG] </span><span class="o">$var</span><span class="no">: </span><span class="o">$$var</span><span class="w"> </span><span class="p">&gt;&amp;2</span>
+<span class="nf">function</span><span class="w"> </span><span class="no">debug2</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">var</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">[DEBUG]</span><span class="w"> </span><span class="o">$var</span><span class="no">:</span><span class="w"> </span><span class="o">$$var</span><span class="w"> </span><span class="p">&gt;&amp;2</span>
 <span class="nf">end</span>
 
-<span class="nf">set </span><span class="no">foo bar</span>
-<span class="nf">debug2 </span><span class="no">foo</span>
+<span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">bar</span>
+<span class="nf">debug2</span><span class="w"> </span><span class="no">foo</span>
 <span class="c"># prints: [DEBUG] foo: bar</span>
 </pre></div>
 </div>
 <p>will create a <code class="docutils literal notranslate"><span class="pre">debug</span></code> command to print chosen variables to <cite>stderr</cite>.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">mkdir -d </span><span class="s2">&quot;Create a directory and set CWD&quot;</span>
-<span class="w">    </span><span class="nf">command</span><span class="w"> </span><span class="nf">mkdir </span><span class="o">$argv</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="o">$status</span><span class="no"> = 0</span>
-<span class="w">        </span><span class="nf">switch</span><span class="w"> </span><span class="o">$argv[(</span><span class="nf">count </span><span class="o">$argv)]</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">mkdir</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s2">&quot;Create a directory and set CWD&quot;</span>
+<span class="w">    </span><span class="nf">command</span><span class="w"> </span><span class="nf">mkdir</span><span class="w"> </span><span class="o">$argv</span>
+<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="o">$status</span><span class="w"> </span><span class="no">=</span><span class="w"> </span><span class="no">0</span>
+<span class="w">        </span><span class="nf">switch</span><span class="w"> </span><span class="o">$argv[(</span><span class="nf">count</span><span class="w"> </span><span class="o">$argv)]</span>
 <span class="w">            </span><span class="nf">case</span><span class="w"> </span><span class="s1">&#39;-*&#39;</span>
 
 <span class="w">            </span><span class="nf">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span>
-<span class="w">                </span><span class="nf">cd </span><span class="o">$argv[(</span><span class="nf">count </span><span class="o">$argv)]</span>
+<span class="w">                </span><span class="nf">cd</span><span class="w"> </span><span class="o">$argv[(</span><span class="nf">count</span><span class="w"> </span><span class="o">$argv)]</span>
 <span class="w">                </span><span class="nf">return</span>
 <span class="w">        </span><span class="nf">end</span>
 <span class="w">    </span><span class="nf">end</span>
@@ -189,12 +194,12 @@ This will not trigger for <a class="reference internal" href="disown.html"><span
 </div>
 <p>This will run the <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> command, and if it is successful, change the current working directory to the one just created.</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">notify</span>
-<span class="w">    </span><span class="nf">set </span><span class="no">-l job </span><span class="o">(</span><span class="nf">jobs </span><span class="no">-l -g</span><span class="o">)</span>
-<span class="w">    </span><span class="o">or</span><span class="w"> </span><span class="nf">begin</span><span class="p">;</span><span class="w"> </span><span class="nf">echo </span><span class="s2">&quot;There are no jobs&quot;</span><span class="w"> </span><span class="p">&gt;&amp;2;</span><span class="w"> </span><span class="nf">return </span><span class="no">1</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
+<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">job</span><span class="w"> </span><span class="o">(</span><span class="nf">jobs</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">-g</span><span class="o">)</span>
+<span class="w">    </span><span class="o">or</span><span class="w"> </span><span class="nf">begin</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;There are no jobs&quot;</span><span class="w"> </span><span class="p">&gt;&amp;2;</span><span class="w"> </span><span class="nf">return</span><span class="w"> </span><span class="no">1</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
 
-<span class="w">    </span><span class="nf">function</span><span class="no"> _notify_job_</span><span class="o">$job</span><span class="w"> </span><span class="no">--on-job-exit </span><span class="o">$job</span><span class="w"> </span><span class="no">--inherit-variable job</span>
-<span class="w">        </span><span class="nf">echo </span><span class="no">-n </span><span class="se">\a</span><span class="w"> </span><span class="c"># beep</span>
-<span class="w">        </span><span class="nf">functions </span><span class="no">-e _notify_job_</span><span class="o">$job</span>
+<span class="w">    </span><span class="nf">function</span><span class="w"> </span><span class="no">_notify_job_</span><span class="o">$job</span><span class="w"> </span><span class="no">--on-job-exit</span><span class="w"> </span><span class="o">$job</span><span class="w"> </span><span class="no">--inherit-variable</span><span class="w"> </span><span class="no">job</span>
+<span class="w">        </span><span class="nf">echo</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="se">\a</span><span class="w"> </span><span class="c"># beep</span>
+<span class="w">        </span><span class="nf">functions</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">_notify_job_</span><span class="o">$job</span>
 <span class="w">    </span><span class="nf">end</span>
 <span class="nf">end</span>
 </pre></div>
@@ -225,7 +230,7 @@ This will not trigger for <a class="reference internal" href="disown.html"><span
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -261,7 +266,7 @@ This will not trigger for <a class="reference internal" href="disown.html"><span
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

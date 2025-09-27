@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>test - perform tests on files and text &#8212; fish-shell 4.0.9 documentation</title>
+    <title>test - perform tests on files and text &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -237,53 +238,53 @@
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>If the <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> directory exists, copy the <code class="docutils literal notranslate"><span class="pre">/etc/motd</span></code> file to it:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="no">-d /tmp</span>
-<span class="w">    </span><span class="nf">cp </span><span class="no">/etc/motd /tmp/motd</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="no">/tmp</span>
+<span class="w">    </span><span class="nf">cp</span><span class="w"> </span><span class="no">/etc/motd</span><span class="w"> </span><span class="no">/tmp/motd</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>If the variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MANPATH</span></code> is defined and not empty, print the contents. (If <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MANPATH</span></code> is not defined, then it will expand to zero arguments, unless quoted.)</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="no">-n </span><span class="s2">&quot;</span><span class="o">$MANPATH</span><span class="s2">&quot;</span>
-<span class="w">    </span><span class="nf">echo </span><span class="o">$MANPATH</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$MANPATH</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$MANPATH</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>Be careful with unquoted variables:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="no">-n </span><span class="o">$MANPATH</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="o">$MANPATH</span>
 <span class="w">    </span><span class="c"># This will also be reached if $MANPATH is unset,</span>
 <span class="w">    </span><span class="c"># because in that case we have `test -n`, so it checks if &quot;-n&quot; is non-empty, and it is.</span>
-<span class="w">    </span><span class="nf">echo </span><span class="o">$MANPATH</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$MANPATH</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>This will change in a future release of fish, or already with the <code class="docutils literal notranslate"><span class="pre">test-require-arg</span></code> <a class="reference internal" href="../language.html#featureflags"><span class="std std-ref">feature flag</span></a> - if $MANPATH is unset, <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">test</span> <span class="pre">-n</span> <span class="pre">$MANPATH</span></code> will be false.</p>
 <p>Parentheses and the <code class="docutils literal notranslate"><span class="pre">-o</span></code> and <code class="docutils literal notranslate"><span class="pre">-a</span></code> operators can be combined to produce more complicated expressions. In this example, success is printed if there is a <code class="docutils literal notranslate"><span class="pre">/foo</span></code> or <code class="docutils literal notranslate"><span class="pre">/bar</span></code> file as well as a <code class="docutils literal notranslate"><span class="pre">/baz</span></code> or <code class="docutils literal notranslate"><span class="pre">/bat</span></code> file.</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="se">\(</span><span class="w"> </span><span class="no">-f /foo -o -f /bar </span><span class="se">\)</span><span class="w"> </span><span class="no">-a </span><span class="se">\(</span><span class="w"> </span><span class="no">-f /baz -o -f /bat </span><span class="se">\)</span>
-<span class="w">    </span><span class="nf">echo </span><span class="no">Success.</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="se">\(</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">/foo</span><span class="w"> </span><span class="no">-o</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">/bar</span><span class="w"> </span><span class="se">\)</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="se">\(</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">/baz</span><span class="w"> </span><span class="no">-o</span><span class="w"> </span><span class="no">-f</span><span class="w"> </span><span class="no">/bat</span><span class="w"> </span><span class="se">\)</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">Success.</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
-<p>Numerical comparisons will simply fail if one of the operands is not a number:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="no">42 -eq </span><span class="s2">&quot;The answer to life, the universe and everything&quot;</span>
-<span class="w">    </span><span class="nf">echo </span><span class="no">So long and thanks for all the fish </span><span class="c"># will not be executed</span>
+<p>Numerical comparisons will fail if one of the operands is not a number:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">42</span><span class="w"> </span><span class="no">-eq</span><span class="w"> </span><span class="s2">&quot;The answer to life, the universe and everything&quot;</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">So</span><span class="w"> </span><span class="no">long</span><span class="w"> </span><span class="no">and</span><span class="w"> </span><span class="no">thanks</span><span class="w"> </span><span class="no">for</span><span class="w"> </span><span class="no">all</span><span class="w"> </span><span class="no">the</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="c"># will not be executed</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>A common comparison is with <span class="target" id="index-2"></span><a class="reference internal" href="../language.html#envvar-status"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">status</span></code></a>:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="o">$status</span><span class="w"> </span><span class="no">-eq 0</span>
-<span class="w">    </span><span class="nf">echo </span><span class="s2">&quot;Previous command succeeded&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="o">$status</span><span class="w"> </span><span class="no">-eq</span><span class="w"> </span><span class="no">0</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Previous command succeeded&quot;</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>The previous test can likewise be inverted:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="no">! </span><span class="o">$status</span><span class="w"> </span><span class="no">-eq 0</span>
-<span class="w">    </span><span class="nf">echo </span><span class="s2">&quot;Previous command failed&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">!</span><span class="w"> </span><span class="o">$status</span><span class="w"> </span><span class="no">-eq</span><span class="w"> </span><span class="no">0</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Previous command failed&quot;</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>which is logically equivalent to the following:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test </span><span class="o">$status</span><span class="w"> </span><span class="no">-ne 0</span>
-<span class="w">    </span><span class="nf">echo </span><span class="s2">&quot;Previous command failed&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="o">$status</span><span class="w"> </span><span class="no">-ne</span><span class="w"> </span><span class="no">0</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Previous command failed&quot;</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
@@ -323,7 +324,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -359,7 +360,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

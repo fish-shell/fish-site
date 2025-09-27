@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>continue - skip the remainder of the current iteration of the current inner loop &#8212; fish-shell 4.0.9 documentation</title>
+    <title>continue - skip the remainder of the current iteration of the current inner loop &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -114,18 +115,19 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">continue</span></code> skips the remainder of the current iteration of the current inner loop, such as a <a class="reference internal" href="for.html"><span class="doc">for</span></a> loop or a <a class="reference internal" href="while.html"><span class="doc">while</span></a> loop. It is usually added inside of a conditional block such as an <a class="reference internal" href="if.html"><span class="doc">if</span></a> statement or a <a class="reference internal" href="switch.html"><span class="doc">switch</span></a> statement.</p>
+<p>The <strong>-h</strong> or <strong>--help</strong> option displays help about using this command.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <p>The following code removes all tmp files that do not contain the word smurf.</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">*</span><span class="no">.tmp</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">grep </span><span class="no">smurf </span><span class="o">$i</span>
+<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="nf">grep</span><span class="w"> </span><span class="no">smurf</span><span class="w"> </span><span class="o">$i</span>
 <span class="w">        </span><span class="nf">continue</span>
 <span class="w">    </span><span class="nf">end</span>
 <span class="w">    </span><span class="c"># This &quot;rm&quot; is skipped over if &quot;continue&quot; is executed.</span>
-<span class="nf">    rm </span><span class="o">$i</span>
+<span class="w">    </span><span class="nf">rm</span><span class="w"> </span><span class="o">$i</span>
 <span class="w">    </span><span class="c"># As is this &quot;echo&quot;</span>
-<span class="w">    </span><span class="nf">echo </span><span class="o">$i</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">$i</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
@@ -152,7 +154,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -188,7 +190,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

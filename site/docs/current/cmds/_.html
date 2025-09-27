@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>_ - call fish’s translations &#8212; fish-shell 4.0.9 documentation</title>
+    <title>_ - call fish’s translations &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -114,9 +115,12 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">_</span></code> translates its arguments into the current language, if possible.</p>
-<p>It is equivalent to <code class="docutils literal notranslate"><span class="pre">gettext</span> <span class="pre">fish</span> <span class="pre">STRING</span></code>, meaning it can only be used to look up fish’s own translations.</p>
-<p>It requires fish to be built with gettext support. If that support is disabled, or there is no translation it will simply echo the argument back.</p>
-<p>The language depends on the current locale, set with <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-LANG"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LANG</span></code></a> and <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-LC_MESSAGES"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LC_MESSAGES</span></code></a>.</p>
+<p>This only works with messages which are translated as part of fish’s own sources, so using it as part of your own fish scripts which are not upstreamed into the fish repo will not work unless the exact same message also exists upstream.</p>
+<p>It requires fish to be built with gettext support. If that support is disabled or there is no translation it will echo the argument back.</p>
+<p>The language depends on the current locale, set with <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-LANG"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LANG</span></code></a>, <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-LC_MESSAGES"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LC_MESSAGES</span></code></a>, <span class="target" id="index-2"></span><a class="reference internal" href="../language.html#envvar-LC_ALL"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LC_ALL</span></code></a>, and <span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LANGUAGE</span></code>.
+These variables do not have to be exported for fish to use them, and fish’s variable scopes are supported.
+If other programs launched via fish should respect these locale variables they have to be exported to make them available outside of fish.</p>
+<p>For <span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LANGUAGE</span></code> you can use a list, or use colons to separate multiple languages.</p>
 </section>
 <section id="options">
 <h2>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
@@ -124,10 +128,23 @@
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">_ </span><span class="no">File</span>
+<p>Use German translations:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">LANG</span><span class="w"> </span><span class="no">de_DE.UTF-8</span>
+<span class="gp">&gt; </span><span class="nf">_</span><span class="w"> </span><span class="no">file</span>
 <span class="go">Datei</span>
 </pre></div>
 </div>
+<p>Specify a precedence of languages (only works with <span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LANGUAGE</span></code>):</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">LANGUAGE</span><span class="w"> </span><span class="no">pt</span><span class="w"> </span><span class="no">de</span>
+<span class="gp">&gt; </span><span class="nf">_</span><span class="w"> </span><span class="no">file</span><span class="w">  </span><span class="c"># This message has a Portuguese translation.</span>
+<span class="go">arquivo</span>
+<span class="gp">&gt; </span><span class="nf">_</span><span class="w"> </span><span class="s2">&quot;Invalid arguments&quot;</span><span class="w">  </span><span class="c"># This message does not have a Portuguese translation, but a German one.</span>
+<span class="go">Ungültige Argumente</span>
+<span class="gp">&gt; </span><span class="nf">_</span><span class="w"> </span><span class="no">untranslatable</span><span class="w">  </span><span class="c"># No translation in Portuguese, nor in German.</span>
+<span class="go">untranslatable</span>
+</pre></div>
+</div>
+<p>Note that the specific examples may change if translations are added/modified.</p>
 </section>
 </section>
 
@@ -145,7 +162,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -181,7 +198,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>complete - edit command-specific tab-completions &#8212; fish-shell 4.0.9 documentation</title>
+    <title>complete - edit command-specific tab-completions &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -146,7 +147,9 @@ If this is <em>not</em> given, the option argument must be attached like <code c
 </dd>
 <dt><strong>-d</strong> or <strong>--description</strong> <em>DESCRIPTION</em></dt><dd><p>Add a description for this completion, to be shown in the completion pager.</p>
 </dd>
-<dt><strong>-w</strong> or <strong>--wraps</strong> <em>WRAPPED_COMMAND</em></dt><dd><p>Causes the specified command to inherit completions from <em>WRAPPED_COMMAND</em> (see below for details).</p>
+<dt><strong>-w</strong> or <strong>--wraps</strong> <em>WRAPPED_COMMAND</em></dt><dd><p>Causes the specified command to inherit completions from <em>WRAPPED_COMMAND</em>.
+This is used for “this command completes like that other command” kinds of relationships.
+See below for details.</p>
 </dd>
 <dt><strong>-n</strong> or <strong>--condition</strong> <em>CONDITION</em></dt><dd><p>This completion should only be used if the <em>CONDITION</em> (a shell command) returns 0. This makes it possible to specify completions that should only be used in some cases. If multiple conditions are specified, fish will try them in the order they are specified until one fails or all succeeded.</p>
 </dd>
@@ -176,29 +179,29 @@ If this is <em>not</em> given, the option argument must be attached like <code c
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>The short-style option <code class="docutils literal notranslate"><span class="pre">-o</span></code> for the <code class="docutils literal notranslate"><span class="pre">gcc</span></code> command needs a file argument:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete </span><span class="no">-c gcc -s o -r</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">gcc</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-r</span>
 </pre></div>
 </div>
 <p>The short-style option <code class="docutils literal notranslate"><span class="pre">-d</span></code> for the <code class="docutils literal notranslate"><span class="pre">grep</span></code> command requires one of <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">skip</span></code> or <code class="docutils literal notranslate"><span class="pre">recurse</span></code>:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete </span><span class="no">-c grep -s d -x -a </span><span class="s2">&quot;read skip recurse&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">grep</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">d</span><span class="w"> </span><span class="no">-x</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;read skip recurse&quot;</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">su</span></code> command takes any username as an argument. Usernames are given as the first colon-separated field in the file /etc/passwd. This can be specified as:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete </span><span class="no">-x -c su -d </span><span class="s2">&quot;Username&quot;</span><span class="w"> </span><span class="no">-a </span><span class="s2">&quot;(cat /etc/passwd | cut -d : -f 1)&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-x</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">su</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s2">&quot;Username&quot;</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s2">&quot;(cat /etc/passwd | cut -d : -f 1)&quot;</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">rpm</span></code> command has several different modes. If the <code class="docutils literal notranslate"><span class="pre">-e</span></code> or <code class="docutils literal notranslate"><span class="pre">--erase</span></code> flag has been specified, <code class="docutils literal notranslate"><span class="pre">rpm</span></code> should delete one or more packages, in which case several switches related to deleting packages are valid, like the <code class="docutils literal notranslate"><span class="pre">nodeps</span></code> switch.</p>
 <p>This can be written as:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete </span><span class="no">-c rpm -n </span><span class="s2">&quot;__fish_contains_opt -s e erase&quot;</span><span class="w"> </span><span class="no">-l nodeps -d </span><span class="s2">&quot;Don&#39;t check dependencies&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">rpm</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="s2">&quot;__fish_contains_opt -s e erase&quot;</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">nodeps</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s2">&quot;Don&#39;t check dependencies&quot;</span>
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">__fish_contains_opt</span></code> is a function that checks the command line buffer for the presence of a specified set of options.</p>
 <p>To implement an alias, use the <code class="docutils literal notranslate"><span class="pre">-w</span></code> or <code class="docutils literal notranslate"><span class="pre">--wraps</span></code> option:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete </span><span class="no">-c hub -w git</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">hub</span><span class="w"> </span><span class="no">-w</span><span class="w"> </span><span class="no">git</span>
 </pre></div>
 </div>
 <p>Now hub inherits all of the completions from git. Note this can also be specified in a function declaration (<code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">thing</span> <span class="pre">-w</span> <span class="pre">otherthing</span></code>).</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete </span><span class="no">-c git</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">git</span>
 </pre></div>
 </div>
 <p>Shows all completions for <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
@@ -220,7 +223,7 @@ If this is <em>not</em> given, the option argument must be attached like <code c
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -256,7 +259,7 @@ If this is <em>not</em> given, the option argument must be attached like <code c
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

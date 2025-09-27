@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>history - show and manipulate command history &#8212; fish-shell 4.0.9 documentation</title>
+    <title>history - show and manipulate command history &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -126,9 +127,9 @@
 <p><code class="docutils literal notranslate"><span class="pre">history</span></code> is used to search, delete, and otherwise manipulate the <a class="reference internal" href="../interactive.html#history-search"><span class="std std-ref">history of interactive commands</span></a>.</p>
 <p>The following operations (sub-commands) are available:</p>
 <dl class="simple">
-<dt><strong>search</strong></dt><dd><p>Returns history items matching the search string. If no search string is provided it returns all history items. This is the default operation if no other operation is specified. You only have to explicitly say <code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">search</span></code> if you wish to search for one of the subcommands. The <code class="docutils literal notranslate"><span class="pre">--contains</span></code> search option will be used if you don’t specify a different search option. Entries are ordered newest to oldest unless you use the <code class="docutils literal notranslate"><span class="pre">--reverse</span></code> flag. If stdout is attached to a tty the output will be piped through your pager by the history function. The history builtin simply writes the results to stdout.</p>
+<dt><strong>search</strong></dt><dd><p>Returns history items matching the search string. If no search string is provided it returns all history items. This is the default operation if no other operation is specified. You only have to explicitly say <code class="docutils literal notranslate"><span class="pre">history</span> <span class="pre">search</span></code> if you wish to search for one of the subcommands. The <code class="docutils literal notranslate"><span class="pre">--contains</span></code> search option will be used if you don’t specify a different search option. Entries are ordered newest to oldest unless you use the <code class="docutils literal notranslate"><span class="pre">--reverse</span></code> flag. If stdout is attached to a tty the output will be piped through your pager by the history function. The history builtin writes the results to stdout.</p>
 </dd>
-<dt><strong>delete</strong></dt><dd><p>Deletes history items. The <code class="docutils literal notranslate"><span class="pre">--contains</span></code> search option will be used if you don’t specify a different search option. If you don’t specify <code class="docutils literal notranslate"><span class="pre">--exact</span></code> a prompt will be displayed before any items are deleted asking you which entries are to be deleted. You can enter the word “all” to delete all matching entries. You can enter a single ID (the number in square brackets) to delete just that single entry. You can enter more than one ID, or an ID range separated by a space to delete multiple entries. Just press [enter] to not delete anything. Note that the interactive delete behavior is a feature of the history function. The history builtin only supports <code class="docutils literal notranslate"><span class="pre">--exact</span> <span class="pre">--case-sensitive</span></code> deletion.</p>
+<dt><strong>delete</strong></dt><dd><p>Deletes history items. The <code class="docutils literal notranslate"><span class="pre">--contains</span></code> search option will be used if you don’t specify a different search option. If you don’t specify <code class="docutils literal notranslate"><span class="pre">--exact</span></code> a prompt will be displayed before any items are deleted asking you which entries are to be deleted. You can enter the word “all” to delete all matching entries. You can enter a single ID (the number in square brackets) to delete just that single entry. You can enter more than one ID, or an ID range separated by a space to delete multiple entries. Press [enter] to not delete anything. Note that the interactive delete behavior is a feature of the history function. The history builtin only supports <code class="docutils literal notranslate"><span class="pre">--exact</span> <span class="pre">--case-sensitive</span></code> deletion.</p>
 </dd>
 <dt><strong>merge</strong></dt><dd><p>Immediately incorporates history changes from other sessions. Ordinarily <code class="docutils literal notranslate"><span class="pre">fish</span></code> ignores history changes from sessions started after the current one. This command applies those changes immediately.</p>
 </dd>
@@ -144,7 +145,7 @@
 <p>The following options are available:</p>
 <p>These flags can appear before or immediately after one of the sub-commands listed above.</p>
 <dl class="simple">
-<dt><strong>-C</strong> or <strong>--case-sensitive</strong></dt><dd><p>Does a case-sensitive search. The default is case-insensitive. Note that prior to fish 2.4.0 the default was case-sensitive.</p>
+<dt><strong>-C</strong> or <strong>--case-sensitive</strong></dt><dd><p>Does a case-sensitive search. The default is case-insensitive.</p>
 </dd>
 <dt><strong>-c</strong> or <strong>--contains</strong></dt><dd><p>Searches items in the history that contain the specified text string. This is the default for the <strong>--search</strong> flag. This is not currently supported by the <strong>delete</strong> subcommand.</p>
 </dd>
@@ -166,13 +167,13 @@
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">history </span><span class="no">clear</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">history</span><span class="w"> </span><span class="no">clear</span>
 <span class="c"># Deletes all history items</span>
 
-<span class="nf">history </span><span class="no">search --contains </span><span class="s2">&quot;foo&quot;</span>
+<span class="nf">history</span><span class="w"> </span><span class="no">search</span><span class="w"> </span><span class="no">--contains</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span>
 <span class="c"># Outputs a list of all previous commands containing the string &quot;foo&quot;.</span>
 
-<span class="nf">history </span><span class="no">delete --prefix </span><span class="s2">&quot;foo&quot;</span>
+<span class="nf">history</span><span class="w"> </span><span class="no">delete</span><span class="w"> </span><span class="no">--prefix</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span>
 <span class="c"># Interactively deletes commands which start with &quot;foo&quot; from the history.</span>
 <span class="c"># You can select more than one entry by entering their IDs separated by a space.</span>
 </pre></div>
@@ -206,7 +207,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -242,7 +243,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

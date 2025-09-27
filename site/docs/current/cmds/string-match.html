@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>string-match - match substrings &#8212; fish-shell 4.0.9 documentation</title>
+    <title>string-match - match substrings &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -120,9 +121,9 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> tests each <em>STRING</em> against <em>PATTERN</em> and prints matching substrings. Only the first match for each <em>STRING</em> is reported unless <strong>-a</strong> or <strong>--all</strong> is given, in which case all matches are reported.</p>
-<p>If you specify the <strong>-e</strong> or <strong>--entire</strong> then each matching string is printed including any prefix or suffix not matched by the pattern (equivalent to <code class="docutils literal notranslate"><span class="pre">grep</span></code> without the <strong>-o</strong> flag). You can, obviously, achieve the same result by prepending and appending <strong>*</strong> or <strong>.*</strong> depending on whether or not you have specified the <strong>--regex</strong> flag. The <strong>--entire</strong> flag is simply a way to avoid having to complicate the pattern in that fashion and make the intent of the <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> clearer. Without <strong>--entire</strong> and <strong>--regex</strong>, a <em>PATTERN</em> will need to match the entire <em>STRING</em> before it will be reported.</p>
+<p>If you specify the <strong>-e</strong> or <strong>--entire</strong> then each matching string is printed including any prefix or suffix not matched by the pattern (equivalent to <code class="docutils literal notranslate"><span class="pre">grep</span></code> without the <strong>-o</strong> flag). You can, obviously, achieve the same result by prepending and appending <strong>*</strong> or <strong>.*</strong> depending on whether or not you have specified the <strong>--regex</strong> flag. The <strong>--entire</strong> flag is a way to avoid having to complicate the pattern in that fashion and make the intent of the <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> clearer. Without <strong>--entire</strong> and <strong>--regex</strong>, a <em>PATTERN</em> will need to match the entire <em>STRING</em> before it will be reported.</p>
 <p>Matching can be made case-insensitive with <strong>--ignore-case</strong> or <strong>-i</strong>.</p>
-<p>If <strong>--groups-only</strong> or <strong>-g</strong> is given, only the capturing groups will be reported - meaning the full match will be skipped. This is incompatible with <strong>--entire</strong> and <strong>--invert</strong>, and requires <strong>--regex</strong>. It is useful as a simple cutting tool instead of <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">replace</span></code>, so you can simply choose “this part” of a string.</p>
+<p>If <strong>--groups-only</strong> or <strong>-g</strong> is given, only the capturing groups will be reported - meaning the full match will be skipped. This is incompatible with <strong>--entire</strong> and <strong>--invert</strong>, and requires <strong>--regex</strong>. It is useful as a simple cutting tool instead of <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">replace</span></code>, so you can choose “this part” of a string.</p>
 <p>If <strong>--index</strong> or <strong>-n</strong> is given, each match is reported as a 1-based start position and a length. By default, PATTERN is interpreted as a glob pattern matched against each entire <em>STRING</em> argument. A glob pattern is only considered a valid match if it matches the entire <em>STRING</em>.</p>
 <p>If <strong>--regex</strong> or <strong>-r</strong> is given, <em>PATTERN</em> is interpreted as a Perl-compatible regular expression, which does not have to match the entire <em>STRING</em>. For a regular expression containing capturing groups, multiple items will be reported for each match, one for the entire match and one for each capturing group. With this, only the matching part of the <em>STRING</em> will be reported, unless <strong>--entire</strong> is given.</p>
 <p>When matching via regular expressions, <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">match</span></code> automatically sets variables for all named capturing groups (<code class="docutils literal notranslate"><span class="pre">(?&lt;name&gt;expression)</span></code>). It will create a variable with the name of the group, in the default scope, for each named capturing group, and set it to the value of the capturing group in the first matched argument. If a named capture group matched an empty string, the variable will be set to the empty string (like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">var</span> <span class="pre">&quot;&quot;</span></code>). If it did not match, the variable will be set to nothing (like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">var</span></code>).  When <strong>--regex</strong> is used with <strong>--all</strong>, this behavior changes. Each named variable will contain a list of matches, with the first match contained in the first element, the second match in the second, and so on. If the group was empty or did not match, the corresponding element will be an empty string.</p>
@@ -134,34 +135,34 @@
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <section id="match-glob-examples">
 <h3>Match Glob Examples<a class="headerlink" href="#match-glob-examples" title="Link to this heading">¶</a></h3>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match </span><span class="s1">&#39;a&#39;</span><span class="no"> a</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="no">a</span>
 <span class="go">a</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match </span><span class="s1">&#39;a*b&#39;</span><span class="no"> axxb</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;a*b&#39;</span><span class="w"> </span><span class="no">axxb</span>
 <span class="go">axxb</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -i </span><span class="s1">&#39;a*B&#39;</span><span class="no"> Axxb</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-i</span><span class="w"> </span><span class="s1">&#39;a*B&#39;</span><span class="w"> </span><span class="no">Axxb</span>
 <span class="go">Axxb</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -- </span><span class="s1">&#39;-*&#39;</span><span class="no"> -h foo --version bar</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="s1">&#39;-*&#39;</span><span class="w"> </span><span class="no">-h</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">--version</span><span class="w"> </span><span class="no">bar</span>
 <span class="go"># To match things that look like options, we need a `--`</span>
 <span class="go"># to tell string its options end there.</span>
 <span class="go">-h</span>
 <span class="go">--version</span>
 
-<span class="gp">&gt;_ </span><span class="nf">echo </span><span class="s1">&#39;ok?&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string </span><span class="no">match </span><span class="s1">&#39;*?&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="s1">&#39;ok?&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;*?&#39;</span>
 <span class="go">ok?</span>
 
 <span class="go"># Note that only the second STRING will match here.</span>
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span>
 <span class="go">foo</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -e </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span>
 <span class="go">foo1</span>
 <span class="go">foo</span>
 <span class="go">foo2</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match </span><span class="s1">&#39;foo*&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="s1">&#39;foo*&#39;</span><span class="w"> </span><span class="s1">&#39;foo1&#39;</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="s1">&#39;foo2&#39;</span>
 <span class="go">foo1</span>
 <span class="go">foo2</span>
 </pre></div>
@@ -169,10 +170,10 @@
 </section>
 <section id="match-regex-examples">
 <h3>Match Regex Examples<a class="headerlink" href="#match-regex-examples" title="Link to this heading">¶</a></h3>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -r </span><span class="s1">&#39;cat|dog|fish&#39;</span><span class="w"> </span><span class="s1">&#39;nice dog&#39;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;cat|dog|fish&#39;</span><span class="w"> </span><span class="s1">&#39;nice dog&#39;</span>
 <span class="go">dog</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -r -v </span><span class="s2">&quot;c.*[12]&quot;</span><span class="w"> </span><span class="o">{</span><span class="no">cat</span><span class="o">,</span><span class="no">dog</span><span class="o">}(</span><span class="nf">seq </span><span class="no">1 4</span><span class="o">)</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-v</span><span class="w"> </span><span class="s2">&quot;c.*[12]&quot;</span><span class="w"> </span><span class="o">{</span><span class="no">cat</span><span class="o">,</span><span class="no">dog</span><span class="o">}(</span><span class="nf">seq</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">4</span><span class="o">)</span>
 <span class="go">dog1</span>
 <span class="go">dog2</span>
 <span class="go">cat3</span>
@@ -180,47 +181,47 @@
 <span class="go">cat4</span>
 <span class="go">dog4</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -r -- </span><span class="s1">&#39;-.*&#39;</span><span class="no"> -h foo --version bar</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="s1">&#39;-.*&#39;</span><span class="w"> </span><span class="no">-h</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">--version</span><span class="w"> </span><span class="no">bar</span>
 <span class="go"># To match things that look like options, we need a `--`</span>
 <span class="go"># to tell string its options end there.</span>
 <span class="go">-h</span>
 <span class="go">--version</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -r </span><span class="s1">&#39;(\d\d?):(\d\d):(\d\d)&#39;</span><span class="no"> 2:34:56</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;(\d\d?):(\d\d):(\d\d)&#39;</span><span class="w"> </span><span class="no">2:34:56</span>
 <span class="go">2:34:56</span>
 <span class="go">2</span>
 <span class="go">34</span>
 <span class="go">56</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -r </span><span class="s1">&#39;^(\w{2,4})\1$&#39;</span><span class="no"> papa mud murmur</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;^(\w{2,4})\1$&#39;</span><span class="w"> </span><span class="no">papa</span><span class="w"> </span><span class="no">mud</span><span class="w"> </span><span class="no">murmur</span>
 <span class="go">papa</span>
 <span class="go">pa</span>
 <span class="go">murmur</span>
 <span class="go">mur</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -r -a -n at ratatat</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="no">at</span><span class="w"> </span><span class="no">ratatat</span>
 <span class="go">2 2</span>
 <span class="go">4 2</span>
 <span class="go">6 2</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -r -i </span><span class="s1">&#39;0x[0-9a-f]{1,8}&#39;</span><span class="w"> </span><span class="s1">&#39;int magic = 0xBadC0de;&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-i</span><span class="w"> </span><span class="s1">&#39;0x[0-9a-f]{1,8}&#39;</span><span class="w"> </span><span class="s1">&#39;int magic = 0xBadC0de;&#39;</span>
 <span class="go">0xBadC0de</span>
 
-<span class="gp">&gt;_ </span><span class="nf">echo </span><span class="o">$version</span>
+<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="o">$version</span>
 <span class="go">3.1.2-1575-ga2ff32d90</span>
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -rq </span><span class="s1">&#39;(?&lt;major&gt;\d+).(?&lt;minor&gt;\d+).(?&lt;revision&gt;\d+)&#39;</span><span class="w"> </span><span class="no">-- </span><span class="o">$version</span>
-<span class="gp">&gt;_ </span><span class="nf">echo </span><span class="s2">&quot;You are using fish </span><span class="o">$major</span><span class="s2">!&quot;</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rq</span><span class="w"> </span><span class="s1">&#39;(?&lt;major&gt;\d+).(?&lt;minor&gt;\d+).(?&lt;revision&gt;\d+)&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$version</span>
+<span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;You are using fish </span><span class="o">$major</span><span class="s2">!&quot;</span>
 <span class="go">You are using fish 3!</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -raq </span><span class="s1">&#39; *(?&lt;sentence&gt;[^.!?]+)(?&lt;punctuation&gt;[.!?])?&#39;</span><span class="w"> </span><span class="s2">&quot;hello, friend. goodbye&quot;</span>
-<span class="gp">&gt;_ </span><span class="nf">printf </span><span class="s2">&quot;%s\n&quot;</span><span class="w"> </span><span class="no">-- </span><span class="o">$sentence</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-raq</span><span class="w"> </span><span class="s1">&#39; *(?&lt;sentence&gt;[^.!?]+)(?&lt;punctuation&gt;[.!?])?&#39;</span><span class="w"> </span><span class="s2">&quot;hello, friend. goodbye&quot;</span>
+<span class="gp">&gt;_ </span><span class="nf">printf</span><span class="w"> </span><span class="s2">&quot;%s\n&quot;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$sentence</span>
 <span class="go">hello, friend</span>
 <span class="go">goodbye</span>
-<span class="gp">&gt;_ </span><span class="nf">printf </span><span class="s2">&quot;%s\n&quot;</span><span class="w"> </span><span class="no">-- </span><span class="o">$punctuation</span>
+<span class="gp">&gt;_ </span><span class="nf">printf</span><span class="w"> </span><span class="s2">&quot;%s\n&quot;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="o">$punctuation</span>
 <span class="go">.</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">match -rq </span><span class="s1">&#39;(?&lt;word&gt;hello)&#39;</span><span class="w"> </span><span class="s1">&#39;hi&#39;</span>
-<span class="gp">&gt;_ </span><span class="nf">count </span><span class="o">$word</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">match</span><span class="w"> </span><span class="no">-rq</span><span class="w"> </span><span class="s1">&#39;(?&lt;word&gt;hello)&#39;</span><span class="w"> </span><span class="s1">&#39;hi&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">count</span><span class="w"> </span><span class="o">$word</span>
 <span class="go">0</span>
 </pre></div>
 </div>
@@ -242,7 +243,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -278,7 +279,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>string-replace - replace substrings &#8212; fish-shell 4.0.9 documentation</title>
+    <title>string-replace - replace substrings &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -128,28 +129,28 @@
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <section id="replace-literal-examples">
 <h3>Replace Literal Examples<a class="headerlink" href="#replace-literal-examples" title="Link to this heading">¶</a></h3>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">replace is was </span><span class="s1">&#39;blue is my favorite&#39;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">was</span><span class="w"> </span><span class="s1">&#39;blue is my favorite&#39;</span>
 <span class="go">blue was my favorite</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">replace 3rd last 1st 2nd 3rd</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">3rd</span><span class="w"> </span><span class="no">last</span><span class="w"> </span><span class="no">1st</span><span class="w"> </span><span class="no">2nd</span><span class="w"> </span><span class="no">3rd</span>
 <span class="go">1st</span>
 <span class="go">2nd</span>
 <span class="go">last</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">replace -a </span><span class="s1">&#39; &#39;</span><span class="no"> _ </span><span class="s1">&#39;spaces to underscores&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="no">_</span><span class="w"> </span><span class="s1">&#39;spaces to underscores&#39;</span>
 <span class="go">spaces_to_underscores</span>
 </pre></div>
 </div>
 </section>
 <section id="replace-regex-examples">
 <h3>Replace Regex Examples<a class="headerlink" href="#replace-regex-examples" title="Link to this heading">¶</a></h3>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">replace -r -a </span><span class="s1">&#39;[^\d.]+&#39;</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="s1">&#39;0 one two 3.14 four 5x&#39;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="s1">&#39;[^\d.]+&#39;</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="s1">&#39;0 one two 3.14 four 5x&#39;</span>
 <span class="go">0 3.14 5</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">replace -r </span><span class="s1">&#39;(\w+)\s+(\w+)&#39;</span><span class="w"> </span><span class="s1">&#39;$2 $1 $$&#39;</span><span class="w"> </span><span class="s1">&#39;left right&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;(\w+)\s+(\w+)&#39;</span><span class="w"> </span><span class="s1">&#39;$2 $1 $$&#39;</span><span class="w"> </span><span class="s1">&#39;left right&#39;</span>
 <span class="go">right left $</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">replace -r </span><span class="s1">&#39;\s*newline\s*&#39;</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="s1">&#39;put a newline here&#39;</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">replace</span><span class="w"> </span><span class="no">-r</span><span class="w"> </span><span class="s1">&#39;\s*newline\s*&#39;</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="s1">&#39;put a newline here&#39;</span>
 <span class="go">put a</span>
 <span class="go">here</span>
 </pre></div>
@@ -172,7 +173,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -208,7 +209,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

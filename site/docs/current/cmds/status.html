@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>status - query fish runtime information &#8212; fish-shell 4.0.9 documentation</title>
+    <title>status - query fish runtime information &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -128,7 +129,11 @@
 <span class="nf">status</span><span class="w"> </span><span class="no">job-control</span><span class="w"> </span><span class="no">CONTROL_TYPE</span>
 <span class="nf">status</span><span class="w"> </span><span class="no">features</span>
 <span class="nf">status</span><span class="w"> </span><span class="no">test-feature</span><span class="w"> </span><span class="no">FEATURE</span>
-<span class="nf">status</span><span class="w"> </span><span class="no">buildinfo</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">build-info</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">get-file</span><span class="w"> </span><span class="no">FILE</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">list-files</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">PATH</span><span class="g g-Other">]</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">terminal</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">test-terminal-feature</span><span class="w"> </span><span class="no">FEATURE</span>
 </pre></div>
 </div>
 </section>
@@ -175,18 +180,42 @@
 </dd>
 <dt><strong>job-control</strong>, <strong>-j</strong> or <strong>--job-control</strong> <em>CONTROL_TYPE</em></dt><dd><p>Sets the job control type to <em>CONTROL_TYPE</em>, which can be <strong>none</strong>, <strong>full</strong>, or <strong>interactive</strong>.</p>
 </dd>
-<dt><strong>features</strong></dt><dd><p>Lists all available feature flags.</p>
+<dt><strong>features</strong></dt><dd><p>Lists all available <a class="reference internal" href="../language.html#featureflags"><span class="std std-ref">feature flags</span></a>.</p>
 </dd>
 <dt><strong>test-feature</strong> <em>FEATURE</em></dt><dd><p>Returns 0 when FEATURE is enabled, 1 if it is disabled, and 2 if it is not recognized.</p>
 </dd>
-<dt><strong>buildinfo</strong></dt><dd><p>This prints information on how fish was build - which architecture, which build system or profile was used, etc.
+<dt><strong>build-info</strong></dt><dd><p>This prints information on how fish was build - which architecture, which build system or profile was used, etc.
 This is mainly useful for debugging.</p>
+</dd>
+</dl>
+<dl id="status-get-file">
+<dt><strong>get-file</strong> <em>FILE</em></dt><dd><p>NOTE: this subcommand is mainly intended for fish’s internal use; let us know if you want to use it elsewhere.</p>
+<p>This prints a file embedded in the fish binary at compile time. This includes the default set of functions and completions,
+as well as the man pages and themes. Which files are included depends on build settings.
+Returns 0 if the file was included, 1 otherwise.</p>
+</dd>
+<dt><strong>list-files</strong> <em>FILE</em></dt><dd><p>NOTE: this subcommand is mainly intended for fish’s internal use; let us know if you want to use it elsewhere.</p>
+<p>This lists the files embedded in the fish binary at compile time. Only files where the path starts with the optional <em>FILE</em> argument are shown.
+Returns 0 if something was printed, 1 otherwise.</p>
+</dd>
+</dl>
+<dl class="simple" id="status-terminal">
+<dt><strong>terminal</strong></dt><dd><p>Prints the name and version of the terminal fish is running inside (for example as reported via <a class="reference internal" href="../terminal-compatibility.html#term-compat-xtversion"><span class="std std-ref">XTVERSION</span></a>).
+This is not available during early startup but only starting from when the first interactive prompt is shown, possibly via builtin <a class="reference internal" href="read.html"><span class="doc">read</span></a>,
+so before the first <code class="docutils literal notranslate"><span class="pre">fish_prompt</span></code> or <code class="docutils literal notranslate"><span class="pre">fish_read</span></code> <a class="reference internal" href="../language.html#event"><span class="std std-ref">event</span></a>.</p>
+</dd>
+</dl>
+<dl id="status-test-terminal-features">
+<dt><strong>test-terminal-feature</strong> <em>FEATURE</em></dt><dd><p>Returns 0 when the terminal was <a class="reference internal" href="../terminal-compatibility.html#term-compat-xtgettcap"><span class="std std-ref">detected</span></a> to support the given feature.
+Like <a class="reference internal" href="#status-terminal"><span class="std std-ref">status terminal</span></a>, this only works once the first interactive prompt is shown.</p>
+<p>Currently the only available <em>FEATURE</em> is <a class="reference internal" href="../terminal-compatibility.html#term-compat-indn"><span class="std std-ref">scroll-content-up</span></a>.
+An error will be printed when passed an unrecognized feature.</p>
 </dd>
 </dl>
 </section>
 <section id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h2>
-<p>For backwards compatibility most subcommands can also be specified as a long or short option. For example, rather than <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">is-login</span></code> you can type <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">--is-login</span></code>. The flag forms are deprecated and may be removed in a future release (but not before fish 4.0).</p>
+<p>For backwards compatibility most subcommands can also be specified as a long or short option. For example, rather than <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">is-login</span></code> you can type <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">--is-login</span></code>. The flag forms are deprecated and may be removed in a future release.</p>
 <p>You can only specify one subcommand per invocation even if you use the flag form of the subcommand.</p>
 </section>
 </section>
@@ -205,7 +234,7 @@ This is mainly useful for debugging.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -241,7 +270,7 @@ This is mainly useful for debugging.</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

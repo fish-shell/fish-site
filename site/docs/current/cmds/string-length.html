@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>string-length - print string lengths &#8212; fish-shell 4.0.9 documentation</title>
+    <title>string-length - print string lengths &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -117,28 +118,28 @@
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">length </span><span class="s1">&#39;hello, world&#39;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="s1">&#39;hello, world&#39;</span>
 <span class="go">12</span>
 
-<span class="gp">&gt;_ </span><span class="nf">set </span><span class="no">str foo</span>
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">length -q </span><span class="o">$str</span><span class="p">;</span><span class="w"> </span><span class="nf">echo </span><span class="o">$status</span>
+<span class="gp">&gt;_ </span><span class="nf">set</span><span class="w"> </span><span class="no">str</span><span class="w"> </span><span class="no">foo</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="o">$str</span><span class="p">;</span><span class="w"> </span><span class="nf">echo</span><span class="w"> </span><span class="o">$status</span>
 <span class="go">0</span>
 <span class="go"># Equivalent to test -n &quot;$str&quot;</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">length --visible </span><span class="o">(</span><span class="nf">set_color </span><span class="no">red</span><span class="o">)</span><span class="no">foobar</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="o">(</span><span class="nf">set_color</span><span class="w"> </span><span class="no">red</span><span class="o">)</span><span class="no">foobar</span>
 <span class="go"># the set_color is discounted, so this is the width of &quot;foobar&quot;</span>
 <span class="go">6</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">length --visible 🐟🐟🐟🐟</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="no">🐟🐟🐟🐟</span>
 <span class="go"># depending on $fish_emoji_width, this is either 4 or 8</span>
 <span class="go"># in new terminals it should be</span>
 <span class="go">8</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">length --visible abcdef</span><span class="se">\r</span><span class="no">123</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="no">abcdef</span><span class="se">\r</span><span class="no">123</span>
 <span class="go"># this displays as &quot;123def&quot;, so the width is 6</span>
 <span class="go">6</span>
 
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">length --visible a</span><span class="se">\n</span><span class="no">bc</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">length</span><span class="w"> </span><span class="no">--visible</span><span class="w"> </span><span class="no">a</span><span class="se">\n</span><span class="no">bc</span>
 <span class="go"># counts &quot;a&quot; and &quot;bc&quot; as separate lines, so it prints width for each</span>
 <span class="go">1</span>
 <span class="go">2</span>
@@ -161,7 +162,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -197,7 +198,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

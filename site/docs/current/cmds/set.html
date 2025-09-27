@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>set - display and change shell variables &#8212; fish-shell 4.0.9 documentation</title>
+    <title>set - display and change shell variables &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -233,55 +234,55 @@ This allows capturing the output and exit status of a subcommand, like in <code 
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>Print all global, exported variables:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">-gx</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-gx</span>
 </pre></div>
 </div>
 <p>Set the value of the variable _$foo_ to be ‘hi’.:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">foo hi</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">hi</span>
 </pre></div>
 </div>
 <p>Append the value “there” to the variable $foo:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">-a foo there</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">there</span>
 </pre></div>
 </div>
 <p>Remove _$smurf_ from the scope:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">-e smurf</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">smurf</span>
 </pre></div>
 </div>
 <p>Remove _$smurf_ from the global and universal scopes:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">-e -Ug smurf</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">-Ug</span><span class="w"> </span><span class="no">smurf</span>
 </pre></div>
 </div>
 <p>Change the fourth element of the $PATH list to ~/bin:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set </span><span class="no">PATH[4] </span><span class="o">~</span><span class="no">/bin</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">PATH[4]</span><span class="w"> </span><span class="o">~</span><span class="no">/bin</span>
 </pre></div>
 </div>
 <p>Outputs the path to Python if <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">-p</span></code> returns true:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">set </span><span class="no">python_path </span><span class="o">(</span><span class="nf">type </span><span class="no">-p python</span><span class="o">)</span>
-<span class="w">    </span><span class="nf">echo </span><span class="s2">&quot;Python is at </span><span class="o">$python_path</span><span class="s2">&quot;</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">python_path</span><span class="w"> </span><span class="o">(</span><span class="nf">type</span><span class="w"> </span><span class="no">-p</span><span class="w"> </span><span class="no">python</span><span class="o">)</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;Python is at </span><span class="o">$python_path</span><span class="s2">&quot;</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>Setting a variable doesn’t modify $status; a command substitution still will, though:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo </span><span class="o">$status</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$status</span>
 <span class="go">0</span>
 <span class="gp">&gt; </span><span class="nf">false</span>
-<span class="gp">&gt; </span><span class="nf">set </span><span class="no">foo bar</span>
-<span class="gp">&gt; </span><span class="nf">echo </span><span class="o">$status</span>
+<span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">bar</span>
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$status</span>
 <span class="go">1</span>
 <span class="gp">&gt; </span><span class="nf">true</span>
-<span class="gp">&gt; </span><span class="nf">set </span><span class="no">foo banana </span><span class="o">(</span><span class="nf">false</span><span class="o">)</span>
-<span class="gp">&gt; </span><span class="nf">echo </span><span class="o">$status</span>
+<span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">banana</span><span class="w"> </span><span class="o">(</span><span class="nf">false</span><span class="o">)</span>
+<span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="o">$status</span>
 <span class="go">1</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">VAR=VALUE</span> <span class="pre">command</span></code> sets a variable for just one command, like other shells.
 This runs fish with a temporary home directory:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="no">HOME</span><span class="o">=(</span><span class="nf">mktemp </span><span class="no">-d</span><span class="o">)</span><span class="w"> </span><span class="nf">fish</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="no">HOME</span><span class="o">=(</span><span class="nf">mktemp</span><span class="w"> </span><span class="no">-d</span><span class="o">)</span><span class="w"> </span><span class="nf">fish</span>
 </pre></div>
 </div>
 <p>(which is essentially the same as):</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">begin</span><span class="p">;</span><span class="w"> </span><span class="nf">set </span><span class="no">-lx HOME </span><span class="o">(</span><span class="nf">mktemp </span><span class="no">-d</span><span class="o">)</span><span class="p">;</span><span class="w"> </span><span class="nf">fish</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">begin</span><span class="p">;</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">-lx</span><span class="w"> </span><span class="no">HOME</span><span class="w"> </span><span class="o">(</span><span class="nf">mktemp</span><span class="w"> </span><span class="no">-d</span><span class="o">)</span><span class="p">;</span><span class="w"> </span><span class="nf">fish</span><span class="p">;</span><span class="w"> </span><span class="nf">end</span>
 </pre></div>
 </div>
 </section>
@@ -307,7 +308,7 @@ This runs fish with a temporary home directory:</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -343,7 +344,7 @@ This runs fish with a temporary home directory:</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

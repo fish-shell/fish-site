@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>string-join - join strings with delimiter &#8212; fish-shell 4.0.9 documentation</title>
+    <title>string-join - join strings with delimiter &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -106,28 +107,54 @@
 <h1>string-join - join strings with delimiter<a class="headerlink" href="#string-join-join-strings-with-delimiter" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEP</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
-<span class="nf">string</span><span class="w"> </span><span class="no">join0</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-empty</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">SEP</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
+<span class="nf">string</span><span class="w"> </span><span class="no">join0</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-n</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--no-empty</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join</span></code> joins its <em>STRING</em> arguments into a single string separated by <em>SEP</em>, which can be an empty string. Exit status: 0 if at least one join was performed, or 1 otherwise. If <code class="docutils literal notranslate"><span class="pre">-n</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-empty</span></code> is specified, empty strings are excluded from consideration (e.g. <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join</span> <span class="pre">-n</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">b</span> <span class="pre">&quot;&quot;</span> <span class="pre">c</span></code> would expand to <code class="docutils literal notranslate"><span class="pre">a+b+c</span></code> not <code class="docutils literal notranslate"><span class="pre">a+b++c</span></code>).</p>
-<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join0</span></code> joins its <em>STRING</em> arguments into a single string separated by the zero byte (NUL), and adds a trailing NUL. This is most useful in conjunction with tools that accept NUL-delimited input, such as <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-z</span></code>. Exit status: 0 if at least one join was performed, or 1 otherwise.</p>
-<p>Because Unix uses NUL as the string terminator, passing the output of <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join0</span></code> as an <em>argument</em> to a command (via a <a class="reference internal" href="../language.html#expand-command-substitution"><span class="std std-ref">command substitution</span></a>) won’t actually work. Fish will pass the correct bytes along, but the command won’t be able to tell where the argument ends. This is a limitation of Unix’ argument passing.</p>
+<p>Joins its <em>STRING</em> arguments into a single string separated by <em>SEP</em> (for <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join</span></code>) or by the
+zero byte (NUL) (for <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join0</span></code>).
+Exit status: 0 if at least one join was performed, or 1 otherwise.</p>
+<dl class="simple">
+<dt><strong>-n</strong>, <strong>--no-empty</strong></dt><dd><p>Exclude empty strings from consideration (e.g. <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join</span> <span class="pre">-n</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">b</span> <span class="pre">&quot;&quot;</span> <span class="pre">c</span></code> would expand to <code class="docutils literal notranslate"><span class="pre">a+b+c</span></code> not <code class="docutils literal notranslate"><span class="pre">a+b++c</span></code>).</p>
+</dd>
+<dt><strong>-q</strong>, <strong>--quiet</strong></dt><dd><p>Do not print the strings, only set the exit status as described above.</p>
+</dd>
+</dl>
+<p><strong>WARNING</strong>:
+Insert a  <code class="docutils literal notranslate"><span class="pre">--</span></code> before positional arguments to prevent them from being interpreted as flags.
+Otherwise, any strings starting with <code class="docutils literal notranslate"><span class="pre">-</span></code> will be treated as flag arguments, meaning they will most likely result in the command failing.
+This is also true if you specify a variable which expands to such a string instead of a literal string.
+If you don’t need to append flag arguments at the end of the command,
+just always use <code class="docutils literal notranslate"><span class="pre">--</span></code> to avoid unwelcome surprises.</p>
+<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join0</span></code> adds a trailing NUL. This is most useful in conjunction with tools that accept NUL-delimited input, such as <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-z</span></code>.</p>
+<p>Because Unix uses NUL as the string terminator, passing the output of <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">join0</span></code> as an <em>argument</em> to a command (via a <a class="reference internal" href="../language.html#expand-command-substitution"><span class="std std-ref">command substitution</span></a>) won’t actually work.
+Fish will pass the correct bytes along, but the command won’t be able to tell where the argument ends.
+This is a limitation of Unix’ argument passing.</p>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">seq </span><span class="no">3 </span><span class="p">|</span><span class="w"> </span><span class="nf">string </span><span class="no">join ...</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">seq</span><span class="w"> </span><span class="no">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="no">...</span>
 <span class="go">1...2...3</span>
 
 <span class="go"># Give a list of NUL-separated filenames to du (this is a GNU extension)</span>
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">join0 file1 file2 file</span><span class="se">\n</span><span class="no">with</span><span class="se">\n</span><span class="no">multiple</span><span class="se">\n</span><span class="no">lines </span><span class="p">|</span><span class="w"> </span><span class="nf">du </span><span class="no">--files0-from=-</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">join0</span><span class="w"> </span><span class="no">file1</span><span class="w"> </span><span class="no">file2</span><span class="w"> </span><span class="no">file</span><span class="se">\n</span><span class="no">with</span><span class="se">\n</span><span class="no">multiple</span><span class="se">\n</span><span class="no">lines</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">du</span><span class="w"> </span><span class="no">--files0-from=-</span>
 
 <span class="go"># Just put the strings together without a separator</span>
-<span class="gp">&gt;_ </span><span class="nf">string </span><span class="no">join </span><span class="s1">&#39;&#39;</span><span class="no"> a b c</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="no">c</span>
 <span class="go">abc</span>
+
+<span class="gp">&gt;_ </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">markdown_list</span><span class="w"> </span><span class="s1">&#39;- first&#39;</span><span class="w"> </span><span class="s1">&#39;- second&#39;</span><span class="w"> </span><span class="s1">&#39;- third&#39;</span>
+<span class="go"># Strings with leading hyphens (also in variable expansions) are interpreted as flag arguments by default.</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="se">\n</span><span class="w"> </span><span class="o">$markdown_list</span>
+<span class="go">string join: - first: unknown option</span>
+<span class="go"># Use &#39;--&#39; to prevent this.</span>
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">join</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="se">\n</span><span class="w"> </span><span class="o">$markdown_list</span>
+<span class="go">- first</span>
+<span class="go">- second</span>
+<span class="go">- third</span>
 </pre></div>
 </div>
 </section>
@@ -147,7 +174,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -183,7 +210,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

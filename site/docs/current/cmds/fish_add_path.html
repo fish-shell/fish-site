@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>fish_add_path - add to the path &#8212; fish-shell 4.0.9 documentation</title>
+    <title>fish_add_path - add to the path &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="../_static/documentation_options.js?v=3c33c51c"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -152,29 +153,29 @@ Verbose mode is automatically enabled when fish_add_path is used interactively a
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="go"># I just installed mycoolthing and need to add it to the path to use it.</span>
 <span class="go"># It is at /opt/mycoolthing/bin/mycoolthing,</span>
 <span class="go"># so let&#39;s add the directory: /opt/mycoolthing/bin.</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path </span><span class="no">/opt/mycoolthing/bin</span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">/opt/mycoolthing/bin</span>
 
 <span class="go"># I want my ~/.local/bin to be checked first,</span>
 <span class="go"># even if it was already added.</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path </span><span class="no">-m </span><span class="o">~</span><span class="no">/.local/bin</span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">-m</span><span class="w"> </span><span class="o">~</span><span class="no">/.local/bin</span>
 
 <span class="go"># I prefer using a global fish_user_paths</span>
 <span class="go"># This isn&#39;t saved automatically, I need to add this to config.fish</span>
 <span class="go"># if I want it to stay.</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path </span><span class="no">-g </span><span class="o">~</span><span class="no">/.local/bin </span><span class="o">~</span><span class="no">/.otherbin /usr/local/sbin</span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="o">~</span><span class="no">/.local/bin</span><span class="w"> </span><span class="o">~</span><span class="no">/.otherbin</span><span class="w"> </span><span class="no">/usr/local/sbin</span>
 
 <span class="go"># I want to append to the entire $PATH because this directory contains fallbacks</span>
 <span class="go"># This needs --path/-P because otherwise it appends to $fish_user_paths,</span>
 <span class="go"># which is added to the front of $PATH.</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path </span><span class="no">--append --path /opt/fallback/bin</span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">--append</span><span class="w"> </span><span class="no">--path</span><span class="w"> </span><span class="no">/opt/fallback/bin</span>
 
 <span class="go"># I want to add the bin/ directory of my current $PWD (say /home/nemo/)</span>
 <span class="go"># -v/--verbose shows what fish_add_path did.</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path </span><span class="no">-v bin/</span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">-v</span><span class="w"> </span><span class="no">bin/</span>
 <span class="go">set fish_user_paths /home/nemo/bin /usr/bin /home/nemo/.local/bin</span>
 
 <span class="go"># I have installed ruby via homebrew</span>
-<span class="gp">&gt; </span><span class="nf">fish_add_path </span><span class="no">/usr/local/opt/ruby/bin</span>
+<span class="gp">&gt; </span><span class="nf">fish_add_path</span><span class="w"> </span><span class="no">/usr/local/opt/ruby/bin</span>
 </pre></div>
 </div>
 </section>
@@ -194,7 +195,7 @@ Verbose mode is automatically enabled when fish_add_path is used interactively a
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.1.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -230,7 +231,7 @@ Verbose mode is automatically enabled when fish_add_path is used interactively a
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

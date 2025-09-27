@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introduction &#8212; fish-shell 4.0.9 documentation</title>
+    <title>Introduction &#8212; fish-shell 4.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=daa6a7e0"></script>
+    <script src="_static/documentation_options.js?v=3c33c51c"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -25,7 +25,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="#">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="#">fish-shell 4.1.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Introduction</a></li>
@@ -67,6 +67,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
@@ -167,12 +168,12 @@
 <p>To change your login shell to fish:</p>
 <ol class="arabic">
 <li><p>Add the shell to <code class="docutils literal notranslate"><span class="pre">/etc/shells</span></code> with:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo </span><span class="no">/usr/local/bin/fish </span><span class="p">|</span><span class="w"> </span><span class="nf">sudo </span><span class="no">tee -a /etc/shells</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">echo</span><span class="w"> </span><span class="no">/usr/local/bin/fish</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">sudo</span><span class="w"> </span><span class="no">tee</span><span class="w"> </span><span class="no">-a</span><span class="w"> </span><span class="no">/etc/shells</span>
 </pre></div>
 </div>
 </li>
 <li><p>Change your default shell with:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">chsh </span><span class="no">-s /usr/local/bin/fish</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">chsh</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">/usr/local/bin/fish</span>
 </pre></div>
 </div>
 </li>
@@ -194,7 +195,7 @@
 <p>For a script written in another language, just replace <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code> with the interpreter for that language. For example: <code class="docutils literal notranslate"><span class="pre">/usr/bin/python</span></code> for a python script, or <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/fish</span></code> for a fish script, if that is where you have them installed.</p>
 <p>If you want to share your script with others, you might want to use <strong class="command">env</strong> to allow for the interpreter to be installed in other locations. For example:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c">#!/usr/bin/env fish</span>
-<span class="nf">echo </span><span class="no">Hello from fish </span><span class="o">$version</span>
+<span class="nf">echo</span><span class="w"> </span><span class="no">Hello</span><span class="w"> </span><span class="no">from</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="o">$version</span>
 </pre></div>
 </div>
 <p>This will call <code class="docutils literal notranslate"><span class="pre">env</span></code>, which then goes through <span class="target" id="index-1"></span><a class="reference internal" href="language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a> to find a program called “fish”. This makes it work, whether fish is installed in (for example) <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/fish</span></code>, <code class="docutils literal notranslate"><span class="pre">/usr/bin/fish</span></code>, or <code class="docutils literal notranslate"><span class="pre">~/.local/bin/fish</span></code>, as long as that directory is in <span class="target" id="index-2"></span><a class="reference internal" href="language.html#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a>.</p>
@@ -212,15 +213,15 @@
 <section id="examples">
 <h3>Examples:<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h3>
 <p>To add <code class="docutils literal notranslate"><span class="pre">~/linux/bin</span></code> to PATH variable when using a login shell, add this to <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish</span></code> file:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">status </span><span class="no">--is-login</span>
-<span class="w">    </span><span class="nf">set </span><span class="no">-gx PATH </span><span class="o">$PATH</span><span class="w"> </span><span class="o">~</span><span class="no">/linux/bin</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">status</span><span class="w"> </span><span class="no">--is-login</span>
+<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-gx</span><span class="w"> </span><span class="no">PATH</span><span class="w"> </span><span class="o">$PATH</span><span class="w"> </span><span class="o">~</span><span class="no">/linux/bin</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
 <p>This is just an example; using <a class="reference internal" href="cmds/fish_add_path.html"><span class="doc">fish_add_path</span></a> e.g. <code class="docutils literal notranslate"><span class="pre">fish_add_path</span> <span class="pre">~/linux/bin</span></code> which only adds the path if it isn’t included yet is easier.</p>
 <p>To run commands on exit, use an <a class="reference internal" href="language.html#event"><span class="std std-ref">event handler</span></a> that is triggered by the exit of the shell:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">on_exit --on-event fish_exit</span>
-<span class="w">    </span><span class="nf">echo </span><span class="no">fish is now exiting</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">on_exit</span><span class="w"> </span><span class="no">--on-event</span><span class="w"> </span><span class="no">fish_exit</span>
+<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="no">is</span><span class="w"> </span><span class="no">now</span><span class="w"> </span><span class="no">exiting</span>
 <span class="nf">end</span>
 </pre></div>
 </div>
@@ -230,7 +231,7 @@
 <span id="more-help"></span><h2>Resources<a class="headerlink" href="#resources" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://github.com/fish-shell/fish-shell/">GitHub page</a></p></li>
-<li><p>The official <a class="reference external" href="https://gitter.im/fish-shell/fish-shell">Gitter channel</a></p></li>
+<li><p>The official <a class="reference external" href="https://matrix.to/#/#fish-shell:matrix.org">Matrix room</a></p></li>
 <li><p>The official mailing list at <a class="reference external" href="https://lists.sourceforge.net/lists/listinfo/fish-users">fish-users&#64;lists.sourceforge.net</a></p></li>
 </ul>
 <p>If you have an improvement for fish, you can submit it via the GitHub page.</p>
@@ -250,6 +251,7 @@
 <li class="toctree-l1"><a class="reference internal" href="prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminal-compatibility.html">Terminal Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To Fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
@@ -271,7 +273,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="#">fish-shell 4.0.9 documentation</a> &#187;
+    <a href="#">fish-shell 4.1.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Introduction</a></li>
@@ -306,7 +308,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.0";
+ FISH_DOCS_VERSION = "4.1";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
