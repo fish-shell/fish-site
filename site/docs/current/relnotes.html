@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release notes &#8212; fish-shell 4.1.0 documentation</title>
+    <title>Release notes &#8212; fish-shell 4.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=3c33c51c"></script>
+    <script src="_static/documentation_options.js?v=58fc1558"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.1.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.1.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -88,6 +88,7 @@
 <h4><a href="index.html">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
+<li><a class="reference internal" href="#fish-4-1-1-released-september-30-2025">fish 4.1.1 (released September 30, 2025)</a></li>
 <li><a class="reference internal" href="#fish-4-1-0-released-september-27-2025">fish 4.1.0 (released September 27, 2025)</a><ul>
 <li><a class="reference internal" href="#notable-improvements-and-fixes">Notable improvements and fixes</a></li>
 <li><a class="reference internal" href="#deprecations-and-removed-features">Deprecations and removed features</a></li>
@@ -383,6 +384,22 @@
             
   <section id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading">¶</a></h1>
+<section id="fish-4-1-1-released-september-30-2025">
+<h2>fish 4.1.1 (released September 30, 2025)<a class="headerlink" href="#fish-4-1-1-released-september-30-2025" title="Link to this heading">¶</a></h2>
+<p>This release fixes the following regressions identified in 4.1.0:</p>
+<ul>
+<li><p>Many of our new Chinese translations were more confusing than helpful; they have been fixed or removed (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11833">#11833</a>).</p>
+<p>Note that you can work around this type of issue by configuring fish’s <a class="reference internal" href="cmds/_.html"><span class="doc">message localization</span></a>:
+if your environment contains something like <code class="docutils literal notranslate"><span class="pre">LANG=zh_CN.UTF-8</span></code>,
+you can use <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-g</span> <span class="pre">LC_MESSAGES</span> <span class="pre">en</span></code> to use English messages inside fish.
+This will not affect fish’s child processes unless <code class="docutils literal notranslate"><span class="pre">LC_MESSAGES</span></code> was already exported.</p>
+</li>
+<li><p>Some <a class="reference internal" href="cmds/fish_config.html"><span class="doc">fish_config</span></a> subcommands for showing prompts and themes had been broken in standalone Linux builds (those using the <code class="docutils literal notranslate"><span class="pre">embed-data</span></code> cargo feature), which has been fixed (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11832">#11832</a>).</p></li>
+<li><p>On Windows Terminal, we observed an issue where fish would fail to read the terminal’s response to our new startup queries, causing noticeable lags and a misleading error message. A workaround has been added (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11841">#11841</a>).</p></li>
+<li><p>A WezTerm <a class="reference external" href="https://github.com/wezterm/wezterm/issues/6087">issue breaking shifted key input</a> has resurfaced on some versions of WezTerm; our workaround has been extended to cover all versions for now (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11204">#11204</a>).</p></li>
+<li><p>Fixed a crash in <a class="reference internal" href="cmds/fish_config.html"><span class="doc">the web-based configuration tool</span></a> when using the new underline styles (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11840">#11840</a>).</p></li>
+</ul>
+</section>
 <section id="fish-4-1-0-released-september-27-2025">
 <h2>fish 4.1.0 (released September 27, 2025)<a class="headerlink" href="#fish-4-1-0-released-september-27-2025" title="Link to this heading">¶</a></h2>
 <section id="notable-improvements-and-fixes">
@@ -416,7 +433,7 @@ To do so, run the following once and restart fish:</p>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">--install</span></code> option when fish is built as self-installing is removed, see <a class="reference internal" href="#changelog-4-1-embedded"><span class="std std-ref">below</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">ff0000</span></code> now outputs 24-bit RGB true-color even if <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">COLORTERM</span></code> is unset.
 One can override this by setting <span class="target" id="index-3"></span><a class="reference internal" href="language.html#envvar-fish_term24bit"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_term24bit</span></code></a> to 0 (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11372">#11372</a>).</p></li>
-<li><p>fish now requires the terminal to respond to queries for the <a class="reference internal" href="terminal-compatibility.html#term-compat-primary-da"><span class="std std-ref">primary device attribute</span></a>.
+<li><p>fish now requires the terminal to respond to queries for the <a class="reference internal" href="terminal-compatibility.html#term-compat-primary-da"><span class="std std-ref">Primary Device Attribute</span></a>.
 For now, this can be reversed via a <a class="reference internal" href="language.html#featureflags"><span class="std std-ref">feature flag</span></a>,
 by running (once) <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-Ua</span> <span class="pre">fish_features</span> <span class="pre">no-query-term</span></code> and restarting fish.</p></li>
 <li><p>Users of GNU screen may experience <a class="reference internal" href="terminal-compatibility.html#term-compat-dcs-gnu-screen"><span class="std std-ref">minor glitches</span></a> when starting fish.</p></li>
@@ -478,9 +495,6 @@ this function is only used if the terminal advertises support for that via <a cl
 <li><p>Support for double, curly, dotted and dashed underlines, for use in <code class="docutils literal notranslate"><span class="pre">fish_color_*</span></code> variables and the <a class="reference internal" href="cmds/set_color.html"><span class="doc">set_color builtin</span></a> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/10957">#10957</a>).</p></li>
 <li><p>Underlines can now be colored independent of text (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7619">#7619</a>).</p></li>
 <li><p>New documentation page <a class="reference internal" href="terminal-compatibility.html"><span class="doc">Terminal Compatibility</span></a> (also accessible via <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">fish-terminal-compatibility</span></code>) lists the terminal control sequences used by fish.</p></li>
-<li><p>fish now requires the terminal to respond to queries for the <a class="reference internal" href="terminal-compatibility.html#term-compat-primary-da"><span class="std std-ref">primary device attribute</span></a>.
-For now, this can be reversed via a <a class="reference internal" href="language.html#featureflags"><span class="std std-ref">feature flag</span></a>,
-by running (once) <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-Ua</span> <span class="pre">fish_features</span> <span class="pre">no-query-term</span></code>.</p></li>
 </ul>
 </section>
 </section>
@@ -4761,7 +4775,7 @@ track.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.1.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.1.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
