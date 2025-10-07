@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release notes &#8212; fish-shell 4.1.1 documentation</title>
+    <title>Release notes &#8212; fish-shell 4.1.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=58fc1558"></script>
+    <script src="_static/documentation_options.js?v=f5ac6594"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.1.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.1.2 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -88,6 +88,7 @@
 <h4><a href="index.html">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
+<li><a class="reference internal" href="#fish-4-1-2-released-october-07-2025">fish 4.1.2 (released October 07, 2025)</a></li>
 <li><a class="reference internal" href="#fish-4-1-1-released-september-30-2025">fish 4.1.1 (released September 30, 2025)</a></li>
 <li><a class="reference internal" href="#fish-4-1-0-released-september-27-2025">fish 4.1.0 (released September 27, 2025)</a><ul>
 <li><a class="reference internal" href="#notable-improvements-and-fixes">Notable improvements and fixes</a></li>
@@ -384,6 +385,23 @@
             
   <section id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading">¶</a></h1>
+<section id="fish-4-1-2-released-october-07-2025">
+<h2>fish 4.1.2 (released October 07, 2025)<a class="headerlink" href="#fish-4-1-2-released-october-07-2025" title="Link to this heading">¶</a></h2>
+<p>This release fixes the following regressions identified in 4.1.0:</p>
+<ul>
+<li><p>Fixed spurious error output when completing remote file paths for <code class="docutils literal notranslate"><span class="pre">scp</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11860">#11860</a>).</p></li>
+<li><p>Fixed the <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">l</kbd></kbd> binding not formatting <code class="docutils literal notranslate"><span class="pre">ls</span></code> output correctly (one entry per line, no colors) (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11888">#11888</a>).</p></li>
+<li><p>Fixed an issue where focus events (currently only enabled in <code class="docutils literal notranslate"><span class="pre">tmux</span></code>) would cause multiline prompts to be redrawn in the wrong line (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11870">#11870</a>).</p></li>
+<li><p>Stopped printing output that would cause a glitch on old versions of Midnight Commander (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11869">#11869</a>).</p></li>
+<li><p>Added a fix for some configurations of Zellij where <kbd class="kbd docutils literal notranslate">escape</kbd> key processing was delayed (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11868">#11868</a>).</p></li>
+<li><p>Fixed a case where the <a class="reference internal" href="cmds/fish_config.html"><span class="doc">web-based configuration tool</span></a> would generate invalid configuration (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11861">#11861</a>).</p></li>
+<li><p>Fixed a case where pasting into <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">-c</span> <span class="pre">read</span></code> would fail with a noisy error (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11836">#11836</a>).</p></li>
+<li><p>Fixed a case where upgrading fish would break old versions of fish that were still running.</p>
+<p>In general, fish still needs to be restarted after it is upgraded,
+except for <a class="reference external" href="https://github.com/fish-shell/fish-shell/?tab=readme-ov-file#building-fish-with-embedded-data-experimental">standalone builds</a>.</p>
+</li>
+</ul>
+</section>
 <section id="fish-4-1-1-released-september-30-2025">
 <h2>fish 4.1.1 (released September 30, 2025)<a class="headerlink" href="#fish-4-1-1-released-september-30-2025" title="Link to this heading">¶</a></h2>
 <p>This release fixes the following regressions identified in 4.1.0:</p>
@@ -4775,7 +4793,7 @@ track.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.1.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.1.2 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
