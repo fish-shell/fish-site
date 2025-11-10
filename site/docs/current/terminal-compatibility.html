@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Terminal Compatibility &#8212; fish-shell 4.1.2 documentation</title>
+    <title>Terminal Compatibility &#8212; fish-shell 4.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=f5ac6594"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/documentation_options.js?v=0b798132"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -19,14 +19,14 @@
      
 
   </head><body><div id="fmain">  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.1.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.2.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Terminal Compatibility</a></li>
@@ -52,7 +52,7 @@
     </div>    
 
     <div class="document">
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="index.html">Documents</a></h3>
@@ -74,7 +74,7 @@
 </ul>
 
 </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -82,7 +82,7 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
 <div>
 <h4><a href="index.html">Sections</a></h4>
@@ -91,6 +91,7 @@
 <li><a class="reference internal" href="#required-commands">Required Commands</a></li>
 <li><a class="reference internal" href="#optional-commands">Optional Commands</a></li>
 <li><a class="reference internal" href="#dcs-commands-and-gnu-screen">DCS commands and GNU screen</a></li>
+<li><a class="reference internal" href="#unicode-codepoints">Unicode Codepoints</a></li>
 </ul>
 </li>
 </ul>
@@ -113,7 +114,7 @@ If a valid CSI, OSC or DCS sequence does not represent a command implemented by 
 <p>Control sequences are denoted in a fish-like syntax.
 Special characters other than <code class="docutils literal notranslate"><span class="pre">\</span></code> are not escaped.
 Spaces are only added for readability and are not part of the sequence.
-Placeholders are written as <code class="docutils literal notranslate"><span class="pre">&lt;Ps&gt;</span></code> for a number or <code class="docutils literal notranslate"><span class="pre">&lt;Pt&gt;</span></code> for an arbitrary printable string.</p>
+Placeholders are written as <code class="docutils literal notranslate"><span class="pre">Ps</span></code> for a number or <code class="docutils literal notranslate"><span class="pre">Pt</span></code> for an arbitrary printable string.</p>
 <p><strong>NOTE:</strong> fish does not rely on your system’s terminfo database.
 In this document, terminfo (TI) codes are included for reference only.</p>
 <section id="required-commands">
@@ -123,59 +124,48 @@ In this document, terminfo (TI) codes are included for reference only.</p>
 <tr class="row-odd"><th class="head"><p>Sequence</p></th>
 <th class="head"><p>TI</p></th>
 <th class="head"><p>Description</p></th>
-<th class="head"><p>Origin</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\r</span></code></p></td>
 <td><p>n/a</p></td>
 <td><p>Move cursor to the beginning of the line</p></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\n</span></code></p></td>
 <td><p>cud1</p></td>
 <td><p>Move cursor down one line.</p></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[ Ps A</span></code></p></td>
 <td><p>cuu</p></td>
 <td><p>Move cursor up Ps columns, or one column if no parameter.</p></td>
-<td><p>VT100</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[ Ps C</span></code></p></td>
 <td><p>cuf</p></td>
 <td><p>Move cursor to the right Ps columns, or one column if no parameter.</p></td>
-<td><p>VT100</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\x08</span></code></p></td>
 <td><p>cub1</p></td>
 <td><p>Move cursor one column to the left.</p></td>
-<td><p>VT100</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[ Ps D</span></code></p></td>
 <td><p>cub</p></td>
 <td><p>Move cursor to the left Ps times.</p></td>
-<td><p>VT100</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[H</span></code></p></td>
 <td><p>cup</p></td>
 <td><p>Set cursor position (no parameters means: move to row 1, column 1).</p></td>
-<td><p>VT100</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[K</span></code></p></td>
 <td><p>el</p></td>
 <td><p>Clear to end of line.</p></td>
-<td><p>VT100</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[J</span></code></p></td>
 <td><p>ed</p></td>
 <td><p>Clear to the end of screen.</p></td>
-<td><p>VT100</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[2J</span></code></p></td>
 <td><p>clear</p></td>
 <td><p>Clear the screen.</p></td>
-<td><p>VT100</p></td>
 </tr>
 <tr class="row-even"><td><p id="term-compat-primary-da"><code class="docutils literal notranslate"><span class="pre">\e[0c</span></code></p>
 </td>
@@ -185,18 +175,15 @@ The terminal must respond with a CSI command that starts with the <code class="d
 <p>Failure to implement this will cause a brief pause at startup followed by a warning.
 For the time being, both can be turned off by turning off the <code class="docutils literal notranslate"><span class="pre">query-terminal</span></code> <a class="reference internal" href="language.html#featureflags"><span class="std std-ref">feature flag</span></a>.</p>
 </td>
-<td><p>VT100</p></td>
 </tr>
 <tr class="row-odd"><td><p>n/a</p></td>
 <td><p>am</p></td>
 <td><p>Soft wrap text at screen width.</p></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p>n/a</p></td>
 <td><p>xenl</p></td>
 <td><p>Printing to the last column does not move the cursor to the next line.
 Verify this by running <code class="docutils literal notranslate"><span class="pre">printf</span> <span class="pre">%0&quot;$COLUMNS&quot;d</span> <span class="pre">0;</span> <span class="pre">sleep</span> <span class="pre">3</span></code></p></td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -208,7 +195,6 @@ Verify this by running <code class="docutils literal notranslate"><span class="p
 <tr class="row-odd"><th class="head"><p>Sequence</p></th>
 <th class="head"><p>TI</p></th>
 <th class="head"><p>Description</p></th>
-<th class="head"><p>Origin</p></th>
 </tr>
 </thead>
 <tbody>
@@ -216,82 +202,66 @@ Verify this by running <code class="docutils literal notranslate"><span class="p
 <td><p>it</p></td>
 <td><p>Move the cursor to the next tab stop (à 8 columns).
 This is mainly relevant if your prompt includes tabs.</p></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[m</span></code></p></td>
 <td><p>sgr0</p></td>
 <td><p>Turn off bold/dim/italic/underline/reverse attribute modes and select default colors.</p></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[1m</span></code></p></td>
 <td><p>bold</p></td>
 <td><p>Enter bold mode.</p></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[2m</span></code></p></td>
 <td><p>dim</p></td>
 <td><p>Enter dim mode.</p></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[3m</span></code></p></td>
 <td><p>sitm</p></td>
 <td><p>Enter italic mode.</p></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[4m</span></code></p></td>
 <td><p>smul</p></td>
 <td><p>Enter underline mode.</p></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[4:2m</span></code></p></td>
 <td><p>Su</p></td>
 <td><p>Enter double underline mode.</p></td>
-<td><p>kitty</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[4:3m</span></code></p></td>
 <td><p>Su</p></td>
 <td><p>Enter curly underline mode.</p></td>
-<td><p>kitty</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[4:4m</span></code></p></td>
 <td><p>Su</p></td>
 <td><p>Enter dotted underline mode.</p></td>
-<td><p>kitty</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[4:5m</span></code></p></td>
 <td><p>Su</p></td>
 <td><p>Enter dashed underline mode.</p></td>
-<td><p>kitty</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[7m</span></code></p></td>
 <td><p>rev</p></td>
 <td><p>Enter reverse video mode (swap foreground and background colors).</p></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[23m</span></code></p></td>
 <td><p>ritm</p></td>
 <td><p>Exit italic mode.</p></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[24m</span></code></p></td>
 <td><p>rmul</p></td>
 <td><p>Exit underline mode.</p></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[38;5;</span> <span class="pre">Ps</span> <span class="pre">m</span></code></p></td>
 <td><p>setaf</p></td>
 <td><p>Select foreground color Ps from the 256-color-palette.</p></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[48;5;</span> <span class="pre">Ps</span> <span class="pre">m</span></code></p></td>
 <td><p>setab</p></td>
 <td><p>Select background color Ps from the 256-color-palette.</p></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[58:5:</span> <span class="pre">Ps</span> <span class="pre">m</span></code> (note: colons not semicolons)</p></td>
 <td><p>Su</p></td>
 <td><p>Select underline color Ps from the 256-color-palette.</p></td>
-<td><p>kitty</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[</span> <span class="pre">Ps</span> <span class="pre">m</span></code></p></td>
 <td><p>setaf
@@ -301,45 +271,37 @@ setab</p></td>
 40-47 maps to background 0-7,
 90-97 maps to foreground 8-15 and
 100-107 maps to background 8-15.</p></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[38;2;</span> <span class="pre">Ps</span> <span class="pre">;</span> <span class="pre">Ps</span> <span class="pre">;</span> <span class="pre">Ps</span> <span class="pre">m</span></code></p></td>
 <td></td>
 <td><p>Select foreground color from 24-bit RGB colors.</p></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[48;2;</span> <span class="pre">Ps</span> <span class="pre">;</span> <span class="pre">Ps</span> <span class="pre">;</span> <span class="pre">Ps</span> <span class="pre">m</span></code></p></td>
 <td></td>
 <td><p>Select background color from 24-bit RGB colors.</p></td>
-<td></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[49m</span></code></p></td>
 <td></td>
 <td><p>Reset background color to the terminal’s default.</p></td>
-<td></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[58:2::</span> <span class="pre">Ps</span> <span class="pre">:</span> <span class="pre">Ps</span> <span class="pre">:</span> <span class="pre">Ps</span> <span class="pre">m</span></code> (note: colons not semicolons)</p></td>
 <td><p>Su</p></td>
 <td><p>Select underline color from 24-bit RGB colors.</p></td>
-<td><p>kitty</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[59m</span></code></p></td>
 <td><p>Su</p></td>
 <td><p>Reset underline color to the default (follow the foreground color).</p></td>
-<td><p>kitty</p></td>
 </tr>
 <tr class="row-even"><td><p id="term-compat-indn"><code class="docutils literal notranslate"><span class="pre">\e[</span> <span class="pre">Ps</span> <span class="pre">S</span></code></p>
 </td>
 <td><p>indn</p></td>
 <td><p>Scroll up the content (not the viewport) Ps lines (called <code class="docutils literal notranslate"><span class="pre">SCROLL</span> <span class="pre">UP</span></code> / <code class="docutils literal notranslate"><span class="pre">SU</span></code> by ECMA-48 and “scroll forward” by terminfo).
 When fish detects support for this feature, <a class="reference internal" href="cmds/status.html#status-test-terminal-features"><span class="std std-ref">status test-terminal-features scroll-content-up</span></a> will return 0,
-which enables the <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">l</kbd></kbd> binding to use the <a class="reference internal" href="cmds/bind.html#special-input-functions-scrollback-push"><span class="std std-ref">scrollback-push</span></a> special input function.</p></td>
-<td><p>ECMA-48</p></td>
+which enables the <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">l</kbd> binding to use the <a class="reference internal" href="cmds/bind.html#special-input-functions-scrollback-push"><span class="std std-ref">scrollback-push</span></a> special input function.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[=</span> <span class="pre">Ps</span> <span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">\e[?</span> <span class="pre">Ps</span> <span class="pre">u</span></code></p></td>
 <td><p>n/a</p></td>
 <td><p>Enable the kitty keyboard protocol.</p></td>
-<td><p>kitty</p></td>
 </tr>
 <tr class="row-even"><td><p id="term-compat-cursor-position-report"><code class="docutils literal notranslate"><span class="pre">\e[6n</span></code></p>
 </td>
@@ -349,92 +311,79 @@ The response must be of the form <code class="docutils literal notranslate"><spa
 where the first parameter is the row number
 and the second parameter is the column number.
 Both start at 1.</p>
-<p>This is used by the <a class="reference internal" href="cmds/bind.html#special-input-functions-scrollback-push"><span class="std std-ref">scrollback-push</span></a> special input function,
+<p>This is used for truncating multiline autosuggestions at the screen’s bottom edge,
+by the <a class="reference internal" href="cmds/bind.html#special-input-functions-scrollback-push"><span class="std std-ref">scrollback-push</span></a> special input function,
 and inside terminals that implement the OSC 133 <a class="reference internal" href="#term-compat-osc-133"><span class="std std-ref">click_events</span></a> feature.</p>
 </td>
-<td><p>VT100</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[</span> <span class="pre">\x20</span> <span class="pre">q</span></code></p></td>
 <td><p>Se</p></td>
 <td><p>Reset cursor style to the terminal’s default. This is not used as of today but may be
 in future.</p></td>
-<td><p>VT520</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[</span> <span class="pre">Ps</span> <span class="pre">\x20</span> <span class="pre">q</span></code></p></td>
 <td><p>Ss</p></td>
 <td><p>Set cursor style (DECSCUSR); Ps is 2, 4 or 6 for block, underscore or line shape.</p></td>
-<td><p>VT520</p></td>
 </tr>
 <tr class="row-odd"><td><p id="term-compat-xtversion"><code class="docutils literal notranslate"><span class="pre">\e[</span> <span class="pre">Ps</span> <span class="pre">q</span></code></p>
 </td>
 <td><p>n/a</p></td>
 <td><p>Request terminal name and version (XTVERSION).
 This is only used for temporary workarounds for incompatible terminals.</p></td>
-<td><p>XTerm</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?25h</span></code></p></td>
 <td><p>cvvis</p></td>
 <td><p>Enable cursor visibility (DECTCEM).</p></td>
-<td><p>VT220</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?1000l</span></code></p></td>
-<td><p>n/a</p></td>
-<td><p>Disable mouse reporting.</p></td>
-<td><p>XTerm</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?1004h</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?1004h</span></code></p></td>
 <td><p>n/a</p></td>
 <td><p>Enable focus reporting.</p></td>
-<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?1004l</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?1004l</span></code></p></td>
 <td><p>n/a</p></td>
 <td><p>Disable focus reporting.</p></td>
-<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?1049h</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?1049h</span></code></p></td>
 <td><p>n/a</p></td>
 <td><p>Enable alternate screen buffer.</p></td>
-<td><p>XTerm</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?1049l</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?1049l</span></code></p></td>
 <td><p>n/a</p></td>
 <td><p>Disable alternate screen buffer.</p></td>
-<td><p>XTerm</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?2004h</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?2004h</span></code></p></td>
 <td></td>
 <td><p>Enable bracketed paste.</p></td>
-<td><p>XTerm</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?2004l</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?2004l</span></code></p></td>
 <td></td>
 <td><p>Disable bracketed paste.</p></td>
-<td><p>XTerm</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e]0;</span> <span class="pre">Pt</span> <span class="pre">\x07</span></code></p></td>
+<tr class="row-odd"><td><p id="term-compat-osc-0"><code class="docutils literal notranslate"><span class="pre">\e]0;</span> <span class="pre">Pt</span> <span class="pre">\x07</span></code></p>
+</td>
 <td><p>ts</p></td>
-<td><p>Set window title (OSC 0).</p></td>
-<td><p>XTerm</p></td>
+<td><p>Set terminal window title (OSC 0). Used in <a class="reference internal" href="cmds/fish_title.html"><span class="doc">fish_title</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e]2;</span> <span class="pre">Pt</span> <span class="pre">\x07</span></code></p></td>
+<td><p>ts</p></td>
+<td><p>Set terminal tab title (OSC 1). Used in <a class="reference internal" href="cmds/fish_tab_title.html"><span class="doc">fish_tab_title</span></a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e]7;file://</span> <span class="pre">Pt</span> <span class="pre">/</span> <span class="pre">Pt</span> <span class="pre">\x07</span></code></p></td>
 <td></td>
 <td><p>Report working directory (OSC 7).
 Since the terminal may be running on a different system than a (remote) shell,
 the hostname (first parameter) will <em>not</em> be <code class="docutils literal notranslate"><span class="pre">localhost</span></code>.</p></td>
-<td><p>iTerm2</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e]8;;</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code></p></td>
+<tr class="row-even"><td><p id="term-compat-osc-8"><code class="docutils literal notranslate"><span class="pre">\e]8;;</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code></p>
+</td>
 <td></td>
 <td><p>Create a <a class="reference external" href="https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda">hyperlink (OSC 8)</a>.
 This is used in fish’s man pages.</p></td>
-<td><p>GNOME Terminal</p></td>
 </tr>
 <tr class="row-odd"><td><p id="term-compat-osc-52"><code class="docutils literal notranslate"><span class="pre">\e]52;c;</span> <span class="pre">Pt</span> <span class="pre">\x07</span></code></p>
 </td>
 <td></td>
 <td><p>Copy to clipboard (OSC 52). Used by <a class="reference internal" href="cmds/fish_clipboard_copy.html"><span class="doc">fish_clipboard_copy</span></a>.</p></td>
-<td><p>XTerm</p></td>
 </tr>
 <tr class="row-even"><td><p id="term-compat-osc-133"><code class="docutils literal notranslate"><span class="pre">\e]133;A;</span> <span class="pre">click_events=1\x07</span></code></p>
 </td>
@@ -442,17 +391,14 @@ This is used in fish’s man pages.</p></td>
 <td><p>Mark prompt start (OSC 133), with kitty’s <code class="docutils literal notranslate"><span class="pre">click_events</span></code> extension.
 The <code class="docutils literal notranslate"><span class="pre">click_events</span></code> extension enables mouse clicks to move the cursor or select pager items,
 assuming that <a class="reference internal" href="#term-compat-cursor-position-report"><span class="std std-ref">cursor position reporting</span></a> is available.</p></td>
-<td><p>FinalTerm, kitty</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e]133;C;</span> <span class="pre">cmdline_url=</span> <span class="pre">Pt</span> <span class="pre">\x07</span></code></p></td>
 <td></td>
 <td><p>Mark command start (OSC 133), with kitty’s <code class="docutils literal notranslate"><span class="pre">cmdline_url</span></code> extension whose parameter is the URL-encoded command line.</p></td>
-<td><p>FinalTerm, kitty</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e]133;D;</span> <span class="pre">Ps</span> <span class="pre">\x07</span></code></p></td>
 <td></td>
 <td><p>Mark command end (OSC 133);  Ps is the exit status.</p></td>
-<td><p>FinalTerm</p></td>
 </tr>
 <tr class="row-odd"><td><blockquote id="term-compat-xtgettcap">
 <div><p><code class="docutils literal notranslate"><span class="pre">\eP+q</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code></p>
@@ -467,8 +413,6 @@ In either variant the first parameter must be the hex-encoded terminfo code.
 The second variant’s second parameter is ignored.</p>
 <p>Currently, fish only queries the <a class="reference internal" href="#term-compat-indn"><span class="std std-ref">indn</span></a> string capability.</p>
 </td>
-<td><p>XTerm (but without string capabilities), kitty;
-also adopted by foot, wezterm, contour, ghostty</p></td>
 </tr>
 </tbody>
 </table>
@@ -492,6 +436,15 @@ If that doesn’t work for some reason, you can add this to your <code class="do
 </pre></div>
 </div>
 </section>
+<section id="unicode-codepoints">
+<span id="term-compat-unicode-codepoints"></span><h2>Unicode Codepoints<a class="headerlink" href="#unicode-codepoints" title="Link to this heading">¶</a></h2>
+<p>By default, fish outputs the following non-ASCII characters:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">×</span><span class="w"> </span><span class="no">►</span><span class="w"> </span><span class="no">¶</span><span class="w"> </span><span class="no">⏎</span><span class="w"> </span><span class="no">•</span><span class="w"> </span><span class="no">●</span><span class="w"> </span><span class="no">…</span><span class="w"> </span><span class="no">μ</span><span class="w"> </span><span class="no">–</span><span class="w"> </span><span class="no">’</span><span class="w"> </span><span class="no">‘</span><span class="w"> </span><span class="no">“</span><span class="w"> </span><span class="no">”</span><span class="w"> </span><span class="no">←</span><span class="w"> </span><span class="no">→</span><span class="w"> </span><span class="no">↑</span><span class="w"> </span><span class="no">↓</span>
+</pre></div>
+</div>
+<p>as well as control pictures (U+2400 through U+241F),
+and locale-specific ones in <a class="reference internal" href="language.html#variables-locale"><span class="std std-ref">translated strings</span></a>.</p>
+</section>
 </section>
 
 
@@ -501,14 +454,14 @@ If that doesn’t work for some reason, you can add this to your <code class="do
       </div> 
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.1.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.2.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Terminal Compatibility</a></li>
@@ -538,12 +491,12 @@ If that doesn’t work for some reason, you can add this to your <code class="do
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.1";
+ FISH_DOCS_VERSION = "4.2";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

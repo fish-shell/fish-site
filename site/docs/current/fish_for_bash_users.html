@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Fish for bash users &#8212; fish-shell 4.1.2 documentation</title>
+    <title>Fish for bash users &#8212; fish-shell 4.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=f5ac6594"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/documentation_options.js?v=0b798132"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -19,14 +19,14 @@
      
 
   </head><body><div id="fmain">  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.1.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.2.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Fish for bash users</a></li>
@@ -52,7 +52,7 @@
     </div>    
 
     <div class="document">
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="index.html">Documents</a></h3>
@@ -74,7 +74,7 @@
 </ul>
 
 </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -82,7 +82,7 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
 <div>
 <h4><a href="index.html">Sections</a></h4>
@@ -115,7 +115,7 @@
           <div class="body" role="main">
             
   <section id="fish-for-bash-users">
-<span id="id1"></span><h1>Fish for bash users<a class="headerlink" href="#fish-for-bash-users" title="Link to this heading">¶</a></h1>
+<h1>Fish for bash users<a class="headerlink" href="#fish-for-bash-users" title="Link to this heading">¶</a></h1>
 <p>This is to give you a quick overview if you come from bash (or to a lesser extent other shells like zsh or ksh) and want to know how fish differs. Fish is intentionally not POSIX-compatible and as such some of the things you are used to work differently.</p>
 <p>Many things are similar - they both fundamentally expand commandlines to execute commands, have pipes, redirections, variables, globs, use command output in various ways. This document is there to quickly show you the differences.</p>
 <section id="command-substitutions">
@@ -147,7 +147,7 @@
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="no">PAGER</span><span class="o">=</span><span class="no">cat</span><span class="w"> </span><span class="nf">git</span><span class="w"> </span><span class="no">log</span>
 </pre></div>
 </div>
-<p>Fish does not perform word splitting. Once a variable has been set to a value, that value stays as it is, so double-quoting variable expansions isn’t the necessity it is in bash. <a class="footnote-reference brackets" href="#id3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<p>Fish does not perform word splitting. Once a variable has been set to a value, that value stays as it is, so double-quoting variable expansions isn’t the necessity it is in bash. <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
 <p>For instance, here’s bash</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span><span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;bar baz&quot;</span>
 &gt;<span class="w"> </span><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;&quot;%s&quot;\n&#39;</span><span class="w"> </span><span class="nv">$foo</span>
@@ -197,8 +197,8 @@
 <p>A <code class="docutils literal notranslate"><span class="pre">=</span></code> is unnecessary and unhelpful with <code class="docutils literal notranslate"><span class="pre">set</span></code> - <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">foo</span> <span class="pre">=</span> <span class="pre">bar</span></code> will set the variable “foo” to two values: “=” and “bar”. <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">foo=bar</span></code> will print an error.</p>
 <p>See <a class="reference internal" href="language.html#variables"><span class="std std-ref">Shell variables</span></a> for more.</p>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id3" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>zsh also does not perform word splitting by default (the SH_WORD_SPLIT option controls this)</p>
 </aside>
 </aside>
@@ -316,7 +316,7 @@
 <p>Quotes are followed across newlines.</p>
 <p>What “heredocs” do is:</p>
 <ol class="arabic simple">
-<li><p>Read/interpret the string, with special rules, up to the terminator. <a class="footnote-reference brackets" href="#id5" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></li>
+<li><p>Read/interpret the string, with special rules, up to the terminator. <a class="footnote-reference brackets" href="#id4" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></li>
 <li><p>Write the resulting string to a temporary file.</p></li>
 <li><p>Start the command the heredoc is attached to with that file as stdin.</p></li>
 </ol>
@@ -349,8 +349,8 @@ pacman<span class="w"> </span>--remove<span class="w"> </span>-<span class="w"> 
 </div>
 <p>So heredocs really are minor syntactical sugar that introduces a lot of special rules, which is why fish doesn’t have them. Pipes are a core concept, and are simpler and compose nicer.</p>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id5" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
 <p>For example, the “EOF” is just a convention, the terminator can be an arbitrary string, something like “THISISTHEEND” also works. And using <code class="docutils literal notranslate"><span class="pre">&lt;&lt;-</span></code> trims leading <em>tab</em> characters (but not other whitespace), so you can indent the lines, but only with tabs. Substitutions (variables, commands) are done on the heredoc by default, but not if the terminator is quoted: <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">&lt;&lt;</span> <span class="pre">&quot;EOF&quot;</span></code>.</p>
 </aside>
 </aside>
@@ -536,14 +536,14 @@ foo<span class="w"> </span><span class="p">|</span><span class="w"> </span><span
       </div> 
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.1.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.2.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Fish for bash users</a></li>
@@ -573,12 +573,12 @@ foo<span class="w"> </span><span class="p">|</span><span class="w"> </span><span
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.1";
+ FISH_DOCS_VERSION = "4.2";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

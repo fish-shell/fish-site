@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tutorial &#8212; fish-shell 4.1.2 documentation</title>
+    <title>Tutorial &#8212; fish-shell 4.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=f5ac6594"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/documentation_options.js?v=0b798132"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -19,14 +19,14 @@
      
 
   </head><body><div id="fmain">  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.1.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.2.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Tutorial</a></li>
@@ -52,7 +52,7 @@
     </div>    
 
     <div class="document">
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <div>
 <h3><a href="index.html">Documents</a></h3>
@@ -74,7 +74,7 @@
 </ul>
 
 </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -82,7 +82,7 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
 <div>
 <h4><a href="index.html">Sections</a></h4>
@@ -126,7 +126,7 @@
           <div class="body" role="main">
             
   <section id="tutorial">
-<span id="id1"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading">¶</a></h1>
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading">¶</a></h1>
 <section id="why-fish">
 <h2>Why fish?<a class="headerlink" href="#why-fish" title="Link to this heading">¶</a></h2>
 <p>Fish is a fully-equipped command line shell (like bash or zsh) that is smart and user-friendly. Fish supports powerful features like syntax highlighting, autosuggestions, and tab completions that just work, with nothing to learn or configure.</p>
@@ -150,9 +150,9 @@ which means you are all set up and can start using fish:</p>
 <h2>Learning fish<a class="headerlink" href="#learning-fish" title="Link to this heading">¶</a></h2>
 <p>This tutorial assumes a basic understanding of command line shells and Unix commands, and that you have a working copy of fish.</p>
 <p>If you have a strong understanding of other shells, and want to know what fish does differently, search for the magic phrase <em>unlike other shells</em>, which is used to call out important differences.</p>
-<p>Or, if you want a quick overview over the differences to other shells like Bash, see <a class="reference internal" href="fish_for_bash_users.html#fish-for-bash-users"><span class="std std-ref">Fish For Bash Users</span></a>.</p>
-<p>For the full, detailed description of how to use fish interactively, see <a class="reference internal" href="interactive.html#interactive"><span class="std std-ref">Interactive Use</span></a>.</p>
-<p>For a comprehensive description of fish’s scripting language, see <a class="reference internal" href="language.html#language"><span class="std std-ref">The Fish Language</span></a>.</p>
+<p>Or, if you want a quick overview over the differences to other shells like Bash, see <a class="reference internal" href="fish_for_bash_users.html"><span class="doc">Fish For Bash Users</span></a>.</p>
+<p>For the full, detailed description of how to use fish interactively, see <a class="reference internal" href="interactive.html"><span class="doc">Interactive Use</span></a>.</p>
+<p>For a comprehensive description of fish’s scripting language, see <a class="reference internal" href="language.html"><span class="doc">The Fish Language</span></a>.</p>
 </section>
 <section id="running-commands">
 <h2>Running Commands<a class="headerlink" href="#running-commands" title="Link to this heading">¶</a></h2>
@@ -212,7 +212,7 @@ which means you are all set up and can start using fish:</p>
 <pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="command">grep</span> <span class="param">--i</span><span class="gray">gnore-case</span></pre>
 <p>And history too. Type a command once, and you can re-summon it by just typing a few letters:</p>
 <pre class="highlight literal-block"><span class="prompt">&gt;</span> <span class="red">r</span><span class="gray">sync -avze ssh . myname&#64;somelonghost.com:/some/long/path/doo/dee/doo/dee/doo</span></pre>
-<p>To accept the autosuggestion, hit <kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) or <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">f</kbd></kbd>. To accept a single word of the autosuggestion, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">right</kbd></kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>). If the autosuggestion is not what you want, just ignore it.</p>
+<p>To accept the autosuggestion, hit <kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) or <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">f</kbd>. To accept a single word of the autosuggestion, <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>). If the autosuggestion is not what you want, just ignore it.</p>
 <p>If you don’t like autosuggestions, you can disable them by setting <code class="docutils literal notranslate"><span class="pre">$fish_autosuggestion_enabled</span></code> to 0:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">-g</span><span class="w"> </span><span class="no">fish_autosuggestion_enabled</span><span class="w"> </span><span class="no">0</span>
 </pre></div>
@@ -367,7 +367,7 @@ For more on combining lists with strings (or even other lists), see <a class="re
 <span class="go">/var/run/sntp.log</span>
 </pre></div>
 </div>
-<p>If that directory traversal is taking a long time, you can <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">c</kbd></kbd> out of it.</p>
+<p>If that directory traversal is taking a long time, you can <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">c</kbd> out of it.</p>
 <p>For more, see <a class="reference internal" href="language.html#expand-wildcard"><span class="std std-ref">Wildcards</span></a>.</p>
 </section>
 <section id="pipes-and-redirections">
@@ -449,11 +449,11 @@ For more on combining lists with strings (or even other lists), see <a class="re
 </pre></div>
 </div>
 <p>This indicates how the command fared - 0 usually means success, while the others signify kinds of failure. For instance fish’s <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span></code> returns the number of variables it queried that weren’t set - <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span> <span class="pre">PATH</span></code> usually returns 0, <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">--query</span> <span class="pre">arglbargl</span> <span class="pre">boogagoogoo</span></code> usually returns 2.</p>
-<p>There is also a <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code> list variable for the exit statuses <a class="footnote-reference brackets" href="#id3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> of processes in a pipe.</p>
+<p>There is also a <code class="docutils literal notranslate"><span class="pre">$pipestatus</span></code> list variable for the exit statuses <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> of processes in a pipe.</p>
 <p>For more, see <a class="reference internal" href="language.html#variables-status"><span class="std std-ref">The status variable</span></a>.</p>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id3" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>or “stati” if you prefer, or “statūs” if you’ve time-travelled from ancient Rome or work as a latin teacher</p>
 </aside>
 </aside>
@@ -478,7 +478,7 @@ For more on combining lists with strings (or even other lists), see <a class="re
 </div>
 </section>
 <section id="conditionals-if-else-switch">
-<span id="tut-conditionals"></span><h2>Conditionals (If, Else, Switch)<a class="headerlink" href="#conditionals-if-else-switch" title="Link to this heading">¶</a></h2>
+<h2>Conditionals (If, Else, Switch)<a class="headerlink" href="#conditionals-if-else-switch" title="Link to this heading">¶</a></h2>
 <p>Use <a class="reference internal" href="cmds/if.html"><span class="doc">if</span></a> and <a class="reference internal" href="cmds/else.html"><span class="doc">else</span></a> to conditionally execute code, based on the exit status of a command.</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">grep</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="no">/etc/shells</span>
 <span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">Found</span><span class="w"> </span><span class="no">fish</span>
@@ -548,7 +548,7 @@ For more on combining lists with strings (or even other lists), see <a class="re
 <span class="c"># prints: Hello everybody!</span>
 </pre></div>
 </div>
-<p>Unlike other shells, fish does not have aliases or special prompt syntax. Functions take their place. <a class="footnote-reference brackets" href="#id5" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
+<p>Unlike other shells, fish does not have aliases or special prompt syntax. Functions take their place. <a class="footnote-reference brackets" href="#id4" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
 <p>You can list the names of all functions with the <a class="reference internal" href="cmds/functions.html"><span class="doc">functions</span></a> builtin (note the plural!). fish starts out with a number of functions:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">functions</span>
 <span class="go">N_, abbr, alias, bg, cd, cdh, contains_seq, dirh, dirs, disown, down-or-search, edit_command_buffer, export, fg, fish_add_path, fish_breakpoint_prompt, fish_clipboard_copy, fish_clipboard_paste, fish_config, fish_default_key_bindings, fish_default_mode_prompt, fish_git_prompt, fish_hg_prompt, fish_hybrid_key_bindings, fish_indent, fish_is_root_user, fish_job_summary, fish_key_reader, fish_md5, fish_mode_prompt, fish_npm_helper, fish_opt, fish_print_git_action, fish_print_hg_root, fish_prompt, fish_sigtrap_handler, fish_svn_prompt, fish_title, fish_update_completions, fish_vcs_prompt, fish_vi_cursor, fish_vi_key_bindings, funced, funcsave, grep, help, history, hostname, isatty, kill, la, ll, ls, man, nextd, open, popd, prevd, prompt_hostname, prompt_pwd, psub, pushd, realpath, seq, setenv, suspend, trap, type, umask, up-or-search, vared, wait</span>
@@ -563,9 +563,9 @@ For more on combining lists with strings (or even other lists), see <a class="re
 </div>
 <p>For more, see <a class="reference internal" href="language.html#syntax-function"><span class="std std-ref">Functions</span></a>.</p>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id5" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
-<p>There is a function called <a class="reference internal" href="cmds/alias.html"><span class="doc">alias</span></a>, but it’s just a shortcut to make functions. fish also provides <a class="reference internal" href="interactive.html#abbreviations"><span class="std std-ref">abbreviations</span></a>, through the <a class="reference internal" href="cmds/abbr.html#cmd-abbr"><span class="std std-ref">abbr</span></a> command.</p>
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
+<p>There is a function called <a class="reference internal" href="cmds/alias.html"><span class="doc">alias</span></a>, but it’s just a shortcut to make functions. fish also provides <a class="reference internal" href="interactive.html#abbreviations"><span class="std std-ref">abbreviations</span></a>, through the <a class="reference internal" href="cmds/abbr.html"><span class="doc">abbr</span></a> command.</p>
 </aside>
 </aside>
 </section>
@@ -707,14 +707,14 @@ For more on combining lists with strings (or even other lists), see <a class="re
       </div> 
       <div class="clearer"></div>
     </div>  
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
     <li><img src="_static/fish.png" alt=""
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.1.2 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.2.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Tutorial</a></li>
@@ -744,12 +744,12 @@ For more on combining lists with strings (or even other lists), see <a class="re
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.1";
+ FISH_DOCS_VERSION = "4.2";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
