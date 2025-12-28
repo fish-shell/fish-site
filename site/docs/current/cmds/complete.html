@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>complete - edit command-specific tab-completions &#8212; fish-shell 4.2.1 documentation</title>
+    <title>complete - edit command-specific tab-completions &#8212; fish-shell unknown documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=6fb65176"></script>
+    <script src="../_static/documentation_options.js?v=ae9c81a6"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell unknown documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -91,6 +91,7 @@
 <li><a class="reference internal" href="#">complete - edit command-specific tab-completions</a><ul>
 <li><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#cygwin-msys2-windows">Cygwin / MSYS2 / Windows</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
@@ -176,6 +177,22 @@ See below for details.</p>
 <p>When erasing completions, it is possible to either erase all completions for a specific command by specifying <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">COMMAND</span> <span class="pre">-e</span></code>, or by specifying a specific completion option to delete.</p>
 <p>When <code class="docutils literal notranslate"><span class="pre">complete</span></code> is called without anything that would define or erase completions (options, arguments, wrapping, …), it shows matching completions instead. So <code class="docutils literal notranslate"><span class="pre">complete</span></code> without any arguments shows all loaded completions, <code class="docutils literal notranslate"><span class="pre">complete</span> <span class="pre">-c</span> <span class="pre">foo</span></code> shows all loaded completions for <code class="docutils literal notranslate"><span class="pre">foo</span></code>. Since completions are <a class="reference internal" href="../language.html#syntax-function-autoloading"><span class="std std-ref">autoloaded</span></a>, you will have to trigger them first.</p>
 </section>
+<section id="cygwin-msys2-windows">
+<span id="completions-cygwin"></span><h2>Cygwin / MSYS2 / Windows<a class="headerlink" href="#cygwin-msys2-windows" title="Link to this heading">¶</a></h2>
+<p>On Windows, binary executables have a <code class="docutils literal notranslate"><span class="pre">.exe</span></code> extension, but this extension is not required when calling an application (and if the name is not ambiguous, i.e. there isn’t also a script called <code class="docutils literal notranslate"><span class="pre">myprog</span></code> in the same directory as <code class="docutils literal notranslate"><span class="pre">myprog.exe</span></code>).</p>
+<p>To unify completions between Windows and other OSes, on Cygwin/MSYS2/Windows, <em>COMMAND</em> does not require the <code class="docutils literal notranslate"><span class="pre">.exe</span></code> extension.
+Completions for <code class="docutils literal notranslate"><span class="pre">myprog</span></code> will also be used for <code class="docutils literal notranslate"><span class="pre">myprog.exe</span></code> if there are no ambiguities, i.e. if there are no completions for <code class="docutils literal notranslate"><span class="pre">myprog.exe</span></code> specifically.
+However, completions for <code class="docutils literal notranslate"><span class="pre">myprog.exe</span></code> will only be used when also using the <code class="docutils literal notranslate"><span class="pre">.exe</span></code> extension on the command line.</p>
+<p>In other words:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog.exe</span><span class="w"> </span><span class="no">...</span><span class="w">  </span><span class="c">#1</span>
+</pre></div>
+</div>
+<p>will only work for <code class="docutils literal notranslate"><span class="pre">myprog.exe</span></code></p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">...</span><span class="w">  </span><span class="c">#2</span>
+</pre></div>
+</div>
+<p>can work for both <code class="docutils literal notranslate"><span class="pre">myprog</span></code> and <code class="docutils literal notranslate"><span class="pre">myprog.exe</span></code>. But if both completions exist, #2 will only be used for <code class="docutils literal notranslate"><span class="pre">myprog</span></code> while <code class="docutils literal notranslate"><span class="pre">myprog.exe</span></code> will use #1.</p>
+</section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>The short-style option <code class="docutils literal notranslate"><span class="pre">-o</span></code> for the <code class="docutils literal notranslate"><span class="pre">gcc</span></code> command needs a file argument:</p>
@@ -223,7 +240,7 @@ See below for details.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell unknown documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -259,7 +276,7 @@ See below for details.</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.2";
+ FISH_DOCS_VERSION = "unknown";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

@@ -5,16 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Synopsis &#8212; fish-shell 4.2.1 documentation</title>
+    <title>string-trim - remove trailing whitespace &#8212; fish-shell unknown documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=6fb65176"></script>
+    <script src="../_static/documentation_options.js?v=ae9c81a6"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="fish_update_completions - update completions using manual pages" href="fish_update_completions.html" />
-    <link rel="prev" title="fish_title - define the terminal’s title" href="fish_title.html" />
+    <link rel="next" title="string-unescape - expand escape sequences" href="string-unescape.html" />
+    <link rel="prev" title="string-sub - extract substrings" href="string-sub.html" />
     <link rel="shortcut icon" type="image/png" href="../_static/fish.png" />
      
 
@@ -26,11 +26,11 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell unknown documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Synopsis</a></li>
+        <li class="nav-item nav-item-this"><a href="">string-trim - remove trailing whitespace</a></li>
     <li class="right">
         
 
@@ -88,9 +88,12 @@
 <div>
 <h4><a href="../index.html">Sections</a></h4>
 <ul>
-<li><a class="reference internal" href="#">Synopsis</a></li>
+<li><a class="reference internal" href="#">string-trim - remove trailing whitespace</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li><a class="reference internal" href="#description">Description</a></li>
-<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -100,54 +103,32 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="synopsis">
-<h1>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h1>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_title</span>
-<span class="nf">fish_tab_title</span>
-</pre></div>
-</div>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_title</span>
-<span class="w">    </span><span class="nf">...</span>
-<span class="nf">end</span>
-
-
-<span class="nf">function</span><span class="w"> </span><span class="no">fish_tab_title</span>
-<span class="w">    </span><span class="nf">...</span>
-<span class="nf">end</span>
+  <section id="string-trim-remove-trailing-whitespace">
+<h1>string-trim - remove trailing whitespace<a class="headerlink" href="#string-trim-remove-trailing-whitespace" title="Link to this heading">¶</a></h1>
+<section id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">string</span><span class="w"> </span><span class="no">trim</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-l</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--left</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-r</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--right</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-c</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--chars</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">CHARS</span><span class="g g-Other">]</span>
+<span class="w">            </span><span class="g g-Other">[</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--quiet</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">STRING</span><span class="w"> </span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
 <section id="description">
-<h1>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">fish_title</span></code> function is executed before and after a new command is executed or put into the foreground and the output is used as a titlebar message.</p>
-<p>The first argument to <code class="docutils literal notranslate"><span class="pre">fish_title</span></code> contains the most recently executed foreground command as a string, if any.</p>
-<p>This requires that your terminal supports <a class="reference internal" href="../terminal-compatibility.html#term-compat-osc-0"><span class="std std-ref">programmable titles</span></a> and the feature is turned on.</p>
-<p>To disable setting the title, use an empty function (see below).</p>
-<p>To set the terminal tab title to something other than the terminal window title,
-define the <code class="docutils literal notranslate"><span class="pre">fish_tab_title</span></code> function, which works like <code class="docutils literal notranslate"><span class="pre">fish_title</span></code> but overrides that one.</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">trim</span></code> removes leading and trailing whitespace from each <em>STRING</em>. If <strong>-l</strong> or <strong>--left</strong> is given, only leading whitespace is removed. If <strong>-r</strong> or <strong>--right</strong> is given, only trailing whitespace is trimmed.</p>
+<p>The <strong>-c</strong> or <strong>--chars</strong> switch causes the set of characters in <em>CHARS</em> to be removed instead of whitespace. This is a set of characters, not a string - if you pass <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">foo</span></code>, it will remove any “f” or “o”, not just “foo” as a whole.</p>
+<p>Exit status: 0 if at least one character was trimmed, or 1 otherwise.</p>
 </section>
-<section id="example">
-<h1>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h1>
-<p>A simple title:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_title</span>
-<span class="w">    </span><span class="nf">set</span><span class="w"> </span><span class="no">-q</span><span class="w"> </span><span class="no">argv[1]</span><span class="p">;</span><span class="w"> </span><span class="o">or</span><span class="w"> </span><span class="nf">set</span><span class="w"> </span><span class="no">argv</span><span class="w"> </span><span class="no">fish</span>
-<span class="w">    </span><span class="c"># Looks like ~/d/fish: git log</span>
-<span class="w">    </span><span class="c"># or /e/apt: fish</span>
-<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="o">(</span><span class="no">fish_prompt_pwd_dir_length</span><span class="o">=</span><span class="no">1</span><span class="w"> </span><span class="nf">prompt_pwd</span><span class="o">)</span><span class="no">:</span><span class="w"> </span><span class="o">$argv</span><span class="p">;</span>
-<span class="nf">end</span>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">trim</span><span class="w"> </span><span class="s1">&#39; abc  &#39;</span>
+<span class="go">abc</span>
+
+<span class="gp">&gt;_ </span><span class="nf">string</span><span class="w"> </span><span class="no">trim</span><span class="w"> </span><span class="no">--right</span><span class="w"> </span><span class="no">--chars=yz</span><span class="w"> </span><span class="no">xyzzy</span><span class="w"> </span><span class="no">zany</span>
+<span class="go">x</span>
+<span class="go">zan</span>
 </pre></div>
 </div>
-<p>Do not change the title:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_title</span>
-<span class="nf">end</span>
-</pre></div>
-</div>
-<p>Change the tab title only:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_tab_title</span>
-<span class="w">    </span><span class="nf">echo</span><span class="w"> </span><span class="no">fish</span><span class="w"> </span><span class="o">$fish_pid</span>
-<span class="nf">end</span>
-</pre></div>
-</div>
+</section>
 </section>
 
 
@@ -164,11 +145,11 @@ define the <code class="docutils literal notranslate"><span class="pre">fish_tab
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell unknown documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Synopsis</a></li>
+        <li class="nav-item nav-item-this"><a href="">string-trim - remove trailing whitespace</a></li>
     <li class="right">
         
 
@@ -200,7 +181,7 @@ define the <code class="docutils literal notranslate"><span class="pre">fish_tab
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.2";
+ FISH_DOCS_VERSION = "unknown";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Contributing To Fish &#8212; fish-shell 4.2.1 documentation</title>
+    <title>Contributing To Fish &#8212; fish-shell unknown documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=6fb65176"></script>
+    <script src="_static/documentation_options.js?v=ae9c81a6"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="index.html">fish-shell unknown documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Contributing To Fish</a></li>
@@ -91,6 +91,7 @@
 <li><a class="reference internal" href="#mailing-list">Mailing List</a></li>
 <li><a class="reference internal" href="#github">GitHub</a></li>
 <li><a class="reference internal" href="#guidelines">Guidelines</a></li>
+<li><a class="reference internal" href="#commit-history">Commit History</a></li>
 <li><a class="reference internal" href="#contributing-completions">Contributing completions</a></li>
 <li><a class="reference internal" href="#contributing-documentation">Contributing documentation</a></li>
 <li><a class="reference internal" href="#code-style">Code Style</a><ul>
@@ -140,9 +141,9 @@ Archives are available at <a class="reference external" href="https://lists.sr.h
 </section>
 <section id="github">
 <h2>GitHub<a class="headerlink" href="#github" title="Link to this heading">¶</a></h2>
-<p>Fish is available on Github, at <a class="reference external" href="https://github.com/fish-shell/fish-shell">https://github.com/fish-shell/fish-shell</a>.</p>
+<p>Fish is available on GitHub, at <a class="reference external" href="https://github.com/fish-shell/fish-shell">https://github.com/fish-shell/fish-shell</a>.</p>
 <p>First, you’ll need an account there, and you’ll need a git clone of fish.
-Fork it on Github and then run:</p>
+Fork it on GitHub and then run:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">git</span><span class="w"> </span><span class="no">clone</span><span class="w"> </span><span class="no">https://github.com/</span><span class="p">&lt;USERNAME&gt;/fish-shell.git</span>
 </pre></div>
 </div>
@@ -167,6 +168,20 @@ and if the change is very simple and obvious you can just send it in. Use your j
 <li><p>Be conservative in what you need (keep to the agreed minimum supported Rust version, limit new dependencies)</p></li>
 <li><p>Use automated tools to help you (<code class="docutils literal notranslate"><span class="pre">build_tools/check.sh</span></code>)</p></li>
 </ul>
+</section>
+<section id="commit-history">
+<h2>Commit History<a class="headerlink" href="#commit-history" title="Link to this heading">¶</a></h2>
+<p>We use a linear, <a class="reference external" href="https://www.bitsnbites.eu/git-history-work-log-vs-recipe/">recipe-style</a> history.
+Every commit should pass our checks.
+We do not want “fixup” commits in our history.
+If you notice an issue with a commit in a pull request, or get feedback suggesting changes,
+you should rewrite the commit history and fix the relevant commits directly,
+instead of adding new “fixup” commits.
+When a pull request is ready, we rebase it on top of the current master branch,
+so don’t be shy about rewriting the history of commits which are not on master yet.
+Rebasing (not merging) your pull request on the latest version of master is also welcome, especially if it resolves conflicts.</p>
+<p>If you’re using Git, consider using <a class="reference external" href="https://www.jj-vcs.dev/">jj</a> to make this easier.</p>
+<p>If a commit should close an issue, add a <code class="docutils literal notranslate"><span class="pre">Fixes</span> <span class="pre">#&lt;issue-number&gt;</span></code> line at the end of the commit description.</p>
 </section>
 <section id="contributing-completions">
 <h2>Contributing completions<a class="headerlink" href="#contributing-completions" title="Link to this heading">¶</a></h2>
@@ -198,11 +213,17 @@ but if it is just a shortcut, please leave it.</p></li>
 <section id="contributing-documentation">
 <h2>Contributing documentation<a class="headerlink" href="#contributing-documentation" title="Link to this heading">¶</a></h2>
 <p>The documentation is stored in <code class="docutils literal notranslate"><span class="pre">doc_src/</span></code>, and written in ReStructured Text and built with Sphinx.</p>
-<p>To build it locally, run from the main fish-shell directory:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">sphinx-build</span><span class="w"> </span><span class="no">-j</span><span class="w"> </span><span class="no">8</span><span class="w"> </span><span class="no">-b</span><span class="w"> </span><span class="no">html</span><span class="w"> </span><span class="no">-n</span><span class="w"> </span><span class="no">doc_src/</span><span class="w"> </span><span class="no">/tmp/fish-doc/</span>
+<p>To build it locally, run either:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">sphinx-build</span><span class="w"> </span><span class="no">-j</span><span class="w"> </span><span class="no">auto</span><span class="w"> </span><span class="no">-b</span><span class="w"> </span><span class="no">html</span><span class="w"> </span><span class="no">doc_src/</span><span class="w"> </span><span class="no">/tmp/fish-doc/</span>
 </pre></div>
 </div>
-<p>which will build the docs as html in /tmp/fish-doc. You can open it in a browser and see that it looks okay.</p>
+<p>which will output HTML docs to /tmp/fish-doc.
+You can open it in a browser and see that it looks okay.</p>
+<p>Alternatively, you can use:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cmake</span><span class="w"> </span><span class="no">--build</span><span class="w"> </span><span class="no">build</span><span class="w"> </span><span class="no">-t</span><span class="w"> </span><span class="no">sphinx-docs</span>
+</pre></div>
+</div>
+<p>which outputs to build/user_doc/html/.</p>
 <p>The builtins and various functions shipped with fish are documented in doc_src/cmds/.</p>
 </section>
 <section id="code-style">
@@ -272,7 +293,7 @@ made to run fish_indent via e.g.</p>
 are making any changes to fish, running these tests is a good way to make
 sure the behaviour remains consistent and regressions are not
 introduced. Even if you don’t run the tests on your machine, they will
-still be run via Github Actions.</p>
+still be run via GitHub Actions.</p>
 <p>You are strongly encouraged to add tests when changing the functionality
 of fish, especially if you are fixing a bug to help ensure there are no
 regressions in the future (i.e., we don’t reintroduce the bug).</p>
@@ -321,9 +342,8 @@ This means that we do not have a runtime dependency on the gettext library.
 It also means that some features are not supported, such as message context and plurals.
 We also expect all files to be UTF-8-encoded.
 In practice, this should not matter much for contributing translations.</p>
-<p>Translation sources are
-stored in the <code class="docutils literal notranslate"><span class="pre">po</span></code> directory, named <code class="docutils literal notranslate"><span class="pre">ll_CC.po</span></code>, where <code class="docutils literal notranslate"><span class="pre">ll</span></code> is the
-two (or possibly three) letter ISO 639-1 language code of the target language
+<p>Translation sources are stored in the <code class="docutils literal notranslate"><span class="pre">localization/po</span></code> directory and named <code class="docutils literal notranslate"><span class="pre">ll_CC.po</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">ll</span></code> is the two (or possibly three) letter ISO 639-1 language code of the target language
 (e.g. <code class="docutils literal notranslate"><span class="pre">pt</span></code> for Portuguese). <code class="docutils literal notranslate"><span class="pre">CC</span></code> is an ISO 3166 country/territory code,
 (e.g. <code class="docutils literal notranslate"><span class="pre">BR</span></code> for Brazil).
 An example for a valid name is <code class="docutils literal notranslate"><span class="pre">pt_BR.po</span></code>, indicating Brazilian Portuguese.
@@ -334,7 +354,7 @@ These are the files you will interact with when adding translations.</p>
 More specifically, you will need <code class="docutils literal notranslate"><span class="pre">msguniq</span></code> and <code class="docutils literal notranslate"><span class="pre">msgmerge</span></code> for creating translations for a new
 language.
 To create a new translation, run:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">build_tools/update_translations.fish</span><span class="w"> </span><span class="no">po/ll_CC.po</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">build_tools/update_translations.fish</span><span class="w"> </span><span class="no">localization/po/ll_CC.po</span>
 </pre></div>
 </div>
 <p>This will create a new PO file containing all messages available for translation.
@@ -375,7 +395,7 @@ section for details.</p>
 <h3>Editing PO files<a class="headerlink" href="#editing-po-files" title="Link to this heading">¶</a></h3>
 <p>Many tools are available for editing translation files, including
 command-line and graphical user interface programs. For simple use, you can use your text editor.</p>
-<p>Open up the PO file, for example <code class="docutils literal notranslate"><span class="pre">po/sv.po</span></code>, and you’ll see something like:</p>
+<p>Open up the PO file, for example <code class="docutils literal notranslate"><span class="pre">localization/po/sv.po</span></code>, and you’ll see something like:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">msgid</span><span class="w"> </span><span class="s2">&quot;%s: No suitable job\n&quot;</span>
 <span class="nf">msgstr</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
 </pre></div>
@@ -398,7 +418,7 @@ The second line (<code class="docutils literal notranslate"><span class="pre">ms
 <p>If a string changes in the sources, the old translations will no longer work.
 They will be preserved in the PO files, but commented-out (starting with <code class="docutils literal notranslate"><span class="pre">#~</span></code>).
 If you add/remove/change a translatable strings in a source file,
-run <code class="docutils literal notranslate"><span class="pre">build_tools/update_translations.fish</span></code> to propagate this to all translation files (<code class="docutils literal notranslate"><span class="pre">po/*.po</span></code>).
+run <code class="docutils literal notranslate"><span class="pre">build_tools/update_translations.fish</span></code> to propagate this to all translation files (<code class="docutils literal notranslate"><span class="pre">localization/po/*.po</span></code>).
 This is only relevant for developers modifying the source files of fish or fish scripts.</p>
 </section>
 <section id="setting-code-up-for-translations">
@@ -456,7 +476,7 @@ recent release number (e.g., <code class="docutils literal notranslate"><span cl
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="index.html">fish-shell unknown documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Contributing To Fish</a></li>
@@ -491,7 +511,7 @@ recent release number (e.g., <code class="docutils literal notranslate"><span cl
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.2";
+ FISH_DOCS_VERSION = "unknown";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>bind - handle fish key bindings &#8212; fish-shell 4.2.1 documentation</title>
+    <title>bind - handle fish key bindings &#8212; fish-shell unknown documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=6fb65176"></script>
+    <script src="../_static/documentation_options.js?v=ae9c81a6"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell unknown documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -226,9 +226,13 @@ the commandline, does nothing. Does not change the selected item in the completi
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">backward-kill-line</span></code></dt><dd><p>move everything from the beginning of the line to the cursor to the killring</p>
 </dd>
+</dl>
+<dl class="simple" id="cmd-bind-backward-kill-path-component">
 <dt><code class="docutils literal notranslate"><span class="pre">backward-kill-path-component</span></code></dt><dd><p>move one path component to the left of the cursor to the killring. A path component is everything likely to belong to a path component, i.e. not any of the following: <cite>/={,}’&quot;:&#64; |;&lt;&gt;&amp;</cite>, plus newlines and tabs.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">backward-kill-word</span></code></dt><dd><p>move the word to the left of the cursor to the killring. The “word” here is everything up to punctuation or whitespace.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">backward-path-component</span></code></dt><dd><p>move one <a class="reference internal" href="#cmd-bind-backward-kill-path-component"><span class="std std-ref">path component</span></a> to the left.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">backward-word</span></code></dt><dd><p>move one word to the left</p>
 </dd>
@@ -292,6 +296,8 @@ If the completion pager is active, select the next completion instead.</p>
 commandline, does not accept the current autosuggestion (if any). Does not change the selected item in the completion pager,
 if shown.</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">forward-path-component</span></code></dt><dd><p>move one <a class="reference internal" href="#cmd-bind-backward-kill-path-component"><span class="std std-ref">path component</span></a> to the right; or if at the end of the commandline, accept a path component from the current autosuggestion.</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">forward-single-char</span></code></dt><dd><p>move one character to the right; or if at the end of the commandline, accept a single char from the current autosuggestion.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">forward-word</span></code></dt><dd><p>move one word to the right; or if at the end of the commandline, accept one word
@@ -338,6 +344,8 @@ The following brackets are considered: <code class="docutils literal notranslate
 <dt><code class="docutils literal notranslate"><span class="pre">kill-token</span></code></dt><dd><p>move the next argument to the killring</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">kill-line</span></code></dt><dd><p>move everything from the cursor to the end of the line to the killring</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">kill-path-component</span></code></dt><dd><p>move one <a class="reference internal" href="#cmd-bind-backward-kill-path-component"><span class="std std-ref">path component</span></a> to the killring.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">kill-selection</span></code></dt><dd><p>move the selected text to the killring</p>
 </dd>
@@ -489,7 +497,7 @@ But if the search field is already active, keep the behavior (<kbd class="kbd do
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell unknown documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -525,7 +533,7 @@ But if the search field is already active, keep the behavior (<kbd class="kbd do
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.2";
+ FISH_DOCS_VERSION = "unknown";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

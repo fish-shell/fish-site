@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Terminal Compatibility &#8212; fish-shell 4.2.1 documentation</title>
+    <title>Terminal Compatibility &#8212; fish-shell unknown documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=6fb65176"></script>
+    <script src="_static/documentation_options.js?v=ae9c81a6"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="index.html">fish-shell unknown documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Terminal Compatibility</a></li>
@@ -110,7 +110,8 @@ Some must be implemented to enable basic functionality,
 while others enable optional features and may be ignored by the terminal.</p>
 <p>The terminal must be able to parse Control Sequence Introducer (CSI) commands, Operating System Commands (OSC) and <a class="reference internal" href="#term-compat-dcs-gnu-screen"><span class="std std-ref">optionally</span></a> Device Control Strings (DCS).
 These are defined by ECMA-48.
-If a valid CSI, OSC or DCS sequence does not represent a command implemented by the terminal, the terminal must ignore it.</p>
+If a valid CSI, OSC or DCS sequence does not represent a command implemented by the terminal, the terminal must ignore it.
+For historical reasons, OSC sequences may be terminated with <code class="docutils literal notranslate"><span class="pre">\x07</span></code> instead of <code class="docutils literal notranslate"><span class="pre">\e\\</span></code>.</p>
 <p>Control sequences are denoted in a fish-like syntax.
 Special characters other than <code class="docutils literal notranslate"><span class="pre">\</span></code> are not escaped.
 Spaces are only added for readability and are not part of the sequence.
@@ -359,16 +360,26 @@ This is only used for temporary workarounds for incompatible terminals.</p></td>
 <td></td>
 <td><p>Disable bracketed paste.</p></td>
 </tr>
-<tr class="row-odd"><td><p id="term-compat-osc-0"><code class="docutils literal notranslate"><span class="pre">\e]0;</span> <span class="pre">Pt</span> <span class="pre">\x07</span></code></p>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?2031h</span></code></p></td>
+<td></td>
+<td><p>Enable unsolicited <a class="reference external" href="https://contour-terminal.org/vt-extensions/color-palette-update-notifications/">color theme reporting</a>.
+When enabled, the terminal should send <code class="docutils literal notranslate"><span class="pre">\e[?997;1n</span></code> or <code class="docutils literal notranslate"><span class="pre">\e[?997;2n</span></code> whenever its color theme has changed.
+This prompts fish to query for <a class="reference internal" href="#term-compat-query-background-color"><span class="std std-ref">background color</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e[?2031l</span></code></p></td>
+<td></td>
+<td><p>Disable unsolicited color theme reporting.</p></td>
+</tr>
+<tr class="row-odd"><td><p id="term-compat-osc-0"><code class="docutils literal notranslate"><span class="pre">\e]0;</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code></p>
 </td>
 <td><p>ts</p></td>
 <td><p>Set terminal window title (OSC 0). Used in <a class="reference internal" href="cmds/fish_title.html"><span class="doc">fish_title</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e]2;</span> <span class="pre">Pt</span> <span class="pre">\x07</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e]2;</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code></p></td>
 <td><p>ts</p></td>
 <td><p>Set terminal tab title (OSC 1). Used in <a class="reference internal" href="cmds/fish_tab_title.html"><span class="doc">fish_tab_title</span></a>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e]7;file://</span> <span class="pre">Pt</span> <span class="pre">/</span> <span class="pre">Pt</span> <span class="pre">\x07</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e]7;file://</span> <span class="pre">Pt</span> <span class="pre">/</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code></p></td>
 <td></td>
 <td><p>Report working directory (OSC 7).
 Since the terminal may be running on a different system than a (remote) shell,
@@ -380,38 +391,57 @@ the hostname (first parameter) will <em>not</em> be <code class="docutils litera
 <td><p>Create a <a class="reference external" href="https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda">hyperlink (OSC 8)</a>.
 This is used in fish’s man pages.</p></td>
 </tr>
-<tr class="row-odd"><td><p id="term-compat-osc-52"><code class="docutils literal notranslate"><span class="pre">\e]52;c;</span> <span class="pre">Pt</span> <span class="pre">\x07</span></code></p>
+<tr class="row-odd"><td><p id="term-compat-query-background-color"><code class="docutils literal notranslate"><span class="pre">\e]11;?\e\\</span></code></p>
+</td>
+<td><p>n/a</p></td>
+<td><p>Query background color.</p>
+<p>A valid response would be of the form <code class="docutils literal notranslate"><span class="pre">\e]11;rgb:</span> <span class="pre">Pt</span> <span class="pre">/</span> <span class="pre">Pt</span> <span class="pre">/</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code> or <code class="docutils literal notranslate"><span class="pre">\e]11;rgba:</span> <span class="pre">Pt</span> <span class="pre">/</span> <span class="pre">Pt</span> <span class="pre">/</span> <span class="pre">Pt</span> <span class="pre">/</span> <span class="pre">Pt\e\\</span></code>
+where the first three parameters consist of one to four hex digits each, representing red, blue and green components.</p>
+<p>This is used to populate <span class="target" id="index-0"></span><a class="reference internal" href="language.html#envvar-fish_terminal_color_theme"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_terminal_color_theme</span></code></a>,
+which is used to select a <a class="reference internal" href="cmds/fish_config.html#fish-config-theme-files"><span class="std std-ref">theme variant</span></a> optimized for the terminal’s color theme.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p id="term-compat-osc-52"><code class="docutils literal notranslate"><span class="pre">\e]52;c;</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code></p>
 </td>
 <td></td>
 <td><p>Copy to clipboard (OSC 52). Used by <a class="reference internal" href="cmds/fish_clipboard_copy.html"><span class="doc">fish_clipboard_copy</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td><p id="term-compat-osc-133"><code class="docutils literal notranslate"><span class="pre">\e]133;A;</span> <span class="pre">click_events=1\x07</span></code></p>
+<tr class="row-odd"><td><p id="term-compat-osc-133"><code class="docutils literal notranslate"><span class="pre">\e]133;A;</span> <span class="pre">click_events=1\e\\</span></code></p>
 </td>
 <td></td>
 <td><p>Mark prompt start (OSC 133), with kitty’s <code class="docutils literal notranslate"><span class="pre">click_events</span></code> extension.
 The <code class="docutils literal notranslate"><span class="pre">click_events</span></code> extension enables mouse clicks to move the cursor or select pager items,
 assuming that <a class="reference internal" href="#term-compat-cursor-position-report"><span class="std std-ref">cursor position reporting</span></a> is available.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e]133;C;</span> <span class="pre">cmdline_url=</span> <span class="pre">Pt</span> <span class="pre">\x07</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e]133;B\e\\</span></code></p></td>
+<td></td>
+<td><p>Mark prompt end (OSC 133).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\e]133;C;</span> <span class="pre">cmdline_url=</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code></p></td>
 <td></td>
 <td><p>Mark command start (OSC 133), with kitty’s <code class="docutils literal notranslate"><span class="pre">cmdline_url</span></code> extension whose parameter is the URL-encoded command line.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e]133;D;</span> <span class="pre">Ps</span> <span class="pre">\x07</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\e]133;D;</span> <span class="pre">Ps</span> <span class="pre">\e\\</span></code></p></td>
 <td></td>
 <td><p>Mark command end (OSC 133);  Ps is the exit status.</p></td>
 </tr>
-<tr class="row-odd"><td><blockquote id="term-compat-xtgettcap">
-<div><p><code class="docutils literal notranslate"><span class="pre">\eP+q</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code></p>
-</div></blockquote>
+<tr class="row-odd"><td><p id="term-compat-xtgettcap"><code class="docutils literal notranslate"><span class="pre">\eP+q</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code></p>
 </td>
 <td></td>
 <td><p>Request terminfo capability (XTGETTCAP).
-The parameter is the capability’s hex-encoded terminfo code.
-To advertise a capability, the response must be of the form
-<code class="docutils literal notranslate"><span class="pre">\eP1+q</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code> or <code class="docutils literal notranslate"><span class="pre">\eP1+q</span> <span class="pre">Pt</span> <span class="pre">=</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code>.
-In either variant the first parameter must be the hex-encoded terminfo code.
-The second variant’s second parameter is ignored.</p>
-<p>Currently, fish only queries the <a class="reference internal" href="#term-compat-indn"><span class="std std-ref">indn</span></a> string capability.</p>
+The parameter is the capability’s hex-encoded terminfo code.</p>
+<p>The response must be of the form
+<code class="docutils literal notranslate"><span class="pre">\eP1+q</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code> (“boolean”) or <code class="docutils literal notranslate"><span class="pre">\eP1+q</span> <span class="pre">Pt</span> <span class="pre">=</span> <span class="pre">Pt</span> <span class="pre">\e\\</span></code> (“string”).
+In either variant, the first parameter must be the same as the request parameter.</p>
+<p>fish queries the following string capabilities:</p>
+<ul>
+<li><p><a class="reference internal" href="#term-compat-indn"><span class="std std-ref">indn</span></a></p>
+<p>The response’s second parameter is ignored.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">query-os-name</span></code> (for <a class="reference internal" href="cmds/status.html#status-terminal-os"><span class="std std-ref">status terminal-os</span></a>)</p>
+<p>Terminals running on Unix should respond with the hex encoding of <code class="docutils literal notranslate"><span class="pre">$(uname</span> <span class="pre">-s)</span></code> as second parameter.</p>
+</li>
+</ul>
 </td>
 </tr>
 </tbody>
@@ -419,11 +449,11 @@ The second variant’s second parameter is ignored.</p>
 </section>
 <section id="dcs-commands-and-gnu-screen">
 <span id="term-compat-dcs-gnu-screen"></span><h2>DCS commands and GNU screen<a class="headerlink" href="#dcs-commands-and-gnu-screen" title="Link to this heading">¶</a></h2>
-<p>Fully-correct DCS parsing is optional because fish switches to the alternate screen before printing any DCS commands.
+<p>DCS parsing is optional because fish temporarily switches to the alternate screen before printing any DCS commands.
 However, since GNU screen neither allows turning on the alternate screen buffer by default,
 nor treats DCS commands in a compatible way,
 fish’s initial prompt may be garbled by a DCS payload like <code class="docutils literal notranslate"><span class="pre">+q696e646e</span></code>.
-For the time being, fish works around this by checking for presence of the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">STY</span></code> environment variable.
+For the time being, fish works around this by checking for presence of the <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">STY</span></code> environment variable.
 If that doesn’t work for some reason, you can add this to your <code class="docutils literal notranslate"><span class="pre">~/.screenrc</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>altscreen on
 </pre></div>
@@ -461,7 +491,7 @@ and locale-specific ones in <a class="reference internal" href="language.html#va
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="index.html">fish-shell unknown documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Terminal Compatibility</a></li>
@@ -496,7 +526,7 @@ and locale-specific ones in <a class="reference internal" href="language.html#va
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.2";
+ FISH_DOCS_VERSION = "unknown";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

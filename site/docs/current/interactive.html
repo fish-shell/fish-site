@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Interactive use &#8212; fish-shell 4.2.1 documentation</title>
+    <title>Interactive use &#8212; fish-shell unknown documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=6fb65176"></script>
+    <script src="_static/documentation_options.js?v=ae9c81a6"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="index.html">fish-shell unknown documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Interactive use</a></li>
@@ -182,13 +182,28 @@
 <li><p>Mismatched parenthesis</p></li>
 </ul>
 <p>To customize the syntax highlighting, you can set the environment variables listed in the <a class="reference internal" href="#variables-color"><span class="std std-ref">Variables for changing highlighting colors</span></a> section.</p>
-<p>Fish also provides pre-made color themes you can pick with <a class="reference internal" href="cmds/fish_config.html"><span class="doc">fish_config</span></a>. Running just <code class="docutils literal notranslate"><span class="pre">fish_config</span></code> opens a browser interface, or you can use <code class="docutils literal notranslate"><span class="pre">fish_config</span> <span class="pre">theme</span></code> in the terminal.</p>
-<p>For example, to disable nearly all coloring:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="no">choose</span><span class="w"> </span><span class="no">None</span>
+<p>Fish also provides pre-made color themes you can pick with <a class="reference internal" href="cmds/fish_config.html"><span class="doc">fish_config</span></a>.
+Running just <code class="docutils literal notranslate"><span class="pre">fish_config</span></code> opens a browser interface, or you can use <code class="docutils literal notranslate"><span class="pre">fish_config</span> <span class="pre">theme</span></code> from fish:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># disable nearly all coloring</span>
+<span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="no">choose</span><span class="w"> </span><span class="no">none</span>
+<span class="c"># restore fish&#39;s default theme</span>
+<span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="no">choose</span><span class="w"> </span><span class="no">default</span>
 </pre></div>
 </div>
 <p>Or, to see all themes, right in your terminal:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="no">show</span>
+</pre></div>
+</div>
+<p id="syntax-highlighting-instant-update">To update the theme of all shell sessions without restarting them,
+first have those sessions define an <a class="reference internal" href="language.html#event"><span class="std std-ref">event handler</span></a> by adding the following to your <a class="reference internal" href="language.html#configuration"><span class="std std-ref">config.fish</span></a> and restarting them:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">apply-my-theme</span><span class="w"> </span><span class="no">--on-variable=my_theme</span>
+<span class="w">    </span><span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="no">choose</span><span class="w"> </span><span class="o">$my_theme</span>
+<span class="nf">end</span>
+</pre></div>
+</div>
+<p>Then, set the corresponding <a class="reference internal" href="language.html#variables-universal"><span class="std std-ref">universal variable</span></a> from any session:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-U</span><span class="w"> </span><span class="no">my_theme</span><span class="w"> </span><span class="no">lava</span>
+<span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">-U</span><span class="w"> </span><span class="no">my_theme</span><span class="w"> </span><span class="no">snow-day</span>
 </pre></div>
 </div>
 <section id="syntax-highlighting-variables">
@@ -409,7 +424,8 @@ are also accepted.</p>
 </tr>
 </tbody>
 </table>
-<p>If a variable isn’t set or is empty, fish usually tries <code class="docutils literal notranslate"><span class="pre">$fish_color_normal</span></code>, except for:</p>
+<p>If a variable isn’t set or is empty after subtracting any <code class="docutils literal notranslate"><span class="pre">--theme=THEME</span></code> options,
+fish usually tries <code class="docutils literal notranslate"><span class="pre">$fish_color_normal</span></code>, except for:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_keyword</span></code>, where it tries <code class="docutils literal notranslate"><span class="pre">$fish_color_command</span></code> first.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_option</span></code>, where it tries <code class="docutils literal notranslate"><span class="pre">$fish_color_param</span></code> first.</p></li>
@@ -949,7 +965,7 @@ The variable <span class="target" id="index-3"></span><a class="reference intern
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="index.html">fish-shell unknown documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Interactive use</a></li>
@@ -984,7 +1000,7 @@ The variable <span class="target" id="index-3"></span><a class="reference intern
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.2";
+ FISH_DOCS_VERSION = "unknown";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

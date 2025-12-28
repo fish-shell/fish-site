@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>status - query fish runtime information &#8212; fish-shell 4.2.1 documentation</title>
+    <title>status - query fish runtime information &#8212; fish-shell unknown documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=6fb65176"></script>
+    <script src="../_static/documentation_options.js?v=ae9c81a6"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell unknown documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -131,10 +131,10 @@
 <span class="nf">status</span><span class="w"> </span><span class="no">test-feature</span><span class="w"> </span><span class="no">FEATURE</span>
 <span class="nf">status</span><span class="w"> </span><span class="no">build-info</span>
 <span class="nf">status</span><span class="w"> </span><span class="no">get-file</span><span class="w"> </span><span class="no">FILE</span>
-<span class="nf">status</span><span class="w"> </span><span class="no">list-files</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">PATH</span><span class="g g-Other">]</span>
-<span class="nf">status</span><span class="w"> </span><span class="no">help-sections</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">list-files</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">PATH</span><span class="w"> </span><span class="g g-Other">...]</span>
 <span class="nf">status</span><span class="w"> </span><span class="no">terminal</span>
 <span class="nf">status</span><span class="w"> </span><span class="no">test-terminal-feature</span><span class="w"> </span><span class="no">FEATURE</span>
+<span class="nf">status</span><span class="w"> </span><span class="no">language</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">list-available</span><span class="g g-Other">|</span><span class="no">set</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">LANGUAGE</span><span class="w"> </span><span class="g g-Other">...]|</span><span class="no">unset</span><span class="g g-Other">]</span>
 </pre></div>
 </div>
 </section>
@@ -195,14 +195,9 @@ This is mainly useful for debugging.</p>
 as well as the man pages and themes. Which files are included depends on build settings.
 Returns 0 if the file was included, 1 otherwise.</p>
 </dd>
-<dt><strong>list-files</strong> <em>FILE</em></dt><dd><p>NOTE: this subcommand is mainly intended for fish’s internal use; let us know if you want to use it elsewhere.</p>
+<dt><strong>list-files</strong> <em>FILE…</em></dt><dd><p>NOTE: this subcommand is mainly intended for fish’s internal use; let us know if you want to use it elsewhere.</p>
 <p>This lists the files embedded in the fish binary at compile time. Only files where the path starts with the optional <em>FILE</em> argument are shown.
 Returns 0 if something was printed, 1 otherwise.</p>
-</dd>
-<dt><strong>help-sections</strong></dt><dd><p>NOTE: this subcommand is intended for fish’s internal use.</p>
-<p>List section arguments for the <a class="reference internal" href="help.html"><span class="doc">help</span></a> command.
-If you have the latest version of fish, these URL fragments are valid on <a class="reference external" href="https://fishshell.com/docs/current/">https://fishshell.com/docs/current/</a>.
-Always returns 0.</p>
 </dd>
 </dl>
 <dl class="simple" id="status-terminal">
@@ -211,11 +206,38 @@ This is not available during early startup but only starting from when the first
 so before the first <code class="docutils literal notranslate"><span class="pre">fish_prompt</span></code> or <code class="docutils literal notranslate"><span class="pre">fish_read</span></code> <a class="reference internal" href="../language.html#event"><span class="std std-ref">event</span></a>.</p>
 </dd>
 </dl>
+<dl class="simple" id="status-terminal-os">
+<dt><strong>terminal-os</strong></dt><dd><p>Prints the name of the operating system (OS) the terminal is running on, as reported via <a class="reference internal" href="../terminal-compatibility.html#term-compat-xtgettcap"><span class="std std-ref">XTGETTCAP query-os-name</span></a>.
+Like <a class="reference internal" href="#status-terminal"><span class="std std-ref">status terminal</span></a>, this only works once the first interactive prompt is shown.
+Returns 1 if the OS name is not available.</p>
+</dd>
+</dl>
 <dl id="status-test-terminal-features">
 <dt><strong>test-terminal-feature</strong> <em>FEATURE</em></dt><dd><p>Returns 0 when the terminal was <a class="reference internal" href="../terminal-compatibility.html#term-compat-xtgettcap"><span class="std std-ref">detected</span></a> to support the given feature.
 Like <a class="reference internal" href="#status-terminal"><span class="std std-ref">status terminal</span></a>, this only works once the first interactive prompt is shown.</p>
 <p>Currently the only available <em>FEATURE</em> is <a class="reference internal" href="../terminal-compatibility.html#term-compat-indn"><span class="std std-ref">scroll-content-up</span></a>.
 An error will be printed when passed an unrecognized feature.</p>
+</dd>
+</dl>
+<dl id="status-language">
+<dt><strong>language</strong></dt><dd><p>Show or modify message localization settings.
+When invoked without arguments, the current language settings are shown.</p>
+<p>Available subcommands:</p>
+<p><strong>list-available</strong>
+prints the language names for which fish has translations.
+These names can be used with the <strong>set</strong> subcommand.</p>
+<p><strong>set</strong>
+sets the language precedence for fish’s messages.
+Overrides language settings configured via <a class="reference internal" href="../language.html#variables-locale"><span class="std std-ref">environment variables</span></a>, but only applies to fish itself, not to any child processes.
+Takes a list of language names from the set shown by the <strong>list-available</strong> subcommand.
+For some languages, fish’s translation catalogs are incomplete, meaning not all messages can be shown in these languages.
+Therefore, we allow specifying a list here, with translations taken from the first specified language which has a translation available for a message.
+For example, after running <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">language</span> <span class="pre">set</span> <span class="pre">pt_BR</span> <span class="pre">fr</span></code>, all messages which have a translation into Brazilian Portuguese will be shown in that language.
+The remaining messages will be shown in French, if a French translation is available.
+If none of the specified languages have a translation available for a message, the message will be shown in English.</p>
+<p><strong>unset</strong>
+undoes the effects of the <strong>set</strong> subcommand.
+Language settings will be taken from environment variables again.</p>
 </dd>
 </dl>
 </section>
@@ -240,7 +262,7 @@ An error will be printed when passed an unrecognized feature.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell unknown documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -276,7 +298,7 @@ An error will be printed when passed an unrecognized feature.</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.2";
+ FISH_DOCS_VERSION = "unknown";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>fish_config - start the web-based configuration interface &#8212; fish-shell 4.2.1 documentation</title>
+    <title>fish_config - start the web-based configuration interface &#8212; fish-shell unknown documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=6fb65176"></script>
+    <script src="../_static/documentation_options.js?v=ae9c81a6"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell unknown documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -110,7 +110,12 @@
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">fish_config</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">browse</span><span class="g g-Other">]</span>
 <span class="nf">fish_config</span><span class="w"> </span><span class="no">prompt</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">choose</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">save</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">show</span><span class="g g-Other">)</span>
-<span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">choose</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">demo</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">dump</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">save</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">show</span><span class="g g-Other">)</span>
+<span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span>
+<span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="no">choose</span><span class="w"> </span><span class="no">THEME</span><span class="w"> </span><span class="no">[ --color-theme=</span><span class="g g-Other">(</span><span class="no">dark</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">light</span><span class="g g-Other">)</span><span class="no"> ]</span>
+<span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="no">demo</span>
+<span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="no">dump</span>
+<span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="no">list</span>
+<span class="nf">fish_config</span><span class="w"> </span><span class="no">theme</span><span class="w"> </span><span class="no">show</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">THEME</span><span class="g g-Other">...]</span>
 </pre></div>
 </div>
 </section>
@@ -130,17 +135,20 @@
 <p>With the <code class="docutils literal notranslate"><span class="pre">theme</span></code> command <code class="docutils literal notranslate"><span class="pre">fish_config</span></code> can be used to view and choose a theme (meaning a color scheme) inside the terminal.</p>
 <p>Available subcommands for the <code class="docutils literal notranslate"><span class="pre">theme</span></code> command:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">choose</span></code> loads a sample theme in the current session.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">choose</span></code> loads a theme in the current session.
+If the theme has light and dark variants (see below), the one matching <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-fish_terminal_color_theme"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_terminal_color_theme</span></code></a> will be applied (also whenever that variable changes).
+To override <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-fish_terminal_color_theme"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_terminal_color_theme</span></code></a>, pass the <code class="docutils literal notranslate"><span class="pre">--color-theme</span></code> argument.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">demo</span></code> displays some sample text in the current theme.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dump</span></code> prints the current theme in a loadable format.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code> lists the names of the available sample themes.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">save</span></code> saves the given theme to <a class="reference internal" href="../language.html#variables-universal"><span class="std std-ref">universal variables</span></a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">show</span></code> shows what the given sample theme (or all) would look like.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code> lists the names of the available themes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">show</span></code> shows what the given themes (or all) would look like.</p></li>
+<li><p><em>(not recommended)</em> <code class="docutils literal notranslate"><span class="pre">save</span></code> saves the given theme to <a class="reference internal" href="../language.html#variables-universal"><span class="std std-ref">universal variables</span></a>.
+A theme set this way will not update as <span class="target" id="index-2"></span><a class="reference internal" href="../language.html#envvar-fish_terminal_color_theme"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_terminal_color_theme</span></code></a> changes.</p></li>
 </ul>
 <p>The <strong>-h</strong> or <strong>--help</strong> option displays help about using this command.</p>
 </section>
 <section id="theme-files">
-<h2>Theme Files<a class="headerlink" href="#theme-files" title="Link to this heading">¶</a></h2>
+<span id="fish-config-theme-files"></span><h2>Theme Files<a class="headerlink" href="#theme-files" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">fish_config</span> <span class="pre">theme</span></code> and the theme selector in the web config tool load their themes from theme files. These are stored in the fish configuration directory, typically <code class="docutils literal notranslate"><span class="pre">~/.config/fish/themes</span></code>, with a .theme ending.</p>
 <p>You can add your own theme by adding a file in that directory.</p>
 <p>To get started quickly:</p>
@@ -149,22 +157,34 @@
 </div>
 <p>which will save your current theme in .theme format.</p>
 <p>The format looks like this:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># name: &#39;Cool Beans&#39;
-# preferred_background: black
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># name: &#39;My Theme&#39;
 
-fish_color_autosuggestion 666
+[light]
+# preferred_background: ffffff
+fish_color_normal 000000
+fish_color_autosuggestion 7f7f7f
+fish_color_command 0000ee
+
+[dark]
+# preferred_background: 000000
+fish_color_normal ffffff
+fish_color_autosuggestion 7f7f7f
+fish_color_command 5c5cff
+
+[unknown]
+fish_color_normal normal
+fish_color_autosuggestion brblack
 fish_color_cancel -r
 fish_color_command normal
-fish_color_comment &#39;888&#39;  &#39;--italics&#39;
-fish_color_cwd 0A0
-fish_color_cwd_root A00
-fish_color_end 009900
 </pre></div>
 </div>
-<p>The two comments at the beginning are the name and background that the web config tool shows.</p>
+<p>The comments provide name and background color to the web config tool.</p>
+<p>Themes can have three variants,
+one for light mode,
+one for dark mode,
+and one for terminals that don’t <a class="reference internal" href="../terminal-compatibility.html#term-compat-query-background-color"><span class="std std-ref">report colors</span></a> (where <span class="target" id="index-3"></span><a class="reference internal" href="../language.html#envvar-fish_terminal_color_theme"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_terminal_color_theme</span></code></a> is set to <code class="docutils literal notranslate"><span class="pre">unknown</span></code>).</p>
 <p>The other lines are just like <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">variable</span> <span class="pre">value</span></code>, except that no expansions are allowed. Quotes are, but aren’t necessary.</p>
-<p>Any color variable fish knows about that the theme doesn’t set will be set to empty when it is loaded, so the old theme is completely overwritten.</p>
-<p>Other than that, .theme files can contain any variable with a name that matches the regular expression <code class="docutils literal notranslate"><span class="pre">'^fish_(?:pager_)?color.*$'</span></code> - starts with <code class="docutils literal notranslate"><span class="pre">fish_</span></code>, an optional <code class="docutils literal notranslate"><span class="pre">pager_</span></code>, then <code class="docutils literal notranslate"><span class="pre">color</span></code> and then anything.</p>
+<p id="fish-config-color-variables">Other than that, .theme files can contain any variable with a name that matches the regular expression <code class="docutils literal notranslate"><span class="pre">'^fish_(?:pager_)?color_.*$'</span></code> - starts with <code class="docutils literal notranslate"><span class="pre">fish_</span></code>, an optional <code class="docutils literal notranslate"><span class="pre">pager_</span></code>, then <code class="docutils literal notranslate"><span class="pre">color_</span></code> and then anything.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
@@ -190,7 +210,7 @@ fish_color_end 009900
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.2.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell unknown documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -226,7 +246,7 @@ fish_color_end 009900
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.2";
+ FISH_DOCS_VERSION = "unknown";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
