@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release notes &#8212; fish-shell unknown documentation</title>
+    <title>Release notes &#8212; fish-shell 4.3.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=ae9c81a6"></script>
+    <script src="_static/documentation_options.js?v=d0201da0"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell unknown documentation</a> &#187;
+    <a href="index.html">fish-shell 4.3.2 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -88,6 +88,7 @@
 <h4><a href="index.html">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
+<li><a class="reference internal" href="#fish-4-3-2-released-december-30-2025">fish 4.3.2 (released December 30, 2025)</a></li>
 <li><a class="reference internal" href="#fish-4-3-1-released-december-28-2025">fish 4.3.1 (released December 28, 2025)</a></li>
 <li><a class="reference internal" href="#fish-4-3-0-released-december-28-2025">fish 4.3.0 (released December 28, 2025)</a><ul>
 <li><a class="reference internal" href="#deprecations-and-removed-features">Deprecations and removed features</a></li>
@@ -405,6 +406,19 @@
             
   <section id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading">¶</a></h1>
+<section id="fish-4-3-2-released-december-30-2025">
+<h2>fish 4.3.2 (released December 30, 2025)<a class="headerlink" href="#fish-4-3-2-released-december-30-2025" title="Link to this heading">¶</a></h2>
+<p>This release fixes the following problems identified in 4.3.0:</p>
+<ul class="simple">
+<li><p>Pre-built macOS packages failed to start due to a <code class="docutils literal notranslate"><span class="pre">Malformed</span> <span class="pre">Mach-O</span> <span class="pre">file</span></code> error (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/12224">#12224</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">extra_functionsdir</span></code> (usually <code class="docutils literal notranslate"><span class="pre">vendor_functions.d</span></code>) and friends were not used (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/12226">#12226</a>).</p></li>
+<li><p>Sample config file <code class="docutils literal notranslate"><span class="pre">~/.config/fish/config.fish/</span></code> and config directories <code class="docutils literal notranslate"><span class="pre">~/.config/fish/conf.d/</span></code>, <code class="docutils literal notranslate"><span class="pre">~/.config/fish/completions/</span></code> and <code class="docutils literal notranslate"><span class="pre">~/.config/fish/functions/</span></code> were recreated on every startup instead of only the first time fish runs on a system (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/12230">#12230</a>).</p></li>
+<li><p>Spurious echo of <code class="docutils literal notranslate"><span class="pre">^[[I</span></code> in some scenarios (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/12232">#12232</a>).</p></li>
+<li><p>Infinite prompt redraw loop on some prompts (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/12233">#12233</a>).</p></li>
+<li><p>The removal of pre-built HTML docs from tarballs revealed that cross compilation is broken because we use <code class="docutils literal notranslate"><span class="pre">${CMAKE_BINARY_DIR}/fish_indent</span></code> for building HTML docs.
+As a workaround, the new CMake build option <code class="docutils literal notranslate"><span class="pre">FISH_INDENT_FOR_BUILDING_DOCS</span></code> can be set to the path of a runnable <code class="docutils literal notranslate"><span class="pre">fish_indent</span></code> binary.</p></li>
+</ul>
+</section>
 <section id="fish-4-3-1-released-december-28-2025">
 <h2>fish 4.3.1 (released December 28, 2025)<a class="headerlink" href="#fish-4-3-1-released-december-28-2025" title="Link to this heading">¶</a></h2>
 <p>This release fixes the following problem identified in 4.3.0:</p>
@@ -417,7 +431,7 @@
 <section id="deprecations-and-removed-features">
 <h3>Deprecations and removed features<a class="headerlink" href="#deprecations-and-removed-features" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>fish no longer sets <a class="reference internal" href="language.html#variables-universal"><span class="std std-ref">universal variables</span></a> by default, making the configuration easier to understand.
+<li><p>fish no longer sets user-facing <a class="reference internal" href="language.html#variables-universal"><span class="std std-ref">universal variables</span></a> by default, making the configuration easier to understand.
 Specifically, the <code class="docutils literal notranslate"><span class="pre">fish_color_*</span></code>, <code class="docutils literal notranslate"><span class="pre">fish_pager_color_*</span></code> and <code class="docutils literal notranslate"><span class="pre">fish_key_bindings</span></code> variables are now set in the global scope by default.
 After upgrading to 4.3.0, fish will (once and never again) migrate these universals to globals set at startup in the
 <code class="docutils literal notranslate"><span class="pre">~/.config/fish/conf.d/fish_frozen_theme.fish</span></code> and
@@ -450,7 +464,7 @@ it does not support dynamic theme switching based on the terminal’s color them
 <li><p>Completion accuracy was improved for file paths containing <code class="docutils literal notranslate"><span class="pre">=</span></code> or <code class="docutils literal notranslate"><span class="pre">:</span></code> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/5363">#5363</a>).</p></li>
 <li><p>Prefix-matching completions are now shown even if they don’t match the case typed by the user (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/7944">#7944</a>).</p></li>
 <li><p>On Cygwin/MSYS, command name completion will favor the non-exe name (<code class="docutils literal notranslate"><span class="pre">foo</span></code>) unless the user started typing the extension.</p></li>
-<li><p>When using the exe name (<code class="docutils literal notranslate"><span class="pre">foo.exe</span></code>), fish will use to the description and completions for <code class="docutils literal notranslate"><span class="pre">foo</span></code> if there are none for <code class="docutils literal notranslate"><span class="pre">foo.exe</span></code>.</p></li>
+<li><p>When using the exe name (<code class="docutils literal notranslate"><span class="pre">foo.exe</span></code>), fish will use the description and completions for <code class="docutils literal notranslate"><span class="pre">foo</span></code> if there are none for <code class="docutils literal notranslate"><span class="pre">foo.exe</span></code>.</p></li>
 <li><p>Autosuggestions now also show soft-wrapped portions (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/12045">#12045</a>).</p></li>
 </ul>
 </section>
@@ -469,8 +483,6 @@ Some default themes have been made color-theme-aware, meaning they dynamically a
 <li><p>The working directory is now reported on every fresh prompt (via OSC 7), fixing scenarios where a child process (like <code class="docutils literal notranslate"><span class="pre">ssh</span></code>) left behind a stale working directory (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/12191">#12191</a>).</p></li>
 <li><p>OSC 133 prompt markers now also mark the prompt end, which improves shell integration with terminals like iTerm2 (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/11837">#11837</a>).</p></li>
 <li><p>Operating-system-specific key bindings are now decided based on the <a class="reference internal" href="cmds/status.html#status-terminal-os"><span class="std std-ref">terminal’s host OS</span></a>.</p></li>
-<li><p>Focus reporting is enabled unconditionally, not just inside tmux.
-To use it, define functions that handle the <code class="docutils literal notranslate"><span class="pre">fish_focus_in</span></code> or <code class="docutils literal notranslate"><span class="pre">fish_focus_out</span></code> <a class="reference internal" href="language.html#event"><span class="std std-ref">events</span></a>.</p></li>
 <li><p>New <a class="reference internal" href="language.html#featureflags"><span class="std std-ref">feature flag</span></a> <code class="docutils literal notranslate"><span class="pre">omit-term-workarounds</span></code> can be turned on to prevent fish from trying to work around some incompatible terminals.</p></li>
 </ul>
 </section>
@@ -4987,7 +4999,7 @@ track.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell unknown documentation</a> &#187;
+    <a href="index.html">fish-shell 4.3.2 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -5022,7 +5034,7 @@ track.</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "unknown";
+ FISH_DOCS_VERSION = "4.3";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
