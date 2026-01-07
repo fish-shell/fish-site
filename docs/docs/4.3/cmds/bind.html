@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>bind - handle fish key bindings &#8212; fish-shell 4.3.2 documentation</title>
+    <title>bind - handle fish key bindings &#8212; fish-shell 4.3.3 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=d0201da0"></script>
+    <script src="../_static/documentation_options.js?v=b4efcde4"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.3.2 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.3.3 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -113,8 +113,8 @@
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
 <div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">bind</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-M</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-m</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--sets-mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">NEW_MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-s</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--silent</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">KEYS</span><span class="w"> </span><span class="no">COMMAND</span><span class="w"> </span><span class="g g-Other">...</span>
-<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-M</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">KEYS</span><span class="g g-Other">]</span>
-<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span>
+<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-M</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--mode</span><span class="g g-Other">)</span><span class="w"> </span><span class="no">MODE</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--color</span><span class="w"> </span><span class="no">WHEN</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">KEYS</span><span class="g g-Other">]</span>
+<span class="nf">bind</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--all</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--preset</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--user</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--color</span><span class="w"> </span><span class="no">WHEN</span><span class="g g-Other">]</span>
 <span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--function-names</span><span class="g g-Other">)</span>
 <span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-K</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--key-names</span><span class="g g-Other">)</span>
 <span class="nf">bind</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-L</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--list-modes</span><span class="g g-Other">)</span>
@@ -195,6 +195,9 @@ All invocations except for inserting new bindings can operate on both levels at 
 <strong>--preset</strong> should only be used in full binding sets (like when working on <code class="docutils literal notranslate"><span class="pre">fish_vi_key_bindings</span></code>).</p>
 </dd>
 <dt><strong>-s</strong> or <strong>--silent</strong></dt><dd><p>Silences some of the error messages, including for unknown key names and unbound sequences.</p>
+</dd>
+<dt><strong>--color</strong> <em>WHEN</em></dt><dd><p>Controls when to use syntax highlighting colors when listing bindings.
+<em>WHEN</em> can be <code class="docutils literal notranslate"><span class="pre">auto</span></code> (the default, colorize if the output <a class="reference internal" href="isatty.html"><span class="doc">is a terminal</span></a>), <code class="docutils literal notranslate"><span class="pre">always</span></code>, or <code class="docutils literal notranslate"><span class="pre">never</span></code>.</p>
 </dd>
 <dt><strong>-h</strong> or <strong>--help</strong></dt><dd><p>Displays help about using this command.</p>
 </dd>
@@ -497,7 +500,7 @@ But if the search field is already active, keep the behavior (<kbd class="kbd do
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.3.2 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.3.3 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
