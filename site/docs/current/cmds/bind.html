@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>bind - handle fish key bindings &#8212; fish-shell 4.3.3 documentation</title>
+    <title>bind - handle fish key bindings &#8212; fish-shell 4.4.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=b4efcde4"></script>
+    <script src="../_static/documentation_options.js?v=65ed096e"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.3.3 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -126,8 +126,8 @@
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">bind</span></code> manages key bindings.</p>
 <p>If both <code class="docutils literal notranslate"><span class="pre">KEYS</span></code> and <code class="docutils literal notranslate"><span class="pre">COMMAND</span></code> are given, <code class="docutils literal notranslate"><span class="pre">bind</span></code> adds (or replaces) a binding in <code class="docutils literal notranslate"><span class="pre">MODE</span></code>.
-If only <code class="docutils literal notranslate"><span class="pre">KEYS</span></code> is given, any existing binding for those keys in the given <code class="docutils literal notranslate"><span class="pre">MODE</span></code> will be printed.
-If no <code class="docutils literal notranslate"><span class="pre">KEYS</span></code> argument is provided, all bindings (in the given <code class="docutils literal notranslate"><span class="pre">MODE</span></code>) are printed.</p>
+If only <code class="docutils literal notranslate"><span class="pre">KEYS</span></code> is given, <code class="docutils literal notranslate"><span class="pre">bind</span></code> lists any existing bindings for those keys in <code class="docutils literal notranslate"><span class="pre">MODE</span></code> or in all modes.
+If no <code class="docutils literal notranslate"><span class="pre">KEYS</span></code> argument is provided, <code class="docutils literal notranslate"><span class="pre">bind</span></code> lists all bindings in <code class="docutils literal notranslate"><span class="pre">MODE</span></code> or in all modes.</p>
 <p><code class="docutils literal notranslate"><span class="pre">KEYS</span></code> is a comma-separated list of key names.
 Modifier keys can be specified by prefixing a key name with a combination of <code class="docutils literal notranslate"><span class="pre">ctrl-</span></code>, <code class="docutils literal notranslate"><span class="pre">alt-</span></code>, <code class="docutils literal notranslate"><span class="pre">shift-</span></code> and <code class="docutils literal notranslate"><span class="pre">super-</span></code> (i.e. the “windows” or “command” key).
 For example, pressing <kbd class="kbd docutils literal notranslate">w</kbd> while holding the Alt modifier is written as <code class="docutils literal notranslate"><span class="pre">alt-w</span></code>.
@@ -217,13 +217,9 @@ If the completion pager is active, select the previous completion instead.</p>
 <dt><code class="docutils literal notranslate"><span class="pre">backward-char-passive</span></code></dt><dd><p>move one character to the left, but do not trigger any non-movement-related operations. If the cursor is at the start of
 the commandline, does nothing. Does not change the selected item in the completion pager UI when shown.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">backward-bigword</span></code></dt><dd><p>move one whitespace-delimited word to the left</p>
-</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">backward-token</span></code></dt><dd><p>move one argument to the left</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">backward-delete-char</span></code></dt><dd><p>deletes one character of input to the left of the cursor</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">backward-kill-bigword</span></code></dt><dd><p>move the whitespace-delimited word to the left of the cursor to the killring</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">backward-kill-token</span></code></dt><dd><p>move the argument to the left of the cursor to the killring</p>
 </dd>
@@ -233,11 +229,19 @@ the commandline, does nothing. Does not change the selected item in the completi
 <dl class="simple" id="cmd-bind-backward-kill-path-component">
 <dt><code class="docutils literal notranslate"><span class="pre">backward-kill-path-component</span></code></dt><dd><p>move one path component to the left of the cursor to the killring. A path component is everything likely to belong to a path component, i.e. not any of the following: <cite>/={,}’&quot;:&#64; |;&lt;&gt;&amp;</cite>, plus newlines and tabs.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">backward-kill-word</span></code></dt><dd><p>move the word to the left of the cursor to the killring. The “word” here is everything up to punctuation or whitespace.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">backward-kill-word</span></code></dt><dd><p>move the word to the left of the cursor to the killring, until the start of the current word (like vim’s <code class="docutils literal notranslate"><span class="pre">db</span></code>)</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">backward-path-component</span></code></dt><dd><p>move one <a class="reference internal" href="#cmd-bind-backward-kill-path-component"><span class="std std-ref">path component</span></a> to the left.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">backward-kill-bigword</span></code></dt><dd><p>move the whitespace-delimited word to the left of the cursor to the killring, until the start of the current word (like vim’s <code class="docutils literal notranslate"><span class="pre">dB</span></code>)</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">backward-word</span></code></dt><dd><p>move one word to the left</p>
+<dt><code class="docutils literal notranslate"><span class="pre">backward-path-component</span></code></dt><dd><p>move one <a class="reference internal" href="#cmd-bind-backward-kill-path-component"><span class="std std-ref">path component</span></a> to the left</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">backward-word</span></code></dt><dd><p>move one word to the left, stopping at the start of the previous word (like vim’s <code class="docutils literal notranslate"><span class="pre">b</span></code>, or Emacs’ <code class="docutils literal notranslate"><span class="pre">M-b</span></code> but differs slightly in word division rules)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">backward-bigword</span></code></dt><dd><p>move one whitespace-delimited word to the left, stopping at the start of the previous word (like vim’s <code class="docutils literal notranslate"><span class="pre">B</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">backward-word-end</span></code></dt><dd><p>move to the end of the previous word (like vim’s <code class="docutils literal notranslate"><span class="pre">ge</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">backward-bigword-end</span></code></dt><dd><p>move to the end of the previous whitespace-delimited word (like vim’s <code class="docutils literal notranslate"><span class="pre">gE</span></code>)</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">beginning-of-buffer</span></code></dt><dd><p>moves to the beginning of the buffer, i.e. the start of the first line</p>
 </dd>
@@ -274,7 +278,8 @@ This requires the terminal to implement the ECMA-48 <a class="reference internal
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">downcase-word</span></code></dt><dd><p>make the current word lowercase</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">end-of-buffer</span></code></dt><dd><p>moves to the end of the buffer, i.e. the end of the first line</p>
+<dt><code class="docutils literal notranslate"><span class="pre">end-of-buffer</span></code></dt><dd><p>moves to the end of the buffer, i.e. the end of the last line;
+or if already at the end of the commandline, accept the current autosuggestion.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">end-of-history</span></code></dt><dd><p>move to the end of the history</p>
 </dd>
@@ -287,8 +292,6 @@ This requires the terminal to implement the ECMA-48 <a class="reference internal
 <dt><code class="docutils literal notranslate"><span class="pre">execute</span></code></dt><dd><p>run the current commandline</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">exit</span></code></dt><dd><p>exit the shell</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">forward-bigword</span></code></dt><dd><p>move one whitespace-delimited word to the right</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">forward-token</span></code></dt><dd><p>move one argument to the right</p>
 </dd>
@@ -303,8 +306,22 @@ if shown.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">forward-single-char</span></code></dt><dd><p>move one character to the right; or if at the end of the commandline, accept a single char from the current autosuggestion.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">forward-word</span></code></dt><dd><p>move one word to the right; or if at the end of the commandline, accept one word
+</dl>
+<dl class="simple" id="cmd-bind-forward-word">
+<dt><code class="docutils literal notranslate"><span class="pre">forward-word</span></code></dt><dd><p>move one word to the right, stopping after the end of the current word; or if at the end of the commandline, accept one word
 from the current autosuggestion.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">forward-word-vi</span></code></dt><dd><p>like <a class="reference internal" href="#cmd-bind-forward-word"><span class="std std-ref">forward-word</span></a>, but stops at the start of the next word (like vim’s <code class="docutils literal notranslate"><span class="pre">w</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">forward-word-end</span></code></dt><dd><p>like <a class="reference internal" href="#cmd-bind-forward-word"><span class="std std-ref">forward-word</span></a>, but stops at the end of the next word (like vim’s <code class="docutils literal notranslate"><span class="pre">e</span></code>)</p>
+</dd>
+</dl>
+<dl class="simple" id="cmd-bind-forward-bigword">
+<dt><code class="docutils literal notranslate"><span class="pre">forward-bigword</span></code></dt><dd><p>move one whitespace-delimited word to the right, stopping after the end of the current word; or if at the end of the commandline, accept one word from the current autosuggestion.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">forward-bigword-vi</span></code></dt><dd><p>like <a class="reference internal" href="#cmd-bind-forward-bigword"><span class="std std-ref">forward-bigword</span></a>, but stops at the start of the next word (like vim’s <code class="docutils literal notranslate"><span class="pre">W</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">forward-bigword-end</span></code></dt><dd><p>like <a class="reference internal" href="#cmd-bind-forward-bigword"><span class="std std-ref">forward-bigword</span></a>, but stops at the end of the next word (like vim’s <code class="docutils literal notranslate"><span class="pre">E</span></code>)</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">history-pager</span></code></dt><dd><p>invoke the searchable pager on history (incremental search); or if the history pager is already active, search further backwards in time.</p>
 </dd>
@@ -342,8 +359,6 @@ In other words, the cursor will continuously jump inside the brackets but won’
 The input function is useful to emulate <code class="docutils literal notranslate"><span class="pre">ib</span></code> vi text object.
 The following brackets are considered: <code class="docutils literal notranslate"><span class="pre">([{}])</span></code></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">kill-bigword</span></code></dt><dd><p>move the next whitespace-delimited word to the killring</p>
-</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">kill-token</span></code></dt><dd><p>move the next argument to the killring</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">kill-line</span></code></dt><dd><p>move everything from the cursor to the end of the line to the killring</p>
@@ -356,7 +371,21 @@ The following brackets are considered: <code class="docutils literal notranslate
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">kill-inner-line</span></code></dt><dd><p>move the line (without the following newline) to the killring</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">kill-word</span></code></dt><dd><p>move the next word to the killring</p>
+<dt><code class="docutils literal notranslate"><span class="pre">kill-word</span></code></dt><dd><p>move the next word to the killring, stopping after the end of the killed word</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">kill-word-vi</span></code></dt><dd><p>move the next word to the killring, stopping at the start of the next word (like vim’s <code class="docutils literal notranslate"><span class="pre">dw</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">kill-bigword</span></code></dt><dd><p>move the next whitespace-delimited word to the killring, stopping after the end of the current word</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">kill-bigword-vi</span></code></dt><dd><p>move the next whitespace-delimited word to the killring, stopping at the start of the next word (like vim’s <code class="docutils literal notranslate"><span class="pre">dW</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">kill-inner-word</span></code></dt><dd><p>delete the word under the cursor (like vim’s <code class="docutils literal notranslate"><span class="pre">diw</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">kill-inner-bigword</span></code></dt><dd><p>delete the whitespace-delimited word under the cursor (like vim’s <code class="docutils literal notranslate"><span class="pre">diW</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">kill-a-word</span></code></dt><dd><p>delete the word under the cursor plus surrounding whitespace (like vim’s <code class="docutils literal notranslate"><span class="pre">daw</span></code>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">kill-a-bigword</span></code></dt><dd><p>delete the whitespace-delimited word under the cursor plus surrounding whitespace (like vim’s <code class="docutils literal notranslate"><span class="pre">daW</span></code>)</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">nextd-or-forward-word</span></code></dt><dd><p>if the commandline is empty, then move forward in the directory history, otherwise move one word to the right;
 or if at the end of the commandline, accept one word from the current autosuggestion.</p>
@@ -500,7 +529,7 @@ But if the search field is already active, keep the behavior (<kbd class="kbd do
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.3.3 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -536,7 +565,7 @@ But if the search field is already active, keep the behavior (<kbd class="kbd do
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.3";
+ FISH_DOCS_VERSION = "4.4";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

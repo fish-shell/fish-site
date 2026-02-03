@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Contributing To Fish &#8212; fish-shell 4.3.3 documentation</title>
+    <title>Contributing To Fish &#8212; fish-shell 4.4.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=b4efcde4"></script>
+    <script src="_static/documentation_options.js?v=65ed096e"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.3.3 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.4.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Contributing To Fish</a></li>
@@ -166,7 +166,7 @@ and if the change is very simple and obvious you can just send it in. Use your j
 <p>In short:</p>
 <ul class="simple">
 <li><p>Be conservative in what you need (keep to the agreed minimum supported Rust version, limit new dependencies)</p></li>
-<li><p>Use automated tools to help you (<code class="docutils literal notranslate"><span class="pre">build_tools/check.sh</span></code>)</p></li>
+<li><p>Use automated tools to help you (<code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">xtask</span> <span class="pre">check</span></code>)</p></li>
 </ul>
 </section>
 <section id="commit-history">
@@ -212,19 +212,22 @@ but if it is just a shortcut, please leave it.</p></li>
 </section>
 <section id="contributing-documentation">
 <h2>Contributing documentation<a class="headerlink" href="#contributing-documentation" title="Link to this heading">¶</a></h2>
-<p>The documentation is stored in <code class="docutils literal notranslate"><span class="pre">doc_src/</span></code>, and written in ReStructured Text and built with Sphinx.</p>
-<p>To build it locally, run either:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">sphinx-build</span><span class="w"> </span><span class="no">-j</span><span class="w"> </span><span class="no">auto</span><span class="w"> </span><span class="no">-b</span><span class="w"> </span><span class="no">html</span><span class="w"> </span><span class="no">doc_src/</span><span class="w"> </span><span class="no">/tmp/fish-doc/</span>
+<p>The documentation is stored in <code class="docutils literal notranslate"><span class="pre">doc_src/</span></code>, and written in ReStructured Text and built with Sphinx.
+The builtins and various functions shipped with fish are documented in <code class="docutils literal notranslate"><span class="pre">doc_src/cmds/</span></code>.</p>
+<p>To build an HTML version of the docs locally, run:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cargo</span><span class="w"> </span><span class="no">xtask</span><span class="w"> </span><span class="no">html-docs</span>
 </pre></div>
 </div>
-<p>which will output HTML docs to /tmp/fish-doc.
-You can open it in a browser and see that it looks okay.</p>
-<p>Alternatively, you can use:</p>
+<p>will output to <code class="docutils literal notranslate"><span class="pre">target/fish-docs/html</span></code> or, if you use CMake:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cmake</span><span class="w"> </span><span class="no">--build</span><span class="w"> </span><span class="no">build</span><span class="w"> </span><span class="no">-t</span><span class="w"> </span><span class="no">sphinx-docs</span>
 </pre></div>
 </div>
-<p>which outputs to build/user_doc/html/.</p>
-<p>The builtins and various functions shipped with fish are documented in doc_src/cmds/.</p>
+<p>will output to <code class="docutils literal notranslate"><span class="pre">build/cargo/fish-docs/html/</span></code>. You can also run <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> directly, which allows choosing the output directory:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">sphinx-build</span><span class="w"> </span><span class="no">-j</span><span class="w"> </span><span class="no">auto</span><span class="w"> </span><span class="no">-b</span><span class="w"> </span><span class="no">html</span><span class="w"> </span><span class="no">doc_src/</span><span class="w"> </span><span class="no">/tmp/fish-doc/</span>
+</pre></div>
+</div>
+<p>will output HTML docs to <code class="docutils literal notranslate"><span class="pre">/tmp/fish-doc</span></code>.</p>
+<p>After building them, you can open the HTML docs in a browser and see that it looks okay.</p>
 </section>
 <section id="code-style">
 <h2>Code Style<a class="headerlink" href="#code-style" title="Link to this heading">¶</a></h2>
@@ -329,7 +332,7 @@ It sets up a temporary $HOME and also uses it as the current directory, so you d
 <p>Here, the first argument to test_driver.py refers to a directory with <code class="docutils literal notranslate"><span class="pre">fish</span></code>, <code class="docutils literal notranslate"><span class="pre">fish_indent</span></code> and <code class="docutils literal notranslate"><span class="pre">fish_key_reader</span></code> in it.
 In this example we’re in the root of the workspace and have run <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span></code> without <code class="docutils literal notranslate"><span class="pre">--release</span></code>, so it’s a debug build.</p>
 <p>To run all tests and linters, use:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">build_tools/check.sh</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cargo</span><span class="w"> </span><span class="no">xtask</span><span class="w"> </span><span class="no">check</span>
 </pre></div>
 </div>
 </section>
@@ -476,7 +479,7 @@ recent release number (e.g., <code class="docutils literal notranslate"><span cl
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.3.3 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.4.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Contributing To Fish</a></li>
@@ -511,7 +514,7 @@ recent release number (e.g., <code class="docutils literal notranslate"><span cl
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.3";
+ FISH_DOCS_VERSION = "4.4";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

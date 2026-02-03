@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>fish_vi_key_bindings - set vi key bindings for fish &#8212; fish-shell 4.3.3 documentation</title>
+    <title>fish_vi_key_bindings - set vi key bindings for fish &#8212; fish-shell 4.4.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=b4efcde4"></script>
+    <script src="../_static/documentation_options.js?v=65ed096e"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.3.3 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -91,6 +91,7 @@
 <li><a class="reference internal" href="#">fish_vi_key_bindings - set vi key bindings for fish</a><ul>
 <li><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#differences-from-vim">Differences from Vim</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
@@ -124,6 +125,17 @@
 </dl>
 <p>Further information on how to use <a class="reference internal" href="../interactive.html#vi-mode"><span class="std std-ref">vi mode</span></a>.</p>
 </section>
+<section id="differences-from-vim">
+<h2>Differences from Vim<a class="headerlink" href="#differences-from-vim" title="Link to this heading">¶</a></h2>
+<p>Fish’s vi mode aims to be familiar to vim users, but there are some differences:</p>
+<dl>
+<dt><strong>Word character handling</strong></dt><dd><p>In vim, underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>) is treated as a keyword character by default, so word motions like <code class="docutils literal notranslate"><span class="pre">w</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, and <code class="docutils literal notranslate"><span class="pre">e</span></code> treat <code class="docutils literal notranslate"><span class="pre">foo_bar</span></code> as a single word. In fish, underscore is treated as punctuation, so word motions stop at underscores. For example, pressing <code class="docutils literal notranslate"><span class="pre">w</span></code> on <code class="docutils literal notranslate"><span class="pre">foo_bar</span></code> in fish stops at the <code class="docutils literal notranslate"><span class="pre">_</span></code>, while in vim it would jump past the entire identifier.</p>
+</dd>
+<dt><strong>The</strong> <code class="docutils literal notranslate"><span class="pre">cw</span></code> <strong>command</strong></dt><dd><p>In vim, <code class="docutils literal notranslate"><span class="pre">cw</span></code> has special behavior: when the cursor is on a non-space character, it behaves like <code class="docutils literal notranslate"><span class="pre">ce</span></code> (change to end of word), but when the cursor is on a space, it behaves like <code class="docutils literal notranslate"><span class="pre">dwi</span></code> (delete word then insert).</p>
+<p>In fish, <code class="docutils literal notranslate"><span class="pre">cw</span></code> always behaves like <code class="docutils literal notranslate"><span class="pre">dwi</span></code> - it deletes to the start of the next word (including trailing whitespace), then enters insert mode. To get vim’s <code class="docutils literal notranslate"><span class="pre">cw</span></code> behavior in fish, use <code class="docutils literal notranslate"><span class="pre">ce</span></code> instead.</p>
+</dd>
+</dl>
+</section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>To start using vi key bindings:</p>
@@ -148,7 +160,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.3.3 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.4.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -184,7 +196,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.3";
+ FISH_DOCS_VERSION = "4.4";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
