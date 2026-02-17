@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>bind - handle fish key bindings &#8212; fish-shell 4.4.0 documentation</title>
+    <title>bind - handle fish key bindings &#8212; fish-shell 4.5.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=65ed096e"></script>
+    <script src="../_static/documentation_options.js?v=772b3574"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.5.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -194,7 +194,7 @@ By default, all <code class="docutils literal notranslate"><span class="pre">bin
 All invocations except for inserting new bindings can operate on both levels at the same time (if both <strong>--preset</strong> and <strong>--user</strong> are given).
 <strong>--preset</strong> should only be used in full binding sets (like when working on <code class="docutils literal notranslate"><span class="pre">fish_vi_key_bindings</span></code>).</p>
 </dd>
-<dt><strong>-s</strong> or <strong>--silent</strong></dt><dd><p>Silences some of the error messages, including for unknown key names and unbound sequences.</p>
+<dt><strong>-s</strong> or <strong>--silent</strong></dt><dd><p>Silences error message for unbound sequences.</p>
 </dd>
 <dt><strong>--color</strong> <em>WHEN</em></dt><dd><p>Controls when to use syntax highlighting colors when listing bindings.
 <em>WHEN</em> can be <code class="docutils literal notranslate"><span class="pre">auto</span></code> (the default, colorize if the output <a class="reference internal" href="isatty.html"><span class="doc">is a terminal</span></a>), <code class="docutils literal notranslate"><span class="pre">always</span></code>, or <code class="docutils literal notranslate"><span class="pre">never</span></code>.</p>
@@ -316,7 +316,7 @@ from the current autosuggestion.</p>
 <dt><code class="docutils literal notranslate"><span class="pre">forward-word-end</span></code></dt><dd><p>like <a class="reference internal" href="#cmd-bind-forward-word"><span class="std std-ref">forward-word</span></a>, but stops at the end of the next word (like vim’s <code class="docutils literal notranslate"><span class="pre">e</span></code>)</p>
 </dd>
 </dl>
-<dl class="simple" id="cmd-bind-forward-bigword">
+<dl id="cmd-bind-forward-bigword">
 <dt><code class="docutils literal notranslate"><span class="pre">forward-bigword</span></code></dt><dd><p>move one whitespace-delimited word to the right, stopping after the end of the current word; or if at the end of the commandline, accept one word from the current autosuggestion.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">forward-bigword-vi</span></code></dt><dd><p>like <a class="reference internal" href="#cmd-bind-forward-bigword"><span class="std std-ref">forward-bigword</span></a>, but stops at the start of the next word (like vim’s <code class="docutils literal notranslate"><span class="pre">W</span></code>)</p>
@@ -404,6 +404,13 @@ or if at the end of the commandline, accept one word from the current autosugges
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">self-insert-notfirst</span></code></dt><dd><p>inserts the matching sequence into the command line, unless the cursor is at the beginning</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">get-key</span></code></dt><dd><p>sets <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_key</span></code> to the key that was pressed to trigger this binding. Example use:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">for</span><span class="w"> </span><span class="no">i</span><span class="w"> </span><span class="nf">in</span><span class="w"> </span><span class="o">(</span><span class="nf">seq</span><span class="w"> </span><span class="no">0</span><span class="w"> </span><span class="no">9</span><span class="o">)</span>
+<span class="w">    </span><span class="nf">bind</span><span class="w"> </span><span class="o">$i</span><span class="w"> </span><span class="no">get-key</span><span class="w"> </span><span class="s1">&#39;commandline -i &quot;#$fish_key&quot;&#39;</span><span class="w"> </span><span class="s1">&#39;set -eg fish_key&#39;</span>
+<span class="nf">end</span>
+</pre></div>
+</div>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">suppress-autosuggestion</span></code></dt><dd><p>remove the current autosuggestion. Returns true if there was a suggestion to remove.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">swap-selection-start-stop</span></code></dt><dd><p>go to the other end of the highlighted text without changing the selection</p>
@@ -438,7 +445,7 @@ or if at the end of the commandline, accept one word from the current autosugges
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">up-or-search</span></code> and <code class="docutils literal notranslate"><span class="pre">down-or-search</span></code></dt><dd><p>move the cursor or search the history depending on the cursor position and current mode</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">edit_command_buffer</span></code></dt><dd><p>open the visual editor (controlled by the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">VISUAL</span></code> or <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">EDITOR</span></code> environment variables) with the current command-line contents</p>
+<dt><code class="docutils literal notranslate"><span class="pre">edit_command_buffer</span></code></dt><dd><p>open the visual editor (controlled by the <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">VISUAL</span></code> or <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">EDITOR</span></code> environment variables) with the current command-line contents</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">fish_clipboard_copy</span></code></dt><dd><p>copy the current selection to the system clipboard</p>
 </dd>
@@ -509,8 +516,8 @@ But if the search field is already active, keep the behavior (<kbd class="kbd do
 </pre></div>
 </div>
 <p>will bind the sequence <code class="docutils literal notranslate"><span class="pre">jk</span></code> to insert “foo” into the commandline. When you’ve only pressed “j”, fish doesn’t know if it should insert the “j” (because of the default self-insert), or wait for the “k”.</p>
-<p>You can enable a timeout for this, by setting the <span class="target" id="index-2"></span><a class="reference internal" href="../language.html#envvar-fish_sequence_key_delay_ms"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_sequence_key_delay_ms</span></code></a> variable to the timeout in milliseconds. If the timeout elapses, fish will no longer wait for the sequence to be completed, and do what it can with the characters it already has.</p>
-<p>The escape key is a special case, because it can be used standalone as a real key or as part of a longer escape sequence, like function or arrow keys. Holding alt and something else also typically sends escape, for example holding alt+a will send an escape character and then an “a”. So the escape character has its own timeout configured with <span class="target" id="index-3"></span><a class="reference internal" href="../language.html#envvar-fish_escape_delay_ms"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_escape_delay_ms</span></code></a>.</p>
+<p>You can enable a timeout for this, by setting the <span class="target" id="index-3"></span><a class="reference internal" href="../language.html#envvar-fish_sequence_key_delay_ms"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_sequence_key_delay_ms</span></code></a> variable to the timeout in milliseconds. If the timeout elapses, fish will no longer wait for the sequence to be completed, and do what it can with the characters it already has.</p>
+<p>The escape key is a special case, because it can be used standalone as a real key or as part of a longer escape sequence, like function or arrow keys. Holding alt and something else also typically sends escape, for example holding alt+a will send an escape character and then an “a”. So the escape character has its own timeout configured with <span class="target" id="index-4"></span><a class="reference internal" href="../language.html#envvar-fish_escape_delay_ms"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_escape_delay_ms</span></code></a>.</p>
 <p>See also <a class="reference internal" href="../interactive.html#interactive-key-sequences"><span class="std std-ref">Key sequences</span></a>.</p>
 </section>
 </section>
@@ -529,7 +536,7 @@ But if the search field is already active, keep the behavior (<kbd class="kbd do
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.4.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.5.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -565,7 +572,7 @@ But if the search field is already active, keep the behavior (<kbd class="kbd do
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.4";
+ FISH_DOCS_VERSION = "4.5";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

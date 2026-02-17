@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The fish language &#8212; fish-shell 4.4.0 documentation</title>
+    <title>The fish language &#8212; fish-shell 4.5.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=65ed096e"></script>
+    <script src="_static/documentation_options.js?v=772b3574"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.4.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.5.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -2087,7 +2087,7 @@ They are executed in order of their filename, sorted (like globs) in a natural o
 <li><p><code class="docutils literal notranslate"><span class="pre">remove-percent-self</span></code> turns off the special <code class="docutils literal notranslate"><span class="pre">%self</span></code> expansion. It was introduced in 4.0. To get fish’s pid, you can use the <span class="target" id="index-30"></span><a class="reference internal" href="#envvar-fish_pid"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_pid</span></code></a> variable.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test-require-arg</span></code> removes <a class="reference internal" href="cmds/test.html"><span class="doc">builtin test</span></a>’s one-argument form (<code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">&quot;string&quot;</span></code>. It was introduced in 4.0. To test if a string is non-empty, use <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">-n</span> <span class="pre">&quot;string&quot;</span></code>. If disabled, any call to <code class="docutils literal notranslate"><span class="pre">test</span></code> that would change sends a <a class="reference internal" href="cmds/fish.html#debugging-fish"><span class="std std-ref">debug message</span></a> of category “deprecated-test”, so starting fish with <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">--debug=deprecated-test</span></code> can be used to find offending calls.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">mark-prompt</span></code> makes fish report to the terminal the beginning and and of both shell prompts and command output.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ignore-terminfo</span></code> disables lookup of $TERM in the terminfo database. Use <code class="docutils literal notranslate"><span class="pre">no-ignore-terminfo</span></code> to turn it back on.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ignore-terminfo</span></code> was introduced in fish 4.1 and cannot be turned off since fish 4.5. It can still be tested for compatibility, but a <code class="docutils literal notranslate"><span class="pre">no-ignore-terminfo</span></code> value will be ignored. The flag disabled lookup of $TERM in the terminfo database.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">query-term</span></code> allows fish to query the terminal by writing escape sequences and reading the terminal’s response.
 This enables features such as <a class="reference internal" href="terminal-compatibility.html#term-compat-cursor-position-report"><span class="std std-ref">scrolling</span></a>.
 If you use an incompatible terminal, you can -- for the time being -- work around it by running (once) <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-Ua</span> <span class="pre">fish_features</span> <span class="pre">no-query-term</span></code>.</p></li>
@@ -2190,7 +2190,7 @@ If you use an incompatible terminal, you can -- for the time being -- work aroun
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.4.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.5.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -2225,7 +2225,7 @@ If you use an incompatible terminal, you can -- for the time being -- work aroun
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.4";
+ FISH_DOCS_VERSION = "4.5";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
