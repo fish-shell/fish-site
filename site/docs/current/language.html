@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The fish language &#8212; fish-shell 4.5.0 documentation</title>
+    <title>The fish language &#8212; fish-shell 4.6.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=772b3574"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/documentation_options.js?v=4061715a"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Commands" href="commands.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.6.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -356,7 +356,7 @@
 </pre></div>
 </div>
 <p>will attempt to build <code class="docutils literal notranslate"><span class="pre">fish</span></code>, and any errors will be shown using the <code class="docutils literal notranslate"><span class="pre">less</span></code> pager. <a class="footnote-reference brackets" href="#id5" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
-<p>As a convenience, the pipe <code class="docutils literal notranslate"><span class="pre">&amp;|</span></code> redirects both stdout and stderr to the same process. This is different from bash, which uses <code class="docutils literal notranslate"><span class="pre">|&amp;</span></code>.</p>
+<p>As a convenience, the pipe <code class="docutils literal notranslate"><span class="pre">&amp;|</span></code> (as well as the <code class="docutils literal notranslate"><span class="pre">|&amp;</span></code> alias which is also supported by Bash) both redirect stdout and stderr to the same process.</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id5" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
@@ -1573,7 +1573,7 @@ Also, if this is set to 0, <a class="reference internal" href="cmds/set_color.ht
 <dl class="std envvar">
 <dt class="sig sig-object std" id="envvar-fish_emoji_width">
 <span class="sig-name descname"><span class="pre">fish_emoji_width</span></span><a class="headerlink" href="#envvar-fish_emoji_width" title="Link to this definition">¶</a></dt>
-<dd><p>controls whether fish assumes emoji render as 2 cells or 1 cell wide. This is necessary because the correct value changed from 1 to 2 in Unicode 9, and some terminals may not be aware. Set this if you see graphical glitching related to emoji (or other “special” characters). It should usually be auto-detected.</p>
+<dd><p>controls whether fish assumes emoji render as 2 cells or 1 cell wide. This is necessary because the correct value changed from 1 to 2 in Unicode 9, and some terminals may not be aware. Set this if you see graphical glitching related to emoji (or other “special” characters). It defaults to 2.</p>
 </dd></dl>
 
 <dl class="std envvar">
@@ -1677,6 +1677,24 @@ Set it to <code class="docutils literal notranslate"><span class="pre">all</span
 <dt class="sig sig-object std" id="envvar-umask">
 <span class="sig-name descname"><span class="pre">umask</span></span><a class="headerlink" href="#envvar-umask" title="Link to this definition">¶</a></dt>
 <dd><p>the current file creation mask. The preferred way to change the umask variable is through the <a class="reference internal" href="cmds/umask.html"><span class="doc">umask</span></a> function. An attempt to set umask to an invalid value will always fail.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-SHELL_PROMPT_PREFIX">
+<span class="sig-name descname"><span class="pre">SHELL_PROMPT_PREFIX</span></span><a class="headerlink" href="#envvar-SHELL_PROMPT_PREFIX" title="Link to this definition">¶</a></dt>
+<dd><p>if set, this string is automatically prepended to the left prompt. This is a standard environment variable that may be set by tools like systemd’s <code class="docutils literal notranslate"><span class="pre">run0</span></code> to indicate special shell sessions.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-SHELL_PROMPT_SUFFIX">
+<span class="sig-name descname"><span class="pre">SHELL_PROMPT_SUFFIX</span></span><a class="headerlink" href="#envvar-SHELL_PROMPT_SUFFIX" title="Link to this definition">¶</a></dt>
+<dd><p>if set, this string is automatically appended to the left prompt. This is a standard environment variable that may be set by tools like systemd’s <code class="docutils literal notranslate"><span class="pre">run0</span></code> to indicate special shell sessions.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-SHELL_WELCOME">
+<span class="sig-name descname"><span class="pre">SHELL_WELCOME</span></span><a class="headerlink" href="#envvar-SHELL_WELCOME" title="Link to this definition">¶</a></dt>
+<dd><p>if set, this string is displayed when an interactive shell starts, after the greeting. This is a standard environment variable that may be set by tools like systemd’s <code class="docutils literal notranslate"><span class="pre">run0</span></code> to display session information.</p>
 </dd></dl>
 
 <dl class="std envvar">
@@ -2086,7 +2104,7 @@ They are executed in order of their filename, sorted (like globs) in a natural o
 <li><p><code class="docutils literal notranslate"><span class="pre">ampersand-nobg-in-token</span></code> was introduced in fish 3.4 (and made the default in 3.5). It makes it so a <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> is no longer interpreted as the backgrounding operator in the middle of a token, so dealing with URLs becomes easier. Either put spaces or a semicolon after the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>. This is recommended formatting anyway, and <code class="docutils literal notranslate"><span class="pre">fish_indent</span></code> will have done it for you already.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">remove-percent-self</span></code> turns off the special <code class="docutils literal notranslate"><span class="pre">%self</span></code> expansion. It was introduced in 4.0. To get fish’s pid, you can use the <span class="target" id="index-30"></span><a class="reference internal" href="#envvar-fish_pid"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_pid</span></code></a> variable.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test-require-arg</span></code> removes <a class="reference internal" href="cmds/test.html"><span class="doc">builtin test</span></a>’s one-argument form (<code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">&quot;string&quot;</span></code>. It was introduced in 4.0. To test if a string is non-empty, use <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">-n</span> <span class="pre">&quot;string&quot;</span></code>. If disabled, any call to <code class="docutils literal notranslate"><span class="pre">test</span></code> that would change sends a <a class="reference internal" href="cmds/fish.html#debugging-fish"><span class="std std-ref">debug message</span></a> of category “deprecated-test”, so starting fish with <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">--debug=deprecated-test</span></code> can be used to find offending calls.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mark-prompt</span></code> makes fish report to the terminal the beginning and and of both shell prompts and command output.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mark-prompt</span></code> makes fish report to the terminal the beginning and end of both shell prompts and command output.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ignore-terminfo</span></code> was introduced in fish 4.1 and cannot be turned off since fish 4.5. It can still be tested for compatibility, but a <code class="docutils literal notranslate"><span class="pre">no-ignore-terminfo</span></code> value will be ignored. The flag disabled lookup of $TERM in the terminfo database.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">query-term</span></code> allows fish to query the terminal by writing escape sequences and reading the terminal’s response.
 This enables features such as <a class="reference internal" href="terminal-compatibility.html#term-compat-cursor-position-report"><span class="std std-ref">scrolling</span></a>.
@@ -2190,7 +2208,7 @@ If you use an incompatible terminal, you can -- for the time being -- work aroun
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.5.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.6.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -2220,12 +2238,12 @@ If you use an incompatible terminal, you can -- for the time being -- work aroun
     <a href="https://github.com/fish-shell/fish-shell/issues">Found a bug</a>?
     <br />
 
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     </div>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.5";
+ FISH_DOCS_VERSION = "4.6";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

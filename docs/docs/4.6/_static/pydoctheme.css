@@ -1,0 +1,759 @@
+:root {
+    color-scheme: light dark; /* both supported */
+    --link-color: #0030B3;
+    --visited-link-color: #6363bb;
+    --hover-link-color: #00A5F4;
+    --text-color: #222;
+    --main-background: #EEEEFA;
+    --secondary-background: #ddddea;
+    --outer-background: linear-gradient(to bottom, #a7cfdf 0%,#23538a 100%);
+    --code-background: rgba(255,255,255, .2);
+    --code-border: #ac9;
+    --sidebar-border-color: #ccc;
+    --secondary-link-color: #444;
+    --highlight-background: #FFF;
+    --td-background: white;
+}
+
+html {
+    background: none;
+    min-height: 100%;
+}
+
+body {
+    background: var(--outer-background);
+}
+
+html, body, input {
+    /* Pick a font.
+       sans-serif is the Browser default. This is great because the user could change it.
+       Unfortunately the defaults are decades old and e.g. on Windows still use Arial in Firefox and Edge,
+       and this seems unlikely to change.
+       So we use system-ui, which is "the system's interface font".
+       Unfortunately on Windows *that* depends on the locale, and e.g. in Chinese it apparently
+       picks a font that is okay at chinese characters but fairly bad at latin ones.
+       So we prefer the standard Windows font Segoe.
+       If that's installed anywhere else that's unfortunate but not horrible because it's an okay font.
+
+       See e.g. https://github.com/twbs/bootstrap/issues/22328
+    */
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+/* SPHINX IMPORT */
+
+body {
+  /* These stay, assuming some browsers pick different defaults */
+  font-size: 100%;
+  background-color: var(--main-background);
+  margin: 0;
+  padding: 0;
+}
+
+div.related ul {
+  margin: 0;
+  padding: 0 0 0 10px;
+}
+
+div.related {
+  line-height: 30px;
+  color: #666666;
+  font-size: 90%;
+}
+
+div.related li {
+  display: inline;
+}
+
+div.related h3 {
+  display: none;
+}
+
+div.related li.right {
+  margin-right: 5px;
+}
+
+div.sphinxsidebar {
+  overflow-wrap: break-word;
+}
+
+pre {
+  padding: 5px;
+  line-height: 120%;
+  overflow: auto;
+  overflow-y: hidden;
+}
+
+div.body h1 {
+  font-size: 200%;
+}
+
+div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6 {
+  font-weight: normal;
+}
+
+:not(li) > ol > li:last-child > :last-child, :not(li) > ul > li:last-child > :last-child {
+  margin-bottom: 0px;
+}
+
+div.sphinxsidebar ul ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+div.sphinxsidebar ul ul, div.sphinxsidebar ul.want-points {
+  margin-left: 20px;
+  list-style: square;
+}
+
+div.sphinxsidebar ul {
+  margin: 10px;
+  padding: 0;
+  color: var(--secondary-link-color);
+  list-style: none;
+}
+
+div.sphinxsidebarwrapper {
+  padding: 10px 5px 0 10px;
+}
+
+div[class*="highlight-"] {
+  margin: 1em 0;
+}
+
+div.sphinxsidebar #searchbox input[type="text"] {
+    width: 80%;
+    padding: 0.25em;
+}
+
+div.sphinxsidebar #searchbox input[type="submit"] {
+  width: 20%;
+  padding: 0.25em;
+}
+
+div.sphinxsidebar form {
+  margin-top: 10px;
+}
+
+div.sphinxsidebar h3 {
+  font-size: 1.4em;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+div.sphinxsidebar h4 {
+  color: var(--secondary-link-color);
+  font-size: 1.3em;
+  font-weight: normal;
+  margin: 5px 0 0 0;
+  padding: 0;
+}
+
+div.body h2 {
+  font-size: 160%;
+}
+
+a {
+  text-decoration: none;
+}
+
+a.headerlink {
+  font-size: 0.8em;
+  padding: 0 4px 0 4px;
+  visibility: hidden;
+}
+
+*:hover > a.headerlink {
+  visibility: visible;
+}
+
+a:hover, div.footer a {
+  text-decoration: underline;
+}
+
+div.related a, div.sphinxsidebar a {
+  color: var(--secondary-link-color);
+}
+
+div.warning {
+  border: 1px solid #f66;
+}
+
+div.admonition, div.versionchanged {
+  padding: 7px;
+}
+
+p.admonition-title::after {
+  content: ":";
+}
+
+p.admonition-title, span.versionmodified {
+  display: inline;
+  font-weight: bold;
+}
+
+div.admonition p.admonition-title + p {
+  display: inline;
+}
+
+
+div.footer {
+  padding: 9px 0 9px 0;
+  font-size: 75%;
+}
+
+table.docutils {
+  border-collapse: collapse;
+}
+.align-default {
+  text-align: center;
+}
+
+th > :last-child, td > :last-child {
+  margin-bottom: 0px;
+}
+th > :first-child, td > :first-child {
+  margin-top: 0px;
+}
+/* End of SPHINX IMPORT */
+
+div#fmain {
+    color: var(--text-color);
+    padding: 1em 2em;
+    background-color: var(--main-background);
+    border-radius: 14px;
+    position: relative;
+    margin: 1em auto 1em;
+    box-shadow: 0 0 5px 1px #333;
+    width: 90%;
+    /* This is super-cheesy, but 1270px is the maximum width of the sidebar, the content and the margins */
+    max-width: 1270px;
+}
+
+div.related {
+    margin-bottom: 0;
+    padding: 0.5em 0;
+    border-top: 1px solid;
+    border-color: var(--sidebar-border-color);
+    margin-top: 0;
+}
+
+div.section {
+    /* Make scrollable when it's too wide
+       Really only happens with tables, the rest flows nicely,
+       but I have no idea how to make the tables themselves scrollable
+     */
+    overflow-y: auto;
+    /* This avoids leaving the actual text narrower than necessary
+       in certain widths.
+     */
+    width: 100%;
+}
+
+div.related:first-child {
+    border-top: 0;
+    border-bottom: 1px solid;
+    border-color: var(--sidebar-border-color);
+}
+
+.inline-search {
+    display: inline;
+}
+form.inline-search input {
+    display: inline;
+}
+form.inline-search input[type="submit"] {
+    width: 40px;
+}
+
+div.sphinxsidebar {
+    border-right: 1px solid;
+    border-color: var(--sidebar-border-color);
+    border-radius: 0px;
+    line-height: 1em;
+    font-size: smaller;
+    margin-left: 0;
+    float: left;
+    /* Let this move along with the screen, but be scrollable itself.
+    This means the user can't scroll *away* from the sidebar - it's always available */
+    overflow: auto;
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    /* Default scrollbar is too thicc */
+    scrollbar-width: thin;
+}
+
+div.sphinxsidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+div.sphinxsidebar::-webkit-scrollbar-thumb {
+  /* Without, chrome lets the scrollbar disappear? */
+  background-color: grey;
+  border-radius: 10px;
+}
+
+div#searchbox {
+    /* Cheesy: The padding is on the sphinxsidebar*wrapper*,
+       so if this is the last element the bottom padding won't apply.
+     */
+    padding-bottom: 5px;
+}
+
+div.sphinxsidebar h3, div.sphinxsidebar h4 {
+    margin-top: 1em;
+}
+
+div.sphinxsidebarwrapper > h3:first-child {
+    margin-top: 0.2em;
+}
+
+div.sphinxsidebarwrapper > ul > li > ul > li {
+    margin-bottom: 0.4em;
+}
+
+ul li, div.body li {
+    line-height: 2em;
+}
+
+ul.simple p, ol.simple p {
+  /* See "special features" list on index.html */
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+ul.simple > li:not(:first-child) > p {
+  margin-top: 0;
+}
+
+ul li dd {
+    /* nested lists will show up like this, the left margin is massive by default */
+    margin-left: 0;
+}
+
+form.inline-search input,
+div.sphinxsidebar input {
+    border: 1px solid;
+    border-color: var(--sidebar-border-color);
+    font-size: smaller;
+    border-radius: 3px;
+}
+
+div.sphinxsidebar input[type=text] {
+    max-width: 150px;
+}
+
+div.body {
+    padding: 10px 0 0 1.2em;
+    min-width: 150px;
+    max-width: 800px;
+}
+
+
+div.body p {
+    line-height: 2em;
+    text-align: left;
+}
+
+div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6 {
+    margin: 0;
+    border: 0;
+    padding: 0.3em 0;
+}
+
+div.body h3, div.body h4 {
+  font-size: 140%;
+}
+
+div.body hr {
+    border: 0;
+    background-color: #ccc;
+    height: 1px;
+}
+
+div.body pre, code {
+    border-radius: 3px;
+    border: 1px solid;
+    border-color: var(--code-border);
+}
+
+div.highlight {
+    /* For the button to be positionable inside us */
+    position: relative;
+}
+
+div.highlight pre {
+    padding: 10px;
+}
+
+pre button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    opacity: 0;
+}
+
+div.highlight pre:hover > button {
+    opacity: 1;
+}
+
+div.body div.admonition, div.body div.impl-detail {
+    border-radius: 3px;
+}
+
+div.body div.impl-detail > p {
+    margin: 0;
+}
+
+div.body div.seealso {
+    border: 1px solid #dddd66;
+}
+
+a {
+    color: var(--link-color);
+}
+
+div.body a:visited {
+    color: var(--visited-link-color);
+}
+
+div.related a:hover,
+div.footer a:hover,
+div.sphinxsidebar a:hover,
+div.body a:hover {
+    color: var(--hover-link-color);
+}
+
+code {
+    /* Make inline-code better visible */
+    background-color: var(--code-background);
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+tt, code, kbd, pre, dl > dt span ~ em, #synopsis p, #synopsis code, .command, button {
+    /* Pick a monospace font.
+       ui-monospace is the monospace version of system-ui - the system's monospace font.
+       Unfortunately it's barely supported anywhere (at time of writing only Safari does!),
+       and because monospace has the same limitations as sans-serif - Browser defaults are awful -
+       we hardcode a list of normal monospace fonts.
+       SFMono is San Francisco, Apple's font. Menlo is an older Apple one.
+       Consolas is a Windows font.
+       Ubuntu is the ubuntu monospace version, Hack is the default KDE monospace font,
+       Liberation is an arial-like.
+
+       NOTE: Under no circumstances can "Source Code Pro" appear in this list for a while as it had massive bugs on macOS.
+       It would not appear at all when colored.
+       This is unfortunate because it's the default Gnome monospace font.
+       Instead we use Noto, which is a common monospace font that is often installed for emoji support.
+    */
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Ubuntu Mono", "Hack", "Noto Sans Mono", Liberation Mono, monospace;
+}
+
+/* We don't want the prompt char or the following white space to be selected - that's annoying. */
+.highlight .gp, .highlight .gp + .w {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    cursor: default;
+}
+
+#synopsis .line {
+    line-height: 1em;
+}
+
+div.body tt {
+    border-radius: 3px;
+}
+
+div.body tt.descname, div.body code.descname {
+    font-size: 120%;
+}
+
+div.body tt.xref, div.body a tt, div.body code.xref, div.body a code {
+    font-weight: normal;
+}
+
+table.docutils {
+    border: 1px solid;
+    border-color: var(--sidebar-border-color);
+    min-width: 20%;
+    border-radius: 3px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    /* Make table scrollable on overflow */
+    display: block;
+    overflow: auto;
+}
+
+table.docutils td, table.docutils th {
+    border: 1px solid;
+    border-color: var(--sidebar-border-color);
+    border-radius: 3px;
+}
+
+table p, table li {
+    text-align: left !important;
+}
+
+th {
+    background-color: var(--secondary-background);
+    padding: 0.3em 0.5em;
+}
+
+table.docutils td {
+    background-color: var(--td-background);
+    padding: 0.3em 0.5em;
+}
+
+table.footnote, table.footnote td {
+    border: 0 !important;
+}
+
+div.footer {
+    line-height: 1em;
+    margin-top: -2em;
+    text-align: right;
+    width: auto;
+    margin-right: 10px;
+}
+
+.highlight {
+    background: var(--highlight-background);
+}
+
+#synopsis p {
+    font-size: 12pt;
+}
+
+dl.envvar, dl.describe {
+    font-size: 11pt;
+    font-weight: normal;
+
+}
+
+div.sphinxsidebar ul {
+    margin: 1em 10px 1em 10px;
+}
+
+
+aside.footnote > .label {
+    display: inline;
+}
+
+aside.footnote > p {
+    display: inline-block;
+    line-height: 1.5em;
+}
+
+div.documentwrapper {
+    width: 100%;
+}
+
+div.document {
+    display: grid;
+    grid-template: 1fr min-content / 12rem minmax(0,1fr);
+}
+
+/* On screens that are less than 700px wide remove anything non-essential
+   - the sidebar, the gradient background, ... */
+@media screen and (max-width: 700px) {
+    div.document {
+        display: grid;
+        grid-template: 30vh min-content / 100%;
+    }
+    div.sphinxsidebar {
+        font-size: 16px;
+        width: 100%;
+        height: auto;
+        position: relative;
+        /* To separate the "side"bar from the content below */
+        border-bottom: 1px solid;
+        border-color: var(--sidebar-border-color);
+    }
+
+    /* Reduce margins to save space */
+    div.sphinxsidebar ul ul, div.bodywrapper, div.content {
+        margin-left: 0;
+    }
+
+    div.sphinxsidebar h3, div.sphinxsidebar h4 {
+        margin-top: 0;
+    }
+
+    div.sphinxsidebar ul {
+        flex-basis: content;
+        flex-wrap: wrap;
+    }
+    div.sphinxsidebarwrapper {
+        display: flex;
+        gap: 1em;
+        justify-content: space-between;
+    }
+    div.sphinxsidebarwrapper > h3:nth-child(5) {
+        display: none;
+    }
+    #searchbox {
+        display: none !important;
+    }
+    div.body {
+        padding: 1rem;
+    }
+
+    div#fmain {
+        border-radius: 0px;
+        margin: 0;
+        box-shadow: 0;
+        width: 100%;
+        padding: 0;
+        /* We have some padding/margins that would overflow - just remove it */
+        overflow: clip;
+    }
+    div.footer {
+        margin: 0;
+    }
+}
+
+/* On print media remove anything non-essential. */
+@media print {
+    div.document {
+        display: block;
+    }
+    .inline-search {
+        display: none;
+    }
+
+    div.sphinxsidebar {
+        display: none;
+    }
+
+    div.bodywrapper {
+        margin-left: 0;
+    }
+
+    div.sphinxsidebar ul {
+        flex-basis: content;
+        flex-wrap: wrap;
+    }
+
+    div.sphinxsidebarwrapper {
+        display: flex;
+    }
+
+    div#searchbox {
+        display: none !important;
+    }
+
+    div.body {
+        padding: 1rem;
+    }
+
+    div#fmain {
+        border-radius: 0px;
+        margin: 0;
+        box-shadow: 0;
+        width: 100%;
+        padding: 0;
+        /* We have some padding/margins that would overflow - just remove it */
+        overflow: clip;
+    }
+
+    div.footer {
+        margin: 0;
+    }
+
+    /* Avoid splitting code blocks across multiple pages. */
+    pre {
+        page-break-inside: avoid;
+    }
+
+    /* Show section numbers. */
+    .body {
+        counter-reset: section;
+    }
+
+    h2::before {
+        counter-increment: section;
+        content: counter(section) ". ";
+        font-weight: normal;
+    }
+}
+
+.sphinxsidebar ul.current > li.current { font-weight: bold }
+
+.gray { color: #777 }
+.purple { color: #551a8b; font-weight: bold; }
+.red { color: #FF0000; }
+.green { color: #00FF00; }
+
+/* Color based on the Name.Function (.nf) class from pygments.css. */
+.command { color: #005fd7 }
+
+/* Color based on the Name.Constant (.no) class from pygments.css. */
+.param { color: #00bfff }
+
+/* Color based on the Name.Constant (.no) class from pygments.css. */
+/* Used for underlining file paths in interactive code examples. */
+.param-valid-path { color: #00afff; text-decoration: underline }
+
+/* Color based on the Generic.Prompt (.gp) class from pygments.css. */
+.prompt { color: #8f7902; }
+
+kbd.compound, :not(kbd.compound) > kbd {
+  background-color: var(--td-background);
+  border: 1px solid;
+  border-color: var(--sidebar-border-color);
+  border-radius: .2em;
+  padding: 0.1em 0.3em;
+}
+
+div.body a {
+    /* Underline links in the body of the text */
+    text-decoration: underline;
+}
+.std-envvar::before {
+    content: "$";
+}
+.footnote, .footnote-reference {
+    background-color: var(--secondary-background);
+    font-size: 90%;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --link-color: #5fb0fc;
+        --text-color: #DDD;
+        --main-background: #202028;
+        --secondary-background: #112;
+        --outer-background: linear-gradient(to top, #1f1f3f 0%,#051f3a 100%);
+        --code-background: rgba(20, 20, 25, .2);
+        --code-border: #536;
+        --sidebar-border-color: #666;
+        --secondary-link-color: #DDD;
+        --highlight-background: #000;
+        --td-background: #111;
+    }
+
+    div#fmain {
+        box-shadow: 0 0 5px 1px #000;
+    }
+
+    kbd.compound, :not(kbd.compound) > kbd {
+        box-shadow: 0.1em 0.1em 0.2em rgba(100,100,100,0.1);
+        color: #FFF;
+    }
+
+    table.docutils td {
+        background-color: #111;
+    }
+
+    /* Color based on the Name.Function (.nf) class from pygments.css. */
+    .command { color: #008fd7 }
+}
