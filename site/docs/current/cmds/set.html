@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>set - display and change shell variables &#8212; fish-shell 4.6.0 documentation</title>
+    <title>set - display and change shell variables &#8212; fish-shell 4.7.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=4061715a"></script>
+    <script src="../_static/documentation_options.js?v=52a74d40"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.6.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.7.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -109,15 +109,16 @@
 <h1>set - display and change shell variables<a class="headerlink" href="#set-display-and-change-shell-variables" title="Link to this heading">¶</a></h1>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">¶</a></h2>
-<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span>
-<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--function</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-l</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--local</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-g</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--global</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-U</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--universal</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--no-event</span><span class="g g-Other">]</span>
-<span class="nf">set</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...]</span>
-<span class="nf">set</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="g g-Other">[[</span><span class="no">INDEX</span><span class="w"> </span><span class="g g-Other">...]]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...]</span>
-<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-x</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--export</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-u</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--unexport</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...]</span>
-<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--append</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-p</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--prepend</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...</span>
-<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-e</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--erase</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-xu</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">NAME</span><span class="g g-Other">][[</span><span class="no">INDEX</span><span class="g g-Other">]]</span><span class="w"> </span><span class="g g-Other">...]</span>
-<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--query</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-xu</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">NAME</span><span class="g g-Other">][[</span><span class="no">INDEX</span><span class="g g-Other">]]</span><span class="w"> </span><span class="g g-Other">...]</span>
+<div class="highlight-fish-synopsis notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="g g-Other">[(</span><span class="no">-f</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--function</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-l</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--local</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-g</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--global</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-U</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--universal</span><span class="g g-Other">)]</span>
+<span class="w">    </span><span class="g g-Other">[(</span><span class="no">-x</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--export</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-u</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--unexport</span><span class="g g-Other">)]</span>
 <span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-S</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--show</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-L</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--long</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">...]</span>
+
+<span class="nf">set</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-xu</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--no-event</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...]</span>
+<span class="nf">set</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--no-event</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="g g-Other">[[</span><span class="no">INDEX</span><span class="w"> </span><span class="g g-Other">...]]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...]</span>
+<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-a</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--append</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-p</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--prepend</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--no-event</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="w"> </span><span class="no">VALUE</span><span class="w"> </span><span class="g g-Other">...</span>
+<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-e</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--erase</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">--no-event</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="g g-Other">[[</span><span class="no">INDEX</span><span class="g g-Other">]]</span><span class="w"> </span><span class="g g-Other">...</span>
+
+<span class="nf">set</span><span class="w"> </span><span class="g g-Other">(</span><span class="no">-q</span><span class="w"> </span><span class="g g-Other">|</span><span class="w"> </span><span class="no">--query</span><span class="g g-Other">)</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-Uflg</span><span class="g g-Other">]</span><span class="w"> </span><span class="g g-Other">[</span><span class="no">-xu</span><span class="g g-Other">]</span><span class="w"> </span><span class="no">NAME</span><span class="g g-Other">[[</span><span class="no">INDEX</span><span class="g g-Other">]]</span><span class="w"> </span><span class="g g-Other">...</span>
 </pre></div>
 </div>
 </section>
@@ -310,7 +311,7 @@ This runs fish with a temporary home directory:</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.6.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.7.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -346,7 +347,7 @@ This runs fish with a temporary home directory:</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.6";
+ FISH_DOCS_VERSION = "4.7";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

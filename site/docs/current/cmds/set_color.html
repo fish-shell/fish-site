@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>set_color - set the terminal color &#8212; fish-shell 4.6.0 documentation</title>
+    <title>set_color - set the terminal color &#8212; fish-shell 4.7.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=4061715a"></script>
+    <script src="../_static/documentation_options.js?v=52a74d40"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.6.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.7.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -114,8 +114,9 @@
 </section>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">set_color</span></code> is used to control the color and styling of text in the terminal.
-<em>VALUE</em> describes that styling.
+<p><code class="docutils literal notranslate"><span class="pre">set_color</span></code> controls the color and styling of text in the terminal.
+It writes non-printing color and text style escape sequences to standard output.</p>
+<p><em>VALUE</em> describes the styling.
 <em>VALUE</em> can be a reserved color name like <strong>red</strong> or an RGB color value given as 3 or 6 hexadecimal digits (“F27” or “FF2277”).
 A special keyword <strong>normal</strong> resets text formatting to terminal defaults, however it is not recommended and the <strong>--reset</strong> option is preferred as it is less confusing and more future-proof.</p>
 <p>Valid colors include:</p>
@@ -182,7 +183,9 @@ and it allows fish to update color variables whenever <span class="target" id="i
 <li><p>Because of the risk of confusion, <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">--reset</span></code> is recommended over <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">normal</span></code>.</p></li>
 <li><p>Setting the background color only affects subsequently written characters. Fish provides no way to set the background color for the entire terminal window. Configuring the window background color (and other attributes such as its opacity) has to be done using whatever mechanisms the terminal provides. Look for a config option.</p></li>
 <li><p>Some terminals use the <code class="docutils literal notranslate"><span class="pre">--bold</span></code> escape sequence to switch to a brighter color set rather than increasing the weight of text.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">set_color</span></code> works by printing sequences of characters to standard output. If used in command substitution or a pipe, these characters will also be captured. This may or may not be desirable. Checking the exit status of <code class="docutils literal notranslate"><span class="pre">isatty</span> <span class="pre">stdout</span></code> before using <code class="docutils literal notranslate"><span class="pre">set_color</span></code> can be useful to decide not to colorize output in a script.</p></li>
+<li><p>If you use <code class="docutils literal notranslate"><span class="pre">set_color</span></code> in a command substitution or a pipe, these characters will also be captured.
+This may or may not be desirable.
+Checking the exit status of <code class="docutils literal notranslate"><span class="pre">isatty</span> <span class="pre">stdout</span></code> before using <code class="docutils literal notranslate"><span class="pre">set_color</span></code> can be useful to decide not to colorize output in a script.</p></li>
 </ol>
 </section>
 <section id="examples">
@@ -210,7 +213,7 @@ and it allows fish to update color variables whenever <span class="target" id="i
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.6.0 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.7.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -246,7 +249,7 @@ and it allows fish to update color variables whenever <span class="target" id="i
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.6";
+ FISH_DOCS_VERSION = "4.7";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

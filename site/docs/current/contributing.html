@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Contributing To Fish &#8212; fish-shell 4.6.0 documentation</title>
+    <title>Contributing To Fish &#8212; fish-shell 4.7.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=4061715a"></script>
+    <script src="_static/documentation_options.js?v=52a74d40"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.6.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.7.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Contributing To Fish</a></li>
@@ -354,13 +354,14 @@ These are the files you will interact with when adding translations.</p>
 <section id="adding-translations-for-a-new-language">
 <h3>Adding translations for a new language<a class="headerlink" href="#adding-translations-for-a-new-language" title="Link to this heading">¶</a></h3>
 <p>Creating new translations requires the Gettext tools.
-More specifically, you will need <code class="docutils literal notranslate"><span class="pre">msguniq</span></code> and <code class="docutils literal notranslate"><span class="pre">msgmerge</span></code> for creating translations for a new
-language.
-To create a new translation, run:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">build_tools/update_translations.fish</span><span class="w"> </span><span class="no">localization/po/ll_CC.po</span>
+More specifically, you will need <code class="docutils literal notranslate"><span class="pre">msguniq</span></code>, <code class="docutils literal notranslate"><span class="pre">msgmerge</span></code>, and <code class="docutils literal notranslate"><span class="pre">msgattrib</span></code>
+for creating translations for a new language.
+To create a PO file for a new language <code class="docutils literal notranslate"><span class="pre">ll_CC</span></code>, run:</p>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">cargo</span><span class="w"> </span><span class="no">xtask</span><span class="w"> </span><span class="no">gettext</span><span class="w"> </span><span class="no">new</span><span class="w"> </span><span class="no">ll_CC</span>
 </pre></div>
 </div>
-<p>This will create a new PO file containing all messages available for translation.
+<p>This will create a new PO file in <code class="docutils literal notranslate"><span class="pre">localization/po/</span></code>
+containing all messages available for translation.
 If the file already exists, it will be updated.</p>
 <p>After modifying a PO file, you can recompile fish, and it will integrate the modifications you made.
 This requires that the <code class="docutils literal notranslate"><span class="pre">msgfmt</span></code> utility is installed (comes as part of <code class="docutils literal notranslate"><span class="pre">gettext</span></code>).
@@ -419,10 +420,12 @@ The second line (<code class="docutils literal notranslate"><span class="pre">ms
 <section id="modifications-to-strings-in-source-files">
 <h3>Modifications to strings in source files<a class="headerlink" href="#modifications-to-strings-in-source-files" title="Link to this heading">¶</a></h3>
 <p>If a string changes in the sources, the old translations will no longer work.
-They will be preserved in the PO files, but commented-out (starting with <code class="docutils literal notranslate"><span class="pre">#~</span></code>).
 If you add/remove/change a translatable strings in a source file,
-run <code class="docutils literal notranslate"><span class="pre">build_tools/update_translations.fish</span></code> to propagate this to all translation files (<code class="docutils literal notranslate"><span class="pre">localization/po/*.po</span></code>).
-This is only relevant for developers modifying the source files of fish or fish scripts.</p>
+run <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">xtask</span> <span class="pre">gettext</span> <span class="pre">update</span></code> to propagate this to all translation files (<code class="docutils literal notranslate"><span class="pre">localization/po/*.po</span></code>).
+This is only relevant for developers modifying the source files of fish or fish scripts.
+Note translations for messages which are no longer present in the sources will be deleted from the PO files.
+If the source string changed in a way which should not affect translations,
+consider updating the <code class="docutils literal notranslate"><span class="pre">msgid</span></code> in the PO files such that translations are preserved.</p>
 </section>
 <section id="setting-code-up-for-translations">
 <h3>Setting Code Up For Translations<a class="headerlink" href="#setting-code-up-for-translations" title="Link to this heading">¶</a></h3>
@@ -479,7 +482,7 @@ recent release number (e.g., <code class="docutils literal notranslate"><span cl
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.6.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.7.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Contributing To Fish</a></li>
@@ -514,7 +517,7 @@ recent release number (e.g., <code class="docutils literal notranslate"><span cl
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.6";
+ FISH_DOCS_VERSION = "4.7";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
