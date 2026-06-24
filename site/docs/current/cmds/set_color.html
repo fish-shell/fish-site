@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>set_color - set the terminal color &#8212; fish-shell 4.7.1 documentation</title>
+    <title>set_color - set the terminal color &#8212; fish-shell 4.8.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=36689d04"></script>
+    <script src="../_static/documentation_options.js?v=b8c419d6"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -63,14 +63,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">fish for Bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -132,7 +132,7 @@ A three digit value is equivalent to specifying each digit twice; e.g., <code cl
 Hexadecimal RGB values can be in lower or uppercase.</p>
 <p>If <span class="target" id="index-0"></span><a class="reference internal" href="../language.html#envvar-fish_term24bit"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_term24bit</span></code></a> is set to 0, fish will translate RGB values to the nearest color on the 256-color palette.
 If <span class="target" id="index-1"></span><a class="reference internal" href="../language.html#envvar-fish_term256"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_term256</span></code></a> is also set to 0, fish will translate them to the 16-color palette instead.
-Fish launched as <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">-d</span> <span class="pre">term_support</span></code> will include diagnostic messages that indicate the color support mode in use.</p>
+fish launched as <code class="docutils literal notranslate"><span class="pre">fish</span> <span class="pre">-d</span> <span class="pre">term_support</span></code> will include diagnostic messages that indicate the color support mode in use.</p>
 <p>If multiple colors are specified, fish prefers the first RGB one.
 However if <span class="target" id="index-2"></span><a class="reference internal" href="../language.html#envvar-fish_term256"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_term256</span></code></a> is set to 0, fish prefers the first named color specified.</p>
 <p>The following options are available:</p>
@@ -181,7 +181,7 @@ and it allows fish to update color variables whenever <span class="target" id="i
 <li><p>Using <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">normal</span></code> will reset all colors and modes to the terminal’s default.</p></li>
 <li><p>In contrast, <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">--foreground</span> <span class="pre">normal</span></code> will only reset the foreground color and leave all the other colors and modes unchanged.</p></li>
 <li><p>Because of the risk of confusion, <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">--reset</span></code> is recommended over <code class="docutils literal notranslate"><span class="pre">set_color</span> <span class="pre">normal</span></code>.</p></li>
-<li><p>Setting the background color only affects subsequently written characters. Fish provides no way to set the background color for the entire terminal window. Configuring the window background color (and other attributes such as its opacity) has to be done using whatever mechanisms the terminal provides. Look for a config option.</p></li>
+<li><p>Setting the background color only affects subsequently written characters. fish provides no way to set the background color for the entire terminal window. Configuring the window background color (and other attributes such as its opacity) has to be done using whatever mechanisms the terminal provides. Look for a config option.</p></li>
 <li><p>Some terminals use the <code class="docutils literal notranslate"><span class="pre">--bold</span></code> escape sequence to switch to a brighter color set rather than increasing the weight of text.</p></li>
 <li><p>If you use <code class="docutils literal notranslate"><span class="pre">set_color</span></code> in a command substitution or a pipe, these characters will also be captured.
 This may or may not be desirable.
@@ -213,7 +213,7 @@ Checking the exit status of <code class="docutils literal notranslate"><span cla
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -249,7 +249,7 @@ Checking the exit status of <code class="docutils literal notranslate"><span cla
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.7";
+ FISH_DOCS_VERSION = "4.8";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

@@ -5,15 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Terminal Compatibility &#8212; fish-shell 4.7.1 documentation</title>
+    <title>Terminal Compatibility &#8212; fish-shell 4.8.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=36689d04"></script>
+    <script src="_static/documentation_options.js?v=b8c419d6"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Contributing To Fish" href="contributing.html" />
+    <link rel="next" title="Contributing To fish" href="contributing.html" />
     <link rel="prev" title="Release notes" href="relnotes.html" />
     <link rel="shortcut icon" type="image/png" href="_static/fish.png" />
      
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Terminal Compatibility</a></li>
@@ -62,14 +62,14 @@
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive use</a></li>
 <li class="toctree-l1"><a class="reference internal" href="language.html">The fish language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">fish for Bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="completions.html">Writing your own completions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Terminal Compatibility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To Fish</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -110,8 +110,7 @@ Some must be implemented to enable basic functionality,
 while others enable optional features and may be ignored by the terminal.</p>
 <p>The terminal must be able to parse Control Sequence Introducer (CSI) commands, Operating System Commands (OSC) and <a class="reference internal" href="#term-compat-dcs-gnu-screen"><span class="std std-ref">optionally</span></a> Device Control Strings (DCS).
 These are defined by ECMA-48.
-If a valid CSI, OSC or DCS sequence does not represent a command implemented by the terminal, the terminal must ignore it.
-For historical reasons, OSC sequences may be terminated with <code class="docutils literal notranslate"><span class="pre">\x07</span></code> instead of <code class="docutils literal notranslate"><span class="pre">\e\\</span></code>.</p>
+If a valid CSI, OSC or DCS sequence does not represent a command implemented by the terminal, the terminal must ignore it.</p>
 <p>Control sequences are denoted in a fish-like syntax.
 Special characters other than <code class="docutils literal notranslate"><span class="pre">\</span></code> are not escaped.
 Spaces are only added for readability and are not part of the sequence.
@@ -481,11 +480,11 @@ If that doesn’t work for some reason, you can add this to your <code class="do
 <section id="unicode-codepoints">
 <span id="term-compat-unicode-codepoints"></span><h2>Unicode Codepoints<a class="headerlink" href="#unicode-codepoints" title="Link to this heading">¶</a></h2>
 <p>By default, fish outputs the following non-ASCII characters:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">×</span><span class="w"> </span><span class="no">►</span><span class="w"> </span><span class="no">¶</span><span class="w"> </span><span class="no">⏎</span><span class="w"> </span><span class="no">•</span><span class="w"> </span><span class="no">●</span><span class="w"> </span><span class="no">…</span><span class="w"> </span><span class="no">μ</span><span class="w"> </span><span class="no">–</span><span class="w"> </span><span class="no">’</span><span class="w"> </span><span class="no">‘</span><span class="w"> </span><span class="no">“</span><span class="w"> </span><span class="no">”</span><span class="w"> </span><span class="no">←</span><span class="w"> </span><span class="no">→</span><span class="w"> </span><span class="no">↑</span><span class="w"> </span><span class="no">↓</span>
+<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">×</span><span class="w"> </span><span class="no">►</span><span class="w"> </span><span class="no">¶</span><span class="w"> </span><span class="no">⏎</span><span class="w"> </span><span class="no">•</span><span class="w"> </span><span class="no">●</span><span class="w"> </span><span class="no">…</span><span class="w"> </span><span class="no">μ</span><span class="w"> </span><span class="no">’</span><span class="w"> </span><span class="no">‘</span><span class="w"> </span><span class="no">“</span><span class="w"> </span><span class="no">”</span>
 </pre></div>
 </div>
 <p>as well as control pictures (U+2400 through U+241F),
-and locale-specific ones in <a class="reference internal" href="language.html#variables-locale"><span class="std std-ref">translated strings</span></a>.</p>
+and locale-specific ones in <a class="reference internal" href="language.html#variables-locale"><span class="std std-ref">translated messages</span></a>.</p>
 </section>
 </section>
 
@@ -503,7 +502,7 @@ and locale-specific ones in <a class="reference internal" href="language.html#va
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Terminal Compatibility</a></li>
@@ -538,7 +537,7 @@ and locale-specific ones in <a class="reference internal" href="language.html#va
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.7";
+ FISH_DOCS_VERSION = "4.8";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

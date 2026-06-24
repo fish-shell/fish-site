@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Design &#8212; fish-shell 4.7.1 documentation</title>
+    <title>Design &#8212; fish-shell 4.8.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=36689d04"></script>
+    <script src="_static/documentation_options.js?v=b8c419d6"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Design</a></li>
@@ -62,14 +62,14 @@
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive use</a></li>
 <li class="toctree-l1"><a class="reference internal" href="language.html">The fish language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">fish for Bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="completions.html">Writing your own completions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terminal-compatibility.html">Terminal Compatibility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To Fish</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -109,7 +109,7 @@
 <p>This is a description of the design principles that have been used to design fish. The fish design has three high level goals. These are:</p>
 <ol class="arabic simple">
 <li><p>Everything that can be done in other shell languages should be possible to do in fish, though fish may rely on external commands in doing so.</p></li>
-<li><p>Fish should be user-friendly, but not at the expense of expressiveness. Most tradeoffs between power and ease of use can be avoided with careful design.</p></li>
+<li><p>fish should be user-friendly, but not at the expense of expressiveness. Most tradeoffs between power and ease of use can be avoided with careful design.</p></li>
 <li><p>Whenever possible without breaking the above goals, fish should follow POSIX.</p></li>
 </ol>
 <p>To achieve these high-level goals, the fish design relies on a number of more specific design principles. These are presented below, together with a rationale and a few examples for each.</p>
@@ -144,8 +144,8 @@ Bad performance increases user-facing complexity, because it trains users to rec
 Different configuration options are a nightmare to maintain, since the number of potential bugs caused by specific configuration combinations quickly becomes an issue. Configuration options often imply assumptions about the code which change when reimplementing the code, causing issues with backwards compatibility. But mostly, configuration options should be avoided since they simply should not exist, as the program should be smart enough to do what is best, or at least a good enough approximation of it.</p>
 <p>Examples:</p>
 <ul class="simple">
-<li><p>Fish allows the user to set various syntax highlighting colors. This is needed because fish does not know what colors the terminal uses by default, which might make some things unreadable. The proper solution would be for text color preferences to be defined centrally by the user for all programs, and for the terminal emulator to send these color properties to fish.</p></li>
-<li><p>Fish does not allow you to set the number of history entries, different language substyles or any number of other common shell configuration options.</p></li>
+<li><p>fish allows the user to set various syntax highlighting colors. This is needed because fish does not know what colors the terminal uses by default, which might make some things unreadable. The proper solution would be for text color preferences to be defined centrally by the user for all programs, and for the terminal emulator to send these color properties to fish.</p></li>
+<li><p>fish does not allow you to set the number of history entries, different language substyles or any number of other common shell configuration options.</p></li>
 </ul>
 <p>A special note on the evils of configurability is the long list of very useful features found in some shells, that are not turned on by default. Both zsh and bash support command-specific completions, but no such completions are shipped with bash by default, and they are turned off by default in zsh. Other features that zsh supports that are disabled by default include tab-completion of strings containing wildcards, a sane completion pager and a history file.</p>
 </section>
@@ -192,7 +192,7 @@ A program whose features are discoverable turns a new user into an expert in a s
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Design</a></li>
@@ -227,7 +227,7 @@ A program whose features are discoverable turns a new user into an expert in a s
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.7";
+ FISH_DOCS_VERSION = "4.8";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

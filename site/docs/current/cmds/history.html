@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>history - show and manipulate command history &#8212; fish-shell 4.7.1 documentation</title>
+    <title>history - show and manipulate command history &#8212; fish-shell 4.8.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=36689d04"></script>
+    <script src="../_static/documentation_options.js?v=b8c419d6"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -63,14 +63,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">fish for Bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -189,7 +189,7 @@
 <p>By default interactive commands are logged to <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/fish/fish_history</span></code> (typically <code class="docutils literal notranslate"><span class="pre">~/.local/share/fish/fish_history</span></code>).</p>
 <p>You can set the <code class="docutils literal notranslate"><span class="pre">fish_history</span></code> variable to another name for the current shell session. The default value (when the variable is unset) is <code class="docutils literal notranslate"><span class="pre">fish</span></code> which corresponds to <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/fish/fish_history</span></code>. If you set it to e.g. <code class="docutils literal notranslate"><span class="pre">fun</span></code>, the history would be written to <code class="docutils literal notranslate"><span class="pre">$XDG_DATA_HOME/fish/fun_history</span></code>. An empty string means history will not be stored at all. This is similar to the private session features in web browsers.</p>
 <p>You can change <code class="docutils literal notranslate"><span class="pre">fish_history</span></code> at any time (by using <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">-x</span> <span class="pre">fish_history</span> <span class="pre">&quot;session_name&quot;</span></code>) and it will take effect right away. If you set it to <code class="docutils literal notranslate"><span class="pre">&quot;default&quot;</span></code>, it will use the default session name (which is <code class="docutils literal notranslate"><span class="pre">&quot;fish&quot;</span></code>).</p>
-<p>Other shells such as bash and zsh use a variable named <code class="docutils literal notranslate"><span class="pre">HISTFILE</span></code> for a similar purpose. Fish uses a different name to avoid conflicts and signal that the behavior is different (session name instead of a file path). Also, if you set the var to anything other than <code class="docutils literal notranslate"><span class="pre">fish</span></code> or <code class="docutils literal notranslate"><span class="pre">default</span></code> it will inhibit importing the bash history. That’s because the most common use case for this feature is to avoid leaking private or sensitive history when giving a presentation.</p>
+<p>Other shells such as bash and zsh use a variable named <code class="docutils literal notranslate"><span class="pre">HISTFILE</span></code> for a similar purpose. fish uses a different name to avoid conflicts and signal that the behavior is different (session name instead of a file path). Also, if you set the var to anything other than <code class="docutils literal notranslate"><span class="pre">fish</span></code> or <code class="docutils literal notranslate"><span class="pre">default</span></code> it will inhibit importing the bash history. That’s because the most common use case for this feature is to avoid leaking private or sensitive history when giving a presentation.</p>
 </section>
 <section id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h2>
@@ -212,7 +212,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -248,7 +248,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.7";
+ FISH_DOCS_VERSION = "4.8";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

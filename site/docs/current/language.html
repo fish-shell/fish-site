@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>The fish language &#8212; fish-shell 4.7.1 documentation</title>
+    <title>The fish language &#8212; fish-shell 4.8.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=36689d04"></script>
+    <script src="_static/documentation_options.js?v=b8c419d6"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -62,14 +62,14 @@
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive use</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">The fish language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">fish for Bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="completions.html">Writing your own completions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terminal-compatibility.html">Terminal Compatibility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To Fish</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -210,7 +210,7 @@
 </pre></div>
 </div>
 <p>to remove a file called <code class="docutils literal notranslate"><span class="pre">my</span> <span class="pre">file.txt</span></code> instead of trying to remove two files, <code class="docutils literal notranslate"><span class="pre">my</span></code> and <code class="docutils literal notranslate"><span class="pre">file.txt</span></code>.</p>
-<p>Fish understands two kinds of quotes: Single (<code class="docutils literal notranslate"><span class="pre">'</span></code>) and double (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>), and both work slightly differently.</p>
+<p>fish understands two kinds of quotes: Single (<code class="docutils literal notranslate"><span class="pre">'</span></code>) and double (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>), and both work slightly differently.</p>
 <p>Between single quotes, fish performs no expansions. Between double quotes, fish only performs <a class="reference internal" href="#expand-variable"><span class="std std-ref">variable expansion</span></a> and <a class="reference internal" href="#expand-command-substitution"><span class="std std-ref">command substitution</span></a> in the <code class="docutils literal notranslate"><span class="pre">$(command)</span></code>. No other kind of expansion (including <a class="reference internal" href="#expand-brace"><span class="std std-ref">brace expansion</span></a> or parameter expansion) is performed, and escape sequences (for example, <code class="docutils literal notranslate"><span class="pre">\n</span></code>) are ignored. Within quotes, whitespace is not used to separate arguments, allowing quoted arguments to contain spaces.</p>
 <p>The only meaningful escape sequences in single quotes are <code class="docutils literal notranslate"><span class="pre">\'</span></code>, which escapes a single quote and <code class="docutils literal notranslate"><span class="pre">\\</span></code>, which escapes the backslash symbol. The only meaningful escapes in double quotes are <code class="docutils literal notranslate"><span class="pre">\&quot;</span></code>, which escapes a double quote, <code class="docutils literal notranslate"><span class="pre">\$</span></code>, which escapes a dollar character, <code class="docutils literal notranslate"><span class="pre">\</span></code> followed by a newline, which deletes the backslash and the newline, and <code class="docutils literal notranslate"><span class="pre">\\</span></code>, which escapes the backslash symbol.</p>
 <p>Single quotes have no special meaning within double quotes and vice versa.</p>
@@ -421,7 +421,7 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <p>The first line tells fish to define a function by the name of <code class="docutils literal notranslate"><span class="pre">ll</span></code>, so it can be used by writing <code class="docutils literal notranslate"><span class="pre">ll</span></code> on the commandline. The second line tells fish that the command <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">$argv</span></code> should be called when <code class="docutils literal notranslate"><span class="pre">ll</span></code> is invoked. <a class="reference internal" href="#variables-argv"><span class="std std-ref">$argv</span></a> is a <a class="reference internal" href="#variables-lists"><span class="std std-ref">list variable</span></a>, which always contains all arguments sent to the function. In the example above, these are passed on to the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command. The <code class="docutils literal notranslate"><span class="pre">end</span></code> on the third line ends the definition.</p>
 <p>Calling this as <code class="docutils literal notranslate"><span class="pre">ll</span> <span class="pre">/tmp/</span></code> will end up running <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">/tmp/</span></code>, which will list the contents of /tmp.</p>
 <p>This is a kind of function known as an <a class="reference internal" href="#syntax-aliases"><span class="std std-ref">alias</span></a>.</p>
-<p>Fish’s prompt is also defined in a function, called <a class="reference internal" href="cmds/fish_prompt.html"><span class="doc">fish_prompt</span></a>. It is run when the prompt is about to be displayed and its output forms the prompt:</p>
+<p>fish’s prompt is also defined in a function, called <a class="reference internal" href="cmds/fish_prompt.html"><span class="doc">fish_prompt</span></a>. It is run when the prompt is about to be displayed and its output forms the prompt:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_prompt</span>
 <span class="w">    </span><span class="c"># A simple prompt. Displays the current directory</span>
 <span class="w">    </span><span class="c"># (which fish stores in the $PWD variable)</span>
@@ -496,11 +496,11 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 </section>
 <section id="conditions">
 <span id="syntax-conditional"></span><h2>Conditions<a class="headerlink" href="#conditions" title="Link to this heading">¶</a></h2>
-<p>Fish has some builtins that let you execute commands only if a specific criterion is met: <a class="reference internal" href="cmds/if.html"><span class="doc">if</span></a>, <a class="reference internal" href="cmds/switch.html"><span class="doc">switch</span></a>, <a class="reference internal" href="cmds/and.html"><span class="doc">and</span></a> and <a class="reference internal" href="cmds/or.html"><span class="doc">or</span></a>, and also the familiar <a class="reference internal" href="#syntax-combiners"><span class="std std-ref">&amp;&amp;/||</span></a> syntax.</p>
+<p>fish has some builtins that let you execute commands only if a specific criterion is met: <a class="reference internal" href="cmds/if.html"><span class="doc">if</span></a>, <a class="reference internal" href="cmds/switch.html"><span class="doc">switch</span></a>, <a class="reference internal" href="cmds/and.html"><span class="doc">and</span></a> and <a class="reference internal" href="cmds/or.html"><span class="doc">or</span></a>, and also the familiar <a class="reference internal" href="#syntax-combiners"><span class="std std-ref">&amp;&amp;/||</span></a> syntax.</p>
 <section id="the-if-statement">
 <span id="syntax-if"></span><h3>The <code class="docutils literal notranslate"><span class="pre">if</span></code> statement<a class="headerlink" href="#the-if-statement" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference internal" href="cmds/if.html"><span class="doc">if</span></a> statement runs a block of commands if the condition was true.</p>
-<p>Like other shells, but unlike typical programming languages you might know, the condition here is a <em>command</em>. Fish runs it, and if it returns a true <a class="reference internal" href="#variables-status"><span class="std std-ref">exit status</span></a> (that’s 0), the if-block is run. For example:</p>
+<p>Like other shells, but unlike typical programming languages you might know, the condition here is a <em>command</em>. fish runs it, and if it returns a true <a class="reference internal" href="#variables-status"><span class="std std-ref">exit status</span></a> (that’s 0), the if-block is run. For example:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">if</span><span class="w"> </span><span class="nf">test</span><span class="w"> </span><span class="no">-e</span><span class="w"> </span><span class="no">/etc/os-release</span>
 <span class="w">    </span><span class="nf">cat</span><span class="w"> </span><span class="no">/etc/os-release</span>
 <span class="nf">end</span>
@@ -732,7 +732,7 @@ These listed jobs can be removed with the <a class="reference internal" href="cm
 <section id="quoting-variables">
 <h4>Quoting variables<a class="headerlink" href="#quoting-variables" title="Link to this heading">¶</a></h4>
 <p>Variable expansion also happens in double quoted strings. Inside double quotes (<code class="docutils literal notranslate"><span class="pre">&quot;these&quot;</span></code>), variables will always expand to exactly one argument. If they are empty or undefined, it will result in an empty string. If they have one element, they’ll expand to that element. If they have more than that, the elements will be joined with spaces, unless the variable is a <a class="reference internal" href="#variables-path"><span class="std std-ref">path variable</span></a> - in that case it will use a colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>) instead <a class="footnote-reference brackets" href="#id8" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
-<p>Fish variables are all <a class="reference internal" href="#variables-lists"><span class="std std-ref">lists</span></a>, and they are split into elements when they are <em>set</em> - that means it is important to decide whether to use quotes or not with <a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a>:</p>
+<p>fish variables are all <a class="reference internal" href="#variables-lists"><span class="std std-ref">lists</span></a>, and they are split into elements when they are <em>set</em> - that means it is important to decide whether to use quotes or not with <a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a>:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">set</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">1</span><span class="w"> </span><span class="no">2</span><span class="w"> </span><span class="no">3</span><span class="w"> </span><span class="c"># a variable with three elements</span>
 <span class="nf">rm</span><span class="w"> </span><span class="o">$foo</span><span class="w"> </span><span class="c"># runs the equivalent of `rm 1 2 3` - trying to delete three files: 1, 2 and 3.</span>
 <span class="nf">rm</span><span class="w"> </span><span class="s2">&quot;</span><span class="o">$foo</span><span class="s2">&quot;</span><span class="w"> </span><span class="c"># runs `rm &#39;1 2 3&#39;` - trying to delete one file called &#39;1 2 3&#39;</span>
@@ -856,7 +856,7 @@ rm<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$foo</s
 </div>
 <p>When using double quotes, the command output is not split up by lines, but trailing empty lines are still removed.</p>
 <p>If the output is piped to <a class="reference internal" href="cmds/string-split.html"><span class="doc">string split or string split0</span></a> as the last step, those splits are used as they appear instead of splitting lines.</p>
-<p>Fish also allows spelling command substitutions without the dollar, like <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">(pwd)</span></code>. This variant will not be expanded in double-quotes (<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;(pwd)&quot;</span></code> will print <code class="docutils literal notranslate"><span class="pre">(pwd)</span></code>).</p>
+<p>fish also allows spelling command substitutions without the dollar, like <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">(pwd)</span></code>. This variant will not be expanded in double-quotes (<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;(pwd)&quot;</span></code> will print <code class="docutils literal notranslate"><span class="pre">(pwd)</span></code>).</p>
 <p>The exit status of the last run command substitution is available in the <a class="reference internal" href="#variables-status"><span class="std std-ref">status</span></a> variable if the substitution happens in the context of a <a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a> command (so <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">set</span> <span class="pre">-l</span> <span class="pre">(something)</span></code> checks if <code class="docutils literal notranslate"><span class="pre">something</span></code> returned true).</p>
 <p>To use only some lines of the output, refer to <a class="reference internal" href="#expand-slices"><span class="std std-ref">slices</span></a>.</p>
 <p>Examples:</p>
@@ -885,7 +885,7 @@ rm<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$foo</s
 </pre></div>
 </div>
 <p>This creates a temporary file, stores the output of the command in that file and prints the filename, so it is given to the outer command.</p>
-<p>Fish has a default limit of 1 GiB on the data it will read in a command substitution. If that limit is reached the command (all of it, not just the command substitution - the outer command won’t be executed at all) fails and <code class="docutils literal notranslate"><span class="pre">$status</span></code> is set to 122. This is so command substitutions can’t cause the system to go out of memory, because typically your operating system has a much lower limit, so reading more than that would be useless and harmful. This limit can be adjusted with the <code class="docutils literal notranslate"><span class="pre">fish_read_limit</span></code> variable (<cite>0</cite> meaning no limit). This limit also affects the <a class="reference internal" href="cmds/read.html"><span class="doc">read</span></a> command.</p>
+<p>fish has a default limit of 1 GiB on the data it will read in a command substitution. If that limit is reached the command (all of it, not just the command substitution - the outer command won’t be executed at all) fails and <code class="docutils literal notranslate"><span class="pre">$status</span></code> is set to 122. This is so command substitutions can’t cause the system to go out of memory, because typically your operating system has a much lower limit, so reading more than that would be useless and harmful. This limit can be adjusted with the <code class="docutils literal notranslate"><span class="pre">fish_read_limit</span></code> variable (<cite>0</cite> meaning no limit). This limit also affects the <a class="reference internal" href="cmds/read.html"><span class="doc">read</span></a> command.</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id10" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">4</a><span class="fn-bracket">]</span></span>
@@ -941,7 +941,7 @@ rm<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$foo</s
 </section>
 <section id="combining-lists">
 <span id="cartesian-product"></span><h3>Combining lists<a class="headerlink" href="#combining-lists" title="Link to this heading">¶</a></h3>
-<p>Fish expands lists like <a class="reference internal" href="#expand-brace"><span class="std std-ref">brace expansions</span></a>:</p>
+<p>fish expands lists like <a class="reference internal" href="#expand-brace"><span class="std std-ref">brace expansions</span></a>:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;_ </span><span class="nf">set</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">foo</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">y</span><span class="w"> </span><span class="no">z</span>
 <span class="gp">&gt;_ </span><span class="nf">echo</span><span class="w"> </span><span class="no">1</span><span class="o">$foo</span>
 <span class="go"># Any element of $foo is combined with the &quot;1&quot;:</span>
@@ -1355,7 +1355,7 @@ All changes to universal variables are persistent and instantly propagated acros
 </section>
 <section id="lists">
 <span id="variables-lists"></span><h3>Lists<a class="headerlink" href="#lists" title="Link to this heading">¶</a></h3>
-<p>Fish can store a list (or an “array” if you wish) of multiple strings inside of a variable:</p>
+<p>fish can store a list (or an “array” if you wish) of multiple strings inside of a variable:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">set</span><span class="w"> </span><span class="no">mylist</span><span class="w"> </span><span class="no">first</span><span class="w"> </span><span class="no">second</span><span class="w"> </span><span class="no">third</span>
 <span class="gp">&gt; </span><span class="nf">printf</span><span class="w"> </span><span class="s1">&#39;%s\n&#39;</span><span class="w"> </span><span class="o">$mylist</span><span class="w"> </span><span class="c"># prints each element on its own line</span>
 <span class="go">first</span>
@@ -1418,7 +1418,7 @@ All changes to universal variables are persistent and instantly propagated acros
 <span class="go">smurf_PATH=forest:mushroom</span>
 </pre></div>
 </div>
-<p>Fish automatically creates lists from all environment variables whose name ends in <code class="docutils literal notranslate"><span class="pre">PATH</span></code> (like <span class="target" id="index-6"></span><a class="reference internal" href="#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a>, <span class="target" id="index-7"></span><a class="reference internal" href="#envvar-CDPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CDPATH</span></code></a> or <span class="target" id="index-8"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MANPATH</span></code>), by splitting them on colons. Other variables are not automatically split.</p>
+<p>fish automatically creates lists from all environment variables whose name ends in <code class="docutils literal notranslate"><span class="pre">PATH</span></code> (like <span class="target" id="index-6"></span><a class="reference internal" href="#envvar-PATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code></a>, <span class="target" id="index-7"></span><a class="reference internal" href="#envvar-CDPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CDPATH</span></code></a> or <span class="target" id="index-8"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MANPATH</span></code>), by splitting them on colons. Other variables are not automatically split.</p>
 <p>Lists can be inspected with the <a class="reference internal" href="cmds/count.html"><span class="doc">count</span></a> or the <a class="reference internal" href="cmds/contains.html"><span class="doc">contains</span></a> commands:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nf">count</span><span class="w"> </span><span class="o">$smurf</span>
 <span class="go">2</span>
@@ -1703,7 +1703,7 @@ Set it to <code class="docutils literal notranslate"><span class="pre">all</span
 <dd><p>your preferred web browser. If this variable is set, fish will use the specified browser instead of the system default browser to display the fish documentation.</p>
 </dd></dl>
 
-<p>Fish also provides additional information through the values of certain environment variables. Most of these variables are read-only and their value can’t be changed with <code class="docutils literal notranslate"><span class="pre">set</span></code>.</p>
+<p>fish also provides additional information through the values of certain environment variables. Most of these variables are read-only and their value can’t be changed with <code class="docutils literal notranslate"><span class="pre">set</span></code>.</p>
 <dl class="std envvar">
 <dt class="sig sig-object std" id="envvar-_">
 <span class="sig-name descname"><span class="pre">_</span></span><a class="headerlink" href="#envvar-_" title="Link to this definition">¶</a></dt>
@@ -1814,7 +1814,7 @@ See <a class="reference internal" href="cmds/fish_config.html#fish-config-theme-
 <dl class="std envvar">
 <dt class="sig sig-object std" id="envvar-SHLVL">
 <span class="sig-name descname"><span class="pre">SHLVL</span></span><a class="headerlink" href="#envvar-SHLVL" title="Link to this definition">¶</a></dt>
-<dd><p>the level of nesting of shells. Fish increments this in interactive shells, otherwise it only passes it along.</p>
+<dd><p>the level of nesting of shells. fish increments this in interactive shells, otherwise it only passes it along.</p>
 </dd></dl>
 
 <dl class="std envvar">
@@ -1848,12 +1848,12 @@ See <a class="reference internal" href="cmds/fish_config.html#fish-config-theme-
 </dd></dl>
 
 <p>As a convention, an uppercase name is usually used for exported variables, while lowercase variables are not exported. (<code class="docutils literal notranslate"><span class="pre">CMD_DURATION</span></code> is an exception for historical reasons). This rule is not enforced by fish, but it is good coding practice to use casing to distinguish between exported and unexported variables.</p>
-<p>Fish also uses some variables internally, their name usually starting with <code class="docutils literal notranslate"><span class="pre">__fish</span></code>. These are internal and should not typically be modified directly.</p>
+<p>fish also uses some variables internally, their name usually starting with <code class="docutils literal notranslate"><span class="pre">__fish</span></code>. These are internal and should not typically be modified directly.</p>
 </section>
 <section id="the-status-variable">
 <span id="variables-status"></span><h3>The status variable<a class="headerlink" href="#the-status-variable" title="Link to this heading">¶</a></h3>
 <p>Whenever a process exits, an exit status is returned to the program that started it (usually the shell). This exit status is an integer number, which tells the calling application how the execution of the command went. In general, a zero exit status means that the command executed without problem, but a non-zero exit status means there was some form of problem.</p>
-<p>Fish stores the exit status of the last process in the last job to exit in the <code class="docutils literal notranslate"><span class="pre">status</span></code> variable.</p>
+<p>fish stores the exit status of the last process in the last job to exit in the <code class="docutils literal notranslate"><span class="pre">status</span></code> variable.</p>
 <p>If fish encounters a problem while executing a command, the status variable may also be set to a specific value:</p>
 <ul class="simple">
 <li><p>0 is generally the exit status of commands if they successfully performed the requested operation.</p></li>
@@ -1951,7 +1951,7 @@ Used in the <a class="reference internal" href="cmds/history.html#history-show-t
 </section>
 <section id="builtin-commands">
 <span id="builtin-overview"></span><h2>Builtin commands<a class="headerlink" href="#builtin-commands" title="Link to this heading">¶</a></h2>
-<p>Fish includes a number of commands in the shell directly. We call these “builtins”. These include:</p>
+<p>fish includes a number of commands in the shell directly. We call these “builtins”. These include:</p>
 <ul class="simple">
 <li><p>Builtins that manipulate the shell state - <a class="reference internal" href="cmds/cd.html"><span class="doc">cd</span></a> changes directory, <a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a> sets variables</p></li>
 <li><p>Builtins for dealing with data, like <a class="reference internal" href="cmds/string.html"><span class="doc">string</span></a> for strings and <a class="reference internal" href="cmds/math.html"><span class="doc">math</span></a> for numbers, <a class="reference internal" href="cmds/count.html"><span class="doc">count</span></a> for counting lines or arguments, <a class="reference internal" href="cmds/path.html"><span class="doc">path</span></a> for dealing with path</p></li>
@@ -2142,7 +2142,7 @@ If you use an incompatible terminal, you can -- for the time being -- work aroun
 <span class="nf">end</span>
 </pre></div>
 </div>
-<p>Fish already has the following named events for the <code class="docutils literal notranslate"><span class="pre">--on-event</span></code> switch:</p>
+<p>fish already has the following named events for the <code class="docutils literal notranslate"><span class="pre">--on-event</span></code> switch:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">fish_prompt</span></code> is emitted whenever a new fish prompt is about to be displayed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fish_preexec</span></code> is emitted right before executing an interactive command. The commandline is passed as the first parameter. Not emitted if command is empty.</p></li>
@@ -2172,7 +2172,7 @@ If you use an incompatible terminal, you can -- for the time being -- work aroun
 </section>
 <section id="debugging-fish-scripts">
 <span id="debugging"></span><h2>Debugging fish scripts<a class="headerlink" href="#debugging-fish-scripts" title="Link to this heading">¶</a></h2>
-<p>Fish includes basic built-in debugging facilities that allow you to stop execution of a script at an arbitrary point. When this happens you are presented with an interactive prompt where you can execute any fish command to inspect or change state (there are no debug commands as such). For example, you can check or change the value of any variables using <a class="reference internal" href="cmds/printf.html"><span class="doc">printf</span></a> and <a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a>. As another example, you can run <a class="reference internal" href="cmds/status.html"><span class="doc">status print-stack-trace</span></a> to see how the current breakpoint was reached. To resume normal execution of the script, type <a class="reference internal" href="cmds/exit.html"><span class="doc">exit</span></a> or <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">d</kbd>.</p>
+<p>fish includes basic built-in debugging facilities that allow you to stop execution of a script at an arbitrary point. When this happens you are presented with an interactive prompt where you can execute any fish command to inspect or change state (there are no debug commands as such). For example, you can check or change the value of any variables using <a class="reference internal" href="cmds/printf.html"><span class="doc">printf</span></a> and <a class="reference internal" href="cmds/set.html"><span class="doc">set</span></a>. As another example, you can run <a class="reference internal" href="cmds/status.html"><span class="doc">status print-stack-trace</span></a> to see how the current breakpoint was reached. To resume normal execution of the script, type <a class="reference internal" href="cmds/exit.html"><span class="doc">exit</span></a> or <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">d</kbd>.</p>
 <p>To start a debug session insert the <a class="reference internal" href="cmds/breakpoint.html"><span class="doc">builtin command</span></a> <code class="docutils literal notranslate"><span class="pre">breakpoint</span></code> at the point in a function or script where you wish to gain control, then run the function or script. Also, the default action of the <code class="docutils literal notranslate"><span class="pre">TRAP</span></code> signal is to call this builtin, meaning a running script can be actively debugged by sending it the <code class="docutils literal notranslate"><span class="pre">TRAP</span></code> signal (<code class="docutils literal notranslate"><span class="pre">kill</span> <span class="pre">-s</span> <span class="pre">TRAP</span> <span class="pre">&lt;PID&gt;</span></code>). There is limited support for interactively setting or modifying breakpoints from this debug prompt: it is possible to insert new breakpoints in (or remove old ones from) other functions by using the <code class="docutils literal notranslate"><span class="pre">funced</span></code> function to edit the definition of a function, but it is not possible to add or remove a breakpoint from the function/script currently loaded and being executed.</p>
 <p>Another way to debug script issues is to set the <span class="target" id="index-31"></span><a class="reference internal" href="#envvar-fish_trace"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">fish_trace</span></code></a> variable, e.g. <code class="docutils literal notranslate"><span class="pre">fish_trace=1</span> <span class="pre">fish_prompt</span></code> to see which commands fish executes when running the <a class="reference internal" href="cmds/fish_prompt.html"><span class="doc">fish_prompt</span></a> function.</p>
 <section id="profiling-fish-scripts">
@@ -2208,7 +2208,7 @@ If you use an incompatible terminal, you can -- for the time being -- work aroun
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">The fish language</a></li>
@@ -2243,7 +2243,7 @@ If you use an incompatible terminal, you can -- for the time being -- work aroun
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.7";
+ FISH_DOCS_VERSION = "4.8";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

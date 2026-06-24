@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Writing your own completions &#8212; fish-shell 4.7.1 documentation</title>
+    <title>Writing your own completions &#8212; fish-shell 4.8.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=36689d04"></script>
+    <script src="_static/documentation_options.js?v=b8c419d6"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -62,14 +62,14 @@
 <li class="toctree-l1"><a class="reference internal" href="interactive.html">Interactive use</a></li>
 <li class="toctree-l1"><a class="reference internal" href="language.html">The fish language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_for_bash_users.html">fish for Bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Writing your own completions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terminal-compatibility.html">Terminal Compatibility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To Fish</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing To fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -138,7 +138,7 @@
 <span class="gp">&gt; </span><span class="nf">myprog</span><span class="w"> </span><span class="no">--output</span><span class="w"> </span><span class="p">&lt;TAB&gt;</span>
 </pre></div>
 </div>
-<p>Fish will also offer files by default, in addition to the arguments you specified. You would either inhibit file completion for a single option:</p>
+<p>fish will also offer files by default, in addition to the arguments you specified. You would either inhibit file completion for a single option:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">myprog</span><span class="w"> </span><span class="no">-s</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">output</span><span class="w"> </span><span class="no">--no-files</span><span class="w"> </span><span class="no">-ra</span><span class="w"> </span><span class="s2">&quot;yes no&quot;</span>
 </pre></div>
 </div>
@@ -212,7 +212,7 @@
 <span class="nf">complete</span><span class="w"> </span><span class="no">-c</span><span class="w"> </span><span class="no">timedatectl</span><span class="w"> </span><span class="no">-l</span><span class="w"> </span><span class="no">no-pager</span><span class="w"> </span><span class="no">-d</span><span class="w"> </span><span class="s1">&#39;Do not pipe output into a pager&#39;</span>
 </pre></div>
 </div>
-<p>For examples of how to write your own complex completions, study the completions in <code class="docutils literal notranslate"><span class="pre">/usr/share/fish/completions</span></code>. (The exact path depends on your chosen installation prefix and may be slightly different)</p>
+<p>For examples of how to write your own completions, study <code class="docutils literal notranslate"><span class="pre">share/completions</span></code> in the fish-shell source tree.</p>
 <section id="useful-functions-for-writing-completions">
 <h2>Useful functions for writing completions<a class="headerlink" href="#useful-functions-for-writing-completions" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">fish</span></code> ships with several functions that may be useful when writing command-specific completions. Most of these function names begin with the string <code class="docutils literal notranslate"><span class="pre">__fish_</span></code>. Such functions are internal to <code class="docutils literal notranslate"><span class="pre">fish</span></code> and their name and interface may change in future fish versions. A few of these functions are described here.</p>
@@ -231,14 +231,14 @@
 </section>
 <section id="where-to-put-completions">
 <h2>Where to put completions<a class="headerlink" href="#where-to-put-completions" title="Link to this heading">¶</a></h2>
-<p>Completions can be defined on the commandline or in a configuration file, but they can also be automatically loaded. Fish automatically searches through any directories in the list variable <code class="docutils literal notranslate"><span class="pre">$fish_complete_path</span></code>, and any completions defined are automatically loaded when needed. A completion file must have a filename consisting of the name of the command to complete and the suffix <code class="docutils literal notranslate"><span class="pre">.fish</span></code>.</p>
-<p>By default, Fish searches the following for completions, using the first available file that it finds:</p>
+<p>Completions can be defined on the commandline or in a configuration file, but they can also be automatically loaded. fish automatically searches through any directories in the list variable <code class="docutils literal notranslate"><span class="pre">$fish_complete_path</span></code>, and any completions defined are automatically loaded when needed. A completion file must have a filename consisting of the name of the command to complete and the suffix <code class="docutils literal notranslate"><span class="pre">.fish</span></code>.</p>
+<p>By default, fish searches the following for completions, using the first available file that it finds:</p>
 <ul class="simple">
 <li><p>A directory for end-users to keep their own completions, usually <code class="docutils literal notranslate"><span class="pre">~/.config/fish/completions</span></code> (controlled by the <code class="docutils literal notranslate"><span class="pre">XDG_CONFIG_HOME</span></code> environment variable);</p></li>
 <li><p>A directory for systems administrators to install completions for all users on the system, usually <code class="docutils literal notranslate"><span class="pre">/etc/fish/completions</span></code>;</p></li>
 <li><p>A user-specified directory for third-party vendor completions, usually <code class="docutils literal notranslate"><span class="pre">~/.local/share/fish/vendor_completions.d</span></code> (controlled by the <code class="docutils literal notranslate"><span class="pre">XDG_DATA_HOME</span></code> environment variable);</p></li>
 <li><p>A directory for third-party software vendors to ship their own completions for their software, usually <code class="docutils literal notranslate"><span class="pre">/usr/share/fish/vendor_completions.d</span></code>;</p></li>
-<li><p>The completions shipped with fish, usually installed in <code class="docutils literal notranslate"><span class="pre">/usr/share/fish/completions</span></code>; and</p></li>
+<li><p>The completions shipped with fish, which are stored in the fish program and can be seen with <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">list-files</span></code>; and</p></li>
 <li><p>Completions automatically generated from the operating system’s manual, usually stored in <code class="docutils literal notranslate"><span class="pre">~/.cache/fish/generated_completions</span></code> (controlled by <code class="docutils literal notranslate"><span class="pre">XDG_CACHE_HOME</span></code> environment variable).</p></li>
 </ul>
 <p>These paths are controlled by parameters set at build, install, or run time, and may vary from the defaults listed above.</p>
@@ -262,7 +262,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Writing your own completions</a></li>
@@ -297,7 +297,7 @@
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.7";
+ FISH_DOCS_VERSION = "4.8";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

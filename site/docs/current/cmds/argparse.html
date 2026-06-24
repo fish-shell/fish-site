@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>argparse - parse options passed to a fish script or function &#8212; fish-shell 4.7.1 documentation</title>
+    <title>argparse - parse options passed to a fish script or function &#8212; fish-shell 4.8.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=36689d04"></script>
+    <script src="../_static/documentation_options.js?v=b8c419d6"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -63,14 +63,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">fish for Bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -292,7 +292,7 @@ This will modify the parsing behaviour of unknown options depending on the value
 </ul>
 <p>These variables are passed to the function as local exported variables.</p>
 <p>The script should write any error messages to stdout, not stderr. It should return a status of zero if the flag value is valid otherwise a non-zero status to indicate it is invalid.</p>
-<p>Fish ships with a <code class="docutils literal notranslate"><span class="pre">_validate_int</span></code> function that accepts a <code class="docutils literal notranslate"><span class="pre">--min</span></code> and <code class="docutils literal notranslate"><span class="pre">--max</span></code> flag. Let’s say your command accepts a <code class="docutils literal notranslate"><span class="pre">-m</span></code> or <code class="docutils literal notranslate"><span class="pre">--max</span></code> flag and the minimum allowable value is zero and the maximum is 5. You would define the option like this: <code class="docutils literal notranslate"><span class="pre">m/max=!_validate_int</span> <span class="pre">--min</span> <span class="pre">0</span> <span class="pre">--max</span> <span class="pre">5</span></code>. The default if you call <code class="docutils literal notranslate"><span class="pre">_validate_int</span></code> without those flags is to check that the value is a valid integer with no limits on the min or max value allowed.</p>
+<p>fish ships with a <code class="docutils literal notranslate"><span class="pre">_validate_int</span></code> function that accepts a <code class="docutils literal notranslate"><span class="pre">--min</span></code> and <code class="docutils literal notranslate"><span class="pre">--max</span></code> flag. Let’s say your command accepts a <code class="docutils literal notranslate"><span class="pre">-m</span></code> or <code class="docutils literal notranslate"><span class="pre">--max</span></code> flag and the minimum allowable value is zero and the maximum is 5. You would define the option like this: <code class="docutils literal notranslate"><span class="pre">m/max=!_validate_int</span> <span class="pre">--min</span> <span class="pre">0</span> <span class="pre">--max</span> <span class="pre">5</span></code>. The default if you call <code class="docutils literal notranslate"><span class="pre">_validate_int</span></code> without those flags is to check that the value is a valid integer with no limits on the min or max value allowed.</p>
 <p>Here are some examples of flag validations:</p>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="c"># validate that a path is a directory</span>
 <span class="nf">argparse</span><span class="w"> </span><span class="s1">&#39;p/path=!test -d &quot;$_flag_value&quot;&#39;</span><span class="w"> </span><span class="no">--</span><span class="w"> </span><span class="no">--path</span><span class="w"> </span><span class="o">$__fish_config_dir</span>
@@ -413,7 +413,7 @@ In this case you only need to give the short or long flag, not the full option s
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -449,7 +449,7 @@ In this case you only need to give the short or long flag, not the full option s
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.7";
+ FISH_DOCS_VERSION = "4.8";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.

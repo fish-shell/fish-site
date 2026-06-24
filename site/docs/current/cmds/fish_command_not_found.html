@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>fish_command_not_found - what to do when a command wasn’t found &#8212; fish-shell 4.7.1 documentation</title>
+    <title>fish_command_not_found - what to do when a command wasn’t found &#8212; fish-shell 4.8.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=36689d04"></script>
+    <script src="../_static/documentation_options.js?v=b8c419d6"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -63,14 +63,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../interactive.html">Interactive use</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../language.html">The fish language</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../commands.html">Commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">Fish for bash users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fish_for_bash_users.html">fish for Bash users</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../completions.html">Writing your own completions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prompt.html">Writing your own prompt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relnotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terminal-compatibility.html">Terminal Compatibility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To Fish</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing To fish</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -92,7 +92,6 @@
 <li><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li><a class="reference internal" href="#description">Description</a></li>
 <li><a class="reference internal" href="#example">Example</a></li>
-<li><a class="reference internal" href="#backwards-compatibility">Backwards compatibility</a></li>
 </ul>
 </li>
 </ul>
@@ -118,7 +117,7 @@
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>When fish tries to execute a command and can’t find it, it invokes this function.</p>
 <p>It can print a message to tell you about it, and it often also checks for a missing package that would include the command.</p>
-<p>Fish ships multiple handlers for various operating systems and chooses from them when this function is loaded,
+<p>fish ships multiple handlers for various operating systems and chooses from them when this function is loaded,
 or you can define your own.</p>
 <p>It receives the full commandline as one argument per token, so $argv[1] contains the missing command.</p>
 <p>When you leave <code class="docutils literal notranslate"><span class="pre">fish_command_not_found</span></code> undefined (e.g. by adding an empty function file) or explicitly call <code class="docutils literal notranslate"><span class="pre">__fish_default_command_not_found_handler</span></code>, fish will just print a simple error.</p>
@@ -147,27 +146,6 @@ or you can define your own.</p>
 </pre></div>
 </div>
 </section>
-<section id="backwards-compatibility">
-<h2>Backwards compatibility<a class="headerlink" href="#backwards-compatibility" title="Link to this heading">¶</a></h2>
-<p>This command was introduced in fish 3.2.0. Previous versions of fish used the “fish_command_not_found” <a class="reference internal" href="../language.html#event"><span class="std std-ref">event</span></a> instead.</p>
-<p>To define a handler that works in older versions of fish as well, define it the old way:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">__fish_command_not_found_handler</span><span class="w"> </span><span class="no">--on-event</span><span class="w"> </span><span class="no">fish_command_not_found</span>
-<span class="w">     </span><span class="nf">echo</span><span class="w"> </span><span class="no">COMMAND</span><span class="w"> </span><span class="no">WAS</span><span class="w"> </span><span class="no">NOT</span><span class="w"> </span><span class="no">FOUND</span><span class="w"> </span><span class="no">MY</span><span class="w"> </span><span class="no">FRIEND</span><span class="w"> </span><span class="o">$argv[</span><span class="no">1</span><span class="o">]</span>
-<span class="nf">end</span>
-</pre></div>
-</div>
-<p>in which case fish will define a <code class="docutils literal notranslate"><span class="pre">fish_command_not_found</span></code> that calls it,
-or define a wrapper:</p>
-<div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">function</span><span class="w"> </span><span class="no">fish_command_not_found</span>
-<span class="w">     </span><span class="nf">echo</span><span class="w"> </span><span class="s2">&quot;G&#39;day mate, could not find your command: </span><span class="o">$argv</span><span class="s2">&quot;</span>
-<span class="nf">end</span>
-
-<span class="nf">function</span><span class="w"> </span><span class="no">__fish_command_not_found_handler</span><span class="w"> </span><span class="no">--on-event</span><span class="w"> </span><span class="no">fish_command_not_found</span>
-<span class="w">     </span><span class="nf">fish_command_not_found</span><span class="w"> </span><span class="o">$argv</span>
-<span class="nf">end</span>
-</pre></div>
-</div>
-</section>
 </section>
 
 
@@ -184,7 +162,7 @@ or define a wrapper:</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.7.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.8.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -220,7 +198,7 @@ or define a wrapper:</p>
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.7";
+ FISH_DOCS_VERSION = "4.8";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
