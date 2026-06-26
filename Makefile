@@ -11,6 +11,7 @@ build:
 	@echo "Open $$PWD/docs/index.html"
 
 update-jekyll:
+	bundle update --bundler
 	bundle update
 	bundle outdated
 
