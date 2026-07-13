@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Interactive use &#8212; fish-shell 4.8.0 documentation</title>
+    <title>Interactive use &#8212; fish-shell 4.8.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=b8c419d6"></script>
+    <script src="_static/documentation_options.js?v=dc0bc992"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.8.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.8.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Interactive use</a></li>
@@ -249,6 +249,22 @@ are also accepted.</p>
 <td><p>commands like echo</p></td>
 </tr>
 <tr class="row-even"><td><dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-fish_color_builtin">
+<span class="sig-name descname"><span class="pre">fish_color_builtin</span></span><a class="headerlink" href="#envvar-fish_color_builtin" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>builtin commands like cd and set - this falls back on the command color if unset</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-fish_color_function">
+<span class="sig-name descname"><span class="pre">fish_color_function</span></span><a class="headerlink" href="#envvar-fish_color_function" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>user-defined functions - this falls back on the command color if unset</p></td>
+</tr>
+<tr class="row-even"><td><dl class="std envvar">
 <dt class="sig sig-object std" id="envvar-fish_color_keyword">
 <span class="sig-name descname"><span class="pre">fish_color_keyword</span></span><a class="headerlink" href="#envvar-fish_color_keyword" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -429,6 +445,7 @@ are also accepted.</p>
 <p>If a variable isn’t set or is empty after subtracting any <code class="docutils literal notranslate"><span class="pre">--theme=THEME</span></code> options,
 fish usually tries <code class="docutils literal notranslate"><span class="pre">$fish_color_normal</span></code>, except for:</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_builtin</span></code> and <code class="docutils literal notranslate"><span class="pre">$fish_color_function</span></code>, where they try <code class="docutils literal notranslate"><span class="pre">$fish_color_command</span></code> first.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_keyword</span></code>, where it tries <code class="docutils literal notranslate"><span class="pre">$fish_color_command</span></code> first.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">$fish_color_option</span></code>, where it tries <code class="docutils literal notranslate"><span class="pre">$fish_color_param</span></code> first.</p></li>
 <li><p>For <code class="docutils literal notranslate"><span class="pre">$fish_color_valid_path</span></code>, if that doesn’t have a color, but only modifiers, it adds those to the color that would otherwise be used,
@@ -668,10 +685,10 @@ It is executed before and after a command and the output is used as a titlebar m
 <li><p><kbd class="kbd docutils literal notranslate">left</kbd> (<code class="docutils literal notranslate"><span class="pre">←</span></code>) and <kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) move the cursor left or right by one character. If the cursor is already at the end of the line, and an autosuggestion is available, <kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) accepts the autosuggestion.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">enter</kbd> executes the current commandline or inserts a newline if it’s not complete yet (e.g. a <code class="docutils literal notranslate"><span class="pre">)</span></code> or <code class="docutils literal notranslate"><span class="pre">end</span></code> is missing).</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">enter</kbd> inserts a newline at the cursor position. This is useful to add a line to a commandline that’s already complete.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">left</kbd> (<code class="docutils literal notranslate"><span class="pre">←</span></code>) and <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) move the cursor left or right by one argument (or one word on macOS).
+<li><p><kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">left</kbd> (<code class="docutils literal notranslate"><span class="pre">←</span></code>) and <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) move the cursor left or right by one word.
 If the command line is empty, they move forward/backward in the directory history.
-If the cursor is already at the end of the line, and an autosuggestion is available, <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) (or <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">f</kbd>) accepts the first argument (or word on macOS) in the suggestion.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">left</kbd> (<code class="docutils literal notranslate"><span class="pre">←</span></code>) and <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) move the cursor left or right by one word. These accept one word of the autosuggestion - the part they’d move over.</p></li>
+If the cursor is already at the end of the line, and an autosuggestion is available, <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) (or <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">f</kbd>) accepts the first word in the suggestion.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">left</kbd> (<code class="docutils literal notranslate"><span class="pre">←</span></code>) and <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) move the cursor left or right by one token. These accept one token of the autosuggestion - the part they’d move over.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">shift</kbd>-<kbd class="kbd docutils literal notranslate">left</kbd> (<code class="docutils literal notranslate"><span class="pre">←</span></code>) and <kbd class="kbd docutils literal notranslate">shift</kbd>-<kbd class="kbd docutils literal notranslate">right</kbd> (<code class="docutils literal notranslate"><span class="pre">→</span></code>) move the cursor one word left or right, without stopping on punctuation. These accept one big word of the autosuggestion.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">up</kbd> (<code class="docutils literal notranslate"><span class="pre">↑</span></code>) and <kbd class="kbd docutils literal notranslate">down</kbd> (<code class="docutils literal notranslate"><span class="pre">↓</span></code>) (or <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">p</kbd> and <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">n</kbd> for emacs aficionados) search the command history for the previous/next command containing the string that was specified on the commandline before the search was started. If the commandline was empty when the search started, all commands match. See the <a class="reference internal" href="#history-search"><span class="std std-ref">history</span></a> section for more information on history searching.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">up</kbd> (<code class="docutils literal notranslate"><span class="pre">↑</span></code>) and <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">down</kbd> (<code class="docutils literal notranslate"><span class="pre">↓</span></code>) search the command history for the previous/next token containing the token under the cursor before the search was started. If the commandline was not on a token when the search started, all tokens match. See the <a class="reference internal" href="#history-search"><span class="std std-ref">history</span></a> section for more information on history searching.</p></li>
@@ -710,8 +727,7 @@ then clears and repaints the screen.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">b</kbd>, <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">f</kbd> move the cursor one word left or right, or accept one word of the autosuggestion. If the command line is empty, moves forward/backward in the directory history instead.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">n</kbd>, <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">p</kbd> move the cursor up/down or through history, like the up and down arrow shared bindings.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">delete</kbd> or <kbd class="kbd docutils literal notranslate">backspace</kbd> or <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">h</kbd> removes one character forwards or backwards respectively.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">backspace</kbd> removes one word backwards and <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">backspace</kbd> removes one argument backwards.
-On macOS, it’s the other way round.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">backspace</kbd> removes one word backwards and <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">backspace</kbd> removes one argument backwards.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">&lt;</kbd> moves to the beginning of the commandline, <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">&gt;</kbd> moves to the end.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">k</kbd> deletes from the cursor to the end of line (moving it to the <a class="reference internal" href="#killring"><span class="std std-ref">Copy and paste (Kill Ring)</span></a>).</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">escape</kbd> and <kbd class="kbd docutils literal notranslate">ctrl</kbd>-<kbd class="kbd docutils literal notranslate">g</kbd> cancel the current operation. Immediately after an unambiguous completion this undoes it.</p></li>
@@ -967,7 +983,7 @@ The variable <span class="target" id="index-3"></span><a class="reference intern
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.8.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.8.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Interactive use</a></li>
