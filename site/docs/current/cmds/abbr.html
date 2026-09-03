@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>abbr - manage fish abbreviations &#8212; fish-shell 4.8.1 documentation</title>
+    <title>abbr - manage fish abbreviations &#8212; fish-shell 4.9.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=f89b4716" />
-    <script src="../_static/documentation_options.js?v=dc0bc992"></script>
+    <script src="../_static/documentation_options.js?v=aa0225cc"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.8.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.9.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" accesskey="U">Commands</a> &#187;</li>
@@ -169,6 +169,7 @@ Of course any functions will have to be saved separately, see <a class="referenc
 <p>With <strong>--regex</strong>, the abbreviation matches using the regular expression given by <strong>PATTERN</strong>, instead of the literal <strong>NAME</strong>. The pattern is interpreted using PCRE2 syntax and must match the entire token. If multiple abbreviations match the same token, the last abbreviation added is used.</p>
 <p>With <strong>--set-cursor=MARKER</strong>, the cursor is moved to the first occurrence of <strong>MARKER</strong> in the expansion. The <strong>MARKER</strong> value is erased. The <strong>MARKER</strong> may be omitted (i.e. simply <code class="docutils literal notranslate"><span class="pre">--set-cursor</span></code>), in which case it defaults to <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p>
 <p>With <strong>-f FUNCTION</strong> or <strong>--function FUNCTION</strong>, <strong>FUNCTION</strong> is treated as the name of a fish function instead of a literal replacement. When the abbreviation matches, the function will be called with the matching token as an argument. If the function’s exit status is 0 (success), the token will be replaced by the function’s output; otherwise the token will be left unchanged. No <strong>EXPANSION</strong> may be given separately.</p>
+<p>The description set by <strong>--description=DESCRIPTION</strong> will be added to the completion description in the completion pager.</p>
 <section id="examples">
 <h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h3>
 <div class="highlight-fish-docs-samples notranslate"><div class="highlight"><pre><span></span><span class="nf">abbr</span><span class="w"> </span><span class="no">--add</span><span class="w"> </span><span class="no">gco</span><span class="w"> </span><span class="no">git</span><span class="w"> </span><span class="no">checkout</span>
@@ -252,7 +253,7 @@ For command-specific abbreviations, the <code class="docutils literal notranslat
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="../index.html">fish-shell 4.8.1 documentation</a> &#187;
+    <a href="../index.html">fish-shell 4.9.0 documentation</a> &#187;
     
 
           <li class="nav-item nav-item-1"><a href="../commands.html" >Commands</a> &#187;</li>
@@ -288,7 +289,7 @@ For command-specific abbreviations, the <code class="docutils literal notranslat
 </div>
 
 <script type="text/javascript">
- FISH_DOCS_VERSION = "4.8";
+ FISH_DOCS_VERSION = "4.9";
 
  function copy_to_clipboard(it) {
      // Find the pre tag we're interested in.
