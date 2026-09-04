@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release notes &#8212; fish-shell 4.9.0 documentation</title>
+    <title>Release notes &#8212; fish-shell 4.9.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4da8bbd6" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=f89b4716" />
-    <script src="_static/documentation_options.js?v=aa0225cc"></script>
+    <script src="_static/documentation_options.js?v=cecdf588"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -26,7 +26,7 @@
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.9.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.9.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
@@ -88,6 +88,7 @@
 <h4><a href="index.html">Sections</a></h4>
 <ul>
 <li><a class="reference internal" href="#">Release notes</a><ul>
+<li><a class="reference internal" href="#fish-4-9-1-released-september-04-2026">fish 4.9.1 (released September 04, 2026)</a></li>
 <li><a class="reference internal" href="#fish-4-9-0-released-september-03-2026">fish 4.9.0 (released September 03, 2026)</a><ul>
 <li><a class="reference internal" href="#interactive-improvements">Interactive improvements</a></li>
 <li><a class="reference internal" href="#scripting-improvements">Scripting improvements</a></li>
@@ -462,6 +463,16 @@
             
   <section id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading">¶</a></h1>
+<section id="fish-4-9-1-released-september-04-2026">
+<h2>fish 4.9.1 (released September 04, 2026)<a class="headerlink" href="#fish-4-9-1-released-september-04-2026" title="Link to this heading">¶</a></h2>
+<p>This release fixes the following problems identified in fish 4.9.0:</p>
+<ul class="simple">
+<li><p>On non-default keyboard layouts, fish executed bindings for physical keys instead of only bindings for the layout’s key.
+For example, on the Dvorak layout, typing <kbd class="kbd docutils literal notranslate">s</kbd> would insert <code class="docutils literal notranslate"><span class="pre">;</span></code> because there is a default binding for <kbd class="kbd docutils literal notranslate">;</kbd> (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/12968">#12968</a>).</p></li>
+<li><p>When typing <kbd class="kbd docutils literal notranslate">space</kbd> to accept a character entered via certain IMEs, fish would insert a space instead of the desired character, which has been fixed (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/12974">#12974</a>).</p></li>
+<li><p>On macOS terminals, keys like <kbd class="kbd docutils literal notranslate">option</kbd>-<kbd class="kbd docutils literal notranslate">l</kbd> would execute bindings for <kbd class="kbd docutils literal notranslate">alt</kbd>-<kbd class="kbd docutils literal notranslate">l</kbd> instead of the historical behavior of inserting a character (like <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> on a German layout) (<a class="reference external" href="https://github.com/fish-shell/fish-shell/issues/12973">#12973</a>).</p></li>
+</ul>
+</section>
 <section id="fish-4-9-0-released-september-03-2026">
 <h2>fish 4.9.0 (released September 03, 2026)<a class="headerlink" href="#fish-4-9-0-released-september-03-2026" title="Link to this heading">¶</a></h2>
 <section id="interactive-improvements">
@@ -5387,7 +5398,7 @@ track.</p>
              style="width: 80px; height: 80px; vertical-align: middle; margin-top: -1px"/></li>
     <li><a href="https://fishshell.com/">fish-shell</a> &#187;</li>
     
-    <a href="index.html">fish-shell 4.9.0 documentation</a> &#187;
+    <a href="index.html">fish-shell 4.9.1 documentation</a> &#187;
     
 
         <li class="nav-item nav-item-this"><a href="">Release notes</a></li>
